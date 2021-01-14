@@ -1,0 +1,3 @@
+# libadwaita
+
+libadwaita Rust bindings 
