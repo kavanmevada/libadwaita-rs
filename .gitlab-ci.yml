@@ -15,7 +15,7 @@ build:
 pages:
   script:
     # generate the docs
-    - cp ./Handy-4.gir ./gir-files
+    - cp ./Adw-1.gir ./gir-files
     - cargo build --release --manifest-path ./gir/Cargo.toml
     - ./gir/target/release/gir -c ./libadwaita/Gir.toml -d ./gir-files --doc-target-path docs.md -m doc
     - cargo install rustdoc-stripper
