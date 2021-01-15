@@ -1,0 +1,51 @@
+[package]
+name = "libadwaita-sys"
+version = "0.1.0"
+authors = ["Bilal Elmoussaoui <bil.elmoussaoui@gmail.com>"]
+edition = "2018"
+build = "build.rs"
+links = "libadwaita-1"
+[package.metadata.system-deps.libadwaita_1]
+name = "libadwaita-1"
+version = "1"
+[package.metadata.docs.rs]
+features = ["dox"]
+
+[lib]
+name = "libadwaita_sys"
+
+[dependencies]
+libc = "0.2"
+
+[dependencies.gio-sys]
+git = "https://github.com/gtk-rs/gtk-rs"
+
+[dependencies.glib-sys]
+git = "https://github.com/gtk-rs/gtk-rs"
+
+[dependencies.gdk-pixbuf-sys]
+git = "https://github.com/gtk-rs/gtk-rs"
+
+[dependencies.pango-sys]
+git = "https://github.com/gtk-rs/gtk-rs"
+
+[dependencies.gobject-sys]
+git = "https://github.com/gtk-rs/gtk-rs"
+
+[dependencies.gtk-sys]
+package = "gtk4-sys"
+git = "https://github.com/gtk-rs/gtk4-rs"
+
+[dependencies.gdk-sys]
+package = "gdk4-sys"
+git = "https://github.com/gtk-rs/gtk4-rs"
+
+[build-dependencies]
+system-deps = "2.0"
+
+[dev-dependencies]
+shell-words = "1.0.0"
+tempfile = "3"
+
+[features]
+dox = []

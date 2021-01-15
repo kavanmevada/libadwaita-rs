@@ -1,0 +1,15 @@
+[options]
+work_mode = "sys"
+library = "Adw"
+version = "1"
+girs_dir = "../gir-files"
+min_cfg_version = "1"
+external_libraries = [
+   "GLib",
+   "GObject",
+   "Gdk",
+   "GdkPixbuf",
+   "Gio",
+   "Gtk",
+   "Pango",
+]

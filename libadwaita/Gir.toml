@@ -1,0 +1,222 @@
+[options]
+girs_dir = "../gir-files"
+library = "Adw"
+version = "1"
+min_cfg_version = "1"
+target_path = "."
+work_mode = "normal"
+generate_safety_asserts = true
+deprecate_by_min_version = true
+# with this option enabled, versions for gir and gir-files saved only to one file to minimize noise
+single_version_file = true
+
+external_libraries = [
+   "GLib",
+   "GObject",
+   "Gdk",
+   "GdkPixbuf",
+   "Gio",
+   "Gtk",
+   "Pango",
+]
+
+
+generate = [
+    "Adw.ApplicationWindow",
+    "Adw.CenteringPolicy",
+    "Adw.EnumValueObject",
+    "Adw.Flap",
+    "Adw.FlapFoldPolicy",
+    "Adw.FlapTransitionType",
+    "Adw.HeaderGroupChild",
+    "Adw.HeaderGroupChildType",
+    "Adw.LeafletTransitionType",
+    "Adw.NavigationDirection",
+    "Adw.SqueezerTransitionType",
+    "Adw.StatusPage",
+    "Adw.SwipeGroup",
+    "Adw.Swipeable",
+    "Adw.ViewSwitcherPolicy",
+    "Adw.Window",
+]
+
+manual = [
+    "GLib.Variant",
+    "GObject.Object",
+    "GObject.Value",
+    "Gdk.Cursor",
+    "Gdk.Display",
+    "Gdk.Rectangle",
+    "GdkPixbuf.Pixbuf",
+    "Gio.ActionGroup",
+    "Gio.ActionMap",
+    "Gio.ListModel",
+    "Gtk.Accessible",
+    "Gtk.AccessibleRole",
+    "Gtk.Actionable",
+    "Gtk.Align",
+    "Gtk.Application",
+    "Gtk.ApplicationWindow",
+    "Gtk.Buildable",
+    "Gtk.ConstraintTarget",
+    "Gtk.Entry",
+    "Gtk.HeaderBar",
+    "Gtk.LayoutManager",
+    "Gtk.ListBoxRow",
+    "Gtk.ListItemFactory",
+    "Gtk.Native",
+    "Gtk.Orientable",
+    "Gtk.Orientation",
+    "Gtk.Overflow",
+    "Gtk.PackType",
+    "Gtk.Root",
+    "Gtk.Scrollable",
+    "Gtk.SelectionModel",
+    "Gtk.ShortcutManager",
+    "Gtk.Stack",
+    "Gtk.Widget",
+    "Gtk.Window",
+    "Pango.EllipsizeMode",
+]
+
+[[object]]
+name = "Adw.*"
+status = "generate"
+
+[[object]]
+name = "Adw.ActionRow"
+status = "generate"
+generate_builder = true
+
+[[object]]
+name = "Adw.Avatar"
+status = "generate"
+generate_builder = true
+
+[[object]]
+name = "Adw.Carousel"
+status = "generate"
+generate_builder = true
+
+[[object]]
+name = "Adw.CarouselIndicatorDots"
+status = "generate"
+generate_builder = true
+
+[[object]]
+name = "Adw.CarouselIndicatorLines"
+status = "generate"
+generate_builder = true
+
+[[object]]
+name = "Adw.Clamp"
+status = "generate"
+generate_builder = true
+
+[[object]]
+name = "Adw.ClampLayout"
+status = "generate"
+generate_builder = true
+
+[[object]]
+name = "Adw.ClampScrollable" 
+status = "generate" 
+generate_builder = true
+
+[[object]]
+name = "Adw.ComboRow"
+status = "generate"
+generate_builder = true
+
+[[object]]
+name = "Adw.EnumListModel"
+status = "generate"
+generate_builder = true
+
+[[object]]
+name = "Adw.ExpanderRow"
+status = "generate"
+generate_builder = true
+
+[[object]]
+name = "Adw.HeaderBar"
+status = "generate"
+generate_builder = true
+
+[[object]]
+name = "Adw.HeaderGroup"
+status = "generate"
+generate_builder = true
+
+[[object]]
+name = "Adw.Keypad"
+status = "generate"
+generate_builder = true
+
+[[object]]
+name = "Adw.LeafletPage"
+status = "generate"
+generate_builder = true
+
+[[object]]
+name = "Adw.Leaflet"
+status = "generate"
+generate_builder = true
+
+[[object]]
+name = "Adw.PreferencesGroup"
+status = "generate"
+generate_builder = true
+
+[[object]]
+name = "Adw.PreferencesPage"
+status = "generate"
+generate_builder = true
+
+[[object]]
+name = "Adw.PreferencesRow"
+status = "generate"
+generate_builder = true
+
+[[object]]
+name = "Adw.PreferencesWindow"
+status = "generate"
+generate_builder = true
+
+[[object]]
+name = "Adw.Squeezer"
+status = "generate"
+generate_builder = true
+
+[[object]]
+name = "Adw.SqueezerPage"
+status = "generate"
+generate_builder = true
+
+[[object]]
+name = "Adw.SwipeTracker"
+status = "generate"
+generate_builder = true
+    [[object.signal]]
+    name = "begin-swipe"
+    ignore = true 
+
+[[object]]
+name = "Adw.ValueObject"
+status = "generate"
+generate_builder = false
+
+[[object]]
+name = "Adw.ViewSwitcher"
+status = "generate"
+generate_builder = true
+
+[[object]]
+name = "Adw.ViewSwitcherBar"
+status = "generate"
+generate_builder = true
+
+[[object]]
+name = "Adw.ViewSwitcherTitle"
+status = "generate"
+generate_builder = true

@@ -1,0 +1,6 @@
+[workspace]
+members = [
+    "libadwaita",
+    "libadwaita/sys",
+]
+exclude = ["gir"]
