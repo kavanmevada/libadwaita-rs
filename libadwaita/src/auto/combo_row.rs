@@ -16,18 +16,18 @@ use std::fmt;
 use std::mem::transmute;
 
 glib::wrapper! {
-    pub struct ComboRow(Object<ffi::HdyComboRow, ffi::HdyComboRowClass>) @extends ActionRow, PreferencesRow, gtk::ListBoxRow, gtk::Widget, @implements gtk::Accessible, gtk::Buildable, gtk::ConstraintTarget, gtk::Actionable;
+    pub struct ComboRow(Object<ffi::AdwComboRow, ffi::AdwComboRowClass>) @extends ActionRow, PreferencesRow, gtk::ListBoxRow, gtk::Widget, @implements gtk::Accessible, gtk::Buildable, gtk::ConstraintTarget, gtk::Actionable;
 
     match fn {
-        get_type => || ffi::hdy_combo_row_get_type(),
+        get_type => || ffi::adw_combo_row_get_type(),
     }
 }
 
 impl ComboRow {
-    #[doc(alias = "hdy_combo_row_new")]
+    #[doc(alias = "adw_combo_row_new")]
     pub fn new() -> ComboRow {
         assert_initialized_main_thread!();
-        unsafe { gtk::Widget::from_glib_none(ffi::hdy_combo_row_new()).unsafe_cast() }
+        unsafe { gtk::Widget::from_glib_none(ffi::adw_combo_row_new()).unsafe_cast() }
     }
 }
 
@@ -480,43 +480,43 @@ impl ComboRowBuilder {
 pub const NONE_COMBO_ROW: Option<&ComboRow> = None;
 
 pub trait ComboRowExt: 'static {
-    //#[doc(alias = "hdy_combo_row_get_expression")]
+    //#[doc(alias = "adw_combo_row_get_expression")]
     //fn get_expression(&self) -> /*Ignored*/Option<gtk::Expression>;
 
-    #[doc(alias = "hdy_combo_row_get_factory")]
+    #[doc(alias = "adw_combo_row_get_factory")]
     fn get_factory(&self) -> Option<gtk::ListItemFactory>;
 
-    #[doc(alias = "hdy_combo_row_get_list_factory")]
+    #[doc(alias = "adw_combo_row_get_list_factory")]
     fn get_list_factory(&self) -> Option<gtk::ListItemFactory>;
 
-    #[doc(alias = "hdy_combo_row_get_model")]
+    #[doc(alias = "adw_combo_row_get_model")]
     fn get_model(&self) -> Option<gio::ListModel>;
 
-    #[doc(alias = "hdy_combo_row_get_selected")]
+    #[doc(alias = "adw_combo_row_get_selected")]
     fn get_selected(&self) -> u32;
 
-    #[doc(alias = "hdy_combo_row_get_selected_item")]
+    #[doc(alias = "adw_combo_row_get_selected_item")]
     fn get_selected_item(&self) -> Option<glib::Object>;
 
-    #[doc(alias = "hdy_combo_row_get_use_subtitle")]
+    #[doc(alias = "adw_combo_row_get_use_subtitle")]
     fn get_use_subtitle(&self) -> bool;
 
-    //#[doc(alias = "hdy_combo_row_set_expression")]
+    //#[doc(alias = "adw_combo_row_set_expression")]
     //fn set_expression(&self, expression: /*Ignored*/Option<&gtk::Expression>);
 
-    #[doc(alias = "hdy_combo_row_set_factory")]
+    #[doc(alias = "adw_combo_row_set_factory")]
     fn set_factory<P: IsA<gtk::ListItemFactory>>(&self, factory: Option<&P>);
 
-    #[doc(alias = "hdy_combo_row_set_list_factory")]
+    #[doc(alias = "adw_combo_row_set_list_factory")]
     fn set_list_factory<P: IsA<gtk::ListItemFactory>>(&self, factory: Option<&P>);
 
-    #[doc(alias = "hdy_combo_row_set_model")]
+    #[doc(alias = "adw_combo_row_set_model")]
     fn set_model<P: IsA<gio::ListModel>>(&self, model: Option<&P>);
 
-    #[doc(alias = "hdy_combo_row_set_selected")]
+    #[doc(alias = "adw_combo_row_set_selected")]
     fn set_selected(&self, position: u32);
 
-    #[doc(alias = "hdy_combo_row_set_use_subtitle")]
+    #[doc(alias = "adw_combo_row_set_use_subtitle")]
     fn set_use_subtitle(&self, use_subtitle: bool);
 
     fn connect_property_expression_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
@@ -541,12 +541,12 @@ pub trait ComboRowExt: 'static {
 
 impl<O: IsA<ComboRow>> ComboRowExt for O {
     //fn get_expression(&self) -> /*Ignored*/Option<gtk::Expression> {
-    //    unsafe { TODO: call ffi:hdy_combo_row_get_expression() }
+    //    unsafe { TODO: call ffi:adw_combo_row_get_expression() }
     //}
 
     fn get_factory(&self) -> Option<gtk::ListItemFactory> {
         unsafe {
-            from_glib_none(ffi::hdy_combo_row_get_factory(
+            from_glib_none(ffi::adw_combo_row_get_factory(
                 self.as_ref().to_glib_none().0,
             ))
         }
@@ -554,23 +554,23 @@ impl<O: IsA<ComboRow>> ComboRowExt for O {
 
     fn get_list_factory(&self) -> Option<gtk::ListItemFactory> {
         unsafe {
-            from_glib_none(ffi::hdy_combo_row_get_list_factory(
+            from_glib_none(ffi::adw_combo_row_get_list_factory(
                 self.as_ref().to_glib_none().0,
             ))
         }
     }
 
     fn get_model(&self) -> Option<gio::ListModel> {
-        unsafe { from_glib_none(ffi::hdy_combo_row_get_model(self.as_ref().to_glib_none().0)) }
+        unsafe { from_glib_none(ffi::adw_combo_row_get_model(self.as_ref().to_glib_none().0)) }
     }
 
     fn get_selected(&self) -> u32 {
-        unsafe { ffi::hdy_combo_row_get_selected(self.as_ref().to_glib_none().0) }
+        unsafe { ffi::adw_combo_row_get_selected(self.as_ref().to_glib_none().0) }
     }
 
     fn get_selected_item(&self) -> Option<glib::Object> {
         unsafe {
-            from_glib_none(ffi::hdy_combo_row_get_selected_item(
+            from_glib_none(ffi::adw_combo_row_get_selected_item(
                 self.as_ref().to_glib_none().0,
             ))
         }
@@ -578,19 +578,19 @@ impl<O: IsA<ComboRow>> ComboRowExt for O {
 
     fn get_use_subtitle(&self) -> bool {
         unsafe {
-            from_glib(ffi::hdy_combo_row_get_use_subtitle(
+            from_glib(ffi::adw_combo_row_get_use_subtitle(
                 self.as_ref().to_glib_none().0,
             ))
         }
     }
 
     //fn set_expression(&self, expression: /*Ignored*/Option<&gtk::Expression>) {
-    //    unsafe { TODO: call ffi:hdy_combo_row_set_expression() }
+    //    unsafe { TODO: call ffi:adw_combo_row_set_expression() }
     //}
 
     fn set_factory<P: IsA<gtk::ListItemFactory>>(&self, factory: Option<&P>) {
         unsafe {
-            ffi::hdy_combo_row_set_factory(
+            ffi::adw_combo_row_set_factory(
                 self.as_ref().to_glib_none().0,
                 factory.map(|p| p.as_ref()).to_glib_none().0,
             );
@@ -599,7 +599,7 @@ impl<O: IsA<ComboRow>> ComboRowExt for O {
 
     fn set_list_factory<P: IsA<gtk::ListItemFactory>>(&self, factory: Option<&P>) {
         unsafe {
-            ffi::hdy_combo_row_set_list_factory(
+            ffi::adw_combo_row_set_list_factory(
                 self.as_ref().to_glib_none().0,
                 factory.map(|p| p.as_ref()).to_glib_none().0,
             );
@@ -608,7 +608,7 @@ impl<O: IsA<ComboRow>> ComboRowExt for O {
 
     fn set_model<P: IsA<gio::ListModel>>(&self, model: Option<&P>) {
         unsafe {
-            ffi::hdy_combo_row_set_model(
+            ffi::adw_combo_row_set_model(
                 self.as_ref().to_glib_none().0,
                 model.map(|p| p.as_ref()).to_glib_none().0,
             );
@@ -617,13 +617,13 @@ impl<O: IsA<ComboRow>> ComboRowExt for O {
 
     fn set_selected(&self, position: u32) {
         unsafe {
-            ffi::hdy_combo_row_set_selected(self.as_ref().to_glib_none().0, position);
+            ffi::adw_combo_row_set_selected(self.as_ref().to_glib_none().0, position);
         }
     }
 
     fn set_use_subtitle(&self, use_subtitle: bool) {
         unsafe {
-            ffi::hdy_combo_row_set_use_subtitle(
+            ffi::adw_combo_row_set_use_subtitle(
                 self.as_ref().to_glib_none().0,
                 use_subtitle.to_glib(),
             );
@@ -632,7 +632,7 @@ impl<O: IsA<ComboRow>> ComboRowExt for O {
 
     fn connect_property_expression_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_expression_trampoline<P, F: Fn(&P) + 'static>(
-            this: *mut ffi::HdyComboRow,
+            this: *mut ffi::AdwComboRow,
             _param_spec: glib::ffi::gpointer,
             f: glib::ffi::gpointer,
         ) where
@@ -656,7 +656,7 @@ impl<O: IsA<ComboRow>> ComboRowExt for O {
 
     fn connect_property_factory_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_factory_trampoline<P, F: Fn(&P) + 'static>(
-            this: *mut ffi::HdyComboRow,
+            this: *mut ffi::AdwComboRow,
             _param_spec: glib::ffi::gpointer,
             f: glib::ffi::gpointer,
         ) where
@@ -683,7 +683,7 @@ impl<O: IsA<ComboRow>> ComboRowExt for O {
         f: F,
     ) -> SignalHandlerId {
         unsafe extern "C" fn notify_list_factory_trampoline<P, F: Fn(&P) + 'static>(
-            this: *mut ffi::HdyComboRow,
+            this: *mut ffi::AdwComboRow,
             _param_spec: glib::ffi::gpointer,
             f: glib::ffi::gpointer,
         ) where
@@ -707,7 +707,7 @@ impl<O: IsA<ComboRow>> ComboRowExt for O {
 
     fn connect_property_model_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_model_trampoline<P, F: Fn(&P) + 'static>(
-            this: *mut ffi::HdyComboRow,
+            this: *mut ffi::AdwComboRow,
             _param_spec: glib::ffi::gpointer,
             f: glib::ffi::gpointer,
         ) where
@@ -731,7 +731,7 @@ impl<O: IsA<ComboRow>> ComboRowExt for O {
 
     fn connect_property_selected_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_selected_trampoline<P, F: Fn(&P) + 'static>(
-            this: *mut ffi::HdyComboRow,
+            this: *mut ffi::AdwComboRow,
             _param_spec: glib::ffi::gpointer,
             f: glib::ffi::gpointer,
         ) where
@@ -758,7 +758,7 @@ impl<O: IsA<ComboRow>> ComboRowExt for O {
         f: F,
     ) -> SignalHandlerId {
         unsafe extern "C" fn notify_selected_item_trampoline<P, F: Fn(&P) + 'static>(
-            this: *mut ffi::HdyComboRow,
+            this: *mut ffi::AdwComboRow,
             _param_spec: glib::ffi::gpointer,
             f: glib::ffi::gpointer,
         ) where
@@ -785,7 +785,7 @@ impl<O: IsA<ComboRow>> ComboRowExt for O {
         f: F,
     ) -> SignalHandlerId {
         unsafe extern "C" fn notify_use_subtitle_trampoline<P, F: Fn(&P) + 'static>(
-            this: *mut ffi::HdyComboRow,
+            this: *mut ffi::AdwComboRow,
             _param_spec: glib::ffi::gpointer,
             f: glib::ffi::gpointer,
         ) where

@@ -15,42 +15,42 @@ use std::mem;
 use std::mem::transmute;
 
 glib::wrapper! {
-    pub struct Swipeable(Interface<ffi::HdySwipeable>) @requires gtk::Widget, gtk::Accessible, gtk::Buildable, gtk::ConstraintTarget;
+    pub struct Swipeable(Interface<ffi::AdwSwipeable>) @requires gtk::Widget, gtk::Accessible, gtk::Buildable, gtk::ConstraintTarget;
 
     match fn {
-        get_type => || ffi::hdy_swipeable_get_type(),
+        get_type => || ffi::adw_swipeable_get_type(),
     }
 }
 
 pub const NONE_SWIPEABLE: Option<&Swipeable> = None;
 
 pub trait SwipeableExt: 'static {
-    #[doc(alias = "hdy_swipeable_emit_child_switched")]
+    #[doc(alias = "adw_swipeable_emit_child_switched")]
     fn emit_child_switched(&self, index: u32, duration: i64);
 
-    #[doc(alias = "hdy_swipeable_get_cancel_progress")]
+    #[doc(alias = "adw_swipeable_get_cancel_progress")]
     fn get_cancel_progress(&self) -> f64;
 
-    #[doc(alias = "hdy_swipeable_get_distance")]
+    #[doc(alias = "adw_swipeable_get_distance")]
     fn get_distance(&self) -> f64;
 
-    #[doc(alias = "hdy_swipeable_get_progress")]
+    #[doc(alias = "adw_swipeable_get_progress")]
     fn get_progress(&self) -> f64;
 
-    #[doc(alias = "hdy_swipeable_get_snap_points")]
+    #[doc(alias = "adw_swipeable_get_snap_points")]
     fn get_snap_points(&self) -> Vec<f64>;
 
-    #[doc(alias = "hdy_swipeable_get_swipe_area")]
+    #[doc(alias = "adw_swipeable_get_swipe_area")]
     fn get_swipe_area(
         &self,
         navigation_direction: NavigationDirection,
         is_drag: bool,
     ) -> gdk::Rectangle;
 
-    #[doc(alias = "hdy_swipeable_get_swipe_tracker")]
+    #[doc(alias = "adw_swipeable_get_swipe_tracker")]
     fn get_swipe_tracker(&self) -> Option<SwipeTracker>;
 
-    #[doc(alias = "hdy_swipeable_switch_child")]
+    #[doc(alias = "adw_swipeable_switch_child")]
     fn switch_child(&self, index: u32, duration: i64);
 
     fn connect_child_switched<F: Fn(&Self, u32, i64) + 'static>(&self, f: F) -> SignalHandlerId;
@@ -59,27 +59,27 @@ pub trait SwipeableExt: 'static {
 impl<O: IsA<Swipeable>> SwipeableExt for O {
     fn emit_child_switched(&self, index: u32, duration: i64) {
         unsafe {
-            ffi::hdy_swipeable_emit_child_switched(self.as_ref().to_glib_none().0, index, duration);
+            ffi::adw_swipeable_emit_child_switched(self.as_ref().to_glib_none().0, index, duration);
         }
     }
 
     fn get_cancel_progress(&self) -> f64 {
-        unsafe { ffi::hdy_swipeable_get_cancel_progress(self.as_ref().to_glib_none().0) }
+        unsafe { ffi::adw_swipeable_get_cancel_progress(self.as_ref().to_glib_none().0) }
     }
 
     fn get_distance(&self) -> f64 {
-        unsafe { ffi::hdy_swipeable_get_distance(self.as_ref().to_glib_none().0) }
+        unsafe { ffi::adw_swipeable_get_distance(self.as_ref().to_glib_none().0) }
     }
 
     fn get_progress(&self) -> f64 {
-        unsafe { ffi::hdy_swipeable_get_progress(self.as_ref().to_glib_none().0) }
+        unsafe { ffi::adw_swipeable_get_progress(self.as_ref().to_glib_none().0) }
     }
 
     fn get_snap_points(&self) -> Vec<f64> {
         unsafe {
             let mut n_snap_points = mem::MaybeUninit::uninit();
             let ret = FromGlibContainer::from_glib_full_num(
-                ffi::hdy_swipeable_get_snap_points(
+                ffi::adw_swipeable_get_snap_points(
                     self.as_ref().to_glib_none().0,
                     n_snap_points.as_mut_ptr(),
                 ),
@@ -96,7 +96,7 @@ impl<O: IsA<Swipeable>> SwipeableExt for O {
     ) -> gdk::Rectangle {
         unsafe {
             let mut rect = gdk::Rectangle::uninitialized();
-            ffi::hdy_swipeable_get_swipe_area(
+            ffi::adw_swipeable_get_swipe_area(
                 self.as_ref().to_glib_none().0,
                 navigation_direction.to_glib(),
                 is_drag.to_glib(),
@@ -108,7 +108,7 @@ impl<O: IsA<Swipeable>> SwipeableExt for O {
 
     fn get_swipe_tracker(&self) -> Option<SwipeTracker> {
         unsafe {
-            from_glib_none(ffi::hdy_swipeable_get_swipe_tracker(
+            from_glib_none(ffi::adw_swipeable_get_swipe_tracker(
                 self.as_ref().to_glib_none().0,
             ))
         }
@@ -116,13 +116,13 @@ impl<O: IsA<Swipeable>> SwipeableExt for O {
 
     fn switch_child(&self, index: u32, duration: i64) {
         unsafe {
-            ffi::hdy_swipeable_switch_child(self.as_ref().to_glib_none().0, index, duration);
+            ffi::adw_swipeable_switch_child(self.as_ref().to_glib_none().0, index, duration);
         }
     }
 
     fn connect_child_switched<F: Fn(&Self, u32, i64) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn child_switched_trampoline<P, F: Fn(&P, u32, i64) + 'static>(
-            this: *mut ffi::HdySwipeable,
+            this: *mut ffi::AdwSwipeable,
             index: libc::c_uint,
             duration: i64,
             f: glib::ffi::gpointer,

@@ -10,14 +10,14 @@ pub mod window;
 
 pub mod prelude {
     pub use super::action_row::ActionRowImpl;
-    pub use super::application_window::ApplicationWindowImpl;
+    pub use super::application_window::AdwApplicationWindowImpl;
     pub use super::combo_row::ComboRowImpl;
     pub use super::expander_row::ExpanderRowImpl;
     pub use super::preferences_group::PreferencesGroupImpl;
     pub use super::preferences_page::PreferencesPageImpl;
     pub use super::preferences_row::PreferencesRowImpl;
     pub use super::preferences_window::PreferencesWindowImpl;
-    pub use super::window::WindowImpl;
+    pub use super::window::AdwWindowImpl;
     pub use gio::subclass::prelude::*;
     pub use glib::subclass::prelude::*;
 }

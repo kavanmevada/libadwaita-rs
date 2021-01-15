@@ -5,26 +5,26 @@
 use glib::object::IsA;
 use glib::translate::*;
 
-#[doc(alias = "hdy_ease_out_cubic")]
+#[doc(alias = "adw_ease_out_cubic")]
 pub fn ease_out_cubic(t: f64) -> f64 {
     assert_initialized_main_thread!();
-    unsafe { ffi::hdy_ease_out_cubic(t) }
+    unsafe { ffi::adw_ease_out_cubic(t) }
 }
 
-#[doc(alias = "hdy_get_enable_animations")]
+#[doc(alias = "adw_get_enable_animations")]
 pub fn get_enable_animations<P: IsA<gtk::Widget>>(widget: &P) -> bool {
     assert_initialized_main_thread!();
     unsafe {
-        from_glib(ffi::hdy_get_enable_animations(
+        from_glib(ffi::adw_get_enable_animations(
             widget.as_ref().to_glib_none().0,
         ))
     }
 }
 
-#[doc(alias = "hdy_init")]
+#[doc(alias = "adw_init")]
 pub fn init() {
     assert_initialized_main_thread!();
     unsafe {
-        ffi::hdy_init();
+        ffi::adw_init();
     }
 }

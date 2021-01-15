@@ -14,18 +14,18 @@ use std::fmt;
 use std::mem::transmute;
 
 glib::wrapper! {
-    pub struct PreferencesRow(Object<ffi::HdyPreferencesRow, ffi::HdyPreferencesRowClass>) @extends gtk::ListBoxRow, gtk::Widget, @implements gtk::Accessible, gtk::Buildable, gtk::ConstraintTarget, gtk::Actionable;
+    pub struct PreferencesRow(Object<ffi::AdwPreferencesRow, ffi::AdwPreferencesRowClass>) @extends gtk::ListBoxRow, gtk::Widget, @implements gtk::Accessible, gtk::Buildable, gtk::ConstraintTarget, gtk::Actionable;
 
     match fn {
-        get_type => || ffi::hdy_preferences_row_get_type(),
+        get_type => || ffi::adw_preferences_row_get_type(),
     }
 }
 
 impl PreferencesRow {
-    #[doc(alias = "hdy_preferences_row_new")]
+    #[doc(alias = "adw_preferences_row_new")]
     pub fn new() -> PreferencesRow {
         assert_initialized_main_thread!();
-        unsafe { gtk::Widget::from_glib_none(ffi::hdy_preferences_row_new()).unsafe_cast() }
+        unsafe { gtk::Widget::from_glib_none(ffi::adw_preferences_row_new()).unsafe_cast() }
     }
 }
 
@@ -387,16 +387,16 @@ impl PreferencesRowBuilder {
 pub const NONE_PREFERENCES_ROW: Option<&PreferencesRow> = None;
 
 pub trait PreferencesRowExt: 'static {
-    #[doc(alias = "hdy_preferences_row_get_title")]
+    #[doc(alias = "adw_preferences_row_get_title")]
     fn get_title(&self) -> Option<glib::GString>;
 
-    #[doc(alias = "hdy_preferences_row_get_use_underline")]
+    #[doc(alias = "adw_preferences_row_get_use_underline")]
     fn get_use_underline(&self) -> bool;
 
-    #[doc(alias = "hdy_preferences_row_set_title")]
+    #[doc(alias = "adw_preferences_row_set_title")]
     fn set_title(&self, title: Option<&str>);
 
-    #[doc(alias = "hdy_preferences_row_set_use_underline")]
+    #[doc(alias = "adw_preferences_row_set_use_underline")]
     fn set_use_underline(&self, use_underline: bool);
 
     fn connect_property_title_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
@@ -410,7 +410,7 @@ pub trait PreferencesRowExt: 'static {
 impl<O: IsA<PreferencesRow>> PreferencesRowExt for O {
     fn get_title(&self) -> Option<glib::GString> {
         unsafe {
-            from_glib_none(ffi::hdy_preferences_row_get_title(
+            from_glib_none(ffi::adw_preferences_row_get_title(
                 self.as_ref().to_glib_none().0,
             ))
         }
@@ -418,7 +418,7 @@ impl<O: IsA<PreferencesRow>> PreferencesRowExt for O {
 
     fn get_use_underline(&self) -> bool {
         unsafe {
-            from_glib(ffi::hdy_preferences_row_get_use_underline(
+            from_glib(ffi::adw_preferences_row_get_use_underline(
                 self.as_ref().to_glib_none().0,
             ))
         }
@@ -426,7 +426,7 @@ impl<O: IsA<PreferencesRow>> PreferencesRowExt for O {
 
     fn set_title(&self, title: Option<&str>) {
         unsafe {
-            ffi::hdy_preferences_row_set_title(
+            ffi::adw_preferences_row_set_title(
                 self.as_ref().to_glib_none().0,
                 title.to_glib_none().0,
             );
@@ -435,7 +435,7 @@ impl<O: IsA<PreferencesRow>> PreferencesRowExt for O {
 
     fn set_use_underline(&self, use_underline: bool) {
         unsafe {
-            ffi::hdy_preferences_row_set_use_underline(
+            ffi::adw_preferences_row_set_use_underline(
                 self.as_ref().to_glib_none().0,
                 use_underline.to_glib(),
             );
@@ -444,7 +444,7 @@ impl<O: IsA<PreferencesRow>> PreferencesRowExt for O {
 
     fn connect_property_title_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_title_trampoline<P, F: Fn(&P) + 'static>(
-            this: *mut ffi::HdyPreferencesRow,
+            this: *mut ffi::AdwPreferencesRow,
             _param_spec: glib::ffi::gpointer,
             f: glib::ffi::gpointer,
         ) where
@@ -471,7 +471,7 @@ impl<O: IsA<PreferencesRow>> PreferencesRowExt for O {
         f: F,
     ) -> SignalHandlerId {
         unsafe extern "C" fn notify_use_underline_trampoline<P, F: Fn(&P) + 'static>(
-            this: *mut ffi::HdyPreferencesRow,
+            this: *mut ffi::AdwPreferencesRow,
             _param_spec: glib::ffi::gpointer,
             f: glib::ffi::gpointer,
         ) where

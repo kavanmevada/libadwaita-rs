@@ -15,56 +15,56 @@ use std::fmt;
 use std::mem::transmute;
 
 glib::wrapper! {
-    pub struct ClampScrollable(Object<ffi::HdyClampScrollable, ffi::HdyClampScrollableClass>) @extends gtk::Widget, @implements gtk::Accessible, gtk::Buildable, gtk::ConstraintTarget, gtk::Orientable, gtk::Scrollable;
+    pub struct ClampScrollable(Object<ffi::AdwClampScrollable, ffi::AdwClampScrollableClass>) @extends gtk::Widget, @implements gtk::Accessible, gtk::Buildable, gtk::ConstraintTarget, gtk::Orientable, gtk::Scrollable;
 
     match fn {
-        get_type => || ffi::hdy_clamp_scrollable_get_type(),
+        get_type => || ffi::adw_clamp_scrollable_get_type(),
     }
 }
 
 impl ClampScrollable {
-    #[doc(alias = "hdy_clamp_scrollable_new")]
+    #[doc(alias = "adw_clamp_scrollable_new")]
     pub fn new() -> ClampScrollable {
         assert_initialized_main_thread!();
-        unsafe { gtk::Widget::from_glib_none(ffi::hdy_clamp_scrollable_new()).unsafe_cast() }
+        unsafe { gtk::Widget::from_glib_none(ffi::adw_clamp_scrollable_new()).unsafe_cast() }
     }
 
-    #[doc(alias = "hdy_clamp_scrollable_get_child")]
+    #[doc(alias = "adw_clamp_scrollable_get_child")]
     pub fn get_child(&self) -> Option<gtk::Widget> {
-        unsafe { from_glib_none(ffi::hdy_clamp_scrollable_get_child(self.to_glib_none().0)) }
+        unsafe { from_glib_none(ffi::adw_clamp_scrollable_get_child(self.to_glib_none().0)) }
     }
 
-    #[doc(alias = "hdy_clamp_scrollable_get_maximum_size")]
+    #[doc(alias = "adw_clamp_scrollable_get_maximum_size")]
     pub fn get_maximum_size(&self) -> i32 {
-        unsafe { ffi::hdy_clamp_scrollable_get_maximum_size(self.to_glib_none().0) }
+        unsafe { ffi::adw_clamp_scrollable_get_maximum_size(self.to_glib_none().0) }
     }
 
-    #[doc(alias = "hdy_clamp_scrollable_get_tightening_threshold")]
+    #[doc(alias = "adw_clamp_scrollable_get_tightening_threshold")]
     pub fn get_tightening_threshold(&self) -> i32 {
-        unsafe { ffi::hdy_clamp_scrollable_get_tightening_threshold(self.to_glib_none().0) }
+        unsafe { ffi::adw_clamp_scrollable_get_tightening_threshold(self.to_glib_none().0) }
     }
 
-    #[doc(alias = "hdy_clamp_scrollable_set_child")]
+    #[doc(alias = "adw_clamp_scrollable_set_child")]
     pub fn set_child<P: IsA<gtk::Widget>>(&self, child: Option<&P>) {
         unsafe {
-            ffi::hdy_clamp_scrollable_set_child(
+            ffi::adw_clamp_scrollable_set_child(
                 self.to_glib_none().0,
                 child.map(|p| p.as_ref()).to_glib_none().0,
             );
         }
     }
 
-    #[doc(alias = "hdy_clamp_scrollable_set_maximum_size")]
+    #[doc(alias = "adw_clamp_scrollable_set_maximum_size")]
     pub fn set_maximum_size(&self, maximum_size: i32) {
         unsafe {
-            ffi::hdy_clamp_scrollable_set_maximum_size(self.to_glib_none().0, maximum_size);
+            ffi::adw_clamp_scrollable_set_maximum_size(self.to_glib_none().0, maximum_size);
         }
     }
 
-    #[doc(alias = "hdy_clamp_scrollable_set_tightening_threshold")]
+    #[doc(alias = "adw_clamp_scrollable_set_tightening_threshold")]
     pub fn set_tightening_threshold(&self, tightening_threshold: i32) {
         unsafe {
-            ffi::hdy_clamp_scrollable_set_tightening_threshold(
+            ffi::adw_clamp_scrollable_set_tightening_threshold(
                 self.to_glib_none().0,
                 tightening_threshold,
             );
@@ -76,7 +76,7 @@ impl ClampScrollable {
         f: F,
     ) -> SignalHandlerId {
         unsafe extern "C" fn notify_child_trampoline<F: Fn(&ClampScrollable) + 'static>(
-            this: *mut ffi::HdyClampScrollable,
+            this: *mut ffi::AdwClampScrollable,
             _param_spec: glib::ffi::gpointer,
             f: glib::ffi::gpointer,
         ) {
@@ -101,7 +101,7 @@ impl ClampScrollable {
         f: F,
     ) -> SignalHandlerId {
         unsafe extern "C" fn notify_maximum_size_trampoline<F: Fn(&ClampScrollable) + 'static>(
-            this: *mut ffi::HdyClampScrollable,
+            this: *mut ffi::AdwClampScrollable,
             _param_spec: glib::ffi::gpointer,
             f: glib::ffi::gpointer,
         ) {
@@ -128,7 +128,7 @@ impl ClampScrollable {
         unsafe extern "C" fn notify_tightening_threshold_trampoline<
             F: Fn(&ClampScrollable) + 'static,
         >(
-            this: *mut ffi::HdyClampScrollable,
+            this: *mut ffi::AdwClampScrollable,
             _param_spec: glib::ffi::gpointer,
             f: glib::ffi::gpointer,
         ) {
@@ -191,10 +191,10 @@ pub struct ClampScrollableBuilder {
     width_request: Option<i32>,
     accessible_role: Option<gtk::AccessibleRole>,
     orientation: Option<gtk::Orientation>,
-    //hadjustment: /*Unknown type*/,
-    //hscroll-policy: /*Unknown type*/,
-    //vadjustment: /*Unknown type*/,
-    //vscroll-policy: /*Unknown type*/,
+    hadjustment: Option<gtk::Adjustment>,
+    hscroll_policy: Option<gtk::ScrollablePolicy>,
+    vadjustment: Option<gtk::Adjustment>,
+    vscroll_policy: Option<gtk::ScrollablePolicy>,
 }
 
 impl ClampScrollableBuilder {
@@ -305,6 +305,18 @@ impl ClampScrollableBuilder {
         }
         if let Some(ref orientation) = self.orientation {
             properties.push(("orientation", orientation));
+        }
+        if let Some(ref hadjustment) = self.hadjustment {
+            properties.push(("hadjustment", hadjustment));
+        }
+        if let Some(ref hscroll_policy) = self.hscroll_policy {
+            properties.push(("hscroll-policy", hscroll_policy));
+        }
+        if let Some(ref vadjustment) = self.vadjustment {
+            properties.push(("vadjustment", vadjustment));
+        }
+        if let Some(ref vscroll_policy) = self.vscroll_policy {
+            properties.push(("vscroll-policy", vscroll_policy));
         }
         let ret = glib::Object::new::<ClampScrollable>(&properties).expect("object new");
         ret
@@ -477,6 +489,26 @@ impl ClampScrollableBuilder {
 
     pub fn orientation(mut self, orientation: gtk::Orientation) -> Self {
         self.orientation = Some(orientation);
+        self
+    }
+
+    pub fn hadjustment<P: IsA<gtk::Adjustment>>(mut self, hadjustment: &P) -> Self {
+        self.hadjustment = Some(hadjustment.clone().upcast());
+        self
+    }
+
+    pub fn hscroll_policy(mut self, hscroll_policy: gtk::ScrollablePolicy) -> Self {
+        self.hscroll_policy = Some(hscroll_policy);
+        self
+    }
+
+    pub fn vadjustment<P: IsA<gtk::Adjustment>>(mut self, vadjustment: &P) -> Self {
+        self.vadjustment = Some(vadjustment.clone().upcast());
+        self
+    }
+
+    pub fn vscroll_policy(mut self, vscroll_policy: gtk::ScrollablePolicy) -> Self {
+        self.vscroll_policy = Some(vscroll_policy);
         self
     }
 }

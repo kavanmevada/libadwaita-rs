@@ -16,109 +16,109 @@ use std::fmt;
 use std::mem::transmute;
 
 glib::wrapper! {
-    pub struct ViewSwitcherTitle(Object<ffi::HdyViewSwitcherTitle, ffi::HdyViewSwitcherTitleClass>) @extends gtk::Widget, @implements gtk::Accessible, gtk::Buildable, gtk::ConstraintTarget;
+    pub struct ViewSwitcherTitle(Object<ffi::AdwViewSwitcherTitle, ffi::AdwViewSwitcherTitleClass>) @extends gtk::Widget, @implements gtk::Accessible, gtk::Buildable, gtk::ConstraintTarget;
 
     match fn {
-        get_type => || ffi::hdy_view_switcher_title_get_type(),
+        get_type => || ffi::adw_view_switcher_title_get_type(),
     }
 }
 
 impl ViewSwitcherTitle {
-    #[doc(alias = "hdy_view_switcher_title_new")]
+    #[doc(alias = "adw_view_switcher_title_new")]
     pub fn new() -> ViewSwitcherTitle {
         assert_initialized_main_thread!();
-        unsafe { gtk::Widget::from_glib_none(ffi::hdy_view_switcher_title_new()).unsafe_cast() }
+        unsafe { gtk::Widget::from_glib_none(ffi::adw_view_switcher_title_new()).unsafe_cast() }
     }
 
-    #[doc(alias = "hdy_view_switcher_title_get_policy")]
+    #[doc(alias = "adw_view_switcher_title_get_policy")]
     pub fn get_policy(&self) -> ViewSwitcherPolicy {
         unsafe {
-            from_glib(ffi::hdy_view_switcher_title_get_policy(
+            from_glib(ffi::adw_view_switcher_title_get_policy(
                 self.to_glib_none().0,
             ))
         }
     }
 
-    #[doc(alias = "hdy_view_switcher_title_get_stack")]
+    #[doc(alias = "adw_view_switcher_title_get_stack")]
     pub fn get_stack(&self) -> Option<gtk::Stack> {
         unsafe {
-            from_glib_none(ffi::hdy_view_switcher_title_get_stack(
+            from_glib_none(ffi::adw_view_switcher_title_get_stack(
                 self.to_glib_none().0,
             ))
         }
     }
 
-    #[doc(alias = "hdy_view_switcher_title_get_subtitle")]
+    #[doc(alias = "adw_view_switcher_title_get_subtitle")]
     pub fn get_subtitle(&self) -> Option<glib::GString> {
         unsafe {
-            from_glib_none(ffi::hdy_view_switcher_title_get_subtitle(
+            from_glib_none(ffi::adw_view_switcher_title_get_subtitle(
                 self.to_glib_none().0,
             ))
         }
     }
 
-    #[doc(alias = "hdy_view_switcher_title_get_title")]
+    #[doc(alias = "adw_view_switcher_title_get_title")]
     pub fn get_title(&self) -> Option<glib::GString> {
         unsafe {
-            from_glib_none(ffi::hdy_view_switcher_title_get_title(
+            from_glib_none(ffi::adw_view_switcher_title_get_title(
                 self.to_glib_none().0,
             ))
         }
     }
 
-    #[doc(alias = "hdy_view_switcher_title_get_title_visible")]
+    #[doc(alias = "adw_view_switcher_title_get_title_visible")]
     pub fn get_title_visible(&self) -> bool {
         unsafe {
-            from_glib(ffi::hdy_view_switcher_title_get_title_visible(
+            from_glib(ffi::adw_view_switcher_title_get_title_visible(
                 self.to_glib_none().0,
             ))
         }
     }
 
-    #[doc(alias = "hdy_view_switcher_title_get_view_switcher_enabled")]
+    #[doc(alias = "adw_view_switcher_title_get_view_switcher_enabled")]
     pub fn get_view_switcher_enabled(&self) -> bool {
         unsafe {
-            from_glib(ffi::hdy_view_switcher_title_get_view_switcher_enabled(
+            from_glib(ffi::adw_view_switcher_title_get_view_switcher_enabled(
                 self.to_glib_none().0,
             ))
         }
     }
 
-    #[doc(alias = "hdy_view_switcher_title_set_policy")]
+    #[doc(alias = "adw_view_switcher_title_set_policy")]
     pub fn set_policy(&self, policy: ViewSwitcherPolicy) {
         unsafe {
-            ffi::hdy_view_switcher_title_set_policy(self.to_glib_none().0, policy.to_glib());
+            ffi::adw_view_switcher_title_set_policy(self.to_glib_none().0, policy.to_glib());
         }
     }
 
-    #[doc(alias = "hdy_view_switcher_title_set_stack")]
+    #[doc(alias = "adw_view_switcher_title_set_stack")]
     pub fn set_stack(&self, stack: Option<&gtk::Stack>) {
         unsafe {
-            ffi::hdy_view_switcher_title_set_stack(self.to_glib_none().0, stack.to_glib_none().0);
+            ffi::adw_view_switcher_title_set_stack(self.to_glib_none().0, stack.to_glib_none().0);
         }
     }
 
-    #[doc(alias = "hdy_view_switcher_title_set_subtitle")]
+    #[doc(alias = "adw_view_switcher_title_set_subtitle")]
     pub fn set_subtitle(&self, subtitle: Option<&str>) {
         unsafe {
-            ffi::hdy_view_switcher_title_set_subtitle(
+            ffi::adw_view_switcher_title_set_subtitle(
                 self.to_glib_none().0,
                 subtitle.to_glib_none().0,
             );
         }
     }
 
-    #[doc(alias = "hdy_view_switcher_title_set_title")]
+    #[doc(alias = "adw_view_switcher_title_set_title")]
     pub fn set_title(&self, title: Option<&str>) {
         unsafe {
-            ffi::hdy_view_switcher_title_set_title(self.to_glib_none().0, title.to_glib_none().0);
+            ffi::adw_view_switcher_title_set_title(self.to_glib_none().0, title.to_glib_none().0);
         }
     }
 
-    #[doc(alias = "hdy_view_switcher_title_set_view_switcher_enabled")]
+    #[doc(alias = "adw_view_switcher_title_set_view_switcher_enabled")]
     pub fn set_view_switcher_enabled(&self, enabled: bool) {
         unsafe {
-            ffi::hdy_view_switcher_title_set_view_switcher_enabled(
+            ffi::adw_view_switcher_title_set_view_switcher_enabled(
                 self.to_glib_none().0,
                 enabled.to_glib(),
             );
@@ -130,7 +130,7 @@ impl ViewSwitcherTitle {
         f: F,
     ) -> SignalHandlerId {
         unsafe extern "C" fn notify_policy_trampoline<F: Fn(&ViewSwitcherTitle) + 'static>(
-            this: *mut ffi::HdyViewSwitcherTitle,
+            this: *mut ffi::AdwViewSwitcherTitle,
             _param_spec: glib::ffi::gpointer,
             f: glib::ffi::gpointer,
         ) {
@@ -155,7 +155,7 @@ impl ViewSwitcherTitle {
         f: F,
     ) -> SignalHandlerId {
         unsafe extern "C" fn notify_stack_trampoline<F: Fn(&ViewSwitcherTitle) + 'static>(
-            this: *mut ffi::HdyViewSwitcherTitle,
+            this: *mut ffi::AdwViewSwitcherTitle,
             _param_spec: glib::ffi::gpointer,
             f: glib::ffi::gpointer,
         ) {
@@ -180,7 +180,7 @@ impl ViewSwitcherTitle {
         f: F,
     ) -> SignalHandlerId {
         unsafe extern "C" fn notify_subtitle_trampoline<F: Fn(&ViewSwitcherTitle) + 'static>(
-            this: *mut ffi::HdyViewSwitcherTitle,
+            this: *mut ffi::AdwViewSwitcherTitle,
             _param_spec: glib::ffi::gpointer,
             f: glib::ffi::gpointer,
         ) {
@@ -205,7 +205,7 @@ impl ViewSwitcherTitle {
         f: F,
     ) -> SignalHandlerId {
         unsafe extern "C" fn notify_title_trampoline<F: Fn(&ViewSwitcherTitle) + 'static>(
-            this: *mut ffi::HdyViewSwitcherTitle,
+            this: *mut ffi::AdwViewSwitcherTitle,
             _param_spec: glib::ffi::gpointer,
             f: glib::ffi::gpointer,
         ) {
@@ -232,7 +232,7 @@ impl ViewSwitcherTitle {
         unsafe extern "C" fn notify_title_visible_trampoline<
             F: Fn(&ViewSwitcherTitle) + 'static,
         >(
-            this: *mut ffi::HdyViewSwitcherTitle,
+            this: *mut ffi::AdwViewSwitcherTitle,
             _param_spec: glib::ffi::gpointer,
             f: glib::ffi::gpointer,
         ) {
@@ -259,7 +259,7 @@ impl ViewSwitcherTitle {
         unsafe extern "C" fn notify_view_switcher_enabled_trampoline<
             F: Fn(&ViewSwitcherTitle) + 'static,
         >(
-            this: *mut ffi::HdyViewSwitcherTitle,
+            this: *mut ffi::AdwViewSwitcherTitle,
             _param_spec: glib::ffi::gpointer,
             f: glib::ffi::gpointer,
         ) {

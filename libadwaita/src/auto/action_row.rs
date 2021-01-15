@@ -15,18 +15,18 @@ use std::fmt;
 use std::mem::transmute;
 
 glib::wrapper! {
-    pub struct ActionRow(Object<ffi::HdyActionRow, ffi::HdyActionRowClass>) @extends PreferencesRow, gtk::ListBoxRow, gtk::Widget, @implements gtk::Accessible, gtk::Buildable, gtk::ConstraintTarget, gtk::Actionable;
+    pub struct ActionRow(Object<ffi::AdwActionRow, ffi::AdwActionRowClass>) @extends PreferencesRow, gtk::ListBoxRow, gtk::Widget, @implements gtk::Accessible, gtk::Buildable, gtk::ConstraintTarget, gtk::Actionable;
 
     match fn {
-        get_type => || ffi::hdy_action_row_get_type(),
+        get_type => || ffi::adw_action_row_get_type(),
     }
 }
 
 impl ActionRow {
-    #[doc(alias = "hdy_action_row_new")]
+    #[doc(alias = "adw_action_row_new")]
     pub fn new() -> ActionRow {
         assert_initialized_main_thread!();
-        unsafe { gtk::Widget::from_glib_none(ffi::hdy_action_row_new()).unsafe_cast() }
+        unsafe { gtk::Widget::from_glib_none(ffi::adw_action_row_new()).unsafe_cast() }
     }
 }
 
@@ -433,46 +433,46 @@ impl ActionRowBuilder {
 pub const NONE_ACTION_ROW: Option<&ActionRow> = None;
 
 pub trait ActionRowExt: 'static {
-    #[doc(alias = "hdy_action_row_activate")]
+    #[doc(alias = "adw_action_row_activate")]
     fn activate(&self);
 
-    #[doc(alias = "hdy_action_row_add_prefix")]
+    #[doc(alias = "adw_action_row_add_prefix")]
     fn add_prefix<P: IsA<gtk::Widget>>(&self, widget: &P);
 
-    #[doc(alias = "hdy_action_row_add_suffix")]
+    #[doc(alias = "adw_action_row_add_suffix")]
     fn add_suffix<P: IsA<gtk::Widget>>(&self, widget: &P);
 
-    #[doc(alias = "hdy_action_row_get_activatable_widget")]
+    #[doc(alias = "adw_action_row_get_activatable_widget")]
     fn get_activatable_widget(&self) -> Option<gtk::Widget>;
 
-    #[doc(alias = "hdy_action_row_get_icon_name")]
+    #[doc(alias = "adw_action_row_get_icon_name")]
     fn get_icon_name(&self) -> Option<glib::GString>;
 
-    #[doc(alias = "hdy_action_row_get_subtitle")]
+    #[doc(alias = "adw_action_row_get_subtitle")]
     fn get_subtitle(&self) -> Option<glib::GString>;
 
-    #[doc(alias = "hdy_action_row_get_subtitle_lines")]
+    #[doc(alias = "adw_action_row_get_subtitle_lines")]
     fn get_subtitle_lines(&self) -> i32;
 
-    #[doc(alias = "hdy_action_row_get_title_lines")]
+    #[doc(alias = "adw_action_row_get_title_lines")]
     fn get_title_lines(&self) -> i32;
 
-    #[doc(alias = "hdy_action_row_remove")]
+    #[doc(alias = "adw_action_row_remove")]
     fn remove<P: IsA<gtk::Widget>>(&self, widget: &P);
 
-    #[doc(alias = "hdy_action_row_set_activatable_widget")]
+    #[doc(alias = "adw_action_row_set_activatable_widget")]
     fn set_activatable_widget<P: IsA<gtk::Widget>>(&self, widget: Option<&P>);
 
-    #[doc(alias = "hdy_action_row_set_icon_name")]
+    #[doc(alias = "adw_action_row_set_icon_name")]
     fn set_icon_name(&self, icon_name: &str);
 
-    #[doc(alias = "hdy_action_row_set_subtitle")]
+    #[doc(alias = "adw_action_row_set_subtitle")]
     fn set_subtitle(&self, subtitle: Option<&str>);
 
-    #[doc(alias = "hdy_action_row_set_subtitle_lines")]
+    #[doc(alias = "adw_action_row_set_subtitle_lines")]
     fn set_subtitle_lines(&self, subtitle_lines: i32);
 
-    #[doc(alias = "hdy_action_row_set_title_lines")]
+    #[doc(alias = "adw_action_row_set_title_lines")]
     fn set_title_lines(&self, title_lines: i32);
 
     fn connect_activated<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
@@ -502,13 +502,13 @@ pub trait ActionRowExt: 'static {
 impl<O: IsA<ActionRow>> ActionRowExt for O {
     fn activate(&self) {
         unsafe {
-            ffi::hdy_action_row_activate(self.as_ref().to_glib_none().0);
+            ffi::adw_action_row_activate(self.as_ref().to_glib_none().0);
         }
     }
 
     fn add_prefix<P: IsA<gtk::Widget>>(&self, widget: &P) {
         unsafe {
-            ffi::hdy_action_row_add_prefix(
+            ffi::adw_action_row_add_prefix(
                 self.as_ref().to_glib_none().0,
                 widget.as_ref().to_glib_none().0,
             );
@@ -517,7 +517,7 @@ impl<O: IsA<ActionRow>> ActionRowExt for O {
 
     fn add_suffix<P: IsA<gtk::Widget>>(&self, widget: &P) {
         unsafe {
-            ffi::hdy_action_row_add_suffix(
+            ffi::adw_action_row_add_suffix(
                 self.as_ref().to_glib_none().0,
                 widget.as_ref().to_glib_none().0,
             );
@@ -526,7 +526,7 @@ impl<O: IsA<ActionRow>> ActionRowExt for O {
 
     fn get_activatable_widget(&self) -> Option<gtk::Widget> {
         unsafe {
-            from_glib_none(ffi::hdy_action_row_get_activatable_widget(
+            from_glib_none(ffi::adw_action_row_get_activatable_widget(
                 self.as_ref().to_glib_none().0,
             ))
         }
@@ -534,7 +534,7 @@ impl<O: IsA<ActionRow>> ActionRowExt for O {
 
     fn get_icon_name(&self) -> Option<glib::GString> {
         unsafe {
-            from_glib_none(ffi::hdy_action_row_get_icon_name(
+            from_glib_none(ffi::adw_action_row_get_icon_name(
                 self.as_ref().to_glib_none().0,
             ))
         }
@@ -542,23 +542,23 @@ impl<O: IsA<ActionRow>> ActionRowExt for O {
 
     fn get_subtitle(&self) -> Option<glib::GString> {
         unsafe {
-            from_glib_none(ffi::hdy_action_row_get_subtitle(
+            from_glib_none(ffi::adw_action_row_get_subtitle(
                 self.as_ref().to_glib_none().0,
             ))
         }
     }
 
     fn get_subtitle_lines(&self) -> i32 {
-        unsafe { ffi::hdy_action_row_get_subtitle_lines(self.as_ref().to_glib_none().0) }
+        unsafe { ffi::adw_action_row_get_subtitle_lines(self.as_ref().to_glib_none().0) }
     }
 
     fn get_title_lines(&self) -> i32 {
-        unsafe { ffi::hdy_action_row_get_title_lines(self.as_ref().to_glib_none().0) }
+        unsafe { ffi::adw_action_row_get_title_lines(self.as_ref().to_glib_none().0) }
     }
 
     fn remove<P: IsA<gtk::Widget>>(&self, widget: &P) {
         unsafe {
-            ffi::hdy_action_row_remove(
+            ffi::adw_action_row_remove(
                 self.as_ref().to_glib_none().0,
                 widget.as_ref().to_glib_none().0,
             );
@@ -567,7 +567,7 @@ impl<O: IsA<ActionRow>> ActionRowExt for O {
 
     fn set_activatable_widget<P: IsA<gtk::Widget>>(&self, widget: Option<&P>) {
         unsafe {
-            ffi::hdy_action_row_set_activatable_widget(
+            ffi::adw_action_row_set_activatable_widget(
                 self.as_ref().to_glib_none().0,
                 widget.map(|p| p.as_ref()).to_glib_none().0,
             );
@@ -576,7 +576,7 @@ impl<O: IsA<ActionRow>> ActionRowExt for O {
 
     fn set_icon_name(&self, icon_name: &str) {
         unsafe {
-            ffi::hdy_action_row_set_icon_name(
+            ffi::adw_action_row_set_icon_name(
                 self.as_ref().to_glib_none().0,
                 icon_name.to_glib_none().0,
             );
@@ -585,7 +585,7 @@ impl<O: IsA<ActionRow>> ActionRowExt for O {
 
     fn set_subtitle(&self, subtitle: Option<&str>) {
         unsafe {
-            ffi::hdy_action_row_set_subtitle(
+            ffi::adw_action_row_set_subtitle(
                 self.as_ref().to_glib_none().0,
                 subtitle.to_glib_none().0,
             );
@@ -594,19 +594,19 @@ impl<O: IsA<ActionRow>> ActionRowExt for O {
 
     fn set_subtitle_lines(&self, subtitle_lines: i32) {
         unsafe {
-            ffi::hdy_action_row_set_subtitle_lines(self.as_ref().to_glib_none().0, subtitle_lines);
+            ffi::adw_action_row_set_subtitle_lines(self.as_ref().to_glib_none().0, subtitle_lines);
         }
     }
 
     fn set_title_lines(&self, title_lines: i32) {
         unsafe {
-            ffi::hdy_action_row_set_title_lines(self.as_ref().to_glib_none().0, title_lines);
+            ffi::adw_action_row_set_title_lines(self.as_ref().to_glib_none().0, title_lines);
         }
     }
 
     fn connect_activated<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn activated_trampoline<P, F: Fn(&P) + 'static>(
-            this: *mut ffi::HdyActionRow,
+            this: *mut ffi::AdwActionRow,
             f: glib::ffi::gpointer,
         ) where
             P: IsA<ActionRow>,
@@ -632,7 +632,7 @@ impl<O: IsA<ActionRow>> ActionRowExt for O {
         f: F,
     ) -> SignalHandlerId {
         unsafe extern "C" fn notify_activatable_widget_trampoline<P, F: Fn(&P) + 'static>(
-            this: *mut ffi::HdyActionRow,
+            this: *mut ffi::AdwActionRow,
             _param_spec: glib::ffi::gpointer,
             f: glib::ffi::gpointer,
         ) where
@@ -656,7 +656,7 @@ impl<O: IsA<ActionRow>> ActionRowExt for O {
 
     fn connect_property_icon_name_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_icon_name_trampoline<P, F: Fn(&P) + 'static>(
-            this: *mut ffi::HdyActionRow,
+            this: *mut ffi::AdwActionRow,
             _param_spec: glib::ffi::gpointer,
             f: glib::ffi::gpointer,
         ) where
@@ -680,7 +680,7 @@ impl<O: IsA<ActionRow>> ActionRowExt for O {
 
     fn connect_property_subtitle_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_subtitle_trampoline<P, F: Fn(&P) + 'static>(
-            this: *mut ffi::HdyActionRow,
+            this: *mut ffi::AdwActionRow,
             _param_spec: glib::ffi::gpointer,
             f: glib::ffi::gpointer,
         ) where
@@ -707,7 +707,7 @@ impl<O: IsA<ActionRow>> ActionRowExt for O {
         f: F,
     ) -> SignalHandlerId {
         unsafe extern "C" fn notify_subtitle_lines_trampoline<P, F: Fn(&P) + 'static>(
-            this: *mut ffi::HdyActionRow,
+            this: *mut ffi::AdwActionRow,
             _param_spec: glib::ffi::gpointer,
             f: glib::ffi::gpointer,
         ) where
@@ -731,7 +731,7 @@ impl<O: IsA<ActionRow>> ActionRowExt for O {
 
     fn connect_property_title_lines_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_title_lines_trampoline<P, F: Fn(&P) + 'static>(
-            this: *mut ffi::HdyActionRow,
+            this: *mut ffi::AdwActionRow,
             _param_spec: glib::ffi::gpointer,
             f: glib::ffi::gpointer,
         ) where
@@ -758,7 +758,7 @@ impl<O: IsA<ActionRow>> ActionRowExt for O {
         f: F,
     ) -> SignalHandlerId {
         unsafe extern "C" fn notify_use_underline_trampoline<P, F: Fn(&P) + 'static>(
-            this: *mut ffi::HdyActionRow,
+            this: *mut ffi::AdwActionRow,
             _param_spec: glib::ffi::gpointer,
             f: glib::ffi::gpointer,
         ) where

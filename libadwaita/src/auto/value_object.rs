@@ -6,57 +6,57 @@ use glib::translate::*;
 use std::fmt;
 
 glib::wrapper! {
-    pub struct ValueObject(Object<ffi::HdyValueObject, ffi::HdyValueObjectClass>);
+    pub struct ValueObject(Object<ffi::AdwValueObject, ffi::AdwValueObjectClass>);
 
     match fn {
-        get_type => || ffi::hdy_value_object_get_type(),
+        get_type => || ffi::adw_value_object_get_type(),
     }
 }
 
 impl ValueObject {
-    #[doc(alias = "hdy_value_object_new")]
+    #[doc(alias = "adw_value_object_new")]
     pub fn new(value: &glib::Value) -> ValueObject {
         assert_initialized_main_thread!();
-        unsafe { from_glib_full(ffi::hdy_value_object_new(value.to_glib_none().0)) }
+        unsafe { from_glib_full(ffi::adw_value_object_new(value.to_glib_none().0)) }
     }
 
-    //#[doc(alias = "hdy_value_object_new_collect")]
+    //#[doc(alias = "adw_value_object_new_collect")]
     //pub fn new_collect(type_: glib::types::Type, : /*Unknown conversion*//*Unimplemented*/Fundamental: VarArgs) -> ValueObject {
-    //    unsafe { TODO: call ffi:hdy_value_object_new_collect() }
+    //    unsafe { TODO: call ffi:adw_value_object_new_collect() }
     //}
 
-    #[doc(alias = "hdy_value_object_new_string")]
+    #[doc(alias = "adw_value_object_new_string")]
     pub fn new_string(string: &str) -> ValueObject {
         assert_initialized_main_thread!();
-        unsafe { from_glib_full(ffi::hdy_value_object_new_string(string.to_glib_none().0)) }
+        unsafe { from_glib_full(ffi::adw_value_object_new_string(string.to_glib_none().0)) }
     }
 
-    #[doc(alias = "hdy_value_object_new_take_string")]
+    #[doc(alias = "adw_value_object_new_take_string")]
     pub fn new_take_string(string: &str) -> ValueObject {
         assert_initialized_main_thread!();
-        unsafe { from_glib_full(ffi::hdy_value_object_new_take_string(string.to_glib_full())) }
+        unsafe { from_glib_full(ffi::adw_value_object_new_take_string(string.to_glib_full())) }
     }
 
-    #[doc(alias = "hdy_value_object_copy_value")]
+    #[doc(alias = "adw_value_object_copy_value")]
     pub fn copy_value(&self, dest: &mut glib::Value) {
         unsafe {
-            ffi::hdy_value_object_copy_value(self.to_glib_none().0, dest.to_glib_none_mut().0);
+            ffi::adw_value_object_copy_value(self.to_glib_none().0, dest.to_glib_none_mut().0);
         }
     }
 
-    #[doc(alias = "hdy_value_object_dup_string")]
+    #[doc(alias = "adw_value_object_dup_string")]
     pub fn dup_string(&self) -> Option<glib::GString> {
-        unsafe { from_glib_full(ffi::hdy_value_object_dup_string(self.to_glib_none().0)) }
+        unsafe { from_glib_full(ffi::adw_value_object_dup_string(self.to_glib_none().0)) }
     }
 
-    #[doc(alias = "hdy_value_object_get_string")]
+    #[doc(alias = "adw_value_object_get_string")]
     pub fn get_string(&self) -> Option<glib::GString> {
-        unsafe { from_glib_none(ffi::hdy_value_object_get_string(self.to_glib_none().0)) }
+        unsafe { from_glib_none(ffi::adw_value_object_get_string(self.to_glib_none().0)) }
     }
 
-    #[doc(alias = "hdy_value_object_get_value")]
+    #[doc(alias = "adw_value_object_get_value")]
     pub fn get_value(&self) -> Option<glib::Value> {
-        unsafe { from_glib_none(ffi::hdy_value_object_get_value(self.to_glib_none().0)) }
+        unsafe { from_glib_none(ffi::adw_value_object_get_value(self.to_glib_none().0)) }
     }
 }
 

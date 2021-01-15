@@ -16,35 +16,35 @@ use std::fmt;
 use std::mem::transmute;
 
 glib::wrapper! {
-    pub struct CarouselIndicatorLines(Object<ffi::HdyCarouselIndicatorLines, ffi::HdyCarouselIndicatorLinesClass>) @extends gtk::Widget, @implements gtk::Accessible, gtk::Buildable, gtk::ConstraintTarget, gtk::Orientable;
+    pub struct CarouselIndicatorLines(Object<ffi::AdwCarouselIndicatorLines, ffi::AdwCarouselIndicatorLinesClass>) @extends gtk::Widget, @implements gtk::Accessible, gtk::Buildable, gtk::ConstraintTarget, gtk::Orientable;
 
     match fn {
-        get_type => || ffi::hdy_carousel_indicator_lines_get_type(),
+        get_type => || ffi::adw_carousel_indicator_lines_get_type(),
     }
 }
 
 impl CarouselIndicatorLines {
-    #[doc(alias = "hdy_carousel_indicator_lines_new")]
+    #[doc(alias = "adw_carousel_indicator_lines_new")]
     pub fn new() -> CarouselIndicatorLines {
         assert_initialized_main_thread!();
         unsafe {
-            gtk::Widget::from_glib_full(ffi::hdy_carousel_indicator_lines_new()).unsafe_cast()
+            gtk::Widget::from_glib_full(ffi::adw_carousel_indicator_lines_new()).unsafe_cast()
         }
     }
 
-    #[doc(alias = "hdy_carousel_indicator_lines_get_carousel")]
+    #[doc(alias = "adw_carousel_indicator_lines_get_carousel")]
     pub fn get_carousel(&self) -> Option<Carousel> {
         unsafe {
-            from_glib_none(ffi::hdy_carousel_indicator_lines_get_carousel(
+            from_glib_none(ffi::adw_carousel_indicator_lines_get_carousel(
                 self.to_glib_none().0,
             ))
         }
     }
 
-    #[doc(alias = "hdy_carousel_indicator_lines_set_carousel")]
+    #[doc(alias = "adw_carousel_indicator_lines_set_carousel")]
     pub fn set_carousel(&self, carousel: Option<&Carousel>) {
         unsafe {
-            ffi::hdy_carousel_indicator_lines_set_carousel(
+            ffi::adw_carousel_indicator_lines_set_carousel(
                 self.to_glib_none().0,
                 carousel.to_glib_none().0,
             );
@@ -58,7 +58,7 @@ impl CarouselIndicatorLines {
         unsafe extern "C" fn notify_carousel_trampoline<
             F: Fn(&CarouselIndicatorLines) + 'static,
         >(
-            this: *mut ffi::HdyCarouselIndicatorLines,
+            this: *mut ffi::AdwCarouselIndicatorLines,
             _param_spec: glib::ffi::gpointer,
             f: glib::ffi::gpointer,
         ) {

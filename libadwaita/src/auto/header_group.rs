@@ -16,109 +16,109 @@ use std::fmt;
 use std::mem::transmute;
 
 glib::wrapper! {
-    pub struct HeaderGroup(Object<ffi::HdyHeaderGroup, ffi::HdyHeaderGroupClass>) @implements gtk::Buildable;
+    pub struct HeaderGroup(Object<ffi::AdwHeaderGroup, ffi::AdwHeaderGroupClass>) @implements gtk::Buildable;
 
     match fn {
-        get_type => || ffi::hdy_header_group_get_type(),
+        get_type => || ffi::adw_header_group_get_type(),
     }
 }
 
 impl HeaderGroup {
-    #[doc(alias = "hdy_header_group_new")]
+    #[doc(alias = "adw_header_group_new")]
     pub fn new() -> HeaderGroup {
         assert_initialized_main_thread!();
-        unsafe { from_glib_full(ffi::hdy_header_group_new()) }
+        unsafe { from_glib_full(ffi::adw_header_group_new()) }
     }
 
-    #[doc(alias = "hdy_header_group_add_gtk_header_bar")]
+    #[doc(alias = "adw_header_group_add_gtk_header_bar")]
     pub fn add_gtk_header_bar(&self, header_bar: &gtk::HeaderBar) {
         unsafe {
-            ffi::hdy_header_group_add_gtk_header_bar(
+            ffi::adw_header_group_add_gtk_header_bar(
                 self.to_glib_none().0,
                 header_bar.to_glib_none().0,
             );
         }
     }
 
-    #[doc(alias = "hdy_header_group_add_header_bar")]
+    #[doc(alias = "adw_header_group_add_header_bar")]
     pub fn add_header_bar(&self, header_bar: &HeaderBar) {
         unsafe {
-            ffi::hdy_header_group_add_header_bar(
+            ffi::adw_header_group_add_header_bar(
                 self.to_glib_none().0,
                 header_bar.to_glib_none().0,
             );
         }
     }
 
-    #[doc(alias = "hdy_header_group_add_header_group")]
+    #[doc(alias = "adw_header_group_add_header_group")]
     pub fn add_header_group(&self, header_group: &HeaderGroup) {
         unsafe {
-            ffi::hdy_header_group_add_header_group(
+            ffi::adw_header_group_add_header_group(
                 self.to_glib_none().0,
                 header_group.to_glib_none().0,
             );
         }
     }
 
-    #[doc(alias = "hdy_header_group_get_children")]
+    #[doc(alias = "adw_header_group_get_children")]
     pub fn get_children(&self) -> Vec<HeaderGroupChild> {
         unsafe {
-            FromGlibPtrContainer::from_glib_none(ffi::hdy_header_group_get_children(
+            FromGlibPtrContainer::from_glib_none(ffi::adw_header_group_get_children(
                 self.to_glib_none().0,
             ))
         }
     }
 
-    #[doc(alias = "hdy_header_group_get_decorate_all")]
+    #[doc(alias = "adw_header_group_get_decorate_all")]
     pub fn get_decorate_all(&self) -> bool {
         unsafe {
-            from_glib(ffi::hdy_header_group_get_decorate_all(
+            from_glib(ffi::adw_header_group_get_decorate_all(
                 self.to_glib_none().0,
             ))
         }
     }
 
-    #[doc(alias = "hdy_header_group_remove_child")]
+    #[doc(alias = "adw_header_group_remove_child")]
     pub fn remove_child(&self, child: &HeaderGroupChild) {
         unsafe {
-            ffi::hdy_header_group_remove_child(self.to_glib_none().0, child.to_glib_none().0);
+            ffi::adw_header_group_remove_child(self.to_glib_none().0, child.to_glib_none().0);
         }
     }
 
-    #[doc(alias = "hdy_header_group_remove_gtk_header_bar")]
+    #[doc(alias = "adw_header_group_remove_gtk_header_bar")]
     pub fn remove_gtk_header_bar(&self, header_bar: &gtk::HeaderBar) {
         unsafe {
-            ffi::hdy_header_group_remove_gtk_header_bar(
+            ffi::adw_header_group_remove_gtk_header_bar(
                 self.to_glib_none().0,
                 header_bar.to_glib_none().0,
             );
         }
     }
 
-    #[doc(alias = "hdy_header_group_remove_header_bar")]
+    #[doc(alias = "adw_header_group_remove_header_bar")]
     pub fn remove_header_bar(&self, header_bar: &HeaderBar) {
         unsafe {
-            ffi::hdy_header_group_remove_header_bar(
+            ffi::adw_header_group_remove_header_bar(
                 self.to_glib_none().0,
                 header_bar.to_glib_none().0,
             );
         }
     }
 
-    #[doc(alias = "hdy_header_group_remove_header_group")]
+    #[doc(alias = "adw_header_group_remove_header_group")]
     pub fn remove_header_group(&self, header_group: &HeaderGroup) {
         unsafe {
-            ffi::hdy_header_group_remove_header_group(
+            ffi::adw_header_group_remove_header_group(
                 self.to_glib_none().0,
                 header_group.to_glib_none().0,
             );
         }
     }
 
-    #[doc(alias = "hdy_header_group_set_decorate_all")]
+    #[doc(alias = "adw_header_group_set_decorate_all")]
     pub fn set_decorate_all(&self, decorate_all: bool) {
         unsafe {
-            ffi::hdy_header_group_set_decorate_all(self.to_glib_none().0, decorate_all.to_glib());
+            ffi::adw_header_group_set_decorate_all(self.to_glib_none().0, decorate_all.to_glib());
         }
     }
 
@@ -127,7 +127,7 @@ impl HeaderGroup {
         f: F,
     ) -> SignalHandlerId {
         unsafe extern "C" fn update_decoration_layouts_trampoline<F: Fn(&HeaderGroup) + 'static>(
-            this: *mut ffi::HdyHeaderGroup,
+            this: *mut ffi::AdwHeaderGroup,
             f: glib::ffi::gpointer,
         ) {
             let f: &F = &*(f as *const F);
@@ -151,7 +151,7 @@ impl HeaderGroup {
         f: F,
     ) -> SignalHandlerId {
         unsafe extern "C" fn notify_decorate_all_trampoline<F: Fn(&HeaderGroup) + 'static>(
-            this: *mut ffi::HdyHeaderGroup,
+            this: *mut ffi::AdwHeaderGroup,
             _param_spec: glib::ffi::gpointer,
             f: glib::ffi::gpointer,
         ) {

@@ -2,64 +2,36 @@
 // from gir-files (https://github.com/gtk-rs/gir-files)
 // DO NOT EDIT
 
-use glib::object::Cast;
 use glib::translate::*;
-use glib::StaticType;
-use glib::ToValue;
 use std::fmt;
 
 glib::wrapper! {
-    pub struct EnumListModel(Object<ffi::HdyEnumListModel, ffi::HdyEnumListModelClass>) @implements gio::ListModel;
+    pub struct EnumListModel(Object<ffi::AdwEnumListModel, ffi::AdwEnumListModelClass>) @implements gio::ListModel;
 
     match fn {
-        get_type => || ffi::hdy_enum_list_model_get_type(),
+        get_type => || ffi::adw_enum_list_model_get_type(),
     }
 }
 
 impl EnumListModel {
-    #[doc(alias = "hdy_enum_list_model_new")]
+    #[doc(alias = "adw_enum_list_model_new")]
     pub fn new(enum_type: glib::types::Type) -> EnumListModel {
         assert_initialized_main_thread!();
-        unsafe { from_glib_full(ffi::hdy_enum_list_model_new(enum_type.to_glib())) }
+        unsafe { from_glib_full(ffi::adw_enum_list_model_new(enum_type.to_glib())) }
     }
 
-    #[doc(alias = "hdy_enum_list_model_find_position")]
+    #[doc(alias = "adw_enum_list_model_find_position")]
     pub fn find_position(&self, value: i32) -> u32 {
-        unsafe { ffi::hdy_enum_list_model_find_position(self.to_glib_none().0, value) }
+        unsafe { ffi::adw_enum_list_model_find_position(self.to_glib_none().0, value) }
     }
 
-    #[doc(alias = "hdy_enum_list_model_get_enum_type")]
+    #[doc(alias = "adw_enum_list_model_get_enum_type")]
     pub fn get_enum_type(&self) -> glib::types::Type {
         unsafe {
-            from_glib(ffi::hdy_enum_list_model_get_enum_type(
+            from_glib(ffi::adw_enum_list_model_get_enum_type(
                 self.to_glib_none().0,
             ))
         }
-    }
-}
-
-#[derive(Clone, Default)]
-pub struct EnumListModelBuilder {
-    enum_type: Option<glib::types::Type>,
-}
-
-impl EnumListModelBuilder {
-    pub fn new() -> Self {
-        Self::default()
-    }
-
-    pub fn build(self) -> EnumListModel {
-        let mut properties: Vec<(&str, &dyn ToValue)> = vec![];
-        if let Some(ref enum_type) = self.enum_type {
-            properties.push(("enum-type", enum_type));
-        }
-        let ret = glib::Object::new::<EnumListModel>(&properties).expect("object new");
-        ret
-    }
-
-    pub fn enum_type(mut self, enum_type: glib::types::Type) -> Self {
-        self.enum_type = Some(enum_type);
-        self
     }
 }
 

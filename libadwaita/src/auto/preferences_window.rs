@@ -16,18 +16,18 @@ use std::fmt;
 use std::mem::transmute;
 
 glib::wrapper! {
-    pub struct PreferencesWindow(Object<ffi::HdyPreferencesWindow, ffi::HdyPreferencesWindowClass>) @extends Window, gtk::Window, gtk::Widget, @implements gtk::Accessible, gtk::Buildable, gtk::ConstraintTarget, gtk::Native, gtk::Root, gtk::ShortcutManager;
+    pub struct PreferencesWindow(Object<ffi::AdwPreferencesWindow, ffi::AdwPreferencesWindowClass>) @extends Window, gtk::Window, gtk::Widget, @implements gtk::Accessible, gtk::Buildable, gtk::ConstraintTarget, gtk::Native, gtk::Root, gtk::ShortcutManager;
 
     match fn {
-        get_type => || ffi::hdy_preferences_window_get_type(),
+        get_type => || ffi::adw_preferences_window_get_type(),
     }
 }
 
 impl PreferencesWindow {
-    #[doc(alias = "hdy_preferences_window_new")]
+    #[doc(alias = "adw_preferences_window_new")]
     pub fn new() -> PreferencesWindow {
         assert_initialized_main_thread!();
-        unsafe { gtk::Widget::from_glib_none(ffi::hdy_preferences_window_new()).unsafe_cast() }
+        unsafe { gtk::Widget::from_glib_none(ffi::adw_preferences_window_new()).unsafe_cast() }
     }
 }
 
@@ -533,28 +533,28 @@ impl PreferencesWindowBuilder {
 pub const NONE_PREFERENCES_WINDOW: Option<&PreferencesWindow> = None;
 
 pub trait PreferencesWindowExt: 'static {
-    #[doc(alias = "hdy_preferences_window_add")]
+    #[doc(alias = "adw_preferences_window_add")]
     fn add<P: IsA<PreferencesPage>>(&self, page: &P);
 
-    #[doc(alias = "hdy_preferences_window_close_subpage")]
+    #[doc(alias = "adw_preferences_window_close_subpage")]
     fn close_subpage(&self);
 
-    #[doc(alias = "hdy_preferences_window_get_can_swipe_back")]
+    #[doc(alias = "adw_preferences_window_get_can_swipe_back")]
     fn get_can_swipe_back(&self) -> bool;
 
-    #[doc(alias = "hdy_preferences_window_get_search_enabled")]
+    #[doc(alias = "adw_preferences_window_get_search_enabled")]
     fn get_search_enabled(&self) -> bool;
 
-    #[doc(alias = "hdy_preferences_window_present_subpage")]
+    #[doc(alias = "adw_preferences_window_present_subpage")]
     fn present_subpage<P: IsA<gtk::Widget>>(&self, subpage: &P);
 
-    #[doc(alias = "hdy_preferences_window_remove")]
+    #[doc(alias = "adw_preferences_window_remove")]
     fn remove<P: IsA<PreferencesPage>>(&self, page: &P);
 
-    #[doc(alias = "hdy_preferences_window_set_can_swipe_back")]
+    #[doc(alias = "adw_preferences_window_set_can_swipe_back")]
     fn set_can_swipe_back(&self, can_swipe_back: bool);
 
-    #[doc(alias = "hdy_preferences_window_set_search_enabled")]
+    #[doc(alias = "adw_preferences_window_set_search_enabled")]
     fn set_search_enabled(&self, search_enabled: bool);
 
     fn connect_property_can_swipe_back_notify<F: Fn(&Self) + 'static>(
@@ -571,7 +571,7 @@ pub trait PreferencesWindowExt: 'static {
 impl<O: IsA<PreferencesWindow>> PreferencesWindowExt for O {
     fn add<P: IsA<PreferencesPage>>(&self, page: &P) {
         unsafe {
-            ffi::hdy_preferences_window_add(
+            ffi::adw_preferences_window_add(
                 self.as_ref().to_glib_none().0,
                 page.as_ref().to_glib_none().0,
             );
@@ -580,13 +580,13 @@ impl<O: IsA<PreferencesWindow>> PreferencesWindowExt for O {
 
     fn close_subpage(&self) {
         unsafe {
-            ffi::hdy_preferences_window_close_subpage(self.as_ref().to_glib_none().0);
+            ffi::adw_preferences_window_close_subpage(self.as_ref().to_glib_none().0);
         }
     }
 
     fn get_can_swipe_back(&self) -> bool {
         unsafe {
-            from_glib(ffi::hdy_preferences_window_get_can_swipe_back(
+            from_glib(ffi::adw_preferences_window_get_can_swipe_back(
                 self.as_ref().to_glib_none().0,
             ))
         }
@@ -594,7 +594,7 @@ impl<O: IsA<PreferencesWindow>> PreferencesWindowExt for O {
 
     fn get_search_enabled(&self) -> bool {
         unsafe {
-            from_glib(ffi::hdy_preferences_window_get_search_enabled(
+            from_glib(ffi::adw_preferences_window_get_search_enabled(
                 self.as_ref().to_glib_none().0,
             ))
         }
@@ -602,7 +602,7 @@ impl<O: IsA<PreferencesWindow>> PreferencesWindowExt for O {
 
     fn present_subpage<P: IsA<gtk::Widget>>(&self, subpage: &P) {
         unsafe {
-            ffi::hdy_preferences_window_present_subpage(
+            ffi::adw_preferences_window_present_subpage(
                 self.as_ref().to_glib_none().0,
                 subpage.as_ref().to_glib_none().0,
             );
@@ -611,7 +611,7 @@ impl<O: IsA<PreferencesWindow>> PreferencesWindowExt for O {
 
     fn remove<P: IsA<PreferencesPage>>(&self, page: &P) {
         unsafe {
-            ffi::hdy_preferences_window_remove(
+            ffi::adw_preferences_window_remove(
                 self.as_ref().to_glib_none().0,
                 page.as_ref().to_glib_none().0,
             );
@@ -620,7 +620,7 @@ impl<O: IsA<PreferencesWindow>> PreferencesWindowExt for O {
 
     fn set_can_swipe_back(&self, can_swipe_back: bool) {
         unsafe {
-            ffi::hdy_preferences_window_set_can_swipe_back(
+            ffi::adw_preferences_window_set_can_swipe_back(
                 self.as_ref().to_glib_none().0,
                 can_swipe_back.to_glib(),
             );
@@ -629,7 +629,7 @@ impl<O: IsA<PreferencesWindow>> PreferencesWindowExt for O {
 
     fn set_search_enabled(&self, search_enabled: bool) {
         unsafe {
-            ffi::hdy_preferences_window_set_search_enabled(
+            ffi::adw_preferences_window_set_search_enabled(
                 self.as_ref().to_glib_none().0,
                 search_enabled.to_glib(),
             );
@@ -641,7 +641,7 @@ impl<O: IsA<PreferencesWindow>> PreferencesWindowExt for O {
         f: F,
     ) -> SignalHandlerId {
         unsafe extern "C" fn notify_can_swipe_back_trampoline<P, F: Fn(&P) + 'static>(
-            this: *mut ffi::HdyPreferencesWindow,
+            this: *mut ffi::AdwPreferencesWindow,
             _param_spec: glib::ffi::gpointer,
             f: glib::ffi::gpointer,
         ) where
@@ -668,7 +668,7 @@ impl<O: IsA<PreferencesWindow>> PreferencesWindowExt for O {
         f: F,
     ) -> SignalHandlerId {
         unsafe extern "C" fn notify_search_enabled_trampoline<P, F: Fn(&P) + 'static>(
-            this: *mut ffi::HdyPreferencesWindow,
+            this: *mut ffi::AdwPreferencesWindow,
             _param_spec: glib::ffi::gpointer,
             f: glib::ffi::gpointer,
         ) where

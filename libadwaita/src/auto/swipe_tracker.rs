@@ -2,6 +2,7 @@
 // from gir-files (https://github.com/gtk-rs/gir-files)
 // DO NOT EDIT
 
+use crate::NavigationDirection;
 use crate::Swipeable;
 use glib::object::Cast;
 use glib::object::IsA;
@@ -16,76 +17,108 @@ use std::fmt;
 use std::mem::transmute;
 
 glib::wrapper! {
-    pub struct SwipeTracker(Object<ffi::HdySwipeTracker, ffi::HdySwipeTrackerClass>) @implements gtk::Orientable;
+    pub struct SwipeTracker(Object<ffi::AdwSwipeTracker, ffi::AdwSwipeTrackerClass>) @implements gtk::Orientable;
 
     match fn {
-        get_type => || ffi::hdy_swipe_tracker_get_type(),
+        get_type => || ffi::adw_swipe_tracker_get_type(),
     }
 }
 
 impl SwipeTracker {
-    #[doc(alias = "hdy_swipe_tracker_new")]
+    #[doc(alias = "adw_swipe_tracker_new")]
     pub fn new<P: IsA<Swipeable>>(swipeable: &P) -> SwipeTracker {
         skip_assert_initialized!();
         unsafe {
-            from_glib_full(ffi::hdy_swipe_tracker_new(
+            from_glib_full(ffi::adw_swipe_tracker_new(
                 swipeable.as_ref().to_glib_none().0,
             ))
         }
     }
 
-    #[doc(alias = "hdy_swipe_tracker_get_allow_mouse_drag")]
+    #[doc(alias = "adw_swipe_tracker_get_allow_mouse_drag")]
     pub fn get_allow_mouse_drag(&self) -> bool {
         unsafe {
-            from_glib(ffi::hdy_swipe_tracker_get_allow_mouse_drag(
+            from_glib(ffi::adw_swipe_tracker_get_allow_mouse_drag(
                 self.to_glib_none().0,
             ))
         }
     }
 
-    #[doc(alias = "hdy_swipe_tracker_get_enabled")]
+    #[doc(alias = "adw_swipe_tracker_get_enabled")]
     pub fn get_enabled(&self) -> bool {
-        unsafe { from_glib(ffi::hdy_swipe_tracker_get_enabled(self.to_glib_none().0)) }
+        unsafe { from_glib(ffi::adw_swipe_tracker_get_enabled(self.to_glib_none().0)) }
     }
 
-    #[doc(alias = "hdy_swipe_tracker_get_reversed")]
+    #[doc(alias = "adw_swipe_tracker_get_reversed")]
     pub fn get_reversed(&self) -> bool {
-        unsafe { from_glib(ffi::hdy_swipe_tracker_get_reversed(self.to_glib_none().0)) }
+        unsafe { from_glib(ffi::adw_swipe_tracker_get_reversed(self.to_glib_none().0)) }
     }
 
-    #[doc(alias = "hdy_swipe_tracker_get_swipeable")]
+    #[doc(alias = "adw_swipe_tracker_get_swipeable")]
     pub fn get_swipeable(&self) -> Option<Swipeable> {
-        unsafe { from_glib_none(ffi::hdy_swipe_tracker_get_swipeable(self.to_glib_none().0)) }
+        unsafe { from_glib_none(ffi::adw_swipe_tracker_get_swipeable(self.to_glib_none().0)) }
     }
 
-    #[doc(alias = "hdy_swipe_tracker_set_allow_mouse_drag")]
+    #[doc(alias = "adw_swipe_tracker_set_allow_mouse_drag")]
     pub fn set_allow_mouse_drag(&self, allow_mouse_drag: bool) {
         unsafe {
-            ffi::hdy_swipe_tracker_set_allow_mouse_drag(
+            ffi::adw_swipe_tracker_set_allow_mouse_drag(
                 self.to_glib_none().0,
                 allow_mouse_drag.to_glib(),
             );
         }
     }
 
-    #[doc(alias = "hdy_swipe_tracker_set_enabled")]
+    #[doc(alias = "adw_swipe_tracker_set_enabled")]
     pub fn set_enabled(&self, enabled: bool) {
         unsafe {
-            ffi::hdy_swipe_tracker_set_enabled(self.to_glib_none().0, enabled.to_glib());
+            ffi::adw_swipe_tracker_set_enabled(self.to_glib_none().0, enabled.to_glib());
         }
     }
 
-    #[doc(alias = "hdy_swipe_tracker_set_reversed")]
+    #[doc(alias = "adw_swipe_tracker_set_reversed")]
     pub fn set_reversed(&self, reversed: bool) {
         unsafe {
-            ffi::hdy_swipe_tracker_set_reversed(self.to_glib_none().0, reversed.to_glib());
+            ffi::adw_swipe_tracker_set_reversed(self.to_glib_none().0, reversed.to_glib());
         }
     }
 
-    #[doc(alias = "hdy_swipe_tracker_shift_position")]
+    #[doc(alias = "adw_swipe_tracker_shift_position")]
     pub fn shift_position(&self, delta: f64) {
         unsafe {
-            ffi::hdy_swipe_tracker_shift_position(self.to_glib_none().0, delta);
+            ffi::adw_swipe_tracker_shift_position(self.to_glib_none().0, delta);
+        }
+    }
+
+    pub fn connect_begin_swipe<F: Fn(&SwipeTracker, NavigationDirection, bool) + 'static>(
+        &self,
+        f: F,
+    ) -> SignalHandlerId {
+        unsafe extern "C" fn begin_swipe_trampoline<
+            F: Fn(&SwipeTracker, NavigationDirection, bool) + 'static,
+        >(
+            this: *mut ffi::AdwSwipeTracker,
+            direction: ffi::AdwNavigationDirection,
+            direct: glib::ffi::gboolean,
+            f: glib::ffi::gpointer,
+        ) {
+            let f: &F = &*(f as *const F);
+            f(
+                &from_glib_borrow(this),
+                from_glib(direction),
+                from_glib(direct),
+            )
+        }
+        unsafe {
+            let f: Box_<F> = Box_::new(f);
+            connect_raw(
+                self.as_ptr() as *mut _,
+                b"begin-swipe\0".as_ptr() as *const _,
+                Some(transmute::<_, unsafe extern "C" fn()>(
+                    begin_swipe_trampoline::<F> as *const (),
+                )),
+                Box_::into_raw(f),
+            )
         }
     }
 
@@ -94,7 +127,7 @@ impl SwipeTracker {
         f: F,
     ) -> SignalHandlerId {
         unsafe extern "C" fn end_swipe_trampoline<F: Fn(&SwipeTracker, i64, f64) + 'static>(
-            this: *mut ffi::HdySwipeTracker,
+            this: *mut ffi::AdwSwipeTracker,
             duration: i64,
             to: libc::c_double,
             f: glib::ffi::gpointer,
@@ -120,7 +153,7 @@ impl SwipeTracker {
         f: F,
     ) -> SignalHandlerId {
         unsafe extern "C" fn update_swipe_trampoline<F: Fn(&SwipeTracker, f64) + 'static>(
-            this: *mut ffi::HdySwipeTracker,
+            this: *mut ffi::AdwSwipeTracker,
             progress: libc::c_double,
             f: glib::ffi::gpointer,
         ) {
@@ -145,7 +178,7 @@ impl SwipeTracker {
         f: F,
     ) -> SignalHandlerId {
         unsafe extern "C" fn notify_allow_mouse_drag_trampoline<F: Fn(&SwipeTracker) + 'static>(
-            this: *mut ffi::HdySwipeTracker,
+            this: *mut ffi::AdwSwipeTracker,
             _param_spec: glib::ffi::gpointer,
             f: glib::ffi::gpointer,
         ) {
@@ -170,7 +203,7 @@ impl SwipeTracker {
         f: F,
     ) -> SignalHandlerId {
         unsafe extern "C" fn notify_enabled_trampoline<F: Fn(&SwipeTracker) + 'static>(
-            this: *mut ffi::HdySwipeTracker,
+            this: *mut ffi::AdwSwipeTracker,
             _param_spec: glib::ffi::gpointer,
             f: glib::ffi::gpointer,
         ) {
@@ -195,7 +228,7 @@ impl SwipeTracker {
         f: F,
     ) -> SignalHandlerId {
         unsafe extern "C" fn notify_reversed_trampoline<F: Fn(&SwipeTracker) + 'static>(
-            this: *mut ffi::HdySwipeTracker,
+            this: *mut ffi::AdwSwipeTracker,
             _param_spec: glib::ffi::gpointer,
             f: glib::ffi::gpointer,
         ) {

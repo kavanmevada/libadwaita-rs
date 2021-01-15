@@ -1,12 +1,3 @@
-extern crate bitflags;
-extern crate gdk;
-extern crate gdk_pixbuf;
-extern crate gio;
-extern crate glib;
-extern crate gtk;
-extern crate lazy_static;
-extern crate libc;
-extern crate pango;
 // Re-export the -sys bindings
 pub use ffi;
 
@@ -15,9 +6,9 @@ macro_rules! assert_initialized_main_thread {
     () => {
         if !::gtk::is_initialized_main_thread() {
             if ::gtk::is_initialized() {
-                panic!("Libhandy may only be used from the main thread.");
+                panic!("libadwaita may only be used from the main thread.");
             } else {
-                panic!("Gtk has to be initialized before using libhandy.");
+                panic!("Gtk has to be initialized before using libadwaita.");
             }
         }
     };
@@ -28,6 +19,9 @@ macro_rules! skip_assert_initialized {
 }
 
 pub use glib::Error;
+#[allow(unused_imports)]
+#[allow(clippy::let_and_return)]
+#[allow(clippy::type_complexity)]
 mod auto;
 pub use auto::functions::*;
 pub use auto::*;

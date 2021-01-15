@@ -14,18 +14,18 @@ use std::fmt;
 use std::mem::transmute;
 
 glib::wrapper! {
-    pub struct PreferencesGroup(Object<ffi::HdyPreferencesGroup, ffi::HdyPreferencesGroupClass>) @extends gtk::Widget, @implements gtk::Accessible, gtk::Buildable, gtk::ConstraintTarget;
+    pub struct PreferencesGroup(Object<ffi::AdwPreferencesGroup, ffi::AdwPreferencesGroupClass>) @extends gtk::Widget, @implements gtk::Accessible, gtk::Buildable, gtk::ConstraintTarget;
 
     match fn {
-        get_type => || ffi::hdy_preferences_group_get_type(),
+        get_type => || ffi::adw_preferences_group_get_type(),
     }
 }
 
 impl PreferencesGroup {
-    #[doc(alias = "hdy_preferences_group_new")]
+    #[doc(alias = "adw_preferences_group_new")]
     pub fn new() -> PreferencesGroup {
         assert_initialized_main_thread!();
-        unsafe { gtk::Widget::from_glib_none(ffi::hdy_preferences_group_new()).unsafe_cast() }
+        unsafe { gtk::Widget::from_glib_none(ffi::adw_preferences_group_new()).unsafe_cast() }
     }
 }
 
@@ -342,22 +342,22 @@ impl PreferencesGroupBuilder {
 pub const NONE_PREFERENCES_GROUP: Option<&PreferencesGroup> = None;
 
 pub trait PreferencesGroupExt: 'static {
-    #[doc(alias = "hdy_preferences_group_add")]
+    #[doc(alias = "adw_preferences_group_add")]
     fn add<P: IsA<gtk::Widget>>(&self, child: &P);
 
-    #[doc(alias = "hdy_preferences_group_get_description")]
+    #[doc(alias = "adw_preferences_group_get_description")]
     fn get_description(&self) -> Option<glib::GString>;
 
-    #[doc(alias = "hdy_preferences_group_get_title")]
+    #[doc(alias = "adw_preferences_group_get_title")]
     fn get_title(&self) -> Option<glib::GString>;
 
-    #[doc(alias = "hdy_preferences_group_remove")]
+    #[doc(alias = "adw_preferences_group_remove")]
     fn remove<P: IsA<gtk::Widget>>(&self, child: &P);
 
-    #[doc(alias = "hdy_preferences_group_set_description")]
+    #[doc(alias = "adw_preferences_group_set_description")]
     fn set_description(&self, description: &str);
 
-    #[doc(alias = "hdy_preferences_group_set_title")]
+    #[doc(alias = "adw_preferences_group_set_title")]
     fn set_title(&self, title: &str);
 
     fn connect_property_description_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
@@ -368,7 +368,7 @@ pub trait PreferencesGroupExt: 'static {
 impl<O: IsA<PreferencesGroup>> PreferencesGroupExt for O {
     fn add<P: IsA<gtk::Widget>>(&self, child: &P) {
         unsafe {
-            ffi::hdy_preferences_group_add(
+            ffi::adw_preferences_group_add(
                 self.as_ref().to_glib_none().0,
                 child.as_ref().to_glib_none().0,
             );
@@ -377,7 +377,7 @@ impl<O: IsA<PreferencesGroup>> PreferencesGroupExt for O {
 
     fn get_description(&self) -> Option<glib::GString> {
         unsafe {
-            from_glib_none(ffi::hdy_preferences_group_get_description(
+            from_glib_none(ffi::adw_preferences_group_get_description(
                 self.as_ref().to_glib_none().0,
             ))
         }
@@ -385,7 +385,7 @@ impl<O: IsA<PreferencesGroup>> PreferencesGroupExt for O {
 
     fn get_title(&self) -> Option<glib::GString> {
         unsafe {
-            from_glib_none(ffi::hdy_preferences_group_get_title(
+            from_glib_none(ffi::adw_preferences_group_get_title(
                 self.as_ref().to_glib_none().0,
             ))
         }
@@ -393,7 +393,7 @@ impl<O: IsA<PreferencesGroup>> PreferencesGroupExt for O {
 
     fn remove<P: IsA<gtk::Widget>>(&self, child: &P) {
         unsafe {
-            ffi::hdy_preferences_group_remove(
+            ffi::adw_preferences_group_remove(
                 self.as_ref().to_glib_none().0,
                 child.as_ref().to_glib_none().0,
             );
@@ -402,7 +402,7 @@ impl<O: IsA<PreferencesGroup>> PreferencesGroupExt for O {
 
     fn set_description(&self, description: &str) {
         unsafe {
-            ffi::hdy_preferences_group_set_description(
+            ffi::adw_preferences_group_set_description(
                 self.as_ref().to_glib_none().0,
                 description.to_glib_none().0,
             );
@@ -411,7 +411,7 @@ impl<O: IsA<PreferencesGroup>> PreferencesGroupExt for O {
 
     fn set_title(&self, title: &str) {
         unsafe {
-            ffi::hdy_preferences_group_set_title(
+            ffi::adw_preferences_group_set_title(
                 self.as_ref().to_glib_none().0,
                 title.to_glib_none().0,
             );
@@ -420,7 +420,7 @@ impl<O: IsA<PreferencesGroup>> PreferencesGroupExt for O {
 
     fn connect_property_description_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_description_trampoline<P, F: Fn(&P) + 'static>(
-            this: *mut ffi::HdyPreferencesGroup,
+            this: *mut ffi::AdwPreferencesGroup,
             _param_spec: glib::ffi::gpointer,
             f: glib::ffi::gpointer,
         ) where
@@ -444,7 +444,7 @@ impl<O: IsA<PreferencesGroup>> PreferencesGroupExt for O {
 
     fn connect_property_title_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_title_trampoline<P, F: Fn(&P) + 'static>(
-            this: *mut ffi::HdyPreferencesGroup,
+            this: *mut ffi::AdwPreferencesGroup,
             _param_spec: glib::ffi::gpointer,
             f: glib::ffi::gpointer,
         ) where

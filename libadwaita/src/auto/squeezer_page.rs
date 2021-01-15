@@ -15,28 +15,28 @@ use std::fmt;
 use std::mem::transmute;
 
 glib::wrapper! {
-    pub struct SqueezerPage(Object<ffi::HdySqueezerPage, ffi::HdySqueezerPageClass>);
+    pub struct SqueezerPage(Object<ffi::AdwSqueezerPage, ffi::AdwSqueezerPageClass>);
 
     match fn {
-        get_type => || ffi::hdy_squeezer_page_get_type(),
+        get_type => || ffi::adw_squeezer_page_get_type(),
     }
 }
 
 impl SqueezerPage {
-    #[doc(alias = "hdy_squeezer_page_get_child")]
+    #[doc(alias = "adw_squeezer_page_get_child")]
     pub fn get_child(&self) -> Option<gtk::Widget> {
-        unsafe { from_glib_none(ffi::hdy_squeezer_page_get_child(self.to_glib_none().0)) }
+        unsafe { from_glib_none(ffi::adw_squeezer_page_get_child(self.to_glib_none().0)) }
     }
 
-    #[doc(alias = "hdy_squeezer_page_get_enabled")]
+    #[doc(alias = "adw_squeezer_page_get_enabled")]
     pub fn get_enabled(&self) -> bool {
-        unsafe { from_glib(ffi::hdy_squeezer_page_get_enabled(self.to_glib_none().0)) }
+        unsafe { from_glib(ffi::adw_squeezer_page_get_enabled(self.to_glib_none().0)) }
     }
 
-    #[doc(alias = "hdy_squeezer_page_set_enabled")]
+    #[doc(alias = "adw_squeezer_page_set_enabled")]
     pub fn set_enabled(&self, enabled: bool) {
         unsafe {
-            ffi::hdy_squeezer_page_set_enabled(self.to_glib_none().0, enabled.to_glib());
+            ffi::adw_squeezer_page_set_enabled(self.to_glib_none().0, enabled.to_glib());
         }
     }
 
@@ -45,7 +45,7 @@ impl SqueezerPage {
         f: F,
     ) -> SignalHandlerId {
         unsafe extern "C" fn notify_enabled_trampoline<F: Fn(&SqueezerPage) + 'static>(
-            this: *mut ffi::HdySqueezerPage,
+            this: *mut ffi::AdwSqueezerPage,
             _param_spec: glib::ffi::gpointer,
             f: glib::ffi::gpointer,
         ) {

@@ -16,53 +16,53 @@ use std::fmt;
 use std::mem::transmute;
 
 glib::wrapper! {
-    pub struct ViewSwitcherBar(Object<ffi::HdyViewSwitcherBar, ffi::HdyViewSwitcherBarClass>) @extends gtk::Widget, @implements gtk::Accessible, gtk::Buildable, gtk::ConstraintTarget;
+    pub struct ViewSwitcherBar(Object<ffi::AdwViewSwitcherBar, ffi::AdwViewSwitcherBarClass>) @extends gtk::Widget, @implements gtk::Accessible, gtk::Buildable, gtk::ConstraintTarget;
 
     match fn {
-        get_type => || ffi::hdy_view_switcher_bar_get_type(),
+        get_type => || ffi::adw_view_switcher_bar_get_type(),
     }
 }
 
 impl ViewSwitcherBar {
-    #[doc(alias = "hdy_view_switcher_bar_new")]
+    #[doc(alias = "adw_view_switcher_bar_new")]
     pub fn new() -> ViewSwitcherBar {
         assert_initialized_main_thread!();
-        unsafe { gtk::Widget::from_glib_none(ffi::hdy_view_switcher_bar_new()).unsafe_cast() }
+        unsafe { gtk::Widget::from_glib_none(ffi::adw_view_switcher_bar_new()).unsafe_cast() }
     }
 
-    #[doc(alias = "hdy_view_switcher_bar_get_policy")]
+    #[doc(alias = "adw_view_switcher_bar_get_policy")]
     pub fn get_policy(&self) -> ViewSwitcherPolicy {
-        unsafe { from_glib(ffi::hdy_view_switcher_bar_get_policy(self.to_glib_none().0)) }
+        unsafe { from_glib(ffi::adw_view_switcher_bar_get_policy(self.to_glib_none().0)) }
     }
 
-    #[doc(alias = "hdy_view_switcher_bar_get_reveal")]
+    #[doc(alias = "adw_view_switcher_bar_get_reveal")]
     pub fn get_reveal(&self) -> bool {
-        unsafe { from_glib(ffi::hdy_view_switcher_bar_get_reveal(self.to_glib_none().0)) }
+        unsafe { from_glib(ffi::adw_view_switcher_bar_get_reveal(self.to_glib_none().0)) }
     }
 
-    #[doc(alias = "hdy_view_switcher_bar_get_stack")]
+    #[doc(alias = "adw_view_switcher_bar_get_stack")]
     pub fn get_stack(&self) -> Option<gtk::Stack> {
-        unsafe { from_glib_none(ffi::hdy_view_switcher_bar_get_stack(self.to_glib_none().0)) }
+        unsafe { from_glib_none(ffi::adw_view_switcher_bar_get_stack(self.to_glib_none().0)) }
     }
 
-    #[doc(alias = "hdy_view_switcher_bar_set_policy")]
+    #[doc(alias = "adw_view_switcher_bar_set_policy")]
     pub fn set_policy(&self, policy: ViewSwitcherPolicy) {
         unsafe {
-            ffi::hdy_view_switcher_bar_set_policy(self.to_glib_none().0, policy.to_glib());
+            ffi::adw_view_switcher_bar_set_policy(self.to_glib_none().0, policy.to_glib());
         }
     }
 
-    #[doc(alias = "hdy_view_switcher_bar_set_reveal")]
+    #[doc(alias = "adw_view_switcher_bar_set_reveal")]
     pub fn set_reveal(&self, reveal: bool) {
         unsafe {
-            ffi::hdy_view_switcher_bar_set_reveal(self.to_glib_none().0, reveal.to_glib());
+            ffi::adw_view_switcher_bar_set_reveal(self.to_glib_none().0, reveal.to_glib());
         }
     }
 
-    #[doc(alias = "hdy_view_switcher_bar_set_stack")]
+    #[doc(alias = "adw_view_switcher_bar_set_stack")]
     pub fn set_stack(&self, stack: Option<&gtk::Stack>) {
         unsafe {
-            ffi::hdy_view_switcher_bar_set_stack(self.to_glib_none().0, stack.to_glib_none().0);
+            ffi::adw_view_switcher_bar_set_stack(self.to_glib_none().0, stack.to_glib_none().0);
         }
     }
 
@@ -71,7 +71,7 @@ impl ViewSwitcherBar {
         f: F,
     ) -> SignalHandlerId {
         unsafe extern "C" fn notify_policy_trampoline<F: Fn(&ViewSwitcherBar) + 'static>(
-            this: *mut ffi::HdyViewSwitcherBar,
+            this: *mut ffi::AdwViewSwitcherBar,
             _param_spec: glib::ffi::gpointer,
             f: glib::ffi::gpointer,
         ) {
@@ -96,7 +96,7 @@ impl ViewSwitcherBar {
         f: F,
     ) -> SignalHandlerId {
         unsafe extern "C" fn notify_reveal_trampoline<F: Fn(&ViewSwitcherBar) + 'static>(
-            this: *mut ffi::HdyViewSwitcherBar,
+            this: *mut ffi::AdwViewSwitcherBar,
             _param_spec: glib::ffi::gpointer,
             f: glib::ffi::gpointer,
         ) {
@@ -121,7 +121,7 @@ impl ViewSwitcherBar {
         f: F,
     ) -> SignalHandlerId {
         unsafe extern "C" fn notify_stack_trampoline<F: Fn(&ViewSwitcherBar) + 'static>(
-            this: *mut ffi::HdyViewSwitcherBar,
+            this: *mut ffi::AdwViewSwitcherBar,
             _param_spec: glib::ffi::gpointer,
             f: glib::ffi::gpointer,
         ) {

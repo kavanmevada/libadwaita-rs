@@ -15,62 +15,62 @@ use std::fmt;
 use std::mem::transmute;
 
 glib::wrapper! {
-    pub struct Clamp(Object<ffi::HdyClamp, ffi::HdyClampClass>) @extends gtk::Widget, @implements gtk::Accessible, gtk::Buildable, gtk::ConstraintTarget, gtk::Orientable;
+    pub struct Clamp(Object<ffi::AdwClamp, ffi::AdwClampClass>) @extends gtk::Widget, @implements gtk::Accessible, gtk::Buildable, gtk::ConstraintTarget, gtk::Orientable;
 
     match fn {
-        get_type => || ffi::hdy_clamp_get_type(),
+        get_type => || ffi::adw_clamp_get_type(),
     }
 }
 
 impl Clamp {
-    #[doc(alias = "hdy_clamp_new")]
+    #[doc(alias = "adw_clamp_new")]
     pub fn new() -> Clamp {
         assert_initialized_main_thread!();
-        unsafe { gtk::Widget::from_glib_none(ffi::hdy_clamp_new()).unsafe_cast() }
+        unsafe { gtk::Widget::from_glib_none(ffi::adw_clamp_new()).unsafe_cast() }
     }
 
-    #[doc(alias = "hdy_clamp_get_child")]
+    #[doc(alias = "adw_clamp_get_child")]
     pub fn get_child(&self) -> Option<gtk::Widget> {
-        unsafe { from_glib_none(ffi::hdy_clamp_get_child(self.to_glib_none().0)) }
+        unsafe { from_glib_none(ffi::adw_clamp_get_child(self.to_glib_none().0)) }
     }
 
-    #[doc(alias = "hdy_clamp_get_maximum_size")]
+    #[doc(alias = "adw_clamp_get_maximum_size")]
     pub fn get_maximum_size(&self) -> i32 {
-        unsafe { ffi::hdy_clamp_get_maximum_size(self.to_glib_none().0) }
+        unsafe { ffi::adw_clamp_get_maximum_size(self.to_glib_none().0) }
     }
 
-    #[doc(alias = "hdy_clamp_get_tightening_threshold")]
+    #[doc(alias = "adw_clamp_get_tightening_threshold")]
     pub fn get_tightening_threshold(&self) -> i32 {
-        unsafe { ffi::hdy_clamp_get_tightening_threshold(self.to_glib_none().0) }
+        unsafe { ffi::adw_clamp_get_tightening_threshold(self.to_glib_none().0) }
     }
 
-    #[doc(alias = "hdy_clamp_set_child")]
+    #[doc(alias = "adw_clamp_set_child")]
     pub fn set_child<P: IsA<gtk::Widget>>(&self, child: Option<&P>) {
         unsafe {
-            ffi::hdy_clamp_set_child(
+            ffi::adw_clamp_set_child(
                 self.to_glib_none().0,
                 child.map(|p| p.as_ref()).to_glib_none().0,
             );
         }
     }
 
-    #[doc(alias = "hdy_clamp_set_maximum_size")]
+    #[doc(alias = "adw_clamp_set_maximum_size")]
     pub fn set_maximum_size(&self, maximum_size: i32) {
         unsafe {
-            ffi::hdy_clamp_set_maximum_size(self.to_glib_none().0, maximum_size);
+            ffi::adw_clamp_set_maximum_size(self.to_glib_none().0, maximum_size);
         }
     }
 
-    #[doc(alias = "hdy_clamp_set_tightening_threshold")]
+    #[doc(alias = "adw_clamp_set_tightening_threshold")]
     pub fn set_tightening_threshold(&self, tightening_threshold: i32) {
         unsafe {
-            ffi::hdy_clamp_set_tightening_threshold(self.to_glib_none().0, tightening_threshold);
+            ffi::adw_clamp_set_tightening_threshold(self.to_glib_none().0, tightening_threshold);
         }
     }
 
     pub fn connect_property_child_notify<F: Fn(&Clamp) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_child_trampoline<F: Fn(&Clamp) + 'static>(
-            this: *mut ffi::HdyClamp,
+            this: *mut ffi::AdwClamp,
             _param_spec: glib::ffi::gpointer,
             f: glib::ffi::gpointer,
         ) {
@@ -95,7 +95,7 @@ impl Clamp {
         f: F,
     ) -> SignalHandlerId {
         unsafe extern "C" fn notify_maximum_size_trampoline<F: Fn(&Clamp) + 'static>(
-            this: *mut ffi::HdyClamp,
+            this: *mut ffi::AdwClamp,
             _param_spec: glib::ffi::gpointer,
             f: glib::ffi::gpointer,
         ) {
@@ -120,7 +120,7 @@ impl Clamp {
         f: F,
     ) -> SignalHandlerId {
         unsafe extern "C" fn notify_tightening_threshold_trampoline<F: Fn(&Clamp) + 'static>(
-            this: *mut ffi::HdyClamp,
+            this: *mut ffi::AdwClamp,
             _param_spec: glib::ffi::gpointer,
             f: glib::ffi::gpointer,
         ) {

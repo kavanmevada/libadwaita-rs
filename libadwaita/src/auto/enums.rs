@@ -12,8 +12,11 @@ use std::fmt;
 
 #[derive(Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Clone, Copy)]
 #[non_exhaustive]
+#[doc(alias = "AdwCenteringPolicy")]
 pub enum CenteringPolicy {
+    #[doc(alias = "ADW_CENTERING_POLICY_LOOSE")]
     Loose,
+    #[doc(alias = "ADW_CENTERING_POLICY_STRICT")]
     Strict,
     #[doc(hidden)]
     __Unknown(i32),
@@ -35,20 +38,20 @@ impl fmt::Display for CenteringPolicy {
 
 #[doc(hidden)]
 impl ToGlib for CenteringPolicy {
-    type GlibType = ffi::HdyCenteringPolicy;
+    type GlibType = ffi::AdwCenteringPolicy;
 
-    fn to_glib(&self) -> ffi::HdyCenteringPolicy {
+    fn to_glib(&self) -> ffi::AdwCenteringPolicy {
         match *self {
-            CenteringPolicy::Loose => ffi::HDY_CENTERING_POLICY_LOOSE,
-            CenteringPolicy::Strict => ffi::HDY_CENTERING_POLICY_STRICT,
+            CenteringPolicy::Loose => ffi::ADW_CENTERING_POLICY_LOOSE,
+            CenteringPolicy::Strict => ffi::ADW_CENTERING_POLICY_STRICT,
             CenteringPolicy::__Unknown(value) => value,
         }
     }
 }
 
 #[doc(hidden)]
-impl FromGlib<ffi::HdyCenteringPolicy> for CenteringPolicy {
-    unsafe fn from_glib(value: ffi::HdyCenteringPolicy) -> Self {
+impl FromGlib<ffi::AdwCenteringPolicy> for CenteringPolicy {
+    unsafe fn from_glib(value: ffi::AdwCenteringPolicy) -> Self {
         skip_assert_initialized!();
         match value {
             0 => CenteringPolicy::Loose,
@@ -60,7 +63,7 @@ impl FromGlib<ffi::HdyCenteringPolicy> for CenteringPolicy {
 
 impl StaticType for CenteringPolicy {
     fn static_type() -> Type {
-        unsafe { from_glib(ffi::hdy_centering_policy_get_type()) }
+        unsafe { from_glib(ffi::adw_centering_policy_get_type()) }
     }
 }
 
@@ -84,9 +87,13 @@ impl SetValue for CenteringPolicy {
 
 #[derive(Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Clone, Copy)]
 #[non_exhaustive]
+#[doc(alias = "AdwFlapFoldPolicy")]
 pub enum FlapFoldPolicy {
+    #[doc(alias = "ADW_FLAP_FOLD_POLICY_NEVER")]
     Never,
+    #[doc(alias = "ADW_FLAP_FOLD_POLICY_ALWAYS")]
     Always,
+    #[doc(alias = "ADW_FLAP_FOLD_POLICY_AUTO")]
     Auto,
     #[doc(hidden)]
     __Unknown(i32),
@@ -109,21 +116,21 @@ impl fmt::Display for FlapFoldPolicy {
 
 #[doc(hidden)]
 impl ToGlib for FlapFoldPolicy {
-    type GlibType = ffi::HdyFlapFoldPolicy;
+    type GlibType = ffi::AdwFlapFoldPolicy;
 
-    fn to_glib(&self) -> ffi::HdyFlapFoldPolicy {
+    fn to_glib(&self) -> ffi::AdwFlapFoldPolicy {
         match *self {
-            FlapFoldPolicy::Never => ffi::HDY_FLAP_FOLD_POLICY_NEVER,
-            FlapFoldPolicy::Always => ffi::HDY_FLAP_FOLD_POLICY_ALWAYS,
-            FlapFoldPolicy::Auto => ffi::HDY_FLAP_FOLD_POLICY_AUTO,
+            FlapFoldPolicy::Never => ffi::ADW_FLAP_FOLD_POLICY_NEVER,
+            FlapFoldPolicy::Always => ffi::ADW_FLAP_FOLD_POLICY_ALWAYS,
+            FlapFoldPolicy::Auto => ffi::ADW_FLAP_FOLD_POLICY_AUTO,
             FlapFoldPolicy::__Unknown(value) => value,
         }
     }
 }
 
 #[doc(hidden)]
-impl FromGlib<ffi::HdyFlapFoldPolicy> for FlapFoldPolicy {
-    unsafe fn from_glib(value: ffi::HdyFlapFoldPolicy) -> Self {
+impl FromGlib<ffi::AdwFlapFoldPolicy> for FlapFoldPolicy {
+    unsafe fn from_glib(value: ffi::AdwFlapFoldPolicy) -> Self {
         skip_assert_initialized!();
         match value {
             0 => FlapFoldPolicy::Never,
@@ -136,7 +143,7 @@ impl FromGlib<ffi::HdyFlapFoldPolicy> for FlapFoldPolicy {
 
 impl StaticType for FlapFoldPolicy {
     fn static_type() -> Type {
-        unsafe { from_glib(ffi::hdy_flap_fold_policy_get_type()) }
+        unsafe { from_glib(ffi::adw_flap_fold_policy_get_type()) }
     }
 }
 
@@ -160,9 +167,13 @@ impl SetValue for FlapFoldPolicy {
 
 #[derive(Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Clone, Copy)]
 #[non_exhaustive]
+#[doc(alias = "AdwFlapTransitionType")]
 pub enum FlapTransitionType {
+    #[doc(alias = "ADW_FLAP_TRANSITION_TYPE_OVER")]
     Over,
+    #[doc(alias = "ADW_FLAP_TRANSITION_TYPE_UNDER")]
     Under,
+    #[doc(alias = "ADW_FLAP_TRANSITION_TYPE_SLIDE")]
     Slide,
     #[doc(hidden)]
     __Unknown(i32),
@@ -185,21 +196,21 @@ impl fmt::Display for FlapTransitionType {
 
 #[doc(hidden)]
 impl ToGlib for FlapTransitionType {
-    type GlibType = ffi::HdyFlapTransitionType;
+    type GlibType = ffi::AdwFlapTransitionType;
 
-    fn to_glib(&self) -> ffi::HdyFlapTransitionType {
+    fn to_glib(&self) -> ffi::AdwFlapTransitionType {
         match *self {
-            FlapTransitionType::Over => ffi::HDY_FLAP_TRANSITION_TYPE_OVER,
-            FlapTransitionType::Under => ffi::HDY_FLAP_TRANSITION_TYPE_UNDER,
-            FlapTransitionType::Slide => ffi::HDY_FLAP_TRANSITION_TYPE_SLIDE,
+            FlapTransitionType::Over => ffi::ADW_FLAP_TRANSITION_TYPE_OVER,
+            FlapTransitionType::Under => ffi::ADW_FLAP_TRANSITION_TYPE_UNDER,
+            FlapTransitionType::Slide => ffi::ADW_FLAP_TRANSITION_TYPE_SLIDE,
             FlapTransitionType::__Unknown(value) => value,
         }
     }
 }
 
 #[doc(hidden)]
-impl FromGlib<ffi::HdyFlapTransitionType> for FlapTransitionType {
-    unsafe fn from_glib(value: ffi::HdyFlapTransitionType) -> Self {
+impl FromGlib<ffi::AdwFlapTransitionType> for FlapTransitionType {
+    unsafe fn from_glib(value: ffi::AdwFlapTransitionType) -> Self {
         skip_assert_initialized!();
         match value {
             0 => FlapTransitionType::Over,
@@ -212,7 +223,7 @@ impl FromGlib<ffi::HdyFlapTransitionType> for FlapTransitionType {
 
 impl StaticType for FlapTransitionType {
     fn static_type() -> Type {
-        unsafe { from_glib(ffi::hdy_flap_transition_type_get_type()) }
+        unsafe { from_glib(ffi::adw_flap_transition_type_get_type()) }
     }
 }
 
@@ -236,9 +247,13 @@ impl SetValue for FlapTransitionType {
 
 #[derive(Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Clone, Copy)]
 #[non_exhaustive]
+#[doc(alias = "AdwHeaderGroupChildType")]
 pub enum HeaderGroupChildType {
+    #[doc(alias = "ADW_HEADER_GROUP_CHILD_TYPE_HEADER_BAR")]
     HeaderBar,
+    #[doc(alias = "ADW_HEADER_GROUP_CHILD_TYPE_GTK_HEADER_BAR")]
     GtkHeaderBar,
+    #[doc(alias = "ADW_HEADER_GROUP_CHILD_TYPE_HEADER_GROUP")]
     HeaderGroup,
     #[doc(hidden)]
     __Unknown(i32),
@@ -261,21 +276,21 @@ impl fmt::Display for HeaderGroupChildType {
 
 #[doc(hidden)]
 impl ToGlib for HeaderGroupChildType {
-    type GlibType = ffi::HdyHeaderGroupChildType;
+    type GlibType = ffi::AdwHeaderGroupChildType;
 
-    fn to_glib(&self) -> ffi::HdyHeaderGroupChildType {
+    fn to_glib(&self) -> ffi::AdwHeaderGroupChildType {
         match *self {
-            HeaderGroupChildType::HeaderBar => ffi::HDY_HEADER_GROUP_CHILD_TYPE_HEADER_BAR,
-            HeaderGroupChildType::GtkHeaderBar => ffi::HDY_HEADER_GROUP_CHILD_TYPE_GTK_HEADER_BAR,
-            HeaderGroupChildType::HeaderGroup => ffi::HDY_HEADER_GROUP_CHILD_TYPE_HEADER_GROUP,
+            HeaderGroupChildType::HeaderBar => ffi::ADW_HEADER_GROUP_CHILD_TYPE_HEADER_BAR,
+            HeaderGroupChildType::GtkHeaderBar => ffi::ADW_HEADER_GROUP_CHILD_TYPE_GTK_HEADER_BAR,
+            HeaderGroupChildType::HeaderGroup => ffi::ADW_HEADER_GROUP_CHILD_TYPE_HEADER_GROUP,
             HeaderGroupChildType::__Unknown(value) => value,
         }
     }
 }
 
 #[doc(hidden)]
-impl FromGlib<ffi::HdyHeaderGroupChildType> for HeaderGroupChildType {
-    unsafe fn from_glib(value: ffi::HdyHeaderGroupChildType) -> Self {
+impl FromGlib<ffi::AdwHeaderGroupChildType> for HeaderGroupChildType {
+    unsafe fn from_glib(value: ffi::AdwHeaderGroupChildType) -> Self {
         skip_assert_initialized!();
         match value {
             0 => HeaderGroupChildType::HeaderBar,
@@ -288,7 +303,7 @@ impl FromGlib<ffi::HdyHeaderGroupChildType> for HeaderGroupChildType {
 
 impl StaticType for HeaderGroupChildType {
     fn static_type() -> Type {
-        unsafe { from_glib(ffi::hdy_header_group_child_type_get_type()) }
+        unsafe { from_glib(ffi::adw_header_group_child_type_get_type()) }
     }
 }
 
@@ -312,9 +327,13 @@ impl SetValue for HeaderGroupChildType {
 
 #[derive(Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Clone, Copy)]
 #[non_exhaustive]
+#[doc(alias = "AdwLeafletTransitionType")]
 pub enum LeafletTransitionType {
+    #[doc(alias = "ADW_LEAFLET_TRANSITION_TYPE_OVER")]
     Over,
+    #[doc(alias = "ADW_LEAFLET_TRANSITION_TYPE_UNDER")]
     Under,
+    #[doc(alias = "ADW_LEAFLET_TRANSITION_TYPE_SLIDE")]
     Slide,
     #[doc(hidden)]
     __Unknown(i32),
@@ -337,21 +356,21 @@ impl fmt::Display for LeafletTransitionType {
 
 #[doc(hidden)]
 impl ToGlib for LeafletTransitionType {
-    type GlibType = ffi::HdyLeafletTransitionType;
+    type GlibType = ffi::AdwLeafletTransitionType;
 
-    fn to_glib(&self) -> ffi::HdyLeafletTransitionType {
+    fn to_glib(&self) -> ffi::AdwLeafletTransitionType {
         match *self {
-            LeafletTransitionType::Over => ffi::HDY_LEAFLET_TRANSITION_TYPE_OVER,
-            LeafletTransitionType::Under => ffi::HDY_LEAFLET_TRANSITION_TYPE_UNDER,
-            LeafletTransitionType::Slide => ffi::HDY_LEAFLET_TRANSITION_TYPE_SLIDE,
+            LeafletTransitionType::Over => ffi::ADW_LEAFLET_TRANSITION_TYPE_OVER,
+            LeafletTransitionType::Under => ffi::ADW_LEAFLET_TRANSITION_TYPE_UNDER,
+            LeafletTransitionType::Slide => ffi::ADW_LEAFLET_TRANSITION_TYPE_SLIDE,
             LeafletTransitionType::__Unknown(value) => value,
         }
     }
 }
 
 #[doc(hidden)]
-impl FromGlib<ffi::HdyLeafletTransitionType> for LeafletTransitionType {
-    unsafe fn from_glib(value: ffi::HdyLeafletTransitionType) -> Self {
+impl FromGlib<ffi::AdwLeafletTransitionType> for LeafletTransitionType {
+    unsafe fn from_glib(value: ffi::AdwLeafletTransitionType) -> Self {
         skip_assert_initialized!();
         match value {
             0 => LeafletTransitionType::Over,
@@ -364,7 +383,7 @@ impl FromGlib<ffi::HdyLeafletTransitionType> for LeafletTransitionType {
 
 impl StaticType for LeafletTransitionType {
     fn static_type() -> Type {
-        unsafe { from_glib(ffi::hdy_leaflet_transition_type_get_type()) }
+        unsafe { from_glib(ffi::adw_leaflet_transition_type_get_type()) }
     }
 }
 
@@ -388,8 +407,11 @@ impl SetValue for LeafletTransitionType {
 
 #[derive(Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Clone, Copy)]
 #[non_exhaustive]
+#[doc(alias = "AdwNavigationDirection")]
 pub enum NavigationDirection {
+    #[doc(alias = "ADW_NAVIGATION_DIRECTION_BACK")]
     Back,
+    #[doc(alias = "ADW_NAVIGATION_DIRECTION_FORWARD")]
     Forward,
     #[doc(hidden)]
     __Unknown(i32),
@@ -411,20 +433,20 @@ impl fmt::Display for NavigationDirection {
 
 #[doc(hidden)]
 impl ToGlib for NavigationDirection {
-    type GlibType = ffi::HdyNavigationDirection;
+    type GlibType = ffi::AdwNavigationDirection;
 
-    fn to_glib(&self) -> ffi::HdyNavigationDirection {
+    fn to_glib(&self) -> ffi::AdwNavigationDirection {
         match *self {
-            NavigationDirection::Back => ffi::HDY_NAVIGATION_DIRECTION_BACK,
-            NavigationDirection::Forward => ffi::HDY_NAVIGATION_DIRECTION_FORWARD,
+            NavigationDirection::Back => ffi::ADW_NAVIGATION_DIRECTION_BACK,
+            NavigationDirection::Forward => ffi::ADW_NAVIGATION_DIRECTION_FORWARD,
             NavigationDirection::__Unknown(value) => value,
         }
     }
 }
 
 #[doc(hidden)]
-impl FromGlib<ffi::HdyNavigationDirection> for NavigationDirection {
-    unsafe fn from_glib(value: ffi::HdyNavigationDirection) -> Self {
+impl FromGlib<ffi::AdwNavigationDirection> for NavigationDirection {
+    unsafe fn from_glib(value: ffi::AdwNavigationDirection) -> Self {
         skip_assert_initialized!();
         match value {
             0 => NavigationDirection::Back,
@@ -436,7 +458,7 @@ impl FromGlib<ffi::HdyNavigationDirection> for NavigationDirection {
 
 impl StaticType for NavigationDirection {
     fn static_type() -> Type {
-        unsafe { from_glib(ffi::hdy_navigation_direction_get_type()) }
+        unsafe { from_glib(ffi::adw_navigation_direction_get_type()) }
     }
 }
 
@@ -460,8 +482,11 @@ impl SetValue for NavigationDirection {
 
 #[derive(Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Clone, Copy)]
 #[non_exhaustive]
+#[doc(alias = "AdwSqueezerTransitionType")]
 pub enum SqueezerTransitionType {
+    #[doc(alias = "ADW_SQUEEZER_TRANSITION_TYPE_NONE")]
     None,
+    #[doc(alias = "ADW_SQUEEZER_TRANSITION_TYPE_CROSSFADE")]
     Crossfade,
     #[doc(hidden)]
     __Unknown(i32),
@@ -483,20 +508,20 @@ impl fmt::Display for SqueezerTransitionType {
 
 #[doc(hidden)]
 impl ToGlib for SqueezerTransitionType {
-    type GlibType = ffi::HdySqueezerTransitionType;
+    type GlibType = ffi::AdwSqueezerTransitionType;
 
-    fn to_glib(&self) -> ffi::HdySqueezerTransitionType {
+    fn to_glib(&self) -> ffi::AdwSqueezerTransitionType {
         match *self {
-            SqueezerTransitionType::None => ffi::HDY_SQUEEZER_TRANSITION_TYPE_NONE,
-            SqueezerTransitionType::Crossfade => ffi::HDY_SQUEEZER_TRANSITION_TYPE_CROSSFADE,
+            SqueezerTransitionType::None => ffi::ADW_SQUEEZER_TRANSITION_TYPE_NONE,
+            SqueezerTransitionType::Crossfade => ffi::ADW_SQUEEZER_TRANSITION_TYPE_CROSSFADE,
             SqueezerTransitionType::__Unknown(value) => value,
         }
     }
 }
 
 #[doc(hidden)]
-impl FromGlib<ffi::HdySqueezerTransitionType> for SqueezerTransitionType {
-    unsafe fn from_glib(value: ffi::HdySqueezerTransitionType) -> Self {
+impl FromGlib<ffi::AdwSqueezerTransitionType> for SqueezerTransitionType {
+    unsafe fn from_glib(value: ffi::AdwSqueezerTransitionType) -> Self {
         skip_assert_initialized!();
         match value {
             0 => SqueezerTransitionType::None,
@@ -508,7 +533,7 @@ impl FromGlib<ffi::HdySqueezerTransitionType> for SqueezerTransitionType {
 
 impl StaticType for SqueezerTransitionType {
     fn static_type() -> Type {
-        unsafe { from_glib(ffi::hdy_squeezer_transition_type_get_type()) }
+        unsafe { from_glib(ffi::adw_squeezer_transition_type_get_type()) }
     }
 }
 
@@ -532,9 +557,13 @@ impl SetValue for SqueezerTransitionType {
 
 #[derive(Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Clone, Copy)]
 #[non_exhaustive]
+#[doc(alias = "AdwViewSwitcherPolicy")]
 pub enum ViewSwitcherPolicy {
+    #[doc(alias = "ADW_VIEW_SWITCHER_POLICY_AUTO")]
     Auto,
+    #[doc(alias = "ADW_VIEW_SWITCHER_POLICY_NARROW")]
     Narrow,
+    #[doc(alias = "ADW_VIEW_SWITCHER_POLICY_WIDE")]
     Wide,
     #[doc(hidden)]
     __Unknown(i32),
@@ -557,21 +586,21 @@ impl fmt::Display for ViewSwitcherPolicy {
 
 #[doc(hidden)]
 impl ToGlib for ViewSwitcherPolicy {
-    type GlibType = ffi::HdyViewSwitcherPolicy;
+    type GlibType = ffi::AdwViewSwitcherPolicy;
 
-    fn to_glib(&self) -> ffi::HdyViewSwitcherPolicy {
+    fn to_glib(&self) -> ffi::AdwViewSwitcherPolicy {
         match *self {
-            ViewSwitcherPolicy::Auto => ffi::HDY_VIEW_SWITCHER_POLICY_AUTO,
-            ViewSwitcherPolicy::Narrow => ffi::HDY_VIEW_SWITCHER_POLICY_NARROW,
-            ViewSwitcherPolicy::Wide => ffi::HDY_VIEW_SWITCHER_POLICY_WIDE,
+            ViewSwitcherPolicy::Auto => ffi::ADW_VIEW_SWITCHER_POLICY_AUTO,
+            ViewSwitcherPolicy::Narrow => ffi::ADW_VIEW_SWITCHER_POLICY_NARROW,
+            ViewSwitcherPolicy::Wide => ffi::ADW_VIEW_SWITCHER_POLICY_WIDE,
             ViewSwitcherPolicy::__Unknown(value) => value,
         }
     }
 }
 
 #[doc(hidden)]
-impl FromGlib<ffi::HdyViewSwitcherPolicy> for ViewSwitcherPolicy {
-    unsafe fn from_glib(value: ffi::HdyViewSwitcherPolicy) -> Self {
+impl FromGlib<ffi::AdwViewSwitcherPolicy> for ViewSwitcherPolicy {
+    unsafe fn from_glib(value: ffi::AdwViewSwitcherPolicy) -> Self {
         skip_assert_initialized!();
         match value {
             0 => ViewSwitcherPolicy::Auto,
@@ -584,7 +613,7 @@ impl FromGlib<ffi::HdyViewSwitcherPolicy> for ViewSwitcherPolicy {
 
 impl StaticType for ViewSwitcherPolicy {
     fn static_type() -> Type {
-        unsafe { from_glib(ffi::hdy_view_switcher_policy_get_type()) }
+        unsafe { from_glib(ffi::adw_view_switcher_policy_get_type()) }
     }
 }
 

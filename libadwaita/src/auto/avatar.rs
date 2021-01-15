@@ -15,19 +15,19 @@ use std::fmt;
 use std::mem::transmute;
 
 glib::wrapper! {
-    pub struct Avatar(Object<ffi::HdyAvatar, ffi::HdyAvatarClass>) @extends gtk::Widget, @implements gtk::Accessible, gtk::Buildable, gtk::ConstraintTarget;
+    pub struct Avatar(Object<ffi::AdwAvatar, ffi::AdwAvatarClass>) @extends gtk::Widget, @implements gtk::Accessible, gtk::Buildable, gtk::ConstraintTarget;
 
     match fn {
-        get_type => || ffi::hdy_avatar_get_type(),
+        get_type => || ffi::adw_avatar_get_type(),
     }
 }
 
 impl Avatar {
-    #[doc(alias = "hdy_avatar_new")]
+    #[doc(alias = "adw_avatar_new")]
     pub fn new(size: i32, text: Option<&str>, show_initials: bool) -> Avatar {
         assert_initialized_main_thread!();
         unsafe {
-            gtk::Widget::from_glib_none(ffi::hdy_avatar_new(
+            gtk::Widget::from_glib_none(ffi::adw_avatar_new(
                 size,
                 text.to_glib_none().0,
                 show_initials.to_glib(),
@@ -36,10 +36,10 @@ impl Avatar {
         }
     }
 
-    #[doc(alias = "hdy_avatar_draw_to_pixbuf")]
+    #[doc(alias = "adw_avatar_draw_to_pixbuf")]
     pub fn draw_to_pixbuf(&self, size: i32, scale_factor: i32) -> Option<gdk_pixbuf::Pixbuf> {
         unsafe {
-            from_glib_full(ffi::hdy_avatar_draw_to_pixbuf(
+            from_glib_full(ffi::adw_avatar_draw_to_pixbuf(
                 self.to_glib_none().0,
                 size,
                 scale_factor,
@@ -47,34 +47,34 @@ impl Avatar {
         }
     }
 
-    #[doc(alias = "hdy_avatar_get_icon_name")]
+    #[doc(alias = "adw_avatar_get_icon_name")]
     pub fn get_icon_name(&self) -> Option<glib::GString> {
-        unsafe { from_glib_none(ffi::hdy_avatar_get_icon_name(self.to_glib_none().0)) }
+        unsafe { from_glib_none(ffi::adw_avatar_get_icon_name(self.to_glib_none().0)) }
     }
 
-    #[doc(alias = "hdy_avatar_get_show_initials")]
+    #[doc(alias = "adw_avatar_get_show_initials")]
     pub fn get_show_initials(&self) -> bool {
-        unsafe { from_glib(ffi::hdy_avatar_get_show_initials(self.to_glib_none().0)) }
+        unsafe { from_glib(ffi::adw_avatar_get_show_initials(self.to_glib_none().0)) }
     }
 
-    #[doc(alias = "hdy_avatar_get_size")]
+    #[doc(alias = "adw_avatar_get_size")]
     pub fn get_size(&self) -> i32 {
-        unsafe { ffi::hdy_avatar_get_size(self.to_glib_none().0) }
+        unsafe { ffi::adw_avatar_get_size(self.to_glib_none().0) }
     }
 
-    #[doc(alias = "hdy_avatar_get_text")]
+    #[doc(alias = "adw_avatar_get_text")]
     pub fn get_text(&self) -> Option<glib::GString> {
-        unsafe { from_glib_none(ffi::hdy_avatar_get_text(self.to_glib_none().0)) }
+        unsafe { from_glib_none(ffi::adw_avatar_get_text(self.to_glib_none().0)) }
     }
 
-    #[doc(alias = "hdy_avatar_set_icon_name")]
+    #[doc(alias = "adw_avatar_set_icon_name")]
     pub fn set_icon_name(&self, icon_name: Option<&str>) {
         unsafe {
-            ffi::hdy_avatar_set_icon_name(self.to_glib_none().0, icon_name.to_glib_none().0);
+            ffi::adw_avatar_set_icon_name(self.to_glib_none().0, icon_name.to_glib_none().0);
         }
     }
 
-    #[doc(alias = "hdy_avatar_set_image_load_func")]
+    #[doc(alias = "adw_avatar_set_image_load_func")]
     pub fn set_image_load_func(
         &self,
         load_image: Option<Box_<dyn Fn(i32) -> Option<gdk_pixbuf::Pixbuf> + 'static>>,
@@ -109,7 +109,7 @@ impl Avatar {
             Option<Box_<dyn Fn(i32) -> Option<gdk_pixbuf::Pixbuf> + 'static>>,
         > = load_image_data;
         unsafe {
-            ffi::hdy_avatar_set_image_load_func(
+            ffi::adw_avatar_set_image_load_func(
                 self.to_glib_none().0,
                 load_image,
                 Box_::into_raw(super_callback0) as *mut _,
@@ -118,24 +118,24 @@ impl Avatar {
         }
     }
 
-    #[doc(alias = "hdy_avatar_set_show_initials")]
+    #[doc(alias = "adw_avatar_set_show_initials")]
     pub fn set_show_initials(&self, show_initials: bool) {
         unsafe {
-            ffi::hdy_avatar_set_show_initials(self.to_glib_none().0, show_initials.to_glib());
+            ffi::adw_avatar_set_show_initials(self.to_glib_none().0, show_initials.to_glib());
         }
     }
 
-    #[doc(alias = "hdy_avatar_set_size")]
+    #[doc(alias = "adw_avatar_set_size")]
     pub fn set_size(&self, size: i32) {
         unsafe {
-            ffi::hdy_avatar_set_size(self.to_glib_none().0, size);
+            ffi::adw_avatar_set_size(self.to_glib_none().0, size);
         }
     }
 
-    #[doc(alias = "hdy_avatar_set_text")]
+    #[doc(alias = "adw_avatar_set_text")]
     pub fn set_text(&self, text: Option<&str>) {
         unsafe {
-            ffi::hdy_avatar_set_text(self.to_glib_none().0, text.to_glib_none().0);
+            ffi::adw_avatar_set_text(self.to_glib_none().0, text.to_glib_none().0);
         }
     }
 
@@ -144,7 +144,7 @@ impl Avatar {
         f: F,
     ) -> SignalHandlerId {
         unsafe extern "C" fn notify_icon_name_trampoline<F: Fn(&Avatar) + 'static>(
-            this: *mut ffi::HdyAvatar,
+            this: *mut ffi::AdwAvatar,
             _param_spec: glib::ffi::gpointer,
             f: glib::ffi::gpointer,
         ) {
@@ -169,7 +169,7 @@ impl Avatar {
         f: F,
     ) -> SignalHandlerId {
         unsafe extern "C" fn notify_show_initials_trampoline<F: Fn(&Avatar) + 'static>(
-            this: *mut ffi::HdyAvatar,
+            this: *mut ffi::AdwAvatar,
             _param_spec: glib::ffi::gpointer,
             f: glib::ffi::gpointer,
         ) {
@@ -191,7 +191,7 @@ impl Avatar {
 
     pub fn connect_property_size_notify<F: Fn(&Avatar) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_size_trampoline<F: Fn(&Avatar) + 'static>(
-            this: *mut ffi::HdyAvatar,
+            this: *mut ffi::AdwAvatar,
             _param_spec: glib::ffi::gpointer,
             f: glib::ffi::gpointer,
         ) {
@@ -213,7 +213,7 @@ impl Avatar {
 
     pub fn connect_property_text_notify<F: Fn(&Avatar) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_text_trampoline<F: Fn(&Avatar) + 'static>(
-            this: *mut ffi::HdyAvatar,
+            this: *mut ffi::AdwAvatar,
             _param_spec: glib::ffi::gpointer,
             f: glib::ffi::gpointer,
         ) {

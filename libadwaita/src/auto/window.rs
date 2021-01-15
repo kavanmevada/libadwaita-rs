@@ -8,18 +8,18 @@ use glib::translate::*;
 use std::fmt;
 
 glib::wrapper! {
-    pub struct Window(Object<ffi::HdyWindow, ffi::HdyWindowClass>) @extends gtk::Window, gtk::Widget, @implements gtk::Accessible, gtk::Buildable, gtk::ConstraintTarget, gtk::Native, gtk::Root, gtk::ShortcutManager;
+    pub struct Window(Object<ffi::AdwWindow, ffi::AdwWindowClass>) @extends gtk::Window, gtk::Widget, @implements gtk::Accessible, gtk::Buildable, gtk::ConstraintTarget, gtk::Native, gtk::Root, gtk::ShortcutManager;
 
     match fn {
-        get_type => || ffi::hdy_window_get_type(),
+        get_type => || ffi::adw_window_get_type(),
     }
 }
 
 impl Window {
-    #[doc(alias = "hdy_window_new")]
+    #[doc(alias = "adw_window_new")]
     pub fn new() -> Window {
         assert_initialized_main_thread!();
-        unsafe { gtk::Widget::from_glib_full(ffi::hdy_window_new()).unsafe_cast() }
+        unsafe { gtk::Widget::from_glib_full(ffi::adw_window_new()).unsafe_cast() }
     }
 }
 
@@ -32,21 +32,21 @@ impl Default for Window {
 pub const NONE_WINDOW: Option<&Window> = None;
 
 pub trait WindowExt: 'static {
-    #[doc(alias = "hdy_window_get_child")]
+    #[doc(alias = "adw_window_get_child")]
     fn get_child(&self) -> Option<gtk::Widget>;
 
-    #[doc(alias = "hdy_window_set_child")]
+    #[doc(alias = "adw_window_set_child")]
     fn set_child<P: IsA<gtk::Widget>>(&self, child: Option<&P>);
 }
 
 impl<O: IsA<Window>> WindowExt for O {
     fn get_child(&self) -> Option<gtk::Widget> {
-        unsafe { from_glib_none(ffi::hdy_window_get_child(self.as_ref().to_glib_none().0)) }
+        unsafe { from_glib_none(ffi::adw_window_get_child(self.as_ref().to_glib_none().0)) }
     }
 
     fn set_child<P: IsA<gtk::Widget>>(&self, child: Option<&P>) {
         unsafe {
-            ffi::hdy_window_set_child(
+            ffi::adw_window_set_child(
                 self.as_ref().to_glib_none().0,
                 child.map(|p| p.as_ref()).to_glib_none().0,
             );

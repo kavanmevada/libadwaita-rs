@@ -1,9 +1,9 @@
 use crate::Window;
-use glib::subclass::prelude::*;
+use gtk::subclass::prelude::*;
 
-pub trait WindowImpl: gtk::subclass::window::WindowImpl {}
+pub trait AdwWindowImpl: WindowImpl {}
 
-unsafe impl<T: WindowImpl> IsSubclassable<T> for Window {
+unsafe impl<T: AdwWindowImpl> IsSubclassable<T> for Window {
     fn override_vfuncs(class: &mut glib::Class<Self>) {
         <gtk::Window as IsSubclassable<T>>::override_vfuncs(class);
     }

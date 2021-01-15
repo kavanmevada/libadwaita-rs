@@ -16,75 +16,75 @@ use std::fmt;
 use std::mem::transmute;
 
 glib::wrapper! {
-    pub struct Carousel(Object<ffi::HdyCarousel, ffi::HdyCarouselClass>) @extends gtk::Widget, @implements gtk::Accessible, gtk::Buildable, gtk::ConstraintTarget, gtk::Orientable, Swipeable;
+    pub struct Carousel(Object<ffi::AdwCarousel, ffi::AdwCarouselClass>) @extends gtk::Widget, @implements gtk::Accessible, gtk::Buildable, gtk::ConstraintTarget, Swipeable, gtk::Orientable;
 
     match fn {
-        get_type => || ffi::hdy_carousel_get_type(),
+        get_type => || ffi::adw_carousel_get_type(),
     }
 }
 
 impl Carousel {
-    #[doc(alias = "hdy_carousel_new")]
+    #[doc(alias = "adw_carousel_new")]
     pub fn new() -> Carousel {
         assert_initialized_main_thread!();
-        unsafe { gtk::Widget::from_glib_none(ffi::hdy_carousel_new()).unsafe_cast() }
+        unsafe { gtk::Widget::from_glib_none(ffi::adw_carousel_new()).unsafe_cast() }
     }
 
-    #[doc(alias = "hdy_carousel_append")]
+    #[doc(alias = "adw_carousel_append")]
     pub fn append<P: IsA<gtk::Widget>>(&self, child: &P) {
         unsafe {
-            ffi::hdy_carousel_append(self.to_glib_none().0, child.as_ref().to_glib_none().0);
+            ffi::adw_carousel_append(self.to_glib_none().0, child.as_ref().to_glib_none().0);
         }
     }
 
-    #[doc(alias = "hdy_carousel_get_allow_mouse_drag")]
+    #[doc(alias = "adw_carousel_get_allow_mouse_drag")]
     pub fn get_allow_mouse_drag(&self) -> bool {
         unsafe {
-            from_glib(ffi::hdy_carousel_get_allow_mouse_drag(
+            from_glib(ffi::adw_carousel_get_allow_mouse_drag(
                 self.to_glib_none().0,
             ))
         }
     }
 
-    #[doc(alias = "hdy_carousel_get_animation_duration")]
+    #[doc(alias = "adw_carousel_get_animation_duration")]
     pub fn get_animation_duration(&self) -> u32 {
-        unsafe { ffi::hdy_carousel_get_animation_duration(self.to_glib_none().0) }
+        unsafe { ffi::adw_carousel_get_animation_duration(self.to_glib_none().0) }
     }
 
-    #[doc(alias = "hdy_carousel_get_interactive")]
+    #[doc(alias = "adw_carousel_get_interactive")]
     pub fn get_interactive(&self) -> bool {
-        unsafe { from_glib(ffi::hdy_carousel_get_interactive(self.to_glib_none().0)) }
+        unsafe { from_glib(ffi::adw_carousel_get_interactive(self.to_glib_none().0)) }
     }
 
-    #[doc(alias = "hdy_carousel_get_n_pages")]
+    #[doc(alias = "adw_carousel_get_n_pages")]
     pub fn get_n_pages(&self) -> u32 {
-        unsafe { ffi::hdy_carousel_get_n_pages(self.to_glib_none().0) }
+        unsafe { ffi::adw_carousel_get_n_pages(self.to_glib_none().0) }
     }
 
-    #[doc(alias = "hdy_carousel_get_nth_page")]
+    #[doc(alias = "adw_carousel_get_nth_page")]
     pub fn get_nth_page(&self, n: u32) -> Option<gtk::Widget> {
-        unsafe { from_glib_none(ffi::hdy_carousel_get_nth_page(self.to_glib_none().0, n)) }
+        unsafe { from_glib_none(ffi::adw_carousel_get_nth_page(self.to_glib_none().0, n)) }
     }
 
-    #[doc(alias = "hdy_carousel_get_position")]
+    #[doc(alias = "adw_carousel_get_position")]
     pub fn get_position(&self) -> f64 {
-        unsafe { ffi::hdy_carousel_get_position(self.to_glib_none().0) }
+        unsafe { ffi::adw_carousel_get_position(self.to_glib_none().0) }
     }
 
-    #[doc(alias = "hdy_carousel_get_reveal_duration")]
+    #[doc(alias = "adw_carousel_get_reveal_duration")]
     pub fn get_reveal_duration(&self) -> u32 {
-        unsafe { ffi::hdy_carousel_get_reveal_duration(self.to_glib_none().0) }
+        unsafe { ffi::adw_carousel_get_reveal_duration(self.to_glib_none().0) }
     }
 
-    #[doc(alias = "hdy_carousel_get_spacing")]
+    #[doc(alias = "adw_carousel_get_spacing")]
     pub fn get_spacing(&self) -> u32 {
-        unsafe { ffi::hdy_carousel_get_spacing(self.to_glib_none().0) }
+        unsafe { ffi::adw_carousel_get_spacing(self.to_glib_none().0) }
     }
 
-    #[doc(alias = "hdy_carousel_insert")]
+    #[doc(alias = "adw_carousel_insert")]
     pub fn insert<P: IsA<gtk::Widget>>(&self, child: &P, position: i32) {
         unsafe {
-            ffi::hdy_carousel_insert(
+            ffi::adw_carousel_insert(
                 self.to_glib_none().0,
                 child.as_ref().to_glib_none().0,
                 position,
@@ -92,24 +92,24 @@ impl Carousel {
         }
     }
 
-    #[doc(alias = "hdy_carousel_prepend")]
+    #[doc(alias = "adw_carousel_prepend")]
     pub fn prepend<P: IsA<gtk::Widget>>(&self, child: &P) {
         unsafe {
-            ffi::hdy_carousel_prepend(self.to_glib_none().0, child.as_ref().to_glib_none().0);
+            ffi::adw_carousel_prepend(self.to_glib_none().0, child.as_ref().to_glib_none().0);
         }
     }
 
-    #[doc(alias = "hdy_carousel_remove")]
+    #[doc(alias = "adw_carousel_remove")]
     pub fn remove<P: IsA<gtk::Widget>>(&self, child: &P) {
         unsafe {
-            ffi::hdy_carousel_remove(self.to_glib_none().0, child.as_ref().to_glib_none().0);
+            ffi::adw_carousel_remove(self.to_glib_none().0, child.as_ref().to_glib_none().0);
         }
     }
 
-    #[doc(alias = "hdy_carousel_reorder")]
+    #[doc(alias = "adw_carousel_reorder")]
     pub fn reorder<P: IsA<gtk::Widget>>(&self, child: &P, position: i32) {
         unsafe {
-            ffi::hdy_carousel_reorder(
+            ffi::adw_carousel_reorder(
                 self.to_glib_none().0,
                 child.as_ref().to_glib_none().0,
                 position,
@@ -117,17 +117,17 @@ impl Carousel {
         }
     }
 
-    #[doc(alias = "hdy_carousel_scroll_to")]
+    #[doc(alias = "adw_carousel_scroll_to")]
     pub fn scroll_to<P: IsA<gtk::Widget>>(&self, widget: &P) {
         unsafe {
-            ffi::hdy_carousel_scroll_to(self.to_glib_none().0, widget.as_ref().to_glib_none().0);
+            ffi::adw_carousel_scroll_to(self.to_glib_none().0, widget.as_ref().to_glib_none().0);
         }
     }
 
-    #[doc(alias = "hdy_carousel_scroll_to_full")]
+    #[doc(alias = "adw_carousel_scroll_to_full")]
     pub fn scroll_to_full<P: IsA<gtk::Widget>>(&self, widget: &P, duration: i64) {
         unsafe {
-            ffi::hdy_carousel_scroll_to_full(
+            ffi::adw_carousel_scroll_to_full(
                 self.to_glib_none().0,
                 widget.as_ref().to_glib_none().0,
                 duration,
@@ -135,47 +135,47 @@ impl Carousel {
         }
     }
 
-    #[doc(alias = "hdy_carousel_set_allow_mouse_drag")]
+    #[doc(alias = "adw_carousel_set_allow_mouse_drag")]
     pub fn set_allow_mouse_drag(&self, allow_mouse_drag: bool) {
         unsafe {
-            ffi::hdy_carousel_set_allow_mouse_drag(
+            ffi::adw_carousel_set_allow_mouse_drag(
                 self.to_glib_none().0,
                 allow_mouse_drag.to_glib(),
             );
         }
     }
 
-    #[doc(alias = "hdy_carousel_set_animation_duration")]
+    #[doc(alias = "adw_carousel_set_animation_duration")]
     pub fn set_animation_duration(&self, duration: u32) {
         unsafe {
-            ffi::hdy_carousel_set_animation_duration(self.to_glib_none().0, duration);
+            ffi::adw_carousel_set_animation_duration(self.to_glib_none().0, duration);
         }
     }
 
-    #[doc(alias = "hdy_carousel_set_interactive")]
+    #[doc(alias = "adw_carousel_set_interactive")]
     pub fn set_interactive(&self, interactive: bool) {
         unsafe {
-            ffi::hdy_carousel_set_interactive(self.to_glib_none().0, interactive.to_glib());
+            ffi::adw_carousel_set_interactive(self.to_glib_none().0, interactive.to_glib());
         }
     }
 
-    #[doc(alias = "hdy_carousel_set_reveal_duration")]
+    #[doc(alias = "adw_carousel_set_reveal_duration")]
     pub fn set_reveal_duration(&self, reveal_duration: u32) {
         unsafe {
-            ffi::hdy_carousel_set_reveal_duration(self.to_glib_none().0, reveal_duration);
+            ffi::adw_carousel_set_reveal_duration(self.to_glib_none().0, reveal_duration);
         }
     }
 
-    #[doc(alias = "hdy_carousel_set_spacing")]
+    #[doc(alias = "adw_carousel_set_spacing")]
     pub fn set_spacing(&self, spacing: u32) {
         unsafe {
-            ffi::hdy_carousel_set_spacing(self.to_glib_none().0, spacing);
+            ffi::adw_carousel_set_spacing(self.to_glib_none().0, spacing);
         }
     }
 
     pub fn connect_page_changed<F: Fn(&Carousel, u32) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn page_changed_trampoline<F: Fn(&Carousel, u32) + 'static>(
-            this: *mut ffi::HdyCarousel,
+            this: *mut ffi::AdwCarousel,
             index: libc::c_uint,
             f: glib::ffi::gpointer,
         ) {
@@ -200,7 +200,7 @@ impl Carousel {
         f: F,
     ) -> SignalHandlerId {
         unsafe extern "C" fn notify_allow_mouse_drag_trampoline<F: Fn(&Carousel) + 'static>(
-            this: *mut ffi::HdyCarousel,
+            this: *mut ffi::AdwCarousel,
             _param_spec: glib::ffi::gpointer,
             f: glib::ffi::gpointer,
         ) {
@@ -225,7 +225,7 @@ impl Carousel {
         f: F,
     ) -> SignalHandlerId {
         unsafe extern "C" fn notify_animation_duration_trampoline<F: Fn(&Carousel) + 'static>(
-            this: *mut ffi::HdyCarousel,
+            this: *mut ffi::AdwCarousel,
             _param_spec: glib::ffi::gpointer,
             f: glib::ffi::gpointer,
         ) {
@@ -250,7 +250,7 @@ impl Carousel {
         f: F,
     ) -> SignalHandlerId {
         unsafe extern "C" fn notify_interactive_trampoline<F: Fn(&Carousel) + 'static>(
-            this: *mut ffi::HdyCarousel,
+            this: *mut ffi::AdwCarousel,
             _param_spec: glib::ffi::gpointer,
             f: glib::ffi::gpointer,
         ) {
@@ -275,7 +275,7 @@ impl Carousel {
         f: F,
     ) -> SignalHandlerId {
         unsafe extern "C" fn notify_n_pages_trampoline<F: Fn(&Carousel) + 'static>(
-            this: *mut ffi::HdyCarousel,
+            this: *mut ffi::AdwCarousel,
             _param_spec: glib::ffi::gpointer,
             f: glib::ffi::gpointer,
         ) {
@@ -300,7 +300,7 @@ impl Carousel {
         f: F,
     ) -> SignalHandlerId {
         unsafe extern "C" fn notify_position_trampoline<F: Fn(&Carousel) + 'static>(
-            this: *mut ffi::HdyCarousel,
+            this: *mut ffi::AdwCarousel,
             _param_spec: glib::ffi::gpointer,
             f: glib::ffi::gpointer,
         ) {
@@ -325,7 +325,7 @@ impl Carousel {
         f: F,
     ) -> SignalHandlerId {
         unsafe extern "C" fn notify_reveal_duration_trampoline<F: Fn(&Carousel) + 'static>(
-            this: *mut ffi::HdyCarousel,
+            this: *mut ffi::AdwCarousel,
             _param_spec: glib::ffi::gpointer,
             f: glib::ffi::gpointer,
         ) {
@@ -350,7 +350,7 @@ impl Carousel {
         f: F,
     ) -> SignalHandlerId {
         unsafe extern "C" fn notify_spacing_trampoline<F: Fn(&Carousel) + 'static>(
-            this: *mut ffi::HdyCarousel,
+            this: *mut ffi::AdwCarousel,
             _param_spec: glib::ffi::gpointer,
             f: glib::ffi::gpointer,
         ) {

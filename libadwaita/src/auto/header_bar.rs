@@ -16,104 +16,126 @@ use std::fmt;
 use std::mem::transmute;
 
 glib::wrapper! {
-    pub struct HeaderBar(Object<ffi::HdyHeaderBar, ffi::HdyHeaderBarClass>) @extends gtk::Widget, @implements gtk::Accessible, gtk::Buildable, gtk::ConstraintTarget;
+    pub struct HeaderBar(Object<ffi::AdwHeaderBar, ffi::AdwHeaderBarClass>) @extends gtk::Widget, @implements gtk::Accessible, gtk::Buildable, gtk::ConstraintTarget;
 
     match fn {
-        get_type => || ffi::hdy_header_bar_get_type(),
+        get_type => || ffi::adw_header_bar_get_type(),
     }
 }
 
 impl HeaderBar {
-    #[doc(alias = "hdy_header_bar_new")]
+    #[doc(alias = "adw_header_bar_new")]
     pub fn new() -> HeaderBar {
         assert_initialized_main_thread!();
-        unsafe { gtk::Widget::from_glib_none(ffi::hdy_header_bar_new()).unsafe_cast() }
+        unsafe { gtk::Widget::from_glib_none(ffi::adw_header_bar_new()).unsafe_cast() }
     }
 
-    #[doc(alias = "hdy_header_bar_get_centering_policy")]
+    #[doc(alias = "adw_header_bar_get_centering_policy")]
     pub fn get_centering_policy(&self) -> CenteringPolicy {
         unsafe {
-            from_glib(ffi::hdy_header_bar_get_centering_policy(
+            from_glib(ffi::adw_header_bar_get_centering_policy(
                 self.to_glib_none().0,
             ))
         }
     }
 
-    #[doc(alias = "hdy_header_bar_get_decoration_layout")]
+    #[doc(alias = "adw_header_bar_get_decoration_layout")]
     pub fn get_decoration_layout(&self) -> Option<glib::GString> {
         unsafe {
-            from_glib_none(ffi::hdy_header_bar_get_decoration_layout(
+            from_glib_none(ffi::adw_header_bar_get_decoration_layout(
                 self.to_glib_none().0,
             ))
         }
     }
 
-    #[doc(alias = "hdy_header_bar_get_show_title_buttons")]
-    pub fn get_show_title_buttons(&self) -> bool {
+    #[doc(alias = "adw_header_bar_get_show_end_title_buttons")]
+    pub fn get_show_end_title_buttons(&self) -> bool {
         unsafe {
-            from_glib(ffi::hdy_header_bar_get_show_title_buttons(
+            from_glib(ffi::adw_header_bar_get_show_end_title_buttons(
                 self.to_glib_none().0,
             ))
         }
     }
 
-    #[doc(alias = "hdy_header_bar_get_title_widget")]
-    pub fn get_title_widget(&self) -> Option<gtk::Widget> {
-        unsafe { from_glib_none(ffi::hdy_header_bar_get_title_widget(self.to_glib_none().0)) }
+    #[doc(alias = "adw_header_bar_get_show_start_title_buttons")]
+    pub fn get_show_start_title_buttons(&self) -> bool {
+        unsafe {
+            from_glib(ffi::adw_header_bar_get_show_start_title_buttons(
+                self.to_glib_none().0,
+            ))
+        }
     }
 
-    #[doc(alias = "hdy_header_bar_pack_end")]
+    #[doc(alias = "adw_header_bar_get_title_widget")]
+    pub fn get_title_widget(&self) -> Option<gtk::Widget> {
+        unsafe { from_glib_none(ffi::adw_header_bar_get_title_widget(self.to_glib_none().0)) }
+    }
+
+    #[doc(alias = "adw_header_bar_pack_end")]
     pub fn pack_end<P: IsA<gtk::Widget>>(&self, child: &P) {
         unsafe {
-            ffi::hdy_header_bar_pack_end(self.to_glib_none().0, child.as_ref().to_glib_none().0);
+            ffi::adw_header_bar_pack_end(self.to_glib_none().0, child.as_ref().to_glib_none().0);
         }
     }
 
-    #[doc(alias = "hdy_header_bar_pack_start")]
+    #[doc(alias = "adw_header_bar_pack_start")]
     pub fn pack_start<P: IsA<gtk::Widget>>(&self, child: &P) {
         unsafe {
-            ffi::hdy_header_bar_pack_start(self.to_glib_none().0, child.as_ref().to_glib_none().0);
+            ffi::adw_header_bar_pack_start(self.to_glib_none().0, child.as_ref().to_glib_none().0);
         }
     }
 
-    #[doc(alias = "hdy_header_bar_remove")]
+    #[doc(alias = "adw_header_bar_remove")]
     pub fn remove<P: IsA<gtk::Widget>>(&self, child: &P) {
         unsafe {
-            ffi::hdy_header_bar_remove(self.to_glib_none().0, child.as_ref().to_glib_none().0);
+            ffi::adw_header_bar_remove(self.to_glib_none().0, child.as_ref().to_glib_none().0);
         }
     }
 
-    #[doc(alias = "hdy_header_bar_set_centering_policy")]
+    #[doc(alias = "adw_header_bar_set_centering_policy")]
     pub fn set_centering_policy(&self, centering_policy: CenteringPolicy) {
         unsafe {
-            ffi::hdy_header_bar_set_centering_policy(
+            ffi::adw_header_bar_set_centering_policy(
                 self.to_glib_none().0,
                 centering_policy.to_glib(),
             );
         }
     }
 
-    #[doc(alias = "hdy_header_bar_set_decoration_layout")]
+    #[doc(alias = "adw_header_bar_set_decoration_layout")]
     pub fn set_decoration_layout(&self, layout: Option<&str>) {
         unsafe {
-            ffi::hdy_header_bar_set_decoration_layout(
+            ffi::adw_header_bar_set_decoration_layout(
                 self.to_glib_none().0,
                 layout.to_glib_none().0,
             );
         }
     }
 
-    #[doc(alias = "hdy_header_bar_set_show_title_buttons")]
-    pub fn set_show_title_buttons(&self, setting: bool) {
+    #[doc(alias = "adw_header_bar_set_show_end_title_buttons")]
+    pub fn set_show_end_title_buttons(&self, setting: bool) {
         unsafe {
-            ffi::hdy_header_bar_set_show_title_buttons(self.to_glib_none().0, setting.to_glib());
+            ffi::adw_header_bar_set_show_end_title_buttons(
+                self.to_glib_none().0,
+                setting.to_glib(),
+            );
         }
     }
 
-    #[doc(alias = "hdy_header_bar_set_title_widget")]
+    #[doc(alias = "adw_header_bar_set_show_start_title_buttons")]
+    pub fn set_show_start_title_buttons(&self, setting: bool) {
+        unsafe {
+            ffi::adw_header_bar_set_show_start_title_buttons(
+                self.to_glib_none().0,
+                setting.to_glib(),
+            );
+        }
+    }
+
+    #[doc(alias = "adw_header_bar_set_title_widget")]
     pub fn set_title_widget<P: IsA<gtk::Widget>>(&self, title_widget: Option<&P>) {
         unsafe {
-            ffi::hdy_header_bar_set_title_widget(
+            ffi::adw_header_bar_set_title_widget(
                 self.to_glib_none().0,
                 title_widget.map(|p| p.as_ref()).to_glib_none().0,
             );
@@ -125,7 +147,7 @@ impl HeaderBar {
         f: F,
     ) -> SignalHandlerId {
         unsafe extern "C" fn notify_centering_policy_trampoline<F: Fn(&HeaderBar) + 'static>(
-            this: *mut ffi::HdyHeaderBar,
+            this: *mut ffi::AdwHeaderBar,
             _param_spec: glib::ffi::gpointer,
             f: glib::ffi::gpointer,
         ) {
@@ -150,7 +172,7 @@ impl HeaderBar {
         f: F,
     ) -> SignalHandlerId {
         unsafe extern "C" fn notify_decoration_layout_trampoline<F: Fn(&HeaderBar) + 'static>(
-            this: *mut ffi::HdyHeaderBar,
+            this: *mut ffi::AdwHeaderBar,
             _param_spec: glib::ffi::gpointer,
             f: glib::ffi::gpointer,
         ) {
@@ -170,12 +192,14 @@ impl HeaderBar {
         }
     }
 
-    pub fn connect_property_show_title_buttons_notify<F: Fn(&HeaderBar) + 'static>(
+    pub fn connect_property_show_end_title_buttons_notify<F: Fn(&HeaderBar) + 'static>(
         &self,
         f: F,
     ) -> SignalHandlerId {
-        unsafe extern "C" fn notify_show_title_buttons_trampoline<F: Fn(&HeaderBar) + 'static>(
-            this: *mut ffi::HdyHeaderBar,
+        unsafe extern "C" fn notify_show_end_title_buttons_trampoline<
+            F: Fn(&HeaderBar) + 'static,
+        >(
+            this: *mut ffi::AdwHeaderBar,
             _param_spec: glib::ffi::gpointer,
             f: glib::ffi::gpointer,
         ) {
@@ -186,9 +210,36 @@ impl HeaderBar {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
-                b"notify::show-title-buttons\0".as_ptr() as *const _,
+                b"notify::show-end-title-buttons\0".as_ptr() as *const _,
                 Some(transmute::<_, unsafe extern "C" fn()>(
-                    notify_show_title_buttons_trampoline::<F> as *const (),
+                    notify_show_end_title_buttons_trampoline::<F> as *const (),
+                )),
+                Box_::into_raw(f),
+            )
+        }
+    }
+
+    pub fn connect_property_show_start_title_buttons_notify<F: Fn(&HeaderBar) + 'static>(
+        &self,
+        f: F,
+    ) -> SignalHandlerId {
+        unsafe extern "C" fn notify_show_start_title_buttons_trampoline<
+            F: Fn(&HeaderBar) + 'static,
+        >(
+            this: *mut ffi::AdwHeaderBar,
+            _param_spec: glib::ffi::gpointer,
+            f: glib::ffi::gpointer,
+        ) {
+            let f: &F = &*(f as *const F);
+            f(&from_glib_borrow(this))
+        }
+        unsafe {
+            let f: Box_<F> = Box_::new(f);
+            connect_raw(
+                self.as_ptr() as *mut _,
+                b"notify::show-start-title-buttons\0".as_ptr() as *const _,
+                Some(transmute::<_, unsafe extern "C" fn()>(
+                    notify_show_start_title_buttons_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
             )
@@ -200,7 +251,7 @@ impl HeaderBar {
         f: F,
     ) -> SignalHandlerId {
         unsafe extern "C" fn notify_title_widget_trampoline<F: Fn(&HeaderBar) + 'static>(
-            this: *mut ffi::HdyHeaderBar,
+            this: *mut ffi::AdwHeaderBar,
             _param_spec: glib::ffi::gpointer,
             f: glib::ffi::gpointer,
         ) {
@@ -231,7 +282,8 @@ impl Default for HeaderBar {
 pub struct HeaderBarBuilder {
     centering_policy: Option<CenteringPolicy>,
     decoration_layout: Option<String>,
-    show_title_buttons: Option<bool>,
+    show_end_title_buttons: Option<bool>,
+    show_start_title_buttons: Option<bool>,
     title_widget: Option<gtk::Widget>,
     can_focus: Option<bool>,
     can_target: Option<bool>,
@@ -278,8 +330,11 @@ impl HeaderBarBuilder {
         if let Some(ref decoration_layout) = self.decoration_layout {
             properties.push(("decoration-layout", decoration_layout));
         }
-        if let Some(ref show_title_buttons) = self.show_title_buttons {
-            properties.push(("show-title-buttons", show_title_buttons));
+        if let Some(ref show_end_title_buttons) = self.show_end_title_buttons {
+            properties.push(("show-end-title-buttons", show_end_title_buttons));
+        }
+        if let Some(ref show_start_title_buttons) = self.show_start_title_buttons {
+            properties.push(("show-start-title-buttons", show_start_title_buttons));
         }
         if let Some(ref title_widget) = self.title_widget {
             properties.push(("title-widget", title_widget));
@@ -388,8 +443,13 @@ impl HeaderBarBuilder {
         self
     }
 
-    pub fn show_title_buttons(mut self, show_title_buttons: bool) -> Self {
-        self.show_title_buttons = Some(show_title_buttons);
+    pub fn show_end_title_buttons(mut self, show_end_title_buttons: bool) -> Self {
+        self.show_end_title_buttons = Some(show_end_title_buttons);
+        self
+    }
+
+    pub fn show_start_title_buttons(mut self, show_start_title_buttons: bool) -> Self {
+        self.show_start_title_buttons = Some(show_start_title_buttons);
         self
     }
 

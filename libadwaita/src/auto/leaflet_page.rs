@@ -15,40 +15,40 @@ use std::fmt;
 use std::mem::transmute;
 
 glib::wrapper! {
-    pub struct LeafletPage(Object<ffi::HdyLeafletPage, ffi::HdyLeafletPageClass>);
+    pub struct LeafletPage(Object<ffi::AdwLeafletPage, ffi::AdwLeafletPageClass>);
 
     match fn {
-        get_type => || ffi::hdy_leaflet_page_get_type(),
+        get_type => || ffi::adw_leaflet_page_get_type(),
     }
 }
 
 impl LeafletPage {
-    #[doc(alias = "hdy_leaflet_page_get_child")]
+    #[doc(alias = "adw_leaflet_page_get_child")]
     pub fn get_child(&self) -> Option<gtk::Widget> {
-        unsafe { from_glib_none(ffi::hdy_leaflet_page_get_child(self.to_glib_none().0)) }
+        unsafe { from_glib_none(ffi::adw_leaflet_page_get_child(self.to_glib_none().0)) }
     }
 
-    #[doc(alias = "hdy_leaflet_page_get_name")]
+    #[doc(alias = "adw_leaflet_page_get_name")]
     pub fn get_name(&self) -> Option<glib::GString> {
-        unsafe { from_glib_none(ffi::hdy_leaflet_page_get_name(self.to_glib_none().0)) }
+        unsafe { from_glib_none(ffi::adw_leaflet_page_get_name(self.to_glib_none().0)) }
     }
 
-    #[doc(alias = "hdy_leaflet_page_get_navigatable")]
+    #[doc(alias = "adw_leaflet_page_get_navigatable")]
     pub fn get_navigatable(&self) -> bool {
-        unsafe { from_glib(ffi::hdy_leaflet_page_get_navigatable(self.to_glib_none().0)) }
+        unsafe { from_glib(ffi::adw_leaflet_page_get_navigatable(self.to_glib_none().0)) }
     }
 
-    #[doc(alias = "hdy_leaflet_page_set_name")]
+    #[doc(alias = "adw_leaflet_page_set_name")]
     pub fn set_name(&self, name: &str) {
         unsafe {
-            ffi::hdy_leaflet_page_set_name(self.to_glib_none().0, name.to_glib_none().0);
+            ffi::adw_leaflet_page_set_name(self.to_glib_none().0, name.to_glib_none().0);
         }
     }
 
-    #[doc(alias = "hdy_leaflet_page_set_navigatable")]
+    #[doc(alias = "adw_leaflet_page_set_navigatable")]
     pub fn set_navigatable(&self, navigatable: bool) {
         unsafe {
-            ffi::hdy_leaflet_page_set_navigatable(self.to_glib_none().0, navigatable.to_glib());
+            ffi::adw_leaflet_page_set_navigatable(self.to_glib_none().0, navigatable.to_glib());
         }
     }
 
@@ -57,7 +57,7 @@ impl LeafletPage {
         f: F,
     ) -> SignalHandlerId {
         unsafe extern "C" fn notify_name_trampoline<F: Fn(&LeafletPage) + 'static>(
-            this: *mut ffi::HdyLeafletPage,
+            this: *mut ffi::AdwLeafletPage,
             _param_spec: glib::ffi::gpointer,
             f: glib::ffi::gpointer,
         ) {
@@ -82,7 +82,7 @@ impl LeafletPage {
         f: F,
     ) -> SignalHandlerId {
         unsafe extern "C" fn notify_navigatable_trampoline<F: Fn(&LeafletPage) + 'static>(
-            this: *mut ffi::HdyLeafletPage,
+            this: *mut ffi::AdwLeafletPage,
             _param_spec: glib::ffi::gpointer,
             f: glib::ffi::gpointer,
         ) {

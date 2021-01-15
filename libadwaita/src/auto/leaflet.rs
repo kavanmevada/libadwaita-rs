@@ -19,92 +19,92 @@ use std::fmt;
 use std::mem::transmute;
 
 glib::wrapper! {
-    pub struct Leaflet(Object<ffi::HdyLeaflet, ffi::HdyLeafletClass>) @extends gtk::Widget, @implements gtk::Accessible, gtk::Buildable, gtk::ConstraintTarget, gtk::Orientable, Swipeable;
+    pub struct Leaflet(Object<ffi::AdwLeaflet, ffi::AdwLeafletClass>) @extends gtk::Widget, @implements gtk::Accessible, gtk::Buildable, gtk::ConstraintTarget, Swipeable, gtk::Orientable;
 
     match fn {
-        get_type => || ffi::hdy_leaflet_get_type(),
+        get_type => || ffi::adw_leaflet_get_type(),
     }
 }
 
 impl Leaflet {
-    #[doc(alias = "hdy_leaflet_new")]
+    #[doc(alias = "adw_leaflet_new")]
     pub fn new() -> Leaflet {
         assert_initialized_main_thread!();
-        unsafe { gtk::Widget::from_glib_none(ffi::hdy_leaflet_new()).unsafe_cast() }
+        unsafe { gtk::Widget::from_glib_none(ffi::adw_leaflet_new()).unsafe_cast() }
     }
 
-    #[doc(alias = "hdy_leaflet_append")]
+    #[doc(alias = "adw_leaflet_append")]
     pub fn append<P: IsA<gtk::Widget>>(&self, child: &P) -> Option<LeafletPage> {
         unsafe {
-            from_glib_none(ffi::hdy_leaflet_append(
+            from_glib_none(ffi::adw_leaflet_append(
                 self.to_glib_none().0,
                 child.as_ref().to_glib_none().0,
             ))
         }
     }
 
-    #[doc(alias = "hdy_leaflet_get_adjacent_child")]
+    #[doc(alias = "adw_leaflet_get_adjacent_child")]
     pub fn get_adjacent_child(&self, direction: NavigationDirection) -> Option<gtk::Widget> {
         unsafe {
-            from_glib_none(ffi::hdy_leaflet_get_adjacent_child(
+            from_glib_none(ffi::adw_leaflet_get_adjacent_child(
                 self.to_glib_none().0,
                 direction.to_glib(),
             ))
         }
     }
 
-    #[doc(alias = "hdy_leaflet_get_can_swipe_back")]
+    #[doc(alias = "adw_leaflet_get_can_swipe_back")]
     pub fn get_can_swipe_back(&self) -> bool {
-        unsafe { from_glib(ffi::hdy_leaflet_get_can_swipe_back(self.to_glib_none().0)) }
+        unsafe { from_glib(ffi::adw_leaflet_get_can_swipe_back(self.to_glib_none().0)) }
     }
 
-    #[doc(alias = "hdy_leaflet_get_can_swipe_forward")]
+    #[doc(alias = "adw_leaflet_get_can_swipe_forward")]
     pub fn get_can_swipe_forward(&self) -> bool {
         unsafe {
-            from_glib(ffi::hdy_leaflet_get_can_swipe_forward(
+            from_glib(ffi::adw_leaflet_get_can_swipe_forward(
                 self.to_glib_none().0,
             ))
         }
     }
 
-    #[doc(alias = "hdy_leaflet_get_can_unfold")]
+    #[doc(alias = "adw_leaflet_get_can_unfold")]
     pub fn get_can_unfold(&self) -> bool {
-        unsafe { from_glib(ffi::hdy_leaflet_get_can_unfold(self.to_glib_none().0)) }
+        unsafe { from_glib(ffi::adw_leaflet_get_can_unfold(self.to_glib_none().0)) }
     }
 
-    #[doc(alias = "hdy_leaflet_get_child_by_name")]
+    #[doc(alias = "adw_leaflet_get_child_by_name")]
     pub fn get_child_by_name(&self, name: &str) -> Option<gtk::Widget> {
         unsafe {
-            from_glib_none(ffi::hdy_leaflet_get_child_by_name(
+            from_glib_none(ffi::adw_leaflet_get_child_by_name(
                 self.to_glib_none().0,
                 name.to_glib_none().0,
             ))
         }
     }
 
-    #[doc(alias = "hdy_leaflet_get_child_transition_duration")]
+    #[doc(alias = "adw_leaflet_get_child_transition_duration")]
     pub fn get_child_transition_duration(&self) -> u32 {
-        unsafe { ffi::hdy_leaflet_get_child_transition_duration(self.to_glib_none().0) }
+        unsafe { ffi::adw_leaflet_get_child_transition_duration(self.to_glib_none().0) }
     }
 
-    #[doc(alias = "hdy_leaflet_get_child_transition_running")]
+    #[doc(alias = "adw_leaflet_get_child_transition_running")]
     pub fn get_child_transition_running(&self) -> bool {
         unsafe {
-            from_glib(ffi::hdy_leaflet_get_child_transition_running(
+            from_glib(ffi::adw_leaflet_get_child_transition_running(
                 self.to_glib_none().0,
             ))
         }
     }
 
-    #[doc(alias = "hdy_leaflet_get_folded")]
+    #[doc(alias = "adw_leaflet_get_folded")]
     pub fn get_folded(&self) -> bool {
-        unsafe { from_glib(ffi::hdy_leaflet_get_folded(self.to_glib_none().0)) }
+        unsafe { from_glib(ffi::adw_leaflet_get_folded(self.to_glib_none().0)) }
     }
 
-    #[doc(alias = "hdy_leaflet_get_homogeneous")]
+    #[doc(alias = "adw_leaflet_get_homogeneous")]
     pub fn get_homogeneous(&self, folded: bool, orientation: gtk::Orientation) -> bool {
         unsafe {
-            from_glib(ffi::hdy_leaflet_get_homogeneous(
+            from_glib(ffi::adw_leaflet_get_homogeneous(
                 self.to_glib_none().0,
                 folded.to_glib(),
                 orientation.to_glib(),
@@ -112,58 +112,58 @@ impl Leaflet {
         }
     }
 
-    #[doc(alias = "hdy_leaflet_get_interpolate_size")]
+    #[doc(alias = "adw_leaflet_get_interpolate_size")]
     pub fn get_interpolate_size(&self) -> bool {
-        unsafe { from_glib(ffi::hdy_leaflet_get_interpolate_size(self.to_glib_none().0)) }
+        unsafe { from_glib(ffi::adw_leaflet_get_interpolate_size(self.to_glib_none().0)) }
     }
 
-    #[doc(alias = "hdy_leaflet_get_mode_transition_duration")]
+    #[doc(alias = "adw_leaflet_get_mode_transition_duration")]
     pub fn get_mode_transition_duration(&self) -> u32 {
-        unsafe { ffi::hdy_leaflet_get_mode_transition_duration(self.to_glib_none().0) }
+        unsafe { ffi::adw_leaflet_get_mode_transition_duration(self.to_glib_none().0) }
     }
 
-    #[doc(alias = "hdy_leaflet_get_page")]
+    #[doc(alias = "adw_leaflet_get_page")]
     pub fn get_page<P: IsA<gtk::Widget>>(&self, child: &P) -> Option<LeafletPage> {
         unsafe {
-            from_glib_none(ffi::hdy_leaflet_get_page(
+            from_glib_none(ffi::adw_leaflet_get_page(
                 self.to_glib_none().0,
                 child.as_ref().to_glib_none().0,
             ))
         }
     }
 
-    #[doc(alias = "hdy_leaflet_get_pages")]
+    #[doc(alias = "adw_leaflet_get_pages")]
     pub fn get_pages(&self) -> Option<gtk::SelectionModel> {
-        unsafe { from_glib_full(ffi::hdy_leaflet_get_pages(self.to_glib_none().0)) }
+        unsafe { from_glib_full(ffi::adw_leaflet_get_pages(self.to_glib_none().0)) }
     }
 
-    #[doc(alias = "hdy_leaflet_get_transition_type")]
+    #[doc(alias = "adw_leaflet_get_transition_type")]
     pub fn get_transition_type(&self) -> LeafletTransitionType {
-        unsafe { from_glib(ffi::hdy_leaflet_get_transition_type(self.to_glib_none().0)) }
+        unsafe { from_glib(ffi::adw_leaflet_get_transition_type(self.to_glib_none().0)) }
     }
 
-    #[doc(alias = "hdy_leaflet_get_visible_child")]
+    #[doc(alias = "adw_leaflet_get_visible_child")]
     pub fn get_visible_child(&self) -> Option<gtk::Widget> {
-        unsafe { from_glib_none(ffi::hdy_leaflet_get_visible_child(self.to_glib_none().0)) }
+        unsafe { from_glib_none(ffi::adw_leaflet_get_visible_child(self.to_glib_none().0)) }
     }
 
-    #[doc(alias = "hdy_leaflet_get_visible_child_name")]
+    #[doc(alias = "adw_leaflet_get_visible_child_name")]
     pub fn get_visible_child_name(&self) -> Option<glib::GString> {
         unsafe {
-            from_glib_none(ffi::hdy_leaflet_get_visible_child_name(
+            from_glib_none(ffi::adw_leaflet_get_visible_child_name(
                 self.to_glib_none().0,
             ))
         }
     }
 
-    #[doc(alias = "hdy_leaflet_insert_child_after")]
+    #[doc(alias = "adw_leaflet_insert_child_after")]
     pub fn insert_child_after<P: IsA<gtk::Widget>, Q: IsA<gtk::Widget>>(
         &self,
         child: &P,
         sibling: Option<&Q>,
     ) -> Option<LeafletPage> {
         unsafe {
-            from_glib_none(ffi::hdy_leaflet_insert_child_after(
+            from_glib_none(ffi::adw_leaflet_insert_child_after(
                 self.to_glib_none().0,
                 child.as_ref().to_glib_none().0,
                 sibling.map(|p| p.as_ref()).to_glib_none().0,
@@ -171,41 +171,41 @@ impl Leaflet {
         }
     }
 
-    #[doc(alias = "hdy_leaflet_navigate")]
+    #[doc(alias = "adw_leaflet_navigate")]
     pub fn navigate(&self, direction: NavigationDirection) -> bool {
         unsafe {
-            from_glib(ffi::hdy_leaflet_navigate(
+            from_glib(ffi::adw_leaflet_navigate(
                 self.to_glib_none().0,
                 direction.to_glib(),
             ))
         }
     }
 
-    #[doc(alias = "hdy_leaflet_prepend")]
+    #[doc(alias = "adw_leaflet_prepend")]
     pub fn prepend<P: IsA<gtk::Widget>>(&self, child: &P) -> Option<LeafletPage> {
         unsafe {
-            from_glib_none(ffi::hdy_leaflet_prepend(
+            from_glib_none(ffi::adw_leaflet_prepend(
                 self.to_glib_none().0,
                 child.as_ref().to_glib_none().0,
             ))
         }
     }
 
-    #[doc(alias = "hdy_leaflet_remove")]
+    #[doc(alias = "adw_leaflet_remove")]
     pub fn remove<P: IsA<gtk::Widget>>(&self, child: &P) {
         unsafe {
-            ffi::hdy_leaflet_remove(self.to_glib_none().0, child.as_ref().to_glib_none().0);
+            ffi::adw_leaflet_remove(self.to_glib_none().0, child.as_ref().to_glib_none().0);
         }
     }
 
-    #[doc(alias = "hdy_leaflet_reorder_child_after")]
+    #[doc(alias = "adw_leaflet_reorder_child_after")]
     pub fn reorder_child_after<P: IsA<gtk::Widget>, Q: IsA<gtk::Widget>>(
         &self,
         child: &P,
         sibling: Option<&Q>,
     ) {
         unsafe {
-            ffi::hdy_leaflet_reorder_child_after(
+            ffi::adw_leaflet_reorder_child_after(
                 self.to_glib_none().0,
                 child.as_ref().to_glib_none().0,
                 sibling.map(|p| p.as_ref()).to_glib_none().0,
@@ -213,41 +213,41 @@ impl Leaflet {
         }
     }
 
-    #[doc(alias = "hdy_leaflet_set_can_swipe_back")]
+    #[doc(alias = "adw_leaflet_set_can_swipe_back")]
     pub fn set_can_swipe_back(&self, can_swipe_back: bool) {
         unsafe {
-            ffi::hdy_leaflet_set_can_swipe_back(self.to_glib_none().0, can_swipe_back.to_glib());
+            ffi::adw_leaflet_set_can_swipe_back(self.to_glib_none().0, can_swipe_back.to_glib());
         }
     }
 
-    #[doc(alias = "hdy_leaflet_set_can_swipe_forward")]
+    #[doc(alias = "adw_leaflet_set_can_swipe_forward")]
     pub fn set_can_swipe_forward(&self, can_swipe_forward: bool) {
         unsafe {
-            ffi::hdy_leaflet_set_can_swipe_forward(
+            ffi::adw_leaflet_set_can_swipe_forward(
                 self.to_glib_none().0,
                 can_swipe_forward.to_glib(),
             );
         }
     }
 
-    #[doc(alias = "hdy_leaflet_set_can_unfold")]
+    #[doc(alias = "adw_leaflet_set_can_unfold")]
     pub fn set_can_unfold(&self, can_unfold: bool) {
         unsafe {
-            ffi::hdy_leaflet_set_can_unfold(self.to_glib_none().0, can_unfold.to_glib());
+            ffi::adw_leaflet_set_can_unfold(self.to_glib_none().0, can_unfold.to_glib());
         }
     }
 
-    #[doc(alias = "hdy_leaflet_set_child_transition_duration")]
+    #[doc(alias = "adw_leaflet_set_child_transition_duration")]
     pub fn set_child_transition_duration(&self, duration: u32) {
         unsafe {
-            ffi::hdy_leaflet_set_child_transition_duration(self.to_glib_none().0, duration);
+            ffi::adw_leaflet_set_child_transition_duration(self.to_glib_none().0, duration);
         }
     }
 
-    #[doc(alias = "hdy_leaflet_set_homogeneous")]
+    #[doc(alias = "adw_leaflet_set_homogeneous")]
     pub fn set_homogeneous(&self, folded: bool, orientation: gtk::Orientation, homogeneous: bool) {
         unsafe {
-            ffi::hdy_leaflet_set_homogeneous(
+            ffi::adw_leaflet_set_homogeneous(
                 self.to_glib_none().0,
                 folded.to_glib(),
                 orientation.to_glib(),
@@ -256,44 +256,44 @@ impl Leaflet {
         }
     }
 
-    #[doc(alias = "hdy_leaflet_set_interpolate_size")]
+    #[doc(alias = "adw_leaflet_set_interpolate_size")]
     pub fn set_interpolate_size(&self, interpolate_size: bool) {
         unsafe {
-            ffi::hdy_leaflet_set_interpolate_size(
+            ffi::adw_leaflet_set_interpolate_size(
                 self.to_glib_none().0,
                 interpolate_size.to_glib(),
             );
         }
     }
 
-    #[doc(alias = "hdy_leaflet_set_mode_transition_duration")]
+    #[doc(alias = "adw_leaflet_set_mode_transition_duration")]
     pub fn set_mode_transition_duration(&self, duration: u32) {
         unsafe {
-            ffi::hdy_leaflet_set_mode_transition_duration(self.to_glib_none().0, duration);
+            ffi::adw_leaflet_set_mode_transition_duration(self.to_glib_none().0, duration);
         }
     }
 
-    #[doc(alias = "hdy_leaflet_set_transition_type")]
+    #[doc(alias = "adw_leaflet_set_transition_type")]
     pub fn set_transition_type(&self, transition: LeafletTransitionType) {
         unsafe {
-            ffi::hdy_leaflet_set_transition_type(self.to_glib_none().0, transition.to_glib());
+            ffi::adw_leaflet_set_transition_type(self.to_glib_none().0, transition.to_glib());
         }
     }
 
-    #[doc(alias = "hdy_leaflet_set_visible_child")]
+    #[doc(alias = "adw_leaflet_set_visible_child")]
     pub fn set_visible_child<P: IsA<gtk::Widget>>(&self, visible_child: &P) {
         unsafe {
-            ffi::hdy_leaflet_set_visible_child(
+            ffi::adw_leaflet_set_visible_child(
                 self.to_glib_none().0,
                 visible_child.as_ref().to_glib_none().0,
             );
         }
     }
 
-    #[doc(alias = "hdy_leaflet_set_visible_child_name")]
+    #[doc(alias = "adw_leaflet_set_visible_child_name")]
     pub fn set_visible_child_name(&self, name: &str) {
         unsafe {
-            ffi::hdy_leaflet_set_visible_child_name(self.to_glib_none().0, name.to_glib_none().0);
+            ffi::adw_leaflet_set_visible_child_name(self.to_glib_none().0, name.to_glib_none().0);
         }
     }
 
@@ -402,7 +402,7 @@ impl Leaflet {
         f: F,
     ) -> SignalHandlerId {
         unsafe extern "C" fn notify_can_swipe_back_trampoline<F: Fn(&Leaflet) + 'static>(
-            this: *mut ffi::HdyLeaflet,
+            this: *mut ffi::AdwLeaflet,
             _param_spec: glib::ffi::gpointer,
             f: glib::ffi::gpointer,
         ) {
@@ -427,7 +427,7 @@ impl Leaflet {
         f: F,
     ) -> SignalHandlerId {
         unsafe extern "C" fn notify_can_swipe_forward_trampoline<F: Fn(&Leaflet) + 'static>(
-            this: *mut ffi::HdyLeaflet,
+            this: *mut ffi::AdwLeaflet,
             _param_spec: glib::ffi::gpointer,
             f: glib::ffi::gpointer,
         ) {
@@ -452,7 +452,7 @@ impl Leaflet {
         f: F,
     ) -> SignalHandlerId {
         unsafe extern "C" fn notify_can_unfold_trampoline<F: Fn(&Leaflet) + 'static>(
-            this: *mut ffi::HdyLeaflet,
+            this: *mut ffi::AdwLeaflet,
             _param_spec: glib::ffi::gpointer,
             f: glib::ffi::gpointer,
         ) {
@@ -479,7 +479,7 @@ impl Leaflet {
         unsafe extern "C" fn notify_child_transition_duration_trampoline<
             F: Fn(&Leaflet) + 'static,
         >(
-            this: *mut ffi::HdyLeaflet,
+            this: *mut ffi::AdwLeaflet,
             _param_spec: glib::ffi::gpointer,
             f: glib::ffi::gpointer,
         ) {
@@ -506,7 +506,7 @@ impl Leaflet {
         unsafe extern "C" fn notify_child_transition_running_trampoline<
             F: Fn(&Leaflet) + 'static,
         >(
-            this: *mut ffi::HdyLeaflet,
+            this: *mut ffi::AdwLeaflet,
             _param_spec: glib::ffi::gpointer,
             f: glib::ffi::gpointer,
         ) {
@@ -531,7 +531,7 @@ impl Leaflet {
         f: F,
     ) -> SignalHandlerId {
         unsafe extern "C" fn notify_folded_trampoline<F: Fn(&Leaflet) + 'static>(
-            this: *mut ffi::HdyLeaflet,
+            this: *mut ffi::AdwLeaflet,
             _param_spec: glib::ffi::gpointer,
             f: glib::ffi::gpointer,
         ) {
@@ -556,7 +556,7 @@ impl Leaflet {
         f: F,
     ) -> SignalHandlerId {
         unsafe extern "C" fn notify_hhomogeneous_folded_trampoline<F: Fn(&Leaflet) + 'static>(
-            this: *mut ffi::HdyLeaflet,
+            this: *mut ffi::AdwLeaflet,
             _param_spec: glib::ffi::gpointer,
             f: glib::ffi::gpointer,
         ) {
@@ -581,7 +581,7 @@ impl Leaflet {
         f: F,
     ) -> SignalHandlerId {
         unsafe extern "C" fn notify_hhomogeneous_unfolded_trampoline<F: Fn(&Leaflet) + 'static>(
-            this: *mut ffi::HdyLeaflet,
+            this: *mut ffi::AdwLeaflet,
             _param_spec: glib::ffi::gpointer,
             f: glib::ffi::gpointer,
         ) {
@@ -606,7 +606,7 @@ impl Leaflet {
         f: F,
     ) -> SignalHandlerId {
         unsafe extern "C" fn notify_interpolate_size_trampoline<F: Fn(&Leaflet) + 'static>(
-            this: *mut ffi::HdyLeaflet,
+            this: *mut ffi::AdwLeaflet,
             _param_spec: glib::ffi::gpointer,
             f: glib::ffi::gpointer,
         ) {
@@ -633,7 +633,7 @@ impl Leaflet {
         unsafe extern "C" fn notify_mode_transition_duration_trampoline<
             F: Fn(&Leaflet) + 'static,
         >(
-            this: *mut ffi::HdyLeaflet,
+            this: *mut ffi::AdwLeaflet,
             _param_spec: glib::ffi::gpointer,
             f: glib::ffi::gpointer,
         ) {
@@ -658,7 +658,7 @@ impl Leaflet {
         f: F,
     ) -> SignalHandlerId {
         unsafe extern "C" fn notify_pages_trampoline<F: Fn(&Leaflet) + 'static>(
-            this: *mut ffi::HdyLeaflet,
+            this: *mut ffi::AdwLeaflet,
             _param_spec: glib::ffi::gpointer,
             f: glib::ffi::gpointer,
         ) {
@@ -683,7 +683,7 @@ impl Leaflet {
         f: F,
     ) -> SignalHandlerId {
         unsafe extern "C" fn notify_transition_type_trampoline<F: Fn(&Leaflet) + 'static>(
-            this: *mut ffi::HdyLeaflet,
+            this: *mut ffi::AdwLeaflet,
             _param_spec: glib::ffi::gpointer,
             f: glib::ffi::gpointer,
         ) {
@@ -708,7 +708,7 @@ impl Leaflet {
         f: F,
     ) -> SignalHandlerId {
         unsafe extern "C" fn notify_vhomogeneous_folded_trampoline<F: Fn(&Leaflet) + 'static>(
-            this: *mut ffi::HdyLeaflet,
+            this: *mut ffi::AdwLeaflet,
             _param_spec: glib::ffi::gpointer,
             f: glib::ffi::gpointer,
         ) {
@@ -733,7 +733,7 @@ impl Leaflet {
         f: F,
     ) -> SignalHandlerId {
         unsafe extern "C" fn notify_vhomogeneous_unfolded_trampoline<F: Fn(&Leaflet) + 'static>(
-            this: *mut ffi::HdyLeaflet,
+            this: *mut ffi::AdwLeaflet,
             _param_spec: glib::ffi::gpointer,
             f: glib::ffi::gpointer,
         ) {
@@ -758,7 +758,7 @@ impl Leaflet {
         f: F,
     ) -> SignalHandlerId {
         unsafe extern "C" fn notify_visible_child_trampoline<F: Fn(&Leaflet) + 'static>(
-            this: *mut ffi::HdyLeaflet,
+            this: *mut ffi::AdwLeaflet,
             _param_spec: glib::ffi::gpointer,
             f: glib::ffi::gpointer,
         ) {
@@ -783,7 +783,7 @@ impl Leaflet {
         f: F,
     ) -> SignalHandlerId {
         unsafe extern "C" fn notify_visible_child_name_trampoline<F: Fn(&Leaflet) + 'static>(
-            this: *mut ffi::HdyLeaflet,
+            this: *mut ffi::AdwLeaflet,
             _param_spec: glib::ffi::gpointer,
             f: glib::ffi::gpointer,
         ) {

@@ -15,19 +15,19 @@ use std::fmt;
 use std::mem::transmute;
 
 glib::wrapper! {
-    pub struct Keypad(Object<ffi::HdyKeypad, ffi::HdyKeypadClass>) @extends gtk::Widget, @implements gtk::Accessible, gtk::Buildable, gtk::ConstraintTarget;
+    pub struct Keypad(Object<ffi::AdwKeypad, ffi::AdwKeypadClass>) @extends gtk::Widget, @implements gtk::Accessible, gtk::Buildable, gtk::ConstraintTarget;
 
     match fn {
-        get_type => || ffi::hdy_keypad_get_type(),
+        get_type => || ffi::adw_keypad_get_type(),
     }
 }
 
 impl Keypad {
-    #[doc(alias = "hdy_keypad_new")]
+    #[doc(alias = "adw_keypad_new")]
     pub fn new(symbols_visible: bool, letters_visible: bool) -> Keypad {
         assert_initialized_main_thread!();
         unsafe {
-            gtk::Widget::from_glib_none(ffi::hdy_keypad_new(
+            gtk::Widget::from_glib_none(ffi::adw_keypad_new(
                 symbols_visible.to_glib(),
                 letters_visible.to_glib(),
             ))
@@ -35,96 +35,96 @@ impl Keypad {
         }
     }
 
-    #[doc(alias = "hdy_keypad_get_column_spacing")]
+    #[doc(alias = "adw_keypad_get_column_spacing")]
     pub fn get_column_spacing(&self) -> u32 {
-        unsafe { ffi::hdy_keypad_get_column_spacing(self.to_glib_none().0) }
+        unsafe { ffi::adw_keypad_get_column_spacing(self.to_glib_none().0) }
     }
 
-    #[doc(alias = "hdy_keypad_get_end_action")]
+    #[doc(alias = "adw_keypad_get_end_action")]
     pub fn get_end_action(&self) -> Option<gtk::Widget> {
-        unsafe { from_glib_none(ffi::hdy_keypad_get_end_action(self.to_glib_none().0)) }
+        unsafe { from_glib_none(ffi::adw_keypad_get_end_action(self.to_glib_none().0)) }
     }
 
-    #[doc(alias = "hdy_keypad_get_entry")]
+    #[doc(alias = "adw_keypad_get_entry")]
     pub fn get_entry(&self) -> Option<gtk::Entry> {
-        unsafe { from_glib_none(ffi::hdy_keypad_get_entry(self.to_glib_none().0)) }
+        unsafe { from_glib_none(ffi::adw_keypad_get_entry(self.to_glib_none().0)) }
     }
 
-    #[doc(alias = "hdy_keypad_get_letters_visible")]
+    #[doc(alias = "adw_keypad_get_letters_visible")]
     pub fn get_letters_visible(&self) -> bool {
-        unsafe { from_glib(ffi::hdy_keypad_get_letters_visible(self.to_glib_none().0)) }
+        unsafe { from_glib(ffi::adw_keypad_get_letters_visible(self.to_glib_none().0)) }
     }
 
-    #[doc(alias = "hdy_keypad_get_row_spacing")]
+    #[doc(alias = "adw_keypad_get_row_spacing")]
     pub fn get_row_spacing(&self) -> u32 {
-        unsafe { ffi::hdy_keypad_get_row_spacing(self.to_glib_none().0) }
+        unsafe { ffi::adw_keypad_get_row_spacing(self.to_glib_none().0) }
     }
 
-    #[doc(alias = "hdy_keypad_get_start_action")]
+    #[doc(alias = "adw_keypad_get_start_action")]
     pub fn get_start_action(&self) -> Option<gtk::Widget> {
-        unsafe { from_glib_none(ffi::hdy_keypad_get_start_action(self.to_glib_none().0)) }
+        unsafe { from_glib_none(ffi::adw_keypad_get_start_action(self.to_glib_none().0)) }
     }
 
-    #[doc(alias = "hdy_keypad_get_symbols_visible")]
+    #[doc(alias = "adw_keypad_get_symbols_visible")]
     pub fn get_symbols_visible(&self) -> bool {
-        unsafe { from_glib(ffi::hdy_keypad_get_symbols_visible(self.to_glib_none().0)) }
+        unsafe { from_glib(ffi::adw_keypad_get_symbols_visible(self.to_glib_none().0)) }
     }
 
-    #[doc(alias = "hdy_keypad_set_column_spacing")]
+    #[doc(alias = "adw_keypad_set_column_spacing")]
     pub fn set_column_spacing(&self, spacing: u32) {
         unsafe {
-            ffi::hdy_keypad_set_column_spacing(self.to_glib_none().0, spacing);
+            ffi::adw_keypad_set_column_spacing(self.to_glib_none().0, spacing);
         }
     }
 
-    #[doc(alias = "hdy_keypad_set_end_action")]
+    #[doc(alias = "adw_keypad_set_end_action")]
     pub fn set_end_action<P: IsA<gtk::Widget>>(&self, end_action: Option<&P>) {
         unsafe {
-            ffi::hdy_keypad_set_end_action(
+            ffi::adw_keypad_set_end_action(
                 self.to_glib_none().0,
                 end_action.map(|p| p.as_ref()).to_glib_none().0,
             );
         }
     }
 
-    #[doc(alias = "hdy_keypad_set_entry")]
+    #[doc(alias = "adw_keypad_set_entry")]
     pub fn set_entry<P: IsA<gtk::Entry>>(&self, entry: Option<&P>) {
         unsafe {
-            ffi::hdy_keypad_set_entry(
+            ffi::adw_keypad_set_entry(
                 self.to_glib_none().0,
                 entry.map(|p| p.as_ref()).to_glib_none().0,
             );
         }
     }
 
-    #[doc(alias = "hdy_keypad_set_letters_visible")]
+    #[doc(alias = "adw_keypad_set_letters_visible")]
     pub fn set_letters_visible(&self, letters_visible: bool) {
         unsafe {
-            ffi::hdy_keypad_set_letters_visible(self.to_glib_none().0, letters_visible.to_glib());
+            ffi::adw_keypad_set_letters_visible(self.to_glib_none().0, letters_visible.to_glib());
         }
     }
 
-    #[doc(alias = "hdy_keypad_set_row_spacing")]
+    #[doc(alias = "adw_keypad_set_row_spacing")]
     pub fn set_row_spacing(&self, spacing: u32) {
         unsafe {
-            ffi::hdy_keypad_set_row_spacing(self.to_glib_none().0, spacing);
+            ffi::adw_keypad_set_row_spacing(self.to_glib_none().0, spacing);
         }
     }
 
-    #[doc(alias = "hdy_keypad_set_start_action")]
+    #[doc(alias = "adw_keypad_set_start_action")]
     pub fn set_start_action<P: IsA<gtk::Widget>>(&self, start_action: Option<&P>) {
         unsafe {
-            ffi::hdy_keypad_set_start_action(
+            ffi::adw_keypad_set_start_action(
                 self.to_glib_none().0,
                 start_action.map(|p| p.as_ref()).to_glib_none().0,
             );
         }
     }
 
-    #[doc(alias = "hdy_keypad_set_symbols_visible")]
+    #[doc(alias = "adw_keypad_set_symbols_visible")]
     pub fn set_symbols_visible(&self, symbols_visible: bool) {
         unsafe {
-            ffi::hdy_keypad_set_symbols_visible(self.to_glib_none().0, symbols_visible.to_glib());
+            ffi::adw_keypad_set_symbols_visible(self.to_glib_none().0, symbols_visible.to_glib());
         }
     }
 
@@ -133,7 +133,7 @@ impl Keypad {
         f: F,
     ) -> SignalHandlerId {
         unsafe extern "C" fn notify_column_spacing_trampoline<F: Fn(&Keypad) + 'static>(
-            this: *mut ffi::HdyKeypad,
+            this: *mut ffi::AdwKeypad,
             _param_spec: glib::ffi::gpointer,
             f: glib::ffi::gpointer,
         ) {
@@ -158,7 +158,7 @@ impl Keypad {
         f: F,
     ) -> SignalHandlerId {
         unsafe extern "C" fn notify_end_action_trampoline<F: Fn(&Keypad) + 'static>(
-            this: *mut ffi::HdyKeypad,
+            this: *mut ffi::AdwKeypad,
             _param_spec: glib::ffi::gpointer,
             f: glib::ffi::gpointer,
         ) {
@@ -180,7 +180,7 @@ impl Keypad {
 
     pub fn connect_property_entry_notify<F: Fn(&Keypad) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_entry_trampoline<F: Fn(&Keypad) + 'static>(
-            this: *mut ffi::HdyKeypad,
+            this: *mut ffi::AdwKeypad,
             _param_spec: glib::ffi::gpointer,
             f: glib::ffi::gpointer,
         ) {
@@ -205,7 +205,7 @@ impl Keypad {
         f: F,
     ) -> SignalHandlerId {
         unsafe extern "C" fn notify_letters_visible_trampoline<F: Fn(&Keypad) + 'static>(
-            this: *mut ffi::HdyKeypad,
+            this: *mut ffi::AdwKeypad,
             _param_spec: glib::ffi::gpointer,
             f: glib::ffi::gpointer,
         ) {
@@ -230,7 +230,7 @@ impl Keypad {
         f: F,
     ) -> SignalHandlerId {
         unsafe extern "C" fn notify_row_spacing_trampoline<F: Fn(&Keypad) + 'static>(
-            this: *mut ffi::HdyKeypad,
+            this: *mut ffi::AdwKeypad,
             _param_spec: glib::ffi::gpointer,
             f: glib::ffi::gpointer,
         ) {
@@ -255,7 +255,7 @@ impl Keypad {
         f: F,
     ) -> SignalHandlerId {
         unsafe extern "C" fn notify_start_action_trampoline<F: Fn(&Keypad) + 'static>(
-            this: *mut ffi::HdyKeypad,
+            this: *mut ffi::AdwKeypad,
             _param_spec: glib::ffi::gpointer,
             f: glib::ffi::gpointer,
         ) {
@@ -280,7 +280,7 @@ impl Keypad {
         f: F,
     ) -> SignalHandlerId {
         unsafe extern "C" fn notify_symbols_visible_trampoline<F: Fn(&Keypad) + 'static>(
-            this: *mut ffi::HdyKeypad,
+            this: *mut ffi::AdwKeypad,
             _param_spec: glib::ffi::gpointer,
             f: glib::ffi::gpointer,
         ) {

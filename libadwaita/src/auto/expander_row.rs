@@ -15,18 +15,18 @@ use std::fmt;
 use std::mem::transmute;
 
 glib::wrapper! {
-    pub struct ExpanderRow(Object<ffi::HdyExpanderRow, ffi::HdyExpanderRowClass>) @extends PreferencesRow, gtk::ListBoxRow, gtk::Widget, @implements gtk::Accessible, gtk::Buildable, gtk::ConstraintTarget, gtk::Actionable;
+    pub struct ExpanderRow(Object<ffi::AdwExpanderRow, ffi::AdwExpanderRowClass>) @extends PreferencesRow, gtk::ListBoxRow, gtk::Widget, @implements gtk::Accessible, gtk::Buildable, gtk::ConstraintTarget, gtk::Actionable;
 
     match fn {
-        get_type => || ffi::hdy_expander_row_get_type(),
+        get_type => || ffi::adw_expander_row_get_type(),
     }
 }
 
 impl ExpanderRow {
-    #[doc(alias = "hdy_expander_row_new")]
+    #[doc(alias = "adw_expander_row_new")]
     pub fn new() -> ExpanderRow {
         assert_initialized_main_thread!();
-        unsafe { gtk::Widget::from_glib_none(ffi::hdy_expander_row_new()).unsafe_cast() }
+        unsafe { gtk::Widget::from_glib_none(ffi::adw_expander_row_new()).unsafe_cast() }
     }
 }
 
@@ -433,46 +433,46 @@ impl ExpanderRowBuilder {
 pub const NONE_EXPANDER_ROW: Option<&ExpanderRow> = None;
 
 pub trait ExpanderRowExt: 'static {
-    #[doc(alias = "hdy_expander_row_add")]
+    #[doc(alias = "adw_expander_row_add")]
     fn add<P: IsA<gtk::Widget>>(&self, child: &P);
 
-    #[doc(alias = "hdy_expander_row_add_action")]
+    #[doc(alias = "adw_expander_row_add_action")]
     fn add_action<P: IsA<gtk::Widget>>(&self, widget: &P);
 
-    #[doc(alias = "hdy_expander_row_add_prefix")]
+    #[doc(alias = "adw_expander_row_add_prefix")]
     fn add_prefix<P: IsA<gtk::Widget>>(&self, widget: &P);
 
-    #[doc(alias = "hdy_expander_row_get_enable_expansion")]
+    #[doc(alias = "adw_expander_row_get_enable_expansion")]
     fn get_enable_expansion(&self) -> bool;
 
-    #[doc(alias = "hdy_expander_row_get_expanded")]
+    #[doc(alias = "adw_expander_row_get_expanded")]
     fn get_expanded(&self) -> bool;
 
-    #[doc(alias = "hdy_expander_row_get_icon_name")]
+    #[doc(alias = "adw_expander_row_get_icon_name")]
     fn get_icon_name(&self) -> Option<glib::GString>;
 
-    #[doc(alias = "hdy_expander_row_get_show_enable_switch")]
+    #[doc(alias = "adw_expander_row_get_show_enable_switch")]
     fn get_show_enable_switch(&self) -> bool;
 
-    #[doc(alias = "hdy_expander_row_get_subtitle")]
+    #[doc(alias = "adw_expander_row_get_subtitle")]
     fn get_subtitle(&self) -> Option<glib::GString>;
 
-    #[doc(alias = "hdy_expander_row_remove")]
+    #[doc(alias = "adw_expander_row_remove")]
     fn remove<P: IsA<gtk::Widget>>(&self, child: &P);
 
-    #[doc(alias = "hdy_expander_row_set_enable_expansion")]
+    #[doc(alias = "adw_expander_row_set_enable_expansion")]
     fn set_enable_expansion(&self, enable_expansion: bool);
 
-    #[doc(alias = "hdy_expander_row_set_expanded")]
+    #[doc(alias = "adw_expander_row_set_expanded")]
     fn set_expanded(&self, expanded: bool);
 
-    #[doc(alias = "hdy_expander_row_set_icon_name")]
+    #[doc(alias = "adw_expander_row_set_icon_name")]
     fn set_icon_name(&self, icon_name: &str);
 
-    #[doc(alias = "hdy_expander_row_set_show_enable_switch")]
+    #[doc(alias = "adw_expander_row_set_show_enable_switch")]
     fn set_show_enable_switch(&self, show_enable_switch: bool);
 
-    #[doc(alias = "hdy_expander_row_set_subtitle")]
+    #[doc(alias = "adw_expander_row_set_subtitle")]
     fn set_subtitle(&self, subtitle: Option<&str>);
 
     fn connect_property_enable_expansion_notify<F: Fn(&Self) + 'static>(
@@ -500,7 +500,7 @@ pub trait ExpanderRowExt: 'static {
 impl<O: IsA<ExpanderRow>> ExpanderRowExt for O {
     fn add<P: IsA<gtk::Widget>>(&self, child: &P) {
         unsafe {
-            ffi::hdy_expander_row_add(
+            ffi::adw_expander_row_add(
                 self.as_ref().to_glib_none().0,
                 child.as_ref().to_glib_none().0,
             );
@@ -509,7 +509,7 @@ impl<O: IsA<ExpanderRow>> ExpanderRowExt for O {
 
     fn add_action<P: IsA<gtk::Widget>>(&self, widget: &P) {
         unsafe {
-            ffi::hdy_expander_row_add_action(
+            ffi::adw_expander_row_add_action(
                 self.as_ref().to_glib_none().0,
                 widget.as_ref().to_glib_none().0,
             );
@@ -518,7 +518,7 @@ impl<O: IsA<ExpanderRow>> ExpanderRowExt for O {
 
     fn add_prefix<P: IsA<gtk::Widget>>(&self, widget: &P) {
         unsafe {
-            ffi::hdy_expander_row_add_prefix(
+            ffi::adw_expander_row_add_prefix(
                 self.as_ref().to_glib_none().0,
                 widget.as_ref().to_glib_none().0,
             );
@@ -527,7 +527,7 @@ impl<O: IsA<ExpanderRow>> ExpanderRowExt for O {
 
     fn get_enable_expansion(&self) -> bool {
         unsafe {
-            from_glib(ffi::hdy_expander_row_get_enable_expansion(
+            from_glib(ffi::adw_expander_row_get_enable_expansion(
                 self.as_ref().to_glib_none().0,
             ))
         }
@@ -535,7 +535,7 @@ impl<O: IsA<ExpanderRow>> ExpanderRowExt for O {
 
     fn get_expanded(&self) -> bool {
         unsafe {
-            from_glib(ffi::hdy_expander_row_get_expanded(
+            from_glib(ffi::adw_expander_row_get_expanded(
                 self.as_ref().to_glib_none().0,
             ))
         }
@@ -543,7 +543,7 @@ impl<O: IsA<ExpanderRow>> ExpanderRowExt for O {
 
     fn get_icon_name(&self) -> Option<glib::GString> {
         unsafe {
-            from_glib_none(ffi::hdy_expander_row_get_icon_name(
+            from_glib_none(ffi::adw_expander_row_get_icon_name(
                 self.as_ref().to_glib_none().0,
             ))
         }
@@ -551,7 +551,7 @@ impl<O: IsA<ExpanderRow>> ExpanderRowExt for O {
 
     fn get_show_enable_switch(&self) -> bool {
         unsafe {
-            from_glib(ffi::hdy_expander_row_get_show_enable_switch(
+            from_glib(ffi::adw_expander_row_get_show_enable_switch(
                 self.as_ref().to_glib_none().0,
             ))
         }
@@ -559,7 +559,7 @@ impl<O: IsA<ExpanderRow>> ExpanderRowExt for O {
 
     fn get_subtitle(&self) -> Option<glib::GString> {
         unsafe {
-            from_glib_none(ffi::hdy_expander_row_get_subtitle(
+            from_glib_none(ffi::adw_expander_row_get_subtitle(
                 self.as_ref().to_glib_none().0,
             ))
         }
@@ -567,7 +567,7 @@ impl<O: IsA<ExpanderRow>> ExpanderRowExt for O {
 
     fn remove<P: IsA<gtk::Widget>>(&self, child: &P) {
         unsafe {
-            ffi::hdy_expander_row_remove(
+            ffi::adw_expander_row_remove(
                 self.as_ref().to_glib_none().0,
                 child.as_ref().to_glib_none().0,
             );
@@ -576,7 +576,7 @@ impl<O: IsA<ExpanderRow>> ExpanderRowExt for O {
 
     fn set_enable_expansion(&self, enable_expansion: bool) {
         unsafe {
-            ffi::hdy_expander_row_set_enable_expansion(
+            ffi::adw_expander_row_set_enable_expansion(
                 self.as_ref().to_glib_none().0,
                 enable_expansion.to_glib(),
             );
@@ -585,13 +585,13 @@ impl<O: IsA<ExpanderRow>> ExpanderRowExt for O {
 
     fn set_expanded(&self, expanded: bool) {
         unsafe {
-            ffi::hdy_expander_row_set_expanded(self.as_ref().to_glib_none().0, expanded.to_glib());
+            ffi::adw_expander_row_set_expanded(self.as_ref().to_glib_none().0, expanded.to_glib());
         }
     }
 
     fn set_icon_name(&self, icon_name: &str) {
         unsafe {
-            ffi::hdy_expander_row_set_icon_name(
+            ffi::adw_expander_row_set_icon_name(
                 self.as_ref().to_glib_none().0,
                 icon_name.to_glib_none().0,
             );
@@ -600,7 +600,7 @@ impl<O: IsA<ExpanderRow>> ExpanderRowExt for O {
 
     fn set_show_enable_switch(&self, show_enable_switch: bool) {
         unsafe {
-            ffi::hdy_expander_row_set_show_enable_switch(
+            ffi::adw_expander_row_set_show_enable_switch(
                 self.as_ref().to_glib_none().0,
                 show_enable_switch.to_glib(),
             );
@@ -609,7 +609,7 @@ impl<O: IsA<ExpanderRow>> ExpanderRowExt for O {
 
     fn set_subtitle(&self, subtitle: Option<&str>) {
         unsafe {
-            ffi::hdy_expander_row_set_subtitle(
+            ffi::adw_expander_row_set_subtitle(
                 self.as_ref().to_glib_none().0,
                 subtitle.to_glib_none().0,
             );
@@ -621,7 +621,7 @@ impl<O: IsA<ExpanderRow>> ExpanderRowExt for O {
         f: F,
     ) -> SignalHandlerId {
         unsafe extern "C" fn notify_enable_expansion_trampoline<P, F: Fn(&P) + 'static>(
-            this: *mut ffi::HdyExpanderRow,
+            this: *mut ffi::AdwExpanderRow,
             _param_spec: glib::ffi::gpointer,
             f: glib::ffi::gpointer,
         ) where
@@ -645,7 +645,7 @@ impl<O: IsA<ExpanderRow>> ExpanderRowExt for O {
 
     fn connect_property_expanded_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_expanded_trampoline<P, F: Fn(&P) + 'static>(
-            this: *mut ffi::HdyExpanderRow,
+            this: *mut ffi::AdwExpanderRow,
             _param_spec: glib::ffi::gpointer,
             f: glib::ffi::gpointer,
         ) where
@@ -669,7 +669,7 @@ impl<O: IsA<ExpanderRow>> ExpanderRowExt for O {
 
     fn connect_property_icon_name_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_icon_name_trampoline<P, F: Fn(&P) + 'static>(
-            this: *mut ffi::HdyExpanderRow,
+            this: *mut ffi::AdwExpanderRow,
             _param_spec: glib::ffi::gpointer,
             f: glib::ffi::gpointer,
         ) where
@@ -696,7 +696,7 @@ impl<O: IsA<ExpanderRow>> ExpanderRowExt for O {
         f: F,
     ) -> SignalHandlerId {
         unsafe extern "C" fn notify_show_enable_switch_trampoline<P, F: Fn(&P) + 'static>(
-            this: *mut ffi::HdyExpanderRow,
+            this: *mut ffi::AdwExpanderRow,
             _param_spec: glib::ffi::gpointer,
             f: glib::ffi::gpointer,
         ) where
@@ -720,7 +720,7 @@ impl<O: IsA<ExpanderRow>> ExpanderRowExt for O {
 
     fn connect_property_subtitle_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_subtitle_trampoline<P, F: Fn(&P) + 'static>(
-            this: *mut ffi::HdyExpanderRow,
+            this: *mut ffi::AdwExpanderRow,
             _param_spec: glib::ffi::gpointer,
             f: glib::ffi::gpointer,
         ) where
@@ -747,7 +747,7 @@ impl<O: IsA<ExpanderRow>> ExpanderRowExt for O {
         f: F,
     ) -> SignalHandlerId {
         unsafe extern "C" fn notify_use_underline_trampoline<P, F: Fn(&P) + 'static>(
-            this: *mut ffi::HdyExpanderRow,
+            this: *mut ffi::AdwExpanderRow,
             _param_spec: glib::ffi::gpointer,
             f: glib::ffi::gpointer,
         ) where

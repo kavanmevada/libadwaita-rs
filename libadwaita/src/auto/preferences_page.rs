@@ -15,18 +15,18 @@ use std::fmt;
 use std::mem::transmute;
 
 glib::wrapper! {
-    pub struct PreferencesPage(Object<ffi::HdyPreferencesPage, ffi::HdyPreferencesPageClass>) @extends gtk::Widget, @implements gtk::Accessible, gtk::Buildable, gtk::ConstraintTarget;
+    pub struct PreferencesPage(Object<ffi::AdwPreferencesPage, ffi::AdwPreferencesPageClass>) @extends gtk::Widget, @implements gtk::Accessible, gtk::Buildable, gtk::ConstraintTarget;
 
     match fn {
-        get_type => || ffi::hdy_preferences_page_get_type(),
+        get_type => || ffi::adw_preferences_page_get_type(),
     }
 }
 
 impl PreferencesPage {
-    #[doc(alias = "hdy_preferences_page_new")]
+    #[doc(alias = "adw_preferences_page_new")]
     pub fn new() -> PreferencesPage {
         assert_initialized_main_thread!();
-        unsafe { gtk::Widget::from_glib_none(ffi::hdy_preferences_page_new()).unsafe_cast() }
+        unsafe { gtk::Widget::from_glib_none(ffi::adw_preferences_page_new()).unsafe_cast() }
     }
 }
 
@@ -343,22 +343,22 @@ impl PreferencesPageBuilder {
 pub const NONE_PREFERENCES_PAGE: Option<&PreferencesPage> = None;
 
 pub trait PreferencesPageExt: 'static {
-    #[doc(alias = "hdy_preferences_page_add")]
+    #[doc(alias = "adw_preferences_page_add")]
     fn add<P: IsA<PreferencesGroup>>(&self, group: &P);
 
-    #[doc(alias = "hdy_preferences_page_get_icon_name")]
+    #[doc(alias = "adw_preferences_page_get_icon_name")]
     fn get_icon_name(&self) -> Option<glib::GString>;
 
-    #[doc(alias = "hdy_preferences_page_get_title")]
+    #[doc(alias = "adw_preferences_page_get_title")]
     fn get_title(&self) -> Option<glib::GString>;
 
-    #[doc(alias = "hdy_preferences_page_remove")]
+    #[doc(alias = "adw_preferences_page_remove")]
     fn remove<P: IsA<PreferencesGroup>>(&self, group: &P);
 
-    #[doc(alias = "hdy_preferences_page_set_icon_name")]
+    #[doc(alias = "adw_preferences_page_set_icon_name")]
     fn set_icon_name(&self, icon_name: Option<&str>);
 
-    #[doc(alias = "hdy_preferences_page_set_title")]
+    #[doc(alias = "adw_preferences_page_set_title")]
     fn set_title(&self, title: Option<&str>);
 
     fn connect_property_icon_name_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
@@ -369,7 +369,7 @@ pub trait PreferencesPageExt: 'static {
 impl<O: IsA<PreferencesPage>> PreferencesPageExt for O {
     fn add<P: IsA<PreferencesGroup>>(&self, group: &P) {
         unsafe {
-            ffi::hdy_preferences_page_add(
+            ffi::adw_preferences_page_add(
                 self.as_ref().to_glib_none().0,
                 group.as_ref().to_glib_none().0,
             );
@@ -378,7 +378,7 @@ impl<O: IsA<PreferencesPage>> PreferencesPageExt for O {
 
     fn get_icon_name(&self) -> Option<glib::GString> {
         unsafe {
-            from_glib_none(ffi::hdy_preferences_page_get_icon_name(
+            from_glib_none(ffi::adw_preferences_page_get_icon_name(
                 self.as_ref().to_glib_none().0,
             ))
         }
@@ -386,7 +386,7 @@ impl<O: IsA<PreferencesPage>> PreferencesPageExt for O {
 
     fn get_title(&self) -> Option<glib::GString> {
         unsafe {
-            from_glib_none(ffi::hdy_preferences_page_get_title(
+            from_glib_none(ffi::adw_preferences_page_get_title(
                 self.as_ref().to_glib_none().0,
             ))
         }
@@ -394,7 +394,7 @@ impl<O: IsA<PreferencesPage>> PreferencesPageExt for O {
 
     fn remove<P: IsA<PreferencesGroup>>(&self, group: &P) {
         unsafe {
-            ffi::hdy_preferences_page_remove(
+            ffi::adw_preferences_page_remove(
                 self.as_ref().to_glib_none().0,
                 group.as_ref().to_glib_none().0,
             );
@@ -403,7 +403,7 @@ impl<O: IsA<PreferencesPage>> PreferencesPageExt for O {
 
     fn set_icon_name(&self, icon_name: Option<&str>) {
         unsafe {
-            ffi::hdy_preferences_page_set_icon_name(
+            ffi::adw_preferences_page_set_icon_name(
                 self.as_ref().to_glib_none().0,
                 icon_name.to_glib_none().0,
             );
@@ -412,7 +412,7 @@ impl<O: IsA<PreferencesPage>> PreferencesPageExt for O {
 
     fn set_title(&self, title: Option<&str>) {
         unsafe {
-            ffi::hdy_preferences_page_set_title(
+            ffi::adw_preferences_page_set_title(
                 self.as_ref().to_glib_none().0,
                 title.to_glib_none().0,
             );
@@ -421,7 +421,7 @@ impl<O: IsA<PreferencesPage>> PreferencesPageExt for O {
 
     fn connect_property_icon_name_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_icon_name_trampoline<P, F: Fn(&P) + 'static>(
-            this: *mut ffi::HdyPreferencesPage,
+            this: *mut ffi::AdwPreferencesPage,
             _param_spec: glib::ffi::gpointer,
             f: glib::ffi::gpointer,
         ) where
@@ -445,7 +445,7 @@ impl<O: IsA<PreferencesPage>> PreferencesPageExt for O {
 
     fn connect_property_title_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_title_trampoline<P, F: Fn(&P) + 'static>(
-            this: *mut ffi::HdyPreferencesPage,
+            this: *mut ffi::AdwPreferencesPage,
             _param_spec: glib::ffi::gpointer,
             f: glib::ffi::gpointer,
         ) where

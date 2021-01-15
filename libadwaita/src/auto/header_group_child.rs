@@ -9,45 +9,45 @@ use glib::translate::*;
 use std::fmt;
 
 glib::wrapper! {
-    pub struct HeaderGroupChild(Object<ffi::HdyHeaderGroupChild, ffi::HdyHeaderGroupChildClass>);
+    pub struct HeaderGroupChild(Object<ffi::AdwHeaderGroupChild, ffi::AdwHeaderGroupChildClass>);
 
     match fn {
-        get_type => || ffi::hdy_header_group_child_get_type(),
+        get_type => || ffi::adw_header_group_child_get_type(),
     }
 }
 
 impl HeaderGroupChild {
-    #[doc(alias = "hdy_header_group_child_get_child_type")]
+    #[doc(alias = "adw_header_group_child_get_child_type")]
     pub fn get_child_type(&self) -> HeaderGroupChildType {
         unsafe {
-            from_glib(ffi::hdy_header_group_child_get_child_type(
+            from_glib(ffi::adw_header_group_child_get_child_type(
                 self.to_glib_none().0,
             ))
         }
     }
 
-    #[doc(alias = "hdy_header_group_child_get_gtk_header_bar")]
+    #[doc(alias = "adw_header_group_child_get_gtk_header_bar")]
     pub fn get_gtk_header_bar(&self) -> Option<gtk::HeaderBar> {
         unsafe {
-            from_glib_none(ffi::hdy_header_group_child_get_gtk_header_bar(
+            from_glib_none(ffi::adw_header_group_child_get_gtk_header_bar(
                 self.to_glib_none().0,
             ))
         }
     }
 
-    #[doc(alias = "hdy_header_group_child_get_header_bar")]
+    #[doc(alias = "adw_header_group_child_get_header_bar")]
     pub fn get_header_bar(&self) -> Option<HeaderBar> {
         unsafe {
-            from_glib_none(ffi::hdy_header_group_child_get_header_bar(
+            from_glib_none(ffi::adw_header_group_child_get_header_bar(
                 self.to_glib_none().0,
             ))
         }
     }
 
-    #[doc(alias = "hdy_header_group_child_get_header_group")]
+    #[doc(alias = "adw_header_group_child_get_header_group")]
     pub fn get_header_group(&self) -> Option<HeaderGroup> {
         unsafe {
-            from_glib_none(ffi::hdy_header_group_child_get_header_group(
+            from_glib_none(ffi::adw_header_group_child_get_header_group(
                 self.to_glib_none().0,
             ))
         }

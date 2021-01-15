@@ -17,142 +17,142 @@ use std::fmt;
 use std::mem::transmute;
 
 glib::wrapper! {
-    pub struct Squeezer(Object<ffi::HdySqueezer, ffi::HdySqueezerClass>) @extends gtk::Widget, @implements gtk::Accessible, gtk::Buildable, gtk::ConstraintTarget, gtk::Orientable;
+    pub struct Squeezer(Object<ffi::AdwSqueezer, ffi::AdwSqueezerClass>) @extends gtk::Widget, @implements gtk::Accessible, gtk::Buildable, gtk::ConstraintTarget, gtk::Orientable;
 
     match fn {
-        get_type => || ffi::hdy_squeezer_get_type(),
+        get_type => || ffi::adw_squeezer_get_type(),
     }
 }
 
 impl Squeezer {
-    #[doc(alias = "hdy_squeezer_new")]
+    #[doc(alias = "adw_squeezer_new")]
     pub fn new() -> Squeezer {
         assert_initialized_main_thread!();
-        unsafe { gtk::Widget::from_glib_none(ffi::hdy_squeezer_new()).unsafe_cast() }
+        unsafe { gtk::Widget::from_glib_none(ffi::adw_squeezer_new()).unsafe_cast() }
     }
 
-    #[doc(alias = "hdy_squeezer_add")]
+    #[doc(alias = "adw_squeezer_add")]
     pub fn add<P: IsA<gtk::Widget>>(&self, child: &P) -> Option<SqueezerPage> {
         unsafe {
-            from_glib_none(ffi::hdy_squeezer_add(
+            from_glib_none(ffi::adw_squeezer_add(
                 self.to_glib_none().0,
                 child.as_ref().to_glib_none().0,
             ))
         }
     }
 
-    #[doc(alias = "hdy_squeezer_get_homogeneous")]
+    #[doc(alias = "adw_squeezer_get_homogeneous")]
     pub fn get_homogeneous(&self) -> bool {
-        unsafe { from_glib(ffi::hdy_squeezer_get_homogeneous(self.to_glib_none().0)) }
+        unsafe { from_glib(ffi::adw_squeezer_get_homogeneous(self.to_glib_none().0)) }
     }
 
-    #[doc(alias = "hdy_squeezer_get_interpolate_size")]
+    #[doc(alias = "adw_squeezer_get_interpolate_size")]
     pub fn get_interpolate_size(&self) -> bool {
         unsafe {
-            from_glib(ffi::hdy_squeezer_get_interpolate_size(
+            from_glib(ffi::adw_squeezer_get_interpolate_size(
                 self.to_glib_none().0,
             ))
         }
     }
 
-    #[doc(alias = "hdy_squeezer_get_page")]
+    #[doc(alias = "adw_squeezer_get_page")]
     pub fn get_page<P: IsA<gtk::Widget>>(&self, child: &P) -> Option<SqueezerPage> {
         unsafe {
-            from_glib_none(ffi::hdy_squeezer_get_page(
+            from_glib_none(ffi::adw_squeezer_get_page(
                 self.to_glib_none().0,
                 child.as_ref().to_glib_none().0,
             ))
         }
     }
 
-    #[doc(alias = "hdy_squeezer_get_pages")]
+    #[doc(alias = "adw_squeezer_get_pages")]
     pub fn get_pages(&self) -> Option<gtk::SelectionModel> {
-        unsafe { from_glib_full(ffi::hdy_squeezer_get_pages(self.to_glib_none().0)) }
+        unsafe { from_glib_full(ffi::adw_squeezer_get_pages(self.to_glib_none().0)) }
     }
 
-    #[doc(alias = "hdy_squeezer_get_transition_duration")]
+    #[doc(alias = "adw_squeezer_get_transition_duration")]
     pub fn get_transition_duration(&self) -> u32 {
-        unsafe { ffi::hdy_squeezer_get_transition_duration(self.to_glib_none().0) }
+        unsafe { ffi::adw_squeezer_get_transition_duration(self.to_glib_none().0) }
     }
 
-    #[doc(alias = "hdy_squeezer_get_transition_running")]
+    #[doc(alias = "adw_squeezer_get_transition_running")]
     pub fn get_transition_running(&self) -> bool {
         unsafe {
-            from_glib(ffi::hdy_squeezer_get_transition_running(
+            from_glib(ffi::adw_squeezer_get_transition_running(
                 self.to_glib_none().0,
             ))
         }
     }
 
-    #[doc(alias = "hdy_squeezer_get_transition_type")]
+    #[doc(alias = "adw_squeezer_get_transition_type")]
     pub fn get_transition_type(&self) -> SqueezerTransitionType {
-        unsafe { from_glib(ffi::hdy_squeezer_get_transition_type(self.to_glib_none().0)) }
+        unsafe { from_glib(ffi::adw_squeezer_get_transition_type(self.to_glib_none().0)) }
     }
 
-    #[doc(alias = "hdy_squeezer_get_visible_child")]
+    #[doc(alias = "adw_squeezer_get_visible_child")]
     pub fn get_visible_child(&self) -> Option<gtk::Widget> {
-        unsafe { from_glib_none(ffi::hdy_squeezer_get_visible_child(self.to_glib_none().0)) }
+        unsafe { from_glib_none(ffi::adw_squeezer_get_visible_child(self.to_glib_none().0)) }
     }
 
-    #[doc(alias = "hdy_squeezer_get_xalign")]
+    #[doc(alias = "adw_squeezer_get_xalign")]
     pub fn get_xalign(&self) -> f32 {
-        unsafe { ffi::hdy_squeezer_get_xalign(self.to_glib_none().0) }
+        unsafe { ffi::adw_squeezer_get_xalign(self.to_glib_none().0) }
     }
 
-    #[doc(alias = "hdy_squeezer_get_yalign")]
+    #[doc(alias = "adw_squeezer_get_yalign")]
     pub fn get_yalign(&self) -> f32 {
-        unsafe { ffi::hdy_squeezer_get_yalign(self.to_glib_none().0) }
+        unsafe { ffi::adw_squeezer_get_yalign(self.to_glib_none().0) }
     }
 
-    #[doc(alias = "hdy_squeezer_remove")]
+    #[doc(alias = "adw_squeezer_remove")]
     pub fn remove<P: IsA<gtk::Widget>>(&self, child: &P) {
         unsafe {
-            ffi::hdy_squeezer_remove(self.to_glib_none().0, child.as_ref().to_glib_none().0);
+            ffi::adw_squeezer_remove(self.to_glib_none().0, child.as_ref().to_glib_none().0);
         }
     }
 
-    #[doc(alias = "hdy_squeezer_set_homogeneous")]
+    #[doc(alias = "adw_squeezer_set_homogeneous")]
     pub fn set_homogeneous(&self, homogeneous: bool) {
         unsafe {
-            ffi::hdy_squeezer_set_homogeneous(self.to_glib_none().0, homogeneous.to_glib());
+            ffi::adw_squeezer_set_homogeneous(self.to_glib_none().0, homogeneous.to_glib());
         }
     }
 
-    #[doc(alias = "hdy_squeezer_set_interpolate_size")]
+    #[doc(alias = "adw_squeezer_set_interpolate_size")]
     pub fn set_interpolate_size(&self, interpolate_size: bool) {
         unsafe {
-            ffi::hdy_squeezer_set_interpolate_size(
+            ffi::adw_squeezer_set_interpolate_size(
                 self.to_glib_none().0,
                 interpolate_size.to_glib(),
             );
         }
     }
 
-    #[doc(alias = "hdy_squeezer_set_transition_duration")]
+    #[doc(alias = "adw_squeezer_set_transition_duration")]
     pub fn set_transition_duration(&self, duration: u32) {
         unsafe {
-            ffi::hdy_squeezer_set_transition_duration(self.to_glib_none().0, duration);
+            ffi::adw_squeezer_set_transition_duration(self.to_glib_none().0, duration);
         }
     }
 
-    #[doc(alias = "hdy_squeezer_set_transition_type")]
+    #[doc(alias = "adw_squeezer_set_transition_type")]
     pub fn set_transition_type(&self, transition: SqueezerTransitionType) {
         unsafe {
-            ffi::hdy_squeezer_set_transition_type(self.to_glib_none().0, transition.to_glib());
+            ffi::adw_squeezer_set_transition_type(self.to_glib_none().0, transition.to_glib());
         }
     }
 
-    #[doc(alias = "hdy_squeezer_set_xalign")]
+    #[doc(alias = "adw_squeezer_set_xalign")]
     pub fn set_xalign(&self, xalign: f32) {
         unsafe {
-            ffi::hdy_squeezer_set_xalign(self.to_glib_none().0, xalign);
+            ffi::adw_squeezer_set_xalign(self.to_glib_none().0, xalign);
         }
     }
 
-    #[doc(alias = "hdy_squeezer_set_yalign")]
+    #[doc(alias = "adw_squeezer_set_yalign")]
     pub fn set_yalign(&self, yalign: f32) {
         unsafe {
-            ffi::hdy_squeezer_set_yalign(self.to_glib_none().0, yalign);
+            ffi::adw_squeezer_set_yalign(self.to_glib_none().0, yalign);
         }
     }
 
@@ -161,7 +161,7 @@ impl Squeezer {
         f: F,
     ) -> SignalHandlerId {
         unsafe extern "C" fn notify_homogeneous_trampoline<F: Fn(&Squeezer) + 'static>(
-            this: *mut ffi::HdySqueezer,
+            this: *mut ffi::AdwSqueezer,
             _param_spec: glib::ffi::gpointer,
             f: glib::ffi::gpointer,
         ) {
@@ -186,7 +186,7 @@ impl Squeezer {
         f: F,
     ) -> SignalHandlerId {
         unsafe extern "C" fn notify_interpolate_size_trampoline<F: Fn(&Squeezer) + 'static>(
-            this: *mut ffi::HdySqueezer,
+            this: *mut ffi::AdwSqueezer,
             _param_spec: glib::ffi::gpointer,
             f: glib::ffi::gpointer,
         ) {
@@ -211,7 +211,7 @@ impl Squeezer {
         f: F,
     ) -> SignalHandlerId {
         unsafe extern "C" fn notify_pages_trampoline<F: Fn(&Squeezer) + 'static>(
-            this: *mut ffi::HdySqueezer,
+            this: *mut ffi::AdwSqueezer,
             _param_spec: glib::ffi::gpointer,
             f: glib::ffi::gpointer,
         ) {
@@ -236,7 +236,7 @@ impl Squeezer {
         f: F,
     ) -> SignalHandlerId {
         unsafe extern "C" fn notify_transition_duration_trampoline<F: Fn(&Squeezer) + 'static>(
-            this: *mut ffi::HdySqueezer,
+            this: *mut ffi::AdwSqueezer,
             _param_spec: glib::ffi::gpointer,
             f: glib::ffi::gpointer,
         ) {
@@ -261,7 +261,7 @@ impl Squeezer {
         f: F,
     ) -> SignalHandlerId {
         unsafe extern "C" fn notify_transition_running_trampoline<F: Fn(&Squeezer) + 'static>(
-            this: *mut ffi::HdySqueezer,
+            this: *mut ffi::AdwSqueezer,
             _param_spec: glib::ffi::gpointer,
             f: glib::ffi::gpointer,
         ) {
@@ -286,7 +286,7 @@ impl Squeezer {
         f: F,
     ) -> SignalHandlerId {
         unsafe extern "C" fn notify_transition_type_trampoline<F: Fn(&Squeezer) + 'static>(
-            this: *mut ffi::HdySqueezer,
+            this: *mut ffi::AdwSqueezer,
             _param_spec: glib::ffi::gpointer,
             f: glib::ffi::gpointer,
         ) {
@@ -311,7 +311,7 @@ impl Squeezer {
         f: F,
     ) -> SignalHandlerId {
         unsafe extern "C" fn notify_visible_child_trampoline<F: Fn(&Squeezer) + 'static>(
-            this: *mut ffi::HdySqueezer,
+            this: *mut ffi::AdwSqueezer,
             _param_spec: glib::ffi::gpointer,
             f: glib::ffi::gpointer,
         ) {
@@ -336,7 +336,7 @@ impl Squeezer {
         f: F,
     ) -> SignalHandlerId {
         unsafe extern "C" fn notify_xalign_trampoline<F: Fn(&Squeezer) + 'static>(
-            this: *mut ffi::HdySqueezer,
+            this: *mut ffi::AdwSqueezer,
             _param_spec: glib::ffi::gpointer,
             f: glib::ffi::gpointer,
         ) {
@@ -361,7 +361,7 @@ impl Squeezer {
         f: F,
     ) -> SignalHandlerId {
         unsafe extern "C" fn notify_yalign_trampoline<F: Fn(&Squeezer) + 'static>(
-            this: *mut ffi::HdySqueezer,
+            this: *mut ffi::AdwSqueezer,
             _param_spec: glib::ffi::gpointer,
             f: glib::ffi::gpointer,
         ) {

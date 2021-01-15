@@ -46,7 +46,6 @@ pub use self::combo_row::{ComboRow, NONE_COMBO_ROW};
 
 mod enum_list_model;
 pub use self::enum_list_model::EnumListModel;
-pub use self::enum_list_model::EnumListModelBuilder;
 
 mod enum_value_object;
 pub use self::enum_value_object::EnumValueObject;
@@ -58,6 +57,7 @@ pub use self::expander_row::{ExpanderRow, NONE_EXPANDER_ROW};
 
 mod flap;
 pub use self::flap::Flap;
+pub use self::flap::FlapBuilder;
 
 mod header_bar;
 pub use self::header_bar::HeaderBar;
@@ -112,6 +112,7 @@ pub use self::squeezer_page::SqueezerPageBuilder;
 
 mod status_page;
 pub use self::status_page::StatusPage;
+pub use self::status_page::StatusPageBuilder;
 
 mod swipe_group;
 pub use self::swipe_group::SwipeGroup;

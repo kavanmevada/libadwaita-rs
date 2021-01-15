@@ -14,41 +14,41 @@ use std::fmt;
 use std::mem::transmute;
 
 glib::wrapper! {
-    pub struct ClampLayout(Object<ffi::HdyClampLayout, ffi::HdyClampLayoutClass>) @extends gtk::LayoutManager, @implements gtk::Orientable;
+    pub struct ClampLayout(Object<ffi::AdwClampLayout, ffi::AdwClampLayoutClass>) @extends gtk::LayoutManager, @implements gtk::Orientable;
 
     match fn {
-        get_type => || ffi::hdy_clamp_layout_get_type(),
+        get_type => || ffi::adw_clamp_layout_get_type(),
     }
 }
 
 impl ClampLayout {
-    #[doc(alias = "hdy_clamp_layout_new")]
+    #[doc(alias = "adw_clamp_layout_new")]
     pub fn new() -> ClampLayout {
         assert_initialized_main_thread!();
-        unsafe { gtk::LayoutManager::from_glib_full(ffi::hdy_clamp_layout_new()).unsafe_cast() }
+        unsafe { gtk::LayoutManager::from_glib_full(ffi::adw_clamp_layout_new()).unsafe_cast() }
     }
 
-    #[doc(alias = "hdy_clamp_layout_get_maximum_size")]
+    #[doc(alias = "adw_clamp_layout_get_maximum_size")]
     pub fn get_maximum_size(&self) -> i32 {
-        unsafe { ffi::hdy_clamp_layout_get_maximum_size(self.to_glib_none().0) }
+        unsafe { ffi::adw_clamp_layout_get_maximum_size(self.to_glib_none().0) }
     }
 
-    #[doc(alias = "hdy_clamp_layout_get_tightening_threshold")]
+    #[doc(alias = "adw_clamp_layout_get_tightening_threshold")]
     pub fn get_tightening_threshold(&self) -> i32 {
-        unsafe { ffi::hdy_clamp_layout_get_tightening_threshold(self.to_glib_none().0) }
+        unsafe { ffi::adw_clamp_layout_get_tightening_threshold(self.to_glib_none().0) }
     }
 
-    #[doc(alias = "hdy_clamp_layout_set_maximum_size")]
+    #[doc(alias = "adw_clamp_layout_set_maximum_size")]
     pub fn set_maximum_size(&self, maximum_size: i32) {
         unsafe {
-            ffi::hdy_clamp_layout_set_maximum_size(self.to_glib_none().0, maximum_size);
+            ffi::adw_clamp_layout_set_maximum_size(self.to_glib_none().0, maximum_size);
         }
     }
 
-    #[doc(alias = "hdy_clamp_layout_set_tightening_threshold")]
+    #[doc(alias = "adw_clamp_layout_set_tightening_threshold")]
     pub fn set_tightening_threshold(&self, tightening_threshold: i32) {
         unsafe {
-            ffi::hdy_clamp_layout_set_tightening_threshold(
+            ffi::adw_clamp_layout_set_tightening_threshold(
                 self.to_glib_none().0,
                 tightening_threshold,
             );
@@ -60,7 +60,7 @@ impl ClampLayout {
         f: F,
     ) -> SignalHandlerId {
         unsafe extern "C" fn notify_maximum_size_trampoline<F: Fn(&ClampLayout) + 'static>(
-            this: *mut ffi::HdyClampLayout,
+            this: *mut ffi::AdwClampLayout,
             _param_spec: glib::ffi::gpointer,
             f: glib::ffi::gpointer,
         ) {
@@ -87,7 +87,7 @@ impl ClampLayout {
         unsafe extern "C" fn notify_tightening_threshold_trampoline<
             F: Fn(&ClampLayout) + 'static,
         >(
-            this: *mut ffi::HdyClampLayout,
+            this: *mut ffi::AdwClampLayout,
             _param_spec: glib::ffi::gpointer,
             f: glib::ffi::gpointer,
         ) {

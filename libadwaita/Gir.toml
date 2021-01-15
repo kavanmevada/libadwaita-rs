@@ -25,7 +25,6 @@ generate = [
     "Adw.ApplicationWindow",
     "Adw.CenteringPolicy",
     "Adw.EnumValueObject",
-    "Adw.Flap",
     "Adw.FlapFoldPolicy",
     "Adw.FlapTransitionType",
     "Adw.HeaderGroupChild",
@@ -33,7 +32,6 @@ generate = [
     "Adw.LeafletTransitionType",
     "Adw.NavigationDirection",
     "Adw.SqueezerTransitionType",
-    "Adw.StatusPage",
     "Adw.SwipeGroup",
     "Adw.Swipeable",
     "Adw.ViewSwitcherPolicy",
@@ -54,6 +52,7 @@ manual = [
     "Gtk.Accessible",
     "Gtk.AccessibleRole",
     "Gtk.Actionable",
+    "Gtk.Adjustment",
     "Gtk.Align",
     "Gtk.Application",
     "Gtk.ApplicationWindow",
@@ -71,6 +70,7 @@ manual = [
     "Gtk.PackType",
     "Gtk.Root",
     "Gtk.Scrollable",
+    "Gtk.ScrollablePolicy",
     "Gtk.SelectionModel",
     "Gtk.ShortcutManager",
     "Gtk.Stack",
@@ -131,10 +131,15 @@ generate_builder = true
 [[object]]
 name = "Adw.EnumListModel"
 status = "generate"
-generate_builder = true
+ignore_builder = true
 
 [[object]]
 name = "Adw.ExpanderRow"
+status = "generate"
+generate_builder = true
+
+[[object]]
+name = "Adw.Flap"
 status = "generate"
 generate_builder = true
 
@@ -194,17 +199,19 @@ status = "generate"
 generate_builder = true
 
 [[object]]
+name = "Adw.StatusPage"
+status = "generate"
+generate_builder = true
+
+[[object]]
 name = "Adw.SwipeTracker"
 status = "generate"
 generate_builder = true
-    [[object.signal]]
-    name = "begin-swipe"
-    ignore = true 
 
 [[object]]
 name = "Adw.ValueObject"
 status = "generate"
-generate_builder = false
+ignore_builder = true
 
 [[object]]
 name = "Adw.ViewSwitcher"
