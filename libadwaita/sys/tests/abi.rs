@@ -285,6 +285,20 @@ const RUST_LAYOUTS: &[(&str, Layout)] = &[
         },
     ),
     (
+        "AdwBin",
+        Layout {
+            size: size_of::<AdwBin>(),
+            alignment: align_of::<AdwBin>(),
+        },
+    ),
+    (
+        "AdwBinClass",
+        Layout {
+            size: size_of::<AdwBinClass>(),
+            alignment: align_of::<AdwBinClass>(),
+        },
+    ),
+    (
         "AdwCarouselClass",
         Layout {
             size: size_of::<AdwCarouselClass>(),
@@ -401,27 +415,6 @@ const RUST_LAYOUTS: &[(&str, Layout)] = &[
         Layout {
             size: size_of::<AdwHeaderBarClass>(),
             alignment: align_of::<AdwHeaderBarClass>(),
-        },
-    ),
-    (
-        "AdwHeaderGroupChildClass",
-        Layout {
-            size: size_of::<AdwHeaderGroupChildClass>(),
-            alignment: align_of::<AdwHeaderGroupChildClass>(),
-        },
-    ),
-    (
-        "AdwHeaderGroupChildType",
-        Layout {
-            size: size_of::<AdwHeaderGroupChildType>(),
-            alignment: align_of::<AdwHeaderGroupChildType>(),
-        },
-    ),
-    (
-        "AdwHeaderGroupClass",
-        Layout {
-            size: size_of::<AdwHeaderGroupClass>(),
-            alignment: align_of::<AdwHeaderGroupClass>(),
         },
     ),
     (
@@ -613,6 +606,13 @@ const RUST_LAYOUTS: &[(&str, Layout)] = &[
             alignment: align_of::<AdwWindowClass>(),
         },
     ),
+    (
+        "AdwWindowTitleClass",
+        Layout {
+            size: size_of::<AdwWindowTitleClass>(),
+            alignment: align_of::<AdwWindowTitleClass>(),
+        },
+    ),
 ];
 
 const RUST_CONSTANTS: &[(&str, &str)] = &[
@@ -624,9 +624,6 @@ const RUST_CONSTANTS: &[(&str, &str)] = &[
     ("(gint) ADW_FLAP_TRANSITION_TYPE_OVER", "0"),
     ("(gint) ADW_FLAP_TRANSITION_TYPE_SLIDE", "2"),
     ("(gint) ADW_FLAP_TRANSITION_TYPE_UNDER", "1"),
-    ("(gint) ADW_HEADER_GROUP_CHILD_TYPE_GTK_HEADER_BAR", "1"),
-    ("(gint) ADW_HEADER_GROUP_CHILD_TYPE_HEADER_BAR", "0"),
-    ("(gint) ADW_HEADER_GROUP_CHILD_TYPE_HEADER_GROUP", "2"),
     ("(gint) ADW_LEAFLET_TRANSITION_TYPE_OVER", "0"),
     ("(gint) ADW_LEAFLET_TRANSITION_TYPE_SLIDE", "2"),
     ("(gint) ADW_LEAFLET_TRANSITION_TYPE_UNDER", "1"),

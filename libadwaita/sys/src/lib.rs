@@ -42,11 +42,6 @@ pub const ADW_FLAP_TRANSITION_TYPE_OVER: AdwFlapTransitionType = 0;
 pub const ADW_FLAP_TRANSITION_TYPE_UNDER: AdwFlapTransitionType = 1;
 pub const ADW_FLAP_TRANSITION_TYPE_SLIDE: AdwFlapTransitionType = 2;
 
-pub type AdwHeaderGroupChildType = c_int;
-pub const ADW_HEADER_GROUP_CHILD_TYPE_HEADER_BAR: AdwHeaderGroupChildType = 0;
-pub const ADW_HEADER_GROUP_CHILD_TYPE_GTK_HEADER_BAR: AdwHeaderGroupChildType = 1;
-pub const ADW_HEADER_GROUP_CHILD_TYPE_HEADER_GROUP: AdwHeaderGroupChildType = 2;
-
 pub type AdwLeafletTransitionType = c_int;
 pub const ADW_LEAFLET_TRANSITION_TYPE_OVER: AdwLeafletTransitionType = 0;
 pub const ADW_LEAFLET_TRANSITION_TYPE_UNDER: AdwLeafletTransitionType = 1;
@@ -114,6 +109,20 @@ pub struct AdwAvatarClass {
 impl ::std::fmt::Debug for AdwAvatarClass {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
         f.debug_struct(&format!("AdwAvatarClass @ {:?}", self as *const _))
+            .field("parent_class", &self.parent_class)
+            .finish()
+    }
+}
+
+#[repr(C)]
+#[derive(Copy, Clone)]
+pub struct AdwBinClass {
+    pub parent_class: gtk::GtkWidgetClass,
+}
+
+impl ::std::fmt::Debug for AdwBinClass {
+    fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+        f.debug_struct(&format!("AdwBinClass @ {:?}", self as *const _))
             .field("parent_class", &self.parent_class)
             .finish()
     }
@@ -290,37 +299,6 @@ pub struct AdwHeaderBarClass {
 impl ::std::fmt::Debug for AdwHeaderBarClass {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
         f.debug_struct(&format!("AdwHeaderBarClass @ {:?}", self as *const _))
-            .field("parent_class", &self.parent_class)
-            .finish()
-    }
-}
-
-#[repr(C)]
-#[derive(Copy, Clone)]
-pub struct AdwHeaderGroupChildClass {
-    pub parent_class: gobject::GObjectClass,
-}
-
-impl ::std::fmt::Debug for AdwHeaderGroupChildClass {
-    fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
-        f.debug_struct(&format!(
-            "AdwHeaderGroupChildClass @ {:?}",
-            self as *const _
-        ))
-        .field("parent_class", &self.parent_class)
-        .finish()
-    }
-}
-
-#[repr(C)]
-#[derive(Copy, Clone)]
-pub struct AdwHeaderGroupClass {
-    pub parent_class: gobject::GObjectClass,
-}
-
-impl ::std::fmt::Debug for AdwHeaderGroupClass {
-    fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
-        f.debug_struct(&format!("AdwHeaderGroupClass @ {:?}", self as *const _))
             .field("parent_class", &self.parent_class)
             .finish()
     }
@@ -615,6 +593,20 @@ impl ::std::fmt::Debug for AdwWindowClass {
     }
 }
 
+#[repr(C)]
+#[derive(Copy, Clone)]
+pub struct AdwWindowTitleClass {
+    pub parent_class: gtk::GtkWidgetClass,
+}
+
+impl ::std::fmt::Debug for AdwWindowTitleClass {
+    fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+        f.debug_struct(&format!("AdwWindowTitleClass @ {:?}", self as *const _))
+            .field("parent_class", &self.parent_class)
+            .finish()
+    }
+}
+
 // Classes
 #[repr(C)]
 #[derive(Copy, Clone)]
@@ -650,6 +642,20 @@ pub struct AdwAvatar(c_void);
 impl ::std::fmt::Debug for AdwAvatar {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
         f.debug_struct(&format!("AdwAvatar @ {:?}", self as *const _))
+            .finish()
+    }
+}
+
+#[repr(C)]
+#[derive(Copy, Clone)]
+pub struct AdwBin {
+    pub parent_instance: gtk::GtkWidget,
+}
+
+impl ::std::fmt::Debug for AdwBin {
+    fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+        f.debug_struct(&format!("AdwBin @ {:?}", self as *const _))
+            .field("parent_instance", &self.parent_instance)
             .finish()
     }
 }
@@ -784,26 +790,6 @@ pub struct AdwHeaderBar(c_void);
 impl ::std::fmt::Debug for AdwHeaderBar {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
         f.debug_struct(&format!("AdwHeaderBar @ {:?}", self as *const _))
-            .finish()
-    }
-}
-
-#[repr(C)]
-pub struct AdwHeaderGroup(c_void);
-
-impl ::std::fmt::Debug for AdwHeaderGroup {
-    fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
-        f.debug_struct(&format!("AdwHeaderGroup @ {:?}", self as *const _))
-            .finish()
-    }
-}
-
-#[repr(C)]
-pub struct AdwHeaderGroupChild(c_void);
-
-impl ::std::fmt::Debug for AdwHeaderGroupChild {
-    fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
-        f.debug_struct(&format!("AdwHeaderGroupChild @ {:?}", self as *const _))
             .finish()
     }
 }
@@ -998,6 +984,16 @@ impl ::std::fmt::Debug for AdwWindow {
     }
 }
 
+#[repr(C)]
+pub struct AdwWindowTitle(c_void);
+
+impl ::std::fmt::Debug for AdwWindowTitle {
+    fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+        f.debug_struct(&format!("AdwWindowTitle @ {:?}", self as *const _))
+            .finish()
+    }
+}
+
 // Interfaces
 #[repr(C)]
 pub struct AdwSwipeable(c_void);
@@ -1025,11 +1021,6 @@ extern "C" {
     // AdwFlapTransitionType
     //=========================================================================
     pub fn adw_flap_transition_type_get_type() -> GType;
-
-    //=========================================================================
-    // AdwHeaderGroupChildType
-    //=========================================================================
-    pub fn adw_header_group_child_type_get_type() -> GType;
 
     //=========================================================================
     // AdwLeafletTransitionType
@@ -1117,6 +1108,14 @@ extern "C" {
     pub fn adw_avatar_set_show_initials(self_: *mut AdwAvatar, show_initials: gboolean);
     pub fn adw_avatar_set_size(self_: *mut AdwAvatar, size: c_int);
     pub fn adw_avatar_set_text(self_: *mut AdwAvatar, text: *const c_char);
+
+    //=========================================================================
+    // AdwBin
+    //=========================================================================
+    pub fn adw_bin_get_type() -> GType;
+    pub fn adw_bin_new() -> *mut gtk::GtkWidget;
+    pub fn adw_bin_get_child(self_: *mut AdwBin) -> *mut gtk::GtkWidget;
+    pub fn adw_bin_set_child(self_: *mut AdwBin, child: *mut gtk::GtkWidget);
 
     //=========================================================================
     // AdwCarousel
@@ -1361,60 +1360,6 @@ extern "C" {
         self_: *mut AdwHeaderBar,
         title_widget: *mut gtk::GtkWidget,
     );
-
-    //=========================================================================
-    // AdwHeaderGroup
-    //=========================================================================
-    pub fn adw_header_group_get_type() -> GType;
-    pub fn adw_header_group_new() -> *mut AdwHeaderGroup;
-    pub fn adw_header_group_add_gtk_header_bar(
-        self_: *mut AdwHeaderGroup,
-        header_bar: *mut gtk::GtkHeaderBar,
-    );
-    pub fn adw_header_group_add_header_bar(
-        self_: *mut AdwHeaderGroup,
-        header_bar: *mut AdwHeaderBar,
-    );
-    pub fn adw_header_group_add_header_group(
-        self_: *mut AdwHeaderGroup,
-        header_group: *mut AdwHeaderGroup,
-    );
-    pub fn adw_header_group_get_children(self_: *mut AdwHeaderGroup) -> *mut glib::GSList;
-    pub fn adw_header_group_get_decorate_all(self_: *mut AdwHeaderGroup) -> gboolean;
-    pub fn adw_header_group_remove_child(
-        self_: *mut AdwHeaderGroup,
-        child: *mut AdwHeaderGroupChild,
-    );
-    pub fn adw_header_group_remove_gtk_header_bar(
-        self_: *mut AdwHeaderGroup,
-        header_bar: *mut gtk::GtkHeaderBar,
-    );
-    pub fn adw_header_group_remove_header_bar(
-        self_: *mut AdwHeaderGroup,
-        header_bar: *mut AdwHeaderBar,
-    );
-    pub fn adw_header_group_remove_header_group(
-        self_: *mut AdwHeaderGroup,
-        header_group: *mut AdwHeaderGroup,
-    );
-    pub fn adw_header_group_set_decorate_all(self_: *mut AdwHeaderGroup, decorate_all: gboolean);
-
-    //=========================================================================
-    // AdwHeaderGroupChild
-    //=========================================================================
-    pub fn adw_header_group_child_get_type() -> GType;
-    pub fn adw_header_group_child_get_child_type(
-        self_: *mut AdwHeaderGroupChild,
-    ) -> AdwHeaderGroupChildType;
-    pub fn adw_header_group_child_get_gtk_header_bar(
-        self_: *mut AdwHeaderGroupChild,
-    ) -> *mut gtk::GtkHeaderBar;
-    pub fn adw_header_group_child_get_header_bar(
-        self_: *mut AdwHeaderGroupChild,
-    ) -> *mut AdwHeaderBar;
-    pub fn adw_header_group_child_get_header_group(
-        self_: *mut AdwHeaderGroupChild,
-    ) -> *mut AdwHeaderGroup;
 
     //=========================================================================
     // AdwKeypad
@@ -1788,6 +1733,19 @@ extern "C" {
     pub fn adw_window_new() -> *mut gtk::GtkWidget;
     pub fn adw_window_get_child(self_: *mut AdwWindow) -> *mut gtk::GtkWidget;
     pub fn adw_window_set_child(self_: *mut AdwWindow, child: *mut gtk::GtkWidget);
+
+    //=========================================================================
+    // AdwWindowTitle
+    //=========================================================================
+    pub fn adw_window_title_get_type() -> GType;
+    pub fn adw_window_title_new(
+        title: *const c_char,
+        subtitle: *const c_char,
+    ) -> *mut gtk::GtkWidget;
+    pub fn adw_window_title_get_subtitle(self_: *mut AdwWindowTitle) -> *const c_char;
+    pub fn adw_window_title_get_title(self_: *mut AdwWindowTitle) -> *const c_char;
+    pub fn adw_window_title_set_subtitle(self_: *mut AdwWindowTitle, subtitle: *const c_char);
+    pub fn adw_window_title_set_title(self_: *mut AdwWindowTitle, title: *const c_char);
 
     //=========================================================================
     // AdwSwipeable

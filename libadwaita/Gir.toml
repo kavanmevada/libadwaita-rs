@@ -23,12 +23,11 @@ external_libraries = [
 
 generate = [
     "Adw.ApplicationWindow",
+    "Adw.Bin",
     "Adw.CenteringPolicy",
     "Adw.EnumValueObject",
     "Adw.FlapFoldPolicy",
     "Adw.FlapTransitionType",
-    "Adw.HeaderGroupChild",
-    "Adw.HeaderGroupChildType",
     "Adw.LeafletTransitionType",
     "Adw.NavigationDirection",
     "Adw.SqueezerTransitionType",
@@ -149,11 +148,6 @@ status = "generate"
 generate_builder = true
 
 [[object]]
-name = "Adw.HeaderGroup"
-status = "generate"
-generate_builder = true
-
-[[object]]
 name = "Adw.Keypad"
 status = "generate"
 generate_builder = true
@@ -225,5 +219,10 @@ generate_builder = true
 
 [[object]]
 name = "Adw.ViewSwitcherTitle"
+status = "generate"
+generate_builder = true
+
+[[object]]
+name = "Adw.WindowTitle"
 status = "generate"
 generate_builder = true
