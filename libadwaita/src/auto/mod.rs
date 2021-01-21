@@ -15,6 +15,10 @@ mod avatar;
 pub use self::avatar::Avatar;
 pub use self::avatar::AvatarBuilder;
 
+mod bin;
+pub use self::bin::BinExt;
+pub use self::bin::{Bin, NONE_BIN};
+
 mod carousel;
 pub use self::carousel::Carousel;
 pub use self::carousel::CarouselBuilder;
@@ -62,13 +66,6 @@ pub use self::flap::FlapBuilder;
 mod header_bar;
 pub use self::header_bar::HeaderBar;
 pub use self::header_bar::HeaderBarBuilder;
-
-mod header_group;
-pub use self::header_group::HeaderGroup;
-pub use self::header_group::HeaderGroupBuilder;
-
-mod header_group_child;
-pub use self::header_group_child::HeaderGroupChild;
 
 mod keypad;
 pub use self::keypad::Keypad;
@@ -144,11 +141,14 @@ mod window;
 pub use self::window::WindowExt;
 pub use self::window::{Window, NONE_WINDOW};
 
+mod window_title;
+pub use self::window_title::WindowTitle;
+pub use self::window_title::WindowTitleBuilder;
+
 mod enums;
 pub use self::enums::CenteringPolicy;
 pub use self::enums::FlapFoldPolicy;
 pub use self::enums::FlapTransitionType;
-pub use self::enums::HeaderGroupChildType;
 pub use self::enums::LeafletTransitionType;
 pub use self::enums::NavigationDirection;
 pub use self::enums::SqueezerTransitionType;
@@ -160,6 +160,7 @@ pub mod functions;
 pub mod traits {
     pub use super::ActionRowExt;
     pub use super::ApplicationWindowExt;
+    pub use super::BinExt;
     pub use super::ComboRowExt;
     pub use super::ExpanderRowExt;
     pub use super::PreferencesGroupExt;

@@ -39,7 +39,7 @@ impl LeafletPage {
     }
 
     #[doc(alias = "adw_leaflet_page_set_name")]
-    pub fn set_name(&self, name: &str) {
+    pub fn set_name(&self, name: Option<&str>) {
         unsafe {
             ffi::adw_leaflet_page_set_name(self.to_glib_none().0, name.to_glib_none().0);
         }
