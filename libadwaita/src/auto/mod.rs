@@ -16,6 +16,7 @@ pub use self::avatar::Avatar;
 pub use self::avatar::AvatarBuilder;
 
 mod bin;
+pub use self::bin::BinBuilder;
 pub use self::bin::BinExt;
 pub use self::bin::{Bin, NONE_BIN};
 

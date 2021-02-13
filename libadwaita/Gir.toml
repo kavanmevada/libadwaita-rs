@@ -23,7 +23,6 @@ external_libraries = [
 
 generate = [
     "Adw.ApplicationWindow",
-    "Adw.Bin",
     "Adw.CenteringPolicy",
     "Adw.EnumValueObject",
     "Adw.FlapFoldPolicy",
@@ -89,6 +88,11 @@ generate_builder = true
 
 [[object]]
 name = "Adw.Avatar"
+status = "generate"
+generate_builder = true
+
+[[object]]
+name = "Adw.Bin"
 status = "generate"
 generate_builder = true
 
