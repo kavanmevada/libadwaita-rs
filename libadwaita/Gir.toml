@@ -148,11 +148,6 @@ status = "generate"
 generate_builder = true
 
 [[object]]
-name = "Adw.Keypad"
-status = "generate"
-generate_builder = true
-
-[[object]]
 name = "Adw.LeafletPage"
 status = "generate"
 generate_builder = true

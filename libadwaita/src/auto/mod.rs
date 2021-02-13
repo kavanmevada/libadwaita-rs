@@ -67,10 +67,6 @@ mod header_bar;
 pub use self::header_bar::HeaderBar;
 pub use self::header_bar::HeaderBarBuilder;
 
-mod keypad;
-pub use self::keypad::Keypad;
-pub use self::keypad::KeypadBuilder;
-
 mod leaflet;
 pub use self::leaflet::Leaflet;
 pub use self::leaflet::LeafletBuilder;

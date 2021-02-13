@@ -41,7 +41,7 @@ package = "gdk4-sys"
 git = "https://github.com/gtk-rs/gtk4-rs"
 
 [build-dependencies]
-system-deps = "2.0"
+system-deps = "3"
 
 [dev-dependencies]
 shell-words = "1.0.0"
