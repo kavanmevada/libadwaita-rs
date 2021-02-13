@@ -18,7 +18,6 @@ macro_rules! skip_assert_initialized {
     () => {};
 }
 
-pub use glib::Error;
 #[allow(unused_imports)]
 #[allow(clippy::let_and_return)]
 #[allow(clippy::type_complexity)]
