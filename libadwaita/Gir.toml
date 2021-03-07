@@ -57,6 +57,7 @@ manual = [
     "Gtk.Buildable",
     "Gtk.ConstraintTarget",
     "Gtk.Entry",
+    "Gtk.Expression",
     "Gtk.HeaderBar",
     "Gtk.LayoutManager",
     "Gtk.ListBoxRow",
@@ -129,7 +130,12 @@ generate_builder = true
 [[object]]
 name = "Adw.ComboRow"
 status = "generate"
-generate_builder = true
+ignore_builder = true # manual, to use AsRef<Expression>
+manual_traits = ["ComboRowExtManual"]
+    [[object.function]]
+    name = "set_expression"
+    manual = true # use AsRef<Expression> instead of IsA<Expression>
+    doc_trait_name = "ComboRowExtManual"
 
 [[object]]
 name = "Adw.EnumListModel"

@@ -22,6 +22,10 @@ macro_rules! skip_assert_initialized {
 #[allow(clippy::let_and_return)]
 #[allow(clippy::type_complexity)]
 mod auto;
+
+mod combo_row;
+pub use combo_row::ComboRowBuilder;
+
 pub use auto::functions::*;
 pub use auto::*;
 

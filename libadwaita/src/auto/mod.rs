@@ -45,7 +45,6 @@ pub use self::clamp_scrollable::ClampScrollable;
 pub use self::clamp_scrollable::ClampScrollableBuilder;
 
 mod combo_row;
-pub use self::combo_row::ComboRowBuilder;
 pub use self::combo_row::ComboRowExt;
 pub use self::combo_row::{ComboRow, NONE_COMBO_ROW};
 
