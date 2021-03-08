@@ -15,7 +15,7 @@ use std::mem;
 use std::mem::transmute;
 
 glib::wrapper! {
-    pub struct Swipeable(Interface<ffi::AdwSwipeable>) @requires gtk::Widget, gtk::Accessible, gtk::Buildable, gtk::ConstraintTarget;
+    pub struct Swipeable(Interface<ffi::AdwSwipeable, ffi::AdwSwipeableInterface>) @requires gtk::Widget, gtk::Accessible, gtk::Buildable, gtk::ConstraintTarget;
 
     match fn {
         get_type => || ffi::adw_swipeable_get_type(),
