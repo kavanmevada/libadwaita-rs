@@ -6,7 +6,7 @@ use gtk::ListBoxRow;
 pub trait PreferencesRowImpl: ListBoxRowImpl {}
 
 unsafe impl<T: PreferencesRowImpl> IsSubclassable<T> for PreferencesRow {
-    fn override_vfuncs(class: &mut glib::Class<Self>) {
-        <ListBoxRow as IsSubclassable<T>>::override_vfuncs(class);
+    fn class_init(class: &mut glib::Class<Self>) {
+        <ListBoxRow as IsSubclassable<T>>::class_init(class);
     }
 }

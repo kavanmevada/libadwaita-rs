@@ -6,7 +6,7 @@ use gtk::Widget;
 pub trait PreferencesGroupImpl: WidgetImpl {}
 
 unsafe impl<T: PreferencesGroupImpl> IsSubclassable<T> for PreferencesGroup {
-    fn override_vfuncs(class: &mut glib::Class<Self>) {
-        <Widget as IsSubclassable<T>>::override_vfuncs(class);
+    fn class_init(class: &mut glib::Class<Self>) {
+        <Widget as IsSubclassable<T>>::class_init(class);
     }
 }
