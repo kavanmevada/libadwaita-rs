@@ -35,6 +35,10 @@ unsafe impl<T: ActionRowImpl> IsSubclassable<T> for ActionRow {
         let klass = class.as_mut();
         klass.activate = Some(row_activate::<T>);
     }
+
+    fn instance_init(instance: &mut glib::subclass::InitializingObject<T>) {
+        <ListBoxRow as IsSubclassable<T>>::instance_init(instance);
+    }
 }
 
 unsafe extern "C" fn row_activate<T: ActionRowImpl>(ptr: *mut ffi::AdwActionRow) {
