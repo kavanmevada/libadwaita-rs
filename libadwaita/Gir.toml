@@ -9,6 +9,7 @@ generate_safety_asserts = true
 deprecate_by_min_version = true
 # with this option enabled, versions for gir and gir-files saved only to one file to minimize noise
 single_version_file = true
+generate_builder = true
 
 external_libraries = [
    "GLib",
@@ -20,20 +21,35 @@ external_libraries = [
    "Pango",
 ]
 
-
 generate = [
+    "Adw.ActionRow",
     "Adw.ApplicationWindow",
-    "Adw.CenteringPolicy",
-    "Adw.EnumValueObject",
-    "Adw.FlapFoldPolicy",
-    "Adw.FlapTransitionType",
-    "Adw.LeafletTransitionType",
-    "Adw.NavigationDirection",
-    "Adw.SqueezerTransitionType",
-    "Adw.SwipeGroup",
-    "Adw.Swipeable",
-    "Adw.ViewSwitcherPolicy",
+    "Adw.Avatar",
+    "Adw.Bin",
+    "Adw.Carousel",
+    "Adw.CarouselIndicatorDots",
+    "Adw.CarouselIndicatorLines",
+    "Adw.Clamp",
+    "Adw.ClampLayout",
+    "Adw.ClampScrollable",
+    "Adw.ExpanderRow",
+    "Adw.Flap",
+    "Adw.HeaderBar",
+    "Adw.Leaflet",
+    "Adw.LeafletPage",
+    "Adw.PreferencesGroup",
+    "Adw.PreferencesPage",
+    "Adw.PreferencesRow",
+    "Adw.PreferencesWindow",
+    "Adw.Squeezer",
+    "Adw.SqueezerPage",
+    "Adw.StatusPage",
+    "Adw.SwipeTracker",
+    "Adw.ViewSwitcher",
+    "Adw.ViewSwitcherBar",
+    "Adw.ViewSwitcherTitle",
     "Adw.Window",
+    "Adw.WindowTitle",
 ]
 
 manual = [
@@ -83,54 +99,9 @@ name = "Adw.*"
 status = "generate"
 
 [[object]]
-name = "Adw.ActionRow"
-status = "generate"
-generate_builder = true
-
-[[object]]
-name = "Adw.Avatar"
-status = "generate"
-generate_builder = true
-
-[[object]]
-name = "Adw.Bin"
-status = "generate"
-generate_builder = true
-
-[[object]]
-name = "Adw.Carousel"
-status = "generate"
-generate_builder = true
-
-[[object]]
-name = "Adw.CarouselIndicatorDots"
-status = "generate"
-generate_builder = true
-
-[[object]]
-name = "Adw.CarouselIndicatorLines"
-status = "generate"
-generate_builder = true
-
-[[object]]
-name = "Adw.Clamp"
-status = "generate"
-generate_builder = true
-
-[[object]]
-name = "Adw.ClampLayout"
-status = "generate"
-generate_builder = true
-
-[[object]]
-name = "Adw.ClampScrollable" 
-status = "generate" 
-generate_builder = true
-
-[[object]]
 name = "Adw.ComboRow"
 status = "generate"
-ignore_builder = true # manual, to use AsRef<Expression>
+generate_builder = false # manual, to use AsRef<Expression>
 manual_traits = ["ComboRowExtManual"]
     [[object.function]]
     name = "set_expression"
@@ -140,94 +111,63 @@ manual_traits = ["ComboRowExtManual"]
 [[object]]
 name = "Adw.EnumListModel"
 status = "generate"
-ignore_builder = true
-
-[[object]]
-name = "Adw.ExpanderRow"
-status = "generate"
-generate_builder = true
-
-[[object]]
-name = "Adw.Flap"
-status = "generate"
-generate_builder = true
-
-[[object]]
-name = "Adw.HeaderBar"
-status = "generate"
-generate_builder = true
-
-[[object]]
-name = "Adw.LeafletPage"
-status = "generate"
-generate_builder = true
-
-[[object]]
-name = "Adw.Leaflet"
-status = "generate"
-generate_builder = true
-
-[[object]]
-name = "Adw.PreferencesGroup"
-status = "generate"
-generate_builder = true
-
-[[object]]
-name = "Adw.PreferencesPage"
-status = "generate"
-generate_builder = true
-
-[[object]]
-name = "Adw.PreferencesRow"
-status = "generate"
-generate_builder = true
-
-[[object]]
-name = "Adw.PreferencesWindow"
-status = "generate"
-generate_builder = true
-
-[[object]]
-name = "Adw.Squeezer"
-status = "generate"
-generate_builder = true
-
-[[object]]
-name = "Adw.SqueezerPage"
-status = "generate"
-generate_builder = true
-
-[[object]]
-name = "Adw.StatusPage"
-status = "generate"
-generate_builder = true
-
-[[object]]
-name = "Adw.SwipeTracker"
-status = "generate"
-generate_builder = true
+generate_builder = false
 
 [[object]]
 name = "Adw.ValueObject"
 status = "generate"
-ignore_builder = true
+generate_builder = false
+
+# All those are enumerations so it doesn't make sense to generate builders for them
+[[object]]
+name = "Adw.CenteringPolicy"
+status = "generate"
+generate_builder = false
 
 [[object]]
-name = "Adw.ViewSwitcher"
+name = "Adw.EnumValueObject"
 status = "generate"
-generate_builder = true
+generate_builder = false
 
 [[object]]
-name = "Adw.ViewSwitcherBar"
+name = "Adw.FlapFoldPolicy"
 status = "generate"
-generate_builder = true
+generate_builder = false
 
 [[object]]
-name = "Adw.ViewSwitcherTitle"
+name = "Adw.FlapTransitionType"
 status = "generate"
-generate_builder = true
+generate_builder = false
 
 [[object]]
-name = "Adw.WindowTitle"
+name = "Adw.LeafletTransitionType"
 status = "generate"
-generate_builder = true
+generate_builder = false
+
+[[object]]
+name = "Adw.NavigationDirection"
+status = "generate"
+generate_builder = false
+
+[[object]]
+name = "Adw.SqueezerTransitionType"
+status = "generate"
+generate_builder = false
+
+[[object]]
+name = "Adw.ViewSwitcherPolicy"
+status = "generate"
+generate_builder = false
+
+# Only buildable in UI files so no need for the builder pattern.
+[[object]]
+name = "Adw.SwipeGroup"
+status = "generate"
+generate_builder = false
+
+# For an interface it doesn't make sense either
+[[object]]
+name = "Adw.Swipeable"
+status = "generate"
+generate_builder = false
+
