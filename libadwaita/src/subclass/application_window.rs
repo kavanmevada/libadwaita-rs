@@ -9,6 +9,6 @@ unsafe impl<T: AdwApplicationWindowImpl> IsSubclassable<T> for ApplicationWindow
     }
 
     fn instance_init(instance: &mut glib::subclass::InitializingObject<T>) {
-        <gtk::ApplicationWindow  as IsSubclassable<T>>::instance_init(instance);
+        <gtk::ApplicationWindow as IsSubclassable<T>>::instance_init(instance);
     }
 }

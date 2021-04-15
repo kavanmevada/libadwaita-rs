@@ -10,6 +10,6 @@ unsafe impl<T: ComboRowImpl> IsSubclassable<T> for ComboRow {
     }
 
     fn instance_init(instance: &mut glib::subclass::InitializingObject<T>) {
-        <ActionRow  as IsSubclassable<T>>::instance_init(instance);
+        <ActionRow as IsSubclassable<T>>::instance_init(instance);
     }
 }

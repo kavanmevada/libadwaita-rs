@@ -10,6 +10,6 @@ unsafe impl<T: ExpanderRowImpl> IsSubclassable<T> for ExpanderRow {
     }
 
     fn instance_init(instance: &mut glib::subclass::InitializingObject<T>) {
-        <PreferencesRow  as IsSubclassable<T>>::instance_init(instance);
+        <PreferencesRow as IsSubclassable<T>>::instance_init(instance);
     }
 }

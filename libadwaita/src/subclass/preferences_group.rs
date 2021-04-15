@@ -11,6 +11,6 @@ unsafe impl<T: PreferencesGroupImpl> IsSubclassable<T> for PreferencesGroup {
     }
 
     fn instance_init(instance: &mut glib::subclass::InitializingObject<T>) {
-        <Widget  as IsSubclassable<T>>::instance_init(instance);
+        <Widget as IsSubclassable<T>>::instance_init(instance);
     }
 }

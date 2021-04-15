@@ -11,6 +11,6 @@ unsafe impl<T: PreferencesRowImpl> IsSubclassable<T> for PreferencesRow {
     }
 
     fn instance_init(instance: &mut glib::subclass::InitializingObject<T>) {
-        <ListBoxRow  as IsSubclassable<T>>::instance_init(instance);
+        <ListBoxRow as IsSubclassable<T>>::instance_init(instance);
     }
 }
