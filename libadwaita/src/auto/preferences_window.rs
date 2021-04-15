@@ -53,6 +53,7 @@ pub struct PreferencesWindowBuilder {
     focus_visible: Option<bool>,
     focus_widget: Option<gtk::Widget>,
     fullscreened: Option<bool>,
+    handle_menubar_accel: Option<bool>,
     hide_on_close: Option<bool>,
     icon_name: Option<String>,
     maximized: Option<bool>,
@@ -142,6 +143,9 @@ impl PreferencesWindowBuilder {
         }
         if let Some(ref fullscreened) = self.fullscreened {
             properties.push(("fullscreened", fullscreened));
+        }
+        if let Some(ref handle_menubar_accel) = self.handle_menubar_accel {
+            properties.push(("handle-menubar-accel", handle_menubar_accel));
         }
         if let Some(ref hide_on_close) = self.hide_on_close {
             properties.push(("hide-on-close", hide_on_close));
@@ -331,6 +335,11 @@ impl PreferencesWindowBuilder {
 
     pub fn fullscreened(mut self, fullscreened: bool) -> Self {
         self.fullscreened = Some(fullscreened);
+        self
+    }
+
+    pub fn handle_menubar_accel(mut self, handle_menubar_accel: bool) -> Self {
+        self.handle_menubar_accel = Some(handle_menubar_accel);
         self
     }
 
