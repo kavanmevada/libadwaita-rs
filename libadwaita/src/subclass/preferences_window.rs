@@ -10,6 +10,6 @@ unsafe impl<T: PreferencesWindowImpl> IsSubclassable<T> for PreferencesWindow {
     }
 
     fn instance_init(instance: &mut glib::subclass::InitializingObject<T>) {
-        <Window  as IsSubclassable<T>>::instance_init(instance);
+        <Window as IsSubclassable<T>>::instance_init(instance);
     }
 }
