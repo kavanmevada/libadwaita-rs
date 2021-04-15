@@ -8,6 +8,7 @@ pub use self::action_row::ActionRowExt;
 pub use self::action_row::{ActionRow, NONE_ACTION_ROW};
 
 mod application_window;
+pub use self::application_window::ApplicationWindowBuilder;
 pub use self::application_window::ApplicationWindowExt;
 pub use self::application_window::{ApplicationWindow, NONE_APPLICATION_WINDOW};
 
@@ -134,6 +135,7 @@ pub use self::view_switcher_title::ViewSwitcherTitle;
 pub use self::view_switcher_title::ViewSwitcherTitleBuilder;
 
 mod window;
+pub use self::window::WindowBuilder;
 pub use self::window::WindowExt;
 pub use self::window::{Window, NONE_WINDOW};
 
