@@ -19,7 +19,7 @@ glib::wrapper! {
     pub struct CarouselIndicatorLines(Object<ffi::AdwCarouselIndicatorLines, ffi::AdwCarouselIndicatorLinesClass>) @extends gtk::Widget, @implements gtk::Accessible, gtk::Buildable, gtk::ConstraintTarget, gtk::Orientable;
 
     match fn {
-        get_type => || ffi::adw_carousel_indicator_lines_get_type(),
+        type_ => || ffi::adw_carousel_indicator_lines_get_type(),
     }
 }
 

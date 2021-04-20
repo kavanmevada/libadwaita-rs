@@ -19,7 +19,7 @@ glib::wrapper! {
     pub struct CarouselIndicatorDots(Object<ffi::AdwCarouselIndicatorDots, ffi::AdwCarouselIndicatorDotsClass>) @extends gtk::Widget, @implements gtk::Accessible, gtk::Buildable, gtk::ConstraintTarget, gtk::Orientable;
 
     match fn {
-        get_type => || ffi::adw_carousel_indicator_dots_get_type(),
+        type_ => || ffi::adw_carousel_indicator_dots_get_type(),
     }
 }
 

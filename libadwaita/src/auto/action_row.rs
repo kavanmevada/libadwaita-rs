@@ -18,7 +18,7 @@ glib::wrapper! {
     pub struct ActionRow(Object<ffi::AdwActionRow, ffi::AdwActionRowClass>) @extends PreferencesRow, gtk::ListBoxRow, gtk::Widget, @implements gtk::Accessible, gtk::Buildable, gtk::ConstraintTarget, gtk::Actionable;
 
     match fn {
-        get_type => || ffi::adw_action_row_get_type(),
+        type_ => || ffi::adw_action_row_get_type(),
     }
 }
 

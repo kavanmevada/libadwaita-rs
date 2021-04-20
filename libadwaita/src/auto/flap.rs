@@ -21,7 +21,7 @@ glib::wrapper! {
     pub struct Flap(Object<ffi::AdwFlap, ffi::AdwFlapClass>) @extends gtk::Widget, @implements gtk::Accessible, gtk::Buildable, gtk::ConstraintTarget, Swipeable, gtk::Orientable;
 
     match fn {
-        get_type => || ffi::adw_flap_get_type(),
+        type_ => || ffi::adw_flap_get_type(),
     }
 }
 

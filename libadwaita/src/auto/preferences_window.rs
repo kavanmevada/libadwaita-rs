@@ -19,7 +19,7 @@ glib::wrapper! {
     pub struct PreferencesWindow(Object<ffi::AdwPreferencesWindow, ffi::AdwPreferencesWindowClass>) @extends Window, gtk::Window, gtk::Widget, @implements gtk::Accessible, gtk::Buildable, gtk::ConstraintTarget, gtk::Native, gtk::Root, gtk::ShortcutManager;
 
     match fn {
-        get_type => || ffi::adw_preferences_window_get_type(),
+        type_ => || ffi::adw_preferences_window_get_type(),
     }
 }
 

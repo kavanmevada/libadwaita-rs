@@ -19,7 +19,7 @@ glib::wrapper! {
     pub struct Carousel(Object<ffi::AdwCarousel, ffi::AdwCarouselClass>) @extends gtk::Widget, @implements gtk::Accessible, gtk::Buildable, gtk::ConstraintTarget, Swipeable, gtk::Orientable;
 
     match fn {
-        get_type => || ffi::adw_carousel_get_type(),
+        type_ => || ffi::adw_carousel_get_type(),
     }
 }
 
@@ -62,7 +62,7 @@ impl Carousel {
     }
 
     #[doc(alias = "adw_carousel_get_nth_page")]
-    pub fn get_nth_page(&self, n: u32) -> Option<gtk::Widget> {
+    pub fn nth_page(&self, n: u32) -> Option<gtk::Widget> {
         unsafe { from_glib_none(ffi::adw_carousel_get_nth_page(self.to_glib_none().0, n)) }
     }
 

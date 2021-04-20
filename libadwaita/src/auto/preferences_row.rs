@@ -17,7 +17,7 @@ glib::wrapper! {
     pub struct PreferencesRow(Object<ffi::AdwPreferencesRow, ffi::AdwPreferencesRowClass>) @extends gtk::ListBoxRow, gtk::Widget, @implements gtk::Accessible, gtk::Buildable, gtk::ConstraintTarget, gtk::Actionable;
 
     match fn {
-        get_type => || ffi::adw_preferences_row_get_type(),
+        type_ => || ffi::adw_preferences_row_get_type(),
     }
 }
 

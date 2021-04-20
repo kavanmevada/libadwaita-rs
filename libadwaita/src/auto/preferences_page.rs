@@ -18,7 +18,7 @@ glib::wrapper! {
     pub struct PreferencesPage(Object<ffi::AdwPreferencesPage, ffi::AdwPreferencesPageClass>) @extends gtk::Widget, @implements gtk::Accessible, gtk::Buildable, gtk::ConstraintTarget;
 
     match fn {
-        get_type => || ffi::adw_preferences_page_get_type(),
+        type_ => || ffi::adw_preferences_page_get_type(),
     }
 }
 

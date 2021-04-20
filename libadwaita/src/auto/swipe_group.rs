@@ -11,7 +11,7 @@ glib::wrapper! {
     pub struct SwipeGroup(Object<ffi::AdwSwipeGroup, ffi::AdwSwipeGroupClass>) @implements gtk::Buildable;
 
     match fn {
-        get_type => || ffi::adw_swipe_group_get_type(),
+        type_ => || ffi::adw_swipe_group_get_type(),
     }
 }
 

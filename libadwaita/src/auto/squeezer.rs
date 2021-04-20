@@ -20,7 +20,7 @@ glib::wrapper! {
     pub struct Squeezer(Object<ffi::AdwSqueezer, ffi::AdwSqueezerClass>) @extends gtk::Widget, @implements gtk::Accessible, gtk::Buildable, gtk::ConstraintTarget, gtk::Orientable;
 
     match fn {
-        get_type => || ffi::adw_squeezer_get_type(),
+        type_ => || ffi::adw_squeezer_get_type(),
     }
 }
 
@@ -56,7 +56,7 @@ impl Squeezer {
     }
 
     #[doc(alias = "adw_squeezer_get_page")]
-    pub fn get_page<P: IsA<gtk::Widget>>(&self, child: &P) -> Option<SqueezerPage> {
+    pub fn page<P: IsA<gtk::Widget>>(&self, child: &P) -> Option<SqueezerPage> {
         unsafe {
             from_glib_none(ffi::adw_squeezer_get_page(
                 self.to_glib_none().0,

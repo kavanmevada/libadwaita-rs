@@ -18,7 +18,7 @@ glib::wrapper! {
     pub struct SqueezerPage(Object<ffi::AdwSqueezerPage, ffi::AdwSqueezerPageClass>);
 
     match fn {
-        get_type => || ffi::adw_squeezer_page_get_type(),
+        type_ => || ffi::adw_squeezer_page_get_type(),
     }
 }
 

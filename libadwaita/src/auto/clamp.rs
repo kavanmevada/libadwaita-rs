@@ -18,7 +18,7 @@ glib::wrapper! {
     pub struct Clamp(Object<ffi::AdwClamp, ffi::AdwClampClass>) @extends gtk::Widget, @implements gtk::Accessible, gtk::Buildable, gtk::ConstraintTarget, gtk::Orientable;
 
     match fn {
-        get_type => || ffi::adw_clamp_get_type(),
+        type_ => || ffi::adw_clamp_get_type(),
     }
 }
 

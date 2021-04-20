@@ -9,7 +9,7 @@ glib::wrapper! {
     pub struct ValueObject(Object<ffi::AdwValueObject, ffi::AdwValueObjectClass>);
 
     match fn {
-        get_type => || ffi::adw_value_object_get_type(),
+        type_ => || ffi::adw_value_object_get_type(),
     }
 }
 

@@ -17,7 +17,7 @@ glib::wrapper! {
     pub struct Bin(Object<ffi::AdwBin, ffi::AdwBinClass>) @extends gtk::Widget, @implements gtk::Accessible, gtk::Buildable, gtk::ConstraintTarget;
 
     match fn {
-        get_type => || ffi::adw_bin_get_type(),
+        type_ => || ffi::adw_bin_get_type(),
     }
 }
 

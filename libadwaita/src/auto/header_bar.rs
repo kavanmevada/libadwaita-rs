@@ -19,7 +19,7 @@ glib::wrapper! {
     pub struct HeaderBar(Object<ffi::AdwHeaderBar, ffi::AdwHeaderBarClass>) @extends gtk::Widget, @implements gtk::Accessible, gtk::Buildable, gtk::ConstraintTarget;
 
     match fn {
-        get_type => || ffi::adw_header_bar_get_type(),
+        type_ => || ffi::adw_header_bar_get_type(),
     }
 }
 

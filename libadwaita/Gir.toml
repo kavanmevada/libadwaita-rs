@@ -97,6 +97,9 @@ manual = [
 [[object]]
 name = "Adw.*"
 status = "generate"
+    [[object.function]]
+    name = "get_enable_animations"
+    rename = "is_animations_enabled"
 
 [[object]]
 name = "Adw.ComboRow"

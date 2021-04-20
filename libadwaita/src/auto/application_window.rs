@@ -13,7 +13,7 @@ glib::wrapper! {
     pub struct ApplicationWindow(Object<ffi::AdwApplicationWindow, ffi::AdwApplicationWindowClass>) @extends gtk::ApplicationWindow, gtk::Window, gtk::Widget, @implements gtk::Accessible, gtk::Buildable, gtk::ConstraintTarget, gtk::Native, gtk::Root, gtk::ShortcutManager, gio::ActionGroup, gio::ActionMap;
 
     match fn {
-        get_type => || ffi::adw_application_window_get_type(),
+        type_ => || ffi::adw_application_window_get_type(),
     }
 }
 

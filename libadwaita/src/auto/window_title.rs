@@ -18,7 +18,7 @@ glib::wrapper! {
     pub struct WindowTitle(Object<ffi::AdwWindowTitle, ffi::AdwWindowTitleClass>) @extends gtk::Widget, @implements gtk::Accessible, gtk::Buildable, gtk::ConstraintTarget;
 
     match fn {
-        get_type => || ffi::adw_window_title_get_type(),
+        type_ => || ffi::adw_window_title_get_type(),
     }
 }
 
