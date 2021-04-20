@@ -29,24 +29,33 @@ generate = [
     "Adw.Carousel",
     "Adw.CarouselIndicatorDots",
     "Adw.CarouselIndicatorLines",
+    "Adw.CenteringPolicy",
     "Adw.Clamp",
     "Adw.ClampLayout",
     "Adw.ClampScrollable",
     "Adw.ExpanderRow",
     "Adw.Flap",
+    "Adw.FlapFoldPolicy",
+    "Adw.FlapTransitionType",
     "Adw.HeaderBar",
     "Adw.Leaflet",
     "Adw.LeafletPage",
+    "Adw.LeafletTransitionType",
+    "Adw.NavigationDirection",
     "Adw.PreferencesGroup",
     "Adw.PreferencesPage",
     "Adw.PreferencesRow",
     "Adw.PreferencesWindow",
     "Adw.Squeezer",
     "Adw.SqueezerPage",
+    "Adw.SqueezerTransitionType",
     "Adw.StatusPage",
     "Adw.SwipeTracker",
+    "Adw.SwipeGroup",
+    "Adw.Swipeable",
     "Adw.ViewSwitcher",
     "Adw.ViewSwitcherBar",
+    "Adw.ViewSwitcherPolicy",
     "Adw.ViewSwitcherTitle",
     "Adw.Window",
     "Adw.WindowTitle",
@@ -121,56 +130,7 @@ name = "Adw.ValueObject"
 status = "generate"
 generate_builder = false
 
-# All those are enumerations so it doesn't make sense to generate builders for them
-[[object]]
-name = "Adw.CenteringPolicy"
-status = "generate"
-generate_builder = false
-
 [[object]]
 name = "Adw.EnumValueObject"
 status = "generate"
 generate_builder = false
-
-[[object]]
-name = "Adw.FlapFoldPolicy"
-status = "generate"
-generate_builder = false
-
-[[object]]
-name = "Adw.FlapTransitionType"
-status = "generate"
-generate_builder = false
-
-[[object]]
-name = "Adw.LeafletTransitionType"
-status = "generate"
-generate_builder = false
-
-[[object]]
-name = "Adw.NavigationDirection"
-status = "generate"
-generate_builder = false
-
-[[object]]
-name = "Adw.SqueezerTransitionType"
-status = "generate"
-generate_builder = false
-
-[[object]]
-name = "Adw.ViewSwitcherPolicy"
-status = "generate"
-generate_builder = false
-
-# Only buildable in UI files so no need for the builder pattern.
-[[object]]
-name = "Adw.SwipeGroup"
-status = "generate"
-generate_builder = false
-
-# For an interface it doesn't make sense either
-[[object]]
-name = "Adw.Swipeable"
-status = "generate"
-generate_builder = false
-
