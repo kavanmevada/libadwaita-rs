@@ -18,7 +18,7 @@ glib::wrapper! {
     pub struct Swipeable(Interface<ffi::AdwSwipeable, ffi::AdwSwipeableInterface>) @requires gtk::Widget, gtk::Accessible, gtk::Buildable, gtk::ConstraintTarget;
 
     match fn {
-        get_type => || ffi::adw_swipeable_get_type(),
+        type_ => || ffi::adw_swipeable_get_type(),
     }
 }
 
@@ -41,7 +41,7 @@ pub trait SwipeableExt: 'static {
     fn snap_points(&self) -> Vec<f64>;
 
     #[doc(alias = "adw_swipeable_get_swipe_area")]
-    fn get_swipe_area(
+    fn swipe_area(
         &self,
         navigation_direction: NavigationDirection,
         is_drag: bool,
@@ -89,7 +89,7 @@ impl<O: IsA<Swipeable>> SwipeableExt for O {
         }
     }
 
-    fn get_swipe_area(
+    fn swipe_area(
         &self,
         navigation_direction: NavigationDirection,
         is_drag: bool,

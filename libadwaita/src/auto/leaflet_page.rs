@@ -18,7 +18,7 @@ glib::wrapper! {
     pub struct LeafletPage(Object<ffi::AdwLeafletPage, ffi::AdwLeafletPageClass>);
 
     match fn {
-        get_type => || ffi::adw_leaflet_page_get_type(),
+        type_ => || ffi::adw_leaflet_page_get_type(),
     }
 }
 

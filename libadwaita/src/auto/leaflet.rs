@@ -22,7 +22,7 @@ glib::wrapper! {
     pub struct Leaflet(Object<ffi::AdwLeaflet, ffi::AdwLeafletClass>) @extends gtk::Widget, @implements gtk::Accessible, gtk::Buildable, gtk::ConstraintTarget, Swipeable, gtk::Orientable;
 
     match fn {
-        get_type => || ffi::adw_leaflet_get_type(),
+        type_ => || ffi::adw_leaflet_get_type(),
     }
 }
 
@@ -44,7 +44,7 @@ impl Leaflet {
     }
 
     #[doc(alias = "adw_leaflet_get_adjacent_child")]
-    pub fn get_adjacent_child(&self, direction: NavigationDirection) -> Option<gtk::Widget> {
+    pub fn adjacent_child(&self, direction: NavigationDirection) -> Option<gtk::Widget> {
         unsafe {
             from_glib_none(ffi::adw_leaflet_get_adjacent_child(
                 self.to_glib_none().0,
@@ -73,7 +73,7 @@ impl Leaflet {
     }
 
     #[doc(alias = "adw_leaflet_get_child_by_name")]
-    pub fn get_child_by_name(&self, name: &str) -> Option<gtk::Widget> {
+    pub fn child_by_name(&self, name: &str) -> Option<gtk::Widget> {
         unsafe {
             from_glib_none(ffi::adw_leaflet_get_child_by_name(
                 self.to_glib_none().0,
@@ -102,7 +102,7 @@ impl Leaflet {
     }
 
     #[doc(alias = "adw_leaflet_get_homogeneous")]
-    pub fn get_homogeneous(&self, folded: bool, orientation: gtk::Orientation) -> bool {
+    pub fn is_homogeneous(&self, folded: bool, orientation: gtk::Orientation) -> bool {
         unsafe {
             from_glib(ffi::adw_leaflet_get_homogeneous(
                 self.to_glib_none().0,
@@ -123,7 +123,7 @@ impl Leaflet {
     }
 
     #[doc(alias = "adw_leaflet_get_page")]
-    pub fn get_page<P: IsA<gtk::Widget>>(&self, child: &P) -> Option<LeafletPage> {
+    pub fn page<P: IsA<gtk::Widget>>(&self, child: &P) -> Option<LeafletPage> {
         unsafe {
             from_glib_none(ffi::adw_leaflet_get_page(
                 self.to_glib_none().0,

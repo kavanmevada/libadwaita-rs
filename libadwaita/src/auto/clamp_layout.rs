@@ -17,7 +17,7 @@ glib::wrapper! {
     pub struct ClampLayout(Object<ffi::AdwClampLayout, ffi::AdwClampLayoutClass>) @extends gtk::LayoutManager, @implements gtk::Orientable;
 
     match fn {
-        get_type => || ffi::adw_clamp_layout_get_type(),
+        type_ => || ffi::adw_clamp_layout_get_type(),
     }
 }
 

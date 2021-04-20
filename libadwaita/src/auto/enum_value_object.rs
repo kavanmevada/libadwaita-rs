@@ -14,7 +14,7 @@ glib::wrapper! {
     pub struct EnumValueObject(Object<ffi::AdwEnumValueObject, ffi::AdwEnumValueObjectClass>);
 
     match fn {
-        get_type => || ffi::adw_enum_value_object_get_type(),
+        type_ => || ffi::adw_enum_value_object_get_type(),
     }
 }
 

@@ -17,7 +17,7 @@ glib::wrapper! {
     pub struct ComboRow(Object<ffi::AdwComboRow, ffi::AdwComboRowClass>) @extends ActionRow, PreferencesRow, gtk::ListBoxRow, gtk::Widget, @implements gtk::Accessible, gtk::Buildable, gtk::ConstraintTarget, gtk::Actionable;
 
     match fn {
-        get_type => || ffi::adw_combo_row_get_type(),
+        type_ => || ffi::adw_combo_row_get_type(),
     }
 }
 

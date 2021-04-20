@@ -18,7 +18,7 @@ glib::wrapper! {
     pub struct ExpanderRow(Object<ffi::AdwExpanderRow, ffi::AdwExpanderRowClass>) @extends PreferencesRow, gtk::ListBoxRow, gtk::Widget, @implements gtk::Accessible, gtk::Buildable, gtk::ConstraintTarget, gtk::Actionable;
 
     match fn {
-        get_type => || ffi::adw_expander_row_get_type(),
+        type_ => || ffi::adw_expander_row_get_type(),
     }
 }
 

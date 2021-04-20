@@ -20,7 +20,7 @@ glib::wrapper! {
     pub struct SwipeTracker(Object<ffi::AdwSwipeTracker, ffi::AdwSwipeTrackerClass>) @implements gtk::Orientable;
 
     match fn {
-        get_type => || ffi::adw_swipe_tracker_get_type(),
+        type_ => || ffi::adw_swipe_tracker_get_type(),
     }
 }
 

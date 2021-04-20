@@ -18,7 +18,7 @@ glib::wrapper! {
     pub struct StatusPage(Object<ffi::AdwStatusPage, ffi::AdwStatusPageClass>) @extends gtk::Widget, @implements gtk::Accessible, gtk::Buildable, gtk::ConstraintTarget;
 
     match fn {
-        get_type => || ffi::adw_status_page_get_type(),
+        type_ => || ffi::adw_status_page_get_type(),
     }
 }
 

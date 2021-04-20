@@ -18,7 +18,7 @@ glib::wrapper! {
     pub struct Avatar(Object<ffi::AdwAvatar, ffi::AdwAvatarClass>) @extends gtk::Widget, @implements gtk::Accessible, gtk::Buildable, gtk::ConstraintTarget;
 
     match fn {
-        get_type => || ffi::adw_avatar_get_type(),
+        type_ => || ffi::adw_avatar_get_type(),
     }
 }
 

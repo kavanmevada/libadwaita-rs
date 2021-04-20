@@ -18,7 +18,7 @@ glib::wrapper! {
     pub struct ClampScrollable(Object<ffi::AdwClampScrollable, ffi::AdwClampScrollableClass>) @extends gtk::Widget, @implements gtk::Accessible, gtk::Buildable, gtk::ConstraintTarget, gtk::Orientable, gtk::Scrollable;
 
     match fn {
-        get_type => || ffi::adw_clamp_scrollable_get_type(),
+        type_ => || ffi::adw_clamp_scrollable_get_type(),
     }
 }
 

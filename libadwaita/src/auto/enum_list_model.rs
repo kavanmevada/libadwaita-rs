@@ -9,7 +9,7 @@ glib::wrapper! {
     pub struct EnumListModel(Object<ffi::AdwEnumListModel, ffi::AdwEnumListModelClass>) @implements gio::ListModel;
 
     match fn {
-        get_type => || ffi::adw_enum_list_model_get_type(),
+        type_ => || ffi::adw_enum_list_model_get_type(),
     }
 }
 

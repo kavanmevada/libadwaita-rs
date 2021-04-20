@@ -19,7 +19,7 @@ glib::wrapper! {
     pub struct ViewSwitcher(Object<ffi::AdwViewSwitcher, ffi::AdwViewSwitcherClass>) @extends gtk::Widget, @implements gtk::Accessible, gtk::Buildable, gtk::ConstraintTarget;
 
     match fn {
-        get_type => || ffi::adw_view_switcher_get_type(),
+        type_ => || ffi::adw_view_switcher_get_type(),
     }
 }
 
