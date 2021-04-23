@@ -7,6 +7,12 @@ edition = "2018"
 [lib]
 name = "libadwaita"
 
+[features]
+dox = []
+
+[package.metadata.docs.rs]
+features = ["dox"]
+
 [dependencies]
 libc = '0.2'
 
