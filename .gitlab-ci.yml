@@ -1,6 +1,8 @@
 image: "ghcr.io/gtk-rs/gtk4-rs/gtk4:latest"
 
 before_script:
+  - dnf update -y
+  - dnf install -y git meson ninja-build
   - curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y --profile minimal --default-toolchain nightly
   - source $HOME/.cargo/env
   - meson _build --prefix=/usr -Dlibadwaita:tests=false -Dlibadwaita:examples=false -Dlibadwaita:vapi=false
@@ -13,11 +15,21 @@ build:
     - xvfb-run -a -s "-screen 0 1024x768x24" cargo test
 
 pages:
+  variables:
+    RUSTDOCFLAGS: >
+      -Z unstable-options
+      --enable-index-page
+      --extern-html-root-url=gdk_pixbuf=https://gtk-rs.org/gtk-rs/git/docs
+      --extern-html-root-url=gio=https://gtk-rs.org/gtk-rs/git/docs
+      --extern-html-root-url=glib=https://gtk-rs.org/gtk-rs/git/docs
+      --extern-html-root-url=pango=https://gtk-rs.org/gtk-rs/git/docs
+      --extern-html-root-url=gdk=https://gtk-rs.org/gtk4-rs/git/docs
+      --extern-html-root-url=gtk=https://gtk-rs.org/gtk4-rs/git/docs
   script:
     # generate the docs
     - cargo install rustdoc-stripper
     - python3 ./generator.py --embed-docs --yes ./
-    - cargo doc -p libadwaita -p libadwaita-sys --no-deps --features "dox"
+    - cargo doc -p libadwaita -p libadwaita-sys --no-deps
     - mv target/doc/ public
   artifacts:
     paths:
