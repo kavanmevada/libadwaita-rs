@@ -1,4 +1,4 @@
-image: 'docker.io/bilelmoussaoui/gtk4'
+image: "ghcr.io/gtk-rs/gtk4-rs/gtk4:latest"
 
 before_script:
   - curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y --profile minimal --default-toolchain nightly
@@ -15,12 +15,9 @@ build:
 pages:
   script:
     # generate the docs
-    - cp ./Adw-1.gir ./gir-files
-    - cargo build --release --manifest-path ./gir/Cargo.toml
-    - ./gir/target/release/gir -c ./libadwaita/Gir.toml -d ./gir-files --doc-target-path docs.md -m doc
     - cargo install rustdoc-stripper
-    - /root/.cargo/bin/rustdoc-stripper -g -o ./libadwaita/docs.md
-    - cargo doc -p libadwaita -p libadwaita-sys --no-deps --all-features
+    - python3 ./generator.py --embed-docs --yes ./
+    - cargo doc -p libadwaita -p libadwaita-sys --no-deps --features "dox"
     - mv target/doc/ public
   artifacts:
     paths:
