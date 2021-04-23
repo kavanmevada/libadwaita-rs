@@ -16,6 +16,7 @@ build:
 
 pages:
   variables:
+    GIT_SUBMODULE_STRATEGY: recursive
     RUSTDOCFLAGS: >
       -Z unstable-options
       --enable-index-page
