@@ -29,6 +29,7 @@ pages:
   script:
     # generate the docs
     - cargo install rustdoc-stripper
+    - rustup component add rustfmt
     - ./generator.py --embed-docs --yes ./
     - cargo doc -p libadwaita -p libadwaita-sys --features dox --no-deps
     - mv target/doc/ public
