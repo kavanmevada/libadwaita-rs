@@ -224,8 +224,8 @@ impl ComboRowBuilder {
         if let Some(ref action_target) = self.action_target {
             properties.push(("action-target", action_target));
         }
-        let ret = glib::Object::new::<ComboRow>(&properties).expect("object new");
-        ret
+
+        glib::Object::new::<ComboRow>(&properties).expect("object new")
     }
 
     pub fn expression<P: AsRef<gtk::Expression>>(mut self, expression: &P) -> Self {
