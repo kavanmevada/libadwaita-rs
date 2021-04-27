@@ -3,7 +3,7 @@ image: "ghcr.io/gtk-rs/gtk4-rs/gtk4:latest"
 before_script:
   - dnf update -y
   - dnf install -y git meson ninja-build
-  - curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y --profile minimal --default-toolchain nightly
+  - curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y --profile minimal --default-toolchain nightly --component rustfmt
   - source $HOME/.cargo/env
   - meson _build --prefix=/usr -Dlibadwaita:tests=false -Dlibadwaita:examples=false -Dlibadwaita:vapi=false
   - ninja -C _build install
@@ -29,7 +29,6 @@ pages:
   script:
     # generate the docs
     - cargo install rustdoc-stripper
-    - rustup component add rustfmt
     - ./generator.py --embed-docs --yes ./
     - cargo doc -p libadwaita -p libadwaita-sys --features dox --no-deps
     - mv target/doc/ public
