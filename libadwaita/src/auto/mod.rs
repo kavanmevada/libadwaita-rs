@@ -5,12 +5,10 @@
 
 mod action_row;
 pub use self::action_row::ActionRowBuilder;
-pub use self::action_row::ActionRowExt;
 pub use self::action_row::{ActionRow, NONE_ACTION_ROW};
 
 mod application_window;
 pub use self::application_window::ApplicationWindowBuilder;
-pub use self::application_window::ApplicationWindowExt;
 pub use self::application_window::{ApplicationWindow, NONE_APPLICATION_WINDOW};
 
 mod avatar;
@@ -19,7 +17,6 @@ pub use self::avatar::AvatarBuilder;
 
 mod bin;
 pub use self::bin::BinBuilder;
-pub use self::bin::BinExt;
 pub use self::bin::{Bin, NONE_BIN};
 
 mod carousel;
@@ -47,7 +44,6 @@ pub use self::clamp_scrollable::ClampScrollable;
 pub use self::clamp_scrollable::ClampScrollableBuilder;
 
 mod combo_row;
-pub use self::combo_row::ComboRowExt;
 pub use self::combo_row::{ComboRow, NONE_COMBO_ROW};
 
 mod enum_list_model;
@@ -58,7 +54,6 @@ pub use self::enum_value_object::EnumValueObject;
 
 mod expander_row;
 pub use self::expander_row::ExpanderRowBuilder;
-pub use self::expander_row::ExpanderRowExt;
 pub use self::expander_row::{ExpanderRow, NONE_EXPANDER_ROW};
 
 mod flap;
@@ -79,22 +74,18 @@ pub use self::leaflet_page::LeafletPageBuilder;
 
 mod preferences_group;
 pub use self::preferences_group::PreferencesGroupBuilder;
-pub use self::preferences_group::PreferencesGroupExt;
 pub use self::preferences_group::{PreferencesGroup, NONE_PREFERENCES_GROUP};
 
 mod preferences_page;
 pub use self::preferences_page::PreferencesPageBuilder;
-pub use self::preferences_page::PreferencesPageExt;
 pub use self::preferences_page::{PreferencesPage, NONE_PREFERENCES_PAGE};
 
 mod preferences_row;
 pub use self::preferences_row::PreferencesRowBuilder;
-pub use self::preferences_row::PreferencesRowExt;
 pub use self::preferences_row::{PreferencesRow, NONE_PREFERENCES_ROW};
 
 mod preferences_window;
 pub use self::preferences_window::PreferencesWindowBuilder;
-pub use self::preferences_window::PreferencesWindowExt;
 pub use self::preferences_window::{PreferencesWindow, NONE_PREFERENCES_WINDOW};
 
 mod squeezer;
@@ -117,7 +108,6 @@ pub use self::swipe_tracker::SwipeTracker;
 pub use self::swipe_tracker::SwipeTrackerBuilder;
 
 mod swipeable;
-pub use self::swipeable::SwipeableExt;
 pub use self::swipeable::{Swipeable, NONE_SWIPEABLE};
 
 mod value_object;
@@ -137,7 +127,6 @@ pub use self::view_switcher_title::ViewSwitcherTitleBuilder;
 
 mod window;
 pub use self::window::WindowBuilder;
-pub use self::window::WindowExt;
 pub use self::window::{Window, NONE_WINDOW};
 
 mod window_title;
@@ -157,15 +146,15 @@ pub mod functions;
 
 #[doc(hidden)]
 pub mod traits {
-    pub use super::ActionRowExt;
-    pub use super::ApplicationWindowExt;
-    pub use super::BinExt;
-    pub use super::ComboRowExt;
-    pub use super::ExpanderRowExt;
-    pub use super::PreferencesGroupExt;
-    pub use super::PreferencesPageExt;
-    pub use super::PreferencesRowExt;
-    pub use super::PreferencesWindowExt;
-    pub use super::SwipeableExt;
-    pub use super::WindowExt;
+    pub use super::action_row::ActionRowExt;
+    pub use super::application_window::ApplicationWindowExt;
+    pub use super::bin::BinExt;
+    pub use super::combo_row::ComboRowExt;
+    pub use super::expander_row::ExpanderRowExt;
+    pub use super::preferences_group::PreferencesGroupExt;
+    pub use super::preferences_page::PreferencesPageExt;
+    pub use super::preferences_row::PreferencesRowExt;
+    pub use super::preferences_window::PreferencesWindowExt;
+    pub use super::swipeable::SwipeableExt;
+    pub use super::window::WindowExt;
 }

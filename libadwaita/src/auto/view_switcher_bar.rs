@@ -49,14 +49,14 @@ impl ViewSwitcherBar {
     #[doc(alias = "adw_view_switcher_bar_set_policy")]
     pub fn set_policy(&self, policy: ViewSwitcherPolicy) {
         unsafe {
-            ffi::adw_view_switcher_bar_set_policy(self.to_glib_none().0, policy.to_glib());
+            ffi::adw_view_switcher_bar_set_policy(self.to_glib_none().0, policy.into_glib());
         }
     }
 
     #[doc(alias = "adw_view_switcher_bar_set_reveal")]
     pub fn set_reveal(&self, reveal: bool) {
         unsafe {
-            ffi::adw_view_switcher_bar_set_reveal(self.to_glib_none().0, reveal.to_glib());
+            ffi::adw_view_switcher_bar_set_reveal(self.to_glib_none().0, reveal.into_glib());
         }
     }
 

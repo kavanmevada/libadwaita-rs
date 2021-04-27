@@ -65,7 +65,7 @@ impl SwipeTracker {
         unsafe {
             ffi::adw_swipe_tracker_set_allow_mouse_drag(
                 self.to_glib_none().0,
-                allow_mouse_drag.to_glib(),
+                allow_mouse_drag.into_glib(),
             );
         }
     }
@@ -73,14 +73,14 @@ impl SwipeTracker {
     #[doc(alias = "adw_swipe_tracker_set_enabled")]
     pub fn set_enabled(&self, enabled: bool) {
         unsafe {
-            ffi::adw_swipe_tracker_set_enabled(self.to_glib_none().0, enabled.to_glib());
+            ffi::adw_swipe_tracker_set_enabled(self.to_glib_none().0, enabled.into_glib());
         }
     }
 
     #[doc(alias = "adw_swipe_tracker_set_reversed")]
     pub fn set_reversed(&self, reversed: bool) {
         unsafe {
-            ffi::adw_swipe_tracker_set_reversed(self.to_glib_none().0, reversed.to_glib());
+            ffi::adw_swipe_tracker_set_reversed(self.to_glib_none().0, reversed.into_glib());
         }
     }
 

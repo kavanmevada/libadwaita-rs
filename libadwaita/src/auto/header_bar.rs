@@ -98,7 +98,7 @@ impl HeaderBar {
         unsafe {
             ffi::adw_header_bar_set_centering_policy(
                 self.to_glib_none().0,
-                centering_policy.to_glib(),
+                centering_policy.into_glib(),
             );
         }
     }
@@ -118,7 +118,7 @@ impl HeaderBar {
         unsafe {
             ffi::adw_header_bar_set_show_end_title_buttons(
                 self.to_glib_none().0,
-                setting.to_glib(),
+                setting.into_glib(),
             );
         }
     }
@@ -128,7 +128,7 @@ impl HeaderBar {
         unsafe {
             ffi::adw_header_bar_set_show_start_title_buttons(
                 self.to_glib_none().0,
-                setting.to_glib(),
+                setting.into_glib(),
             );
         }
     }

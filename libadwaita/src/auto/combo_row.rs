@@ -181,7 +181,7 @@ impl<O: IsA<ComboRow>> ComboRowExt for O {
         unsafe {
             ffi::adw_combo_row_set_use_subtitle(
                 self.as_ref().to_glib_none().0,
-                use_subtitle.to_glib(),
+                use_subtitle.into_glib(),
             );
         }
     }

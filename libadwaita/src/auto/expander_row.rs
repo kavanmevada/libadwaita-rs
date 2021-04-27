@@ -579,14 +579,17 @@ impl<O: IsA<ExpanderRow>> ExpanderRowExt for O {
         unsafe {
             ffi::adw_expander_row_set_enable_expansion(
                 self.as_ref().to_glib_none().0,
-                enable_expansion.to_glib(),
+                enable_expansion.into_glib(),
             );
         }
     }
 
     fn set_expanded(&self, expanded: bool) {
         unsafe {
-            ffi::adw_expander_row_set_expanded(self.as_ref().to_glib_none().0, expanded.to_glib());
+            ffi::adw_expander_row_set_expanded(
+                self.as_ref().to_glib_none().0,
+                expanded.into_glib(),
+            );
         }
     }
 
@@ -603,7 +606,7 @@ impl<O: IsA<ExpanderRow>> ExpanderRowExt for O {
         unsafe {
             ffi::adw_expander_row_set_show_enable_switch(
                 self.as_ref().to_glib_none().0,
-                show_enable_switch.to_glib(),
+                show_enable_switch.into_glib(),
             );
         }
     }

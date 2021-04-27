@@ -131,7 +131,7 @@ impl Flap {
     #[doc(alias = "adw_flap_set_flap_position")]
     pub fn set_flap_position(&self, position: gtk::PackType) {
         unsafe {
-            ffi::adw_flap_set_flap_position(self.to_glib_none().0, position.to_glib());
+            ffi::adw_flap_set_flap_position(self.to_glib_none().0, position.into_glib());
         }
     }
 
@@ -145,21 +145,21 @@ impl Flap {
     #[doc(alias = "adw_flap_set_fold_policy")]
     pub fn set_fold_policy(&self, policy: FlapFoldPolicy) {
         unsafe {
-            ffi::adw_flap_set_fold_policy(self.to_glib_none().0, policy.to_glib());
+            ffi::adw_flap_set_fold_policy(self.to_glib_none().0, policy.into_glib());
         }
     }
 
     #[doc(alias = "adw_flap_set_locked")]
     pub fn set_locked(&self, locked: bool) {
         unsafe {
-            ffi::adw_flap_set_locked(self.to_glib_none().0, locked.to_glib());
+            ffi::adw_flap_set_locked(self.to_glib_none().0, locked.into_glib());
         }
     }
 
     #[doc(alias = "adw_flap_set_modal")]
     pub fn set_modal(&self, modal: bool) {
         unsafe {
-            ffi::adw_flap_set_modal(self.to_glib_none().0, modal.to_glib());
+            ffi::adw_flap_set_modal(self.to_glib_none().0, modal.into_glib());
         }
     }
 
@@ -173,7 +173,7 @@ impl Flap {
     #[doc(alias = "adw_flap_set_reveal_flap")]
     pub fn set_reveal_flap(&self, reveal_flap: bool) {
         unsafe {
-            ffi::adw_flap_set_reveal_flap(self.to_glib_none().0, reveal_flap.to_glib());
+            ffi::adw_flap_set_reveal_flap(self.to_glib_none().0, reveal_flap.into_glib());
         }
     }
 
@@ -190,21 +190,21 @@ impl Flap {
     #[doc(alias = "adw_flap_set_swipe_to_close")]
     pub fn set_swipe_to_close(&self, swipe_to_close: bool) {
         unsafe {
-            ffi::adw_flap_set_swipe_to_close(self.to_glib_none().0, swipe_to_close.to_glib());
+            ffi::adw_flap_set_swipe_to_close(self.to_glib_none().0, swipe_to_close.into_glib());
         }
     }
 
     #[doc(alias = "adw_flap_set_swipe_to_open")]
     pub fn set_swipe_to_open(&self, swipe_to_open: bool) {
         unsafe {
-            ffi::adw_flap_set_swipe_to_open(self.to_glib_none().0, swipe_to_open.to_glib());
+            ffi::adw_flap_set_swipe_to_open(self.to_glib_none().0, swipe_to_open.into_glib());
         }
     }
 
     #[doc(alias = "adw_flap_set_transition_type")]
     pub fn set_transition_type(&self, transition_type: FlapTransitionType) {
         unsafe {
-            ffi::adw_flap_set_transition_type(self.to_glib_none().0, transition_type.to_glib());
+            ffi::adw_flap_set_transition_type(self.to_glib_none().0, transition_type.into_glib());
         }
     }
 

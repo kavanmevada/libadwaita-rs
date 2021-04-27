@@ -141,7 +141,7 @@ impl Carousel {
         unsafe {
             ffi::adw_carousel_set_allow_mouse_drag(
                 self.to_glib_none().0,
-                allow_mouse_drag.to_glib(),
+                allow_mouse_drag.into_glib(),
             );
         }
     }
@@ -156,7 +156,7 @@ impl Carousel {
     #[doc(alias = "adw_carousel_set_interactive")]
     pub fn set_interactive(&self, interactive: bool) {
         unsafe {
-            ffi::adw_carousel_set_interactive(self.to_glib_none().0, interactive.to_glib());
+            ffi::adw_carousel_set_interactive(self.to_glib_none().0, interactive.into_glib());
         }
     }
 

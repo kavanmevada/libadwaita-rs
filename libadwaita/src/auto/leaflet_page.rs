@@ -49,7 +49,7 @@ impl LeafletPage {
     #[doc(alias = "adw_leaflet_page_set_navigatable")]
     pub fn set_navigatable(&self, navigatable: bool) {
         unsafe {
-            ffi::adw_leaflet_page_set_navigatable(self.to_glib_none().0, navigatable.to_glib());
+            ffi::adw_leaflet_page_set_navigatable(self.to_glib_none().0, navigatable.into_glib());
         }
     }
 

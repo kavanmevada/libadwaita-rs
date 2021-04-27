@@ -53,14 +53,14 @@ impl ViewSwitcher {
     #[doc(alias = "adw_view_switcher_set_narrow_ellipsize")]
     pub fn set_narrow_ellipsize(&self, mode: pango::EllipsizeMode) {
         unsafe {
-            ffi::adw_view_switcher_set_narrow_ellipsize(self.to_glib_none().0, mode.to_glib());
+            ffi::adw_view_switcher_set_narrow_ellipsize(self.to_glib_none().0, mode.into_glib());
         }
     }
 
     #[doc(alias = "adw_view_switcher_set_policy")]
     pub fn set_policy(&self, policy: ViewSwitcherPolicy) {
         unsafe {
-            ffi::adw_view_switcher_set_policy(self.to_glib_none().0, policy.to_glib());
+            ffi::adw_view_switcher_set_policy(self.to_glib_none().0, policy.into_glib());
         }
     }
 

@@ -88,7 +88,7 @@ impl ViewSwitcherTitle {
     #[doc(alias = "adw_view_switcher_title_set_policy")]
     pub fn set_policy(&self, policy: ViewSwitcherPolicy) {
         unsafe {
-            ffi::adw_view_switcher_title_set_policy(self.to_glib_none().0, policy.to_glib());
+            ffi::adw_view_switcher_title_set_policy(self.to_glib_none().0, policy.into_glib());
         }
     }
 
@@ -121,7 +121,7 @@ impl ViewSwitcherTitle {
         unsafe {
             ffi::adw_view_switcher_title_set_view_switcher_enabled(
                 self.to_glib_none().0,
-                enabled.to_glib(),
+                enabled.into_glib(),
             );
         }
     }

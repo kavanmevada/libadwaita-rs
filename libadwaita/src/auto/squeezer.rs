@@ -115,7 +115,7 @@ impl Squeezer {
     #[doc(alias = "adw_squeezer_set_homogeneous")]
     pub fn set_homogeneous(&self, homogeneous: bool) {
         unsafe {
-            ffi::adw_squeezer_set_homogeneous(self.to_glib_none().0, homogeneous.to_glib());
+            ffi::adw_squeezer_set_homogeneous(self.to_glib_none().0, homogeneous.into_glib());
         }
     }
 
@@ -124,7 +124,7 @@ impl Squeezer {
         unsafe {
             ffi::adw_squeezer_set_interpolate_size(
                 self.to_glib_none().0,
-                interpolate_size.to_glib(),
+                interpolate_size.into_glib(),
             );
         }
     }
@@ -139,7 +139,7 @@ impl Squeezer {
     #[doc(alias = "adw_squeezer_set_transition_type")]
     pub fn set_transition_type(&self, transition: SqueezerTransitionType) {
         unsafe {
-            ffi::adw_squeezer_set_transition_type(self.to_glib_none().0, transition.to_glib());
+            ffi::adw_squeezer_set_transition_type(self.to_glib_none().0, transition.into_glib());
         }
     }
 

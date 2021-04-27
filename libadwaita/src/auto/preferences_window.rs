@@ -632,7 +632,7 @@ impl<O: IsA<PreferencesWindow>> PreferencesWindowExt for O {
         unsafe {
             ffi::adw_preferences_window_set_can_swipe_back(
                 self.as_ref().to_glib_none().0,
-                can_swipe_back.to_glib(),
+                can_swipe_back.into_glib(),
             );
         }
     }
@@ -641,7 +641,7 @@ impl<O: IsA<PreferencesWindow>> PreferencesWindowExt for O {
         unsafe {
             ffi::adw_preferences_window_set_search_enabled(
                 self.as_ref().to_glib_none().0,
-                search_enabled.to_glib(),
+                search_enabled.into_glib(),
             );
         }
     }

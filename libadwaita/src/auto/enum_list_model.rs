@@ -18,7 +18,7 @@ impl EnumListModel {
     #[doc(alias = "adw_enum_list_model_new")]
     pub fn new(enum_type: glib::types::Type) -> EnumListModel {
         assert_initialized_main_thread!();
-        unsafe { from_glib_full(ffi::adw_enum_list_model_new(enum_type.to_glib())) }
+        unsafe { from_glib_full(ffi::adw_enum_list_model_new(enum_type.into_glib())) }
     }
 
     #[doc(alias = "adw_enum_list_model_find_position")]

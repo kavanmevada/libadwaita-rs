@@ -99,8 +99,8 @@ impl<O: IsA<Swipeable>> SwipeableExt for O {
             let mut rect = gdk::Rectangle::uninitialized();
             ffi::adw_swipeable_get_swipe_area(
                 self.as_ref().to_glib_none().0,
-                navigation_direction.to_glib(),
-                is_drag.to_glib(),
+                navigation_direction.into_glib(),
+                is_drag.into_glib(),
                 rect.to_glib_none_mut().0,
             );
             rect

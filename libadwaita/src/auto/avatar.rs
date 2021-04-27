@@ -31,7 +31,7 @@ impl Avatar {
             gtk::Widget::from_glib_none(ffi::adw_avatar_new(
                 size,
                 text.to_glib_none().0,
-                show_initials.to_glib(),
+                show_initials.into_glib(),
             ))
             .unsafe_cast()
         }
@@ -122,7 +122,7 @@ impl Avatar {
     #[doc(alias = "adw_avatar_set_show_initials")]
     pub fn set_show_initials(&self, show_initials: bool) {
         unsafe {
-            ffi::adw_avatar_set_show_initials(self.to_glib_none().0, show_initials.to_glib());
+            ffi::adw_avatar_set_show_initials(self.to_glib_none().0, show_initials.into_glib());
         }
     }
 

@@ -438,7 +438,7 @@ impl<O: IsA<PreferencesRow>> PreferencesRowExt for O {
         unsafe {
             ffi::adw_preferences_row_set_use_underline(
                 self.as_ref().to_glib_none().0,
-                use_underline.to_glib(),
+                use_underline.into_glib(),
             );
         }
     }

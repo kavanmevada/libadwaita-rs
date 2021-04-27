@@ -49,7 +49,7 @@ impl Leaflet {
         unsafe {
             from_glib_none(ffi::adw_leaflet_get_adjacent_child(
                 self.to_glib_none().0,
-                direction.to_glib(),
+                direction.into_glib(),
             ))
         }
     }
@@ -107,8 +107,8 @@ impl Leaflet {
         unsafe {
             from_glib(ffi::adw_leaflet_get_homogeneous(
                 self.to_glib_none().0,
-                folded.to_glib(),
-                orientation.to_glib(),
+                folded.into_glib(),
+                orientation.into_glib(),
             ))
         }
     }
@@ -177,7 +177,7 @@ impl Leaflet {
         unsafe {
             from_glib(ffi::adw_leaflet_navigate(
                 self.to_glib_none().0,
-                direction.to_glib(),
+                direction.into_glib(),
             ))
         }
     }
@@ -217,7 +217,7 @@ impl Leaflet {
     #[doc(alias = "adw_leaflet_set_can_swipe_back")]
     pub fn set_can_swipe_back(&self, can_swipe_back: bool) {
         unsafe {
-            ffi::adw_leaflet_set_can_swipe_back(self.to_glib_none().0, can_swipe_back.to_glib());
+            ffi::adw_leaflet_set_can_swipe_back(self.to_glib_none().0, can_swipe_back.into_glib());
         }
     }
 
@@ -226,7 +226,7 @@ impl Leaflet {
         unsafe {
             ffi::adw_leaflet_set_can_swipe_forward(
                 self.to_glib_none().0,
-                can_swipe_forward.to_glib(),
+                can_swipe_forward.into_glib(),
             );
         }
     }
@@ -234,7 +234,7 @@ impl Leaflet {
     #[doc(alias = "adw_leaflet_set_can_unfold")]
     pub fn set_can_unfold(&self, can_unfold: bool) {
         unsafe {
-            ffi::adw_leaflet_set_can_unfold(self.to_glib_none().0, can_unfold.to_glib());
+            ffi::adw_leaflet_set_can_unfold(self.to_glib_none().0, can_unfold.into_glib());
         }
     }
 
@@ -250,9 +250,9 @@ impl Leaflet {
         unsafe {
             ffi::adw_leaflet_set_homogeneous(
                 self.to_glib_none().0,
-                folded.to_glib(),
-                orientation.to_glib(),
-                homogeneous.to_glib(),
+                folded.into_glib(),
+                orientation.into_glib(),
+                homogeneous.into_glib(),
             );
         }
     }
@@ -262,7 +262,7 @@ impl Leaflet {
         unsafe {
             ffi::adw_leaflet_set_interpolate_size(
                 self.to_glib_none().0,
-                interpolate_size.to_glib(),
+                interpolate_size.into_glib(),
             );
         }
     }
@@ -277,7 +277,7 @@ impl Leaflet {
     #[doc(alias = "adw_leaflet_set_transition_type")]
     pub fn set_transition_type(&self, transition: LeafletTransitionType) {
         unsafe {
-            ffi::adw_leaflet_set_transition_type(self.to_glib_none().0, transition.to_glib());
+            ffi::adw_leaflet_set_transition_type(self.to_glib_none().0, transition.into_glib());
         }
     }
 

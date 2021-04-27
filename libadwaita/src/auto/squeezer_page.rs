@@ -37,7 +37,7 @@ impl SqueezerPage {
     #[doc(alias = "adw_squeezer_page_set_enabled")]
     pub fn set_enabled(&self, enabled: bool) {
         unsafe {
-            ffi::adw_squeezer_page_set_enabled(self.to_glib_none().0, enabled.to_glib());
+            ffi::adw_squeezer_page_set_enabled(self.to_glib_none().0, enabled.into_glib());
         }
     }
 

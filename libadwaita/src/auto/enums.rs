@@ -37,11 +37,11 @@ impl fmt::Display for CenteringPolicy {
 }
 
 #[doc(hidden)]
-impl ToGlib for CenteringPolicy {
+impl IntoGlib for CenteringPolicy {
     type GlibType = ffi::AdwCenteringPolicy;
 
-    fn to_glib(&self) -> ffi::AdwCenteringPolicy {
-        match *self {
+    fn into_glib(self) -> ffi::AdwCenteringPolicy {
+        match self {
             CenteringPolicy::Loose => ffi::ADW_CENTERING_POLICY_LOOSE,
             CenteringPolicy::Strict => ffi::ADW_CENTERING_POLICY_STRICT,
             CenteringPolicy::__Unknown(value) => value,
@@ -84,7 +84,7 @@ impl ToValue for CenteringPolicy {
     fn to_value(&self) -> glib::Value {
         let mut value = glib::Value::for_value_type::<CenteringPolicy>();
         unsafe {
-            glib::gobject_ffi::g_value_set_enum(value.to_glib_none_mut().0, self.to_glib());
+            glib::gobject_ffi::g_value_set_enum(value.to_glib_none_mut().0, self.into_glib());
         }
         value
     }
@@ -124,11 +124,11 @@ impl fmt::Display for FlapFoldPolicy {
 }
 
 #[doc(hidden)]
-impl ToGlib for FlapFoldPolicy {
+impl IntoGlib for FlapFoldPolicy {
     type GlibType = ffi::AdwFlapFoldPolicy;
 
-    fn to_glib(&self) -> ffi::AdwFlapFoldPolicy {
-        match *self {
+    fn into_glib(self) -> ffi::AdwFlapFoldPolicy {
+        match self {
             FlapFoldPolicy::Never => ffi::ADW_FLAP_FOLD_POLICY_NEVER,
             FlapFoldPolicy::Always => ffi::ADW_FLAP_FOLD_POLICY_ALWAYS,
             FlapFoldPolicy::Auto => ffi::ADW_FLAP_FOLD_POLICY_AUTO,
@@ -173,7 +173,7 @@ impl ToValue for FlapFoldPolicy {
     fn to_value(&self) -> glib::Value {
         let mut value = glib::Value::for_value_type::<FlapFoldPolicy>();
         unsafe {
-            glib::gobject_ffi::g_value_set_enum(value.to_glib_none_mut().0, self.to_glib());
+            glib::gobject_ffi::g_value_set_enum(value.to_glib_none_mut().0, self.into_glib());
         }
         value
     }
@@ -213,11 +213,11 @@ impl fmt::Display for FlapTransitionType {
 }
 
 #[doc(hidden)]
-impl ToGlib for FlapTransitionType {
+impl IntoGlib for FlapTransitionType {
     type GlibType = ffi::AdwFlapTransitionType;
 
-    fn to_glib(&self) -> ffi::AdwFlapTransitionType {
-        match *self {
+    fn into_glib(self) -> ffi::AdwFlapTransitionType {
+        match self {
             FlapTransitionType::Over => ffi::ADW_FLAP_TRANSITION_TYPE_OVER,
             FlapTransitionType::Under => ffi::ADW_FLAP_TRANSITION_TYPE_UNDER,
             FlapTransitionType::Slide => ffi::ADW_FLAP_TRANSITION_TYPE_SLIDE,
@@ -262,7 +262,7 @@ impl ToValue for FlapTransitionType {
     fn to_value(&self) -> glib::Value {
         let mut value = glib::Value::for_value_type::<FlapTransitionType>();
         unsafe {
-            glib::gobject_ffi::g_value_set_enum(value.to_glib_none_mut().0, self.to_glib());
+            glib::gobject_ffi::g_value_set_enum(value.to_glib_none_mut().0, self.into_glib());
         }
         value
     }
@@ -302,11 +302,11 @@ impl fmt::Display for LeafletTransitionType {
 }
 
 #[doc(hidden)]
-impl ToGlib for LeafletTransitionType {
+impl IntoGlib for LeafletTransitionType {
     type GlibType = ffi::AdwLeafletTransitionType;
 
-    fn to_glib(&self) -> ffi::AdwLeafletTransitionType {
-        match *self {
+    fn into_glib(self) -> ffi::AdwLeafletTransitionType {
+        match self {
             LeafletTransitionType::Over => ffi::ADW_LEAFLET_TRANSITION_TYPE_OVER,
             LeafletTransitionType::Under => ffi::ADW_LEAFLET_TRANSITION_TYPE_UNDER,
             LeafletTransitionType::Slide => ffi::ADW_LEAFLET_TRANSITION_TYPE_SLIDE,
@@ -351,7 +351,7 @@ impl ToValue for LeafletTransitionType {
     fn to_value(&self) -> glib::Value {
         let mut value = glib::Value::for_value_type::<LeafletTransitionType>();
         unsafe {
-            glib::gobject_ffi::g_value_set_enum(value.to_glib_none_mut().0, self.to_glib());
+            glib::gobject_ffi::g_value_set_enum(value.to_glib_none_mut().0, self.into_glib());
         }
         value
     }
@@ -388,11 +388,11 @@ impl fmt::Display for NavigationDirection {
 }
 
 #[doc(hidden)]
-impl ToGlib for NavigationDirection {
+impl IntoGlib for NavigationDirection {
     type GlibType = ffi::AdwNavigationDirection;
 
-    fn to_glib(&self) -> ffi::AdwNavigationDirection {
-        match *self {
+    fn into_glib(self) -> ffi::AdwNavigationDirection {
+        match self {
             NavigationDirection::Back => ffi::ADW_NAVIGATION_DIRECTION_BACK,
             NavigationDirection::Forward => ffi::ADW_NAVIGATION_DIRECTION_FORWARD,
             NavigationDirection::__Unknown(value) => value,
@@ -435,7 +435,7 @@ impl ToValue for NavigationDirection {
     fn to_value(&self) -> glib::Value {
         let mut value = glib::Value::for_value_type::<NavigationDirection>();
         unsafe {
-            glib::gobject_ffi::g_value_set_enum(value.to_glib_none_mut().0, self.to_glib());
+            glib::gobject_ffi::g_value_set_enum(value.to_glib_none_mut().0, self.into_glib());
         }
         value
     }
@@ -472,11 +472,11 @@ impl fmt::Display for SqueezerTransitionType {
 }
 
 #[doc(hidden)]
-impl ToGlib for SqueezerTransitionType {
+impl IntoGlib for SqueezerTransitionType {
     type GlibType = ffi::AdwSqueezerTransitionType;
 
-    fn to_glib(&self) -> ffi::AdwSqueezerTransitionType {
-        match *self {
+    fn into_glib(self) -> ffi::AdwSqueezerTransitionType {
+        match self {
             SqueezerTransitionType::None => ffi::ADW_SQUEEZER_TRANSITION_TYPE_NONE,
             SqueezerTransitionType::Crossfade => ffi::ADW_SQUEEZER_TRANSITION_TYPE_CROSSFADE,
             SqueezerTransitionType::__Unknown(value) => value,
@@ -519,7 +519,7 @@ impl ToValue for SqueezerTransitionType {
     fn to_value(&self) -> glib::Value {
         let mut value = glib::Value::for_value_type::<SqueezerTransitionType>();
         unsafe {
-            glib::gobject_ffi::g_value_set_enum(value.to_glib_none_mut().0, self.to_glib());
+            glib::gobject_ffi::g_value_set_enum(value.to_glib_none_mut().0, self.into_glib());
         }
         value
     }
@@ -559,11 +559,11 @@ impl fmt::Display for ViewSwitcherPolicy {
 }
 
 #[doc(hidden)]
-impl ToGlib for ViewSwitcherPolicy {
+impl IntoGlib for ViewSwitcherPolicy {
     type GlibType = ffi::AdwViewSwitcherPolicy;
 
-    fn to_glib(&self) -> ffi::AdwViewSwitcherPolicy {
-        match *self {
+    fn into_glib(self) -> ffi::AdwViewSwitcherPolicy {
+        match self {
             ViewSwitcherPolicy::Auto => ffi::ADW_VIEW_SWITCHER_POLICY_AUTO,
             ViewSwitcherPolicy::Narrow => ffi::ADW_VIEW_SWITCHER_POLICY_NARROW,
             ViewSwitcherPolicy::Wide => ffi::ADW_VIEW_SWITCHER_POLICY_WIDE,
@@ -608,7 +608,7 @@ impl ToValue for ViewSwitcherPolicy {
     fn to_value(&self) -> glib::Value {
         let mut value = glib::Value::for_value_type::<ViewSwitcherPolicy>();
         unsafe {
-            glib::gobject_ffi::g_value_set_enum(value.to_glib_none_mut().0, self.to_glib());
+            glib::gobject_ffi::g_value_set_enum(value.to_glib_none_mut().0, self.into_glib());
         }
         value
     }
