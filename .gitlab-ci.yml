@@ -1,9 +1,7 @@
 image: "ghcr.io/gtk-rs/gtk4-rs/gtk4:latest"
 
 before_script:
-  - dnf update -y
-  - dnf install -y git meson ninja-build
-  - curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y --profile minimal --default-toolchain nightly --component rustfmt
+  - curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y --profile minimal --allow-downgrade -c rustfmt --default-toolchain nightly
   - source $HOME/.cargo/env
   - meson _build --prefix=/usr -Dlibadwaita:tests=false -Dlibadwaita:examples=false -Dlibadwaita:vapi=false
   - ninja -C _build install
@@ -20,10 +18,10 @@ pages:
     RUSTDOCFLAGS: >
       -Z unstable-options
       --enable-index-page
-      --extern-html-root-url=gdk_pixbuf=https://gtk-rs.org/gtk-rs/git/docs 
-      --extern-html-root-url=gio=https://gtk-rs.org/gtk-rs/git/docs 
-      --extern-html-root-url=glib=https://gtk-rs.org/gtk-rs/git/docs 
-      --extern-html-root-url=pango=https://gtk-rs.org/gtk-rs/git/docs 
+      --extern-html-root-url=gdk_pixbuf=https://gtk-rs.org/gtk-rs-core/git/docs 
+      --extern-html-root-url=gio=https://gtk-rs.org/gtk-rs-core/git/docs 
+      --extern-html-root-url=glib=https://gtk-rs.org/gtk-rs-core/git/docs 
+      --extern-html-root-url=pango=https://gtk-rs.org/gtk-rs-core/git/docs 
       --extern-html-root-url=gdk4=https://gtk-rs.org/gtk4-rs/git/docs 
       --extern-html-root-url=gtk4=https://gtk-rs.org/gtk4-rs/git/docs
   script:
