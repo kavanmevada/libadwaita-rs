@@ -43,11 +43,13 @@ impl Squeezer {
     }
 
     #[doc(alias = "adw_squeezer_get_homogeneous")]
+    #[doc(alias = "get_homogeneous")]
     pub fn is_homogeneous(&self) -> bool {
         unsafe { from_glib(ffi::adw_squeezer_get_homogeneous(self.to_glib_none().0)) }
     }
 
     #[doc(alias = "adw_squeezer_get_interpolate_size")]
+    #[doc(alias = "get_interpolate_size")]
     pub fn is_interpolate_size(&self) -> bool {
         unsafe {
             from_glib(ffi::adw_squeezer_get_interpolate_size(
@@ -57,6 +59,7 @@ impl Squeezer {
     }
 
     #[doc(alias = "adw_squeezer_get_page")]
+    #[doc(alias = "get_page")]
     pub fn page<P: IsA<gtk::Widget>>(&self, child: &P) -> Option<SqueezerPage> {
         unsafe {
             from_glib_none(ffi::adw_squeezer_get_page(
@@ -67,16 +70,19 @@ impl Squeezer {
     }
 
     #[doc(alias = "adw_squeezer_get_pages")]
+    #[doc(alias = "get_pages")]
     pub fn pages(&self) -> Option<gtk::SelectionModel> {
         unsafe { from_glib_full(ffi::adw_squeezer_get_pages(self.to_glib_none().0)) }
     }
 
     #[doc(alias = "adw_squeezer_get_transition_duration")]
+    #[doc(alias = "get_transition_duration")]
     pub fn transition_duration(&self) -> u32 {
         unsafe { ffi::adw_squeezer_get_transition_duration(self.to_glib_none().0) }
     }
 
     #[doc(alias = "adw_squeezer_get_transition_running")]
+    #[doc(alias = "get_transition_running")]
     pub fn is_transition_running(&self) -> bool {
         unsafe {
             from_glib(ffi::adw_squeezer_get_transition_running(
@@ -86,21 +92,25 @@ impl Squeezer {
     }
 
     #[doc(alias = "adw_squeezer_get_transition_type")]
+    #[doc(alias = "get_transition_type")]
     pub fn transition_type(&self) -> SqueezerTransitionType {
         unsafe { from_glib(ffi::adw_squeezer_get_transition_type(self.to_glib_none().0)) }
     }
 
     #[doc(alias = "adw_squeezer_get_visible_child")]
+    #[doc(alias = "get_visible_child")]
     pub fn visible_child(&self) -> Option<gtk::Widget> {
         unsafe { from_glib_none(ffi::adw_squeezer_get_visible_child(self.to_glib_none().0)) }
     }
 
     #[doc(alias = "adw_squeezer_get_xalign")]
+    #[doc(alias = "get_xalign")]
     pub fn xalign(&self) -> f32 {
         unsafe { ffi::adw_squeezer_get_xalign(self.to_glib_none().0) }
     }
 
     #[doc(alias = "adw_squeezer_get_yalign")]
+    #[doc(alias = "get_yalign")]
     pub fn yalign(&self) -> f32 {
         unsafe { ffi::adw_squeezer_get_yalign(self.to_glib_none().0) }
     }
@@ -157,10 +167,8 @@ impl Squeezer {
         }
     }
 
-    pub fn connect_property_homogeneous_notify<F: Fn(&Squeezer) + 'static>(
-        &self,
-        f: F,
-    ) -> SignalHandlerId {
+    #[doc(alias = "homogeneous")]
+    pub fn connect_homogeneous_notify<F: Fn(&Squeezer) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_homogeneous_trampoline<F: Fn(&Squeezer) + 'static>(
             this: *mut ffi::AdwSqueezer,
             _param_spec: glib::ffi::gpointer,
@@ -182,7 +190,8 @@ impl Squeezer {
         }
     }
 
-    pub fn connect_property_interpolate_size_notify<F: Fn(&Squeezer) + 'static>(
+    #[doc(alias = "interpolate-size")]
+    pub fn connect_interpolate_size_notify<F: Fn(&Squeezer) + 'static>(
         &self,
         f: F,
     ) -> SignalHandlerId {
@@ -207,10 +216,8 @@ impl Squeezer {
         }
     }
 
-    pub fn connect_property_pages_notify<F: Fn(&Squeezer) + 'static>(
-        &self,
-        f: F,
-    ) -> SignalHandlerId {
+    #[doc(alias = "pages")]
+    pub fn connect_pages_notify<F: Fn(&Squeezer) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_pages_trampoline<F: Fn(&Squeezer) + 'static>(
             this: *mut ffi::AdwSqueezer,
             _param_spec: glib::ffi::gpointer,
@@ -232,7 +239,8 @@ impl Squeezer {
         }
     }
 
-    pub fn connect_property_transition_duration_notify<F: Fn(&Squeezer) + 'static>(
+    #[doc(alias = "transition-duration")]
+    pub fn connect_transition_duration_notify<F: Fn(&Squeezer) + 'static>(
         &self,
         f: F,
     ) -> SignalHandlerId {
@@ -257,7 +265,8 @@ impl Squeezer {
         }
     }
 
-    pub fn connect_property_transition_running_notify<F: Fn(&Squeezer) + 'static>(
+    #[doc(alias = "transition-running")]
+    pub fn connect_transition_running_notify<F: Fn(&Squeezer) + 'static>(
         &self,
         f: F,
     ) -> SignalHandlerId {
@@ -282,7 +291,8 @@ impl Squeezer {
         }
     }
 
-    pub fn connect_property_transition_type_notify<F: Fn(&Squeezer) + 'static>(
+    #[doc(alias = "transition-type")]
+    pub fn connect_transition_type_notify<F: Fn(&Squeezer) + 'static>(
         &self,
         f: F,
     ) -> SignalHandlerId {
@@ -307,7 +317,8 @@ impl Squeezer {
         }
     }
 
-    pub fn connect_property_visible_child_notify<F: Fn(&Squeezer) + 'static>(
+    #[doc(alias = "visible-child")]
+    pub fn connect_visible_child_notify<F: Fn(&Squeezer) + 'static>(
         &self,
         f: F,
     ) -> SignalHandlerId {
@@ -332,10 +343,8 @@ impl Squeezer {
         }
     }
 
-    pub fn connect_property_xalign_notify<F: Fn(&Squeezer) + 'static>(
-        &self,
-        f: F,
-    ) -> SignalHandlerId {
+    #[doc(alias = "xalign")]
+    pub fn connect_xalign_notify<F: Fn(&Squeezer) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_xalign_trampoline<F: Fn(&Squeezer) + 'static>(
             this: *mut ffi::AdwSqueezer,
             _param_spec: glib::ffi::gpointer,
@@ -357,10 +366,8 @@ impl Squeezer {
         }
     }
 
-    pub fn connect_property_yalign_notify<F: Fn(&Squeezer) + 'static>(
-        &self,
-        f: F,
-    ) -> SignalHandlerId {
+    #[doc(alias = "yalign")]
+    pub fn connect_yalign_notify<F: Fn(&Squeezer) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_yalign_trampoline<F: Fn(&Squeezer) + 'static>(
             this: *mut ffi::AdwSqueezer,
             _param_spec: glib::ffi::gpointer,
@@ -548,8 +555,8 @@ impl SqueezerBuilder {
         if let Some(ref orientation) = self.orientation {
             properties.push(("orientation", orientation));
         }
-        let ret = glib::Object::new::<Squeezer>(&properties).expect("object new");
-        ret
+        glib::Object::new::<Squeezer>(&properties)
+            .expect("Failed to create an instance of Squeezer")
     }
 
     pub fn homogeneous(mut self, homogeneous: bool) -> Self {

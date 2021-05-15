@@ -37,6 +37,7 @@ impl SwipeTracker {
     }
 
     #[doc(alias = "adw_swipe_tracker_get_allow_mouse_drag")]
+    #[doc(alias = "get_allow_mouse_drag")]
     pub fn allows_mouse_drag(&self) -> bool {
         unsafe {
             from_glib(ffi::adw_swipe_tracker_get_allow_mouse_drag(
@@ -46,16 +47,19 @@ impl SwipeTracker {
     }
 
     #[doc(alias = "adw_swipe_tracker_get_enabled")]
+    #[doc(alias = "get_enabled")]
     pub fn is_enabled(&self) -> bool {
         unsafe { from_glib(ffi::adw_swipe_tracker_get_enabled(self.to_glib_none().0)) }
     }
 
     #[doc(alias = "adw_swipe_tracker_get_reversed")]
+    #[doc(alias = "get_reversed")]
     pub fn is_reversed(&self) -> bool {
         unsafe { from_glib(ffi::adw_swipe_tracker_get_reversed(self.to_glib_none().0)) }
     }
 
     #[doc(alias = "adw_swipe_tracker_get_swipeable")]
+    #[doc(alias = "get_swipeable")]
     pub fn swipeable(&self) -> Option<Swipeable> {
         unsafe { from_glib_none(ffi::adw_swipe_tracker_get_swipeable(self.to_glib_none().0)) }
     }
@@ -91,6 +95,7 @@ impl SwipeTracker {
         }
     }
 
+    #[doc(alias = "begin-swipe")]
     pub fn connect_begin_swipe<F: Fn(&SwipeTracker, NavigationDirection, bool) + 'static>(
         &self,
         f: F,
@@ -123,6 +128,7 @@ impl SwipeTracker {
         }
     }
 
+    #[doc(alias = "end-swipe")]
     pub fn connect_end_swipe<F: Fn(&SwipeTracker, i64, f64) + 'static>(
         &self,
         f: F,
@@ -149,6 +155,7 @@ impl SwipeTracker {
         }
     }
 
+    #[doc(alias = "update-swipe")]
     pub fn connect_update_swipe<F: Fn(&SwipeTracker, f64) + 'static>(
         &self,
         f: F,
@@ -174,7 +181,8 @@ impl SwipeTracker {
         }
     }
 
-    pub fn connect_property_allow_mouse_drag_notify<F: Fn(&SwipeTracker) + 'static>(
+    #[doc(alias = "allow-mouse-drag")]
+    pub fn connect_allow_mouse_drag_notify<F: Fn(&SwipeTracker) + 'static>(
         &self,
         f: F,
     ) -> SignalHandlerId {
@@ -199,10 +207,8 @@ impl SwipeTracker {
         }
     }
 
-    pub fn connect_property_enabled_notify<F: Fn(&SwipeTracker) + 'static>(
-        &self,
-        f: F,
-    ) -> SignalHandlerId {
+    #[doc(alias = "enabled")]
+    pub fn connect_enabled_notify<F: Fn(&SwipeTracker) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_enabled_trampoline<F: Fn(&SwipeTracker) + 'static>(
             this: *mut ffi::AdwSwipeTracker,
             _param_spec: glib::ffi::gpointer,
@@ -224,10 +230,8 @@ impl SwipeTracker {
         }
     }
 
-    pub fn connect_property_reversed_notify<F: Fn(&SwipeTracker) + 'static>(
-        &self,
-        f: F,
-    ) -> SignalHandlerId {
+    #[doc(alias = "reversed")]
+    pub fn connect_reversed_notify<F: Fn(&SwipeTracker) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_reversed_trampoline<F: Fn(&SwipeTracker) + 'static>(
             this: *mut ffi::AdwSwipeTracker,
             _param_spec: glib::ffi::gpointer,
@@ -281,8 +285,8 @@ impl SwipeTrackerBuilder {
         if let Some(ref orientation) = self.orientation {
             properties.push(("orientation", orientation));
         }
-        let ret = glib::Object::new::<SwipeTracker>(&properties).expect("object new");
-        ret
+        glib::Object::new::<SwipeTracker>(&properties)
+            .expect("Failed to create an instance of SwipeTracker")
     }
 
     pub fn allow_mouse_drag(mut self, allow_mouse_drag: bool) -> Self {

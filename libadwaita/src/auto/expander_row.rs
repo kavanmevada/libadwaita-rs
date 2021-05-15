@@ -216,8 +216,8 @@ impl ExpanderRowBuilder {
         if let Some(ref action_target) = self.action_target {
             properties.push(("action-target", action_target));
         }
-        let ret = glib::Object::new::<ExpanderRow>(&properties).expect("object new");
-        ret
+        glib::Object::new::<ExpanderRow>(&properties)
+            .expect("Failed to create an instance of ExpanderRow")
     }
 
     pub fn enable_expansion(mut self, enable_expansion: bool) -> Self {
@@ -444,18 +444,23 @@ pub trait ExpanderRowExt: 'static {
     fn add_prefix<P: IsA<gtk::Widget>>(&self, widget: &P);
 
     #[doc(alias = "adw_expander_row_get_enable_expansion")]
+    #[doc(alias = "get_enable_expansion")]
     fn enables_expansion(&self) -> bool;
 
     #[doc(alias = "adw_expander_row_get_expanded")]
+    #[doc(alias = "get_expanded")]
     fn is_expanded(&self) -> bool;
 
     #[doc(alias = "adw_expander_row_get_icon_name")]
+    #[doc(alias = "get_icon_name")]
     fn icon_name(&self) -> Option<glib::GString>;
 
     #[doc(alias = "adw_expander_row_get_show_enable_switch")]
+    #[doc(alias = "get_show_enable_switch")]
     fn shows_enable_switch(&self) -> bool;
 
     #[doc(alias = "adw_expander_row_get_subtitle")]
+    #[doc(alias = "get_subtitle")]
     fn subtitle(&self) -> Option<glib::GString>;
 
     #[doc(alias = "adw_expander_row_remove")]
@@ -476,26 +481,23 @@ pub trait ExpanderRowExt: 'static {
     #[doc(alias = "adw_expander_row_set_subtitle")]
     fn set_subtitle(&self, subtitle: Option<&str>);
 
-    fn connect_property_enable_expansion_notify<F: Fn(&Self) + 'static>(
-        &self,
-        f: F,
-    ) -> SignalHandlerId;
+    #[doc(alias = "enable-expansion")]
+    fn connect_enable_expansion_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
 
-    fn connect_property_expanded_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
+    #[doc(alias = "expanded")]
+    fn connect_expanded_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
 
-    fn connect_property_icon_name_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
+    #[doc(alias = "icon-name")]
+    fn connect_icon_name_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
 
-    fn connect_property_show_enable_switch_notify<F: Fn(&Self) + 'static>(
-        &self,
-        f: F,
-    ) -> SignalHandlerId;
+    #[doc(alias = "show-enable-switch")]
+    fn connect_show_enable_switch_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
 
-    fn connect_property_subtitle_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
+    #[doc(alias = "subtitle")]
+    fn connect_subtitle_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
 
-    fn connect_property_use_underline_notify<F: Fn(&Self) + 'static>(
-        &self,
-        f: F,
-    ) -> SignalHandlerId;
+    #[doc(alias = "use-underline")]
+    fn connect_use_underline_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
 }
 
 impl<O: IsA<ExpanderRow>> ExpanderRowExt for O {
@@ -620,10 +622,8 @@ impl<O: IsA<ExpanderRow>> ExpanderRowExt for O {
         }
     }
 
-    fn connect_property_enable_expansion_notify<F: Fn(&Self) + 'static>(
-        &self,
-        f: F,
-    ) -> SignalHandlerId {
+    #[doc(alias = "enable-expansion")]
+    fn connect_enable_expansion_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_enable_expansion_trampoline<P, F: Fn(&P) + 'static>(
             this: *mut ffi::AdwExpanderRow,
             _param_spec: glib::ffi::gpointer,
@@ -647,7 +647,8 @@ impl<O: IsA<ExpanderRow>> ExpanderRowExt for O {
         }
     }
 
-    fn connect_property_expanded_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
+    #[doc(alias = "expanded")]
+    fn connect_expanded_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_expanded_trampoline<P, F: Fn(&P) + 'static>(
             this: *mut ffi::AdwExpanderRow,
             _param_spec: glib::ffi::gpointer,
@@ -671,7 +672,8 @@ impl<O: IsA<ExpanderRow>> ExpanderRowExt for O {
         }
     }
 
-    fn connect_property_icon_name_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
+    #[doc(alias = "icon-name")]
+    fn connect_icon_name_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_icon_name_trampoline<P, F: Fn(&P) + 'static>(
             this: *mut ffi::AdwExpanderRow,
             _param_spec: glib::ffi::gpointer,
@@ -695,10 +697,8 @@ impl<O: IsA<ExpanderRow>> ExpanderRowExt for O {
         }
     }
 
-    fn connect_property_show_enable_switch_notify<F: Fn(&Self) + 'static>(
-        &self,
-        f: F,
-    ) -> SignalHandlerId {
+    #[doc(alias = "show-enable-switch")]
+    fn connect_show_enable_switch_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_show_enable_switch_trampoline<P, F: Fn(&P) + 'static>(
             this: *mut ffi::AdwExpanderRow,
             _param_spec: glib::ffi::gpointer,
@@ -722,7 +722,8 @@ impl<O: IsA<ExpanderRow>> ExpanderRowExt for O {
         }
     }
 
-    fn connect_property_subtitle_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
+    #[doc(alias = "subtitle")]
+    fn connect_subtitle_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_subtitle_trampoline<P, F: Fn(&P) + 'static>(
             this: *mut ffi::AdwExpanderRow,
             _param_spec: glib::ffi::gpointer,
@@ -746,10 +747,8 @@ impl<O: IsA<ExpanderRow>> ExpanderRowExt for O {
         }
     }
 
-    fn connect_property_use_underline_notify<F: Fn(&Self) + 'static>(
-        &self,
-        f: F,
-    ) -> SignalHandlerId {
+    #[doc(alias = "use-underline")]
+    fn connect_use_underline_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_use_underline_trampoline<P, F: Fn(&P) + 'static>(
             this: *mut ffi::AdwExpanderRow,
             _param_spec: glib::ffi::gpointer,

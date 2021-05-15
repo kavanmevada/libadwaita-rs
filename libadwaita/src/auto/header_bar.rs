@@ -32,6 +32,7 @@ impl HeaderBar {
     }
 
     #[doc(alias = "adw_header_bar_get_centering_policy")]
+    #[doc(alias = "get_centering_policy")]
     pub fn centering_policy(&self) -> CenteringPolicy {
         unsafe {
             from_glib(ffi::adw_header_bar_get_centering_policy(
@@ -41,6 +42,7 @@ impl HeaderBar {
     }
 
     #[doc(alias = "adw_header_bar_get_decoration_layout")]
+    #[doc(alias = "get_decoration_layout")]
     pub fn decoration_layout(&self) -> Option<glib::GString> {
         unsafe {
             from_glib_none(ffi::adw_header_bar_get_decoration_layout(
@@ -50,6 +52,7 @@ impl HeaderBar {
     }
 
     #[doc(alias = "adw_header_bar_get_show_end_title_buttons")]
+    #[doc(alias = "get_show_end_title_buttons")]
     pub fn shows_end_title_buttons(&self) -> bool {
         unsafe {
             from_glib(ffi::adw_header_bar_get_show_end_title_buttons(
@@ -59,6 +62,7 @@ impl HeaderBar {
     }
 
     #[doc(alias = "adw_header_bar_get_show_start_title_buttons")]
+    #[doc(alias = "get_show_start_title_buttons")]
     pub fn shows_start_title_buttons(&self) -> bool {
         unsafe {
             from_glib(ffi::adw_header_bar_get_show_start_title_buttons(
@@ -68,6 +72,7 @@ impl HeaderBar {
     }
 
     #[doc(alias = "adw_header_bar_get_title_widget")]
+    #[doc(alias = "get_title_widget")]
     pub fn title_widget(&self) -> Option<gtk::Widget> {
         unsafe { from_glib_none(ffi::adw_header_bar_get_title_widget(self.to_glib_none().0)) }
     }
@@ -143,7 +148,8 @@ impl HeaderBar {
         }
     }
 
-    pub fn connect_property_centering_policy_notify<F: Fn(&HeaderBar) + 'static>(
+    #[doc(alias = "centering-policy")]
+    pub fn connect_centering_policy_notify<F: Fn(&HeaderBar) + 'static>(
         &self,
         f: F,
     ) -> SignalHandlerId {
@@ -168,7 +174,8 @@ impl HeaderBar {
         }
     }
 
-    pub fn connect_property_decoration_layout_notify<F: Fn(&HeaderBar) + 'static>(
+    #[doc(alias = "decoration-layout")]
+    pub fn connect_decoration_layout_notify<F: Fn(&HeaderBar) + 'static>(
         &self,
         f: F,
     ) -> SignalHandlerId {
@@ -193,7 +200,8 @@ impl HeaderBar {
         }
     }
 
-    pub fn connect_property_show_end_title_buttons_notify<F: Fn(&HeaderBar) + 'static>(
+    #[doc(alias = "show-end-title-buttons")]
+    pub fn connect_show_end_title_buttons_notify<F: Fn(&HeaderBar) + 'static>(
         &self,
         f: F,
     ) -> SignalHandlerId {
@@ -220,7 +228,8 @@ impl HeaderBar {
         }
     }
 
-    pub fn connect_property_show_start_title_buttons_notify<F: Fn(&HeaderBar) + 'static>(
+    #[doc(alias = "show-start-title-buttons")]
+    pub fn connect_show_start_title_buttons_notify<F: Fn(&HeaderBar) + 'static>(
         &self,
         f: F,
     ) -> SignalHandlerId {
@@ -247,7 +256,8 @@ impl HeaderBar {
         }
     }
 
-    pub fn connect_property_title_widget_notify<F: Fn(&HeaderBar) + 'static>(
+    #[doc(alias = "title-widget")]
+    pub fn connect_title_widget_notify<F: Fn(&HeaderBar) + 'static>(
         &self,
         f: F,
     ) -> SignalHandlerId {
@@ -430,8 +440,8 @@ impl HeaderBarBuilder {
         if let Some(ref accessible_role) = self.accessible_role {
             properties.push(("accessible-role", accessible_role));
         }
-        let ret = glib::Object::new::<HeaderBar>(&properties).expect("object new");
-        ret
+        glib::Object::new::<HeaderBar>(&properties)
+            .expect("Failed to create an instance of HeaderBar")
     }
 
     pub fn centering_policy(mut self, centering_policy: CenteringPolicy) -> Self {

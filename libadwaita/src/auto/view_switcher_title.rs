@@ -32,6 +32,7 @@ impl ViewSwitcherTitle {
     }
 
     #[doc(alias = "adw_view_switcher_title_get_policy")]
+    #[doc(alias = "get_policy")]
     pub fn policy(&self) -> ViewSwitcherPolicy {
         unsafe {
             from_glib(ffi::adw_view_switcher_title_get_policy(
@@ -41,6 +42,7 @@ impl ViewSwitcherTitle {
     }
 
     #[doc(alias = "adw_view_switcher_title_get_stack")]
+    #[doc(alias = "get_stack")]
     pub fn stack(&self) -> Option<gtk::Stack> {
         unsafe {
             from_glib_none(ffi::adw_view_switcher_title_get_stack(
@@ -50,6 +52,7 @@ impl ViewSwitcherTitle {
     }
 
     #[doc(alias = "adw_view_switcher_title_get_subtitle")]
+    #[doc(alias = "get_subtitle")]
     pub fn subtitle(&self) -> Option<glib::GString> {
         unsafe {
             from_glib_none(ffi::adw_view_switcher_title_get_subtitle(
@@ -59,6 +62,7 @@ impl ViewSwitcherTitle {
     }
 
     #[doc(alias = "adw_view_switcher_title_get_title")]
+    #[doc(alias = "get_title")]
     pub fn title(&self) -> Option<glib::GString> {
         unsafe {
             from_glib_none(ffi::adw_view_switcher_title_get_title(
@@ -68,6 +72,7 @@ impl ViewSwitcherTitle {
     }
 
     #[doc(alias = "adw_view_switcher_title_get_title_visible")]
+    #[doc(alias = "get_title_visible")]
     pub fn is_title_visible(&self) -> bool {
         unsafe {
             from_glib(ffi::adw_view_switcher_title_get_title_visible(
@@ -77,6 +82,7 @@ impl ViewSwitcherTitle {
     }
 
     #[doc(alias = "adw_view_switcher_title_get_view_switcher_enabled")]
+    #[doc(alias = "get_view_switcher_enabled")]
     pub fn is_view_switcher_enabled(&self) -> bool {
         unsafe {
             from_glib(ffi::adw_view_switcher_title_get_view_switcher_enabled(
@@ -126,7 +132,8 @@ impl ViewSwitcherTitle {
         }
     }
 
-    pub fn connect_property_policy_notify<F: Fn(&ViewSwitcherTitle) + 'static>(
+    #[doc(alias = "policy")]
+    pub fn connect_policy_notify<F: Fn(&ViewSwitcherTitle) + 'static>(
         &self,
         f: F,
     ) -> SignalHandlerId {
@@ -151,7 +158,8 @@ impl ViewSwitcherTitle {
         }
     }
 
-    pub fn connect_property_stack_notify<F: Fn(&ViewSwitcherTitle) + 'static>(
+    #[doc(alias = "stack")]
+    pub fn connect_stack_notify<F: Fn(&ViewSwitcherTitle) + 'static>(
         &self,
         f: F,
     ) -> SignalHandlerId {
@@ -176,7 +184,8 @@ impl ViewSwitcherTitle {
         }
     }
 
-    pub fn connect_property_subtitle_notify<F: Fn(&ViewSwitcherTitle) + 'static>(
+    #[doc(alias = "subtitle")]
+    pub fn connect_subtitle_notify<F: Fn(&ViewSwitcherTitle) + 'static>(
         &self,
         f: F,
     ) -> SignalHandlerId {
@@ -201,7 +210,8 @@ impl ViewSwitcherTitle {
         }
     }
 
-    pub fn connect_property_title_notify<F: Fn(&ViewSwitcherTitle) + 'static>(
+    #[doc(alias = "title")]
+    pub fn connect_title_notify<F: Fn(&ViewSwitcherTitle) + 'static>(
         &self,
         f: F,
     ) -> SignalHandlerId {
@@ -226,7 +236,8 @@ impl ViewSwitcherTitle {
         }
     }
 
-    pub fn connect_property_title_visible_notify<F: Fn(&ViewSwitcherTitle) + 'static>(
+    #[doc(alias = "title-visible")]
+    pub fn connect_title_visible_notify<F: Fn(&ViewSwitcherTitle) + 'static>(
         &self,
         f: F,
     ) -> SignalHandlerId {
@@ -253,7 +264,8 @@ impl ViewSwitcherTitle {
         }
     }
 
-    pub fn connect_property_view_switcher_enabled_notify<F: Fn(&ViewSwitcherTitle) + 'static>(
+    #[doc(alias = "view-switcher-enabled")]
+    pub fn connect_view_switcher_enabled_notify<F: Fn(&ViewSwitcherTitle) + 'static>(
         &self,
         f: F,
     ) -> SignalHandlerId {
@@ -438,8 +450,8 @@ impl ViewSwitcherTitleBuilder {
         if let Some(ref accessible_role) = self.accessible_role {
             properties.push(("accessible-role", accessible_role));
         }
-        let ret = glib::Object::new::<ViewSwitcherTitle>(&properties).expect("object new");
-        ret
+        glib::Object::new::<ViewSwitcherTitle>(&properties)
+            .expect("Failed to create an instance of ViewSwitcherTitle")
     }
 
     pub fn policy(mut self, policy: ViewSwitcherPolicy) -> Self {

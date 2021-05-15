@@ -27,6 +27,7 @@ impl EnumListModel {
     }
 
     #[doc(alias = "adw_enum_list_model_get_enum_type")]
+    #[doc(alias = "get_enum_type")]
     pub fn enum_type(&self) -> glib::types::Type {
         unsafe {
             from_glib(ffi::adw_enum_list_model_get_enum_type(

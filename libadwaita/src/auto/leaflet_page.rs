@@ -25,16 +25,19 @@ glib::wrapper! {
 
 impl LeafletPage {
     #[doc(alias = "adw_leaflet_page_get_child")]
+    #[doc(alias = "get_child")]
     pub fn child(&self) -> Option<gtk::Widget> {
         unsafe { from_glib_none(ffi::adw_leaflet_page_get_child(self.to_glib_none().0)) }
     }
 
     #[doc(alias = "adw_leaflet_page_get_name")]
+    #[doc(alias = "get_name")]
     pub fn name(&self) -> Option<glib::GString> {
         unsafe { from_glib_none(ffi::adw_leaflet_page_get_name(self.to_glib_none().0)) }
     }
 
     #[doc(alias = "adw_leaflet_page_get_navigatable")]
+    #[doc(alias = "get_navigatable")]
     pub fn is_navigatable(&self) -> bool {
         unsafe { from_glib(ffi::adw_leaflet_page_get_navigatable(self.to_glib_none().0)) }
     }
@@ -53,10 +56,8 @@ impl LeafletPage {
         }
     }
 
-    pub fn connect_property_name_notify<F: Fn(&LeafletPage) + 'static>(
-        &self,
-        f: F,
-    ) -> SignalHandlerId {
+    #[doc(alias = "name")]
+    pub fn connect_name_notify<F: Fn(&LeafletPage) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_name_trampoline<F: Fn(&LeafletPage) + 'static>(
             this: *mut ffi::AdwLeafletPage,
             _param_spec: glib::ffi::gpointer,
@@ -78,7 +79,8 @@ impl LeafletPage {
         }
     }
 
-    pub fn connect_property_navigatable_notify<F: Fn(&LeafletPage) + 'static>(
+    #[doc(alias = "navigatable")]
+    pub fn connect_navigatable_notify<F: Fn(&LeafletPage) + 'static>(
         &self,
         f: F,
     ) -> SignalHandlerId {
@@ -127,8 +129,8 @@ impl LeafletPageBuilder {
         if let Some(ref navigatable) = self.navigatable {
             properties.push(("navigatable", navigatable));
         }
-        let ret = glib::Object::new::<LeafletPage>(&properties).expect("object new");
-        ret
+        glib::Object::new::<LeafletPage>(&properties)
+            .expect("Failed to create an instance of LeafletPage")
     }
 
     pub fn child<P: IsA<gtk::Widget>>(mut self, child: &P) -> Self {

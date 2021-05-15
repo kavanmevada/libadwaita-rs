@@ -34,6 +34,7 @@ impl CarouselIndicatorLines {
     }
 
     #[doc(alias = "adw_carousel_indicator_lines_get_carousel")]
+    #[doc(alias = "get_carousel")]
     pub fn carousel(&self) -> Option<Carousel> {
         unsafe {
             from_glib_none(ffi::adw_carousel_indicator_lines_get_carousel(
@@ -52,7 +53,8 @@ impl CarouselIndicatorLines {
         }
     }
 
-    pub fn connect_property_carousel_notify<F: Fn(&CarouselIndicatorLines) + 'static>(
+    #[doc(alias = "carousel")]
+    pub fn connect_carousel_notify<F: Fn(&CarouselIndicatorLines) + 'static>(
         &self,
         f: F,
     ) -> SignalHandlerId {
@@ -225,8 +227,8 @@ impl CarouselIndicatorLinesBuilder {
         if let Some(ref orientation) = self.orientation {
             properties.push(("orientation", orientation));
         }
-        let ret = glib::Object::new::<CarouselIndicatorLines>(&properties).expect("object new");
-        ret
+        glib::Object::new::<CarouselIndicatorLines>(&properties)
+            .expect("Failed to create an instance of CarouselIndicatorLines")
     }
 
     pub fn carousel(mut self, carousel: &Carousel) -> Self {

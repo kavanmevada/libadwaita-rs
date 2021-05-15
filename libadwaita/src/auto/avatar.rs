@@ -49,21 +49,25 @@ impl Avatar {
     }
 
     #[doc(alias = "adw_avatar_get_icon_name")]
+    #[doc(alias = "get_icon_name")]
     pub fn icon_name(&self) -> Option<glib::GString> {
         unsafe { from_glib_none(ffi::adw_avatar_get_icon_name(self.to_glib_none().0)) }
     }
 
     #[doc(alias = "adw_avatar_get_show_initials")]
+    #[doc(alias = "get_show_initials")]
     pub fn shows_initials(&self) -> bool {
         unsafe { from_glib(ffi::adw_avatar_get_show_initials(self.to_glib_none().0)) }
     }
 
     #[doc(alias = "adw_avatar_get_size")]
+    #[doc(alias = "get_size")]
     pub fn size(&self) -> i32 {
         unsafe { ffi::adw_avatar_get_size(self.to_glib_none().0) }
     }
 
     #[doc(alias = "adw_avatar_get_text")]
+    #[doc(alias = "get_text")]
     pub fn text(&self) -> Option<glib::GString> {
         unsafe { from_glib_none(ffi::adw_avatar_get_text(self.to_glib_none().0)) }
     }
@@ -140,10 +144,8 @@ impl Avatar {
         }
     }
 
-    pub fn connect_property_icon_name_notify<F: Fn(&Avatar) + 'static>(
-        &self,
-        f: F,
-    ) -> SignalHandlerId {
+    #[doc(alias = "icon-name")]
+    pub fn connect_icon_name_notify<F: Fn(&Avatar) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_icon_name_trampoline<F: Fn(&Avatar) + 'static>(
             this: *mut ffi::AdwAvatar,
             _param_spec: glib::ffi::gpointer,
@@ -165,10 +167,8 @@ impl Avatar {
         }
     }
 
-    pub fn connect_property_show_initials_notify<F: Fn(&Avatar) + 'static>(
-        &self,
-        f: F,
-    ) -> SignalHandlerId {
+    #[doc(alias = "show-initials")]
+    pub fn connect_show_initials_notify<F: Fn(&Avatar) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_show_initials_trampoline<F: Fn(&Avatar) + 'static>(
             this: *mut ffi::AdwAvatar,
             _param_spec: glib::ffi::gpointer,
@@ -190,7 +190,8 @@ impl Avatar {
         }
     }
 
-    pub fn connect_property_size_notify<F: Fn(&Avatar) + 'static>(&self, f: F) -> SignalHandlerId {
+    #[doc(alias = "size")]
+    pub fn connect_size_notify<F: Fn(&Avatar) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_size_trampoline<F: Fn(&Avatar) + 'static>(
             this: *mut ffi::AdwAvatar,
             _param_spec: glib::ffi::gpointer,
@@ -212,7 +213,8 @@ impl Avatar {
         }
     }
 
-    pub fn connect_property_text_notify<F: Fn(&Avatar) + 'static>(&self, f: F) -> SignalHandlerId {
+    #[doc(alias = "text")]
+    pub fn connect_text_notify<F: Fn(&Avatar) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_text_trampoline<F: Fn(&Avatar) + 'static>(
             this: *mut ffi::AdwAvatar,
             _param_spec: glib::ffi::gpointer,
@@ -382,8 +384,7 @@ impl AvatarBuilder {
         if let Some(ref accessible_role) = self.accessible_role {
             properties.push(("accessible-role", accessible_role));
         }
-        let ret = glib::Object::new::<Avatar>(&properties).expect("object new");
-        ret
+        glib::Object::new::<Avatar>(&properties).expect("Failed to create an instance of Avatar")
     }
 
     pub fn icon_name(mut self, icon_name: &str) -> Self {

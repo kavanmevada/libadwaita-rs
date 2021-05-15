@@ -265,8 +265,8 @@ impl PreferencesWindowBuilder {
         if let Some(ref accessible_role) = self.accessible_role {
             properties.push(("accessible-role", accessible_role));
         }
-        let ret = glib::Object::new::<PreferencesWindow>(&properties).expect("object new");
-        ret
+        glib::Object::new::<PreferencesWindow>(&properties)
+            .expect("Failed to create an instance of PreferencesWindow")
     }
 
     pub fn can_swipe_back(mut self, can_swipe_back: bool) -> Self {
@@ -550,9 +550,11 @@ pub trait PreferencesWindowExt: 'static {
     fn close_subpage(&self);
 
     #[doc(alias = "adw_preferences_window_get_can_swipe_back")]
+    #[doc(alias = "get_can_swipe_back")]
     fn can_swipe_back(&self) -> bool;
 
     #[doc(alias = "adw_preferences_window_get_search_enabled")]
+    #[doc(alias = "get_search_enabled")]
     fn is_search_enabled(&self) -> bool;
 
     #[doc(alias = "adw_preferences_window_present_subpage")]
@@ -567,15 +569,11 @@ pub trait PreferencesWindowExt: 'static {
     #[doc(alias = "adw_preferences_window_set_search_enabled")]
     fn set_search_enabled(&self, search_enabled: bool);
 
-    fn connect_property_can_swipe_back_notify<F: Fn(&Self) + 'static>(
-        &self,
-        f: F,
-    ) -> SignalHandlerId;
+    #[doc(alias = "can-swipe-back")]
+    fn connect_can_swipe_back_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
 
-    fn connect_property_search_enabled_notify<F: Fn(&Self) + 'static>(
-        &self,
-        f: F,
-    ) -> SignalHandlerId;
+    #[doc(alias = "search-enabled")]
+    fn connect_search_enabled_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
 }
 
 impl<O: IsA<PreferencesWindow>> PreferencesWindowExt for O {
@@ -646,10 +644,8 @@ impl<O: IsA<PreferencesWindow>> PreferencesWindowExt for O {
         }
     }
 
-    fn connect_property_can_swipe_back_notify<F: Fn(&Self) + 'static>(
-        &self,
-        f: F,
-    ) -> SignalHandlerId {
+    #[doc(alias = "can-swipe-back")]
+    fn connect_can_swipe_back_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_can_swipe_back_trampoline<P, F: Fn(&P) + 'static>(
             this: *mut ffi::AdwPreferencesWindow,
             _param_spec: glib::ffi::gpointer,
@@ -673,10 +669,8 @@ impl<O: IsA<PreferencesWindow>> PreferencesWindowExt for O {
         }
     }
 
-    fn connect_property_search_enabled_notify<F: Fn(&Self) + 'static>(
-        &self,
-        f: F,
-    ) -> SignalHandlerId {
+    #[doc(alias = "search-enabled")]
+    fn connect_search_enabled_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_search_enabled_trampoline<P, F: Fn(&P) + 'static>(
             this: *mut ffi::AdwPreferencesWindow,
             _param_spec: glib::ffi::gpointer,

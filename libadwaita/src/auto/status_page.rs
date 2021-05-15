@@ -31,21 +31,25 @@ impl StatusPage {
     }
 
     #[doc(alias = "adw_status_page_get_child")]
+    #[doc(alias = "get_child")]
     pub fn child(&self) -> Option<gtk::Widget> {
         unsafe { from_glib_none(ffi::adw_status_page_get_child(self.to_glib_none().0)) }
     }
 
     #[doc(alias = "adw_status_page_get_description")]
+    #[doc(alias = "get_description")]
     pub fn description(&self) -> Option<glib::GString> {
         unsafe { from_glib_none(ffi::adw_status_page_get_description(self.to_glib_none().0)) }
     }
 
     #[doc(alias = "adw_status_page_get_icon_name")]
+    #[doc(alias = "get_icon_name")]
     pub fn icon_name(&self) -> Option<glib::GString> {
         unsafe { from_glib_none(ffi::adw_status_page_get_icon_name(self.to_glib_none().0)) }
     }
 
     #[doc(alias = "adw_status_page_get_title")]
+    #[doc(alias = "get_title")]
     pub fn title(&self) -> Option<glib::GString> {
         unsafe { from_glib_none(ffi::adw_status_page_get_title(self.to_glib_none().0)) }
     }
@@ -84,10 +88,8 @@ impl StatusPage {
         }
     }
 
-    pub fn connect_property_child_notify<F: Fn(&StatusPage) + 'static>(
-        &self,
-        f: F,
-    ) -> SignalHandlerId {
+    #[doc(alias = "child")]
+    pub fn connect_child_notify<F: Fn(&StatusPage) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_child_trampoline<F: Fn(&StatusPage) + 'static>(
             this: *mut ffi::AdwStatusPage,
             _param_spec: glib::ffi::gpointer,
@@ -109,7 +111,8 @@ impl StatusPage {
         }
     }
 
-    pub fn connect_property_description_notify<F: Fn(&StatusPage) + 'static>(
+    #[doc(alias = "description")]
+    pub fn connect_description_notify<F: Fn(&StatusPage) + 'static>(
         &self,
         f: F,
     ) -> SignalHandlerId {
@@ -134,10 +137,8 @@ impl StatusPage {
         }
     }
 
-    pub fn connect_property_icon_name_notify<F: Fn(&StatusPage) + 'static>(
-        &self,
-        f: F,
-    ) -> SignalHandlerId {
+    #[doc(alias = "icon-name")]
+    pub fn connect_icon_name_notify<F: Fn(&StatusPage) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_icon_name_trampoline<F: Fn(&StatusPage) + 'static>(
             this: *mut ffi::AdwStatusPage,
             _param_spec: glib::ffi::gpointer,
@@ -159,10 +160,8 @@ impl StatusPage {
         }
     }
 
-    pub fn connect_property_title_notify<F: Fn(&StatusPage) + 'static>(
-        &self,
-        f: F,
-    ) -> SignalHandlerId {
+    #[doc(alias = "title")]
+    pub fn connect_title_notify<F: Fn(&StatusPage) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_title_trampoline<F: Fn(&StatusPage) + 'static>(
             this: *mut ffi::AdwStatusPage,
             _param_spec: glib::ffi::gpointer,
@@ -338,8 +337,8 @@ impl StatusPageBuilder {
         if let Some(ref accessible_role) = self.accessible_role {
             properties.push(("accessible-role", accessible_role));
         }
-        let ret = glib::Object::new::<StatusPage>(&properties).expect("object new");
-        ret
+        glib::Object::new::<StatusPage>(&properties)
+            .expect("Failed to create an instance of StatusPage")
     }
 
     pub fn child<P: IsA<gtk::Widget>>(mut self, child: &P) -> Self {

@@ -216,8 +216,8 @@ impl ActionRowBuilder {
         if let Some(ref action_target) = self.action_target {
             properties.push(("action-target", action_target));
         }
-        let ret = glib::Object::new::<ActionRow>(&properties).expect("object new");
-        ret
+        glib::Object::new::<ActionRow>(&properties)
+            .expect("Failed to create an instance of ActionRow")
     }
 
     pub fn activatable_widget<P: IsA<gtk::Widget>>(mut self, activatable_widget: &P) -> Self {
@@ -444,18 +444,23 @@ pub trait ActionRowExt: 'static {
     fn add_suffix<P: IsA<gtk::Widget>>(&self, widget: &P);
 
     #[doc(alias = "adw_action_row_get_activatable_widget")]
+    #[doc(alias = "get_activatable_widget")]
     fn activatable_widget(&self) -> Option<gtk::Widget>;
 
     #[doc(alias = "adw_action_row_get_icon_name")]
+    #[doc(alias = "get_icon_name")]
     fn icon_name(&self) -> Option<glib::GString>;
 
     #[doc(alias = "adw_action_row_get_subtitle")]
+    #[doc(alias = "get_subtitle")]
     fn subtitle(&self) -> Option<glib::GString>;
 
     #[doc(alias = "adw_action_row_get_subtitle_lines")]
+    #[doc(alias = "get_subtitle_lines")]
     fn subtitle_lines(&self) -> i32;
 
     #[doc(alias = "adw_action_row_get_title_lines")]
+    #[doc(alias = "get_title_lines")]
     fn title_lines(&self) -> i32;
 
     #[doc(alias = "adw_action_row_remove")]
@@ -476,28 +481,26 @@ pub trait ActionRowExt: 'static {
     #[doc(alias = "adw_action_row_set_title_lines")]
     fn set_title_lines(&self, title_lines: i32);
 
+    #[doc(alias = "activated")]
     fn connect_activated<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
 
-    fn connect_property_activatable_widget_notify<F: Fn(&Self) + 'static>(
-        &self,
-        f: F,
-    ) -> SignalHandlerId;
+    #[doc(alias = "activatable-widget")]
+    fn connect_activatable_widget_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
 
-    fn connect_property_icon_name_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
+    #[doc(alias = "icon-name")]
+    fn connect_icon_name_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
 
-    fn connect_property_subtitle_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
+    #[doc(alias = "subtitle")]
+    fn connect_subtitle_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
 
-    fn connect_property_subtitle_lines_notify<F: Fn(&Self) + 'static>(
-        &self,
-        f: F,
-    ) -> SignalHandlerId;
+    #[doc(alias = "subtitle-lines")]
+    fn connect_subtitle_lines_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
 
-    fn connect_property_title_lines_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
+    #[doc(alias = "title-lines")]
+    fn connect_title_lines_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
 
-    fn connect_property_use_underline_notify<F: Fn(&Self) + 'static>(
-        &self,
-        f: F,
-    ) -> SignalHandlerId;
+    #[doc(alias = "use-underline")]
+    fn connect_use_underline_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
 }
 
 impl<O: IsA<ActionRow>> ActionRowExt for O {
@@ -605,6 +608,7 @@ impl<O: IsA<ActionRow>> ActionRowExt for O {
         }
     }
 
+    #[doc(alias = "activated")]
     fn connect_activated<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn activated_trampoline<P, F: Fn(&P) + 'static>(
             this: *mut ffi::AdwActionRow,
@@ -628,10 +632,8 @@ impl<O: IsA<ActionRow>> ActionRowExt for O {
         }
     }
 
-    fn connect_property_activatable_widget_notify<F: Fn(&Self) + 'static>(
-        &self,
-        f: F,
-    ) -> SignalHandlerId {
+    #[doc(alias = "activatable-widget")]
+    fn connect_activatable_widget_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_activatable_widget_trampoline<P, F: Fn(&P) + 'static>(
             this: *mut ffi::AdwActionRow,
             _param_spec: glib::ffi::gpointer,
@@ -655,7 +657,8 @@ impl<O: IsA<ActionRow>> ActionRowExt for O {
         }
     }
 
-    fn connect_property_icon_name_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
+    #[doc(alias = "icon-name")]
+    fn connect_icon_name_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_icon_name_trampoline<P, F: Fn(&P) + 'static>(
             this: *mut ffi::AdwActionRow,
             _param_spec: glib::ffi::gpointer,
@@ -679,7 +682,8 @@ impl<O: IsA<ActionRow>> ActionRowExt for O {
         }
     }
 
-    fn connect_property_subtitle_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
+    #[doc(alias = "subtitle")]
+    fn connect_subtitle_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_subtitle_trampoline<P, F: Fn(&P) + 'static>(
             this: *mut ffi::AdwActionRow,
             _param_spec: glib::ffi::gpointer,
@@ -703,10 +707,8 @@ impl<O: IsA<ActionRow>> ActionRowExt for O {
         }
     }
 
-    fn connect_property_subtitle_lines_notify<F: Fn(&Self) + 'static>(
-        &self,
-        f: F,
-    ) -> SignalHandlerId {
+    #[doc(alias = "subtitle-lines")]
+    fn connect_subtitle_lines_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_subtitle_lines_trampoline<P, F: Fn(&P) + 'static>(
             this: *mut ffi::AdwActionRow,
             _param_spec: glib::ffi::gpointer,
@@ -730,7 +732,8 @@ impl<O: IsA<ActionRow>> ActionRowExt for O {
         }
     }
 
-    fn connect_property_title_lines_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
+    #[doc(alias = "title-lines")]
+    fn connect_title_lines_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_title_lines_trampoline<P, F: Fn(&P) + 'static>(
             this: *mut ffi::AdwActionRow,
             _param_spec: glib::ffi::gpointer,
@@ -754,10 +757,8 @@ impl<O: IsA<ActionRow>> ActionRowExt for O {
         }
     }
 
-    fn connect_property_use_underline_notify<F: Fn(&Self) + 'static>(
-        &self,
-        f: F,
-    ) -> SignalHandlerId {
+    #[doc(alias = "use-underline")]
+    fn connect_use_underline_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_use_underline_trampoline<P, F: Fn(&P) + 'static>(
             this: *mut ffi::AdwActionRow,
             _param_spec: glib::ffi::gpointer,

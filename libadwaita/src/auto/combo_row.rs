@@ -40,24 +40,31 @@ pub const NONE_COMBO_ROW: Option<&ComboRow> = None;
 
 pub trait ComboRowExt: 'static {
     #[doc(alias = "adw_combo_row_get_expression")]
+    #[doc(alias = "get_expression")]
     fn expression(&self) -> Option<gtk::Expression>;
 
     #[doc(alias = "adw_combo_row_get_factory")]
+    #[doc(alias = "get_factory")]
     fn factory(&self) -> Option<gtk::ListItemFactory>;
 
     #[doc(alias = "adw_combo_row_get_list_factory")]
+    #[doc(alias = "get_list_factory")]
     fn list_factory(&self) -> Option<gtk::ListItemFactory>;
 
     #[doc(alias = "adw_combo_row_get_model")]
+    #[doc(alias = "get_model")]
     fn model(&self) -> Option<gio::ListModel>;
 
     #[doc(alias = "adw_combo_row_get_selected")]
+    #[doc(alias = "get_selected")]
     fn selected(&self) -> u32;
 
     #[doc(alias = "adw_combo_row_get_selected_item")]
+    #[doc(alias = "get_selected_item")]
     fn selected_item(&self) -> Option<glib::Object>;
 
     #[doc(alias = "adw_combo_row_get_use_subtitle")]
+    #[doc(alias = "get_use_subtitle")]
     fn uses_subtitle(&self) -> bool;
 
     #[doc(alias = "adw_combo_row_set_factory")]
@@ -75,24 +82,26 @@ pub trait ComboRowExt: 'static {
     #[doc(alias = "adw_combo_row_set_use_subtitle")]
     fn set_use_subtitle(&self, use_subtitle: bool);
 
-    fn connect_property_expression_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
+    #[doc(alias = "expression")]
+    fn connect_expression_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
 
-    fn connect_property_factory_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
+    #[doc(alias = "factory")]
+    fn connect_factory_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
 
-    fn connect_property_list_factory_notify<F: Fn(&Self) + 'static>(&self, f: F)
-        -> SignalHandlerId;
+    #[doc(alias = "list-factory")]
+    fn connect_list_factory_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
 
-    fn connect_property_model_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
+    #[doc(alias = "model")]
+    fn connect_model_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
 
-    fn connect_property_selected_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
+    #[doc(alias = "selected")]
+    fn connect_selected_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
 
-    fn connect_property_selected_item_notify<F: Fn(&Self) + 'static>(
-        &self,
-        f: F,
-    ) -> SignalHandlerId;
+    #[doc(alias = "selected-item")]
+    fn connect_selected_item_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
 
-    fn connect_property_use_subtitle_notify<F: Fn(&Self) + 'static>(&self, f: F)
-        -> SignalHandlerId;
+    #[doc(alias = "use-subtitle")]
+    fn connect_use_subtitle_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
 }
 
 impl<O: IsA<ComboRow>> ComboRowExt for O {
@@ -186,7 +195,8 @@ impl<O: IsA<ComboRow>> ComboRowExt for O {
         }
     }
 
-    fn connect_property_expression_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
+    #[doc(alias = "expression")]
+    fn connect_expression_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_expression_trampoline<P, F: Fn(&P) + 'static>(
             this: *mut ffi::AdwComboRow,
             _param_spec: glib::ffi::gpointer,
@@ -210,7 +220,8 @@ impl<O: IsA<ComboRow>> ComboRowExt for O {
         }
     }
 
-    fn connect_property_factory_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
+    #[doc(alias = "factory")]
+    fn connect_factory_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_factory_trampoline<P, F: Fn(&P) + 'static>(
             this: *mut ffi::AdwComboRow,
             _param_spec: glib::ffi::gpointer,
@@ -234,10 +245,8 @@ impl<O: IsA<ComboRow>> ComboRowExt for O {
         }
     }
 
-    fn connect_property_list_factory_notify<F: Fn(&Self) + 'static>(
-        &self,
-        f: F,
-    ) -> SignalHandlerId {
+    #[doc(alias = "list-factory")]
+    fn connect_list_factory_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_list_factory_trampoline<P, F: Fn(&P) + 'static>(
             this: *mut ffi::AdwComboRow,
             _param_spec: glib::ffi::gpointer,
@@ -261,7 +270,8 @@ impl<O: IsA<ComboRow>> ComboRowExt for O {
         }
     }
 
-    fn connect_property_model_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
+    #[doc(alias = "model")]
+    fn connect_model_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_model_trampoline<P, F: Fn(&P) + 'static>(
             this: *mut ffi::AdwComboRow,
             _param_spec: glib::ffi::gpointer,
@@ -285,7 +295,8 @@ impl<O: IsA<ComboRow>> ComboRowExt for O {
         }
     }
 
-    fn connect_property_selected_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
+    #[doc(alias = "selected")]
+    fn connect_selected_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_selected_trampoline<P, F: Fn(&P) + 'static>(
             this: *mut ffi::AdwComboRow,
             _param_spec: glib::ffi::gpointer,
@@ -309,10 +320,8 @@ impl<O: IsA<ComboRow>> ComboRowExt for O {
         }
     }
 
-    fn connect_property_selected_item_notify<F: Fn(&Self) + 'static>(
-        &self,
-        f: F,
-    ) -> SignalHandlerId {
+    #[doc(alias = "selected-item")]
+    fn connect_selected_item_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_selected_item_trampoline<P, F: Fn(&P) + 'static>(
             this: *mut ffi::AdwComboRow,
             _param_spec: glib::ffi::gpointer,
@@ -336,10 +345,8 @@ impl<O: IsA<ComboRow>> ComboRowExt for O {
         }
     }
 
-    fn connect_property_use_subtitle_notify<F: Fn(&Self) + 'static>(
-        &self,
-        f: F,
-    ) -> SignalHandlerId {
+    #[doc(alias = "use-subtitle")]
+    fn connect_use_subtitle_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_use_subtitle_trampoline<P, F: Fn(&P) + 'static>(
             this: *mut ffi::AdwComboRow,
             _param_spec: glib::ffi::gpointer,

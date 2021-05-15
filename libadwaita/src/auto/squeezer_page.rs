@@ -25,11 +25,13 @@ glib::wrapper! {
 
 impl SqueezerPage {
     #[doc(alias = "adw_squeezer_page_get_child")]
+    #[doc(alias = "get_child")]
     pub fn child(&self) -> Option<gtk::Widget> {
         unsafe { from_glib_none(ffi::adw_squeezer_page_get_child(self.to_glib_none().0)) }
     }
 
     #[doc(alias = "adw_squeezer_page_get_enabled")]
+    #[doc(alias = "get_enabled")]
     pub fn is_enabled(&self) -> bool {
         unsafe { from_glib(ffi::adw_squeezer_page_get_enabled(self.to_glib_none().0)) }
     }
@@ -41,10 +43,8 @@ impl SqueezerPage {
         }
     }
 
-    pub fn connect_property_enabled_notify<F: Fn(&SqueezerPage) + 'static>(
-        &self,
-        f: F,
-    ) -> SignalHandlerId {
+    #[doc(alias = "enabled")]
+    pub fn connect_enabled_notify<F: Fn(&SqueezerPage) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_enabled_trampoline<F: Fn(&SqueezerPage) + 'static>(
             this: *mut ffi::AdwSqueezerPage,
             _param_spec: glib::ffi::gpointer,
@@ -86,8 +86,8 @@ impl SqueezerPageBuilder {
         if let Some(ref enabled) = self.enabled {
             properties.push(("enabled", enabled));
         }
-        let ret = glib::Object::new::<SqueezerPage>(&properties).expect("object new");
-        ret
+        glib::Object::new::<SqueezerPage>(&properties)
+            .expect("Failed to create an instance of SqueezerPage")
     }
 
     pub fn child<P: IsA<gtk::Widget>>(mut self, child: &P) -> Self {

@@ -32,16 +32,19 @@ impl ViewSwitcherBar {
     }
 
     #[doc(alias = "adw_view_switcher_bar_get_policy")]
+    #[doc(alias = "get_policy")]
     pub fn policy(&self) -> ViewSwitcherPolicy {
         unsafe { from_glib(ffi::adw_view_switcher_bar_get_policy(self.to_glib_none().0)) }
     }
 
     #[doc(alias = "adw_view_switcher_bar_get_reveal")]
+    #[doc(alias = "get_reveal")]
     pub fn reveals(&self) -> bool {
         unsafe { from_glib(ffi::adw_view_switcher_bar_get_reveal(self.to_glib_none().0)) }
     }
 
     #[doc(alias = "adw_view_switcher_bar_get_stack")]
+    #[doc(alias = "get_stack")]
     pub fn stack(&self) -> Option<gtk::Stack> {
         unsafe { from_glib_none(ffi::adw_view_switcher_bar_get_stack(self.to_glib_none().0)) }
     }
@@ -67,7 +70,8 @@ impl ViewSwitcherBar {
         }
     }
 
-    pub fn connect_property_policy_notify<F: Fn(&ViewSwitcherBar) + 'static>(
+    #[doc(alias = "policy")]
+    pub fn connect_policy_notify<F: Fn(&ViewSwitcherBar) + 'static>(
         &self,
         f: F,
     ) -> SignalHandlerId {
@@ -92,7 +96,8 @@ impl ViewSwitcherBar {
         }
     }
 
-    pub fn connect_property_reveal_notify<F: Fn(&ViewSwitcherBar) + 'static>(
+    #[doc(alias = "reveal")]
+    pub fn connect_reveal_notify<F: Fn(&ViewSwitcherBar) + 'static>(
         &self,
         f: F,
     ) -> SignalHandlerId {
@@ -117,10 +122,8 @@ impl ViewSwitcherBar {
         }
     }
 
-    pub fn connect_property_stack_notify<F: Fn(&ViewSwitcherBar) + 'static>(
-        &self,
-        f: F,
-    ) -> SignalHandlerId {
+    #[doc(alias = "stack")]
+    pub fn connect_stack_notify<F: Fn(&ViewSwitcherBar) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_stack_trampoline<F: Fn(&ViewSwitcherBar) + 'static>(
             this: *mut ffi::AdwViewSwitcherBar,
             _param_spec: glib::ffi::gpointer,
@@ -292,8 +295,8 @@ impl ViewSwitcherBarBuilder {
         if let Some(ref accessible_role) = self.accessible_role {
             properties.push(("accessible-role", accessible_role));
         }
-        let ret = glib::Object::new::<ViewSwitcherBar>(&properties).expect("object new");
-        ret
+        glib::Object::new::<ViewSwitcherBar>(&properties)
+            .expect("Failed to create an instance of ViewSwitcherBar")
     }
 
     pub fn policy(mut self, policy: ViewSwitcherPolicy) -> Self {

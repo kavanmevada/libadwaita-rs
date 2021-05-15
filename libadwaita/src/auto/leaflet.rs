@@ -45,6 +45,7 @@ impl Leaflet {
     }
 
     #[doc(alias = "adw_leaflet_get_adjacent_child")]
+    #[doc(alias = "get_adjacent_child")]
     pub fn adjacent_child(&self, direction: NavigationDirection) -> Option<gtk::Widget> {
         unsafe {
             from_glib_none(ffi::adw_leaflet_get_adjacent_child(
@@ -55,11 +56,13 @@ impl Leaflet {
     }
 
     #[doc(alias = "adw_leaflet_get_can_swipe_back")]
+    #[doc(alias = "get_can_swipe_back")]
     pub fn can_swipe_back(&self) -> bool {
         unsafe { from_glib(ffi::adw_leaflet_get_can_swipe_back(self.to_glib_none().0)) }
     }
 
     #[doc(alias = "adw_leaflet_get_can_swipe_forward")]
+    #[doc(alias = "get_can_swipe_forward")]
     pub fn can_swipe_forward(&self) -> bool {
         unsafe {
             from_glib(ffi::adw_leaflet_get_can_swipe_forward(
@@ -69,11 +72,13 @@ impl Leaflet {
     }
 
     #[doc(alias = "adw_leaflet_get_can_unfold")]
+    #[doc(alias = "get_can_unfold")]
     pub fn can_unfold(&self) -> bool {
         unsafe { from_glib(ffi::adw_leaflet_get_can_unfold(self.to_glib_none().0)) }
     }
 
     #[doc(alias = "adw_leaflet_get_child_by_name")]
+    #[doc(alias = "get_child_by_name")]
     pub fn child_by_name(&self, name: &str) -> Option<gtk::Widget> {
         unsafe {
             from_glib_none(ffi::adw_leaflet_get_child_by_name(
@@ -84,11 +89,13 @@ impl Leaflet {
     }
 
     #[doc(alias = "adw_leaflet_get_child_transition_duration")]
+    #[doc(alias = "get_child_transition_duration")]
     pub fn child_transition_duration(&self) -> u32 {
         unsafe { ffi::adw_leaflet_get_child_transition_duration(self.to_glib_none().0) }
     }
 
     #[doc(alias = "adw_leaflet_get_child_transition_running")]
+    #[doc(alias = "get_child_transition_running")]
     pub fn is_child_transition_running(&self) -> bool {
         unsafe {
             from_glib(ffi::adw_leaflet_get_child_transition_running(
@@ -98,11 +105,13 @@ impl Leaflet {
     }
 
     #[doc(alias = "adw_leaflet_get_folded")]
+    #[doc(alias = "get_folded")]
     pub fn is_folded(&self) -> bool {
         unsafe { from_glib(ffi::adw_leaflet_get_folded(self.to_glib_none().0)) }
     }
 
     #[doc(alias = "adw_leaflet_get_homogeneous")]
+    #[doc(alias = "get_homogeneous")]
     pub fn is_homogeneous(&self, folded: bool, orientation: gtk::Orientation) -> bool {
         unsafe {
             from_glib(ffi::adw_leaflet_get_homogeneous(
@@ -114,16 +123,19 @@ impl Leaflet {
     }
 
     #[doc(alias = "adw_leaflet_get_interpolate_size")]
+    #[doc(alias = "get_interpolate_size")]
     pub fn is_interpolate_size(&self) -> bool {
         unsafe { from_glib(ffi::adw_leaflet_get_interpolate_size(self.to_glib_none().0)) }
     }
 
     #[doc(alias = "adw_leaflet_get_mode_transition_duration")]
+    #[doc(alias = "get_mode_transition_duration")]
     pub fn mode_transition_duration(&self) -> u32 {
         unsafe { ffi::adw_leaflet_get_mode_transition_duration(self.to_glib_none().0) }
     }
 
     #[doc(alias = "adw_leaflet_get_page")]
+    #[doc(alias = "get_page")]
     pub fn page<P: IsA<gtk::Widget>>(&self, child: &P) -> Option<LeafletPage> {
         unsafe {
             from_glib_none(ffi::adw_leaflet_get_page(
@@ -134,21 +146,25 @@ impl Leaflet {
     }
 
     #[doc(alias = "adw_leaflet_get_pages")]
+    #[doc(alias = "get_pages")]
     pub fn pages(&self) -> Option<gtk::SelectionModel> {
         unsafe { from_glib_full(ffi::adw_leaflet_get_pages(self.to_glib_none().0)) }
     }
 
     #[doc(alias = "adw_leaflet_get_transition_type")]
+    #[doc(alias = "get_transition_type")]
     pub fn transition_type(&self) -> LeafletTransitionType {
         unsafe { from_glib(ffi::adw_leaflet_get_transition_type(self.to_glib_none().0)) }
     }
 
     #[doc(alias = "adw_leaflet_get_visible_child")]
+    #[doc(alias = "get_visible_child")]
     pub fn visible_child(&self) -> Option<gtk::Widget> {
         unsafe { from_glib_none(ffi::adw_leaflet_get_visible_child(self.to_glib_none().0)) }
     }
 
     #[doc(alias = "adw_leaflet_get_visible_child_name")]
+    #[doc(alias = "get_visible_child_name")]
     pub fn visible_child_name(&self) -> Option<glib::GString> {
         unsafe {
             from_glib_none(ffi::adw_leaflet_get_visible_child_name(
@@ -298,7 +314,7 @@ impl Leaflet {
         }
     }
 
-    #[doc(alias = "get_property_hhomogeneous_folded")]
+    #[doc(alias = "hhomogeneous-folded")]
     pub fn is_hhomogeneous_folded(&self) -> bool {
         unsafe {
             let mut value = glib::Value::from_type(<bool as StaticType>::static_type());
@@ -313,7 +329,7 @@ impl Leaflet {
         }
     }
 
-    #[doc(alias = "set_property_hhomogeneous_folded")]
+    #[doc(alias = "hhomogeneous-folded")]
     pub fn set_hhomogeneous_folded(&self, hhomogeneous_folded: bool) {
         unsafe {
             glib::gobject_ffi::g_object_set_property(
@@ -324,7 +340,7 @@ impl Leaflet {
         }
     }
 
-    #[doc(alias = "get_property_hhomogeneous_unfolded")]
+    #[doc(alias = "hhomogeneous-unfolded")]
     pub fn is_hhomogeneous_unfolded(&self) -> bool {
         unsafe {
             let mut value = glib::Value::from_type(<bool as StaticType>::static_type());
@@ -339,7 +355,7 @@ impl Leaflet {
         }
     }
 
-    #[doc(alias = "set_property_hhomogeneous_unfolded")]
+    #[doc(alias = "hhomogeneous-unfolded")]
     pub fn set_hhomogeneous_unfolded(&self, hhomogeneous_unfolded: bool) {
         unsafe {
             glib::gobject_ffi::g_object_set_property(
@@ -350,7 +366,7 @@ impl Leaflet {
         }
     }
 
-    #[doc(alias = "get_property_vhomogeneous_folded")]
+    #[doc(alias = "vhomogeneous-folded")]
     pub fn is_vhomogeneous_folded(&self) -> bool {
         unsafe {
             let mut value = glib::Value::from_type(<bool as StaticType>::static_type());
@@ -365,7 +381,7 @@ impl Leaflet {
         }
     }
 
-    #[doc(alias = "set_property_vhomogeneous_folded")]
+    #[doc(alias = "vhomogeneous-folded")]
     pub fn set_vhomogeneous_folded(&self, vhomogeneous_folded: bool) {
         unsafe {
             glib::gobject_ffi::g_object_set_property(
@@ -376,7 +392,7 @@ impl Leaflet {
         }
     }
 
-    #[doc(alias = "get_property_vhomogeneous_unfolded")]
+    #[doc(alias = "vhomogeneous-unfolded")]
     pub fn is_vhomogeneous_unfolded(&self) -> bool {
         unsafe {
             let mut value = glib::Value::from_type(<bool as StaticType>::static_type());
@@ -391,7 +407,7 @@ impl Leaflet {
         }
     }
 
-    #[doc(alias = "set_property_vhomogeneous_unfolded")]
+    #[doc(alias = "vhomogeneous-unfolded")]
     pub fn set_vhomogeneous_unfolded(&self, vhomogeneous_unfolded: bool) {
         unsafe {
             glib::gobject_ffi::g_object_set_property(
@@ -402,7 +418,8 @@ impl Leaflet {
         }
     }
 
-    pub fn connect_property_can_swipe_back_notify<F: Fn(&Leaflet) + 'static>(
+    #[doc(alias = "can-swipe-back")]
+    pub fn connect_can_swipe_back_notify<F: Fn(&Leaflet) + 'static>(
         &self,
         f: F,
     ) -> SignalHandlerId {
@@ -427,7 +444,8 @@ impl Leaflet {
         }
     }
 
-    pub fn connect_property_can_swipe_forward_notify<F: Fn(&Leaflet) + 'static>(
+    #[doc(alias = "can-swipe-forward")]
+    pub fn connect_can_swipe_forward_notify<F: Fn(&Leaflet) + 'static>(
         &self,
         f: F,
     ) -> SignalHandlerId {
@@ -452,10 +470,8 @@ impl Leaflet {
         }
     }
 
-    pub fn connect_property_can_unfold_notify<F: Fn(&Leaflet) + 'static>(
-        &self,
-        f: F,
-    ) -> SignalHandlerId {
+    #[doc(alias = "can-unfold")]
+    pub fn connect_can_unfold_notify<F: Fn(&Leaflet) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_can_unfold_trampoline<F: Fn(&Leaflet) + 'static>(
             this: *mut ffi::AdwLeaflet,
             _param_spec: glib::ffi::gpointer,
@@ -477,7 +493,8 @@ impl Leaflet {
         }
     }
 
-    pub fn connect_property_child_transition_duration_notify<F: Fn(&Leaflet) + 'static>(
+    #[doc(alias = "child-transition-duration")]
+    pub fn connect_child_transition_duration_notify<F: Fn(&Leaflet) + 'static>(
         &self,
         f: F,
     ) -> SignalHandlerId {
@@ -504,7 +521,8 @@ impl Leaflet {
         }
     }
 
-    pub fn connect_property_child_transition_running_notify<F: Fn(&Leaflet) + 'static>(
+    #[doc(alias = "child-transition-running")]
+    pub fn connect_child_transition_running_notify<F: Fn(&Leaflet) + 'static>(
         &self,
         f: F,
     ) -> SignalHandlerId {
@@ -531,10 +549,8 @@ impl Leaflet {
         }
     }
 
-    pub fn connect_property_folded_notify<F: Fn(&Leaflet) + 'static>(
-        &self,
-        f: F,
-    ) -> SignalHandlerId {
+    #[doc(alias = "folded")]
+    pub fn connect_folded_notify<F: Fn(&Leaflet) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_folded_trampoline<F: Fn(&Leaflet) + 'static>(
             this: *mut ffi::AdwLeaflet,
             _param_spec: glib::ffi::gpointer,
@@ -556,7 +572,8 @@ impl Leaflet {
         }
     }
 
-    pub fn connect_property_hhomogeneous_folded_notify<F: Fn(&Leaflet) + 'static>(
+    #[doc(alias = "hhomogeneous-folded")]
+    pub fn connect_hhomogeneous_folded_notify<F: Fn(&Leaflet) + 'static>(
         &self,
         f: F,
     ) -> SignalHandlerId {
@@ -581,7 +598,8 @@ impl Leaflet {
         }
     }
 
-    pub fn connect_property_hhomogeneous_unfolded_notify<F: Fn(&Leaflet) + 'static>(
+    #[doc(alias = "hhomogeneous-unfolded")]
+    pub fn connect_hhomogeneous_unfolded_notify<F: Fn(&Leaflet) + 'static>(
         &self,
         f: F,
     ) -> SignalHandlerId {
@@ -606,7 +624,8 @@ impl Leaflet {
         }
     }
 
-    pub fn connect_property_interpolate_size_notify<F: Fn(&Leaflet) + 'static>(
+    #[doc(alias = "interpolate-size")]
+    pub fn connect_interpolate_size_notify<F: Fn(&Leaflet) + 'static>(
         &self,
         f: F,
     ) -> SignalHandlerId {
@@ -631,7 +650,8 @@ impl Leaflet {
         }
     }
 
-    pub fn connect_property_mode_transition_duration_notify<F: Fn(&Leaflet) + 'static>(
+    #[doc(alias = "mode-transition-duration")]
+    pub fn connect_mode_transition_duration_notify<F: Fn(&Leaflet) + 'static>(
         &self,
         f: F,
     ) -> SignalHandlerId {
@@ -658,10 +678,8 @@ impl Leaflet {
         }
     }
 
-    pub fn connect_property_pages_notify<F: Fn(&Leaflet) + 'static>(
-        &self,
-        f: F,
-    ) -> SignalHandlerId {
+    #[doc(alias = "pages")]
+    pub fn connect_pages_notify<F: Fn(&Leaflet) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_pages_trampoline<F: Fn(&Leaflet) + 'static>(
             this: *mut ffi::AdwLeaflet,
             _param_spec: glib::ffi::gpointer,
@@ -683,7 +701,8 @@ impl Leaflet {
         }
     }
 
-    pub fn connect_property_transition_type_notify<F: Fn(&Leaflet) + 'static>(
+    #[doc(alias = "transition-type")]
+    pub fn connect_transition_type_notify<F: Fn(&Leaflet) + 'static>(
         &self,
         f: F,
     ) -> SignalHandlerId {
@@ -708,7 +727,8 @@ impl Leaflet {
         }
     }
 
-    pub fn connect_property_vhomogeneous_folded_notify<F: Fn(&Leaflet) + 'static>(
+    #[doc(alias = "vhomogeneous-folded")]
+    pub fn connect_vhomogeneous_folded_notify<F: Fn(&Leaflet) + 'static>(
         &self,
         f: F,
     ) -> SignalHandlerId {
@@ -733,7 +753,8 @@ impl Leaflet {
         }
     }
 
-    pub fn connect_property_vhomogeneous_unfolded_notify<F: Fn(&Leaflet) + 'static>(
+    #[doc(alias = "vhomogeneous-unfolded")]
+    pub fn connect_vhomogeneous_unfolded_notify<F: Fn(&Leaflet) + 'static>(
         &self,
         f: F,
     ) -> SignalHandlerId {
@@ -758,10 +779,8 @@ impl Leaflet {
         }
     }
 
-    pub fn connect_property_visible_child_notify<F: Fn(&Leaflet) + 'static>(
-        &self,
-        f: F,
-    ) -> SignalHandlerId {
+    #[doc(alias = "visible-child")]
+    pub fn connect_visible_child_notify<F: Fn(&Leaflet) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_visible_child_trampoline<F: Fn(&Leaflet) + 'static>(
             this: *mut ffi::AdwLeaflet,
             _param_spec: glib::ffi::gpointer,
@@ -783,7 +802,8 @@ impl Leaflet {
         }
     }
 
-    pub fn connect_property_visible_child_name_notify<F: Fn(&Leaflet) + 'static>(
+    #[doc(alias = "visible-child-name")]
+    pub fn connect_visible_child_name_notify<F: Fn(&Leaflet) + 'static>(
         &self,
         f: F,
     ) -> SignalHandlerId {
@@ -1002,8 +1022,7 @@ impl LeafletBuilder {
         if let Some(ref orientation) = self.orientation {
             properties.push(("orientation", orientation));
         }
-        let ret = glib::Object::new::<Leaflet>(&properties).expect("object new");
-        ret
+        glib::Object::new::<Leaflet>(&properties).expect("Failed to create an instance of Leaflet")
     }
 
     pub fn can_swipe_back(mut self, can_swipe_back: bool) -> Self {

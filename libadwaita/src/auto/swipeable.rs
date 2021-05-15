@@ -30,18 +30,23 @@ pub trait SwipeableExt: 'static {
     fn emit_child_switched(&self, index: u32, duration: i64);
 
     #[doc(alias = "adw_swipeable_get_cancel_progress")]
+    #[doc(alias = "get_cancel_progress")]
     fn cancel_progress(&self) -> f64;
 
     #[doc(alias = "adw_swipeable_get_distance")]
+    #[doc(alias = "get_distance")]
     fn distance(&self) -> f64;
 
     #[doc(alias = "adw_swipeable_get_progress")]
+    #[doc(alias = "get_progress")]
     fn progress(&self) -> f64;
 
     #[doc(alias = "adw_swipeable_get_snap_points")]
+    #[doc(alias = "get_snap_points")]
     fn snap_points(&self) -> Vec<f64>;
 
     #[doc(alias = "adw_swipeable_get_swipe_area")]
+    #[doc(alias = "get_swipe_area")]
     fn swipe_area(
         &self,
         navigation_direction: NavigationDirection,
@@ -49,11 +54,13 @@ pub trait SwipeableExt: 'static {
     ) -> gdk::Rectangle;
 
     #[doc(alias = "adw_swipeable_get_swipe_tracker")]
+    #[doc(alias = "get_swipe_tracker")]
     fn swipe_tracker(&self) -> Option<SwipeTracker>;
 
     #[doc(alias = "adw_swipeable_switch_child")]
     fn switch_child(&self, index: u32, duration: i64);
 
+    #[doc(alias = "child-switched")]
     fn connect_child_switched<F: Fn(&Self, u32, i64) + 'static>(&self, f: F) -> SignalHandlerId;
 }
 
@@ -121,6 +128,7 @@ impl<O: IsA<Swipeable>> SwipeableExt for O {
         }
     }
 
+    #[doc(alias = "child-switched")]
     fn connect_child_switched<F: Fn(&Self, u32, i64) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn child_switched_trampoline<P, F: Fn(&P, u32, i64) + 'static>(
             this: *mut ffi::AdwSwipeable,

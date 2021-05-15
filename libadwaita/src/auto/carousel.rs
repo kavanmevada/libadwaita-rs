@@ -39,6 +39,7 @@ impl Carousel {
     }
 
     #[doc(alias = "adw_carousel_get_allow_mouse_drag")]
+    #[doc(alias = "get_allow_mouse_drag")]
     pub fn allows_mouse_drag(&self) -> bool {
         unsafe {
             from_glib(ffi::adw_carousel_get_allow_mouse_drag(
@@ -48,36 +49,43 @@ impl Carousel {
     }
 
     #[doc(alias = "adw_carousel_get_animation_duration")]
+    #[doc(alias = "get_animation_duration")]
     pub fn animation_duration(&self) -> u32 {
         unsafe { ffi::adw_carousel_get_animation_duration(self.to_glib_none().0) }
     }
 
     #[doc(alias = "adw_carousel_get_interactive")]
+    #[doc(alias = "get_interactive")]
     pub fn is_interactive(&self) -> bool {
         unsafe { from_glib(ffi::adw_carousel_get_interactive(self.to_glib_none().0)) }
     }
 
     #[doc(alias = "adw_carousel_get_n_pages")]
+    #[doc(alias = "get_n_pages")]
     pub fn n_pages(&self) -> u32 {
         unsafe { ffi::adw_carousel_get_n_pages(self.to_glib_none().0) }
     }
 
     #[doc(alias = "adw_carousel_get_nth_page")]
+    #[doc(alias = "get_nth_page")]
     pub fn nth_page(&self, n: u32) -> Option<gtk::Widget> {
         unsafe { from_glib_none(ffi::adw_carousel_get_nth_page(self.to_glib_none().0, n)) }
     }
 
     #[doc(alias = "adw_carousel_get_position")]
+    #[doc(alias = "get_position")]
     pub fn position(&self) -> f64 {
         unsafe { ffi::adw_carousel_get_position(self.to_glib_none().0) }
     }
 
     #[doc(alias = "adw_carousel_get_reveal_duration")]
+    #[doc(alias = "get_reveal_duration")]
     pub fn reveal_duration(&self) -> u32 {
         unsafe { ffi::adw_carousel_get_reveal_duration(self.to_glib_none().0) }
     }
 
     #[doc(alias = "adw_carousel_get_spacing")]
+    #[doc(alias = "get_spacing")]
     pub fn spacing(&self) -> u32 {
         unsafe { ffi::adw_carousel_get_spacing(self.to_glib_none().0) }
     }
@@ -174,6 +182,7 @@ impl Carousel {
         }
     }
 
+    #[doc(alias = "page-changed")]
     pub fn connect_page_changed<F: Fn(&Carousel, u32) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn page_changed_trampoline<F: Fn(&Carousel, u32) + 'static>(
             this: *mut ffi::AdwCarousel,
@@ -196,7 +205,8 @@ impl Carousel {
         }
     }
 
-    pub fn connect_property_allow_mouse_drag_notify<F: Fn(&Carousel) + 'static>(
+    #[doc(alias = "allow-mouse-drag")]
+    pub fn connect_allow_mouse_drag_notify<F: Fn(&Carousel) + 'static>(
         &self,
         f: F,
     ) -> SignalHandlerId {
@@ -221,7 +231,8 @@ impl Carousel {
         }
     }
 
-    pub fn connect_property_animation_duration_notify<F: Fn(&Carousel) + 'static>(
+    #[doc(alias = "animation-duration")]
+    pub fn connect_animation_duration_notify<F: Fn(&Carousel) + 'static>(
         &self,
         f: F,
     ) -> SignalHandlerId {
@@ -246,10 +257,8 @@ impl Carousel {
         }
     }
 
-    pub fn connect_property_interactive_notify<F: Fn(&Carousel) + 'static>(
-        &self,
-        f: F,
-    ) -> SignalHandlerId {
+    #[doc(alias = "interactive")]
+    pub fn connect_interactive_notify<F: Fn(&Carousel) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_interactive_trampoline<F: Fn(&Carousel) + 'static>(
             this: *mut ffi::AdwCarousel,
             _param_spec: glib::ffi::gpointer,
@@ -271,10 +280,8 @@ impl Carousel {
         }
     }
 
-    pub fn connect_property_n_pages_notify<F: Fn(&Carousel) + 'static>(
-        &self,
-        f: F,
-    ) -> SignalHandlerId {
+    #[doc(alias = "n-pages")]
+    pub fn connect_n_pages_notify<F: Fn(&Carousel) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_n_pages_trampoline<F: Fn(&Carousel) + 'static>(
             this: *mut ffi::AdwCarousel,
             _param_spec: glib::ffi::gpointer,
@@ -296,10 +303,8 @@ impl Carousel {
         }
     }
 
-    pub fn connect_property_position_notify<F: Fn(&Carousel) + 'static>(
-        &self,
-        f: F,
-    ) -> SignalHandlerId {
+    #[doc(alias = "position")]
+    pub fn connect_position_notify<F: Fn(&Carousel) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_position_trampoline<F: Fn(&Carousel) + 'static>(
             this: *mut ffi::AdwCarousel,
             _param_spec: glib::ffi::gpointer,
@@ -321,7 +326,8 @@ impl Carousel {
         }
     }
 
-    pub fn connect_property_reveal_duration_notify<F: Fn(&Carousel) + 'static>(
+    #[doc(alias = "reveal-duration")]
+    pub fn connect_reveal_duration_notify<F: Fn(&Carousel) + 'static>(
         &self,
         f: F,
     ) -> SignalHandlerId {
@@ -346,10 +352,8 @@ impl Carousel {
         }
     }
 
-    pub fn connect_property_spacing_notify<F: Fn(&Carousel) + 'static>(
-        &self,
-        f: F,
-    ) -> SignalHandlerId {
+    #[doc(alias = "spacing")]
+    pub fn connect_spacing_notify<F: Fn(&Carousel) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_spacing_trampoline<F: Fn(&Carousel) + 'static>(
             this: *mut ffi::AdwCarousel,
             _param_spec: glib::ffi::gpointer,
@@ -533,8 +537,8 @@ impl CarouselBuilder {
         if let Some(ref orientation) = self.orientation {
             properties.push(("orientation", orientation));
         }
-        let ret = glib::Object::new::<Carousel>(&properties).expect("object new");
-        ret
+        glib::Object::new::<Carousel>(&properties)
+            .expect("Failed to create an instance of Carousel")
     }
 
     pub fn allow_mouse_drag(mut self, allow_mouse_drag: bool) -> Self {

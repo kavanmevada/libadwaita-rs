@@ -171,8 +171,7 @@ impl BinBuilder {
         if let Some(ref accessible_role) = self.accessible_role {
             properties.push(("accessible-role", accessible_role));
         }
-        let ret = glib::Object::new::<Bin>(&properties).expect("object new");
-        ret
+        glib::Object::new::<Bin>(&properties).expect("Failed to create an instance of Bin")
     }
 
     pub fn child<P: IsA<gtk::Widget>>(mut self, child: &P) -> Self {
@@ -335,12 +334,14 @@ pub const NONE_BIN: Option<&Bin> = None;
 
 pub trait BinExt: 'static {
     #[doc(alias = "adw_bin_get_child")]
+    #[doc(alias = "get_child")]
     fn child(&self) -> Option<gtk::Widget>;
 
     #[doc(alias = "adw_bin_set_child")]
     fn set_child<P: IsA<gtk::Widget>>(&self, child: Option<&P>);
 
-    fn connect_property_child_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
+    #[doc(alias = "child")]
+    fn connect_child_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
 }
 
 impl<O: IsA<Bin>> BinExt for O {
@@ -357,7 +358,8 @@ impl<O: IsA<Bin>> BinExt for O {
         }
     }
 
-    fn connect_property_child_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
+    #[doc(alias = "child")]
+    fn connect_child_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_child_trampoline<P, F: Fn(&P) + 'static>(
             this: *mut ffi::AdwBin,
             _param_spec: glib::ffi::gpointer,

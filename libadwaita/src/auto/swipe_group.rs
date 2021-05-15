@@ -34,6 +34,7 @@ impl SwipeGroup {
     }
 
     #[doc(alias = "adw_swipe_group_get_swipeables")]
+    #[doc(alias = "get_swipeables")]
     pub fn swipeables(&self) -> Vec<Swipeable> {
         unsafe {
             FromGlibPtrContainer::from_glib_none(ffi::adw_swipe_group_get_swipeables(

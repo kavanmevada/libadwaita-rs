@@ -21,24 +21,25 @@ glib::wrapper! {
 
 impl EnumValueObject {
     #[doc(alias = "adw_enum_value_object_get_name")]
+    #[doc(alias = "get_name")]
     pub fn name(&self) -> Option<glib::GString> {
         unsafe { from_glib_none(ffi::adw_enum_value_object_get_name(self.to_glib_none().0)) }
     }
 
     #[doc(alias = "adw_enum_value_object_get_nick")]
+    #[doc(alias = "get_nick")]
     pub fn nick(&self) -> Option<glib::GString> {
         unsafe { from_glib_none(ffi::adw_enum_value_object_get_nick(self.to_glib_none().0)) }
     }
 
     #[doc(alias = "adw_enum_value_object_get_value")]
+    #[doc(alias = "get_value")]
     pub fn value(&self) -> i32 {
         unsafe { ffi::adw_enum_value_object_get_value(self.to_glib_none().0) }
     }
 
-    pub fn connect_property_name_notify<F: Fn(&EnumValueObject) + 'static>(
-        &self,
-        f: F,
-    ) -> SignalHandlerId {
+    #[doc(alias = "name")]
+    pub fn connect_name_notify<F: Fn(&EnumValueObject) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_name_trampoline<F: Fn(&EnumValueObject) + 'static>(
             this: *mut ffi::AdwEnumValueObject,
             _param_spec: glib::ffi::gpointer,
@@ -60,10 +61,8 @@ impl EnumValueObject {
         }
     }
 
-    pub fn connect_property_nick_notify<F: Fn(&EnumValueObject) + 'static>(
-        &self,
-        f: F,
-    ) -> SignalHandlerId {
+    #[doc(alias = "nick")]
+    pub fn connect_nick_notify<F: Fn(&EnumValueObject) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_nick_trampoline<F: Fn(&EnumValueObject) + 'static>(
             this: *mut ffi::AdwEnumValueObject,
             _param_spec: glib::ffi::gpointer,
@@ -85,10 +84,8 @@ impl EnumValueObject {
         }
     }
 
-    pub fn connect_property_value_notify<F: Fn(&EnumValueObject) + 'static>(
-        &self,
-        f: F,
-    ) -> SignalHandlerId {
+    #[doc(alias = "value")]
+    pub fn connect_value_notify<F: Fn(&EnumValueObject) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_value_trampoline<F: Fn(&EnumValueObject) + 'static>(
             this: *mut ffi::AdwEnumValueObject,
             _param_spec: glib::ffi::gpointer,

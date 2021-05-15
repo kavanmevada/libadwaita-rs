@@ -176,8 +176,8 @@ impl PreferencesPageBuilder {
         if let Some(ref accessible_role) = self.accessible_role {
             properties.push(("accessible-role", accessible_role));
         }
-        let ret = glib::Object::new::<PreferencesPage>(&properties).expect("object new");
-        ret
+        glib::Object::new::<PreferencesPage>(&properties)
+            .expect("Failed to create an instance of PreferencesPage")
     }
 
     pub fn icon_name(mut self, icon_name: &str) -> Self {
@@ -348,9 +348,11 @@ pub trait PreferencesPageExt: 'static {
     fn add<P: IsA<PreferencesGroup>>(&self, group: &P);
 
     #[doc(alias = "adw_preferences_page_get_icon_name")]
+    #[doc(alias = "get_icon_name")]
     fn icon_name(&self) -> Option<glib::GString>;
 
     #[doc(alias = "adw_preferences_page_get_title")]
+    #[doc(alias = "get_title")]
     fn title(&self) -> Option<glib::GString>;
 
     #[doc(alias = "adw_preferences_page_remove")]
@@ -362,9 +364,11 @@ pub trait PreferencesPageExt: 'static {
     #[doc(alias = "adw_preferences_page_set_title")]
     fn set_title(&self, title: Option<&str>);
 
-    fn connect_property_icon_name_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
+    #[doc(alias = "icon-name")]
+    fn connect_icon_name_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
 
-    fn connect_property_title_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
+    #[doc(alias = "title")]
+    fn connect_title_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
 }
 
 impl<O: IsA<PreferencesPage>> PreferencesPageExt for O {
@@ -420,7 +424,8 @@ impl<O: IsA<PreferencesPage>> PreferencesPageExt for O {
         }
     }
 
-    fn connect_property_icon_name_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
+    #[doc(alias = "icon-name")]
+    fn connect_icon_name_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_icon_name_trampoline<P, F: Fn(&P) + 'static>(
             this: *mut ffi::AdwPreferencesPage,
             _param_spec: glib::ffi::gpointer,
@@ -444,7 +449,8 @@ impl<O: IsA<PreferencesPage>> PreferencesPageExt for O {
         }
     }
 
-    fn connect_property_title_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
+    #[doc(alias = "title")]
+    fn connect_title_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_title_trampoline<P, F: Fn(&P) + 'static>(
             this: *mut ffi::AdwPreferencesPage,
             _param_spec: glib::ffi::gpointer,

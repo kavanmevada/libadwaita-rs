@@ -254,8 +254,8 @@ impl ApplicationWindowBuilder {
         if let Some(ref accessible_role) = self.accessible_role {
             properties.push(("accessible-role", accessible_role));
         }
-        let ret = glib::Object::new::<ApplicationWindow>(&properties).expect("object new");
-        ret
+        glib::Object::new::<ApplicationWindow>(&properties)
+            .expect("Failed to create an instance of ApplicationWindow")
     }
 
     pub fn show_menubar(mut self, show_menubar: bool) -> Self {
@@ -528,6 +528,7 @@ pub const NONE_APPLICATION_WINDOW: Option<&ApplicationWindow> = None;
 
 pub trait ApplicationWindowExt: 'static {
     #[doc(alias = "adw_application_window_get_child")]
+    #[doc(alias = "get_child")]
     fn child(&self) -> Option<gtk::Widget>;
 
     #[doc(alias = "adw_application_window_set_child")]

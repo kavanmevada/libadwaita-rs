@@ -30,11 +30,13 @@ impl ClampLayout {
     }
 
     #[doc(alias = "adw_clamp_layout_get_maximum_size")]
+    #[doc(alias = "get_maximum_size")]
     pub fn maximum_size(&self) -> i32 {
         unsafe { ffi::adw_clamp_layout_get_maximum_size(self.to_glib_none().0) }
     }
 
     #[doc(alias = "adw_clamp_layout_get_tightening_threshold")]
+    #[doc(alias = "get_tightening_threshold")]
     pub fn tightening_threshold(&self) -> i32 {
         unsafe { ffi::adw_clamp_layout_get_tightening_threshold(self.to_glib_none().0) }
     }
@@ -56,7 +58,8 @@ impl ClampLayout {
         }
     }
 
-    pub fn connect_property_maximum_size_notify<F: Fn(&ClampLayout) + 'static>(
+    #[doc(alias = "maximum-size")]
+    pub fn connect_maximum_size_notify<F: Fn(&ClampLayout) + 'static>(
         &self,
         f: F,
     ) -> SignalHandlerId {
@@ -81,7 +84,8 @@ impl ClampLayout {
         }
     }
 
-    pub fn connect_property_tightening_threshold_notify<F: Fn(&ClampLayout) + 'static>(
+    #[doc(alias = "tightening-threshold")]
+    pub fn connect_tightening_threshold_notify<F: Fn(&ClampLayout) + 'static>(
         &self,
         f: F,
     ) -> SignalHandlerId {
@@ -138,8 +142,8 @@ impl ClampLayoutBuilder {
         if let Some(ref orientation) = self.orientation {
             properties.push(("orientation", orientation));
         }
-        let ret = glib::Object::new::<ClampLayout>(&properties).expect("object new");
-        ret
+        glib::Object::new::<ClampLayout>(&properties)
+            .expect("Failed to create an instance of ClampLayout")
     }
 
     pub fn maximum_size(mut self, maximum_size: i32) -> Self {

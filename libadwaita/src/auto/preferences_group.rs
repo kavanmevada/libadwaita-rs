@@ -175,8 +175,8 @@ impl PreferencesGroupBuilder {
         if let Some(ref accessible_role) = self.accessible_role {
             properties.push(("accessible-role", accessible_role));
         }
-        let ret = glib::Object::new::<PreferencesGroup>(&properties).expect("object new");
-        ret
+        glib::Object::new::<PreferencesGroup>(&properties)
+            .expect("Failed to create an instance of PreferencesGroup")
     }
 
     pub fn description(mut self, description: &str) -> Self {
@@ -347,9 +347,11 @@ pub trait PreferencesGroupExt: 'static {
     fn add<P: IsA<gtk::Widget>>(&self, child: &P);
 
     #[doc(alias = "adw_preferences_group_get_description")]
+    #[doc(alias = "get_description")]
     fn description(&self) -> Option<glib::GString>;
 
     #[doc(alias = "adw_preferences_group_get_title")]
+    #[doc(alias = "get_title")]
     fn title(&self) -> Option<glib::GString>;
 
     #[doc(alias = "adw_preferences_group_remove")]
@@ -361,9 +363,11 @@ pub trait PreferencesGroupExt: 'static {
     #[doc(alias = "adw_preferences_group_set_title")]
     fn set_title(&self, title: &str);
 
-    fn connect_property_description_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
+    #[doc(alias = "description")]
+    fn connect_description_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
 
-    fn connect_property_title_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
+    #[doc(alias = "title")]
+    fn connect_title_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
 }
 
 impl<O: IsA<PreferencesGroup>> PreferencesGroupExt for O {
@@ -419,7 +423,8 @@ impl<O: IsA<PreferencesGroup>> PreferencesGroupExt for O {
         }
     }
 
-    fn connect_property_description_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
+    #[doc(alias = "description")]
+    fn connect_description_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_description_trampoline<P, F: Fn(&P) + 'static>(
             this: *mut ffi::AdwPreferencesGroup,
             _param_spec: glib::ffi::gpointer,
@@ -443,7 +448,8 @@ impl<O: IsA<PreferencesGroup>> PreferencesGroupExt for O {
         }
     }
 
-    fn connect_property_title_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
+    #[doc(alias = "title")]
+    fn connect_title_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_title_trampoline<P, F: Fn(&P) + 'static>(
             this: *mut ffi::AdwPreferencesGroup,
             _param_spec: glib::ffi::gpointer,

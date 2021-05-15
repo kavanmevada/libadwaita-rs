@@ -37,11 +37,13 @@ impl WindowTitle {
     }
 
     #[doc(alias = "adw_window_title_get_subtitle")]
+    #[doc(alias = "get_subtitle")]
     pub fn subtitle(&self) -> Option<glib::GString> {
         unsafe { from_glib_none(ffi::adw_window_title_get_subtitle(self.to_glib_none().0)) }
     }
 
     #[doc(alias = "adw_window_title_get_title")]
+    #[doc(alias = "get_title")]
     pub fn title(&self) -> Option<glib::GString> {
         unsafe { from_glib_none(ffi::adw_window_title_get_title(self.to_glib_none().0)) }
     }
@@ -60,10 +62,8 @@ impl WindowTitle {
         }
     }
 
-    pub fn connect_property_subtitle_notify<F: Fn(&WindowTitle) + 'static>(
-        &self,
-        f: F,
-    ) -> SignalHandlerId {
+    #[doc(alias = "subtitle")]
+    pub fn connect_subtitle_notify<F: Fn(&WindowTitle) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_subtitle_trampoline<F: Fn(&WindowTitle) + 'static>(
             this: *mut ffi::AdwWindowTitle,
             _param_spec: glib::ffi::gpointer,
@@ -85,10 +85,8 @@ impl WindowTitle {
         }
     }
 
-    pub fn connect_property_title_notify<F: Fn(&WindowTitle) + 'static>(
-        &self,
-        f: F,
-    ) -> SignalHandlerId {
+    #[doc(alias = "title")]
+    pub fn connect_title_notify<F: Fn(&WindowTitle) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_title_trampoline<F: Fn(&WindowTitle) + 'static>(
             this: *mut ffi::AdwWindowTitle,
             _param_spec: glib::ffi::gpointer,
@@ -250,8 +248,8 @@ impl WindowTitleBuilder {
         if let Some(ref accessible_role) = self.accessible_role {
             properties.push(("accessible-role", accessible_role));
         }
-        let ret = glib::Object::new::<WindowTitle>(&properties).expect("object new");
-        ret
+        glib::Object::new::<WindowTitle>(&properties)
+            .expect("Failed to create an instance of WindowTitle")
     }
 
     pub fn subtitle(mut self, subtitle: &str) -> Self {

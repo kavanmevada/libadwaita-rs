@@ -31,16 +31,19 @@ impl ClampScrollable {
     }
 
     #[doc(alias = "adw_clamp_scrollable_get_child")]
+    #[doc(alias = "get_child")]
     pub fn child(&self) -> Option<gtk::Widget> {
         unsafe { from_glib_none(ffi::adw_clamp_scrollable_get_child(self.to_glib_none().0)) }
     }
 
     #[doc(alias = "adw_clamp_scrollable_get_maximum_size")]
+    #[doc(alias = "get_maximum_size")]
     pub fn maximum_size(&self) -> i32 {
         unsafe { ffi::adw_clamp_scrollable_get_maximum_size(self.to_glib_none().0) }
     }
 
     #[doc(alias = "adw_clamp_scrollable_get_tightening_threshold")]
+    #[doc(alias = "get_tightening_threshold")]
     pub fn tightening_threshold(&self) -> i32 {
         unsafe { ffi::adw_clamp_scrollable_get_tightening_threshold(self.to_glib_none().0) }
     }
@@ -72,10 +75,8 @@ impl ClampScrollable {
         }
     }
 
-    pub fn connect_property_child_notify<F: Fn(&ClampScrollable) + 'static>(
-        &self,
-        f: F,
-    ) -> SignalHandlerId {
+    #[doc(alias = "child")]
+    pub fn connect_child_notify<F: Fn(&ClampScrollable) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_child_trampoline<F: Fn(&ClampScrollable) + 'static>(
             this: *mut ffi::AdwClampScrollable,
             _param_spec: glib::ffi::gpointer,
@@ -97,7 +98,8 @@ impl ClampScrollable {
         }
     }
 
-    pub fn connect_property_maximum_size_notify<F: Fn(&ClampScrollable) + 'static>(
+    #[doc(alias = "maximum-size")]
+    pub fn connect_maximum_size_notify<F: Fn(&ClampScrollable) + 'static>(
         &self,
         f: F,
     ) -> SignalHandlerId {
@@ -122,7 +124,8 @@ impl ClampScrollable {
         }
     }
 
-    pub fn connect_property_tightening_threshold_notify<F: Fn(&ClampScrollable) + 'static>(
+    #[doc(alias = "tightening-threshold")]
+    pub fn connect_tightening_threshold_notify<F: Fn(&ClampScrollable) + 'static>(
         &self,
         f: F,
     ) -> SignalHandlerId {
@@ -319,8 +322,8 @@ impl ClampScrollableBuilder {
         if let Some(ref vscroll_policy) = self.vscroll_policy {
             properties.push(("vscroll-policy", vscroll_policy));
         }
-        let ret = glib::Object::new::<ClampScrollable>(&properties).expect("object new");
-        ret
+        glib::Object::new::<ClampScrollable>(&properties)
+            .expect("Failed to create an instance of ClampScrollable")
     }
 
     pub fn child<P: IsA<gtk::Widget>>(mut self, child: &P) -> Self {

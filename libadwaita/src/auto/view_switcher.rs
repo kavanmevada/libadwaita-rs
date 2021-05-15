@@ -32,6 +32,7 @@ impl ViewSwitcher {
     }
 
     #[doc(alias = "adw_view_switcher_get_narrow_ellipsize")]
+    #[doc(alias = "get_narrow_ellipsize")]
     pub fn narrow_ellipsize(&self) -> pango::EllipsizeMode {
         unsafe {
             from_glib(ffi::adw_view_switcher_get_narrow_ellipsize(
@@ -41,11 +42,13 @@ impl ViewSwitcher {
     }
 
     #[doc(alias = "adw_view_switcher_get_policy")]
+    #[doc(alias = "get_policy")]
     pub fn policy(&self) -> ViewSwitcherPolicy {
         unsafe { from_glib(ffi::adw_view_switcher_get_policy(self.to_glib_none().0)) }
     }
 
     #[doc(alias = "adw_view_switcher_get_stack")]
+    #[doc(alias = "get_stack")]
     pub fn stack(&self) -> Option<gtk::Stack> {
         unsafe { from_glib_none(ffi::adw_view_switcher_get_stack(self.to_glib_none().0)) }
     }
@@ -71,7 +74,8 @@ impl ViewSwitcher {
         }
     }
 
-    pub fn connect_property_narrow_ellipsize_notify<F: Fn(&ViewSwitcher) + 'static>(
+    #[doc(alias = "narrow-ellipsize")]
+    pub fn connect_narrow_ellipsize_notify<F: Fn(&ViewSwitcher) + 'static>(
         &self,
         f: F,
     ) -> SignalHandlerId {
@@ -96,10 +100,8 @@ impl ViewSwitcher {
         }
     }
 
-    pub fn connect_property_policy_notify<F: Fn(&ViewSwitcher) + 'static>(
-        &self,
-        f: F,
-    ) -> SignalHandlerId {
+    #[doc(alias = "policy")]
+    pub fn connect_policy_notify<F: Fn(&ViewSwitcher) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_policy_trampoline<F: Fn(&ViewSwitcher) + 'static>(
             this: *mut ffi::AdwViewSwitcher,
             _param_spec: glib::ffi::gpointer,
@@ -121,10 +123,8 @@ impl ViewSwitcher {
         }
     }
 
-    pub fn connect_property_stack_notify<F: Fn(&ViewSwitcher) + 'static>(
-        &self,
-        f: F,
-    ) -> SignalHandlerId {
+    #[doc(alias = "stack")]
+    pub fn connect_stack_notify<F: Fn(&ViewSwitcher) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_stack_trampoline<F: Fn(&ViewSwitcher) + 'static>(
             this: *mut ffi::AdwViewSwitcher,
             _param_spec: glib::ffi::gpointer,
@@ -296,8 +296,8 @@ impl ViewSwitcherBuilder {
         if let Some(ref accessible_role) = self.accessible_role {
             properties.push(("accessible-role", accessible_role));
         }
-        let ret = glib::Object::new::<ViewSwitcher>(&properties).expect("object new");
-        ret
+        glib::Object::new::<ViewSwitcher>(&properties)
+            .expect("Failed to create an instance of ViewSwitcher")
     }
 
     pub fn narrow_ellipsize(mut self, narrow_ellipsize: pango::EllipsizeMode) -> Self {

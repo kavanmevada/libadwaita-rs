@@ -31,16 +31,19 @@ impl Clamp {
     }
 
     #[doc(alias = "adw_clamp_get_child")]
+    #[doc(alias = "get_child")]
     pub fn child(&self) -> Option<gtk::Widget> {
         unsafe { from_glib_none(ffi::adw_clamp_get_child(self.to_glib_none().0)) }
     }
 
     #[doc(alias = "adw_clamp_get_maximum_size")]
+    #[doc(alias = "get_maximum_size")]
     pub fn maximum_size(&self) -> i32 {
         unsafe { ffi::adw_clamp_get_maximum_size(self.to_glib_none().0) }
     }
 
     #[doc(alias = "adw_clamp_get_tightening_threshold")]
+    #[doc(alias = "get_tightening_threshold")]
     pub fn tightening_threshold(&self) -> i32 {
         unsafe { ffi::adw_clamp_get_tightening_threshold(self.to_glib_none().0) }
     }
@@ -69,7 +72,8 @@ impl Clamp {
         }
     }
 
-    pub fn connect_property_child_notify<F: Fn(&Clamp) + 'static>(&self, f: F) -> SignalHandlerId {
+    #[doc(alias = "child")]
+    pub fn connect_child_notify<F: Fn(&Clamp) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_child_trampoline<F: Fn(&Clamp) + 'static>(
             this: *mut ffi::AdwClamp,
             _param_spec: glib::ffi::gpointer,
@@ -91,10 +95,8 @@ impl Clamp {
         }
     }
 
-    pub fn connect_property_maximum_size_notify<F: Fn(&Clamp) + 'static>(
-        &self,
-        f: F,
-    ) -> SignalHandlerId {
+    #[doc(alias = "maximum-size")]
+    pub fn connect_maximum_size_notify<F: Fn(&Clamp) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_maximum_size_trampoline<F: Fn(&Clamp) + 'static>(
             this: *mut ffi::AdwClamp,
             _param_spec: glib::ffi::gpointer,
@@ -116,7 +118,8 @@ impl Clamp {
         }
     }
 
-    pub fn connect_property_tightening_threshold_notify<F: Fn(&Clamp) + 'static>(
+    #[doc(alias = "tightening-threshold")]
+    pub fn connect_tightening_threshold_notify<F: Fn(&Clamp) + 'static>(
         &self,
         f: F,
     ) -> SignalHandlerId {
@@ -295,8 +298,7 @@ impl ClampBuilder {
         if let Some(ref orientation) = self.orientation {
             properties.push(("orientation", orientation));
         }
-        let ret = glib::Object::new::<Clamp>(&properties).expect("object new");
-        ret
+        glib::Object::new::<Clamp>(&properties).expect("Failed to create an instance of Clamp")
     }
 
     pub fn child<P: IsA<gtk::Widget>>(mut self, child: &P) -> Self {

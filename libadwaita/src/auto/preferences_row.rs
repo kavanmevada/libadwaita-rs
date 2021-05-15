@@ -195,8 +195,8 @@ impl PreferencesRowBuilder {
         if let Some(ref action_target) = self.action_target {
             properties.push(("action-target", action_target));
         }
-        let ret = glib::Object::new::<PreferencesRow>(&properties).expect("object new");
-        ret
+        glib::Object::new::<PreferencesRow>(&properties)
+            .expect("Failed to create an instance of PreferencesRow")
     }
 
     pub fn title(mut self, title: &str) -> Self {
@@ -389,9 +389,11 @@ pub const NONE_PREFERENCES_ROW: Option<&PreferencesRow> = None;
 
 pub trait PreferencesRowExt: 'static {
     #[doc(alias = "adw_preferences_row_get_title")]
+    #[doc(alias = "get_title")]
     fn title(&self) -> Option<glib::GString>;
 
     #[doc(alias = "adw_preferences_row_get_use_underline")]
+    #[doc(alias = "get_use_underline")]
     fn uses_underline(&self) -> bool;
 
     #[doc(alias = "adw_preferences_row_set_title")]
@@ -400,12 +402,11 @@ pub trait PreferencesRowExt: 'static {
     #[doc(alias = "adw_preferences_row_set_use_underline")]
     fn set_use_underline(&self, use_underline: bool);
 
-    fn connect_property_title_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
+    #[doc(alias = "title")]
+    fn connect_title_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
 
-    fn connect_property_use_underline_notify<F: Fn(&Self) + 'static>(
-        &self,
-        f: F,
-    ) -> SignalHandlerId;
+    #[doc(alias = "use-underline")]
+    fn connect_use_underline_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
 }
 
 impl<O: IsA<PreferencesRow>> PreferencesRowExt for O {
@@ -443,7 +444,8 @@ impl<O: IsA<PreferencesRow>> PreferencesRowExt for O {
         }
     }
 
-    fn connect_property_title_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
+    #[doc(alias = "title")]
+    fn connect_title_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_title_trampoline<P, F: Fn(&P) + 'static>(
             this: *mut ffi::AdwPreferencesRow,
             _param_spec: glib::ffi::gpointer,
@@ -467,10 +469,8 @@ impl<O: IsA<PreferencesRow>> PreferencesRowExt for O {
         }
     }
 
-    fn connect_property_use_underline_notify<F: Fn(&Self) + 'static>(
-        &self,
-        f: F,
-    ) -> SignalHandlerId {
+    #[doc(alias = "use-underline")]
+    fn connect_use_underline_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_use_underline_trampoline<P, F: Fn(&P) + 'static>(
             this: *mut ffi::AdwPreferencesRow,
             _param_spec: glib::ffi::gpointer,

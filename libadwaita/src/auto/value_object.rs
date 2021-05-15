@@ -51,11 +51,13 @@ impl ValueObject {
     }
 
     #[doc(alias = "adw_value_object_get_string")]
+    #[doc(alias = "get_string")]
     pub fn string(&self) -> Option<glib::GString> {
         unsafe { from_glib_none(ffi::adw_value_object_get_string(self.to_glib_none().0)) }
     }
 
     #[doc(alias = "adw_value_object_get_value")]
+    #[doc(alias = "get_value")]
     pub fn value(&self) -> Option<glib::Value> {
         unsafe { from_glib_none(ffi::adw_value_object_get_value(self.to_glib_none().0)) }
     }
