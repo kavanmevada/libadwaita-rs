@@ -24,6 +24,7 @@ macro_rules! skip_assert_initialized {
 mod auto;
 
 mod combo_row;
+mod tab_bar;
 pub use combo_row::ComboRowBuilder;
 
 pub use auto::functions::*;

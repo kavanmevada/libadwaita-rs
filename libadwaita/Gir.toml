@@ -53,7 +53,6 @@ generate = [
     "Adw.SwipeTracker",
     "Adw.SwipeGroup",
     "Adw.Swipeable",
-    "Adw.TabBar",
     "Adw.TabView",
     "Adw.TabPage",
     "Adw.ViewSwitcher",
@@ -140,3 +139,13 @@ generate_builder = false
 name = "Adw.EnumValueObject"
 status = "generate"
 generate_builder = false
+
+[[object]]
+name = "Adw.TabBar"
+status = "generate"
+    [[object.function]]
+    name = "setup_extra_drop_target"
+    manual = true # somehow gir fails to handle functions that have a array with a specific length
+    [[object.signal]]
+    name = "extra-drag-drop"
+    ignore = true # manual: *mut gobject_ffi::GValue doesn't implement glib::from_glib_borrow
