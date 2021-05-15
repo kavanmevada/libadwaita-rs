@@ -28,7 +28,7 @@ impl CarouselIndicatorDots {
     #[doc(alias = "adw_carousel_indicator_dots_new")]
     pub fn new() -> CarouselIndicatorDots {
         assert_initialized_main_thread!();
-        unsafe { gtk::Widget::from_glib_full(ffi::adw_carousel_indicator_dots_new()).unsafe_cast() }
+        unsafe { gtk::Widget::from_glib_none(ffi::adw_carousel_indicator_dots_new()).unsafe_cast() }
     }
 
     #[doc(alias = "adw_carousel_indicator_dots_get_carousel")]

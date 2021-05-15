@@ -29,7 +29,7 @@ impl CarouselIndicatorLines {
     pub fn new() -> CarouselIndicatorLines {
         assert_initialized_main_thread!();
         unsafe {
-            gtk::Widget::from_glib_full(ffi::adw_carousel_indicator_lines_new()).unsafe_cast()
+            gtk::Widget::from_glib_none(ffi::adw_carousel_indicator_lines_new()).unsafe_cast()
         }
     }
 

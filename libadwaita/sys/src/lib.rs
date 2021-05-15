@@ -429,20 +429,6 @@ impl ::std::fmt::Debug for AdwStatusPageClass {
 
 #[repr(C)]
 #[derive(Copy, Clone)]
-pub struct AdwSwipeGroupClass {
-    pub parent_class: gobject::GObjectClass,
-}
-
-impl ::std::fmt::Debug for AdwSwipeGroupClass {
-    fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
-        f.debug_struct(&format!("AdwSwipeGroupClass @ {:p}", self))
-            .field("parent_class", &self.parent_class)
-            .finish()
-    }
-}
-
-#[repr(C)]
-#[derive(Copy, Clone)]
 pub struct AdwSwipeTrackerClass {
     pub parent_class: gobject::GObjectClass,
 }
@@ -459,8 +445,6 @@ impl ::std::fmt::Debug for AdwSwipeTrackerClass {
 #[derive(Copy, Clone)]
 pub struct AdwSwipeableInterface {
     pub parent: gobject::GTypeInterface,
-    pub switch_child: Option<unsafe extern "C" fn(*mut AdwSwipeable, c_uint, i64)>,
-    pub get_swipe_tracker: Option<unsafe extern "C" fn(*mut AdwSwipeable) -> *mut AdwSwipeTracker>,
     pub get_distance: Option<unsafe extern "C" fn(*mut AdwSwipeable) -> c_double>,
     pub get_snap_points:
         Option<unsafe extern "C" fn(*mut AdwSwipeable, *mut c_int) -> *mut c_double>,
@@ -481,13 +465,53 @@ impl ::std::fmt::Debug for AdwSwipeableInterface {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
         f.debug_struct(&format!("AdwSwipeableInterface @ {:p}", self))
             .field("parent", &self.parent)
-            .field("switch_child", &self.switch_child)
-            .field("get_swipe_tracker", &self.get_swipe_tracker)
             .field("get_distance", &self.get_distance)
             .field("get_snap_points", &self.get_snap_points)
             .field("get_progress", &self.get_progress)
             .field("get_cancel_progress", &self.get_cancel_progress)
             .field("get_swipe_area", &self.get_swipe_area)
+            .finish()
+    }
+}
+
+#[repr(C)]
+#[derive(Copy, Clone)]
+pub struct AdwTabBarClass {
+    pub parent_class: gtk::GtkWidgetClass,
+}
+
+impl ::std::fmt::Debug for AdwTabBarClass {
+    fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+        f.debug_struct(&format!("AdwTabBarClass @ {:p}", self))
+            .field("parent_class", &self.parent_class)
+            .finish()
+    }
+}
+
+#[repr(C)]
+#[derive(Copy, Clone)]
+pub struct AdwTabPageClass {
+    pub parent_class: gobject::GObjectClass,
+}
+
+impl ::std::fmt::Debug for AdwTabPageClass {
+    fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+        f.debug_struct(&format!("AdwTabPageClass @ {:p}", self))
+            .field("parent_class", &self.parent_class)
+            .finish()
+    }
+}
+
+#[repr(C)]
+#[derive(Copy, Clone)]
+pub struct AdwTabViewClass {
+    pub parent_class: gtk::GtkWidgetClass,
+}
+
+impl ::std::fmt::Debug for AdwTabViewClass {
+    fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+        f.debug_struct(&format!("AdwTabViewClass @ {:p}", self))
+            .field("parent_class", &self.parent_class)
             .finish()
     }
 }
@@ -861,22 +885,39 @@ impl ::std::fmt::Debug for AdwStatusPage {
 }
 
 #[repr(C)]
-pub struct AdwSwipeGroup(c_void);
-
-impl ::std::fmt::Debug for AdwSwipeGroup {
-    fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
-        f.debug_struct(&format!("AdwSwipeGroup @ {:p}", self))
-            .finish()
-    }
-}
-
-#[repr(C)]
 pub struct AdwSwipeTracker(c_void);
 
 impl ::std::fmt::Debug for AdwSwipeTracker {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
         f.debug_struct(&format!("AdwSwipeTracker @ {:p}", self))
             .finish()
+    }
+}
+
+#[repr(C)]
+pub struct AdwTabBar(c_void);
+
+impl ::std::fmt::Debug for AdwTabBar {
+    fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+        f.debug_struct(&format!("AdwTabBar @ {:p}", self)).finish()
+    }
+}
+
+#[repr(C)]
+pub struct AdwTabPage(c_void);
+
+impl ::std::fmt::Debug for AdwTabPage {
+    fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+        f.debug_struct(&format!("AdwTabPage @ {:p}", self)).finish()
+    }
+}
+
+#[repr(C)]
+pub struct AdwTabView(c_void);
+
+impl ::std::fmt::Debug for AdwTabView {
+    fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+        f.debug_struct(&format!("AdwTabView @ {:p}", self)).finish()
     }
 }
 
@@ -1073,7 +1114,9 @@ extern "C" {
     pub fn adw_carousel_get_type() -> GType;
     pub fn adw_carousel_new() -> *mut gtk::GtkWidget;
     pub fn adw_carousel_append(self_: *mut AdwCarousel, child: *mut gtk::GtkWidget);
+    pub fn adw_carousel_get_allow_long_swipes(self_: *mut AdwCarousel) -> gboolean;
     pub fn adw_carousel_get_allow_mouse_drag(self_: *mut AdwCarousel) -> gboolean;
+    pub fn adw_carousel_get_allow_scroll_wheel(self_: *mut AdwCarousel) -> gboolean;
     pub fn adw_carousel_get_animation_duration(self_: *mut AdwCarousel) -> c_uint;
     pub fn adw_carousel_get_interactive(self_: *mut AdwCarousel) -> gboolean;
     pub fn adw_carousel_get_n_pages(self_: *mut AdwCarousel) -> c_uint;
@@ -1099,7 +1142,12 @@ extern "C" {
         widget: *mut gtk::GtkWidget,
         duration: i64,
     );
+    pub fn adw_carousel_set_allow_long_swipes(self_: *mut AdwCarousel, allow_long_swipes: gboolean);
     pub fn adw_carousel_set_allow_mouse_drag(self_: *mut AdwCarousel, allow_mouse_drag: gboolean);
+    pub fn adw_carousel_set_allow_scroll_wheel(
+        self_: *mut AdwCarousel,
+        allow_scroll_wheel: gboolean,
+    );
     pub fn adw_carousel_set_animation_duration(self_: *mut AdwCarousel, duration: c_uint);
     pub fn adw_carousel_set_interactive(self_: *mut AdwCarousel, interactive: gboolean);
     pub fn adw_carousel_set_reveal_duration(self_: *mut AdwCarousel, reveal_duration: c_uint);
@@ -1429,6 +1477,7 @@ extern "C" {
     );
     pub fn adw_preferences_page_get_icon_name(self_: *mut AdwPreferencesPage) -> *const c_char;
     pub fn adw_preferences_page_get_title(self_: *mut AdwPreferencesPage) -> *const c_char;
+    pub fn adw_preferences_page_get_use_underline(self_: *mut AdwPreferencesPage) -> gboolean;
     pub fn adw_preferences_page_remove(
         self_: *mut AdwPreferencesPage,
         group: *mut AdwPreferencesGroup,
@@ -1438,6 +1487,10 @@ extern "C" {
         icon_name: *const c_char,
     );
     pub fn adw_preferences_page_set_title(self_: *mut AdwPreferencesPage, title: *const c_char);
+    pub fn adw_preferences_page_set_use_underline(
+        self_: *mut AdwPreferencesPage,
+        use_underline: gboolean,
+    );
 
     //=========================================================================
     // AdwPreferencesRow
@@ -1537,26 +1590,19 @@ extern "C" {
     pub fn adw_status_page_set_title(self_: *mut AdwStatusPage, title: *const c_char);
 
     //=========================================================================
-    // AdwSwipeGroup
-    //=========================================================================
-    pub fn adw_swipe_group_get_type() -> GType;
-    pub fn adw_swipe_group_new() -> *mut AdwSwipeGroup;
-    pub fn adw_swipe_group_add_swipeable(self_: *mut AdwSwipeGroup, swipeable: *mut AdwSwipeable);
-    pub fn adw_swipe_group_get_swipeables(self_: *mut AdwSwipeGroup) -> *mut glib::GSList;
-    pub fn adw_swipe_group_remove_swipeable(
-        self_: *mut AdwSwipeGroup,
-        swipeable: *mut AdwSwipeable,
-    );
-
-    //=========================================================================
     // AdwSwipeTracker
     //=========================================================================
     pub fn adw_swipe_tracker_get_type() -> GType;
     pub fn adw_swipe_tracker_new(swipeable: *mut AdwSwipeable) -> *mut AdwSwipeTracker;
+    pub fn adw_swipe_tracker_get_allow_long_swipes(self_: *mut AdwSwipeTracker) -> gboolean;
     pub fn adw_swipe_tracker_get_allow_mouse_drag(self_: *mut AdwSwipeTracker) -> gboolean;
     pub fn adw_swipe_tracker_get_enabled(self_: *mut AdwSwipeTracker) -> gboolean;
     pub fn adw_swipe_tracker_get_reversed(self_: *mut AdwSwipeTracker) -> gboolean;
     pub fn adw_swipe_tracker_get_swipeable(self_: *mut AdwSwipeTracker) -> *mut AdwSwipeable;
+    pub fn adw_swipe_tracker_set_allow_long_swipes(
+        self_: *mut AdwSwipeTracker,
+        allow_long_swipes: gboolean,
+    );
     pub fn adw_swipe_tracker_set_allow_mouse_drag(
         self_: *mut AdwSwipeTracker,
         allow_mouse_drag: gboolean,
@@ -1564,6 +1610,142 @@ extern "C" {
     pub fn adw_swipe_tracker_set_enabled(self_: *mut AdwSwipeTracker, enabled: gboolean);
     pub fn adw_swipe_tracker_set_reversed(self_: *mut AdwSwipeTracker, reversed: gboolean);
     pub fn adw_swipe_tracker_shift_position(self_: *mut AdwSwipeTracker, delta: c_double);
+
+    //=========================================================================
+    // AdwTabBar
+    //=========================================================================
+    pub fn adw_tab_bar_get_type() -> GType;
+    pub fn adw_tab_bar_new() -> *mut AdwTabBar;
+    pub fn adw_tab_bar_get_autohide(self_: *mut AdwTabBar) -> gboolean;
+    pub fn adw_tab_bar_get_end_action_widget(self_: *mut AdwTabBar) -> *mut gtk::GtkWidget;
+    pub fn adw_tab_bar_get_expand_tabs(self_: *mut AdwTabBar) -> gboolean;
+    pub fn adw_tab_bar_get_inverted(self_: *mut AdwTabBar) -> gboolean;
+    pub fn adw_tab_bar_get_is_overflowing(self_: *mut AdwTabBar) -> gboolean;
+    pub fn adw_tab_bar_get_start_action_widget(self_: *mut AdwTabBar) -> *mut gtk::GtkWidget;
+    pub fn adw_tab_bar_get_tabs_revealed(self_: *mut AdwTabBar) -> gboolean;
+    pub fn adw_tab_bar_get_view(self_: *mut AdwTabBar) -> *mut AdwTabView;
+    pub fn adw_tab_bar_set_autohide(self_: *mut AdwTabBar, autohide: gboolean);
+    pub fn adw_tab_bar_set_end_action_widget(self_: *mut AdwTabBar, widget: *mut gtk::GtkWidget);
+    pub fn adw_tab_bar_set_expand_tabs(self_: *mut AdwTabBar, expand_tabs: gboolean);
+    pub fn adw_tab_bar_set_inverted(self_: *mut AdwTabBar, inverted: gboolean);
+    pub fn adw_tab_bar_set_start_action_widget(self_: *mut AdwTabBar, widget: *mut gtk::GtkWidget);
+    pub fn adw_tab_bar_set_view(self_: *mut AdwTabBar, view: *mut AdwTabView);
+    pub fn adw_tab_bar_setup_extra_drop_target(
+        self_: *mut AdwTabBar,
+        actions: gdk::GdkDragAction,
+        types: *mut GType,
+        n_types: size_t,
+    );
+
+    //=========================================================================
+    // AdwTabPage
+    //=========================================================================
+    pub fn adw_tab_page_get_type() -> GType;
+    pub fn adw_tab_page_get_child(self_: *mut AdwTabPage) -> *mut gtk::GtkWidget;
+    pub fn adw_tab_page_get_icon(self_: *mut AdwTabPage) -> *mut gio::GIcon;
+    pub fn adw_tab_page_get_indicator_activatable(self_: *mut AdwTabPage) -> gboolean;
+    pub fn adw_tab_page_get_indicator_icon(self_: *mut AdwTabPage) -> *mut gio::GIcon;
+    pub fn adw_tab_page_get_loading(self_: *mut AdwTabPage) -> gboolean;
+    pub fn adw_tab_page_get_needs_attention(self_: *mut AdwTabPage) -> gboolean;
+    pub fn adw_tab_page_get_parent(self_: *mut AdwTabPage) -> *mut AdwTabPage;
+    pub fn adw_tab_page_get_pinned(self_: *mut AdwTabPage) -> gboolean;
+    pub fn adw_tab_page_get_selected(self_: *mut AdwTabPage) -> gboolean;
+    pub fn adw_tab_page_get_title(self_: *mut AdwTabPage) -> *const c_char;
+    pub fn adw_tab_page_get_tooltip(self_: *mut AdwTabPage) -> *const c_char;
+    pub fn adw_tab_page_set_icon(self_: *mut AdwTabPage, icon: *mut gio::GIcon);
+    pub fn adw_tab_page_set_indicator_activatable(self_: *mut AdwTabPage, activatable: gboolean);
+    pub fn adw_tab_page_set_indicator_icon(self_: *mut AdwTabPage, indicator_icon: *mut gio::GIcon);
+    pub fn adw_tab_page_set_loading(self_: *mut AdwTabPage, loading: gboolean);
+    pub fn adw_tab_page_set_needs_attention(self_: *mut AdwTabPage, needs_attention: gboolean);
+    pub fn adw_tab_page_set_title(self_: *mut AdwTabPage, title: *const c_char);
+    pub fn adw_tab_page_set_tooltip(self_: *mut AdwTabPage, tooltip: *const c_char);
+
+    //=========================================================================
+    // AdwTabView
+    //=========================================================================
+    pub fn adw_tab_view_get_type() -> GType;
+    pub fn adw_tab_view_new() -> *mut AdwTabView;
+    pub fn adw_tab_view_add_page(
+        self_: *mut AdwTabView,
+        child: *mut gtk::GtkWidget,
+        parent: *mut AdwTabPage,
+    ) -> *mut AdwTabPage;
+    pub fn adw_tab_view_append(
+        self_: *mut AdwTabView,
+        child: *mut gtk::GtkWidget,
+    ) -> *mut AdwTabPage;
+    pub fn adw_tab_view_append_pinned(
+        self_: *mut AdwTabView,
+        child: *mut gtk::GtkWidget,
+    ) -> *mut AdwTabPage;
+    pub fn adw_tab_view_close_other_pages(self_: *mut AdwTabView, page: *mut AdwTabPage);
+    pub fn adw_tab_view_close_page(self_: *mut AdwTabView, page: *mut AdwTabPage);
+    pub fn adw_tab_view_close_page_finish(
+        self_: *mut AdwTabView,
+        page: *mut AdwTabPage,
+        confirm: gboolean,
+    );
+    pub fn adw_tab_view_close_pages_after(self_: *mut AdwTabView, page: *mut AdwTabPage);
+    pub fn adw_tab_view_close_pages_before(self_: *mut AdwTabView, page: *mut AdwTabPage);
+    pub fn adw_tab_view_get_default_icon(self_: *mut AdwTabView) -> *mut gio::GIcon;
+    pub fn adw_tab_view_get_is_transferring_page(self_: *mut AdwTabView) -> gboolean;
+    pub fn adw_tab_view_get_menu_model(self_: *mut AdwTabView) -> *mut gio::GMenuModel;
+    pub fn adw_tab_view_get_n_pages(self_: *mut AdwTabView) -> c_int;
+    pub fn adw_tab_view_get_n_pinned_pages(self_: *mut AdwTabView) -> c_int;
+    pub fn adw_tab_view_get_nth_page(self_: *mut AdwTabView, position: c_int) -> *mut AdwTabPage;
+    pub fn adw_tab_view_get_page(
+        self_: *mut AdwTabView,
+        child: *mut gtk::GtkWidget,
+    ) -> *mut AdwTabPage;
+    pub fn adw_tab_view_get_page_position(self_: *mut AdwTabView, page: *mut AdwTabPage) -> c_int;
+    pub fn adw_tab_view_get_pages(self_: *mut AdwTabView) -> *mut gtk::GtkSelectionModel;
+    pub fn adw_tab_view_get_selected_page(self_: *mut AdwTabView) -> *mut AdwTabPage;
+    pub fn adw_tab_view_get_shortcut_widget(self_: *mut AdwTabView) -> *mut gtk::GtkWidget;
+    pub fn adw_tab_view_insert(
+        self_: *mut AdwTabView,
+        child: *mut gtk::GtkWidget,
+        position: c_int,
+    ) -> *mut AdwTabPage;
+    pub fn adw_tab_view_insert_pinned(
+        self_: *mut AdwTabView,
+        child: *mut gtk::GtkWidget,
+        position: c_int,
+    ) -> *mut AdwTabPage;
+    pub fn adw_tab_view_prepend(
+        self_: *mut AdwTabView,
+        child: *mut gtk::GtkWidget,
+    ) -> *mut AdwTabPage;
+    pub fn adw_tab_view_prepend_pinned(
+        self_: *mut AdwTabView,
+        child: *mut gtk::GtkWidget,
+    ) -> *mut AdwTabPage;
+    pub fn adw_tab_view_reorder_backward(self_: *mut AdwTabView, page: *mut AdwTabPage)
+        -> gboolean;
+    pub fn adw_tab_view_reorder_first(self_: *mut AdwTabView, page: *mut AdwTabPage) -> gboolean;
+    pub fn adw_tab_view_reorder_forward(self_: *mut AdwTabView, page: *mut AdwTabPage) -> gboolean;
+    pub fn adw_tab_view_reorder_last(self_: *mut AdwTabView, page: *mut AdwTabPage) -> gboolean;
+    pub fn adw_tab_view_reorder_page(
+        self_: *mut AdwTabView,
+        page: *mut AdwTabPage,
+        position: c_int,
+    ) -> gboolean;
+    pub fn adw_tab_view_select_next_page(self_: *mut AdwTabView) -> gboolean;
+    pub fn adw_tab_view_select_previous_page(self_: *mut AdwTabView) -> gboolean;
+    pub fn adw_tab_view_set_default_icon(self_: *mut AdwTabView, default_icon: *mut gio::GIcon);
+    pub fn adw_tab_view_set_menu_model(self_: *mut AdwTabView, menu_model: *mut gio::GMenuModel);
+    pub fn adw_tab_view_set_page_pinned(
+        self_: *mut AdwTabView,
+        page: *mut AdwTabPage,
+        pinned: gboolean,
+    );
+    pub fn adw_tab_view_set_selected_page(self_: *mut AdwTabView, selected_page: *mut AdwTabPage);
+    pub fn adw_tab_view_set_shortcut_widget(self_: *mut AdwTabView, widget: *mut gtk::GtkWidget);
+    pub fn adw_tab_view_transfer_page(
+        self_: *mut AdwTabView,
+        page: *mut AdwTabPage,
+        other_view: *mut AdwTabView,
+        position: c_int,
+    );
 
     //=========================================================================
     // AdwValueObject
@@ -1678,11 +1860,6 @@ extern "C" {
     // AdwSwipeable
     //=========================================================================
     pub fn adw_swipeable_get_type() -> GType;
-    pub fn adw_swipeable_emit_child_switched(
-        self_: *mut AdwSwipeable,
-        index: c_uint,
-        duration: i64,
-    );
     pub fn adw_swipeable_get_cancel_progress(self_: *mut AdwSwipeable) -> c_double;
     pub fn adw_swipeable_get_distance(self_: *mut AdwSwipeable) -> c_double;
     pub fn adw_swipeable_get_progress(self_: *mut AdwSwipeable) -> c_double;
@@ -1696,8 +1873,6 @@ extern "C" {
         is_drag: gboolean,
         rect: *mut gdk::GdkRectangle,
     );
-    pub fn adw_swipeable_get_swipe_tracker(self_: *mut AdwSwipeable) -> *mut AdwSwipeTracker;
-    pub fn adw_swipeable_switch_child(self_: *mut AdwSwipeable, index: c_uint, duration: i64);
 
     //=========================================================================
     // Other functions

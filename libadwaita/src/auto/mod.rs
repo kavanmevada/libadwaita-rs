@@ -100,15 +100,24 @@ mod status_page;
 pub use self::status_page::StatusPage;
 pub use self::status_page::StatusPageBuilder;
 
-mod swipe_group;
-pub use self::swipe_group::SwipeGroup;
-
 mod swipe_tracker;
 pub use self::swipe_tracker::SwipeTracker;
 pub use self::swipe_tracker::SwipeTrackerBuilder;
 
 mod swipeable;
 pub use self::swipeable::{Swipeable, NONE_SWIPEABLE};
+
+mod tab_bar;
+pub use self::tab_bar::TabBar;
+pub use self::tab_bar::TabBarBuilder;
+
+mod tab_page;
+pub use self::tab_page::TabPage;
+pub use self::tab_page::TabPageBuilder;
+
+mod tab_view;
+pub use self::tab_view::TabView;
+pub use self::tab_view::TabViewBuilder;
 
 mod value_object;
 pub use self::value_object::ValueObject;

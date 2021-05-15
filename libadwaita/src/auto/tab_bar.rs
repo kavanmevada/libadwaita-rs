@@ -3,7 +3,8 @@
 // from gir-files (https://github.com/gtk-rs/gir-files.git)
 // DO NOT EDIT
 
-use crate::Swipeable;
+use crate::TabPage;
+use crate::TabView;
 use glib::object::Cast;
 use glib::object::IsA;
 use glib::object::ObjectType as ObjectType_;
@@ -17,241 +18,167 @@ use std::fmt;
 use std::mem::transmute;
 
 glib::wrapper! {
-    pub struct Carousel(Object<ffi::AdwCarousel, ffi::AdwCarouselClass>) @extends gtk::Widget, @implements gtk::Accessible, gtk::Buildable, gtk::ConstraintTarget, Swipeable, gtk::Orientable;
+    pub struct TabBar(Object<ffi::AdwTabBar, ffi::AdwTabBarClass>) @extends gtk::Widget, @implements gtk::Accessible, gtk::Buildable, gtk::ConstraintTarget;
 
     match fn {
-        type_ => || ffi::adw_carousel_get_type(),
+        type_ => || ffi::adw_tab_bar_get_type(),
     }
 }
 
-impl Carousel {
-    #[doc(alias = "adw_carousel_new")]
-    pub fn new() -> Carousel {
+impl TabBar {
+    #[doc(alias = "adw_tab_bar_new")]
+    pub fn new() -> TabBar {
         assert_initialized_main_thread!();
-        unsafe { gtk::Widget::from_glib_none(ffi::adw_carousel_new()).unsafe_cast() }
+        unsafe { from_glib_none(ffi::adw_tab_bar_new()) }
     }
 
-    #[doc(alias = "adw_carousel_append")]
-    pub fn append<P: IsA<gtk::Widget>>(&self, child: &P) {
-        unsafe {
-            ffi::adw_carousel_append(self.to_glib_none().0, child.as_ref().to_glib_none().0);
-        }
+    #[doc(alias = "adw_tab_bar_get_autohide")]
+    #[doc(alias = "get_autohide")]
+    pub fn is_autohide(&self) -> bool {
+        unsafe { from_glib(ffi::adw_tab_bar_get_autohide(self.to_glib_none().0)) }
     }
 
-    #[doc(alias = "adw_carousel_get_allow_long_swipes")]
-    #[doc(alias = "get_allow_long_swipes")]
-    pub fn allows_long_swipes(&self) -> bool {
+    #[doc(alias = "adw_tab_bar_get_end_action_widget")]
+    #[doc(alias = "get_end_action_widget")]
+    pub fn end_action_widget(&self) -> Option<gtk::Widget> {
         unsafe {
-            from_glib(ffi::adw_carousel_get_allow_long_swipes(
+            from_glib_none(ffi::adw_tab_bar_get_end_action_widget(
                 self.to_glib_none().0,
             ))
         }
     }
 
-    #[doc(alias = "adw_carousel_get_allow_mouse_drag")]
-    #[doc(alias = "get_allow_mouse_drag")]
-    pub fn allows_mouse_drag(&self) -> bool {
+    #[doc(alias = "adw_tab_bar_get_expand_tabs")]
+    #[doc(alias = "get_expand_tabs")]
+    pub fn expands_tabs(&self) -> bool {
+        unsafe { from_glib(ffi::adw_tab_bar_get_expand_tabs(self.to_glib_none().0)) }
+    }
+
+    #[doc(alias = "adw_tab_bar_get_inverted")]
+    #[doc(alias = "get_inverted")]
+    pub fn is_inverted(&self) -> bool {
+        unsafe { from_glib(ffi::adw_tab_bar_get_inverted(self.to_glib_none().0)) }
+    }
+
+    #[doc(alias = "adw_tab_bar_get_is_overflowing")]
+    #[doc(alias = "get_is_overflowing")]
+    pub fn is_overflowing(&self) -> bool {
+        unsafe { from_glib(ffi::adw_tab_bar_get_is_overflowing(self.to_glib_none().0)) }
+    }
+
+    #[doc(alias = "adw_tab_bar_get_start_action_widget")]
+    #[doc(alias = "get_start_action_widget")]
+    pub fn start_action_widget(&self) -> Option<gtk::Widget> {
         unsafe {
-            from_glib(ffi::adw_carousel_get_allow_mouse_drag(
+            from_glib_none(ffi::adw_tab_bar_get_start_action_widget(
                 self.to_glib_none().0,
             ))
         }
     }
 
-    #[doc(alias = "adw_carousel_get_allow_scroll_wheel")]
-    #[doc(alias = "get_allow_scroll_wheel")]
-    pub fn allows_scroll_wheel(&self) -> bool {
+    #[doc(alias = "adw_tab_bar_get_tabs_revealed")]
+    #[doc(alias = "get_tabs_revealed")]
+    pub fn is_tabs_revealed(&self) -> bool {
+        unsafe { from_glib(ffi::adw_tab_bar_get_tabs_revealed(self.to_glib_none().0)) }
+    }
+
+    #[doc(alias = "adw_tab_bar_get_view")]
+    #[doc(alias = "get_view")]
+    pub fn view(&self) -> Option<TabView> {
+        unsafe { from_glib_none(ffi::adw_tab_bar_get_view(self.to_glib_none().0)) }
+    }
+
+    #[doc(alias = "adw_tab_bar_set_autohide")]
+    pub fn set_autohide(&self, autohide: bool) {
         unsafe {
-            from_glib(ffi::adw_carousel_get_allow_scroll_wheel(
-                self.to_glib_none().0,
-            ))
+            ffi::adw_tab_bar_set_autohide(self.to_glib_none().0, autohide.into_glib());
         }
     }
 
-    #[doc(alias = "adw_carousel_get_animation_duration")]
-    #[doc(alias = "get_animation_duration")]
-    pub fn animation_duration(&self) -> u32 {
-        unsafe { ffi::adw_carousel_get_animation_duration(self.to_glib_none().0) }
-    }
-
-    #[doc(alias = "adw_carousel_get_interactive")]
-    #[doc(alias = "get_interactive")]
-    pub fn is_interactive(&self) -> bool {
-        unsafe { from_glib(ffi::adw_carousel_get_interactive(self.to_glib_none().0)) }
-    }
-
-    #[doc(alias = "adw_carousel_get_n_pages")]
-    #[doc(alias = "get_n_pages")]
-    pub fn n_pages(&self) -> u32 {
-        unsafe { ffi::adw_carousel_get_n_pages(self.to_glib_none().0) }
-    }
-
-    #[doc(alias = "adw_carousel_get_nth_page")]
-    #[doc(alias = "get_nth_page")]
-    pub fn nth_page(&self, n: u32) -> Option<gtk::Widget> {
-        unsafe { from_glib_none(ffi::adw_carousel_get_nth_page(self.to_glib_none().0, n)) }
-    }
-
-    #[doc(alias = "adw_carousel_get_position")]
-    #[doc(alias = "get_position")]
-    pub fn position(&self) -> f64 {
-        unsafe { ffi::adw_carousel_get_position(self.to_glib_none().0) }
-    }
-
-    #[doc(alias = "adw_carousel_get_reveal_duration")]
-    #[doc(alias = "get_reveal_duration")]
-    pub fn reveal_duration(&self) -> u32 {
-        unsafe { ffi::adw_carousel_get_reveal_duration(self.to_glib_none().0) }
-    }
-
-    #[doc(alias = "adw_carousel_get_spacing")]
-    #[doc(alias = "get_spacing")]
-    pub fn spacing(&self) -> u32 {
-        unsafe { ffi::adw_carousel_get_spacing(self.to_glib_none().0) }
-    }
-
-    #[doc(alias = "adw_carousel_insert")]
-    pub fn insert<P: IsA<gtk::Widget>>(&self, child: &P, position: i32) {
+    #[doc(alias = "adw_tab_bar_set_end_action_widget")]
+    pub fn set_end_action_widget<P: IsA<gtk::Widget>>(&self, widget: Option<&P>) {
         unsafe {
-            ffi::adw_carousel_insert(
+            ffi::adw_tab_bar_set_end_action_widget(
                 self.to_glib_none().0,
-                child.as_ref().to_glib_none().0,
-                position,
+                widget.map(|p| p.as_ref()).to_glib_none().0,
             );
         }
     }
 
-    #[doc(alias = "adw_carousel_prepend")]
-    pub fn prepend<P: IsA<gtk::Widget>>(&self, child: &P) {
+    #[doc(alias = "adw_tab_bar_set_expand_tabs")]
+    pub fn set_expand_tabs(&self, expand_tabs: bool) {
         unsafe {
-            ffi::adw_carousel_prepend(self.to_glib_none().0, child.as_ref().to_glib_none().0);
+            ffi::adw_tab_bar_set_expand_tabs(self.to_glib_none().0, expand_tabs.into_glib());
         }
     }
 
-    #[doc(alias = "adw_carousel_remove")]
-    pub fn remove<P: IsA<gtk::Widget>>(&self, child: &P) {
+    #[doc(alias = "adw_tab_bar_set_inverted")]
+    pub fn set_inverted(&self, inverted: bool) {
         unsafe {
-            ffi::adw_carousel_remove(self.to_glib_none().0, child.as_ref().to_glib_none().0);
+            ffi::adw_tab_bar_set_inverted(self.to_glib_none().0, inverted.into_glib());
         }
     }
 
-    #[doc(alias = "adw_carousel_reorder")]
-    pub fn reorder<P: IsA<gtk::Widget>>(&self, child: &P, position: i32) {
+    #[doc(alias = "adw_tab_bar_set_start_action_widget")]
+    pub fn set_start_action_widget<P: IsA<gtk::Widget>>(&self, widget: Option<&P>) {
         unsafe {
-            ffi::adw_carousel_reorder(
+            ffi::adw_tab_bar_set_start_action_widget(
                 self.to_glib_none().0,
-                child.as_ref().to_glib_none().0,
-                position,
+                widget.map(|p| p.as_ref()).to_glib_none().0,
             );
         }
     }
 
-    #[doc(alias = "adw_carousel_scroll_to")]
-    pub fn scroll_to<P: IsA<gtk::Widget>>(&self, widget: &P) {
+    #[doc(alias = "adw_tab_bar_set_view")]
+    pub fn set_view(&self, view: Option<&TabView>) {
         unsafe {
-            ffi::adw_carousel_scroll_to(self.to_glib_none().0, widget.as_ref().to_glib_none().0);
+            ffi::adw_tab_bar_set_view(self.to_glib_none().0, view.to_glib_none().0);
         }
     }
 
-    #[doc(alias = "adw_carousel_scroll_to_full")]
-    pub fn scroll_to_full<P: IsA<gtk::Widget>>(&self, widget: &P, duration: i64) {
-        unsafe {
-            ffi::adw_carousel_scroll_to_full(
-                self.to_glib_none().0,
-                widget.as_ref().to_glib_none().0,
-                duration,
-            );
-        }
-    }
+    //#[doc(alias = "adw_tab_bar_setup_extra_drop_target")]
+    //pub fn setup_extra_drop_target(&self, actions: gdk::DragAction, types: /*Unimplemented*/Option<&CArray TypeId { ns_id: 0, id: 30 }>) {
+    //    unsafe { TODO: call ffi:adw_tab_bar_setup_extra_drop_target() }
+    //}
 
-    #[doc(alias = "adw_carousel_set_allow_long_swipes")]
-    pub fn set_allow_long_swipes(&self, allow_long_swipes: bool) {
-        unsafe {
-            ffi::adw_carousel_set_allow_long_swipes(
-                self.to_glib_none().0,
-                allow_long_swipes.into_glib(),
-            );
-        }
-    }
-
-    #[doc(alias = "adw_carousel_set_allow_mouse_drag")]
-    pub fn set_allow_mouse_drag(&self, allow_mouse_drag: bool) {
-        unsafe {
-            ffi::adw_carousel_set_allow_mouse_drag(
-                self.to_glib_none().0,
-                allow_mouse_drag.into_glib(),
-            );
-        }
-    }
-
-    #[doc(alias = "adw_carousel_set_allow_scroll_wheel")]
-    pub fn set_allow_scroll_wheel(&self, allow_scroll_wheel: bool) {
-        unsafe {
-            ffi::adw_carousel_set_allow_scroll_wheel(
-                self.to_glib_none().0,
-                allow_scroll_wheel.into_glib(),
-            );
-        }
-    }
-
-    #[doc(alias = "adw_carousel_set_animation_duration")]
-    pub fn set_animation_duration(&self, duration: u32) {
-        unsafe {
-            ffi::adw_carousel_set_animation_duration(self.to_glib_none().0, duration);
-        }
-    }
-
-    #[doc(alias = "adw_carousel_set_interactive")]
-    pub fn set_interactive(&self, interactive: bool) {
-        unsafe {
-            ffi::adw_carousel_set_interactive(self.to_glib_none().0, interactive.into_glib());
-        }
-    }
-
-    #[doc(alias = "adw_carousel_set_reveal_duration")]
-    pub fn set_reveal_duration(&self, reveal_duration: u32) {
-        unsafe {
-            ffi::adw_carousel_set_reveal_duration(self.to_glib_none().0, reveal_duration);
-        }
-    }
-
-    #[doc(alias = "adw_carousel_set_spacing")]
-    pub fn set_spacing(&self, spacing: u32) {
-        unsafe {
-            ffi::adw_carousel_set_spacing(self.to_glib_none().0, spacing);
-        }
-    }
-
-    #[doc(alias = "page-changed")]
-    pub fn connect_page_changed<F: Fn(&Carousel, u32) + 'static>(&self, f: F) -> SignalHandlerId {
-        unsafe extern "C" fn page_changed_trampoline<F: Fn(&Carousel, u32) + 'static>(
-            this: *mut ffi::AdwCarousel,
-            index: libc::c_uint,
-            f: glib::ffi::gpointer,
-        ) {
-            let f: &F = &*(f as *const F);
-            f(&from_glib_borrow(this), index)
-        }
-        unsafe {
-            let f: Box_<F> = Box_::new(f);
-            connect_raw(
-                self.as_ptr() as *mut _,
-                b"page-changed\0".as_ptr() as *const _,
-                Some(transmute::<_, unsafe extern "C" fn()>(
-                    page_changed_trampoline::<F> as *const (),
-                )),
-                Box_::into_raw(f),
-            )
-        }
-    }
-
-    #[doc(alias = "allow-long-swipes")]
-    pub fn connect_allow_long_swipes_notify<F: Fn(&Carousel) + 'static>(
+    #[doc(alias = "extra-drag-drop")]
+    pub fn connect_extra_drag_drop<F: Fn(&TabBar, &TabPage, &glib::Value) -> bool + 'static>(
         &self,
         f: F,
     ) -> SignalHandlerId {
-        unsafe extern "C" fn notify_allow_long_swipes_trampoline<F: Fn(&Carousel) + 'static>(
-            this: *mut ffi::AdwCarousel,
+        unsafe extern "C" fn extra_drag_drop_trampoline<
+            F: Fn(&TabBar, &TabPage, &glib::Value) -> bool + 'static,
+        >(
+            this: *mut ffi::AdwTabBar,
+            page: *mut ffi::AdwTabPage,
+            value: *mut glib::gobject_ffi::GValue,
+            f: glib::ffi::gpointer,
+        ) -> glib::ffi::gboolean {
+            let f: &F = &*(f as *const F);
+            f(
+                &from_glib_borrow(this),
+                &from_glib_borrow(page),
+                &from_glib_borrow(value),
+            )
+            .into_glib()
+        }
+        unsafe {
+            let f: Box_<F> = Box_::new(f);
+            connect_raw(
+                self.as_ptr() as *mut _,
+                b"extra-drag-drop\0".as_ptr() as *const _,
+                Some(transmute::<_, unsafe extern "C" fn()>(
+                    extra_drag_drop_trampoline::<F> as *const (),
+                )),
+                Box_::into_raw(f),
+            )
+        }
+    }
+
+    #[doc(alias = "autohide")]
+    pub fn connect_autohide_notify<F: Fn(&TabBar) + 'static>(&self, f: F) -> SignalHandlerId {
+        unsafe extern "C" fn notify_autohide_trampoline<F: Fn(&TabBar) + 'static>(
+            this: *mut ffi::AdwTabBar,
             _param_spec: glib::ffi::gpointer,
             f: glib::ffi::gpointer,
         ) {
@@ -262,22 +189,22 @@ impl Carousel {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
-                b"notify::allow-long-swipes\0".as_ptr() as *const _,
+                b"notify::autohide\0".as_ptr() as *const _,
                 Some(transmute::<_, unsafe extern "C" fn()>(
-                    notify_allow_long_swipes_trampoline::<F> as *const (),
+                    notify_autohide_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
             )
         }
     }
 
-    #[doc(alias = "allow-mouse-drag")]
-    pub fn connect_allow_mouse_drag_notify<F: Fn(&Carousel) + 'static>(
+    #[doc(alias = "end-action-widget")]
+    pub fn connect_end_action_widget_notify<F: Fn(&TabBar) + 'static>(
         &self,
         f: F,
     ) -> SignalHandlerId {
-        unsafe extern "C" fn notify_allow_mouse_drag_trampoline<F: Fn(&Carousel) + 'static>(
-            this: *mut ffi::AdwCarousel,
+        unsafe extern "C" fn notify_end_action_widget_trampoline<F: Fn(&TabBar) + 'static>(
+            this: *mut ffi::AdwTabBar,
             _param_spec: glib::ffi::gpointer,
             f: glib::ffi::gpointer,
         ) {
@@ -288,22 +215,91 @@ impl Carousel {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
-                b"notify::allow-mouse-drag\0".as_ptr() as *const _,
+                b"notify::end-action-widget\0".as_ptr() as *const _,
                 Some(transmute::<_, unsafe extern "C" fn()>(
-                    notify_allow_mouse_drag_trampoline::<F> as *const (),
+                    notify_end_action_widget_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
             )
         }
     }
 
-    #[doc(alias = "allow-scroll-wheel")]
-    pub fn connect_allow_scroll_wheel_notify<F: Fn(&Carousel) + 'static>(
+    #[doc(alias = "expand-tabs")]
+    pub fn connect_expand_tabs_notify<F: Fn(&TabBar) + 'static>(&self, f: F) -> SignalHandlerId {
+        unsafe extern "C" fn notify_expand_tabs_trampoline<F: Fn(&TabBar) + 'static>(
+            this: *mut ffi::AdwTabBar,
+            _param_spec: glib::ffi::gpointer,
+            f: glib::ffi::gpointer,
+        ) {
+            let f: &F = &*(f as *const F);
+            f(&from_glib_borrow(this))
+        }
+        unsafe {
+            let f: Box_<F> = Box_::new(f);
+            connect_raw(
+                self.as_ptr() as *mut _,
+                b"notify::expand-tabs\0".as_ptr() as *const _,
+                Some(transmute::<_, unsafe extern "C" fn()>(
+                    notify_expand_tabs_trampoline::<F> as *const (),
+                )),
+                Box_::into_raw(f),
+            )
+        }
+    }
+
+    #[doc(alias = "inverted")]
+    pub fn connect_inverted_notify<F: Fn(&TabBar) + 'static>(&self, f: F) -> SignalHandlerId {
+        unsafe extern "C" fn notify_inverted_trampoline<F: Fn(&TabBar) + 'static>(
+            this: *mut ffi::AdwTabBar,
+            _param_spec: glib::ffi::gpointer,
+            f: glib::ffi::gpointer,
+        ) {
+            let f: &F = &*(f as *const F);
+            f(&from_glib_borrow(this))
+        }
+        unsafe {
+            let f: Box_<F> = Box_::new(f);
+            connect_raw(
+                self.as_ptr() as *mut _,
+                b"notify::inverted\0".as_ptr() as *const _,
+                Some(transmute::<_, unsafe extern "C" fn()>(
+                    notify_inverted_trampoline::<F> as *const (),
+                )),
+                Box_::into_raw(f),
+            )
+        }
+    }
+
+    #[doc(alias = "is-overflowing")]
+    pub fn connect_is_overflowing_notify<F: Fn(&TabBar) + 'static>(&self, f: F) -> SignalHandlerId {
+        unsafe extern "C" fn notify_is_overflowing_trampoline<F: Fn(&TabBar) + 'static>(
+            this: *mut ffi::AdwTabBar,
+            _param_spec: glib::ffi::gpointer,
+            f: glib::ffi::gpointer,
+        ) {
+            let f: &F = &*(f as *const F);
+            f(&from_glib_borrow(this))
+        }
+        unsafe {
+            let f: Box_<F> = Box_::new(f);
+            connect_raw(
+                self.as_ptr() as *mut _,
+                b"notify::is-overflowing\0".as_ptr() as *const _,
+                Some(transmute::<_, unsafe extern "C" fn()>(
+                    notify_is_overflowing_trampoline::<F> as *const (),
+                )),
+                Box_::into_raw(f),
+            )
+        }
+    }
+
+    #[doc(alias = "start-action-widget")]
+    pub fn connect_start_action_widget_notify<F: Fn(&TabBar) + 'static>(
         &self,
         f: F,
     ) -> SignalHandlerId {
-        unsafe extern "C" fn notify_allow_scroll_wheel_trampoline<F: Fn(&Carousel) + 'static>(
-            this: *mut ffi::AdwCarousel,
+        unsafe extern "C" fn notify_start_action_widget_trampoline<F: Fn(&TabBar) + 'static>(
+            this: *mut ffi::AdwTabBar,
             _param_spec: glib::ffi::gpointer,
             f: glib::ffi::gpointer,
         ) {
@@ -314,22 +310,19 @@ impl Carousel {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
-                b"notify::allow-scroll-wheel\0".as_ptr() as *const _,
+                b"notify::start-action-widget\0".as_ptr() as *const _,
                 Some(transmute::<_, unsafe extern "C" fn()>(
-                    notify_allow_scroll_wheel_trampoline::<F> as *const (),
+                    notify_start_action_widget_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
             )
         }
     }
 
-    #[doc(alias = "animation-duration")]
-    pub fn connect_animation_duration_notify<F: Fn(&Carousel) + 'static>(
-        &self,
-        f: F,
-    ) -> SignalHandlerId {
-        unsafe extern "C" fn notify_animation_duration_trampoline<F: Fn(&Carousel) + 'static>(
-            this: *mut ffi::AdwCarousel,
+    #[doc(alias = "tabs-revealed")]
+    pub fn connect_tabs_revealed_notify<F: Fn(&TabBar) + 'static>(&self, f: F) -> SignalHandlerId {
+        unsafe extern "C" fn notify_tabs_revealed_trampoline<F: Fn(&TabBar) + 'static>(
+            this: *mut ffi::AdwTabBar,
             _param_spec: glib::ffi::gpointer,
             f: glib::ffi::gpointer,
         ) {
@@ -340,19 +333,19 @@ impl Carousel {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
-                b"notify::animation-duration\0".as_ptr() as *const _,
+                b"notify::tabs-revealed\0".as_ptr() as *const _,
                 Some(transmute::<_, unsafe extern "C" fn()>(
-                    notify_animation_duration_trampoline::<F> as *const (),
+                    notify_tabs_revealed_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
             )
         }
     }
 
-    #[doc(alias = "interactive")]
-    pub fn connect_interactive_notify<F: Fn(&Carousel) + 'static>(&self, f: F) -> SignalHandlerId {
-        unsafe extern "C" fn notify_interactive_trampoline<F: Fn(&Carousel) + 'static>(
-            this: *mut ffi::AdwCarousel,
+    #[doc(alias = "view")]
+    pub fn connect_view_notify<F: Fn(&TabBar) + 'static>(&self, f: F) -> SignalHandlerId {
+        unsafe extern "C" fn notify_view_trampoline<F: Fn(&TabBar) + 'static>(
+            this: *mut ffi::AdwTabBar,
             _param_spec: glib::ffi::gpointer,
             f: glib::ffi::gpointer,
         ) {
@@ -363,104 +356,9 @@ impl Carousel {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
-                b"notify::interactive\0".as_ptr() as *const _,
+                b"notify::view\0".as_ptr() as *const _,
                 Some(transmute::<_, unsafe extern "C" fn()>(
-                    notify_interactive_trampoline::<F> as *const (),
-                )),
-                Box_::into_raw(f),
-            )
-        }
-    }
-
-    #[doc(alias = "n-pages")]
-    pub fn connect_n_pages_notify<F: Fn(&Carousel) + 'static>(&self, f: F) -> SignalHandlerId {
-        unsafe extern "C" fn notify_n_pages_trampoline<F: Fn(&Carousel) + 'static>(
-            this: *mut ffi::AdwCarousel,
-            _param_spec: glib::ffi::gpointer,
-            f: glib::ffi::gpointer,
-        ) {
-            let f: &F = &*(f as *const F);
-            f(&from_glib_borrow(this))
-        }
-        unsafe {
-            let f: Box_<F> = Box_::new(f);
-            connect_raw(
-                self.as_ptr() as *mut _,
-                b"notify::n-pages\0".as_ptr() as *const _,
-                Some(transmute::<_, unsafe extern "C" fn()>(
-                    notify_n_pages_trampoline::<F> as *const (),
-                )),
-                Box_::into_raw(f),
-            )
-        }
-    }
-
-    #[doc(alias = "position")]
-    pub fn connect_position_notify<F: Fn(&Carousel) + 'static>(&self, f: F) -> SignalHandlerId {
-        unsafe extern "C" fn notify_position_trampoline<F: Fn(&Carousel) + 'static>(
-            this: *mut ffi::AdwCarousel,
-            _param_spec: glib::ffi::gpointer,
-            f: glib::ffi::gpointer,
-        ) {
-            let f: &F = &*(f as *const F);
-            f(&from_glib_borrow(this))
-        }
-        unsafe {
-            let f: Box_<F> = Box_::new(f);
-            connect_raw(
-                self.as_ptr() as *mut _,
-                b"notify::position\0".as_ptr() as *const _,
-                Some(transmute::<_, unsafe extern "C" fn()>(
-                    notify_position_trampoline::<F> as *const (),
-                )),
-                Box_::into_raw(f),
-            )
-        }
-    }
-
-    #[doc(alias = "reveal-duration")]
-    pub fn connect_reveal_duration_notify<F: Fn(&Carousel) + 'static>(
-        &self,
-        f: F,
-    ) -> SignalHandlerId {
-        unsafe extern "C" fn notify_reveal_duration_trampoline<F: Fn(&Carousel) + 'static>(
-            this: *mut ffi::AdwCarousel,
-            _param_spec: glib::ffi::gpointer,
-            f: glib::ffi::gpointer,
-        ) {
-            let f: &F = &*(f as *const F);
-            f(&from_glib_borrow(this))
-        }
-        unsafe {
-            let f: Box_<F> = Box_::new(f);
-            connect_raw(
-                self.as_ptr() as *mut _,
-                b"notify::reveal-duration\0".as_ptr() as *const _,
-                Some(transmute::<_, unsafe extern "C" fn()>(
-                    notify_reveal_duration_trampoline::<F> as *const (),
-                )),
-                Box_::into_raw(f),
-            )
-        }
-    }
-
-    #[doc(alias = "spacing")]
-    pub fn connect_spacing_notify<F: Fn(&Carousel) + 'static>(&self, f: F) -> SignalHandlerId {
-        unsafe extern "C" fn notify_spacing_trampoline<F: Fn(&Carousel) + 'static>(
-            this: *mut ffi::AdwCarousel,
-            _param_spec: glib::ffi::gpointer,
-            f: glib::ffi::gpointer,
-        ) {
-            let f: &F = &*(f as *const F);
-            f(&from_glib_borrow(this))
-        }
-        unsafe {
-            let f: Box_<F> = Box_::new(f);
-            connect_raw(
-                self.as_ptr() as *mut _,
-                b"notify::spacing\0".as_ptr() as *const _,
-                Some(transmute::<_, unsafe extern "C" fn()>(
-                    notify_spacing_trampoline::<F> as *const (),
+                    notify_view_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
             )
@@ -468,21 +366,20 @@ impl Carousel {
     }
 }
 
-impl Default for Carousel {
+impl Default for TabBar {
     fn default() -> Self {
         Self::new()
     }
 }
 
 #[derive(Clone, Default)]
-pub struct CarouselBuilder {
-    allow_long_swipes: Option<bool>,
-    allow_mouse_drag: Option<bool>,
-    allow_scroll_wheel: Option<bool>,
-    animation_duration: Option<u32>,
-    interactive: Option<bool>,
-    reveal_duration: Option<u32>,
-    spacing: Option<u32>,
+pub struct TabBarBuilder {
+    autohide: Option<bool>,
+    end_action_widget: Option<gtk::Widget>,
+    expand_tabs: Option<bool>,
+    inverted: Option<bool>,
+    start_action_widget: Option<gtk::Widget>,
+    view: Option<TabView>,
     can_focus: Option<bool>,
     can_target: Option<bool>,
     css_classes: Option<Vec<String>>,
@@ -513,36 +410,32 @@ pub struct CarouselBuilder {
     visible: Option<bool>,
     width_request: Option<i32>,
     accessible_role: Option<gtk::AccessibleRole>,
-    orientation: Option<gtk::Orientation>,
 }
 
-impl CarouselBuilder {
+impl TabBarBuilder {
     pub fn new() -> Self {
         Self::default()
     }
 
-    pub fn build(self) -> Carousel {
+    pub fn build(self) -> TabBar {
         let mut properties: Vec<(&str, &dyn ToValue)> = vec![];
-        if let Some(ref allow_long_swipes) = self.allow_long_swipes {
-            properties.push(("allow-long-swipes", allow_long_swipes));
+        if let Some(ref autohide) = self.autohide {
+            properties.push(("autohide", autohide));
         }
-        if let Some(ref allow_mouse_drag) = self.allow_mouse_drag {
-            properties.push(("allow-mouse-drag", allow_mouse_drag));
+        if let Some(ref end_action_widget) = self.end_action_widget {
+            properties.push(("end-action-widget", end_action_widget));
         }
-        if let Some(ref allow_scroll_wheel) = self.allow_scroll_wheel {
-            properties.push(("allow-scroll-wheel", allow_scroll_wheel));
+        if let Some(ref expand_tabs) = self.expand_tabs {
+            properties.push(("expand-tabs", expand_tabs));
         }
-        if let Some(ref animation_duration) = self.animation_duration {
-            properties.push(("animation-duration", animation_duration));
+        if let Some(ref inverted) = self.inverted {
+            properties.push(("inverted", inverted));
         }
-        if let Some(ref interactive) = self.interactive {
-            properties.push(("interactive", interactive));
+        if let Some(ref start_action_widget) = self.start_action_widget {
+            properties.push(("start-action-widget", start_action_widget));
         }
-        if let Some(ref reveal_duration) = self.reveal_duration {
-            properties.push(("reveal-duration", reveal_duration));
-        }
-        if let Some(ref spacing) = self.spacing {
-            properties.push(("spacing", spacing));
+        if let Some(ref view) = self.view {
+            properties.push(("view", view));
         }
         if let Some(ref can_focus) = self.can_focus {
             properties.push(("can-focus", can_focus));
@@ -634,45 +527,36 @@ impl CarouselBuilder {
         if let Some(ref accessible_role) = self.accessible_role {
             properties.push(("accessible-role", accessible_role));
         }
-        if let Some(ref orientation) = self.orientation {
-            properties.push(("orientation", orientation));
-        }
-        glib::Object::new::<Carousel>(&properties)
-            .expect("Failed to create an instance of Carousel")
+        glib::Object::new::<TabBar>(&properties).expect("Failed to create an instance of TabBar")
     }
 
-    pub fn allow_long_swipes(mut self, allow_long_swipes: bool) -> Self {
-        self.allow_long_swipes = Some(allow_long_swipes);
+    pub fn autohide(mut self, autohide: bool) -> Self {
+        self.autohide = Some(autohide);
         self
     }
 
-    pub fn allow_mouse_drag(mut self, allow_mouse_drag: bool) -> Self {
-        self.allow_mouse_drag = Some(allow_mouse_drag);
+    pub fn end_action_widget<P: IsA<gtk::Widget>>(mut self, end_action_widget: &P) -> Self {
+        self.end_action_widget = Some(end_action_widget.clone().upcast());
         self
     }
 
-    pub fn allow_scroll_wheel(mut self, allow_scroll_wheel: bool) -> Self {
-        self.allow_scroll_wheel = Some(allow_scroll_wheel);
+    pub fn expand_tabs(mut self, expand_tabs: bool) -> Self {
+        self.expand_tabs = Some(expand_tabs);
         self
     }
 
-    pub fn animation_duration(mut self, animation_duration: u32) -> Self {
-        self.animation_duration = Some(animation_duration);
+    pub fn inverted(mut self, inverted: bool) -> Self {
+        self.inverted = Some(inverted);
         self
     }
 
-    pub fn interactive(mut self, interactive: bool) -> Self {
-        self.interactive = Some(interactive);
+    pub fn start_action_widget<P: IsA<gtk::Widget>>(mut self, start_action_widget: &P) -> Self {
+        self.start_action_widget = Some(start_action_widget.clone().upcast());
         self
     }
 
-    pub fn reveal_duration(mut self, reveal_duration: u32) -> Self {
-        self.reveal_duration = Some(reveal_duration);
-        self
-    }
-
-    pub fn spacing(mut self, spacing: u32) -> Self {
-        self.spacing = Some(spacing);
+    pub fn view(mut self, view: &TabView) -> Self {
+        self.view = Some(view.clone());
         self
     }
 
@@ -825,15 +709,10 @@ impl CarouselBuilder {
         self.accessible_role = Some(accessible_role);
         self
     }
-
-    pub fn orientation(mut self, orientation: gtk::Orientation) -> Self {
-        self.orientation = Some(orientation);
-        self
-    }
 }
 
-impl fmt::Display for Carousel {
+impl fmt::Display for TabBar {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        f.write_str("Carousel")
+        f.write_str("TabBar")
     }
 }

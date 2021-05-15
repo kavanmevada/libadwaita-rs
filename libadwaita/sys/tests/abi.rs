@@ -492,13 +492,6 @@ const RUST_LAYOUTS: &[(&str, Layout)] = &[
         },
     ),
     (
-        "AdwSwipeGroupClass",
-        Layout {
-            size: size_of::<AdwSwipeGroupClass>(),
-            alignment: align_of::<AdwSwipeGroupClass>(),
-        },
-    ),
-    (
         "AdwSwipeTrackerClass",
         Layout {
             size: size_of::<AdwSwipeTrackerClass>(),
@@ -510,6 +503,27 @@ const RUST_LAYOUTS: &[(&str, Layout)] = &[
         Layout {
             size: size_of::<AdwSwipeableInterface>(),
             alignment: align_of::<AdwSwipeableInterface>(),
+        },
+    ),
+    (
+        "AdwTabBarClass",
+        Layout {
+            size: size_of::<AdwTabBarClass>(),
+            alignment: align_of::<AdwTabBarClass>(),
+        },
+    ),
+    (
+        "AdwTabPageClass",
+        Layout {
+            size: size_of::<AdwTabPageClass>(),
+            alignment: align_of::<AdwTabPageClass>(),
+        },
+    ),
+    (
+        "AdwTabViewClass",
+        Layout {
+            size: size_of::<AdwTabViewClass>(),
+            alignment: align_of::<AdwTabViewClass>(),
         },
     ),
     (

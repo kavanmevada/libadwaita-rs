@@ -358,10 +358,10 @@ pub trait PreferencesGroupExt: 'static {
     fn remove<P: IsA<gtk::Widget>>(&self, child: &P);
 
     #[doc(alias = "adw_preferences_group_set_description")]
-    fn set_description(&self, description: &str);
+    fn set_description(&self, description: Option<&str>);
 
     #[doc(alias = "adw_preferences_group_set_title")]
-    fn set_title(&self, title: &str);
+    fn set_title(&self, title: Option<&str>);
 
     #[doc(alias = "description")]
     fn connect_description_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
@@ -405,7 +405,7 @@ impl<O: IsA<PreferencesGroup>> PreferencesGroupExt for O {
         }
     }
 
-    fn set_description(&self, description: &str) {
+    fn set_description(&self, description: Option<&str>) {
         unsafe {
             ffi::adw_preferences_group_set_description(
                 self.as_ref().to_glib_none().0,
@@ -414,7 +414,7 @@ impl<O: IsA<PreferencesGroup>> PreferencesGroupExt for O {
         }
     }
 
-    fn set_title(&self, title: &str) {
+    fn set_title(&self, title: Option<&str>) {
         unsafe {
             ffi::adw_preferences_group_set_title(
                 self.as_ref().to_glib_none().0,

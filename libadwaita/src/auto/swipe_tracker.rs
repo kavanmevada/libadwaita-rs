@@ -36,6 +36,16 @@ impl SwipeTracker {
         }
     }
 
+    #[doc(alias = "adw_swipe_tracker_get_allow_long_swipes")]
+    #[doc(alias = "get_allow_long_swipes")]
+    pub fn allows_long_swipes(&self) -> bool {
+        unsafe {
+            from_glib(ffi::adw_swipe_tracker_get_allow_long_swipes(
+                self.to_glib_none().0,
+            ))
+        }
+    }
+
     #[doc(alias = "adw_swipe_tracker_get_allow_mouse_drag")]
     #[doc(alias = "get_allow_mouse_drag")]
     pub fn allows_mouse_drag(&self) -> bool {
@@ -62,6 +72,16 @@ impl SwipeTracker {
     #[doc(alias = "get_swipeable")]
     pub fn swipeable(&self) -> Option<Swipeable> {
         unsafe { from_glib_none(ffi::adw_swipe_tracker_get_swipeable(self.to_glib_none().0)) }
+    }
+
+    #[doc(alias = "adw_swipe_tracker_set_allow_long_swipes")]
+    pub fn set_allow_long_swipes(&self, allow_long_swipes: bool) {
+        unsafe {
+            ffi::adw_swipe_tracker_set_allow_long_swipes(
+                self.to_glib_none().0,
+                allow_long_swipes.into_glib(),
+            );
+        }
     }
 
     #[doc(alias = "adw_swipe_tracker_set_allow_mouse_drag")]
@@ -96,24 +116,19 @@ impl SwipeTracker {
     }
 
     #[doc(alias = "begin-swipe")]
-    pub fn connect_begin_swipe<F: Fn(&SwipeTracker, NavigationDirection, bool) + 'static>(
+    pub fn connect_begin_swipe<F: Fn(&SwipeTracker, NavigationDirection) + 'static>(
         &self,
         f: F,
     ) -> SignalHandlerId {
         unsafe extern "C" fn begin_swipe_trampoline<
-            F: Fn(&SwipeTracker, NavigationDirection, bool) + 'static,
+            F: Fn(&SwipeTracker, NavigationDirection) + 'static,
         >(
             this: *mut ffi::AdwSwipeTracker,
             direction: ffi::AdwNavigationDirection,
-            direct: glib::ffi::gboolean,
             f: glib::ffi::gpointer,
         ) {
             let f: &F = &*(f as *const F);
-            f(
-                &from_glib_borrow(this),
-                from_glib(direction),
-                from_glib(direct),
-            )
+            f(&from_glib_borrow(this), from_glib(direction))
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
@@ -175,6 +190,32 @@ impl SwipeTracker {
                 b"update-swipe\0".as_ptr() as *const _,
                 Some(transmute::<_, unsafe extern "C" fn()>(
                     update_swipe_trampoline::<F> as *const (),
+                )),
+                Box_::into_raw(f),
+            )
+        }
+    }
+
+    #[doc(alias = "allow-long-swipes")]
+    pub fn connect_allow_long_swipes_notify<F: Fn(&SwipeTracker) + 'static>(
+        &self,
+        f: F,
+    ) -> SignalHandlerId {
+        unsafe extern "C" fn notify_allow_long_swipes_trampoline<F: Fn(&SwipeTracker) + 'static>(
+            this: *mut ffi::AdwSwipeTracker,
+            _param_spec: glib::ffi::gpointer,
+            f: glib::ffi::gpointer,
+        ) {
+            let f: &F = &*(f as *const F);
+            f(&from_glib_borrow(this))
+        }
+        unsafe {
+            let f: Box_<F> = Box_::new(f);
+            connect_raw(
+                self.as_ptr() as *mut _,
+                b"notify::allow-long-swipes\0".as_ptr() as *const _,
+                Some(transmute::<_, unsafe extern "C" fn()>(
+                    notify_allow_long_swipes_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
             )
@@ -256,6 +297,7 @@ impl SwipeTracker {
 
 #[derive(Clone, Default)]
 pub struct SwipeTrackerBuilder {
+    allow_long_swipes: Option<bool>,
     allow_mouse_drag: Option<bool>,
     enabled: Option<bool>,
     reversed: Option<bool>,
@@ -270,6 +312,9 @@ impl SwipeTrackerBuilder {
 
     pub fn build(self) -> SwipeTracker {
         let mut properties: Vec<(&str, &dyn ToValue)> = vec![];
+        if let Some(ref allow_long_swipes) = self.allow_long_swipes {
+            properties.push(("allow-long-swipes", allow_long_swipes));
+        }
         if let Some(ref allow_mouse_drag) = self.allow_mouse_drag {
             properties.push(("allow-mouse-drag", allow_mouse_drag));
         }
@@ -287,6 +332,11 @@ impl SwipeTrackerBuilder {
         }
         glib::Object::new::<SwipeTracker>(&properties)
             .expect("Failed to create an instance of SwipeTracker")
+    }
+
+    pub fn allow_long_swipes(mut self, allow_long_swipes: bool) -> Self {
+        self.allow_long_swipes = Some(allow_long_swipes);
+        self
     }
 
     pub fn allow_mouse_drag(mut self, allow_mouse_drag: bool) -> Self {

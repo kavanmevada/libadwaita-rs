@@ -48,9 +48,11 @@ int main() {
     printf("%s;%zu;%zu\n", "AdwSqueezerPageClass", sizeof(AdwSqueezerPageClass), alignof(AdwSqueezerPageClass));
     printf("%s;%zu;%zu\n", "AdwSqueezerTransitionType", sizeof(AdwSqueezerTransitionType), alignof(AdwSqueezerTransitionType));
     printf("%s;%zu;%zu\n", "AdwStatusPageClass", sizeof(AdwStatusPageClass), alignof(AdwStatusPageClass));
-    printf("%s;%zu;%zu\n", "AdwSwipeGroupClass", sizeof(AdwSwipeGroupClass), alignof(AdwSwipeGroupClass));
     printf("%s;%zu;%zu\n", "AdwSwipeTrackerClass", sizeof(AdwSwipeTrackerClass), alignof(AdwSwipeTrackerClass));
     printf("%s;%zu;%zu\n", "AdwSwipeableInterface", sizeof(AdwSwipeableInterface), alignof(AdwSwipeableInterface));
+    printf("%s;%zu;%zu\n", "AdwTabBarClass", sizeof(AdwTabBarClass), alignof(AdwTabBarClass));
+    printf("%s;%zu;%zu\n", "AdwTabPageClass", sizeof(AdwTabPageClass), alignof(AdwTabPageClass));
+    printf("%s;%zu;%zu\n", "AdwTabViewClass", sizeof(AdwTabViewClass), alignof(AdwTabViewClass));
     printf("%s;%zu;%zu\n", "AdwValueObjectClass", sizeof(AdwValueObjectClass), alignof(AdwValueObjectClass));
     printf("%s;%zu;%zu\n", "AdwViewSwitcherBarClass", sizeof(AdwViewSwitcherBarClass), alignof(AdwViewSwitcherBarClass));
     printf("%s;%zu;%zu\n", "AdwViewSwitcherClass", sizeof(AdwViewSwitcherClass), alignof(AdwViewSwitcherClass));

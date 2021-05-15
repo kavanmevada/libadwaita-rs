@@ -23,7 +23,7 @@ impl ApplicationWindow {
     pub fn new<P: IsA<gtk::Application>>(app: &P) -> ApplicationWindow {
         assert_initialized_main_thread!();
         unsafe {
-            gtk::Widget::from_glib_full(ffi::adw_application_window_new(
+            gtk::Widget::from_glib_none(ffi::adw_application_window_new(
                 app.as_ref().to_glib_none().0,
             ))
             .unsafe_cast()

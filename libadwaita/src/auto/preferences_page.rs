@@ -41,6 +41,7 @@ impl Default for PreferencesPage {
 pub struct PreferencesPageBuilder {
     icon_name: Option<String>,
     title: Option<String>,
+    use_underline: Option<bool>,
     can_focus: Option<bool>,
     can_target: Option<bool>,
     css_classes: Option<Vec<String>>,
@@ -85,6 +86,9 @@ impl PreferencesPageBuilder {
         }
         if let Some(ref title) = self.title {
             properties.push(("title", title));
+        }
+        if let Some(ref use_underline) = self.use_underline {
+            properties.push(("use-underline", use_underline));
         }
         if let Some(ref can_focus) = self.can_focus {
             properties.push(("can-focus", can_focus));
@@ -187,6 +191,11 @@ impl PreferencesPageBuilder {
 
     pub fn title(mut self, title: &str) -> Self {
         self.title = Some(title.to_string());
+        self
+    }
+
+    pub fn use_underline(mut self, use_underline: bool) -> Self {
+        self.use_underline = Some(use_underline);
         self
     }
 
@@ -355,6 +364,10 @@ pub trait PreferencesPageExt: 'static {
     #[doc(alias = "get_title")]
     fn title(&self) -> Option<glib::GString>;
 
+    #[doc(alias = "adw_preferences_page_get_use_underline")]
+    #[doc(alias = "get_use_underline")]
+    fn uses_underline(&self) -> bool;
+
     #[doc(alias = "adw_preferences_page_remove")]
     fn remove<P: IsA<PreferencesGroup>>(&self, group: &P);
 
@@ -364,11 +377,17 @@ pub trait PreferencesPageExt: 'static {
     #[doc(alias = "adw_preferences_page_set_title")]
     fn set_title(&self, title: Option<&str>);
 
+    #[doc(alias = "adw_preferences_page_set_use_underline")]
+    fn set_use_underline(&self, use_underline: bool);
+
     #[doc(alias = "icon-name")]
     fn connect_icon_name_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
 
     #[doc(alias = "title")]
     fn connect_title_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
+
+    #[doc(alias = "use-underline")]
+    fn connect_use_underline_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
 }
 
 impl<O: IsA<PreferencesPage>> PreferencesPageExt for O {
@@ -397,6 +416,14 @@ impl<O: IsA<PreferencesPage>> PreferencesPageExt for O {
         }
     }
 
+    fn uses_underline(&self) -> bool {
+        unsafe {
+            from_glib(ffi::adw_preferences_page_get_use_underline(
+                self.as_ref().to_glib_none().0,
+            ))
+        }
+    }
+
     fn remove<P: IsA<PreferencesGroup>>(&self, group: &P) {
         unsafe {
             ffi::adw_preferences_page_remove(
@@ -420,6 +447,15 @@ impl<O: IsA<PreferencesPage>> PreferencesPageExt for O {
             ffi::adw_preferences_page_set_title(
                 self.as_ref().to_glib_none().0,
                 title.to_glib_none().0,
+            );
+        }
+    }
+
+    fn set_use_underline(&self, use_underline: bool) {
+        unsafe {
+            ffi::adw_preferences_page_set_use_underline(
+                self.as_ref().to_glib_none().0,
+                use_underline.into_glib(),
             );
         }
     }
@@ -468,6 +504,31 @@ impl<O: IsA<PreferencesPage>> PreferencesPageExt for O {
                 b"notify::title\0".as_ptr() as *const _,
                 Some(transmute::<_, unsafe extern "C" fn()>(
                     notify_title_trampoline::<Self, F> as *const (),
+                )),
+                Box_::into_raw(f),
+            )
+        }
+    }
+
+    #[doc(alias = "use-underline")]
+    fn connect_use_underline_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
+        unsafe extern "C" fn notify_use_underline_trampoline<P, F: Fn(&P) + 'static>(
+            this: *mut ffi::AdwPreferencesPage,
+            _param_spec: glib::ffi::gpointer,
+            f: glib::ffi::gpointer,
+        ) where
+            P: IsA<PreferencesPage>,
+        {
+            let f: &F = &*(f as *const F);
+            f(&PreferencesPage::from_glib_borrow(this).unsafe_cast_ref())
+        }
+        unsafe {
+            let f: Box_<F> = Box_::new(f);
+            connect_raw(
+                self.as_ptr() as *mut _,
+                b"notify::use-underline\0".as_ptr() as *const _,
+                Some(transmute::<_, unsafe extern "C" fn()>(
+                    notify_use_underline_trampoline::<Self, F> as *const (),
                 )),
                 Box_::into_raw(f),
             )
