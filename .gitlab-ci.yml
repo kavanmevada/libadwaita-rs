@@ -2,8 +2,8 @@ image: "ghcr.io/gtk-rs/gtk4-rs/gtk4:latest"
 
 before_script:
   - curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- --default-toolchain none -y
-  - rustup toolchain install nightly --profile minimal --allow-downgrade -c rustfmt
   - source $HOME/.cargo/env
+  - rustup toolchain install nightly --profile minimal --allow-downgrade -c rustfmt
   - meson _build --prefix=/usr -Dlibadwaita:tests=false -Dlibadwaita:examples=false -Dlibadwaita:vapi=false
   - ninja -C _build install
   - git submodule update --init
