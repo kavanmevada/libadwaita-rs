@@ -475,6 +475,8 @@ impl Default for Carousel {
 }
 
 #[derive(Clone, Default)]
+// rustdoc-stripper-ignore-next
+/// A builder for generating a [`Carousel`].
 pub struct CarouselBuilder {
     allow_long_swipes: Option<bool>,
     allow_mouse_drag: Option<bool>,
@@ -517,10 +519,14 @@ pub struct CarouselBuilder {
 }
 
 impl CarouselBuilder {
+    // rustdoc-stripper-ignore-next
+    /// Create a new [`CarouselBuilder`].
     pub fn new() -> Self {
         Self::default()
     }
 
+    // rustdoc-stripper-ignore-next
+    /// Build the [`Carousel`].
     pub fn build(self) -> Carousel {
         let mut properties: Vec<(&str, &dyn ToValue)> = vec![];
         if let Some(ref allow_long_swipes) = self.allow_long_swipes {

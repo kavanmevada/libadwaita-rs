@@ -191,6 +191,8 @@ impl Default for StatusPage {
 }
 
 #[derive(Clone, Default)]
+// rustdoc-stripper-ignore-next
+/// A builder for generating a [`StatusPage`].
 pub struct StatusPageBuilder {
     child: Option<gtk::Widget>,
     description: Option<String>,
@@ -229,10 +231,14 @@ pub struct StatusPageBuilder {
 }
 
 impl StatusPageBuilder {
+    // rustdoc-stripper-ignore-next
+    /// Create a new [`StatusPageBuilder`].
     pub fn new() -> Self {
         Self::default()
     }
 
+    // rustdoc-stripper-ignore-next
+    /// Build the [`StatusPage`].
     pub fn build(self) -> StatusPage {
         let mut properties: Vec<(&str, &dyn ToValue)> = vec![];
         if let Some(ref child) = self.child {

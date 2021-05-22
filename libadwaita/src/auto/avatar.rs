@@ -238,6 +238,8 @@ impl Avatar {
 }
 
 #[derive(Clone, Default)]
+// rustdoc-stripper-ignore-next
+/// A builder for generating a [`Avatar`].
 pub struct AvatarBuilder {
     icon_name: Option<String>,
     show_initials: Option<bool>,
@@ -276,10 +278,14 @@ pub struct AvatarBuilder {
 }
 
 impl AvatarBuilder {
+    // rustdoc-stripper-ignore-next
+    /// Create a new [`AvatarBuilder`].
     pub fn new() -> Self {
         Self::default()
     }
 
+    // rustdoc-stripper-ignore-next
+    /// Build the [`Avatar`].
     pub fn build(self) -> Avatar {
         let mut properties: Vec<(&str, &dyn ToValue)> = vec![];
         if let Some(ref icon_name) = self.icon_name {

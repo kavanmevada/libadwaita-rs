@@ -37,6 +37,8 @@ impl Default for Bin {
 }
 
 #[derive(Clone, Default)]
+// rustdoc-stripper-ignore-next
+/// A builder for generating a [`Bin`].
 pub struct BinBuilder {
     child: Option<gtk::Widget>,
     can_focus: Option<bool>,
@@ -72,10 +74,14 @@ pub struct BinBuilder {
 }
 
 impl BinBuilder {
+    // rustdoc-stripper-ignore-next
+    /// Create a new [`BinBuilder`].
     pub fn new() -> Self {
         Self::default()
     }
 
+    // rustdoc-stripper-ignore-next
+    /// Build the [`Bin`].
     pub fn build(self) -> Bin {
         let mut properties: Vec<(&str, &dyn ToValue)> = vec![];
         if let Some(ref child) = self.child {

@@ -300,6 +300,8 @@ impl Default for ViewSwitcherTitle {
 }
 
 #[derive(Clone, Default)]
+// rustdoc-stripper-ignore-next
+/// A builder for generating a [`ViewSwitcherTitle`].
 pub struct ViewSwitcherTitleBuilder {
     policy: Option<ViewSwitcherPolicy>,
     stack: Option<gtk::Stack>,
@@ -339,10 +341,14 @@ pub struct ViewSwitcherTitleBuilder {
 }
 
 impl ViewSwitcherTitleBuilder {
+    // rustdoc-stripper-ignore-next
+    /// Create a new [`ViewSwitcherTitleBuilder`].
     pub fn new() -> Self {
         Self::default()
     }
 
+    // rustdoc-stripper-ignore-next
+    /// Build the [`ViewSwitcherTitle`].
     pub fn build(self) -> ViewSwitcherTitle {
         let mut properties: Vec<(&str, &dyn ToValue)> = vec![];
         if let Some(ref policy) = self.policy {

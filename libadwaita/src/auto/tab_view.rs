@@ -747,6 +747,8 @@ impl Default for TabView {
 }
 
 #[derive(Clone, Default)]
+// rustdoc-stripper-ignore-next
+/// A builder for generating a [`TabView`].
 pub struct TabViewBuilder {
     default_icon: Option<gio::Icon>,
     menu_model: Option<gio::MenuModel>,
@@ -785,10 +787,14 @@ pub struct TabViewBuilder {
 }
 
 impl TabViewBuilder {
+    // rustdoc-stripper-ignore-next
+    /// Create a new [`TabViewBuilder`].
     pub fn new() -> Self {
         Self::default()
     }
 
+    // rustdoc-stripper-ignore-next
+    /// Build the [`TabView`].
     pub fn build(self) -> TabView {
         let mut properties: Vec<(&str, &dyn ToValue)> = vec![];
         if let Some(ref default_icon) = self.default_icon {

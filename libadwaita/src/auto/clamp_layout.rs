@@ -120,6 +120,8 @@ impl Default for ClampLayout {
 }
 
 #[derive(Clone, Default)]
+// rustdoc-stripper-ignore-next
+/// A builder for generating a [`ClampLayout`].
 pub struct ClampLayoutBuilder {
     maximum_size: Option<i32>,
     tightening_threshold: Option<i32>,
@@ -127,10 +129,14 @@ pub struct ClampLayoutBuilder {
 }
 
 impl ClampLayoutBuilder {
+    // rustdoc-stripper-ignore-next
+    /// Create a new [`ClampLayoutBuilder`].
     pub fn new() -> Self {
         Self::default()
     }
 
+    // rustdoc-stripper-ignore-next
+    /// Build the [`ClampLayout`].
     pub fn build(self) -> ClampLayout {
         let mut properties: Vec<(&str, &dyn ToValue)> = vec![];
         if let Some(ref maximum_size) = self.maximum_size {

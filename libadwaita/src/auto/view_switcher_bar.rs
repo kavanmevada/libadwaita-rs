@@ -153,6 +153,8 @@ impl Default for ViewSwitcherBar {
 }
 
 #[derive(Clone, Default)]
+// rustdoc-stripper-ignore-next
+/// A builder for generating a [`ViewSwitcherBar`].
 pub struct ViewSwitcherBarBuilder {
     policy: Option<ViewSwitcherPolicy>,
     reveal: Option<bool>,
@@ -190,10 +192,14 @@ pub struct ViewSwitcherBarBuilder {
 }
 
 impl ViewSwitcherBarBuilder {
+    // rustdoc-stripper-ignore-next
+    /// Create a new [`ViewSwitcherBarBuilder`].
     pub fn new() -> Self {
         Self::default()
     }
 
+    // rustdoc-stripper-ignore-next
+    /// Build the [`ViewSwitcherBar`].
     pub fn build(self) -> ViewSwitcherBar {
         let mut properties: Vec<(&str, &dyn ToValue)> = vec![];
         if let Some(ref policy) = self.policy {

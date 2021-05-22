@@ -37,6 +37,8 @@ impl Default for PreferencesGroup {
 }
 
 #[derive(Clone, Default)]
+// rustdoc-stripper-ignore-next
+/// A builder for generating a [`PreferencesGroup`].
 pub struct PreferencesGroupBuilder {
     description: Option<String>,
     title: Option<String>,
@@ -73,10 +75,14 @@ pub struct PreferencesGroupBuilder {
 }
 
 impl PreferencesGroupBuilder {
+    // rustdoc-stripper-ignore-next
+    /// Create a new [`PreferencesGroupBuilder`].
     pub fn new() -> Self {
         Self::default()
     }
 
+    // rustdoc-stripper-ignore-next
+    /// Build the [`PreferencesGroup`].
     pub fn build(self) -> PreferencesGroup {
         let mut properties: Vec<(&str, &dyn ToValue)> = vec![];
         if let Some(ref description) = self.description {

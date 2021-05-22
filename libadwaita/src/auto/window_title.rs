@@ -110,6 +110,8 @@ impl WindowTitle {
 }
 
 #[derive(Clone, Default)]
+// rustdoc-stripper-ignore-next
+/// A builder for generating a [`WindowTitle`].
 pub struct WindowTitleBuilder {
     subtitle: Option<String>,
     title: Option<String>,
@@ -146,10 +148,14 @@ pub struct WindowTitleBuilder {
 }
 
 impl WindowTitleBuilder {
+    // rustdoc-stripper-ignore-next
+    /// Create a new [`WindowTitleBuilder`].
     pub fn new() -> Self {
         Self::default()
     }
 
+    // rustdoc-stripper-ignore-next
+    /// Build the [`WindowTitle`].
     pub fn build(self) -> WindowTitle {
         let mut properties: Vec<(&str, &dyn ToValue)> = vec![];
         if let Some(ref subtitle) = self.subtitle {

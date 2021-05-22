@@ -39,6 +39,8 @@ impl Default for PreferencesWindow {
 }
 
 #[derive(Clone, Default)]
+// rustdoc-stripper-ignore-next
+/// A builder for generating a [`PreferencesWindow`].
 pub struct PreferencesWindowBuilder {
     can_swipe_back: Option<bool>,
     search_enabled: Option<bool>,
@@ -97,10 +99,14 @@ pub struct PreferencesWindowBuilder {
 }
 
 impl PreferencesWindowBuilder {
+    // rustdoc-stripper-ignore-next
+    /// Create a new [`PreferencesWindowBuilder`].
     pub fn new() -> Self {
         Self::default()
     }
 
+    // rustdoc-stripper-ignore-next
+    /// Build the [`PreferencesWindow`].
     pub fn build(self) -> PreferencesWindow {
         let mut properties: Vec<(&str, &dyn ToValue)> = vec![];
         if let Some(ref can_swipe_back) = self.can_swipe_back {

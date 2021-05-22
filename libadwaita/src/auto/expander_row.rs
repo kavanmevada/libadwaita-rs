@@ -38,6 +38,8 @@ impl Default for ExpanderRow {
 }
 
 #[derive(Clone, Default)]
+// rustdoc-stripper-ignore-next
+/// A builder for generating a [`ExpanderRow`].
 pub struct ExpanderRowBuilder {
     enable_expansion: Option<bool>,
     expanded: Option<bool>,
@@ -84,10 +86,14 @@ pub struct ExpanderRowBuilder {
 }
 
 impl ExpanderRowBuilder {
+    // rustdoc-stripper-ignore-next
+    /// Create a new [`ExpanderRowBuilder`].
     pub fn new() -> Self {
         Self::default()
     }
 
+    // rustdoc-stripper-ignore-next
+    /// Build the [`ExpanderRow`].
     pub fn build(self) -> ExpanderRow {
         let mut properties: Vec<(&str, &dyn ToValue)> = vec![];
         if let Some(ref enable_expansion) = self.enable_expansion {

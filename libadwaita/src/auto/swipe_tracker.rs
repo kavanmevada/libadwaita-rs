@@ -296,6 +296,8 @@ impl SwipeTracker {
 }
 
 #[derive(Clone, Default)]
+// rustdoc-stripper-ignore-next
+/// A builder for generating a [`SwipeTracker`].
 pub struct SwipeTrackerBuilder {
     allow_long_swipes: Option<bool>,
     allow_mouse_drag: Option<bool>,
@@ -306,10 +308,14 @@ pub struct SwipeTrackerBuilder {
 }
 
 impl SwipeTrackerBuilder {
+    // rustdoc-stripper-ignore-next
+    /// Create a new [`SwipeTrackerBuilder`].
     pub fn new() -> Self {
         Self::default()
     }
 
+    // rustdoc-stripper-ignore-next
+    /// Build the [`SwipeTracker`].
     pub fn build(self) -> SwipeTracker {
         let mut properties: Vec<(&str, &dyn ToValue)> = vec![];
         if let Some(ref allow_long_swipes) = self.allow_long_swipes {

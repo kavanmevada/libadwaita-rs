@@ -333,6 +333,8 @@ impl Default for TabBar {
 }
 
 #[derive(Clone, Default)]
+// rustdoc-stripper-ignore-next
+/// A builder for generating a [`TabBar`].
 pub struct TabBarBuilder {
     autohide: Option<bool>,
     end_action_widget: Option<gtk::Widget>,
@@ -373,10 +375,14 @@ pub struct TabBarBuilder {
 }
 
 impl TabBarBuilder {
+    // rustdoc-stripper-ignore-next
+    /// Create a new [`TabBarBuilder`].
     pub fn new() -> Self {
         Self::default()
     }
 
+    // rustdoc-stripper-ignore-next
+    /// Build the [`TabBar`].
     pub fn build(self) -> TabBar {
         let mut properties: Vec<(&str, &dyn ToValue)> = vec![];
         if let Some(ref autohide) = self.autohide {

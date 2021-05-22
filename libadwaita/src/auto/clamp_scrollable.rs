@@ -160,6 +160,8 @@ impl Default for ClampScrollable {
 }
 
 #[derive(Clone, Default)]
+// rustdoc-stripper-ignore-next
+/// A builder for generating a [`ClampScrollable`].
 pub struct ClampScrollableBuilder {
     child: Option<gtk::Widget>,
     maximum_size: Option<i32>,
@@ -202,10 +204,14 @@ pub struct ClampScrollableBuilder {
 }
 
 impl ClampScrollableBuilder {
+    // rustdoc-stripper-ignore-next
+    /// Create a new [`ClampScrollableBuilder`].
     pub fn new() -> Self {
         Self::default()
     }
 
+    // rustdoc-stripper-ignore-next
+    /// Build the [`ClampScrollable`].
     pub fn build(self) -> ClampScrollable {
         let mut properties: Vec<(&str, &dyn ToValue)> = vec![];
         if let Some(ref child) = self.child {

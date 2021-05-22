@@ -373,6 +373,8 @@ impl TabPage {
 }
 
 #[derive(Clone, Default)]
+// rustdoc-stripper-ignore-next
+/// A builder for generating a [`TabPage`].
 pub struct TabPageBuilder {
     child: Option<gtk::Widget>,
     icon: Option<gio::Icon>,
@@ -386,10 +388,14 @@ pub struct TabPageBuilder {
 }
 
 impl TabPageBuilder {
+    // rustdoc-stripper-ignore-next
+    /// Create a new [`TabPageBuilder`].
     pub fn new() -> Self {
         Self::default()
     }
 
+    // rustdoc-stripper-ignore-next
+    /// Build the [`TabPage`].
     pub fn build(self) -> TabPage {
         let mut properties: Vec<(&str, &dyn ToValue)> = vec![];
         if let Some(ref child) = self.child {

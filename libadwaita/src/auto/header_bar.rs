@@ -290,6 +290,8 @@ impl Default for HeaderBar {
 }
 
 #[derive(Clone, Default)]
+// rustdoc-stripper-ignore-next
+/// A builder for generating a [`HeaderBar`].
 pub struct HeaderBarBuilder {
     centering_policy: Option<CenteringPolicy>,
     decoration_layout: Option<String>,
@@ -329,10 +331,14 @@ pub struct HeaderBarBuilder {
 }
 
 impl HeaderBarBuilder {
+    // rustdoc-stripper-ignore-next
+    /// Create a new [`HeaderBarBuilder`].
     pub fn new() -> Self {
         Self::default()
     }
 
+    // rustdoc-stripper-ignore-next
+    /// Build the [`HeaderBar`].
     pub fn build(self) -> HeaderBar {
         let mut properties: Vec<(&str, &dyn ToValue)> = vec![];
         if let Some(ref centering_policy) = self.centering_policy {

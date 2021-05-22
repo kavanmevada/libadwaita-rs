@@ -37,6 +37,8 @@ impl Default for PreferencesRow {
 }
 
 #[derive(Clone, Default)]
+// rustdoc-stripper-ignore-next
+/// A builder for generating a [`PreferencesRow`].
 pub struct PreferencesRowBuilder {
     title: Option<String>,
     use_underline: Option<bool>,
@@ -78,10 +80,14 @@ pub struct PreferencesRowBuilder {
 }
 
 impl PreferencesRowBuilder {
+    // rustdoc-stripper-ignore-next
+    /// Create a new [`PreferencesRowBuilder`].
     pub fn new() -> Self {
         Self::default()
     }
 
+    // rustdoc-stripper-ignore-next
+    /// Build the [`PreferencesRow`].
     pub fn build(self) -> PreferencesRow {
         let mut properties: Vec<(&str, &dyn ToValue)> = vec![];
         if let Some(ref title) = self.title {

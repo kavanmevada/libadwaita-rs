@@ -89,6 +89,8 @@ impl Default for CarouselIndicatorLines {
 }
 
 #[derive(Clone, Default)]
+// rustdoc-stripper-ignore-next
+/// A builder for generating a [`CarouselIndicatorLines`].
 pub struct CarouselIndicatorLinesBuilder {
     carousel: Option<Carousel>,
     can_focus: Option<bool>,
@@ -125,10 +127,14 @@ pub struct CarouselIndicatorLinesBuilder {
 }
 
 impl CarouselIndicatorLinesBuilder {
+    // rustdoc-stripper-ignore-next
+    /// Create a new [`CarouselIndicatorLinesBuilder`].
     pub fn new() -> Self {
         Self::default()
     }
 
+    // rustdoc-stripper-ignore-next
+    /// Build the [`CarouselIndicatorLines`].
     pub fn build(self) -> CarouselIndicatorLines {
         let mut properties: Vec<(&str, &dyn ToValue)> = vec![];
         if let Some(ref carousel) = self.carousel {

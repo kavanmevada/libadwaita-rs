@@ -107,6 +107,8 @@ impl LeafletPage {
 }
 
 #[derive(Clone, Default)]
+// rustdoc-stripper-ignore-next
+/// A builder for generating a [`LeafletPage`].
 pub struct LeafletPageBuilder {
     child: Option<gtk::Widget>,
     name: Option<String>,
@@ -114,10 +116,14 @@ pub struct LeafletPageBuilder {
 }
 
 impl LeafletPageBuilder {
+    // rustdoc-stripper-ignore-next
+    /// Create a new [`LeafletPageBuilder`].
     pub fn new() -> Self {
         Self::default()
     }
 
+    // rustdoc-stripper-ignore-next
+    /// Build the [`LeafletPage`].
     pub fn build(self) -> LeafletPage {
         let mut properties: Vec<(&str, &dyn ToValue)> = vec![];
         if let Some(ref child) = self.child {

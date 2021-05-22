@@ -152,6 +152,8 @@ impl Default for Clamp {
 }
 
 #[derive(Clone, Default)]
+// rustdoc-stripper-ignore-next
+/// A builder for generating a [`Clamp`].
 pub struct ClampBuilder {
     child: Option<gtk::Widget>,
     maximum_size: Option<i32>,
@@ -190,10 +192,14 @@ pub struct ClampBuilder {
 }
 
 impl ClampBuilder {
+    // rustdoc-stripper-ignore-next
+    /// Create a new [`ClampBuilder`].
     pub fn new() -> Self {
         Self::default()
     }
 
+    // rustdoc-stripper-ignore-next
+    /// Build the [`Clamp`].
     pub fn build(self) -> Clamp {
         let mut properties: Vec<(&str, &dyn ToValue)> = vec![];
         if let Some(ref child) = self.child {

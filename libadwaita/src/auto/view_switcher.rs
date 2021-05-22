@@ -154,6 +154,8 @@ impl Default for ViewSwitcher {
 }
 
 #[derive(Clone, Default)]
+// rustdoc-stripper-ignore-next
+/// A builder for generating a [`ViewSwitcher`].
 pub struct ViewSwitcherBuilder {
     narrow_ellipsize: Option<pango::EllipsizeMode>,
     policy: Option<ViewSwitcherPolicy>,
@@ -191,10 +193,14 @@ pub struct ViewSwitcherBuilder {
 }
 
 impl ViewSwitcherBuilder {
+    // rustdoc-stripper-ignore-next
+    /// Create a new [`ViewSwitcherBuilder`].
     pub fn new() -> Self {
         Self::default()
     }
 
+    // rustdoc-stripper-ignore-next
+    /// Build the [`ViewSwitcher`].
     pub fn build(self) -> ViewSwitcher {
         let mut properties: Vec<(&str, &dyn ToValue)> = vec![];
         if let Some(ref narrow_ellipsize) = self.narrow_ellipsize {

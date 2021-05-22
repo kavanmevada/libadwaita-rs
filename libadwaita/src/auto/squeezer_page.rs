@@ -68,16 +68,22 @@ impl SqueezerPage {
 }
 
 #[derive(Clone, Default)]
+// rustdoc-stripper-ignore-next
+/// A builder for generating a [`SqueezerPage`].
 pub struct SqueezerPageBuilder {
     child: Option<gtk::Widget>,
     enabled: Option<bool>,
 }
 
 impl SqueezerPageBuilder {
+    // rustdoc-stripper-ignore-next
+    /// Create a new [`SqueezerPageBuilder`].
     pub fn new() -> Self {
         Self::default()
     }
 
+    // rustdoc-stripper-ignore-next
+    /// Build the [`SqueezerPage`].
     pub fn build(self) -> SqueezerPage {
         let mut properties: Vec<(&str, &dyn ToValue)> = vec![];
         if let Some(ref child) = self.child {

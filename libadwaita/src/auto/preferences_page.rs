@@ -38,6 +38,8 @@ impl Default for PreferencesPage {
 }
 
 #[derive(Clone, Default)]
+// rustdoc-stripper-ignore-next
+/// A builder for generating a [`PreferencesPage`].
 pub struct PreferencesPageBuilder {
     icon_name: Option<String>,
     title: Option<String>,
@@ -75,10 +77,14 @@ pub struct PreferencesPageBuilder {
 }
 
 impl PreferencesPageBuilder {
+    // rustdoc-stripper-ignore-next
+    /// Create a new [`PreferencesPageBuilder`].
     pub fn new() -> Self {
         Self::default()
     }
 
+    // rustdoc-stripper-ignore-next
+    /// Build the [`PreferencesPage`].
     pub fn build(self) -> PreferencesPage {
         let mut properties: Vec<(&str, &dyn ToValue)> = vec![];
         if let Some(ref icon_name) = self.icon_name {

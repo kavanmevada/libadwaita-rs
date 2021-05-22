@@ -836,6 +836,8 @@ impl Default for Leaflet {
 }
 
 #[derive(Clone, Default)]
+// rustdoc-stripper-ignore-next
+/// A builder for generating a [`Leaflet`].
 pub struct LeafletBuilder {
     can_swipe_back: Option<bool>,
     can_swipe_forward: Option<bool>,
@@ -884,10 +886,14 @@ pub struct LeafletBuilder {
 }
 
 impl LeafletBuilder {
+    // rustdoc-stripper-ignore-next
+    /// Create a new [`LeafletBuilder`].
     pub fn new() -> Self {
         Self::default()
     }
 
+    // rustdoc-stripper-ignore-next
+    /// Build the [`Leaflet`].
     pub fn build(self) -> Leaflet {
         let mut properties: Vec<(&str, &dyn ToValue)> = vec![];
         if let Some(ref can_swipe_back) = self.can_swipe_back {

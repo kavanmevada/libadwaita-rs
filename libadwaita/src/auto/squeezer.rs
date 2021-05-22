@@ -397,6 +397,8 @@ impl Default for Squeezer {
 }
 
 #[derive(Clone, Default)]
+// rustdoc-stripper-ignore-next
+/// A builder for generating a [`Squeezer`].
 pub struct SqueezerBuilder {
     homogeneous: Option<bool>,
     interpolate_size: Option<bool>,
@@ -438,10 +440,14 @@ pub struct SqueezerBuilder {
 }
 
 impl SqueezerBuilder {
+    // rustdoc-stripper-ignore-next
+    /// Create a new [`SqueezerBuilder`].
     pub fn new() -> Self {
         Self::default()
     }
 
+    // rustdoc-stripper-ignore-next
+    /// Build the [`Squeezer`].
     pub fn build(self) -> Squeezer {
         let mut properties: Vec<(&str, &dyn ToValue)> = vec![];
         if let Some(ref homogeneous) = self.homogeneous {

@@ -38,6 +38,8 @@ impl Default for ActionRow {
 }
 
 #[derive(Clone, Default)]
+// rustdoc-stripper-ignore-next
+/// A builder for generating a [`ActionRow`].
 pub struct ActionRowBuilder {
     activatable_widget: Option<gtk::Widget>,
     icon_name: Option<String>,
@@ -84,10 +86,14 @@ pub struct ActionRowBuilder {
 }
 
 impl ActionRowBuilder {
+    // rustdoc-stripper-ignore-next
+    /// Create a new [`ActionRowBuilder`].
     pub fn new() -> Self {
         Self::default()
     }
 
+    // rustdoc-stripper-ignore-next
+    /// Build the [`ActionRow`].
     pub fn build(self) -> ActionRow {
         let mut properties: Vec<(&str, &dyn ToValue)> = vec![];
         if let Some(ref activatable_widget) = self.activatable_widget {
