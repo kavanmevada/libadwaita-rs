@@ -22,7 +22,7 @@ impl Window {
     #[doc(alias = "adw_window_new")]
     pub fn new() -> Window {
         assert_initialized_main_thread!();
-        unsafe { gtk::Widget::from_glib_full(ffi::adw_window_new()).unsafe_cast() }
+        unsafe { gtk::Widget::from_glib_none(ffi::adw_window_new()).unsafe_cast() }
     }
 }
 

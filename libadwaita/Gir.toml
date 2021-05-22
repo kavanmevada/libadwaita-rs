@@ -51,7 +51,6 @@ generate = [
     "Adw.SqueezerTransitionType",
     "Adw.StatusPage",
     "Adw.SwipeTracker",
-    "Adw.SwipeGroup",
     "Adw.Swipeable",
     "Adw.TabView",
     "Adw.TabPage",

@@ -70,7 +70,7 @@ pub type AdwAvatarImageLoadFunc =
 #[repr(C)]
 #[derive(Copy, Clone)]
 pub struct AdwActionRowClass {
-    pub parent_class: gtk::GtkListBoxRowClass,
+    pub parent_class: AdwPreferencesRowClass,
     pub activate: Option<unsafe extern "C" fn(*mut AdwActionRow)>,
     pub padding: [gpointer; 4],
 }

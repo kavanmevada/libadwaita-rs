@@ -25,7 +25,7 @@ and/or use gtk-doc annotations.  -->
            glib:type-struct="ActionRowClass">
       <doc xml:space="preserve"
            filename="../src/adw-action-row.c"
-           line="10">A [class@Gtk.ListBoxRow] used to present actions.
+           line="12">A [class@Gtk.ListBoxRow] used to present actions.
 
 The `AdwActionRow` widget can have a title, a subtitle and an icon. The row
 can receive additional widgets at its end, or prefix widgets at its start.
@@ -62,19 +62,19 @@ respectively the title label and subtitle label.</doc>
       <constructor name="new" c:identifier="adw_action_row_new" version="1.0">
         <doc xml:space="preserve"
              filename="../src/adw-action-row.c"
-             line="421">Creates a new `AdwActionRow`.</doc>
+             line="423">Creates a new `AdwActionRow`.</doc>
         <source-position filename="../src/adw-action-row.h" line="40"/>
         <return-value transfer-ownership="none">
           <doc xml:space="preserve"
                filename="../src/adw-action-row.c"
-               line="426">the newly created `AdwActionRow`</doc>
+               line="428">the newly created `AdwActionRow`</doc>
           <type name="Gtk.Widget" c:type="GtkWidget*"/>
         </return-value>
       </constructor>
       <virtual-method name="activate" invoker="activate" version="1.0">
         <doc xml:space="preserve"
              filename="../src/adw-action-row.c"
-             line="864">Activates @self.</doc>
+             line="871">Activates @self.</doc>
         <source-position filename="../src/adw-action-row.h" line="33"/>
         <return-value transfer-ownership="none">
           <type name="none" c:type="void"/>
@@ -83,7 +83,7 @@ respectively the title label and subtitle label.</doc>
           <instance-parameter name="self" transfer-ownership="none">
             <doc xml:space="preserve"
                  filename="../src/adw-action-row.c"
-                 line="866">a `AdwActionRow`</doc>
+                 line="873">a `AdwActionRow`</doc>
             <type name="ActionRow" c:type="AdwActionRow*"/>
           </instance-parameter>
         </parameters>
@@ -93,7 +93,7 @@ respectively the title label and subtitle label.</doc>
               version="1.0">
         <doc xml:space="preserve"
              filename="../src/adw-action-row.c"
-             line="864">Activates @self.</doc>
+             line="871">Activates @self.</doc>
         <source-position filename="../src/adw-action-row.h" line="89"/>
         <return-value transfer-ownership="none">
           <type name="none" c:type="void"/>
@@ -102,7 +102,7 @@ respectively the title label and subtitle label.</doc>
           <instance-parameter name="self" transfer-ownership="none">
             <doc xml:space="preserve"
                  filename="../src/adw-action-row.c"
-                 line="866">a `AdwActionRow`</doc>
+                 line="873">a `AdwActionRow`</doc>
             <type name="ActionRow" c:type="AdwActionRow*"/>
           </instance-parameter>
         </parameters>
@@ -112,7 +112,7 @@ respectively the title label and subtitle label.</doc>
               version="1.0">
         <doc xml:space="preserve"
              filename="../src/adw-action-row.c"
-             line="790">Adds a prefix widget to @self.</doc>
+             line="792">Adds a prefix widget to @self.</doc>
         <source-position filename="../src/adw-action-row.h" line="79"/>
         <return-value transfer-ownership="none">
           <type name="none" c:type="void"/>
@@ -121,13 +121,13 @@ respectively the title label and subtitle label.</doc>
           <instance-parameter name="self" transfer-ownership="none">
             <doc xml:space="preserve"
                  filename="../src/adw-action-row.c"
-                 line="792">a `AdwActionRow`</doc>
+                 line="794">a `AdwActionRow`</doc>
             <type name="ActionRow" c:type="AdwActionRow*"/>
           </instance-parameter>
           <parameter name="widget" transfer-ownership="none">
             <doc xml:space="preserve"
                  filename="../src/adw-action-row.c"
-                 line="793">a widget</doc>
+                 line="795">a widget</doc>
             <type name="Gtk.Widget" c:type="GtkWidget*"/>
           </parameter>
         </parameters>
@@ -137,7 +137,7 @@ respectively the title label and subtitle label.</doc>
               version="1.0">
         <doc xml:space="preserve"
              filename="../src/adw-action-row.c"
-             line="814">Adds a suffix widget to @self.</doc>
+             line="816">Adds a suffix widget to @self.</doc>
         <source-position filename="../src/adw-action-row.h" line="82"/>
         <return-value transfer-ownership="none">
           <type name="none" c:type="void"/>
@@ -146,13 +146,13 @@ respectively the title label and subtitle label.</doc>
           <instance-parameter name="self" transfer-ownership="none">
             <doc xml:space="preserve"
                  filename="../src/adw-action-row.c"
-                 line="816">a `AdwActionRow`</doc>
+                 line="818">a `AdwActionRow`</doc>
             <type name="ActionRow" c:type="AdwActionRow*"/>
           </instance-parameter>
           <parameter name="widget" transfer-ownership="none">
             <doc xml:space="preserve"
                  filename="../src/adw-action-row.c"
-                 line="817">a widget</doc>
+                 line="819">a widget</doc>
             <type name="Gtk.Widget" c:type="GtkWidget*"/>
           </parameter>
         </parameters>
@@ -164,19 +164,19 @@ respectively the title label and subtitle label.</doc>
                    value="activatable-widget"/>
         <doc xml:space="preserve"
              filename="../src/adw-action-row.c"
-             line="540">Gets the widget activated when @self is activated.</doc>
+             line="542">Gets the widget activated when @self is activated.</doc>
         <source-position filename="../src/adw-action-row.h" line="55"/>
         <return-value transfer-ownership="none" nullable="1">
           <doc xml:space="preserve"
                filename="../src/adw-action-row.c"
-               line="546">the activatable widget for @self</doc>
+               line="548">the activatable widget for @self</doc>
           <type name="Gtk.Widget" c:type="GtkWidget*"/>
         </return-value>
         <parameters>
           <instance-parameter name="self" transfer-ownership="none">
             <doc xml:space="preserve"
                  filename="../src/adw-action-row.c"
-                 line="542">a `AdwActionRow`</doc>
+                 line="544">a `AdwActionRow`</doc>
             <type name="ActionRow" c:type="AdwActionRow*"/>
           </instance-parameter>
         </parameters>
@@ -187,19 +187,19 @@ respectively the title label and subtitle label.</doc>
         <attribute name="org.gtk.Method.get_property" value="icon-name"/>
         <doc xml:space="preserve"
              filename="../src/adw-action-row.c"
-             line="487">Gets the icon name for @self.</doc>
+             line="489">Gets the icon name for @self.</doc>
         <source-position filename="../src/adw-action-row.h" line="49"/>
         <return-value transfer-ownership="none">
           <doc xml:space="preserve"
                filename="../src/adw-action-row.c"
-               line="493">the icon name for @self</doc>
+               line="495">the icon name for @self</doc>
           <type name="utf8" c:type="const char*"/>
         </return-value>
         <parameters>
           <instance-parameter name="self" transfer-ownership="none">
             <doc xml:space="preserve"
                  filename="../src/adw-action-row.c"
-                 line="489">a `AdwActionRow`</doc>
+                 line="491">a `AdwActionRow`</doc>
             <type name="ActionRow" c:type="AdwActionRow*"/>
           </instance-parameter>
         </parameters>
@@ -210,19 +210,19 @@ respectively the title label and subtitle label.</doc>
         <attribute name="org.gtk.Method.get_property" value="subtitle"/>
         <doc xml:space="preserve"
              filename="../src/adw-action-row.c"
-             line="436">Gets the subtitle for @self.</doc>
+             line="438">Gets the subtitle for @self.</doc>
         <source-position filename="../src/adw-action-row.h" line="43"/>
         <return-value transfer-ownership="none" nullable="1">
           <doc xml:space="preserve"
                filename="../src/adw-action-row.c"
-               line="442">the subtitle for @self</doc>
+               line="444">the subtitle for @self</doc>
           <type name="utf8" c:type="const char*"/>
         </return-value>
         <parameters>
           <instance-parameter name="self" transfer-ownership="none">
             <doc xml:space="preserve"
                  filename="../src/adw-action-row.c"
-                 line="438">a `AdwActionRow`</doc>
+                 line="440">a `AdwActionRow`</doc>
             <type name="ActionRow" c:type="AdwActionRow*"/>
           </instance-parameter>
         </parameters>
@@ -233,7 +233,7 @@ respectively the title label and subtitle label.</doc>
         <attribute name="org.gtk.Method.get_property" value="subtitle-lines"/>
         <doc xml:space="preserve"
              filename="../src/adw-action-row.c"
-             line="730">Gets the number of lines at the end of which the subtitle label will be
+             line="732">Gets the number of lines at the end of which the subtitle label will be
 ellipsized.
 
 If the value is 0, the number of lines won't be limited.</doc>
@@ -241,7 +241,7 @@ If the value is 0, the number of lines won't be limited.</doc>
         <return-value transfer-ownership="none">
           <doc xml:space="preserve"
                filename="../src/adw-action-row.c"
-               line="739">the number of lines at the end of which the subtitle label will be
+               line="741">the number of lines at the end of which the subtitle label will be
   ellipsized</doc>
           <type name="gint" c:type="int"/>
         </return-value>
@@ -249,7 +249,7 @@ If the value is 0, the number of lines won't be limited.</doc>
           <instance-parameter name="self" transfer-ownership="none">
             <doc xml:space="preserve"
                  filename="../src/adw-action-row.c"
-                 line="732">a `AdwActionRow`</doc>
+                 line="734">a `AdwActionRow`</doc>
             <type name="ActionRow" c:type="AdwActionRow*"/>
           </instance-parameter>
         </parameters>
@@ -260,7 +260,7 @@ If the value is 0, the number of lines won't be limited.</doc>
         <attribute name="org.gtk.Method.get_property" value="title-lines"/>
         <doc xml:space="preserve"
              filename="../src/adw-action-row.c"
-             line="670">Gets the number of lines at the end of which the title label will be
+             line="672">Gets the number of lines at the end of which the title label will be
 ellipsized.
 
 If the value is 0, the number of lines won't be limited.</doc>
@@ -268,7 +268,7 @@ If the value is 0, the number of lines won't be limited.</doc>
         <return-value transfer-ownership="none">
           <doc xml:space="preserve"
                filename="../src/adw-action-row.c"
-               line="679">the number of lines at the end of which the title label will be
+               line="681">the number of lines at the end of which the title label will be
   ellipsized</doc>
           <type name="gint" c:type="int"/>
         </return-value>
@@ -276,7 +276,7 @@ If the value is 0, the number of lines won't be limited.</doc>
           <instance-parameter name="self" transfer-ownership="none">
             <doc xml:space="preserve"
                  filename="../src/adw-action-row.c"
-                 line="672">a `AdwActionRow`</doc>
+                 line="674">a `AdwActionRow`</doc>
             <type name="ActionRow" c:type="AdwActionRow*"/>
           </instance-parameter>
         </parameters>
@@ -287,19 +287,19 @@ If the value is 0, the number of lines won't be limited.</doc>
         <attribute name="org.gtk.Method.get_property" value="use-underline"/>
         <doc xml:space="preserve"
              filename="../src/adw-action-row.c"
-             line="614">Gets whether underlines in title or subtitle are interpreted as mnemonics.</doc>
+             line="616">Gets whether underlines in title or subtitle are interpreted as mnemonics.</doc>
         <source-position filename="../src/adw-action-row.h" line="61"/>
         <return-value transfer-ownership="none">
           <doc xml:space="preserve"
                filename="../src/adw-action-row.c"
-               line="620">`TRUE` if underlines are interpreted as mnemonics</doc>
+               line="622">`TRUE` if underlines are interpreted as mnemonics</doc>
           <type name="gboolean" c:type="gboolean"/>
         </return-value>
         <parameters>
           <instance-parameter name="self" transfer-ownership="none">
             <doc xml:space="preserve"
                  filename="../src/adw-action-row.c"
-                 line="616">a `AdwActionRow`</doc>
+                 line="618">a `AdwActionRow`</doc>
             <type name="ActionRow" c:type="AdwActionRow*"/>
           </instance-parameter>
         </parameters>
@@ -307,7 +307,7 @@ If the value is 0, the number of lines won't be limited.</doc>
       <method name="remove" c:identifier="adw_action_row_remove" version="1.0">
         <doc xml:space="preserve"
              filename="../src/adw-action-row.c"
-             line="838">Removes a child from @self.</doc>
+             line="840">Removes a child from @self.</doc>
         <source-position filename="../src/adw-action-row.h" line="85"/>
         <return-value transfer-ownership="none">
           <type name="none" c:type="void"/>
@@ -316,13 +316,13 @@ If the value is 0, the number of lines won't be limited.</doc>
           <instance-parameter name="self" transfer-ownership="none">
             <doc xml:space="preserve"
                  filename="../src/adw-action-row.c"
-                 line="840">a `AdwActionRow`</doc>
+                 line="842">a `AdwActionRow`</doc>
             <type name="ActionRow" c:type="AdwActionRow*"/>
           </instance-parameter>
           <parameter name="widget" transfer-ownership="none">
             <doc xml:space="preserve"
                  filename="../src/adw-action-row.c"
-                 line="841">the child to be removed</doc>
+                 line="843">the child to be removed</doc>
             <type name="Gtk.Widget" c:type="GtkWidget*"/>
           </parameter>
         </parameters>
@@ -334,7 +334,7 @@ If the value is 0, the number of lines won't be limited.</doc>
                    value="activatable-widget"/>
         <doc xml:space="preserve"
              filename="../src/adw-action-row.c"
-             line="574">Sets the widget to activate when @self is activated.</doc>
+             line="576">Sets the widget to activate when @self is activated.</doc>
         <source-position filename="../src/adw-action-row.h" line="57"/>
         <return-value transfer-ownership="none">
           <type name="none" c:type="void"/>
@@ -343,7 +343,7 @@ If the value is 0, the number of lines won't be limited.</doc>
           <instance-parameter name="self" transfer-ownership="none">
             <doc xml:space="preserve"
                  filename="../src/adw-action-row.c"
-                 line="576">a `AdwActionRow`</doc>
+                 line="578">a `AdwActionRow`</doc>
             <type name="ActionRow" c:type="AdwActionRow*"/>
           </instance-parameter>
           <parameter name="widget"
@@ -352,7 +352,7 @@ If the value is 0, the number of lines won't be limited.</doc>
                      allow-none="1">
             <doc xml:space="preserve"
                  filename="../src/adw-action-row.c"
-                 line="577">the target widget</doc>
+                 line="579">the target widget</doc>
             <type name="Gtk.Widget" c:type="GtkWidget*"/>
           </parameter>
         </parameters>
@@ -363,7 +363,7 @@ If the value is 0, the number of lines won't be limited.</doc>
         <attribute name="org.gtk.Method.set_property" value="icon-name"/>
         <doc xml:space="preserve"
              filename="../src/adw-action-row.c"
-             line="509">Sets the icon name for @self.</doc>
+             line="511">Sets the icon name for @self.</doc>
         <source-position filename="../src/adw-action-row.h" line="51"/>
         <return-value transfer-ownership="none">
           <type name="none" c:type="void"/>
@@ -372,13 +372,13 @@ If the value is 0, the number of lines won't be limited.</doc>
           <instance-parameter name="self" transfer-ownership="none">
             <doc xml:space="preserve"
                  filename="../src/adw-action-row.c"
-                 line="511">a `AdwActionRow`</doc>
+                 line="513">a `AdwActionRow`</doc>
             <type name="ActionRow" c:type="AdwActionRow*"/>
           </instance-parameter>
           <parameter name="icon_name" transfer-ownership="none">
             <doc xml:space="preserve"
                  filename="../src/adw-action-row.c"
-                 line="512">the icon name</doc>
+                 line="514">the icon name</doc>
             <type name="utf8" c:type="const char*"/>
           </parameter>
         </parameters>
@@ -389,7 +389,7 @@ If the value is 0, the number of lines won't be limited.</doc>
         <attribute name="org.gtk.Method.set_property" value="subtitle"/>
         <doc xml:space="preserve"
              filename="../src/adw-action-row.c"
-             line="458">Sets the subtitle for @self.</doc>
+             line="460">Sets the subtitle for @self.</doc>
         <source-position filename="../src/adw-action-row.h" line="45"/>
         <return-value transfer-ownership="none">
           <type name="none" c:type="void"/>
@@ -398,7 +398,7 @@ If the value is 0, the number of lines won't be limited.</doc>
           <instance-parameter name="self" transfer-ownership="none">
             <doc xml:space="preserve"
                  filename="../src/adw-action-row.c"
-                 line="460">a `AdwActionRow`</doc>
+                 line="462">a `AdwActionRow`</doc>
             <type name="ActionRow" c:type="AdwActionRow*"/>
           </instance-parameter>
           <parameter name="subtitle"
@@ -407,7 +407,7 @@ If the value is 0, the number of lines won't be limited.</doc>
                      allow-none="1">
             <doc xml:space="preserve"
                  filename="../src/adw-action-row.c"
-                 line="461">the subtitle</doc>
+                 line="463">the subtitle</doc>
             <type name="utf8" c:type="const char*"/>
           </parameter>
         </parameters>
@@ -418,7 +418,7 @@ If the value is 0, the number of lines won't be limited.</doc>
         <attribute name="org.gtk.Method.set_property" value="subtitle-lines"/>
         <doc xml:space="preserve"
              filename="../src/adw-action-row.c"
-             line="756">Sets the number of lines at the end of which the subtitle label will be
+             line="758">Sets the number of lines at the end of which the subtitle label will be
 ellipsized.
 
 If the value is 0, the number of lines won't be limited.</doc>
@@ -430,13 +430,13 @@ If the value is 0, the number of lines won't be limited.</doc>
           <instance-parameter name="self" transfer-ownership="none">
             <doc xml:space="preserve"
                  filename="../src/adw-action-row.c"
-                 line="758">a `AdwActionRow`</doc>
+                 line="760">a `AdwActionRow`</doc>
             <type name="ActionRow" c:type="AdwActionRow*"/>
           </instance-parameter>
           <parameter name="subtitle_lines" transfer-ownership="none">
             <doc xml:space="preserve"
                  filename="../src/adw-action-row.c"
-                 line="759">the number of lines at the end of which the subtitle label will be ellipsized</doc>
+                 line="761">the number of lines at the end of which the subtitle label will be ellipsized</doc>
             <type name="gint" c:type="int"/>
           </parameter>
         </parameters>
@@ -447,7 +447,7 @@ If the value is 0, the number of lines won't be limited.</doc>
         <attribute name="org.gtk.Method.set_property" value="title-lines"/>
         <doc xml:space="preserve"
              filename="../src/adw-action-row.c"
-             line="696">Sets the number of lines at the end of which the title label will be
+             line="698">Sets the number of lines at the end of which the title label will be
 ellipsized.
 
 If the value is 0, the number of lines won't be limited.</doc>
@@ -459,13 +459,13 @@ If the value is 0, the number of lines won't be limited.</doc>
           <instance-parameter name="self" transfer-ownership="none">
             <doc xml:space="preserve"
                  filename="../src/adw-action-row.c"
-                 line="698">a `AdwActionRow`</doc>
+                 line="700">a `AdwActionRow`</doc>
             <type name="ActionRow" c:type="AdwActionRow*"/>
           </instance-parameter>
           <parameter name="title_lines" transfer-ownership="none">
             <doc xml:space="preserve"
                  filename="../src/adw-action-row.c"
-                 line="699">the number of lines at the end of which the title label will be ellipsized</doc>
+                 line="701">the number of lines at the end of which the title label will be ellipsized</doc>
             <type name="gint" c:type="int"/>
           </parameter>
         </parameters>
@@ -476,7 +476,7 @@ If the value is 0, the number of lines won't be limited.</doc>
         <attribute name="org.gtk.Method.set_property" value="use-underline"/>
         <doc xml:space="preserve"
              filename="../src/adw-action-row.c"
-             line="636">Sets whether underlines in title or subtitle are interpreted as mnemonics.</doc>
+             line="638">Sets whether underlines in title or subtitle are interpreted as mnemonics.</doc>
         <source-position filename="../src/adw-action-row.h" line="63"/>
         <return-value transfer-ownership="none">
           <type name="none" c:type="void"/>
@@ -485,13 +485,13 @@ If the value is 0, the number of lines won't be limited.</doc>
           <instance-parameter name="self" transfer-ownership="none">
             <doc xml:space="preserve"
                  filename="../src/adw-action-row.c"
-                 line="638">a `AdwActionRow`</doc>
+                 line="640">a `AdwActionRow`</doc>
             <type name="ActionRow" c:type="AdwActionRow*"/>
           </instance-parameter>
           <parameter name="use_underline" transfer-ownership="none">
             <doc xml:space="preserve"
                  filename="../src/adw-action-row.c"
-                 line="639">whether underlines are interpreted as mnemonics</doc>
+                 line="641">whether underlines are interpreted as mnemonics</doc>
             <type name="gboolean" c:type="gboolean"/>
           </parameter>
         </parameters>
@@ -506,7 +506,7 @@ If the value is 0, the number of lines won't be limited.</doc>
                    value="adw_action_row_set_activatable_widget"/>
         <doc xml:space="preserve"
              filename="../src/adw-action-row.c"
-             line="249">The widget to activate when the row is activated.
+             line="251">The widget to activate when the row is activated.
 
 The row can be activated either by clicking on it, calling
 [method@Adw.ActionRow.activate], or via mnemonics in the title or the
@@ -527,7 +527,7 @@ The target widget will be activated by emitting the
                    value="adw_action_row_set_icon_name"/>
         <doc xml:space="preserve"
              filename="../src/adw-action-row.c"
-             line="235">The icon name for this row.</doc>
+             line="237">The icon name for this row.</doc>
         <type name="utf8" c:type="gchar*"/>
       </property>
       <property name="subtitle"
@@ -540,7 +540,7 @@ The target widget will be activated by emitting the
                    value="adw_action_row_set_subtitle"/>
         <doc xml:space="preserve"
              filename="../src/adw-action-row.c"
-             line="271">The subtitle for this row.</doc>
+             line="273">The subtitle for this row.</doc>
         <type name="utf8" c:type="gchar*"/>
       </property>
       <property name="subtitle-lines"
@@ -553,7 +553,7 @@ The target widget will be activated by emitting the
                    value="adw_action_row_set_subtitle_lines"/>
         <doc xml:space="preserve"
              filename="../src/adw-action-row.c"
-             line="316">The number of lines at the end of which the subtitle label will be
+             line="318">The number of lines at the end of which the subtitle label will be
 ellipsized.
 
 If the value is 0, the number of lines won't be limited.</doc>
@@ -569,7 +569,7 @@ If the value is 0, the number of lines won't be limited.</doc>
                    value="adw_action_row_set_title_lines"/>
         <doc xml:space="preserve"
              filename="../src/adw-action-row.c"
-             line="299">The number of lines at the end of which the title label will be ellipsized.
+             line="301">The number of lines at the end of which the title label will be ellipsized.
 
 If the value is 0, the number of lines won't be limited.</doc>
         <type name="gint" c:type="gint"/>
@@ -584,7 +584,7 @@ If the value is 0, the number of lines won't be limited.</doc>
                    value="adw_action_row_set_use_underline"/>
         <doc xml:space="preserve"
              filename="../src/adw-action-row.c"
-             line="285">Whether underlines in title or subtitle are interpreted as mnemonics.</doc>
+             line="287">Whether underlines in title or subtitle are interpreted as mnemonics.</doc>
         <type name="gboolean" c:type="gboolean"/>
       </property>
       <field name="parent_instance">
@@ -593,7 +593,7 @@ If the value is 0, the number of lines won't be limited.</doc>
       <glib:signal name="activated" when="last" version="1.0">
         <doc xml:space="preserve"
              filename="../src/adw-action-row.c"
-             line="336">This signal is emitted after the row has been activated.</doc>
+             line="338">This signal is emitted after the row has been activated.</doc>
         <return-value transfer-ownership="none">
           <type name="none" c:type="void"/>
         </return-value>
@@ -607,7 +607,7 @@ If the value is 0, the number of lines won't be limited.</doc>
         <doc xml:space="preserve"
              filename="../src/adw-action-row.h"
              line="26">The parent class</doc>
-        <type name="Gtk.ListBoxRowClass" c:type="GtkListBoxRowClass"/>
+        <type name="PreferencesRowClass" c:type="AdwPreferencesRowClass"/>
       </field>
       <field name="activate">
         <callback name="activate">
@@ -619,7 +619,7 @@ If the value is 0, the number of lines won't be limited.</doc>
             <parameter name="self" transfer-ownership="none">
               <doc xml:space="preserve"
                    filename="../src/adw-action-row.c"
-                   line="866">a `AdwActionRow`</doc>
+                   line="873">a `AdwActionRow`</doc>
               <type name="ActionRow" c:type="AdwActionRow*"/>
             </parameter>
           </parameters>
@@ -1409,7 +1409,7 @@ be used to provide page indicators for `AdwCarousel`.
         <return-value transfer-ownership="none">
           <doc xml:space="preserve"
                filename="../src/adw-carousel.c"
-               line="1591">%TRUE if @self can be dragged with mouse pointer</doc>
+               line="1591">whether @self can be dragged with mouse pointer</doc>
           <type name="gboolean" c:type="gboolean"/>
         </return-value>
         <parameters>
@@ -1480,7 +1480,7 @@ be used to provide page indicators for `AdwCarousel`.
         <return-value transfer-ownership="none">
           <doc xml:space="preserve"
                filename="../src/adw-carousel.c"
-               line="1465">%TRUE if @self can be navigated</doc>
+               line="1465">whether @self can be navigated</doc>
           <type name="gboolean" c:type="gboolean"/>
         </return-value>
         <parameters>
@@ -2363,14 +2363,14 @@ See also [class@Adw.CarouselIndicatorDots].
                  c:type="AdwCenteringPolicy">
       <doc xml:space="preserve"
            filename="../src/adw-header-bar.c"
-           line="106">Describes title centering behavior of a [class@Adw.HeaderBar] widget.</doc>
+           line="107">Describes title centering behavior of a [class@Adw.HeaderBar] widget.</doc>
       <member name="loose"
               value="0"
               c:identifier="ADW_CENTERING_POLICY_LOOSE"
               glib:nick="loose">
         <doc xml:space="preserve"
              filename="../src/adw-header-bar.c"
-             line="108">Keep the title centered when possible</doc>
+             line="109">Keep the title centered when possible</doc>
       </member>
       <member name="strict"
               value="1"
@@ -2378,7 +2378,7 @@ See also [class@Adw.CarouselIndicatorDots].
               glib:nick="strict">
         <doc xml:space="preserve"
              filename="../src/adw-header-bar.c"
-             line="109">Keep the title centered at all cost</doc>
+             line="110">Keep the title centered at all cost</doc>
       </member>
     </enumeration>
     <class name="Clamp"
@@ -3296,7 +3296,7 @@ contains a [class@Gtk.ScrolledWindow], which in turn contains a
              filename="../src/adw-combo-row.c"
              line="842">Sets the expression used to obtain strings from items.
 
-The expression must have a value type of #G_TYPE_STRING.</doc>
+The expression must have a value type of `G_TYPE_STRING`.</doc>
         <source-position filename="../src/adw-combo-row.h" line="71"/>
         <return-value transfer-ownership="none">
           <type name="none" c:type="void"/>
@@ -3504,7 +3504,7 @@ items in the popup unless [property@Adw.ComboRow:list-factory] is set.</doc>
              filename="../src/adw-combo-row.c"
              line="459">The factory for populating list items in the popup.
 
-If this is not set, #AdwComboRow:factory is used.</doc>
+If this is not set, [property@Adw.ComboRow:factory] is used.</doc>
         <type name="Gtk.ListItemFactory"/>
       </property>
       <property name="model"
@@ -3797,7 +3797,7 @@ If `TRUE`, you should not access [property@Adw.ActionRow:subtitle].</doc>
            glib:type-struct="ExpanderRowClass">
       <doc xml:space="preserve"
            filename="../src/adw-expander-row.c"
-           line="12">A [class@Gtk.ListBoxRow] used to reveal widgets.
+           line="13">A [class@Gtk.ListBoxRow] used to reveal widgets.
 
 The `AdwExpanderRow` widget allows the user to reveal or hide widgets below
 it. It also allows the user to enable the expansion of the row, allowing to
@@ -3834,19 +3834,19 @@ and remove it when retracted.</doc>
                    version="1.0">
         <doc xml:space="preserve"
              filename="../src/adw-expander-row.c"
-             line="336">Creates a new `AdwExpanderRow`.</doc>
+             line="337">Creates a new `AdwExpanderRow`.</doc>
         <source-position filename="../src/adw-expander-row.h" line="38"/>
         <return-value transfer-ownership="none">
           <doc xml:space="preserve"
                filename="../src/adw-expander-row.c"
-               line="341">the newly created `AdwExpanderRow`</doc>
+               line="342">the newly created `AdwExpanderRow`</doc>
           <type name="Gtk.Widget" c:type="GtkWidget*"/>
         </return-value>
       </constructor>
       <method name="add" c:identifier="adw_expander_row_add" version="1.0">
         <doc xml:space="preserve"
              filename="../src/adw-expander-row.c"
-             line="691">Adds a widget to @self.
+             line="692">Adds a widget to @self.
 
 The widget will appear in the expanding list below @self.</doc>
         <source-position filename="../src/adw-expander-row.h" line="84"/>
@@ -3857,13 +3857,13 @@ The widget will appear in the expanding list below @self.</doc>
           <instance-parameter name="self" transfer-ownership="none">
             <doc xml:space="preserve"
                  filename="../src/adw-expander-row.c"
-                 line="693">a `AdwExpanderRow`</doc>
+                 line="694">a `AdwExpanderRow`</doc>
             <type name="ExpanderRow" c:type="AdwExpanderRow*"/>
           </instance-parameter>
           <parameter name="child" transfer-ownership="none">
             <doc xml:space="preserve"
                  filename="../src/adw-expander-row.c"
-                 line="694">a widget</doc>
+                 line="695">a widget</doc>
             <type name="Gtk.Widget" c:type="GtkWidget*"/>
           </parameter>
         </parameters>
@@ -3873,7 +3873,7 @@ The widget will appear in the expanding list below @self.</doc>
               version="1.0">
         <doc xml:space="preserve"
              filename="../src/adw-expander-row.c"
-             line="640">Adds an action widget to @self.</doc>
+             line="641">Adds an action widget to @self.</doc>
         <source-position filename="../src/adw-expander-row.h" line="77"/>
         <return-value transfer-ownership="none">
           <type name="none" c:type="void"/>
@@ -3882,13 +3882,13 @@ The widget will appear in the expanding list below @self.</doc>
           <instance-parameter name="self" transfer-ownership="none">
             <doc xml:space="preserve"
                  filename="../src/adw-expander-row.c"
-                 line="642">a #AdwExpanderRow</doc>
+                 line="643">a `AdwExpanderRow`</doc>
             <type name="ExpanderRow" c:type="AdwExpanderRow*"/>
           </instance-parameter>
           <parameter name="widget" transfer-ownership="none">
             <doc xml:space="preserve"
                  filename="../src/adw-expander-row.c"
-                 line="643">a widget</doc>
+                 line="644">a widget</doc>
             <type name="Gtk.Widget" c:type="GtkWidget*"/>
           </parameter>
         </parameters>
@@ -3898,7 +3898,7 @@ The widget will appear in the expanding list below @self.</doc>
               version="1.0">
         <doc xml:space="preserve"
              filename="../src/adw-expander-row.c"
-             line="664">Adds a prefix widget to @self.</doc>
+             line="665">Adds a prefix widget to @self.</doc>
         <source-position filename="../src/adw-expander-row.h" line="80"/>
         <return-value transfer-ownership="none">
           <type name="none" c:type="void"/>
@@ -3907,13 +3907,13 @@ The widget will appear in the expanding list below @self.</doc>
           <instance-parameter name="self" transfer-ownership="none">
             <doc xml:space="preserve"
                  filename="../src/adw-expander-row.c"
-                 line="666">a `AdwExpanderRow`</doc>
+                 line="667">a `AdwExpanderRow`</doc>
             <type name="ExpanderRow" c:type="AdwExpanderRow*"/>
           </instance-parameter>
           <parameter name="widget" transfer-ownership="none">
             <doc xml:space="preserve"
                  filename="../src/adw-expander-row.c"
-                 line="667">a widget</doc>
+                 line="668">a widget</doc>
             <type name="Gtk.Widget" c:type="GtkWidget*"/>
           </parameter>
         </parameters>
@@ -3925,19 +3925,19 @@ The widget will appear in the expanding list below @self.</doc>
                    value="enable-expansion"/>
         <doc xml:space="preserve"
              filename="../src/adw-expander-row.c"
-             line="536">Gets whether the expansion of @self is enabled.</doc>
+             line="537">Gets whether the expansion of @self is enabled.</doc>
         <source-position filename="../src/adw-expander-row.h" line="65"/>
         <return-value transfer-ownership="none">
           <doc xml:space="preserve"
                filename="../src/adw-expander-row.c"
-               line="542">whether the expansion of @self is enabled.</doc>
+               line="543">whether the expansion of @self is enabled.</doc>
           <type name="gboolean" c:type="gboolean"/>
         </return-value>
         <parameters>
           <instance-parameter name="self" transfer-ownership="none">
             <doc xml:space="preserve"
                  filename="../src/adw-expander-row.c"
-                 line="538">a `AdwExpanderRow`</doc>
+                 line="539">a `AdwExpanderRow`</doc>
             <type name="ExpanderRow" c:type="AdwExpanderRow*"/>
           </instance-parameter>
         </parameters>
@@ -3948,19 +3948,19 @@ The widget will appear in the expanding list below @self.</doc>
         <attribute name="org.gtk.Method.get_property" value="expanded"/>
         <doc xml:space="preserve"
              filename="../src/adw-expander-row.c"
-             line="483">Gets whether @self is expanded.</doc>
+             line="484">Gets whether @self is expanded.</doc>
         <source-position filename="../src/adw-expander-row.h" line="59"/>
         <return-value transfer-ownership="none">
           <doc xml:space="preserve"
                filename="../src/adw-expander-row.c"
-               line="489">whether @self is expanded</doc>
+               line="490">whether @self is expanded</doc>
           <type name="gboolean" c:type="gboolean"/>
         </return-value>
         <parameters>
           <instance-parameter name="self" transfer-ownership="none">
             <doc xml:space="preserve"
                  filename="../src/adw-expander-row.c"
-                 line="485">a #AdwExpanderRow</doc>
+                 line="486">a `AdwExpanderRow`</doc>
             <type name="ExpanderRow" c:type="AdwExpanderRow*"/>
           </instance-parameter>
         </parameters>
@@ -3971,19 +3971,19 @@ The widget will appear in the expanding list below @self.</doc>
         <attribute name="org.gtk.Method.get_property" value="icon-name"/>
         <doc xml:space="preserve"
              filename="../src/adw-expander-row.c"
-             line="439">Gets the icon name for @self.</doc>
+             line="440">Gets the icon name for @self.</doc>
         <source-position filename="../src/adw-expander-row.h" line="53"/>
         <return-value transfer-ownership="none">
           <doc xml:space="preserve"
                filename="../src/adw-expander-row.c"
-               line="445">the icon name for @self</doc>
+               line="446">the icon name for @self</doc>
           <type name="utf8" c:type="const char*"/>
         </return-value>
         <parameters>
           <instance-parameter name="self" transfer-ownership="none">
             <doc xml:space="preserve"
                  filename="../src/adw-expander-row.c"
-                 line="441">a `AdwExpanderRow`</doc>
+                 line="442">a `AdwExpanderRow`</doc>
             <type name="ExpanderRow" c:type="AdwExpanderRow*"/>
           </instance-parameter>
         </parameters>
@@ -3995,19 +3995,19 @@ The widget will appear in the expanding list below @self.</doc>
                    value="show-enable-switch"/>
         <doc xml:space="preserve"
              filename="../src/adw-expander-row.c"
-             line="589">Gets whether the switch enabling the expansion of @self is visible.</doc>
+             line="590">Gets whether the switch enabling the expansion of @self is visible.</doc>
         <source-position filename="../src/adw-expander-row.h" line="71"/>
         <return-value transfer-ownership="none">
           <doc xml:space="preserve"
                filename="../src/adw-expander-row.c"
-               line="595">whether the switch enabling the expansion is visible</doc>
+               line="596">whether the switch enabling the expansion is visible</doc>
           <type name="gboolean" c:type="gboolean"/>
         </return-value>
         <parameters>
           <instance-parameter name="self" transfer-ownership="none">
             <doc xml:space="preserve"
                  filename="../src/adw-expander-row.c"
-                 line="591">a `AdwExpanderRow`</doc>
+                 line="592">a `AdwExpanderRow`</doc>
             <type name="ExpanderRow" c:type="AdwExpanderRow*"/>
           </instance-parameter>
         </parameters>
@@ -4018,19 +4018,19 @@ The widget will appear in the expanding list below @self.</doc>
         <attribute name="org.gtk.Method.get_property" value="subtitle"/>
         <doc xml:space="preserve"
              filename="../src/adw-expander-row.c"
-             line="351">Gets the subtitle for @self.</doc>
+             line="352">Gets the subtitle for @self.</doc>
         <source-position filename="../src/adw-expander-row.h" line="41"/>
         <return-value transfer-ownership="none" nullable="1">
           <doc xml:space="preserve"
                filename="../src/adw-expander-row.c"
-               line="357">the subtitle for @self</doc>
+               line="358">the subtitle for @self</doc>
           <type name="utf8" c:type="const char*"/>
         </return-value>
         <parameters>
           <instance-parameter name="self" transfer-ownership="none">
             <doc xml:space="preserve"
                  filename="../src/adw-expander-row.c"
-                 line="353">a #AdwExpanderRow</doc>
+                 line="354">a `AdwExpanderRow`</doc>
             <type name="ExpanderRow" c:type="AdwExpanderRow*"/>
           </instance-parameter>
         </parameters>
@@ -4041,19 +4041,19 @@ The widget will appear in the expanding list below @self.</doc>
         <attribute name="org.gtk.Method.get_property" value="use-underline"/>
         <doc xml:space="preserve"
              filename="../src/adw-expander-row.c"
-             line="395">Gets whether underlines in title or subtitle are interpreted as mnemonics.</doc>
+             line="396">Gets whether underlines in title or subtitle are interpreted as mnemonics.</doc>
         <source-position filename="../src/adw-expander-row.h" line="47"/>
         <return-value transfer-ownership="none">
           <doc xml:space="preserve"
                filename="../src/adw-expander-row.c"
-               line="401">`TRUE` if underlines are interpreted as mnemonics</doc>
+               line="402">`TRUE` if underlines are interpreted as mnemonics</doc>
           <type name="gboolean" c:type="gboolean"/>
         </return-value>
         <parameters>
           <instance-parameter name="self" transfer-ownership="none">
             <doc xml:space="preserve"
                  filename="../src/adw-expander-row.c"
-                 line="397">a `AdwExpanderRow`</doc>
+                 line="398">a `AdwExpanderRow`</doc>
             <type name="ExpanderRow" c:type="AdwExpanderRow*"/>
           </instance-parameter>
         </parameters>
@@ -4079,7 +4079,7 @@ The widget will appear in the expanding list below @self.</doc>
                    value="enable-expansion"/>
         <doc xml:space="preserve"
              filename="../src/adw-expander-row.c"
-             line="558">Sets whether the expansion of @self is enabled.</doc>
+             line="559">Sets whether the expansion of @self is enabled.</doc>
         <source-position filename="../src/adw-expander-row.h" line="67"/>
         <return-value transfer-ownership="none">
           <type name="none" c:type="void"/>
@@ -4088,13 +4088,13 @@ The widget will appear in the expanding list below @self.</doc>
           <instance-parameter name="self" transfer-ownership="none">
             <doc xml:space="preserve"
                  filename="../src/adw-expander-row.c"
-                 line="560">a `AdwExpanderRow`</doc>
+                 line="561">a `AdwExpanderRow`</doc>
             <type name="ExpanderRow" c:type="AdwExpanderRow*"/>
           </instance-parameter>
           <parameter name="enable_expansion" transfer-ownership="none">
             <doc xml:space="preserve"
                  filename="../src/adw-expander-row.c"
-                 line="561">%TRUE to enable the expansion</doc>
+                 line="562">whether to enable the expansion</doc>
             <type name="gboolean" c:type="gboolean"/>
           </parameter>
         </parameters>
@@ -4105,7 +4105,7 @@ The widget will appear in the expanding list below @self.</doc>
         <attribute name="org.gtk.Method.set_property" value="expanded"/>
         <doc xml:space="preserve"
              filename="../src/adw-expander-row.c"
-             line="505">Sets whether @self is expanded.</doc>
+             line="506">Sets whether @self is expanded.</doc>
         <source-position filename="../src/adw-expander-row.h" line="61"/>
         <return-value transfer-ownership="none">
           <type name="none" c:type="void"/>
@@ -4114,13 +4114,13 @@ The widget will appear in the expanding list below @self.</doc>
           <instance-parameter name="self" transfer-ownership="none">
             <doc xml:space="preserve"
                  filename="../src/adw-expander-row.c"
-                 line="507">a #AdwExpanderRow</doc>
+                 line="508">a `AdwExpanderRow`</doc>
             <type name="ExpanderRow" c:type="AdwExpanderRow*"/>
           </instance-parameter>
           <parameter name="expanded" transfer-ownership="none">
             <doc xml:space="preserve"
                  filename="../src/adw-expander-row.c"
-                 line="508">%TRUE to expand the row</doc>
+                 line="509">whether to expand the row</doc>
             <type name="gboolean" c:type="gboolean"/>
           </parameter>
         </parameters>
@@ -4131,7 +4131,7 @@ The widget will appear in the expanding list below @self.</doc>
         <attribute name="org.gtk.Method.set_property" value="icon-name"/>
         <doc xml:space="preserve"
              filename="../src/adw-expander-row.c"
-             line="461">Sets the icon name for @self.</doc>
+             line="462">Sets the icon name for @self.</doc>
         <source-position filename="../src/adw-expander-row.h" line="55"/>
         <return-value transfer-ownership="none">
           <type name="none" c:type="void"/>
@@ -4140,13 +4140,13 @@ The widget will appear in the expanding list below @self.</doc>
           <instance-parameter name="self" transfer-ownership="none">
             <doc xml:space="preserve"
                  filename="../src/adw-expander-row.c"
-                 line="463">a `AdwExpanderRow`</doc>
+                 line="464">a `AdwExpanderRow`</doc>
             <type name="ExpanderRow" c:type="AdwExpanderRow*"/>
           </instance-parameter>
           <parameter name="icon_name" transfer-ownership="none">
             <doc xml:space="preserve"
                  filename="../src/adw-expander-row.c"
-                 line="464">the icon name</doc>
+                 line="465">the icon name</doc>
             <type name="utf8" c:type="const char*"/>
           </parameter>
         </parameters>
@@ -4158,7 +4158,7 @@ The widget will appear in the expanding list below @self.</doc>
                    value="show-enable-switch"/>
         <doc xml:space="preserve"
              filename="../src/adw-expander-row.c"
-             line="611">Sets whether the switch enabling the expansion of @self is visible.</doc>
+             line="612">Sets whether the switch enabling the expansion of @self is visible.</doc>
         <source-position filename="../src/adw-expander-row.h" line="73"/>
         <return-value transfer-ownership="none">
           <type name="none" c:type="void"/>
@@ -4167,13 +4167,13 @@ The widget will appear in the expanding list below @self.</doc>
           <instance-parameter name="self" transfer-ownership="none">
             <doc xml:space="preserve"
                  filename="../src/adw-expander-row.c"
-                 line="613">a `AdwExpanderRow`</doc>
+                 line="614">a `AdwExpanderRow`</doc>
             <type name="ExpanderRow" c:type="AdwExpanderRow*"/>
           </instance-parameter>
           <parameter name="show_enable_switch" transfer-ownership="none">
             <doc xml:space="preserve"
                  filename="../src/adw-expander-row.c"
-                 line="614">%TRUE to show the switch enabling the expansion</doc>
+                 line="615">whether to show the switch enabling the expansion</doc>
             <type name="gboolean" c:type="gboolean"/>
           </parameter>
         </parameters>
@@ -4184,7 +4184,7 @@ The widget will appear in the expanding list below @self.</doc>
         <attribute name="org.gtk.Method.set_property" value="subtitle"/>
         <doc xml:space="preserve"
              filename="../src/adw-expander-row.c"
-             line="373">Sets the subtitle for @self.</doc>
+             line="374">Sets the subtitle for @self.</doc>
         <source-position filename="../src/adw-expander-row.h" line="43"/>
         <return-value transfer-ownership="none">
           <type name="none" c:type="void"/>
@@ -4193,7 +4193,7 @@ The widget will appear in the expanding list below @self.</doc>
           <instance-parameter name="self" transfer-ownership="none">
             <doc xml:space="preserve"
                  filename="../src/adw-expander-row.c"
-                 line="375">a `AdwExpanderRow`</doc>
+                 line="376">a `AdwExpanderRow`</doc>
             <type name="ExpanderRow" c:type="AdwExpanderRow*"/>
           </instance-parameter>
           <parameter name="subtitle"
@@ -4202,7 +4202,7 @@ The widget will appear in the expanding list below @self.</doc>
                      allow-none="1">
             <doc xml:space="preserve"
                  filename="../src/adw-expander-row.c"
-                 line="376">the subtitle</doc>
+                 line="377">the subtitle</doc>
             <type name="utf8" c:type="const char*"/>
           </parameter>
         </parameters>
@@ -4213,7 +4213,7 @@ The widget will appear in the expanding list below @self.</doc>
         <attribute name="org.gtk.Method.set_property" value="use-underline"/>
         <doc xml:space="preserve"
              filename="../src/adw-expander-row.c"
-             line="417">Sets whether underlines in title or subtitle are interpreted as mnemonics.</doc>
+             line="418">Sets whether underlines in title or subtitle are interpreted as mnemonics.</doc>
         <source-position filename="../src/adw-expander-row.h" line="49"/>
         <return-value transfer-ownership="none">
           <type name="none" c:type="void"/>
@@ -4222,13 +4222,13 @@ The widget will appear in the expanding list below @self.</doc>
           <instance-parameter name="self" transfer-ownership="none">
             <doc xml:space="preserve"
                  filename="../src/adw-expander-row.c"
-                 line="419">a `AdwExpanderRow`</doc>
+                 line="420">a `AdwExpanderRow`</doc>
             <type name="ExpanderRow" c:type="AdwExpanderRow*"/>
           </instance-parameter>
           <parameter name="use_underline" transfer-ownership="none">
             <doc xml:space="preserve"
                  filename="../src/adw-expander-row.c"
-                 line="420">whether underlines are interpreted as mnemonics</doc>
+                 line="421">whether underlines are interpreted as mnemonics</doc>
             <type name="gboolean" c:type="gboolean"/>
           </parameter>
         </parameters>
@@ -4243,7 +4243,7 @@ The widget will appear in the expanding list below @self.</doc>
                    value="adw_expander_row_set_enable_expansion"/>
         <doc xml:space="preserve"
              filename="../src/adw-expander-row.c"
-             line="239">Whether expansion is enabled.</doc>
+             line="240">Whether expansion is enabled.</doc>
         <type name="gboolean" c:type="gboolean"/>
       </property>
       <property name="expanded"
@@ -4256,7 +4256,7 @@ The widget will appear in the expanding list below @self.</doc>
                    value="adw_expander_row_set_expanded"/>
         <doc xml:space="preserve"
              filename="../src/adw-expander-row.c"
-             line="225">Whether the row is expanded.</doc>
+             line="226">Whether the row is expanded.</doc>
         <type name="gboolean" c:type="gboolean"/>
       </property>
       <property name="icon-name"
@@ -4269,7 +4269,7 @@ The widget will appear in the expanding list below @self.</doc>
                    value="adw_expander_row_set_icon_name"/>
         <doc xml:space="preserve"
              filename="../src/adw-expander-row.c"
-             line="211">The icon name for this row.</doc>
+             line="212">The icon name for this row.</doc>
         <type name="utf8" c:type="gchar*"/>
       </property>
       <property name="show-enable-switch"
@@ -4282,7 +4282,7 @@ The widget will appear in the expanding list below @self.</doc>
                    value="adw_expander_row_set_show_enable_switch"/>
         <doc xml:space="preserve"
              filename="../src/adw-expander-row.c"
-             line="253">Whether the switch enabling the expansion is visible.</doc>
+             line="254">Whether the switch enabling the expansion is visible.</doc>
         <type name="gboolean" c:type="gboolean"/>
       </property>
       <property name="subtitle"
@@ -4295,7 +4295,7 @@ The widget will appear in the expanding list below @self.</doc>
                    value="adw_expander_row_set_subtitle"/>
         <doc xml:space="preserve"
              filename="../src/adw-expander-row.c"
-             line="183">The subtitle for this row.</doc>
+             line="184">The subtitle for this row.</doc>
         <type name="utf8" c:type="gchar*"/>
       </property>
       <property name="use-underline"
@@ -4308,7 +4308,7 @@ The widget will appear in the expanding list below @self.</doc>
                    value="adw_expander_row_set_use_underline"/>
         <doc xml:space="preserve"
              filename="../src/adw-expander-row.c"
-             line="197">Whether underlines in title or subtitle are interpreted as mnemonics.</doc>
+             line="198">Whether underlines in title or subtitle are interpreted as mnemonics.</doc>
         <type name="gboolean" c:type="gboolean"/>
       </property>
       <field name="parent_instance">
@@ -5396,7 +5396,7 @@ New values may be added to this enum over time.</doc>
            glib:type-struct="HeaderBarClass">
       <doc xml:space="preserve"
            filename="../src/adw-header-bar.c"
-           line="30">A title bar widget.
+           line="31">A title bar widget.
 
 `AdwHeaderBar` is similar to [class@Gtk.HeaderBar], but provides additional
 features compared to it. Refer to `GtkHeaderBar` for details.
@@ -5415,7 +5415,7 @@ header bar layouts using [class@Adw.Leaflet], as follows:
       &lt;property name="orientation"&gt;vertical&lt;/property&gt;
       &lt;object class="AdwHeaderBar"&gt;
         &lt;binding name="show-end-title-buttons"&gt;
-          &lt;lookup name="folded"&gt;AdwLeaflet&lt;/lookup&gt;
+          &lt;lookup name="folded"&gt;leaflet&lt;/lookup&gt;
         &lt;/binding&gt;
       &lt;/object&gt;
       ...
@@ -5427,7 +5427,7 @@ header bar layouts using [class@Adw.Leaflet], as follows:
       &lt;property name="orientation"&gt;vertical&lt;/property&gt;
       &lt;object class="AdwHeaderBar"&gt;
         &lt;binding name="show-start-title-buttons"&gt;
-          &lt;lookup name="folded"&gt;AdwLeaflet&lt;/lookup&gt;
+          &lt;lookup name="folded"&gt;leaflet&lt;/lookup&gt;
         &lt;/binding&gt;
       &lt;/object&gt;
       ...
@@ -5472,12 +5472,12 @@ Each of the boxes contains a `windowcontrols` subnode, see
       <constructor name="new" c:identifier="adw_header_bar_new" version="1.0">
         <doc xml:space="preserve"
              filename="../src/adw-header-bar.c"
-             line="604">Creates a new `AdwHeaderBar`.</doc>
+             line="605">Creates a new `AdwHeaderBar`.</doc>
         <source-position filename="../src/adw-header-bar.h" line="45"/>
         <return-value transfer-ownership="none">
           <doc xml:space="preserve"
                filename="../src/adw-header-bar.c"
-               line="609">the newly created `AdwHeaderBar`.</doc>
+               line="610">the newly created `AdwHeaderBar`.</doc>
           <type name="Gtk.Widget" c:type="GtkWidget*"/>
         </return-value>
       </constructor>
@@ -5488,19 +5488,19 @@ Each of the boxes contains a `windowcontrols` subnode, see
                    value="centering-policy"/>
         <doc xml:space="preserve"
              filename="../src/adw-header-bar.c"
-             line="880">Gets the policy for aligning the center widget.</doc>
+             line="883">Gets the policy for aligning the center widget.</doc>
         <source-position filename="../src/adw-header-bar.h" line="82"/>
         <return-value transfer-ownership="none">
           <doc xml:space="preserve"
                filename="../src/adw-header-bar.c"
-               line="886">the centering policy</doc>
+               line="889">the centering policy</doc>
           <type name="CenteringPolicy" c:type="AdwCenteringPolicy"/>
         </return-value>
         <parameters>
           <instance-parameter name="self" transfer-ownership="none">
             <doc xml:space="preserve"
                  filename="../src/adw-header-bar.c"
-                 line="882">a `AdwHeaderBar`</doc>
+                 line="885">a `AdwHeaderBar`</doc>
             <type name="HeaderBar" c:type="AdwHeaderBar*"/>
           </instance-parameter>
         </parameters>
@@ -5512,19 +5512,19 @@ Each of the boxes contains a `windowcontrols` subnode, see
                    value="decoration-layout"/>
         <doc xml:space="preserve"
              filename="../src/adw-header-bar.c"
-             line="862">Gets the decoration layout for @self.</doc>
+             line="865">Gets the decoration layout for @self.</doc>
         <source-position filename="../src/adw-header-bar.h" line="76"/>
         <return-value transfer-ownership="none" nullable="1">
           <doc xml:space="preserve"
                filename="../src/adw-header-bar.c"
-               line="868">the decoration layout</doc>
+               line="871">the decoration layout</doc>
           <type name="utf8" c:type="const char*"/>
         </return-value>
         <parameters>
           <instance-parameter name="self" transfer-ownership="none">
             <doc xml:space="preserve"
                  filename="../src/adw-header-bar.c"
-                 line="864">a `AdwHeaderBar`</doc>
+                 line="867">a `AdwHeaderBar`</doc>
             <type name="HeaderBar" c:type="AdwHeaderBar*"/>
           </instance-parameter>
         </parameters>
@@ -5536,19 +5536,19 @@ Each of the boxes contains a `windowcontrols` subnode, see
                    value="show-end-title-buttons"/>
         <doc xml:space="preserve"
              filename="../src/adw-header-bar.c"
-             line="789">Gets whether to show title buttons at the end of @self.</doc>
+             line="792">Gets whether to show title buttons at the end of @self.</doc>
         <source-position filename="../src/adw-header-bar.h" line="70"/>
         <return-value transfer-ownership="none">
           <doc xml:space="preserve"
                filename="../src/adw-header-bar.c"
-               line="795">`TRUE` if title buttons at the end are shown</doc>
+               line="798">`TRUE` if title buttons at the end are shown</doc>
           <type name="gboolean" c:type="gboolean"/>
         </return-value>
         <parameters>
           <instance-parameter name="self" transfer-ownership="none">
             <doc xml:space="preserve"
                  filename="../src/adw-header-bar.c"
-                 line="791">a `AdwHeaderBar`</doc>
+                 line="794">a `AdwHeaderBar`</doc>
             <type name="HeaderBar" c:type="AdwHeaderBar*"/>
           </instance-parameter>
         </parameters>
@@ -5560,19 +5560,19 @@ Each of the boxes contains a `windowcontrols` subnode, see
                    value="show-start-title-buttons"/>
         <doc xml:space="preserve"
              filename="../src/adw-header-bar.c"
-             line="737">Gets whether to show title buttons at the start of @self.</doc>
+             line="740">Gets whether to show title buttons at the start of @self.</doc>
         <source-position filename="../src/adw-header-bar.h" line="64"/>
         <return-value transfer-ownership="none">
           <doc xml:space="preserve"
                filename="../src/adw-header-bar.c"
-               line="743">`TRUE` if title buttons at the start are shown</doc>
+               line="746">`TRUE` if title buttons at the start are shown</doc>
           <type name="gboolean" c:type="gboolean"/>
         </return-value>
         <parameters>
           <instance-parameter name="self" transfer-ownership="none">
             <doc xml:space="preserve"
                  filename="../src/adw-header-bar.c"
-                 line="739">a `AdwHeaderBar`</doc>
+                 line="742">a `AdwHeaderBar`</doc>
             <type name="HeaderBar" c:type="AdwHeaderBar*"/>
           </instance-parameter>
         </parameters>
@@ -5583,19 +5583,19 @@ Each of the boxes contains a `windowcontrols` subnode, see
         <attribute name="org.gtk.Method.get_property" value="title-widget"/>
         <doc xml:space="preserve"
              filename="../src/adw-header-bar.c"
-             line="688">Gets the title widget widget of @self.</doc>
+             line="689">Gets the title widget widget of @self.</doc>
         <source-position filename="../src/adw-header-bar.h" line="48"/>
         <return-value transfer-ownership="none" nullable="1">
           <doc xml:space="preserve"
                filename="../src/adw-header-bar.c"
-               line="694">the title widget</doc>
+               line="695">the title widget</doc>
           <type name="Gtk.Widget" c:type="GtkWidget*"/>
         </return-value>
         <parameters>
           <instance-parameter name="self" transfer-ownership="none">
             <doc xml:space="preserve"
                  filename="../src/adw-header-bar.c"
-                 line="690">a `AdwHeaderBar`</doc>
+                 line="691">a `AdwHeaderBar`</doc>
             <type name="HeaderBar" c:type="AdwHeaderBar*"/>
           </instance-parameter>
         </parameters>
@@ -5605,7 +5605,7 @@ Each of the boxes contains a `windowcontrols` subnode, see
               version="1.0">
         <doc xml:space="preserve"
              filename="../src/adw-header-bar.c"
-             line="635">Adds @child to @self, packed with reference to the end of @self.</doc>
+             line="636">Adds @child to @self, packed with reference to the end of @self.</doc>
         <source-position filename="../src/adw-header-bar.h" line="57"/>
         <return-value transfer-ownership="none">
           <type name="none" c:type="void"/>
@@ -5614,13 +5614,13 @@ Each of the boxes contains a `windowcontrols` subnode, see
           <instance-parameter name="self" transfer-ownership="none">
             <doc xml:space="preserve"
                  filename="../src/adw-header-bar.c"
-                 line="637">A `AdwHeaderBar`</doc>
+                 line="638">A `AdwHeaderBar`</doc>
             <type name="HeaderBar" c:type="AdwHeaderBar*"/>
           </instance-parameter>
           <parameter name="child" transfer-ownership="none">
             <doc xml:space="preserve"
                  filename="../src/adw-header-bar.c"
-                 line="638">the widget to be added to @self</doc>
+                 line="639">the widget to be added to @self</doc>
             <type name="Gtk.Widget" c:type="GtkWidget*"/>
           </parameter>
         </parameters>
@@ -5630,7 +5630,7 @@ Each of the boxes contains a `windowcontrols` subnode, see
               version="1.0">
         <doc xml:space="preserve"
              filename="../src/adw-header-bar.c"
-             line="619">Adds @child to @self, packed with reference to the start of the @self.</doc>
+             line="620">Adds @child to @self, packed with reference to the start of the @self.</doc>
         <source-position filename="../src/adw-header-bar.h" line="54"/>
         <return-value transfer-ownership="none">
           <type name="none" c:type="void"/>
@@ -5639,13 +5639,13 @@ Each of the boxes contains a `windowcontrols` subnode, see
           <instance-parameter name="self" transfer-ownership="none">
             <doc xml:space="preserve"
                  filename="../src/adw-header-bar.c"
-                 line="621">A `AdwHeaderBar`</doc>
+                 line="622">A `AdwHeaderBar`</doc>
             <type name="HeaderBar" c:type="AdwHeaderBar*"/>
           </instance-parameter>
           <parameter name="child" transfer-ownership="none">
             <doc xml:space="preserve"
                  filename="../src/adw-header-bar.c"
-                 line="622">the widget to be added to @self</doc>
+                 line="623">the widget to be added to @self</doc>
             <type name="Gtk.Widget" c:type="GtkWidget*"/>
           </parameter>
         </parameters>
@@ -5653,7 +5653,7 @@ Each of the boxes contains a `windowcontrols` subnode, see
       <method name="remove" c:identifier="adw_header_bar_remove" version="1.0">
         <doc xml:space="preserve"
              filename="../src/adw-header-bar.c"
-             line="706">Removes a child from @self.
+             line="707">Removes a child from @self.
 
 The child must have been added with [method@Adw.HeaderBar.pack_start],
 [method@Adw.HeaderBar.pack_end] or [property@Adw.HeaderBar:title-widget].</doc>
@@ -5665,13 +5665,13 @@ The child must have been added with [method@Adw.HeaderBar.pack_start],
           <instance-parameter name="self" transfer-ownership="none">
             <doc xml:space="preserve"
                  filename="../src/adw-header-bar.c"
-                 line="708">a `AdwHeaderBar`</doc>
+                 line="709">a `AdwHeaderBar`</doc>
             <type name="HeaderBar" c:type="AdwHeaderBar*"/>
           </instance-parameter>
           <parameter name="child" transfer-ownership="none">
             <doc xml:space="preserve"
                  filename="../src/adw-header-bar.c"
-                 line="709">the child to remove</doc>
+                 line="710">the child to remove</doc>
             <type name="Gtk.Widget" c:type="GtkWidget*"/>
           </parameter>
         </parameters>
@@ -5683,7 +5683,7 @@ The child must have been added with [method@Adw.HeaderBar.pack_start],
                    value="centering-policy"/>
         <doc xml:space="preserve"
              filename="../src/adw-header-bar.c"
-             line="898">Sets the policy for aligning the center widget.</doc>
+             line="901">Sets the policy for aligning the center widget.</doc>
         <source-position filename="../src/adw-header-bar.h" line="84"/>
         <return-value transfer-ownership="none">
           <type name="none" c:type="void"/>
@@ -5692,13 +5692,13 @@ The child must have been added with [method@Adw.HeaderBar.pack_start],
           <instance-parameter name="self" transfer-ownership="none">
             <doc xml:space="preserve"
                  filename="../src/adw-header-bar.c"
-                 line="900">a `AdwHeaderBar`</doc>
+                 line="903">a `AdwHeaderBar`</doc>
             <type name="HeaderBar" c:type="AdwHeaderBar*"/>
           </instance-parameter>
           <parameter name="centering_policy" transfer-ownership="none">
             <doc xml:space="preserve"
                  filename="../src/adw-header-bar.c"
-                 line="901">the centering policy</doc>
+                 line="904">the centering policy</doc>
             <type name="CenteringPolicy" c:type="AdwCenteringPolicy"/>
           </parameter>
         </parameters>
@@ -5710,7 +5710,7 @@ The child must have been added with [method@Adw.HeaderBar.pack_start],
                    value="decoration-layout"/>
         <doc xml:space="preserve"
              filename="../src/adw-header-bar.c"
-             line="841">Sets the decoration layout for @self.</doc>
+             line="844">Sets the decoration layout for @self.</doc>
         <source-position filename="../src/adw-header-bar.h" line="78"/>
         <return-value transfer-ownership="none">
           <type name="none" c:type="void"/>
@@ -5719,7 +5719,7 @@ The child must have been added with [method@Adw.HeaderBar.pack_start],
           <instance-parameter name="self" transfer-ownership="none">
             <doc xml:space="preserve"
                  filename="../src/adw-header-bar.c"
-                 line="843">a `AdwHeaderBar`</doc>
+                 line="846">a `AdwHeaderBar`</doc>
             <type name="HeaderBar" c:type="AdwHeaderBar*"/>
           </instance-parameter>
           <parameter name="layout"
@@ -5728,7 +5728,7 @@ The child must have been added with [method@Adw.HeaderBar.pack_start],
                      allow-none="1">
             <doc xml:space="preserve"
                  filename="../src/adw-header-bar.c"
-                 line="844">a decoration layout, or `NULL` to unset the layout</doc>
+                 line="847">a decoration layout, or `NULL` to unset the layout</doc>
             <type name="utf8" c:type="const char*"/>
           </parameter>
         </parameters>
@@ -5740,7 +5740,7 @@ The child must have been added with [method@Adw.HeaderBar.pack_start],
                    value="show-end-title-buttons"/>
         <doc xml:space="preserve"
              filename="../src/adw-header-bar.c"
-             line="807">Sets whether to show title buttons at the end of @self.</doc>
+             line="810">Sets whether to show title buttons at the end of @self.</doc>
         <source-position filename="../src/adw-header-bar.h" line="72"/>
         <return-value transfer-ownership="none">
           <type name="none" c:type="void"/>
@@ -5749,13 +5749,13 @@ The child must have been added with [method@Adw.HeaderBar.pack_start],
           <instance-parameter name="self" transfer-ownership="none">
             <doc xml:space="preserve"
                  filename="../src/adw-header-bar.c"
-                 line="809">a `AdwHeaderBar`</doc>
+                 line="812">a `AdwHeaderBar`</doc>
             <type name="HeaderBar" c:type="AdwHeaderBar*"/>
           </instance-parameter>
           <parameter name="setting" transfer-ownership="none">
             <doc xml:space="preserve"
                  filename="../src/adw-header-bar.c"
-                 line="810">`TRUE` to show standard title buttons</doc>
+                 line="813">`TRUE` to show standard title buttons</doc>
             <type name="gboolean" c:type="gboolean"/>
           </parameter>
         </parameters>
@@ -5767,7 +5767,7 @@ The child must have been added with [method@Adw.HeaderBar.pack_start],
                    value="show-start-title-buttons"/>
         <doc xml:space="preserve"
              filename="../src/adw-header-bar.c"
-             line="755">Sets whether to show title buttons at the start of @self.</doc>
+             line="758">Sets whether to show title buttons at the start of @self.</doc>
         <source-position filename="../src/adw-header-bar.h" line="66"/>
         <return-value transfer-ownership="none">
           <type name="none" c:type="void"/>
@@ -5776,13 +5776,13 @@ The child must have been added with [method@Adw.HeaderBar.pack_start],
           <instance-parameter name="self" transfer-ownership="none">
             <doc xml:space="preserve"
                  filename="../src/adw-header-bar.c"
-                 line="757">a `AdwHeaderBar`</doc>
+                 line="760">a `AdwHeaderBar`</doc>
             <type name="HeaderBar" c:type="AdwHeaderBar*"/>
           </instance-parameter>
           <parameter name="setting" transfer-ownership="none">
             <doc xml:space="preserve"
                  filename="../src/adw-header-bar.c"
-                 line="758">`TRUE` to show standard title buttons</doc>
+                 line="761">`TRUE` to show standard title buttons</doc>
             <type name="gboolean" c:type="gboolean"/>
           </parameter>
         </parameters>
@@ -5793,7 +5793,7 @@ The child must have been added with [method@Adw.HeaderBar.pack_start],
         <attribute name="org.gtk.Method.set_property" value="title-widget"/>
         <doc xml:space="preserve"
              filename="../src/adw-header-bar.c"
-             line="651">Sets the title widget for @self.</doc>
+             line="652">Sets the title widget for @self.</doc>
         <source-position filename="../src/adw-header-bar.h" line="50"/>
         <return-value transfer-ownership="none">
           <type name="none" c:type="void"/>
@@ -5802,7 +5802,7 @@ The child must have been added with [method@Adw.HeaderBar.pack_start],
           <instance-parameter name="self" transfer-ownership="none">
             <doc xml:space="preserve"
                  filename="../src/adw-header-bar.c"
-                 line="653">a `AdwHeaderBar`</doc>
+                 line="654">a `AdwHeaderBar`</doc>
             <type name="HeaderBar" c:type="AdwHeaderBar*"/>
           </instance-parameter>
           <parameter name="title_widget"
@@ -5811,7 +5811,7 @@ The child must have been added with [method@Adw.HeaderBar.pack_start],
                      allow-none="1">
             <doc xml:space="preserve"
                  filename="../src/adw-header-bar.c"
-                 line="654">a widget to use for a title</doc>
+                 line="655">a widget to use for a title</doc>
             <type name="Gtk.Widget" c:type="GtkWidget*"/>
           </parameter>
         </parameters>
@@ -5826,7 +5826,7 @@ The child must have been added with [method@Adw.HeaderBar.pack_start],
                    value="adw_header_bar_set_centering_policy"/>
         <doc xml:space="preserve"
              filename="../src/adw-header-bar.c"
-             line="513">The policy for aligning the center widget.</doc>
+             line="514">The policy for aligning the center widget.</doc>
         <type name="CenteringPolicy"/>
       </property>
       <property name="decoration-layout"
@@ -5839,7 +5839,7 @@ The child must have been added with [method@Adw.HeaderBar.pack_start],
                    value="adw_header_bar_set_decoration_layout"/>
         <doc xml:space="preserve"
              filename="../src/adw-header-bar.c"
-             line="488">The decoration layout for buttons.
+             line="489">The decoration layout for buttons.
 
 Ithis property is not set, the
 [property@Gtk.Settings:gtk-decoration-layout] setting is used.
@@ -5863,7 +5863,7 @@ and minimize, maximize and close buttons at the end.</doc>
                    value="adw_header_bar_set_show_end_title_buttons"/>
         <doc xml:space="preserve"
              filename="../src/adw-header-bar.c"
-             line="467">Whether to show title buttons at the end of the header bar.
+             line="468">Whether to show title buttons at the end of the header bar.
 
 See [property@Adw.HeaderBar:show-start-title-buttons] for the other side.
 
@@ -5883,7 +5883,7 @@ closed).</doc>
                    value="adw_header_bar_set_show_start_title_buttons"/>
         <doc xml:space="preserve"
              filename="../src/adw-header-bar.c"
-             line="446">Whether to show title buttons at the start of the header bar.
+             line="447">Whether to show title buttons at the start of the header bar.
 
 See [property@Adw.HeaderBar:show-end-title-buttons] for the other side.
 
@@ -5903,7 +5903,7 @@ closed).</doc>
                    value="adw_header_bar_set_title_widget"/>
         <doc xml:space="preserve"
              filename="../src/adw-header-bar.c"
-             line="417">The title widget to display.
+             line="418">The title widget to display.
 
 When set to `NULL`, the header bar will display the title of the window it
 is contained in.
@@ -6483,7 +6483,7 @@ This will be the same child as returned by
         <return-value transfer-ownership="none">
           <doc xml:space="preserve"
                filename="../src/adw-leaflet.c"
-               line="3629">`TRUE` if visible child was changed, `FALSE` otherwise.</doc>
+               line="3629">whether the visible child was changed</doc>
           <type name="gboolean" c:type="gboolean"/>
         </return-value>
         <parameters>
@@ -7361,7 +7361,7 @@ New values may be added to this enumeration over time.</doc>
            glib:type-struct="PreferencesGroupClass">
       <doc xml:space="preserve"
            filename="../src/adw-preferences-group.c"
-           line="13">A group of preference rows.
+           line="14">A group of preference rows.
 
 An `AdwPreferencesGroup` represents a group or tightly related preferences,
 which in turn are represented by [class@Adw.PreferencesRow].
@@ -7382,12 +7382,12 @@ title and a description. The title will be used by
                    version="1.0">
         <doc xml:space="preserve"
              filename="../src/adw-preferences-group.c"
-             line="255">Creates a new `AdwPreferencesGroup`.</doc>
+             line="256">Creates a new `AdwPreferencesGroup`.</doc>
         <source-position filename="../src/adw-preferences-group.h" line="37"/>
         <return-value transfer-ownership="none">
           <doc xml:space="preserve"
                filename="../src/adw-preferences-group.c"
-               line="260">the newly created `AdwPreferencesGroup`</doc>
+               line="261">the newly created `AdwPreferencesGroup`</doc>
           <type name="Gtk.Widget" c:type="GtkWidget*"/>
         </return-value>
       </constructor>
@@ -7396,7 +7396,7 @@ title and a description. The title will be used by
               version="1.0">
         <doc xml:space="preserve"
              filename="../src/adw-preferences-group.c"
-             line="416">Adds a child to @self.</doc>
+             line="417">Adds a child to @self.</doc>
         <source-position filename="../src/adw-preferences-group.h" line="52"/>
         <return-value transfer-ownership="none">
           <type name="none" c:type="void"/>
@@ -7405,13 +7405,13 @@ title and a description. The title will be used by
           <instance-parameter name="self" transfer-ownership="none">
             <doc xml:space="preserve"
                  filename="../src/adw-preferences-group.c"
-                 line="418">a `AdwPreferencesGroup`</doc>
+                 line="419">a `AdwPreferencesGroup`</doc>
             <type name="PreferencesGroup" c:type="AdwPreferencesGroup*"/>
           </instance-parameter>
           <parameter name="child" transfer-ownership="none">
             <doc xml:space="preserve"
                  filename="../src/adw-preferences-group.c"
-                 line="419">the widget to add</doc>
+                 line="420">the widget to add</doc>
             <type name="Gtk.Widget" c:type="GtkWidget*"/>
           </parameter>
         </parameters>
@@ -7422,19 +7422,19 @@ title and a description. The title will be used by
         <attribute name="org.gtk.Method.get_property" value="description"/>
         <doc xml:space="preserve"
              filename="../src/adw-preferences-group.c"
-             line="320">Gets the description of @self.</doc>
+             line="321">Gets the description of @self.</doc>
         <source-position filename="../src/adw-preferences-group.h" line="46"/>
         <return-value transfer-ownership="none" nullable="1">
           <doc xml:space="preserve"
                filename="../src/adw-preferences-group.c"
-               line="326">the description of @self</doc>
+               line="327">the description of @self</doc>
           <type name="utf8" c:type="const char*"/>
         </return-value>
         <parameters>
           <instance-parameter name="self" transfer-ownership="none">
             <doc xml:space="preserve"
                  filename="../src/adw-preferences-group.c"
-                 line="322">a `AdwPreferencesGroup`</doc>
+                 line="323">a `AdwPreferencesGroup`</doc>
             <type name="PreferencesGroup" c:type="AdwPreferencesGroup*"/>
           </instance-parameter>
         </parameters>
@@ -7445,19 +7445,19 @@ title and a description. The title will be used by
         <attribute name="org.gtk.Method.get_property" value="title"/>
         <doc xml:space="preserve"
              filename="../src/adw-preferences-group.c"
-             line="270">Gets the title of @self.</doc>
+             line="271">Gets the title of @self.</doc>
         <source-position filename="../src/adw-preferences-group.h" line="40"/>
         <return-value transfer-ownership="none" nullable="1">
           <doc xml:space="preserve"
                filename="../src/adw-preferences-group.c"
-               line="276">the title of @self</doc>
+               line="277">the title of @self</doc>
           <type name="utf8" c:type="const char*"/>
         </return-value>
         <parameters>
           <instance-parameter name="self" transfer-ownership="none">
             <doc xml:space="preserve"
                  filename="../src/adw-preferences-group.c"
-                 line="272">a `AdwPreferencesGroup`</doc>
+                 line="273">a `AdwPreferencesGroup`</doc>
             <type name="PreferencesGroup" c:type="AdwPreferencesGroup*"/>
           </instance-parameter>
         </parameters>
@@ -7467,7 +7467,7 @@ title and a description. The title will be used by
               version="1.0">
         <doc xml:space="preserve"
              filename="../src/adw-preferences-group.c"
-             line="442">Removes a child from @self.</doc>
+             line="443">Removes a child from @self.</doc>
         <source-position filename="../src/adw-preferences-group.h" line="55"/>
         <return-value transfer-ownership="none">
           <type name="none" c:type="void"/>
@@ -7476,13 +7476,13 @@ title and a description. The title will be used by
           <instance-parameter name="self" transfer-ownership="none">
             <doc xml:space="preserve"
                  filename="../src/adw-preferences-group.c"
-                 line="444">a `AdwPreferencesGroup`</doc>
+                 line="445">a `AdwPreferencesGroup`</doc>
             <type name="PreferencesGroup" c:type="AdwPreferencesGroup*"/>
           </instance-parameter>
           <parameter name="child" transfer-ownership="none">
             <doc xml:space="preserve"
                  filename="../src/adw-preferences-group.c"
-                 line="445">the child to remove</doc>
+                 line="446">the child to remove</doc>
             <type name="Gtk.Widget" c:type="GtkWidget*"/>
           </parameter>
         </parameters>
@@ -7493,7 +7493,7 @@ title and a description. The title will be used by
         <attribute name="org.gtk.Method.set_property" value="description"/>
         <doc xml:space="preserve"
              filename="../src/adw-preferences-group.c"
-             line="342">Sets the description for @self.</doc>
+             line="343">Sets the description for @self.</doc>
         <source-position filename="../src/adw-preferences-group.h" line="48"/>
         <return-value transfer-ownership="none">
           <type name="none" c:type="void"/>
@@ -7502,7 +7502,7 @@ title and a description. The title will be used by
           <instance-parameter name="self" transfer-ownership="none">
             <doc xml:space="preserve"
                  filename="../src/adw-preferences-group.c"
-                 line="344">a `AdwPreferencesGroup`</doc>
+                 line="345">a `AdwPreferencesGroup`</doc>
             <type name="PreferencesGroup" c:type="AdwPreferencesGroup*"/>
           </instance-parameter>
           <parameter name="description"
@@ -7511,7 +7511,7 @@ title and a description. The title will be used by
                      allow-none="1">
             <doc xml:space="preserve"
                  filename="../src/adw-preferences-group.c"
-                 line="345">the description</doc>
+                 line="346">the description</doc>
             <type name="utf8" c:type="const char*"/>
           </parameter>
         </parameters>
@@ -7522,7 +7522,7 @@ title and a description. The title will be used by
         <attribute name="org.gtk.Method.set_property" value="title"/>
         <doc xml:space="preserve"
              filename="../src/adw-preferences-group.c"
-             line="292">Sets the title for @self.</doc>
+             line="293">Sets the title for @self.</doc>
         <source-position filename="../src/adw-preferences-group.h" line="42"/>
         <return-value transfer-ownership="none">
           <type name="none" c:type="void"/>
@@ -7531,7 +7531,7 @@ title and a description. The title will be used by
           <instance-parameter name="self" transfer-ownership="none">
             <doc xml:space="preserve"
                  filename="../src/adw-preferences-group.c"
-                 line="294">a `AdwPreferencesGroup`</doc>
+                 line="295">a `AdwPreferencesGroup`</doc>
             <type name="PreferencesGroup" c:type="AdwPreferencesGroup*"/>
           </instance-parameter>
           <parameter name="title"
@@ -7540,7 +7540,7 @@ title and a description. The title will be used by
                      allow-none="1">
             <doc xml:space="preserve"
                  filename="../src/adw-preferences-group.c"
-                 line="295">the title</doc>
+                 line="296">the title</doc>
             <type name="utf8" c:type="const char*"/>
           </parameter>
         </parameters>
@@ -7555,7 +7555,7 @@ title and a description. The title will be used by
                    value="adw_preferences_group_set_description"/>
         <doc xml:space="preserve"
              filename="../src/adw-preferences-group.c"
-             line="173">The description for this group of preferences.</doc>
+             line="174">The description for this group of preferences.</doc>
         <type name="utf8" c:type="gchar*"/>
       </property>
       <property name="title"
@@ -7568,7 +7568,7 @@ title and a description. The title will be used by
                    value="adw_preferences_group_set_title"/>
         <doc xml:space="preserve"
              filename="../src/adw-preferences-group.c"
-             line="187">The title for this group of preferences.</doc>
+             line="188">The title for this group of preferences.</doc>
         <type name="utf8" c:type="gchar*"/>
       </property>
       <field name="parent_instance">
@@ -7601,7 +7601,7 @@ title and a description. The title will be used by
            glib:type-struct="PreferencesPageClass">
       <doc xml:space="preserve"
            filename="../src/adw-preferences-page.c"
-           line="13">A page from [class@Adw.PreferencesWindow].
+           line="14">A page from [class@Adw.PreferencesWindow].
 
 The `AdwPreferencesPage` widget gathers preferences groups into a single page
 of a preferences window.
@@ -7618,19 +7618,19 @@ of a preferences window.
                    version="1.0">
         <doc xml:space="preserve"
              filename="../src/adw-preferences-page.c"
-             line="219">Creates a new `AdwPreferencesPage`.</doc>
+             line="220">Creates a new `AdwPreferencesPage`.</doc>
         <source-position filename="../src/adw-preferences-page.h" line="38"/>
         <return-value transfer-ownership="none">
           <doc xml:space="preserve"
                filename="../src/adw-preferences-page.c"
-               line="224">the newly created `AdwPreferencesPage`</doc>
+               line="225">the newly created `AdwPreferencesPage`</doc>
           <type name="Gtk.Widget" c:type="GtkWidget*"/>
         </return-value>
       </constructor>
       <method name="add" c:identifier="adw_preferences_page_add" version="1.0">
         <doc xml:space="preserve"
              filename="../src/adw-preferences-page.c"
-             line="420">Adds a preferences group to @self.</doc>
+             line="421">Adds a preferences group to @self.</doc>
         <source-position filename="../src/adw-preferences-page.h" line="59"/>
         <return-value transfer-ownership="none">
           <type name="none" c:type="void"/>
@@ -7639,13 +7639,13 @@ of a preferences window.
           <instance-parameter name="self" transfer-ownership="none">
             <doc xml:space="preserve"
                  filename="../src/adw-preferences-page.c"
-                 line="422">a `AdwPreferencesPage`</doc>
+                 line="423">a `AdwPreferencesPage`</doc>
             <type name="PreferencesPage" c:type="AdwPreferencesPage*"/>
           </instance-parameter>
           <parameter name="group" transfer-ownership="none">
             <doc xml:space="preserve"
                  filename="../src/adw-preferences-page.c"
-                 line="423">the group to add</doc>
+                 line="424">the group to add</doc>
             <type name="PreferencesGroup" c:type="AdwPreferencesGroup*"/>
           </parameter>
         </parameters>
@@ -7656,19 +7656,19 @@ of a preferences window.
         <attribute name="org.gtk.Method.get_property" value="icon-name"/>
         <doc xml:space="preserve"
              filename="../src/adw-preferences-page.c"
-             line="234">Gets the icon name for @self.</doc>
+             line="235">Gets the icon name for @self.</doc>
         <source-position filename="../src/adw-preferences-page.h" line="41"/>
         <return-value transfer-ownership="none" nullable="1">
           <doc xml:space="preserve"
                filename="../src/adw-preferences-page.c"
-               line="240">the icon name for @self</doc>
+               line="241">the icon name for @self</doc>
           <type name="utf8" c:type="const char*"/>
         </return-value>
         <parameters>
           <instance-parameter name="self" transfer-ownership="none">
             <doc xml:space="preserve"
                  filename="../src/adw-preferences-page.c"
-                 line="236">a `AdwPreferencesPage`</doc>
+                 line="237">a `AdwPreferencesPage`</doc>
             <type name="PreferencesPage" c:type="AdwPreferencesPage*"/>
           </instance-parameter>
         </parameters>
@@ -7679,19 +7679,19 @@ of a preferences window.
         <attribute name="org.gtk.Method.get_property" value="title"/>
         <doc xml:space="preserve"
              filename="../src/adw-preferences-page.c"
-             line="284">Gets the title of @self.</doc>
+             line="285">Gets the title of @self.</doc>
         <source-position filename="../src/adw-preferences-page.h" line="47"/>
         <return-value transfer-ownership="none" nullable="1">
           <doc xml:space="preserve"
                filename="../src/adw-preferences-page.c"
-               line="290">the title of @self.</doc>
+               line="291">the title of @self.</doc>
           <type name="utf8" c:type="const char*"/>
         </return-value>
         <parameters>
           <instance-parameter name="self" transfer-ownership="none">
             <doc xml:space="preserve"
                  filename="../src/adw-preferences-page.c"
-                 line="286">a `AdwPreferencesPage`</doc>
+                 line="287">a `AdwPreferencesPage`</doc>
             <type name="PreferencesPage" c:type="AdwPreferencesPage*"/>
           </instance-parameter>
         </parameters>
@@ -7702,19 +7702,19 @@ of a preferences window.
         <attribute name="org.gtk.Method.get_property" value="use-underline"/>
         <doc xml:space="preserve"
              filename="../src/adw-preferences-page.c"
-             line="369">Gets whether an embedded underline in the title indicates a mnemonic.</doc>
+             line="370">Gets whether an embedded underline in the title indicates a mnemonic.</doc>
         <source-position filename="../src/adw-preferences-page.h" line="53"/>
         <return-value transfer-ownership="none">
           <doc xml:space="preserve"
                filename="../src/adw-preferences-page.c"
-               line="375">whether an embedded underline in the title indicates a mnemonic</doc>
+               line="376">whether an embedded underline in the title indicates a mnemonic</doc>
           <type name="gboolean" c:type="gboolean"/>
         </return-value>
         <parameters>
           <instance-parameter name="self" transfer-ownership="none">
             <doc xml:space="preserve"
                  filename="../src/adw-preferences-page.c"
-                 line="371">a `AdwPreferencesPage`</doc>
+                 line="372">a `AdwPreferencesPage`</doc>
             <type name="PreferencesPage" c:type="AdwPreferencesPage*"/>
           </instance-parameter>
         </parameters>
@@ -7724,7 +7724,7 @@ of a preferences window.
               version="1.0">
         <doc xml:space="preserve"
              filename="../src/adw-preferences-page.c"
-             line="443">Removes a group from @self.</doc>
+             line="444">Removes a group from @self.</doc>
         <source-position filename="../src/adw-preferences-page.h" line="62"/>
         <return-value transfer-ownership="none">
           <type name="none" c:type="void"/>
@@ -7733,13 +7733,13 @@ of a preferences window.
           <instance-parameter name="self" transfer-ownership="none">
             <doc xml:space="preserve"
                  filename="../src/adw-preferences-page.c"
-                 line="445">a `AdwPreferencesPage`</doc>
+                 line="446">a `AdwPreferencesPage`</doc>
             <type name="PreferencesPage" c:type="AdwPreferencesPage*"/>
           </instance-parameter>
           <parameter name="group" transfer-ownership="none">
             <doc xml:space="preserve"
                  filename="../src/adw-preferences-page.c"
-                 line="446">the group to remove</doc>
+                 line="447">the group to remove</doc>
             <type name="PreferencesGroup" c:type="AdwPreferencesGroup*"/>
           </parameter>
         </parameters>
@@ -7750,7 +7750,7 @@ of a preferences window.
         <attribute name="org.gtk.Method.set_property" value="icon-name"/>
         <doc xml:space="preserve"
              filename="../src/adw-preferences-page.c"
-             line="256">Sets the icon name for @self.</doc>
+             line="257">Sets the icon name for @self.</doc>
         <source-position filename="../src/adw-preferences-page.h" line="43"/>
         <return-value transfer-ownership="none">
           <type name="none" c:type="void"/>
@@ -7759,7 +7759,7 @@ of a preferences window.
           <instance-parameter name="self" transfer-ownership="none">
             <doc xml:space="preserve"
                  filename="../src/adw-preferences-page.c"
-                 line="258">a `AdwPreferencesPage`</doc>
+                 line="259">a `AdwPreferencesPage`</doc>
             <type name="PreferencesPage" c:type="AdwPreferencesPage*"/>
           </instance-parameter>
           <parameter name="icon_name"
@@ -7768,7 +7768,7 @@ of a preferences window.
                      allow-none="1">
             <doc xml:space="preserve"
                  filename="../src/adw-preferences-page.c"
-                 line="259">the icon name</doc>
+                 line="260">the icon name</doc>
             <type name="utf8" c:type="const char*"/>
           </parameter>
         </parameters>
@@ -7779,7 +7779,7 @@ of a preferences window.
         <attribute name="org.gtk.Method.set_property" value="title"/>
         <doc xml:space="preserve"
              filename="../src/adw-preferences-page.c"
-             line="306">Sets the title of @self.</doc>
+             line="307">Sets the title of @self.</doc>
         <source-position filename="../src/adw-preferences-page.h" line="49"/>
         <return-value transfer-ownership="none">
           <type name="none" c:type="void"/>
@@ -7788,7 +7788,7 @@ of a preferences window.
           <instance-parameter name="self" transfer-ownership="none">
             <doc xml:space="preserve"
                  filename="../src/adw-preferences-page.c"
-                 line="308">a `AdwPreferencesPage`</doc>
+                 line="309">a `AdwPreferencesPage`</doc>
             <type name="PreferencesPage" c:type="AdwPreferencesPage*"/>
           </instance-parameter>
           <parameter name="title"
@@ -7797,7 +7797,7 @@ of a preferences window.
                      allow-none="1">
             <doc xml:space="preserve"
                  filename="../src/adw-preferences-page.c"
-                 line="309">the title</doc>
+                 line="310">the title</doc>
             <type name="utf8" c:type="const char*"/>
           </parameter>
         </parameters>
@@ -7808,7 +7808,7 @@ of a preferences window.
         <attribute name="org.gtk.Method.set_property" value="use-underline"/>
         <doc xml:space="preserve"
              filename="../src/adw-preferences-page.c"
-             line="391">Sets whether an embedded underline in the title indicates a mnemonic.</doc>
+             line="392">Sets whether an embedded underline in the title indicates a mnemonic.</doc>
         <source-position filename="../src/adw-preferences-page.h" line="55"/>
         <return-value transfer-ownership="none">
           <type name="none" c:type="void"/>
@@ -7817,13 +7817,13 @@ of a preferences window.
           <instance-parameter name="self" transfer-ownership="none">
             <doc xml:space="preserve"
                  filename="../src/adw-preferences-page.c"
-                 line="393">a `AdwPreferencesPage`</doc>
+                 line="394">a `AdwPreferencesPage`</doc>
             <type name="PreferencesPage" c:type="AdwPreferencesPage*"/>
           </instance-parameter>
           <parameter name="use_underline" transfer-ownership="none">
             <doc xml:space="preserve"
                  filename="../src/adw-preferences-page.c"
-                 line="394">`TRUE` if underlines in the text indicate mnemonics</doc>
+                 line="395">`TRUE` if underlines in the text indicate mnemonics</doc>
             <type name="gboolean" c:type="gboolean"/>
           </parameter>
         </parameters>
@@ -7838,7 +7838,7 @@ of a preferences window.
                    value="adw_preferences_page_set_icon_name"/>
         <doc xml:space="preserve"
              filename="../src/adw-preferences-page.c"
-             line="138">The icon name for this page.</doc>
+             line="139">The icon name for this page.</doc>
         <type name="utf8" c:type="gchar*"/>
       </property>
       <property name="title"
@@ -7851,7 +7851,7 @@ of a preferences window.
                    value="adw_preferences_page_set_title"/>
         <doc xml:space="preserve"
              filename="../src/adw-preferences-page.c"
-             line="152">The title for this page.</doc>
+             line="153">The title for this page.</doc>
         <type name="utf8" c:type="gchar*"/>
       </property>
       <property name="use-underline"
@@ -7864,7 +7864,7 @@ of a preferences window.
                    value="adw_preferences_page_set_use_underline"/>
         <doc xml:space="preserve"
              filename="../src/adw-preferences-page.c"
-             line="166">Whether an embedded underline in the title indicates a mnemonic.</doc>
+             line="167">Whether an embedded underline in the title indicates a mnemonic.</doc>
         <type name="gboolean" c:type="gboolean"/>
       </property>
       <field name="parent_instance">
@@ -8082,7 +8082,7 @@ compose the inputs of the preference around it.</doc>
            glib:type-struct="PreferencesWindowClass">
       <doc xml:space="preserve"
            filename="../src/adw-preferences-window.c"
-           line="21">A window to present an application's preferences.
+           line="22">A window to present an application's preferences.
 
 The `AdwPreferencesWindow` widget presents an application's preferences
 gathered into pages and groups. The preferences are searchable by the user.
@@ -8103,12 +8103,12 @@ style class `.preferences`.</doc>
                    version="1.0">
         <doc xml:space="preserve"
              filename="../src/adw-preferences-window.c"
-             line="592">Creates a new `AdwPreferencesWindow`.</doc>
+             line="593">Creates a new `AdwPreferencesWindow`.</doc>
         <source-position filename="../src/adw-preferences-window.h" line="39"/>
         <return-value transfer-ownership="none">
           <doc xml:space="preserve"
                filename="../src/adw-preferences-window.c"
-               line="597">the newly created `AdwPreferencesWindow`</doc>
+               line="598">the newly created `AdwPreferencesWindow`</doc>
           <type name="Gtk.Widget" c:type="GtkWidget*"/>
         </return-value>
       </constructor>
@@ -8117,7 +8117,7 @@ style class `.preferences`.</doc>
               version="1.0">
         <doc xml:space="preserve"
              filename="../src/adw-preferences-window.c"
-             line="780">Adds a preferences page to @self.</doc>
+             line="781">Adds a preferences page to @self.</doc>
         <source-position filename="../src/adw-preferences-window.h" line="60"/>
         <return-value transfer-ownership="none">
           <type name="none" c:type="void"/>
@@ -8126,13 +8126,13 @@ style class `.preferences`.</doc>
           <instance-parameter name="self" transfer-ownership="none">
             <doc xml:space="preserve"
                  filename="../src/adw-preferences-window.c"
-                 line="782">a `AdwPreferencesWindow`</doc>
+                 line="783">a `AdwPreferencesWindow`</doc>
             <type name="PreferencesWindow" c:type="AdwPreferencesWindow*"/>
           </instance-parameter>
           <parameter name="page" transfer-ownership="none">
             <doc xml:space="preserve"
                  filename="../src/adw-preferences-window.c"
-                 line="783">the page to add</doc>
+                 line="784">the page to add</doc>
             <type name="PreferencesPage" c:type="AdwPreferencesPage*"/>
           </parameter>
         </parameters>
@@ -8142,7 +8142,7 @@ style class `.preferences`.</doc>
               version="1.0">
         <doc xml:space="preserve"
              filename="../src/adw-preferences-window.c"
-             line="753">Closes the current subpage.
+             line="754">Closes the current subpage.
 
 If there is no presented subpage, this does nothing.
 
@@ -8155,7 +8155,7 @@ See [method@Adw.PreferencesWindow.close_subpage].</doc>
           <instance-parameter name="self" transfer-ownership="none">
             <doc xml:space="preserve"
                  filename="../src/adw-preferences-window.c"
-                 line="755">a #AdwPreferencesWindow</doc>
+                 line="756">a `AdwPreferencesWindow`</doc>
             <type name="PreferencesWindow" c:type="AdwPreferencesWindow*"/>
           </instance-parameter>
         </parameters>
@@ -8166,19 +8166,19 @@ See [method@Adw.PreferencesWindow.close_subpage].</doc>
         <attribute name="org.gtk.Method.get_property" value="can-swipe-back"/>
         <doc xml:space="preserve"
              filename="../src/adw-preferences-window.c"
-             line="694">Gets whether or not @self allows closing subpages via a swipe gesture.</doc>
+             line="695">Gets whether or not @self allows closing subpages via a swipe gesture.</doc>
         <source-position filename="../src/adw-preferences-window.h" line="48"/>
         <return-value transfer-ownership="none">
           <doc xml:space="preserve"
                filename="../src/adw-preferences-window.c"
-               line="700">whether back swipe is enabled.</doc>
+               line="701">whether back swipe is enabled.</doc>
           <type name="gboolean" c:type="gboolean"/>
         </return-value>
         <parameters>
           <instance-parameter name="self" transfer-ownership="none">
             <doc xml:space="preserve"
                  filename="../src/adw-preferences-window.c"
-                 line="696">a `AdwPreferencesWindow`</doc>
+                 line="697">a `AdwPreferencesWindow`</doc>
             <type name="PreferencesWindow" c:type="AdwPreferencesWindow*"/>
           </instance-parameter>
         </parameters>
@@ -8189,19 +8189,19 @@ See [method@Adw.PreferencesWindow.close_subpage].</doc>
         <attribute name="org.gtk.Method.get_property" value="search-enabled"/>
         <doc xml:space="preserve"
              filename="../src/adw-preferences-window.c"
-             line="607">Gets whether search is enabled for @self.</doc>
+             line="608">Gets whether search is enabled for @self.</doc>
         <source-position filename="../src/adw-preferences-window.h" line="42"/>
         <return-value transfer-ownership="none">
           <doc xml:space="preserve"
                filename="../src/adw-preferences-window.c"
-               line="613">whether search is enabled for @self.</doc>
+               line="614">whether search is enabled for @self.</doc>
           <type name="gboolean" c:type="gboolean"/>
         </return-value>
         <parameters>
           <instance-parameter name="self" transfer-ownership="none">
             <doc xml:space="preserve"
                  filename="../src/adw-preferences-window.c"
-                 line="609">a `AdwPreferencesWindow`</doc>
+                 line="610">a `AdwPreferencesWindow`</doc>
             <type name="PreferencesWindow" c:type="AdwPreferencesWindow*"/>
           </instance-parameter>
         </parameters>
@@ -8211,7 +8211,7 @@ See [method@Adw.PreferencesWindow.close_subpage].</doc>
               version="1.0">
         <doc xml:space="preserve"
              filename="../src/adw-preferences-window.c"
-             line="716">Sets @subpage as the window's subpage and opens it.
+             line="717">Sets @subpage as the window's subpage and opens it.
 
 The transition can be cancelled by the user, in which case visible child will
 change back to the previously visible child.</doc>
@@ -8223,13 +8223,13 @@ change back to the previously visible child.</doc>
           <instance-parameter name="self" transfer-ownership="none">
             <doc xml:space="preserve"
                  filename="../src/adw-preferences-window.c"
-                 line="718">a `AdwPreferencesWindow`</doc>
+                 line="719">a `AdwPreferencesWindow`</doc>
             <type name="PreferencesWindow" c:type="AdwPreferencesWindow*"/>
           </instance-parameter>
           <parameter name="subpage" transfer-ownership="none">
             <doc xml:space="preserve"
                  filename="../src/adw-preferences-window.c"
-                 line="719">the subpage</doc>
+                 line="720">the subpage</doc>
             <type name="Gtk.Widget" c:type="GtkWidget*"/>
           </parameter>
         </parameters>
@@ -8239,7 +8239,7 @@ change back to the previously visible child.</doc>
               version="1.0">
         <doc xml:space="preserve"
              filename="../src/adw-preferences-window.c"
-             line="808">Removes a page from @self.</doc>
+             line="809">Removes a page from @self.</doc>
         <source-position filename="../src/adw-preferences-window.h" line="63"/>
         <return-value transfer-ownership="none">
           <type name="none" c:type="void"/>
@@ -8248,13 +8248,13 @@ change back to the previously visible child.</doc>
           <instance-parameter name="self" transfer-ownership="none">
             <doc xml:space="preserve"
                  filename="../src/adw-preferences-window.c"
-                 line="810">a `AdwPreferencesWindow`</doc>
+                 line="811">a `AdwPreferencesWindow`</doc>
             <type name="PreferencesWindow" c:type="AdwPreferencesWindow*"/>
           </instance-parameter>
           <parameter name="page" transfer-ownership="none">
             <doc xml:space="preserve"
                  filename="../src/adw-preferences-window.c"
-                 line="811">the page to remove</doc>
+                 line="812">the page to remove</doc>
             <type name="PreferencesPage" c:type="AdwPreferencesPage*"/>
           </parameter>
         </parameters>
@@ -8265,7 +8265,7 @@ change back to the previously visible child.</doc>
         <attribute name="org.gtk.Method.set_property" value="can-swipe-back"/>
         <doc xml:space="preserve"
              filename="../src/adw-preferences-window.c"
-             line="665">Sets whether or not @self allows closing subpages via a swipe gesture.</doc>
+             line="666">Sets whether or not @self allows closing subpages via a swipe gesture.</doc>
         <source-position filename="../src/adw-preferences-window.h" line="50"/>
         <return-value transfer-ownership="none">
           <type name="none" c:type="void"/>
@@ -8274,13 +8274,13 @@ change back to the previously visible child.</doc>
           <instance-parameter name="self" transfer-ownership="none">
             <doc xml:space="preserve"
                  filename="../src/adw-preferences-window.c"
-                 line="667">a `AdwPreferencesWindow`</doc>
+                 line="668">a `AdwPreferencesWindow`</doc>
             <type name="PreferencesWindow" c:type="AdwPreferencesWindow*"/>
           </instance-parameter>
           <parameter name="can_swipe_back" transfer-ownership="none">
             <doc xml:space="preserve"
                  filename="../src/adw-preferences-window.c"
-                 line="668">the new value</doc>
+                 line="669">the new value</doc>
             <type name="gboolean" c:type="gboolean"/>
           </parameter>
         </parameters>
@@ -8291,7 +8291,7 @@ change back to the previously visible child.</doc>
         <attribute name="org.gtk.Method.set_property" value="search-enabled"/>
         <doc xml:space="preserve"
              filename="../src/adw-preferences-window.c"
-             line="629">Sets whether search is enabled for @self.</doc>
+             line="630">Sets whether search is enabled for @self.</doc>
         <source-position filename="../src/adw-preferences-window.h" line="44"/>
         <return-value transfer-ownership="none">
           <type name="none" c:type="void"/>
@@ -8300,13 +8300,13 @@ change back to the previously visible child.</doc>
           <instance-parameter name="self" transfer-ownership="none">
             <doc xml:space="preserve"
                  filename="../src/adw-preferences-window.c"
-                 line="631">a `AdwPreferencesWindow`</doc>
+                 line="632">a `AdwPreferencesWindow`</doc>
             <type name="PreferencesWindow" c:type="AdwPreferencesWindow*"/>
           </instance-parameter>
           <parameter name="search_enabled" transfer-ownership="none">
             <doc xml:space="preserve"
                  filename="../src/adw-preferences-window.c"
-                 line="632">whether search is enabled</doc>
+                 line="633">whether search is enabled</doc>
             <type name="gboolean" c:type="gboolean"/>
           </parameter>
         </parameters>
@@ -8321,7 +8321,7 @@ change back to the previously visible child.</doc>
                    value="adw_preferences_window_set_can_swipe_back"/>
         <doc xml:space="preserve"
              filename="../src/adw-preferences-window.c"
-             line="493">Whether or not the window allows closing subpages via a swipe gesture.</doc>
+             line="494">Whether or not the window allows closing subpages via a swipe gesture.</doc>
         <type name="gboolean" c:type="gboolean"/>
       </property>
       <property name="search-enabled"
@@ -8334,7 +8334,7 @@ change back to the previously visible child.</doc>
                    value="adw_preferences_window_set_search_enabled"/>
         <doc xml:space="preserve"
              filename="../src/adw-preferences-window.c"
-             line="479">Whether search is enabled.</doc>
+             line="480">Whether search is enabled.</doc>
         <type name="gboolean" c:type="gboolean"/>
       </property>
       <field name="parent_instance">
@@ -9012,7 +9012,7 @@ top side aligned and overflow the bottom side, and 1 means the opposite.</doc>
           <instance-parameter name="self" transfer-ownership="none">
             <doc xml:space="preserve"
                  filename="../src/adw-squeezer.c"
-                 line="1280">a #AdwSqueezerPage</doc>
+                 line="1280">a `AdwSqueezerPage`</doc>
             <type name="SqueezerPage" c:type="AdwSqueezerPage*"/>
           </instance-parameter>
         </parameters>
@@ -13124,7 +13124,7 @@ string taking ownership of it.</doc>
           <instance-parameter name="value" transfer-ownership="none">
             <doc xml:space="preserve"
                  filename="../src/adw-value-object.c"
-                 line="241">the `AdwValueObject`</doc>
+                 line="241">a `AdwValueObject`</doc>
             <type name="ValueObject" c:type="AdwValueObject*"/>
           </instance-parameter>
           <parameter name="dest" transfer-ownership="none">
@@ -13152,7 +13152,7 @@ string taking ownership of it.</doc>
           <instance-parameter name="value" transfer-ownership="none">
             <doc xml:space="preserve"
                  filename="../src/adw-value-object.c"
-                 line="273">the #AdwValueObject</doc>
+                 line="273">a `AdwValueObject`</doc>
             <type name="ValueObject" c:type="AdwValueObject*"/>
           </instance-parameter>
         </parameters>
@@ -13174,7 +13174,7 @@ string taking ownership of it.</doc>
           <instance-parameter name="value" transfer-ownership="none">
             <doc xml:space="preserve"
                  filename="../src/adw-value-object.c"
-                 line="257">the `AdwValueObject`</doc>
+                 line="257">a `AdwValueObject`</doc>
             <type name="ValueObject" c:type="AdwValueObject*"/>
           </instance-parameter>
         </parameters>
@@ -13197,7 +13197,7 @@ string taking ownership of it.</doc>
           <instance-parameter name="value" transfer-ownership="none">
             <doc xml:space="preserve"
                  filename="../src/adw-value-object.c"
-                 line="225">the `AdwValueObject`</doc>
+                 line="225">a `AdwValueObject`</doc>
             <type name="ValueObject" c:type="AdwValueObject*"/>
           </instance-parameter>
         </parameters>
@@ -14289,7 +14289,7 @@ is not supported and will result in a crash.</doc>
              filename="../src/adw-window.c"
              line="165">Creates a new `AdwWindow`.</doc>
         <source-position filename="../src/adw-window.h" line="33"/>
-        <return-value transfer-ownership="full">
+        <return-value transfer-ownership="none">
           <doc xml:space="preserve"
                filename="../src/adw-window.c"
                line="170">the newly created `AdwWindow`</doc>
@@ -14602,7 +14602,7 @@ animate it or not.</doc>
       <return-value transfer-ownership="none">
         <doc xml:space="preserve"
              filename="../src/adw-animation.c"
-             line="215">%TRUE if animations are enabled for @widget</doc>
+             line="215">whether animations are enabled for @widget</doc>
         <type name="gboolean" c:type="gboolean"/>
       </return-value>
       <parameters>
