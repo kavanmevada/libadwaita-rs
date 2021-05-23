@@ -54,8 +54,8 @@ impl FromGlib<ffi::AdwCenteringPolicy> for CenteringPolicy {
     unsafe fn from_glib(value: ffi::AdwCenteringPolicy) -> Self {
         skip_assert_initialized!();
         match value {
-            0 => Self::Loose,
-            1 => Self::Strict,
+            ffi::ADW_CENTERING_POLICY_LOOSE => Self::Loose,
+            ffi::ADW_CENTERING_POLICY_STRICT => Self::Strict,
             value => Self::__Unknown(value),
         }
     }
@@ -142,9 +142,9 @@ impl FromGlib<ffi::AdwFlapFoldPolicy> for FlapFoldPolicy {
     unsafe fn from_glib(value: ffi::AdwFlapFoldPolicy) -> Self {
         skip_assert_initialized!();
         match value {
-            0 => Self::Never,
-            1 => Self::Always,
-            2 => Self::Auto,
+            ffi::ADW_FLAP_FOLD_POLICY_NEVER => Self::Never,
+            ffi::ADW_FLAP_FOLD_POLICY_ALWAYS => Self::Always,
+            ffi::ADW_FLAP_FOLD_POLICY_AUTO => Self::Auto,
             value => Self::__Unknown(value),
         }
     }
@@ -231,9 +231,9 @@ impl FromGlib<ffi::AdwFlapTransitionType> for FlapTransitionType {
     unsafe fn from_glib(value: ffi::AdwFlapTransitionType) -> Self {
         skip_assert_initialized!();
         match value {
-            0 => Self::Over,
-            1 => Self::Under,
-            2 => Self::Slide,
+            ffi::ADW_FLAP_TRANSITION_TYPE_OVER => Self::Over,
+            ffi::ADW_FLAP_TRANSITION_TYPE_UNDER => Self::Under,
+            ffi::ADW_FLAP_TRANSITION_TYPE_SLIDE => Self::Slide,
             value => Self::__Unknown(value),
         }
     }
@@ -320,9 +320,9 @@ impl FromGlib<ffi::AdwLeafletTransitionType> for LeafletTransitionType {
     unsafe fn from_glib(value: ffi::AdwLeafletTransitionType) -> Self {
         skip_assert_initialized!();
         match value {
-            0 => Self::Over,
-            1 => Self::Under,
-            2 => Self::Slide,
+            ffi::ADW_LEAFLET_TRANSITION_TYPE_OVER => Self::Over,
+            ffi::ADW_LEAFLET_TRANSITION_TYPE_UNDER => Self::Under,
+            ffi::ADW_LEAFLET_TRANSITION_TYPE_SLIDE => Self::Slide,
             value => Self::__Unknown(value),
         }
     }
@@ -405,8 +405,8 @@ impl FromGlib<ffi::AdwNavigationDirection> for NavigationDirection {
     unsafe fn from_glib(value: ffi::AdwNavigationDirection) -> Self {
         skip_assert_initialized!();
         match value {
-            0 => Self::Back,
-            1 => Self::Forward,
+            ffi::ADW_NAVIGATION_DIRECTION_BACK => Self::Back,
+            ffi::ADW_NAVIGATION_DIRECTION_FORWARD => Self::Forward,
             value => Self::__Unknown(value),
         }
     }
@@ -489,8 +489,8 @@ impl FromGlib<ffi::AdwSqueezerTransitionType> for SqueezerTransitionType {
     unsafe fn from_glib(value: ffi::AdwSqueezerTransitionType) -> Self {
         skip_assert_initialized!();
         match value {
-            0 => Self::None,
-            1 => Self::Crossfade,
+            ffi::ADW_SQUEEZER_TRANSITION_TYPE_NONE => Self::None,
+            ffi::ADW_SQUEEZER_TRANSITION_TYPE_CROSSFADE => Self::Crossfade,
             value => Self::__Unknown(value),
         }
     }
@@ -577,9 +577,9 @@ impl FromGlib<ffi::AdwViewSwitcherPolicy> for ViewSwitcherPolicy {
     unsafe fn from_glib(value: ffi::AdwViewSwitcherPolicy) -> Self {
         skip_assert_initialized!();
         match value {
-            0 => Self::Auto,
-            1 => Self::Narrow,
-            2 => Self::Wide,
+            ffi::ADW_VIEW_SWITCHER_POLICY_AUTO => Self::Auto,
+            ffi::ADW_VIEW_SWITCHER_POLICY_NARROW => Self::Narrow,
+            ffi::ADW_VIEW_SWITCHER_POLICY_WIDE => Self::Wide,
             value => Self::__Unknown(value),
         }
     }

@@ -31,6 +31,13 @@ impl TabBar {
         unsafe { from_glib_none(ffi::adw_tab_bar_new()) }
     }
 
+    // rustdoc-stripper-ignore-next
+    /// Creates a new builder-style object to construct a [`TabBar`]
+    /// This method returns an instance of [`TabBarBuilder`] which can be used to create a [`TabBar`].
+    pub fn builder() -> TabBarBuilder {
+        TabBarBuilder::default()
+    }
+
     #[doc(alias = "adw_tab_bar_get_autohide")]
     #[doc(alias = "get_autohide")]
     pub fn is_autohide(&self) -> bool {

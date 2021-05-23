@@ -33,6 +33,13 @@ impl CarouselIndicatorLines {
         }
     }
 
+    // rustdoc-stripper-ignore-next
+    /// Creates a new builder-style object to construct a [`CarouselIndicatorLines`]
+    /// This method returns an instance of [`CarouselIndicatorLinesBuilder`] which can be used to create a [`CarouselIndicatorLines`].
+    pub fn builder() -> CarouselIndicatorLinesBuilder {
+        CarouselIndicatorLinesBuilder::default()
+    }
+
     #[doc(alias = "adw_carousel_indicator_lines_get_carousel")]
     #[doc(alias = "get_carousel")]
     pub fn carousel(&self) -> Option<Carousel> {

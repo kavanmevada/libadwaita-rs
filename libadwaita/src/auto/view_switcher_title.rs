@@ -31,6 +31,13 @@ impl ViewSwitcherTitle {
         unsafe { gtk::Widget::from_glib_none(ffi::adw_view_switcher_title_new()).unsafe_cast() }
     }
 
+    // rustdoc-stripper-ignore-next
+    /// Creates a new builder-style object to construct a [`ViewSwitcherTitle`]
+    /// This method returns an instance of [`ViewSwitcherTitleBuilder`] which can be used to create a [`ViewSwitcherTitle`].
+    pub fn builder() -> ViewSwitcherTitleBuilder {
+        ViewSwitcherTitleBuilder::default()
+    }
+
     #[doc(alias = "adw_view_switcher_title_get_policy")]
     #[doc(alias = "get_policy")]
     pub fn policy(&self) -> ViewSwitcherPolicy {

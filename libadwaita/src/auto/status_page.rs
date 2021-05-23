@@ -30,6 +30,13 @@ impl StatusPage {
         unsafe { gtk::Widget::from_glib_none(ffi::adw_status_page_new()).unsafe_cast() }
     }
 
+    // rustdoc-stripper-ignore-next
+    /// Creates a new builder-style object to construct a [`StatusPage`]
+    /// This method returns an instance of [`StatusPageBuilder`] which can be used to create a [`StatusPage`].
+    pub fn builder() -> StatusPageBuilder {
+        StatusPageBuilder::default()
+    }
+
     #[doc(alias = "adw_status_page_get_child")]
     #[doc(alias = "get_child")]
     pub fn child(&self) -> Option<gtk::Widget> {

@@ -30,6 +30,13 @@ impl PreferencesWindow {
         assert_initialized_main_thread!();
         unsafe { gtk::Widget::from_glib_none(ffi::adw_preferences_window_new()).unsafe_cast() }
     }
+
+    // rustdoc-stripper-ignore-next
+    /// Creates a new builder-style object to construct a [`PreferencesWindow`]
+    /// This method returns an instance of [`PreferencesWindowBuilder`] which can be used to create a [`PreferencesWindow`].
+    pub fn builder() -> PreferencesWindowBuilder {
+        PreferencesWindowBuilder::default()
+    }
 }
 
 impl Default for PreferencesWindow {

@@ -30,6 +30,13 @@ impl Clamp {
         unsafe { gtk::Widget::from_glib_none(ffi::adw_clamp_new()).unsafe_cast() }
     }
 
+    // rustdoc-stripper-ignore-next
+    /// Creates a new builder-style object to construct a [`Clamp`]
+    /// This method returns an instance of [`ClampBuilder`] which can be used to create a [`Clamp`].
+    pub fn builder() -> ClampBuilder {
+        ClampBuilder::default()
+    }
+
     #[doc(alias = "adw_clamp_get_child")]
     #[doc(alias = "get_child")]
     pub fn child(&self) -> Option<gtk::Widget> {

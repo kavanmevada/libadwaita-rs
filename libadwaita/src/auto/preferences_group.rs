@@ -28,6 +28,13 @@ impl PreferencesGroup {
         assert_initialized_main_thread!();
         unsafe { gtk::Widget::from_glib_none(ffi::adw_preferences_group_new()).unsafe_cast() }
     }
+
+    // rustdoc-stripper-ignore-next
+    /// Creates a new builder-style object to construct a [`PreferencesGroup`]
+    /// This method returns an instance of [`PreferencesGroupBuilder`] which can be used to create a [`PreferencesGroup`].
+    pub fn builder() -> PreferencesGroupBuilder {
+        PreferencesGroupBuilder::default()
+    }
 }
 
 impl Default for PreferencesGroup {

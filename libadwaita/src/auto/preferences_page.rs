@@ -29,6 +29,13 @@ impl PreferencesPage {
         assert_initialized_main_thread!();
         unsafe { gtk::Widget::from_glib_none(ffi::adw_preferences_page_new()).unsafe_cast() }
     }
+
+    // rustdoc-stripper-ignore-next
+    /// Creates a new builder-style object to construct a [`PreferencesPage`]
+    /// This method returns an instance of [`PreferencesPageBuilder`] which can be used to create a [`PreferencesPage`].
+    pub fn builder() -> PreferencesPageBuilder {
+        PreferencesPageBuilder::default()
+    }
 }
 
 impl Default for PreferencesPage {

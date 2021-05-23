@@ -36,6 +36,13 @@ impl WindowTitle {
         }
     }
 
+    // rustdoc-stripper-ignore-next
+    /// Creates a new builder-style object to construct a [`WindowTitle`]
+    /// This method returns an instance of [`WindowTitleBuilder`] which can be used to create a [`WindowTitle`].
+    pub fn builder() -> WindowTitleBuilder {
+        WindowTitleBuilder::default()
+    }
+
     #[doc(alias = "adw_window_title_get_subtitle")]
     #[doc(alias = "get_subtitle")]
     pub fn subtitle(&self) -> Option<glib::GString> {

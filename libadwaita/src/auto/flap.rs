@@ -33,6 +33,13 @@ impl Flap {
         unsafe { gtk::Widget::from_glib_none(ffi::adw_flap_new()).unsafe_cast() }
     }
 
+    // rustdoc-stripper-ignore-next
+    /// Creates a new builder-style object to construct a [`Flap`]
+    /// This method returns an instance of [`FlapBuilder`] which can be used to create a [`Flap`].
+    pub fn builder() -> FlapBuilder {
+        FlapBuilder::default()
+    }
+
     #[doc(alias = "adw_flap_get_content")]
     #[doc(alias = "get_content")]
     pub fn content(&self) -> Option<gtk::Widget> {

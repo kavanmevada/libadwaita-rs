@@ -30,6 +30,13 @@ impl ClampScrollable {
         unsafe { gtk::Widget::from_glib_none(ffi::adw_clamp_scrollable_new()).unsafe_cast() }
     }
 
+    // rustdoc-stripper-ignore-next
+    /// Creates a new builder-style object to construct a [`ClampScrollable`]
+    /// This method returns an instance of [`ClampScrollableBuilder`] which can be used to create a [`ClampScrollable`].
+    pub fn builder() -> ClampScrollableBuilder {
+        ClampScrollableBuilder::default()
+    }
+
     #[doc(alias = "adw_clamp_scrollable_get_child")]
     #[doc(alias = "get_child")]
     pub fn child(&self) -> Option<gtk::Widget> {

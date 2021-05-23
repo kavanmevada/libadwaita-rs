@@ -29,6 +29,13 @@ impl ExpanderRow {
         assert_initialized_main_thread!();
         unsafe { gtk::Widget::from_glib_none(ffi::adw_expander_row_new()).unsafe_cast() }
     }
+
+    // rustdoc-stripper-ignore-next
+    /// Creates a new builder-style object to construct a [`ExpanderRow`]
+    /// This method returns an instance of [`ExpanderRowBuilder`] which can be used to create a [`ExpanderRow`].
+    pub fn builder() -> ExpanderRowBuilder {
+        ExpanderRowBuilder::default()
+    }
 }
 
 impl Default for ExpanderRow {

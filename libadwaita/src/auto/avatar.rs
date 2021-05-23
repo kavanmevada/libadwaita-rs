@@ -37,6 +37,13 @@ impl Avatar {
         }
     }
 
+    // rustdoc-stripper-ignore-next
+    /// Creates a new builder-style object to construct a [`Avatar`]
+    /// This method returns an instance of [`AvatarBuilder`] which can be used to create a [`Avatar`].
+    pub fn builder() -> AvatarBuilder {
+        AvatarBuilder::default()
+    }
+
     #[doc(alias = "adw_avatar_draw_to_pixbuf")]
     pub fn draw_to_pixbuf(&self, size: i32, scale_factor: i32) -> Option<gdk_pixbuf::Pixbuf> {
         unsafe {

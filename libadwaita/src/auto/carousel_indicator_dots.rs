@@ -31,6 +31,13 @@ impl CarouselIndicatorDots {
         unsafe { gtk::Widget::from_glib_none(ffi::adw_carousel_indicator_dots_new()).unsafe_cast() }
     }
 
+    // rustdoc-stripper-ignore-next
+    /// Creates a new builder-style object to construct a [`CarouselIndicatorDots`]
+    /// This method returns an instance of [`CarouselIndicatorDotsBuilder`] which can be used to create a [`CarouselIndicatorDots`].
+    pub fn builder() -> CarouselIndicatorDotsBuilder {
+        CarouselIndicatorDotsBuilder::default()
+    }
+
     #[doc(alias = "adw_carousel_indicator_dots_get_carousel")]
     #[doc(alias = "get_carousel")]
     pub fn carousel(&self) -> Option<Carousel> {

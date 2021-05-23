@@ -31,6 +31,13 @@ impl ViewSwitcherBar {
         unsafe { gtk::Widget::from_glib_none(ffi::adw_view_switcher_bar_new()).unsafe_cast() }
     }
 
+    // rustdoc-stripper-ignore-next
+    /// Creates a new builder-style object to construct a [`ViewSwitcherBar`]
+    /// This method returns an instance of [`ViewSwitcherBarBuilder`] which can be used to create a [`ViewSwitcherBar`].
+    pub fn builder() -> ViewSwitcherBarBuilder {
+        ViewSwitcherBarBuilder::default()
+    }
+
     #[doc(alias = "adw_view_switcher_bar_get_policy")]
     #[doc(alias = "get_policy")]
     pub fn policy(&self) -> ViewSwitcherPolicy {

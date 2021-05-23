@@ -24,6 +24,13 @@ glib::wrapper! {
 }
 
 impl SqueezerPage {
+    // rustdoc-stripper-ignore-next
+    /// Creates a new builder-style object to construct a [`SqueezerPage`]
+    /// This method returns an instance of [`SqueezerPageBuilder`] which can be used to create a [`SqueezerPage`].
+    pub fn builder() -> SqueezerPageBuilder {
+        SqueezerPageBuilder::default()
+    }
+
     #[doc(alias = "adw_squeezer_page_get_child")]
     #[doc(alias = "get_child")]
     pub fn child(&self) -> Option<gtk::Widget> {

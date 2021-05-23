@@ -29,6 +29,13 @@ impl ClampLayout {
         unsafe { gtk::LayoutManager::from_glib_full(ffi::adw_clamp_layout_new()).unsafe_cast() }
     }
 
+    // rustdoc-stripper-ignore-next
+    /// Creates a new builder-style object to construct a [`ClampLayout`]
+    /// This method returns an instance of [`ClampLayoutBuilder`] which can be used to create a [`ClampLayout`].
+    pub fn builder() -> ClampLayoutBuilder {
+        ClampLayoutBuilder::default()
+    }
+
     #[doc(alias = "adw_clamp_layout_get_maximum_size")]
     #[doc(alias = "get_maximum_size")]
     pub fn maximum_size(&self) -> i32 {

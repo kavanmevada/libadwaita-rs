@@ -36,6 +36,13 @@ impl SwipeTracker {
         }
     }
 
+    // rustdoc-stripper-ignore-next
+    /// Creates a new builder-style object to construct a [`SwipeTracker`]
+    /// This method returns an instance of [`SwipeTrackerBuilder`] which can be used to create a [`SwipeTracker`].
+    pub fn builder() -> SwipeTrackerBuilder {
+        SwipeTrackerBuilder::default()
+    }
+
     #[doc(alias = "adw_swipe_tracker_get_allow_long_swipes")]
     #[doc(alias = "get_allow_long_swipes")]
     pub fn allows_long_swipes(&self) -> bool {

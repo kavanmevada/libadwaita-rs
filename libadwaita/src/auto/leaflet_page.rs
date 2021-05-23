@@ -24,6 +24,13 @@ glib::wrapper! {
 }
 
 impl LeafletPage {
+    // rustdoc-stripper-ignore-next
+    /// Creates a new builder-style object to construct a [`LeafletPage`]
+    /// This method returns an instance of [`LeafletPageBuilder`] which can be used to create a [`LeafletPage`].
+    pub fn builder() -> LeafletPageBuilder {
+        LeafletPageBuilder::default()
+    }
+
     #[doc(alias = "adw_leaflet_page_get_child")]
     #[doc(alias = "get_child")]
     pub fn child(&self) -> Option<gtk::Widget> {

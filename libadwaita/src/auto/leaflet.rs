@@ -34,6 +34,13 @@ impl Leaflet {
         unsafe { gtk::Widget::from_glib_none(ffi::adw_leaflet_new()).unsafe_cast() }
     }
 
+    // rustdoc-stripper-ignore-next
+    /// Creates a new builder-style object to construct a [`Leaflet`]
+    /// This method returns an instance of [`LeafletBuilder`] which can be used to create a [`Leaflet`].
+    pub fn builder() -> LeafletBuilder {
+        LeafletBuilder::default()
+    }
+
     #[doc(alias = "adw_leaflet_append")]
     pub fn append<P: IsA<gtk::Widget>>(&self, child: &P) -> Option<LeafletPage> {
         unsafe {

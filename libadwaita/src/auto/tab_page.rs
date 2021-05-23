@@ -24,6 +24,13 @@ glib::wrapper! {
 }
 
 impl TabPage {
+    // rustdoc-stripper-ignore-next
+    /// Creates a new builder-style object to construct a [`TabPage`]
+    /// This method returns an instance of [`TabPageBuilder`] which can be used to create a [`TabPage`].
+    pub fn builder() -> TabPageBuilder {
+        TabPageBuilder::default()
+    }
+
     #[doc(alias = "adw_tab_page_get_child")]
     #[doc(alias = "get_child")]
     pub fn child(&self) -> Option<gtk::Widget> {

@@ -31,6 +31,13 @@ impl Carousel {
         unsafe { gtk::Widget::from_glib_none(ffi::adw_carousel_new()).unsafe_cast() }
     }
 
+    // rustdoc-stripper-ignore-next
+    /// Creates a new builder-style object to construct a [`Carousel`]
+    /// This method returns an instance of [`CarouselBuilder`] which can be used to create a [`Carousel`].
+    pub fn builder() -> CarouselBuilder {
+        CarouselBuilder::default()
+    }
+
     #[doc(alias = "adw_carousel_append")]
     pub fn append<P: IsA<gtk::Widget>>(&self, child: &P) {
         unsafe {

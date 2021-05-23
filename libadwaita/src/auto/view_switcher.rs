@@ -31,6 +31,13 @@ impl ViewSwitcher {
         unsafe { gtk::Widget::from_glib_none(ffi::adw_view_switcher_new()).unsafe_cast() }
     }
 
+    // rustdoc-stripper-ignore-next
+    /// Creates a new builder-style object to construct a [`ViewSwitcher`]
+    /// This method returns an instance of [`ViewSwitcherBuilder`] which can be used to create a [`ViewSwitcher`].
+    pub fn builder() -> ViewSwitcherBuilder {
+        ViewSwitcherBuilder::default()
+    }
+
     #[doc(alias = "adw_view_switcher_get_narrow_ellipsize")]
     #[doc(alias = "get_narrow_ellipsize")]
     pub fn narrow_ellipsize(&self) -> pango::EllipsizeMode {

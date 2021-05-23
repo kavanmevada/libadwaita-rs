@@ -29,6 +29,13 @@ impl ActionRow {
         assert_initialized_main_thread!();
         unsafe { gtk::Widget::from_glib_none(ffi::adw_action_row_new()).unsafe_cast() }
     }
+
+    // rustdoc-stripper-ignore-next
+    /// Creates a new builder-style object to construct a [`ActionRow`]
+    /// This method returns an instance of [`ActionRowBuilder`] which can be used to create a [`ActionRow`].
+    pub fn builder() -> ActionRowBuilder {
+        ActionRowBuilder::default()
+    }
 }
 
 impl Default for ActionRow {

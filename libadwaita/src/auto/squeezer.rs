@@ -32,6 +32,13 @@ impl Squeezer {
         unsafe { gtk::Widget::from_glib_none(ffi::adw_squeezer_new()).unsafe_cast() }
     }
 
+    // rustdoc-stripper-ignore-next
+    /// Creates a new builder-style object to construct a [`Squeezer`]
+    /// This method returns an instance of [`SqueezerBuilder`] which can be used to create a [`Squeezer`].
+    pub fn builder() -> SqueezerBuilder {
+        SqueezerBuilder::default()
+    }
+
     #[doc(alias = "adw_squeezer_add")]
     pub fn add<P: IsA<gtk::Widget>>(&self, child: &P) -> Option<SqueezerPage> {
         unsafe {

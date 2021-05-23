@@ -31,6 +31,13 @@ impl TabView {
         unsafe { from_glib_none(ffi::adw_tab_view_new()) }
     }
 
+    // rustdoc-stripper-ignore-next
+    /// Creates a new builder-style object to construct a [`TabView`]
+    /// This method returns an instance of [`TabViewBuilder`] which can be used to create a [`TabView`].
+    pub fn builder() -> TabViewBuilder {
+        TabViewBuilder::default()
+    }
+
     #[doc(alias = "adw_tab_view_add_page")]
     pub fn add_page<P: IsA<gtk::Widget>>(
         &self,

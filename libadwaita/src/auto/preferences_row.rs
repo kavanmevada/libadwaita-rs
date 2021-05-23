@@ -28,6 +28,13 @@ impl PreferencesRow {
         assert_initialized_main_thread!();
         unsafe { gtk::Widget::from_glib_none(ffi::adw_preferences_row_new()).unsafe_cast() }
     }
+
+    // rustdoc-stripper-ignore-next
+    /// Creates a new builder-style object to construct a [`PreferencesRow`]
+    /// This method returns an instance of [`PreferencesRowBuilder`] which can be used to create a [`PreferencesRow`].
+    pub fn builder() -> PreferencesRowBuilder {
+        PreferencesRowBuilder::default()
+    }
 }
 
 impl Default for PreferencesRow {

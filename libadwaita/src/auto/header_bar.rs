@@ -31,6 +31,13 @@ impl HeaderBar {
         unsafe { gtk::Widget::from_glib_none(ffi::adw_header_bar_new()).unsafe_cast() }
     }
 
+    // rustdoc-stripper-ignore-next
+    /// Creates a new builder-style object to construct a [`HeaderBar`]
+    /// This method returns an instance of [`HeaderBarBuilder`] which can be used to create a [`HeaderBar`].
+    pub fn builder() -> HeaderBarBuilder {
+        HeaderBarBuilder::default()
+    }
+
     #[doc(alias = "adw_header_bar_get_centering_policy")]
     #[doc(alias = "get_centering_policy")]
     pub fn centering_policy(&self) -> CenteringPolicy {

@@ -28,6 +28,13 @@ impl Bin {
         assert_initialized_main_thread!();
         unsafe { gtk::Widget::from_glib_none(ffi::adw_bin_new()).unsafe_cast() }
     }
+
+    // rustdoc-stripper-ignore-next
+    /// Creates a new builder-style object to construct a [`Bin`]
+    /// This method returns an instance of [`BinBuilder`] which can be used to create a [`Bin`].
+    pub fn builder() -> BinBuilder {
+        BinBuilder::default()
+    }
 }
 
 impl Default for Bin {
