@@ -69,6 +69,7 @@ manual = [
     "Gdk.Cursor",
     "Gdk.Display",
     "Gdk.DragAction",
+    "Gdk.Paintable",
     "Gdk.Rectangle",
     "GdkPixbuf.Pixbuf",
     "Gio.ActionGroup",

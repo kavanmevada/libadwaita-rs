@@ -55,6 +55,12 @@ impl Avatar {
         }
     }
 
+    #[doc(alias = "adw_avatar_get_custom_image")]
+    #[doc(alias = "get_custom_image")]
+    pub fn custom_image(&self) -> Option<gdk::Paintable> {
+        unsafe { from_glib_none(ffi::adw_avatar_get_custom_image(self.to_glib_none().0)) }
+    }
+
     #[doc(alias = "adw_avatar_get_icon_name")]
     #[doc(alias = "get_icon_name")]
     pub fn icon_name(&self) -> Option<glib::GString> {
@@ -79,54 +85,20 @@ impl Avatar {
         unsafe { from_glib_none(ffi::adw_avatar_get_text(self.to_glib_none().0)) }
     }
 
+    #[doc(alias = "adw_avatar_set_custom_image")]
+    pub fn set_custom_image<P: IsA<gdk::Paintable>>(&self, custom_image: Option<&P>) {
+        unsafe {
+            ffi::adw_avatar_set_custom_image(
+                self.to_glib_none().0,
+                custom_image.map(|p| p.as_ref()).to_glib_none().0,
+            );
+        }
+    }
+
     #[doc(alias = "adw_avatar_set_icon_name")]
     pub fn set_icon_name(&self, icon_name: Option<&str>) {
         unsafe {
             ffi::adw_avatar_set_icon_name(self.to_glib_none().0, icon_name.to_glib_none().0);
-        }
-    }
-
-    #[doc(alias = "adw_avatar_set_image_load_func")]
-    pub fn set_image_load_func(
-        &self,
-        load_image: Option<Box_<dyn Fn(i32) -> Option<gdk_pixbuf::Pixbuf> + 'static>>,
-    ) {
-        let load_image_data: Box_<
-            Option<Box_<dyn Fn(i32) -> Option<gdk_pixbuf::Pixbuf> + 'static>>,
-        > = Box_::new(load_image);
-        unsafe extern "C" fn load_image_func(
-            size: libc::c_int,
-            user_data: glib::ffi::gpointer,
-        ) -> *mut gdk_pixbuf::ffi::GdkPixbuf {
-            let callback: &Option<Box_<dyn Fn(i32) -> Option<gdk_pixbuf::Pixbuf> + 'static>> =
-                &*(user_data as *mut _);
-            let res = if let Some(ref callback) = *callback {
-                callback(size)
-            } else {
-                panic!("cannot get closure...")
-            };
-            res.to_glib_full()
-        }
-        let load_image = if load_image_data.is_some() {
-            Some(load_image_func as _)
-        } else {
-            None
-        };
-        unsafe extern "C" fn destroy_func(data: glib::ffi::gpointer) {
-            let _callback: Box_<Option<Box_<dyn Fn(i32) -> Option<gdk_pixbuf::Pixbuf> + 'static>>> =
-                Box_::from_raw(data as *mut _);
-        }
-        let destroy_call3 = Some(destroy_func as _);
-        let super_callback0: Box_<
-            Option<Box_<dyn Fn(i32) -> Option<gdk_pixbuf::Pixbuf> + 'static>>,
-        > = load_image_data;
-        unsafe {
-            ffi::adw_avatar_set_image_load_func(
-                self.to_glib_none().0,
-                load_image,
-                Box_::into_raw(super_callback0) as *mut _,
-                destroy_call3,
-            );
         }
     }
 
@@ -148,6 +120,29 @@ impl Avatar {
     pub fn set_text(&self, text: Option<&str>) {
         unsafe {
             ffi::adw_avatar_set_text(self.to_glib_none().0, text.to_glib_none().0);
+        }
+    }
+
+    #[doc(alias = "custom-image")]
+    pub fn connect_custom_image_notify<F: Fn(&Avatar) + 'static>(&self, f: F) -> SignalHandlerId {
+        unsafe extern "C" fn notify_custom_image_trampoline<F: Fn(&Avatar) + 'static>(
+            this: *mut ffi::AdwAvatar,
+            _param_spec: glib::ffi::gpointer,
+            f: glib::ffi::gpointer,
+        ) {
+            let f: &F = &*(f as *const F);
+            f(&from_glib_borrow(this))
+        }
+        unsafe {
+            let f: Box_<F> = Box_::new(f);
+            connect_raw(
+                self.as_ptr() as *mut _,
+                b"notify::custom-image\0".as_ptr() as *const _,
+                Some(transmute::<_, unsafe extern "C" fn()>(
+                    notify_custom_image_trampoline::<F> as *const (),
+                )),
+                Box_::into_raw(f),
+            )
         }
     }
 
@@ -248,6 +243,7 @@ impl Avatar {
 // rustdoc-stripper-ignore-next
 /// A builder for generating a [`Avatar`].
 pub struct AvatarBuilder {
+    custom_image: Option<gdk::Paintable>,
     icon_name: Option<String>,
     show_initials: Option<bool>,
     size: Option<i32>,
@@ -295,6 +291,9 @@ impl AvatarBuilder {
     /// Build the [`Avatar`].
     pub fn build(self) -> Avatar {
         let mut properties: Vec<(&str, &dyn ToValue)> = vec![];
+        if let Some(ref custom_image) = self.custom_image {
+            properties.push(("custom-image", custom_image));
+        }
         if let Some(ref icon_name) = self.icon_name {
             properties.push(("icon-name", icon_name));
         }
@@ -398,6 +397,11 @@ impl AvatarBuilder {
             properties.push(("accessible-role", accessible_role));
         }
         glib::Object::new::<Avatar>(&properties).expect("Failed to create an instance of Avatar")
+    }
+
+    pub fn custom_image<P: IsA<gdk::Paintable>>(mut self, custom_image: &P) -> Self {
+        self.custom_image = Some(custom_image.clone().upcast());
+        self
     }
 
     pub fn icon_name(mut self, icon_name: &str) -> Self {

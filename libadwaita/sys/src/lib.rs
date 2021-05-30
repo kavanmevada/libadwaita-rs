@@ -62,10 +62,6 @@ pub const ADW_VIEW_SWITCHER_POLICY_AUTO: AdwViewSwitcherPolicy = 0;
 pub const ADW_VIEW_SWITCHER_POLICY_NARROW: AdwViewSwitcherPolicy = 1;
 pub const ADW_VIEW_SWITCHER_POLICY_WIDE: AdwViewSwitcherPolicy = 2;
 
-// Callbacks
-pub type AdwAvatarImageLoadFunc =
-    Option<unsafe extern "C" fn(c_int, gpointer) -> *mut gdk_pixbuf::GdkPixbuf>;
-
 // Records
 #[repr(C)]
 #[derive(Copy, Clone)]
@@ -1085,17 +1081,13 @@ extern "C" {
         size: c_int,
         scale_factor: c_int,
     ) -> *mut gdk_pixbuf::GdkPixbuf;
+    pub fn adw_avatar_get_custom_image(self_: *mut AdwAvatar) -> *mut gdk::GdkPaintable;
     pub fn adw_avatar_get_icon_name(self_: *mut AdwAvatar) -> *const c_char;
     pub fn adw_avatar_get_show_initials(self_: *mut AdwAvatar) -> gboolean;
     pub fn adw_avatar_get_size(self_: *mut AdwAvatar) -> c_int;
     pub fn adw_avatar_get_text(self_: *mut AdwAvatar) -> *const c_char;
+    pub fn adw_avatar_set_custom_image(self_: *mut AdwAvatar, custom_image: *mut gdk::GdkPaintable);
     pub fn adw_avatar_set_icon_name(self_: *mut AdwAvatar, icon_name: *const c_char);
-    pub fn adw_avatar_set_image_load_func(
-        self_: *mut AdwAvatar,
-        load_image: AdwAvatarImageLoadFunc,
-        user_data: gpointer,
-        destroy: glib::GDestroyNotify,
-    );
     pub fn adw_avatar_set_show_initials(self_: *mut AdwAvatar, show_initials: gboolean);
     pub fn adw_avatar_set_size(self_: *mut AdwAvatar, size: c_int);
     pub fn adw_avatar_set_text(self_: *mut AdwAvatar, text: *const c_char);
