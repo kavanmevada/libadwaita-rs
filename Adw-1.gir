@@ -776,8 +776,7 @@ If [property@Adw.Avatar:show-initials] is set to `FALSE`,
 [property@Adw.Avatar:icon-name] or `avatar-default-symbolic` is shown instead
 of the initials.
 
-[method@Adw.Avatar.set_image_load_func] can be used to provide a custom
-image.
+Use [property@Adw.Avatar:custom-image] to set a custom image.
 
 ## CSS nodes
 
@@ -789,19 +788,19 @@ image.
       <constructor name="new" c:identifier="adw_avatar_new" version="1.0">
         <doc xml:space="preserve"
              filename="../src/adw-avatar.c"
-             line="450">Creates a new `AdwAvatar`.</doc>
-        <source-position filename="../src/adw-avatar.h" line="42"/>
+             line="414">Creates a new `AdwAvatar`.</doc>
+        <source-position filename="../src/adw-avatar.h" line="26"/>
         <return-value transfer-ownership="none">
           <doc xml:space="preserve"
                filename="../src/adw-avatar.c"
-               line="458">the newly created `AdwAvatar`</doc>
+               line="422">the newly created `AdwAvatar`</doc>
           <type name="Gtk.Widget" c:type="GtkWidget*"/>
         </return-value>
         <parameters>
           <parameter name="size" transfer-ownership="none">
             <doc xml:space="preserve"
                  filename="../src/adw-avatar.c"
-                 line="452">The size of the avatar</doc>
+                 line="416">The size of the avatar</doc>
             <type name="gint" c:type="int"/>
           </parameter>
           <parameter name="text"
@@ -810,13 +809,13 @@ image.
                      allow-none="1">
             <doc xml:space="preserve"
                  filename="../src/adw-avatar.c"
-                 line="453">the text used to get the initials and color</doc>
+                 line="417">the text used to get the initials and color</doc>
             <type name="utf8" c:type="const char*"/>
           </parameter>
           <parameter name="show_initials" transfer-ownership="none">
             <doc xml:space="preserve"
                  filename="../src/adw-avatar.c"
-                 line="454">whether to use initials instead of an icon as fallback</doc>
+                 line="418">whether to use initials instead of an icon as fallback</doc>
             <type name="gboolean" c:type="gboolean"/>
           </parameter>
         </parameters>
@@ -826,35 +825,58 @@ image.
               version="1.0">
         <doc xml:space="preserve"
              filename="../src/adw-avatar.c"
-             line="707">Renders @self into a [class@GdkPixbuf.Pixbuf] at @size and @scale_factor.
+             line="680">Renders @self into a [class@GdkPixbuf.Pixbuf] at @size and @scale_factor.
 
 This can be used to export the fallback avatar.</doc>
-        <source-position filename="../src/adw-avatar.h" line="71"/>
+        <source-position filename="../src/adw-avatar.h" line="61"/>
         <return-value transfer-ownership="full">
           <doc xml:space="preserve"
                filename="../src/adw-avatar.c"
-               line="717">the pixbuf</doc>
+               line="690">the pixbuf</doc>
           <type name="GdkPixbuf.Pixbuf" c:type="GdkPixbuf*"/>
         </return-value>
         <parameters>
           <instance-parameter name="self" transfer-ownership="none">
             <doc xml:space="preserve"
                  filename="../src/adw-avatar.c"
-                 line="709">a `AdwAvatar`</doc>
+                 line="682">a `AdwAvatar`</doc>
             <type name="Avatar" c:type="AdwAvatar*"/>
           </instance-parameter>
           <parameter name="size" transfer-ownership="none">
             <doc xml:space="preserve"
                  filename="../src/adw-avatar.c"
-                 line="710">The size of the pixbuf</doc>
+                 line="683">The size of the pixbuf</doc>
             <type name="gint" c:type="int"/>
           </parameter>
           <parameter name="scale_factor" transfer-ownership="none">
             <doc xml:space="preserve"
                  filename="../src/adw-avatar.c"
-                 line="711">The scale factor</doc>
+                 line="684">The scale factor</doc>
             <type name="gint" c:type="int"/>
           </parameter>
+        </parameters>
+      </method>
+      <method name="get_custom_image"
+              c:identifier="adw_avatar_get_custom_image"
+              version="1.0">
+        <attribute name="org.gtk.Method.get_property" value="custom-image"/>
+        <doc xml:space="preserve"
+             filename="../src/adw-avatar.c"
+             line="578">Gets the custom image paintable.</doc>
+        <source-position filename="../src/adw-avatar.h" line="49"/>
+        <return-value transfer-ownership="none" nullable="1">
+          <doc xml:space="preserve"
+               filename="../src/adw-avatar.c"
+               line="584">the custom image</doc>
+          <type name="Gdk.Paintable" c:type="GdkPaintable*"/>
+        </return-value>
+        <parameters>
+          <instance-parameter name="self" transfer-ownership="none">
+            <doc xml:space="preserve"
+                 filename="../src/adw-avatar.c"
+                 line="580">a `AdwAvatar`</doc>
+            <type name="Avatar" c:type="AdwAvatar*"/>
+          </instance-parameter>
         </parameters>
       </method>
       <method name="get_icon_name"
@@ -863,19 +885,19 @@ This can be used to export the fallback avatar.</doc>
         <attribute name="org.gtk.Method.get_property" value="icon-name"/>
         <doc xml:space="preserve"
              filename="../src/adw-avatar.c"
-             line="474">Gets the name of an icon to use as a fallback.</doc>
-        <source-position filename="../src/adw-avatar.h" line="46"/>
+             line="438">Gets the name of an icon to use as a fallback.</doc>
+        <source-position filename="../src/adw-avatar.h" line="31"/>
         <return-value transfer-ownership="none" nullable="1">
           <doc xml:space="preserve"
                filename="../src/adw-avatar.c"
-               line="480">the icon name</doc>
+               line="444">the icon name</doc>
           <type name="utf8" c:type="const char*"/>
         </return-value>
         <parameters>
           <instance-parameter name="self" transfer-ownership="none">
             <doc xml:space="preserve"
                  filename="../src/adw-avatar.c"
-                 line="476">a `AdwAvatar`</doc>
+                 line="440">a `AdwAvatar`</doc>
             <type name="Avatar" c:type="AdwAvatar*"/>
           </instance-parameter>
         </parameters>
@@ -886,19 +908,19 @@ This can be used to export the fallback avatar.</doc>
         <attribute name="org.gtk.Method.get_property" value="show-initials"/>
         <doc xml:space="preserve"
              filename="../src/adw-avatar.c"
-             line="569">Gets whether initials are used instead of an icon on the fallback avatar.</doc>
-        <source-position filename="../src/adw-avatar.h" line="56"/>
+             line="533">Gets whether initials are used instead of an icon on the fallback avatar.</doc>
+        <source-position filename="../src/adw-avatar.h" line="43"/>
         <return-value transfer-ownership="none">
           <doc xml:space="preserve"
                filename="../src/adw-avatar.c"
-               line="575">whether initials are used instead of an icon as fallback</doc>
+               line="539">whether initials are used instead of an icon as fallback</doc>
           <type name="gboolean" c:type="gboolean"/>
         </return-value>
         <parameters>
           <instance-parameter name="self" transfer-ownership="none">
             <doc xml:space="preserve"
                  filename="../src/adw-avatar.c"
-                 line="571">a `AdwAvatar`</doc>
+                 line="535">a `AdwAvatar`</doc>
             <type name="Avatar" c:type="AdwAvatar*"/>
           </instance-parameter>
         </parameters>
@@ -907,19 +929,19 @@ This can be used to export the fallback avatar.</doc>
         <attribute name="org.gtk.Method.get_property" value="size"/>
         <doc xml:space="preserve"
              filename="../src/adw-avatar.c"
-             line="650">Gets the size of the avatar.</doc>
-        <source-position filename="../src/adw-avatar.h" line="66"/>
+             line="627">Gets the size of the avatar.</doc>
+        <source-position filename="../src/adw-avatar.h" line="55"/>
         <return-value transfer-ownership="none">
           <doc xml:space="preserve"
                filename="../src/adw-avatar.c"
-               line="656">the size of the avatar</doc>
+               line="633">the size of the avatar</doc>
           <type name="gint" c:type="int"/>
         </return-value>
         <parameters>
           <instance-parameter name="self" transfer-ownership="none">
             <doc xml:space="preserve"
                  filename="../src/adw-avatar.c"
-                 line="652">a `AdwAvatar`</doc>
+                 line="629">a `AdwAvatar`</doc>
             <type name="Avatar" c:type="AdwAvatar*"/>
           </instance-parameter>
         </parameters>
@@ -928,12 +950,12 @@ This can be used to export the fallback avatar.</doc>
         <attribute name="org.gtk.Method.get_property" value="text"/>
         <doc xml:space="preserve"
              filename="../src/adw-avatar.c"
-             line="520">Gets the text used to generate the fallback initials and color.</doc>
-        <source-position filename="../src/adw-avatar.h" line="51"/>
+             line="484">Gets the text used to generate the fallback initials and color.</doc>
+        <source-position filename="../src/adw-avatar.h" line="37"/>
         <return-value transfer-ownership="none" nullable="1">
           <doc xml:space="preserve"
                filename="../src/adw-avatar.c"
-               line="526">the text used to generate the fallback initials and
+               line="490">the text used to generate the fallback initials and
   color</doc>
           <type name="utf8" c:type="const char*"/>
         </return-value>
@@ -941,9 +963,38 @@ This can be used to export the fallback avatar.</doc>
           <instance-parameter name="self" transfer-ownership="none">
             <doc xml:space="preserve"
                  filename="../src/adw-avatar.c"
-                 line="522">a `AdwAvatar`</doc>
+                 line="486">a `AdwAvatar`</doc>
             <type name="Avatar" c:type="AdwAvatar*"/>
           </instance-parameter>
+        </parameters>
+      </method>
+      <method name="set_custom_image"
+              c:identifier="adw_avatar_set_custom_image"
+              version="1.0">
+        <attribute name="org.gtk.Method.set_property" value="custom-image"/>
+        <doc xml:space="preserve"
+             filename="../src/adw-avatar.c"
+             line="596">Sets the custom image paintable.</doc>
+        <source-position filename="../src/adw-avatar.h" line="51"/>
+        <return-value transfer-ownership="none">
+          <type name="none" c:type="void"/>
+        </return-value>
+        <parameters>
+          <instance-parameter name="self" transfer-ownership="none">
+            <doc xml:space="preserve"
+                 filename="../src/adw-avatar.c"
+                 line="598">a `AdwAvatar`</doc>
+            <type name="Avatar" c:type="AdwAvatar*"/>
+          </instance-parameter>
+          <parameter name="custom_image"
+                     transfer-ownership="none"
+                     nullable="1"
+                     allow-none="1">
+            <doc xml:space="preserve"
+                 filename="../src/adw-avatar.c"
+                 line="599">a custom image</doc>
+            <type name="Gdk.Paintable" c:type="GdkPaintable*"/>
+          </parameter>
         </parameters>
       </method>
       <method name="set_icon_name"
@@ -952,10 +1003,10 @@ This can be used to export the fallback avatar.</doc>
         <attribute name="org.gtk.Method.set_property" value="icon-name"/>
         <doc xml:space="preserve"
              filename="../src/adw-avatar.c"
-             line="492">Sets the name of an icon to use as a fallback.
+             line="456">Sets the name of an icon to use as a fallback.
 
 If no name is set, `avatar-default-symbolic` will be used.</doc>
-        <source-position filename="../src/adw-avatar.h" line="48"/>
+        <source-position filename="../src/adw-avatar.h" line="33"/>
         <return-value transfer-ownership="none">
           <type name="none" c:type="void"/>
         </return-value>
@@ -963,7 +1014,7 @@ If no name is set, `avatar-default-symbolic` will be used.</doc>
           <instance-parameter name="self" transfer-ownership="none">
             <doc xml:space="preserve"
                  filename="../src/adw-avatar.c"
-                 line="494">a `AdwAvatar`</doc>
+                 line="458">a `AdwAvatar`</doc>
             <type name="Avatar" c:type="AdwAvatar*"/>
           </instance-parameter>
           <parameter name="icon_name"
@@ -972,64 +1023,8 @@ If no name is set, `avatar-default-symbolic` will be used.</doc>
                      allow-none="1">
             <doc xml:space="preserve"
                  filename="../src/adw-avatar.c"
-                 line="495">the icon name</doc>
+                 line="459">the icon name</doc>
             <type name="utf8" c:type="const char*"/>
-          </parameter>
-        </parameters>
-      </method>
-      <method name="set_image_load_func"
-              c:identifier="adw_avatar_set_image_load_func"
-              version="1.0">
-        <doc xml:space="preserve"
-             filename="../src/adw-avatar.c"
-             line="614">Sets a function that loads a custom image.
-
-@load_image will be called when the custom image needs to be reloaded for
-some reason (e.g. scale-factor changes).</doc>
-        <source-position filename="../src/adw-avatar.h" line="61"/>
-        <return-value transfer-ownership="none">
-          <type name="none" c:type="void"/>
-        </return-value>
-        <parameters>
-          <instance-parameter name="self" transfer-ownership="none">
-            <doc xml:space="preserve"
-                 filename="../src/adw-avatar.c"
-                 line="616">a `AdwAvatar`</doc>
-            <type name="Avatar" c:type="AdwAvatar*"/>
-          </instance-parameter>
-          <parameter name="load_image"
-                     transfer-ownership="none"
-                     nullable="1"
-                     allow-none="1"
-                     scope="notified"
-                     closure="1"
-                     destroy="2">
-            <doc xml:space="preserve"
-                 filename="../src/adw-avatar.c"
-                 line="617">callback to set a custom image</doc>
-            <type name="AvatarImageLoadFunc" c:type="AdwAvatarImageLoadFunc"/>
-          </parameter>
-          <parameter name="user_data"
-                     transfer-ownership="none"
-                     nullable="1"
-                     allow-none="1"
-                     scope="notified"
-                     closure="0">
-            <doc xml:space="preserve"
-                 filename="../src/adw-avatar.c"
-                 line="618">user data passed to @load_image</doc>
-            <type name="gpointer" c:type="gpointer"/>
-          </parameter>
-          <parameter name="destroy"
-                     transfer-ownership="none"
-                     nullable="1"
-                     allow-none="1"
-                     scope="async"
-                     destroy="1">
-            <doc xml:space="preserve"
-                 filename="../src/adw-avatar.c"
-                 line="619">destroy notifier for @user_data</doc>
-            <type name="GLib.DestroyNotify" c:type="GDestroyNotify"/>
           </parameter>
         </parameters>
       </method>
@@ -1039,8 +1034,8 @@ some reason (e.g. scale-factor changes).</doc>
         <attribute name="org.gtk.Method.set_property" value="show-initials"/>
         <doc xml:space="preserve"
              filename="../src/adw-avatar.c"
-             line="587">Sets whether to use initials instead of an icon on the fallback avatar.</doc>
-        <source-position filename="../src/adw-avatar.h" line="58"/>
+             line="551">Sets whether to use initials instead of an icon on the fallback avatar.</doc>
+        <source-position filename="../src/adw-avatar.h" line="45"/>
         <return-value transfer-ownership="none">
           <type name="none" c:type="void"/>
         </return-value>
@@ -1048,13 +1043,13 @@ some reason (e.g. scale-factor changes).</doc>
           <instance-parameter name="self" transfer-ownership="none">
             <doc xml:space="preserve"
                  filename="../src/adw-avatar.c"
-                 line="589">a `AdwAvatar`</doc>
+                 line="553">a `AdwAvatar`</doc>
             <type name="Avatar" c:type="AdwAvatar*"/>
           </instance-parameter>
           <parameter name="show_initials" transfer-ownership="none">
             <doc xml:space="preserve"
                  filename="../src/adw-avatar.c"
-                 line="590">whether to use initials instead of an icon as fallback</doc>
+                 line="554">whether to use initials instead of an icon as fallback</doc>
             <type name="gboolean" c:type="gboolean"/>
           </parameter>
         </parameters>
@@ -1063,8 +1058,8 @@ some reason (e.g. scale-factor changes).</doc>
         <attribute name="org.gtk.Method.set_property" value="size"/>
         <doc xml:space="preserve"
              filename="../src/adw-avatar.c"
-             line="668">Sets the size of the avatar.</doc>
-        <source-position filename="../src/adw-avatar.h" line="68"/>
+             line="645">Sets the size of the avatar.</doc>
+        <source-position filename="../src/adw-avatar.h" line="57"/>
         <return-value transfer-ownership="none">
           <type name="none" c:type="void"/>
         </return-value>
@@ -1072,13 +1067,13 @@ some reason (e.g. scale-factor changes).</doc>
           <instance-parameter name="self" transfer-ownership="none">
             <doc xml:space="preserve"
                  filename="../src/adw-avatar.c"
-                 line="670">a `AdwAvatar`</doc>
+                 line="647">a `AdwAvatar`</doc>
             <type name="Avatar" c:type="AdwAvatar*"/>
           </instance-parameter>
           <parameter name="size" transfer-ownership="none">
             <doc xml:space="preserve"
                  filename="../src/adw-avatar.c"
-                 line="671">The size of the avatar</doc>
+                 line="648">The size of the avatar</doc>
             <type name="gint" c:type="int"/>
           </parameter>
         </parameters>
@@ -1087,8 +1082,8 @@ some reason (e.g. scale-factor changes).</doc>
         <attribute name="org.gtk.Method.set_property" value="text"/>
         <doc xml:space="preserve"
              filename="../src/adw-avatar.c"
-             line="539">Sets the text used to generate the fallback initials and color.</doc>
-        <source-position filename="../src/adw-avatar.h" line="53"/>
+             line="503">Sets the text used to generate the fallback initials and color.</doc>
+        <source-position filename="../src/adw-avatar.h" line="39"/>
         <return-value transfer-ownership="none">
           <type name="none" c:type="void"/>
         </return-value>
@@ -1096,7 +1091,7 @@ some reason (e.g. scale-factor changes).</doc>
           <instance-parameter name="self" transfer-ownership="none">
             <doc xml:space="preserve"
                  filename="../src/adw-avatar.c"
-                 line="541">a `AdwAvatar`</doc>
+                 line="505">a `AdwAvatar`</doc>
             <type name="Avatar" c:type="AdwAvatar*"/>
           </instance-parameter>
           <parameter name="text"
@@ -1105,11 +1100,24 @@ some reason (e.g. scale-factor changes).</doc>
                      allow-none="1">
             <doc xml:space="preserve"
                  filename="../src/adw-avatar.c"
-                 line="542">the text used to get the initials and color</doc>
+                 line="506">the text used to get the initials and color</doc>
             <type name="utf8" c:type="const char*"/>
           </parameter>
         </parameters>
       </method>
+      <property name="custom-image"
+                version="1.0"
+                writable="1"
+                transfer-ownership="none">
+        <attribute name="org.gtk.Property.get"
+                   value="adw_avatar_get_custom_image"/>
+        <attribute name="org.gtk.Property.set"
+                   value="adw_avatar_set_custom_image"/>
+        <doc xml:space="preserve"
+             filename="../src/adw-avatar.c"
+             line="353">A custom image to use instead of initials or icon.</doc>
+        <type name="Gdk.Paintable"/>
+      </property>
       <property name="icon-name"
                 version="1.0"
                 writable="1"
@@ -1120,7 +1128,7 @@ some reason (e.g. scale-factor changes).</doc>
                    value="adw_avatar_set_icon_name"/>
         <doc xml:space="preserve"
              filename="../src/adw-avatar.c"
-             line="367">The name of an icon to use as a fallback.
+             line="304">The name of an icon to use as a fallback.
 
 If no name is set, `avatar-default-symbolic` will be used.</doc>
         <type name="utf8" c:type="gchar*"/>
@@ -1135,7 +1143,7 @@ If no name is set, `avatar-default-symbolic` will be used.</doc>
                    value="adw_avatar_set_show_initials"/>
         <doc xml:space="preserve"
              filename="../src/adw-avatar.c"
-             line="400">Whether initials are used instead of an icon on the fallback avatar.
+             line="337">Whether initials are used instead of an icon on the fallback avatar.
 
 See [property@Adw.Avatar:icon-name] for how to change the fallback icon.</doc>
         <type name="gboolean" c:type="gboolean"/>
@@ -1148,7 +1156,7 @@ See [property@Adw.Avatar:icon-name] for how to change the fallback icon.</doc>
         <attribute name="org.gtk.Property.set" value="adw_avatar_set_size"/>
         <doc xml:space="preserve"
              filename="../src/adw-avatar.c"
-             line="353">The size of the avatar.</doc>
+             line="367">The size of the avatar.</doc>
         <type name="gint" c:type="gint"/>
       </property>
       <property name="text"
@@ -1159,7 +1167,7 @@ See [property@Adw.Avatar:icon-name] for how to change the fallback icon.</doc>
         <attribute name="org.gtk.Property.set" value="adw_avatar_set_text"/>
         <doc xml:space="preserve"
              filename="../src/adw-avatar.c"
-             line="383">Sets the text used to generate the fallback initials and color.
+             line="320">Sets the text used to generate the fallback initials and color.
 
 It's only used to generate the color if [property@Adw.Avatar:show-initials]
 is `FALSE`.</doc>
@@ -1174,39 +1182,6 @@ is `FALSE`.</doc>
         <type name="Gtk.WidgetClass" c:type="GtkWidgetClass"/>
       </field>
     </record>
-    <callback name="AvatarImageLoadFunc" c:type="AdwAvatarImageLoadFunc">
-      <doc xml:space="preserve"
-           filename="../src/adw-avatar.h"
-           line="25">A callback for loading a custom image for [class@Adw.Avatar].
-
-The returned [class@GdkPixbuf.Pixbuf] will be cropped to a circle from the
-center.</doc>
-      <source-position filename="../src/adw-avatar.h" line="37"/>
-      <return-value transfer-ownership="full" nullable="1">
-        <doc xml:space="preserve"
-             filename="../src/adw-avatar.h"
-             line="35">The pixbuf to use as a custom avatar.</doc>
-        <type name="GdkPixbuf.Pixbuf" c:type="GdkPixbuf*"/>
-      </return-value>
-      <parameters>
-        <parameter name="size" transfer-ownership="none">
-          <doc xml:space="preserve"
-               filename="../src/adw-avatar.h"
-               line="27">the required size of the avatar</doc>
-          <type name="gint" c:type="int"/>
-        </parameter>
-        <parameter name="user_data"
-                   transfer-ownership="none"
-                   nullable="1"
-                   allow-none="1"
-                   closure="1">
-          <doc xml:space="preserve"
-               filename="../src/adw-avatar.h"
-               line="28">user data</doc>
-          <type name="gpointer" c:type="gpointer"/>
-        </parameter>
-      </parameters>
-    </callback>
     <class name="Bin"
            c:symbol-prefix="bin"
            c:type="AdwBin"
@@ -3225,7 +3200,7 @@ contains a [class@Gtk.ScrolledWindow], which in turn contains a
         <doc xml:space="preserve"
              filename="../src/adw-combo-row.c"
              line="577">Gets the position of the selected item.</doc>
-        <source-position filename="../src/adw-combo-row.h" line="51"/>
+        <source-position filename="../src/adw-combo-row.h" line="48"/>
         <return-value transfer-ownership="none">
           <doc xml:space="preserve"
                filename="../src/adw-combo-row.c"
@@ -3413,7 +3388,7 @@ The expression must have a value type of `G_TYPE_STRING`.</doc>
         <doc xml:space="preserve"
              filename="../src/adw-combo-row.c"
              line="549">Selects the item at the given position.</doc>
-        <source-position filename="../src/adw-combo-row.h" line="48"/>
+        <source-position filename="../src/adw-combo-row.h" line="50"/>
         <return-value transfer-ownership="none">
           <type name="none" c:type="void"/>
         </return-value>
@@ -3701,7 +3676,7 @@ If `TRUE`, you should not access [property@Adw.ActionRow:subtitle].</doc>
         <doc xml:space="preserve"
              filename="../src/adw-enum-value-object.c"
              line="145">Gets the enum value name.</doc>
-        <source-position filename="../src/adw-enum-value-object.h" line="28"/>
+        <source-position filename="../src/adw-enum-value-object.h" line="29"/>
         <return-value transfer-ownership="none">
           <doc xml:space="preserve"
                filename="../src/adw-enum-value-object.c"
@@ -3721,7 +3696,7 @@ If `TRUE`, you should not access [property@Adw.ActionRow:subtitle].</doc>
         <doc xml:space="preserve"
              filename="../src/adw-enum-value-object.c"
              line="162">Gets the enum value nick.</doc>
-        <source-position filename="../src/adw-enum-value-object.h" line="30"/>
+        <source-position filename="../src/adw-enum-value-object.h" line="32"/>
         <return-value transfer-ownership="none">
           <doc xml:space="preserve"
                filename="../src/adw-enum-value-object.c"
@@ -6019,7 +5994,7 @@ will navigate to.
 If there's no child to navigate to, `NULL` will be returned instead.
 
 See [property@Adw.LeafletPage:navigatable].</doc>
-        <source-position filename="../src/adw-leaflet.h" line="135"/>
+        <source-position filename="../src/adw-leaflet.h" line="144"/>
         <return-value transfer-ownership="none" nullable="1">
           <doc xml:space="preserve"
                filename="../src/adw-leaflet.c"
@@ -6048,7 +6023,7 @@ See [property@Adw.LeafletPage:navigatable].</doc>
         <doc xml:space="preserve"
              filename="../src/adw-leaflet.c"
              line="3523">Gets whether a swipe gesture can be used to navigate to the previous child.</doc>
-        <source-position filename="../src/adw-leaflet.h" line="124"/>
+        <source-position filename="../src/adw-leaflet.h" line="132"/>
         <return-value transfer-ownership="none">
           <doc xml:space="preserve"
                filename="../src/adw-leaflet.c"
@@ -6072,7 +6047,7 @@ See [property@Adw.LeafletPage:navigatable].</doc>
         <doc xml:space="preserve"
              filename="../src/adw-leaflet.c"
              line="3567">Gets whether a swipe gesture can be used to navigate to the next child.</doc>
-        <source-position filename="../src/adw-leaflet.h" line="129"/>
+        <source-position filename="../src/adw-leaflet.h" line="138"/>
         <return-value transfer-ownership="none">
           <doc xml:space="preserve"
                filename="../src/adw-leaflet.c"
@@ -6095,7 +6070,7 @@ See [property@Adw.LeafletPage:navigatable].</doc>
         <doc xml:space="preserve"
              filename="../src/adw-leaflet.c"
              line="3707">Gets whether @self can unfold.</doc>
-        <source-position filename="../src/adw-leaflet.h" line="146"/>
+        <source-position filename="../src/adw-leaflet.h" line="155"/>
         <return-value transfer-ownership="none">
           <doc xml:space="preserve"
                filename="../src/adw-leaflet.c"
@@ -6121,7 +6096,7 @@ See [property@Adw.LeafletPage:navigatable].</doc>
 Returns `NULL` if there is no child with this name.
 
 See [property@Adw.LeafletPage:name].</doc>
-        <source-position filename="../src/adw-leaflet.h" line="142"/>
+        <source-position filename="../src/adw-leaflet.h" line="151"/>
         <return-value transfer-ownership="none" nullable="1">
           <doc xml:space="preserve"
                filename="../src/adw-leaflet.c"
@@ -6151,7 +6126,7 @@ See [property@Adw.LeafletPage:name].</doc>
         <doc xml:space="preserve"
              filename="../src/adw-leaflet.c"
              line="3294">Gets the child transition animation duration for @self.</doc>
-        <source-position filename="../src/adw-leaflet.h" line="112"/>
+        <source-position filename="../src/adw-leaflet.h" line="117"/>
         <return-value transfer-ownership="none">
           <doc xml:space="preserve"
                filename="../src/adw-leaflet.c"
@@ -6175,7 +6150,7 @@ See [property@Adw.LeafletPage:name].</doc>
         <doc xml:space="preserve"
              filename="../src/adw-leaflet.c"
              line="3434">Gets whether a child transition is currently running for @self.</doc>
-        <source-position filename="../src/adw-leaflet.h" line="117"/>
+        <source-position filename="../src/adw-leaflet.h" line="123"/>
         <return-value transfer-ownership="none">
           <doc xml:space="preserve"
                filename="../src/adw-leaflet.c"
@@ -6198,7 +6173,7 @@ See [property@Adw.LeafletPage:name].</doc>
         <doc xml:space="preserve"
              filename="../src/adw-leaflet.c"
              line="3110">Gets whether @self is folded.</doc>
-        <source-position filename="../src/adw-leaflet.h" line="79"/>
+        <source-position filename="../src/adw-leaflet.h" line="80"/>
         <return-value transfer-ownership="none">
           <doc xml:space="preserve"
                filename="../src/adw-leaflet.c"
@@ -6225,7 +6200,7 @@ See [property@Adw.Leaflet:hhomogeneous-folded],
 [property@Adw.Leaflet:vhomogeneous-folded],
 [property@Adw.Leaflet:hhomogeneous-unfolded],
 [property@Adw.Leaflet:vhomogeneous-unfolded].</doc>
-        <source-position filename="../src/adw-leaflet.h" line="91"/>
+        <source-position filename="../src/adw-leaflet.h" line="95"/>
         <return-value transfer-ownership="none">
           <doc xml:space="preserve"
                filename="../src/adw-leaflet.c"
@@ -6262,7 +6237,7 @@ See [property@Adw.Leaflet:hhomogeneous-folded],
              filename="../src/adw-leaflet.c"
              line="3478">Gets whether the leaflet interpolates its size when changing the visible
 child.</doc>
-        <source-position filename="../src/adw-leaflet.h" line="119"/>
+        <source-position filename="../src/adw-leaflet.h" line="126"/>
         <return-value transfer-ownership="none">
           <doc xml:space="preserve"
                filename="../src/adw-leaflet.c"
@@ -6286,7 +6261,7 @@ child.</doc>
         <doc xml:space="preserve"
              filename="../src/adw-leaflet.c"
              line="3253">Gets the mode transition animation duration for @self.</doc>
-        <source-position filename="../src/adw-leaflet.h" line="106"/>
+        <source-position filename="../src/adw-leaflet.h" line="111"/>
         <return-value transfer-ownership="none">
           <doc xml:space="preserve"
                filename="../src/adw-leaflet.c"
@@ -6308,7 +6283,7 @@ child.</doc>
         <doc xml:space="preserve"
              filename="../src/adw-leaflet.c"
              line="3089">Returns the [class@Adw.LeafletPage] object for @child.</doc>
-        <source-position filename="../src/adw-leaflet.h" line="75"/>
+        <source-position filename="../src/adw-leaflet.h" line="76"/>
         <return-value transfer-ownership="none">
           <doc xml:space="preserve"
                filename="../src/adw-leaflet.c"
@@ -6341,7 +6316,7 @@ child.</doc>
 This can be used to keep an up-to-date view. The model also implements
 [iface@Gtk.SelectionModel] and can be used to track and change the visible
 page.</doc>
-        <source-position filename="../src/adw-leaflet.h" line="152"/>
+        <source-position filename="../src/adw-leaflet.h" line="161"/>
         <return-value transfer-ownership="full">
           <doc xml:space="preserve"
                filename="../src/adw-leaflet.c"
@@ -6364,7 +6339,7 @@ page.</doc>
         <doc xml:space="preserve"
              filename="../src/adw-leaflet.c"
              line="3199">Gets the type of animation used for transitions between modes and children.</doc>
-        <source-position filename="../src/adw-leaflet.h" line="100"/>
+        <source-position filename="../src/adw-leaflet.h" line="105"/>
         <return-value transfer-ownership="none">
           <doc xml:space="preserve"
                filename="../src/adw-leaflet.c"
@@ -6388,7 +6363,7 @@ page.</doc>
         <doc xml:space="preserve"
              filename="../src/adw-leaflet.c"
              line="3335">Gets the widget currently visible when the leaflet is folded.</doc>
-        <source-position filename="../src/adw-leaflet.h" line="81"/>
+        <source-position filename="../src/adw-leaflet.h" line="83"/>
         <return-value transfer-ownership="none">
           <doc xml:space="preserve"
                filename="../src/adw-leaflet.c"
@@ -6412,7 +6387,7 @@ page.</doc>
         <doc xml:space="preserve"
              filename="../src/adw-leaflet.c"
              line="3384">Gets the name of the currently visible child widget.</doc>
-        <source-position filename="../src/adw-leaflet.h" line="86"/>
+        <source-position filename="../src/adw-leaflet.h" line="89"/>
         <return-value transfer-ownership="none">
           <doc xml:space="preserve"
                filename="../src/adw-leaflet.c"
@@ -6436,7 +6411,7 @@ page.</doc>
              line="2947">Inserts @child in the position after @sibling in the list of children.
 
 If @sibling is `NULL`, inserts @child at the first position.</doc>
-        <source-position filename="../src/adw-leaflet.h" line="62"/>
+        <source-position filename="../src/adw-leaflet.h" line="63"/>
         <return-value transfer-ownership="none">
           <doc xml:space="preserve"
                filename="../src/adw-leaflet.c"
@@ -6479,7 +6454,7 @@ to `TRUE`, otherwise it will be skipped.
 
 This will be the same child as returned by
 [method@Adw.Leaflet.get_adjacent_child] or navigated to via swipe gestures.</doc>
-        <source-position filename="../src/adw-leaflet.h" line="138"/>
+        <source-position filename="../src/adw-leaflet.h" line="147"/>
         <return-value transfer-ownership="none">
           <doc xml:space="preserve"
                filename="../src/adw-leaflet.c"
@@ -6531,7 +6506,7 @@ This will be the same child as returned by
         <doc xml:space="preserve"
              filename="../src/adw-leaflet.c"
              line="3056">Removes a child widget from @self.</doc>
-        <source-position filename="../src/adw-leaflet.h" line="71"/>
+        <source-position filename="../src/adw-leaflet.h" line="72"/>
         <return-value transfer-ownership="none">
           <type name="none" c:type="void"/>
         </return-value>
@@ -6558,7 +6533,7 @@ This will be the same child as returned by
              line="2986">Moves @child to the position after @sibling in the list of children.
 
 If @sibling is `NULL`, moves @child to the first position.</doc>
-        <source-position filename="../src/adw-leaflet.h" line="66"/>
+        <source-position filename="../src/adw-leaflet.h" line="67"/>
         <return-value transfer-ownership="none">
           <type name="none" c:type="void"/>
         </return-value>
@@ -6593,7 +6568,7 @@ If @sibling is `NULL`, moves @child to the first position.</doc>
         <doc xml:space="preserve"
              filename="../src/adw-leaflet.c"
              line="3497">Sets whether a swipe gesture can be used to navigate to the previous child.</doc>
-        <source-position filename="../src/adw-leaflet.h" line="126"/>
+        <source-position filename="../src/adw-leaflet.h" line="134"/>
         <return-value transfer-ownership="none">
           <type name="none" c:type="void"/>
         </return-value>
@@ -6620,7 +6595,7 @@ If @sibling is `NULL`, moves @child to the first position.</doc>
         <doc xml:space="preserve"
              filename="../src/adw-leaflet.c"
              line="3541">Sets whether a swipe gesture can be used to navigate to the next child.</doc>
-        <source-position filename="../src/adw-leaflet.h" line="131"/>
+        <source-position filename="../src/adw-leaflet.h" line="140"/>
         <return-value transfer-ownership="none">
           <type name="none" c:type="void"/>
         </return-value>
@@ -6646,7 +6621,7 @@ If @sibling is `NULL`, moves @child to the first position.</doc>
         <doc xml:space="preserve"
              filename="../src/adw-leaflet.c"
              line="3680">Sets whether @self can unfold.</doc>
-        <source-position filename="../src/adw-leaflet.h" line="148"/>
+        <source-position filename="../src/adw-leaflet.h" line="157"/>
         <return-value transfer-ownership="none">
           <type name="none" c:type="void"/>
         </return-value>
@@ -6673,7 +6648,7 @@ If @sibling is `NULL`, moves @child to the first position.</doc>
         <doc xml:space="preserve"
              filename="../src/adw-leaflet.c"
              line="3312">Sets the child transition animation duration for @self.</doc>
-        <source-position filename="../src/adw-leaflet.h" line="114"/>
+        <source-position filename="../src/adw-leaflet.h" line="119"/>
         <return-value transfer-ownership="none">
           <type name="none" c:type="void"/>
         </return-value>
@@ -6707,7 +6682,7 @@ See [property@Adw.Leaflet:hhomogeneous-folded],
 [property@Adw.Leaflet:vhomogeneous-folded],
 [property@Adw.Leaflet:hhomogeneous-unfolded],
 [property@Adw.Leaflet:vhomogeneous-unfolded].</doc>
-        <source-position filename="../src/adw-leaflet.h" line="95"/>
+        <source-position filename="../src/adw-leaflet.h" line="99"/>
         <return-value transfer-ownership="none">
           <type name="none" c:type="void"/>
         </return-value>
@@ -6747,7 +6722,7 @@ See [property@Adw.Leaflet:hhomogeneous-folded],
              filename="../src/adw-leaflet.c"
              line="3453">Sets whether the leaflet interpolates its size when changing the visible
 child.</doc>
-        <source-position filename="../src/adw-leaflet.h" line="121"/>
+        <source-position filename="../src/adw-leaflet.h" line="128"/>
         <return-value transfer-ownership="none">
           <type name="none" c:type="void"/>
         </return-value>
@@ -6774,7 +6749,7 @@ child.</doc>
         <doc xml:space="preserve"
              filename="../src/adw-leaflet.c"
              line="3271">Sets the mode transition animation duration for @self.</doc>
-        <source-position filename="../src/adw-leaflet.h" line="108"/>
+        <source-position filename="../src/adw-leaflet.h" line="113"/>
         <return-value transfer-ownership="none">
           <type name="none" c:type="void"/>
         </return-value>
@@ -6800,7 +6775,7 @@ child.</doc>
         <doc xml:space="preserve"
              filename="../src/adw-leaflet.c"
              line="3217">Sets the type of animation used for transitions between modes and children.</doc>
-        <source-position filename="../src/adw-leaflet.h" line="102"/>
+        <source-position filename="../src/adw-leaflet.h" line="107"/>
         <return-value transfer-ownership="none">
           <type name="none" c:type="void"/>
         </return-value>
@@ -6827,7 +6802,7 @@ child.</doc>
         <doc xml:space="preserve"
              filename="../src/adw-leaflet.c"
              line="3356">Sets the widget currently visible when the leaflet is folded.</doc>
-        <source-position filename="../src/adw-leaflet.h" line="83"/>
+        <source-position filename="../src/adw-leaflet.h" line="85"/>
         <return-value transfer-ownership="none">
           <type name="none" c:type="void"/>
         </return-value>
@@ -6856,7 +6831,7 @@ child.</doc>
              line="3405">Makes the child with the name @name visible.
 
 See adw_leaflet_set_visible_child() for more details.</doc>
-        <source-position filename="../src/adw-leaflet.h" line="88"/>
+        <source-position filename="../src/adw-leaflet.h" line="91"/>
         <return-value transfer-ownership="none">
           <type name="none" c:type="void"/>
         </return-value>
@@ -10039,7 +10014,7 @@ If not implemented, the default implementation returns the allocation of
         <doc xml:space="preserve"
              filename="../src/adw-swipeable.c"
              line="106">Gets the progress @self will snap back to after the gesture is canceled.</doc>
-        <source-position filename="../src/adw-swipeable.h" line="64"/>
+        <source-position filename="../src/adw-swipeable.h" line="67"/>
         <return-value transfer-ownership="none">
           <doc xml:space="preserve"
                filename="../src/adw-swipeable.c"
@@ -10085,7 +10060,7 @@ This corresponds to how many pixels 1 unit represents.</doc>
         <doc xml:space="preserve"
              filename="../src/adw-swipeable.c"
              line="83">Gets the current progress of @self.</doc>
-        <source-position filename="../src/adw-swipeable.h" line="62"/>
+        <source-position filename="../src/adw-swipeable.h" line="64"/>
         <return-value transfer-ownership="none">
           <doc xml:space="preserve"
                filename="../src/adw-swipeable.c"
@@ -10110,7 +10085,7 @@ This corresponds to how many pixels 1 unit represents.</doc>
 
 Each snap point represents a progress value that is considered acceptable to
 end the swipe on.</doc>
-        <source-position filename="../src/adw-swipeable.h" line="59"/>
+        <source-position filename="../src/adw-swipeable.h" line="60"/>
         <return-value transfer-ownership="full">
           <doc xml:space="preserve"
                filename="../src/adw-swipeable.c"
@@ -10151,7 +10126,7 @@ ignore swipes elsewhere.
 
 If not implemented, the default implementation returns the allocation of
 @self, allowing swipes from anywhere.</doc>
-        <source-position filename="../src/adw-swipeable.h" line="66"/>
+        <source-position filename="../src/adw-swipeable.h" line="70"/>
         <return-value transfer-ownership="none">
           <type name="none" c:type="void"/>
         </return-value>
@@ -13141,7 +13116,7 @@ string taking ownership of it.</doc>
         <doc xml:space="preserve"
              filename="../src/adw-value-object.c"
              line="271">Copies the contained string if the value is of type  `G_TYPE_STRING`.</doc>
-        <source-position filename="../src/adw-value-object.h" line="43"/>
+        <source-position filename="../src/adw-value-object.h" line="44"/>
         <return-value transfer-ownership="full">
           <doc xml:space="preserve"
                filename="../src/adw-value-object.c"
@@ -13163,7 +13138,7 @@ string taking ownership of it.</doc>
         <doc xml:space="preserve"
              filename="../src/adw-value-object.c"
              line="255">Gets the contained string if the value is of type `G_TYPE_STRING`.</doc>
-        <source-position filename="../src/adw-value-object.h" line="41"/>
+        <source-position filename="../src/adw-value-object.h" line="42"/>
         <return-value transfer-ownership="none">
           <doc xml:space="preserve"
                filename="../src/adw-value-object.c"
@@ -14304,7 +14279,7 @@ is not supported and will result in a crash.</doc>
              line="203">Gets the child widget of @self.
 
 This method should always be used instead of [method@Gtk.Window.get_child].</doc>
-        <source-position filename="../src/adw-window.h" line="39"/>
+        <source-position filename="../src/adw-window.h" line="36"/>
         <return-value transfer-ownership="none" nullable="1">
           <doc xml:space="preserve"
                filename="../src/adw-window.c"
@@ -14328,7 +14303,7 @@ This method should always be used instead of [method@Gtk.Window.get_child].</doc
              line="180">Sets the child widget of @self.
 
 This method should always be used instead of [method@Gtk.Window.set_child].</doc>
-        <source-position filename="../src/adw-window.h" line="36"/>
+        <source-position filename="../src/adw-window.h" line="38"/>
         <return-value transfer-ownership="none">
           <type name="none" c:type="void"/>
         </return-value>
@@ -14430,7 +14405,7 @@ title child of [class@Gtk.HeaderBar] or [class@Adw.HeaderBar].
         <doc xml:space="preserve"
              filename="../src/adw-window-title.c"
              line="224">Gets the subtitle of @self.</doc>
-        <source-position filename="../src/adw-window-title.h" line="38"/>
+        <source-position filename="../src/adw-window-title.h" line="35"/>
         <return-value transfer-ownership="none" nullable="1">
           <doc xml:space="preserve"
                filename="../src/adw-window-title.c"
@@ -14453,7 +14428,7 @@ title child of [class@Gtk.HeaderBar] or [class@Adw.HeaderBar].
         <doc xml:space="preserve"
              filename="../src/adw-window-title.c"
              line="181">Gets the title of @self.</doc>
-        <source-position filename="../src/adw-window-title.h" line="32"/>
+        <source-position filename="../src/adw-window-title.h" line="29"/>
         <return-value transfer-ownership="none" nullable="1">
           <doc xml:space="preserve"
                filename="../src/adw-window-title.c"
@@ -14476,7 +14451,7 @@ title child of [class@Gtk.HeaderBar] or [class@Adw.HeaderBar].
         <doc xml:space="preserve"
              filename="../src/adw-window-title.c"
              line="242">Sets the subtitle of @self.</doc>
-        <source-position filename="../src/adw-window-title.h" line="35"/>
+        <source-position filename="../src/adw-window-title.h" line="37"/>
         <return-value transfer-ownership="none">
           <type name="none" c:type="void"/>
         </return-value>
@@ -14505,7 +14480,7 @@ title child of [class@Gtk.HeaderBar] or [class@Adw.HeaderBar].
         <doc xml:space="preserve"
              filename="../src/adw-window-title.c"
              line="199">Sets the title of @self.</doc>
-        <source-position filename="../src/adw-window-title.h" line="29"/>
+        <source-position filename="../src/adw-window-title.h" line="31"/>
         <return-value transfer-ownership="none">
           <type name="none" c:type="void"/>
         </return-value>
