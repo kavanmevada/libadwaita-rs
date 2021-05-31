@@ -32,7 +32,8 @@ impl CarouselIndicatorDots {
     }
 
     // rustdoc-stripper-ignore-next
-    /// Creates a new builder-style object to construct a [`CarouselIndicatorDots`]
+    /// Creates a new builder-style object to construct a [`CarouselIndicatorDots`].
+    ///
     /// This method returns an instance of [`CarouselIndicatorDotsBuilder`] which can be used to create a [`CarouselIndicatorDots`].
     pub fn builder() -> CarouselIndicatorDotsBuilder {
         CarouselIndicatorDotsBuilder::default()
@@ -59,10 +60,7 @@ impl CarouselIndicatorDots {
     }
 
     #[doc(alias = "carousel")]
-    pub fn connect_carousel_notify<F: Fn(&CarouselIndicatorDots) + 'static>(
-        &self,
-        f: F,
-    ) -> SignalHandlerId {
+    pub fn connect_carousel_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_carousel_trampoline<F: Fn(&CarouselIndicatorDots) + 'static>(
             this: *mut ffi::AdwCarouselIndicatorDots,
             _param_spec: glib::ffi::gpointer,

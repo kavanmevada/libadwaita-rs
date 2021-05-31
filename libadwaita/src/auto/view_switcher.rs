@@ -32,7 +32,8 @@ impl ViewSwitcher {
     }
 
     // rustdoc-stripper-ignore-next
-    /// Creates a new builder-style object to construct a [`ViewSwitcher`]
+    /// Creates a new builder-style object to construct a [`ViewSwitcher`].
+    ///
     /// This method returns an instance of [`ViewSwitcherBuilder`] which can be used to create a [`ViewSwitcher`].
     pub fn builder() -> ViewSwitcherBuilder {
         ViewSwitcherBuilder::default()
@@ -82,10 +83,7 @@ impl ViewSwitcher {
     }
 
     #[doc(alias = "narrow-ellipsize")]
-    pub fn connect_narrow_ellipsize_notify<F: Fn(&ViewSwitcher) + 'static>(
-        &self,
-        f: F,
-    ) -> SignalHandlerId {
+    pub fn connect_narrow_ellipsize_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_narrow_ellipsize_trampoline<F: Fn(&ViewSwitcher) + 'static>(
             this: *mut ffi::AdwViewSwitcher,
             _param_spec: glib::ffi::gpointer,
@@ -108,7 +106,7 @@ impl ViewSwitcher {
     }
 
     #[doc(alias = "policy")]
-    pub fn connect_policy_notify<F: Fn(&ViewSwitcher) + 'static>(&self, f: F) -> SignalHandlerId {
+    pub fn connect_policy_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_policy_trampoline<F: Fn(&ViewSwitcher) + 'static>(
             this: *mut ffi::AdwViewSwitcher,
             _param_spec: glib::ffi::gpointer,
@@ -131,7 +129,7 @@ impl ViewSwitcher {
     }
 
     #[doc(alias = "stack")]
-    pub fn connect_stack_notify<F: Fn(&ViewSwitcher) + 'static>(&self, f: F) -> SignalHandlerId {
+    pub fn connect_stack_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_stack_trampoline<F: Fn(&ViewSwitcher) + 'static>(
             this: *mut ffi::AdwViewSwitcher,
             _param_spec: glib::ffi::gpointer,

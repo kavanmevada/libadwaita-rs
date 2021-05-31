@@ -31,7 +31,8 @@ impl Clamp {
     }
 
     // rustdoc-stripper-ignore-next
-    /// Creates a new builder-style object to construct a [`Clamp`]
+    /// Creates a new builder-style object to construct a [`Clamp`].
+    ///
     /// This method returns an instance of [`ClampBuilder`] which can be used to create a [`Clamp`].
     pub fn builder() -> ClampBuilder {
         ClampBuilder::default()
@@ -80,7 +81,7 @@ impl Clamp {
     }
 
     #[doc(alias = "child")]
-    pub fn connect_child_notify<F: Fn(&Clamp) + 'static>(&self, f: F) -> SignalHandlerId {
+    pub fn connect_child_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_child_trampoline<F: Fn(&Clamp) + 'static>(
             this: *mut ffi::AdwClamp,
             _param_spec: glib::ffi::gpointer,
@@ -103,7 +104,7 @@ impl Clamp {
     }
 
     #[doc(alias = "maximum-size")]
-    pub fn connect_maximum_size_notify<F: Fn(&Clamp) + 'static>(&self, f: F) -> SignalHandlerId {
+    pub fn connect_maximum_size_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_maximum_size_trampoline<F: Fn(&Clamp) + 'static>(
             this: *mut ffi::AdwClamp,
             _param_spec: glib::ffi::gpointer,
@@ -126,7 +127,7 @@ impl Clamp {
     }
 
     #[doc(alias = "tightening-threshold")]
-    pub fn connect_tightening_threshold_notify<F: Fn(&Clamp) + 'static>(
+    pub fn connect_tightening_threshold_notify<F: Fn(&Self) + 'static>(
         &self,
         f: F,
     ) -> SignalHandlerId {

@@ -38,7 +38,8 @@ impl Avatar {
     }
 
     // rustdoc-stripper-ignore-next
-    /// Creates a new builder-style object to construct a [`Avatar`]
+    /// Creates a new builder-style object to construct a [`Avatar`].
+    ///
     /// This method returns an instance of [`AvatarBuilder`] which can be used to create a [`Avatar`].
     pub fn builder() -> AvatarBuilder {
         AvatarBuilder::default()
@@ -124,7 +125,7 @@ impl Avatar {
     }
 
     #[doc(alias = "custom-image")]
-    pub fn connect_custom_image_notify<F: Fn(&Avatar) + 'static>(&self, f: F) -> SignalHandlerId {
+    pub fn connect_custom_image_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_custom_image_trampoline<F: Fn(&Avatar) + 'static>(
             this: *mut ffi::AdwAvatar,
             _param_spec: glib::ffi::gpointer,
@@ -147,7 +148,7 @@ impl Avatar {
     }
 
     #[doc(alias = "icon-name")]
-    pub fn connect_icon_name_notify<F: Fn(&Avatar) + 'static>(&self, f: F) -> SignalHandlerId {
+    pub fn connect_icon_name_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_icon_name_trampoline<F: Fn(&Avatar) + 'static>(
             this: *mut ffi::AdwAvatar,
             _param_spec: glib::ffi::gpointer,
@@ -170,7 +171,7 @@ impl Avatar {
     }
 
     #[doc(alias = "show-initials")]
-    pub fn connect_show_initials_notify<F: Fn(&Avatar) + 'static>(&self, f: F) -> SignalHandlerId {
+    pub fn connect_show_initials_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_show_initials_trampoline<F: Fn(&Avatar) + 'static>(
             this: *mut ffi::AdwAvatar,
             _param_spec: glib::ffi::gpointer,
@@ -193,7 +194,7 @@ impl Avatar {
     }
 
     #[doc(alias = "size")]
-    pub fn connect_size_notify<F: Fn(&Avatar) + 'static>(&self, f: F) -> SignalHandlerId {
+    pub fn connect_size_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_size_trampoline<F: Fn(&Avatar) + 'static>(
             this: *mut ffi::AdwAvatar,
             _param_spec: glib::ffi::gpointer,
@@ -216,7 +217,7 @@ impl Avatar {
     }
 
     #[doc(alias = "text")]
-    pub fn connect_text_notify<F: Fn(&Avatar) + 'static>(&self, f: F) -> SignalHandlerId {
+    pub fn connect_text_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_text_trampoline<F: Fn(&Avatar) + 'static>(
             this: *mut ffi::AdwAvatar,
             _param_spec: glib::ffi::gpointer,

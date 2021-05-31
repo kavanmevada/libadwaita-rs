@@ -31,7 +31,8 @@ impl StatusPage {
     }
 
     // rustdoc-stripper-ignore-next
-    /// Creates a new builder-style object to construct a [`StatusPage`]
+    /// Creates a new builder-style object to construct a [`StatusPage`].
+    ///
     /// This method returns an instance of [`StatusPageBuilder`] which can be used to create a [`StatusPage`].
     pub fn builder() -> StatusPageBuilder {
         StatusPageBuilder::default()
@@ -96,7 +97,7 @@ impl StatusPage {
     }
 
     #[doc(alias = "child")]
-    pub fn connect_child_notify<F: Fn(&StatusPage) + 'static>(&self, f: F) -> SignalHandlerId {
+    pub fn connect_child_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_child_trampoline<F: Fn(&StatusPage) + 'static>(
             this: *mut ffi::AdwStatusPage,
             _param_spec: glib::ffi::gpointer,
@@ -119,10 +120,7 @@ impl StatusPage {
     }
 
     #[doc(alias = "description")]
-    pub fn connect_description_notify<F: Fn(&StatusPage) + 'static>(
-        &self,
-        f: F,
-    ) -> SignalHandlerId {
+    pub fn connect_description_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_description_trampoline<F: Fn(&StatusPage) + 'static>(
             this: *mut ffi::AdwStatusPage,
             _param_spec: glib::ffi::gpointer,
@@ -145,7 +143,7 @@ impl StatusPage {
     }
 
     #[doc(alias = "icon-name")]
-    pub fn connect_icon_name_notify<F: Fn(&StatusPage) + 'static>(&self, f: F) -> SignalHandlerId {
+    pub fn connect_icon_name_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_icon_name_trampoline<F: Fn(&StatusPage) + 'static>(
             this: *mut ffi::AdwStatusPage,
             _param_spec: glib::ffi::gpointer,
@@ -168,7 +166,7 @@ impl StatusPage {
     }
 
     #[doc(alias = "title")]
-    pub fn connect_title_notify<F: Fn(&StatusPage) + 'static>(&self, f: F) -> SignalHandlerId {
+    pub fn connect_title_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_title_trampoline<F: Fn(&StatusPage) + 'static>(
             this: *mut ffi::AdwStatusPage,
             _param_spec: glib::ffi::gpointer,

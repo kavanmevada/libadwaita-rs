@@ -26,7 +26,8 @@ impl Window {
     }
 
     // rustdoc-stripper-ignore-next
-    /// Creates a new builder-style object to construct a [`Window`]
+    /// Creates a new builder-style object to construct a [`Window`].
+    ///
     /// This method returns an instance of [`WindowBuilder`] which can be used to create a [`Window`].
     pub fn builder() -> WindowBuilder {
         WindowBuilder::default()

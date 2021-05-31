@@ -34,7 +34,8 @@ impl Flap {
     }
 
     // rustdoc-stripper-ignore-next
-    /// Creates a new builder-style object to construct a [`Flap`]
+    /// Creates a new builder-style object to construct a [`Flap`].
+    ///
     /// This method returns an instance of [`FlapBuilder`] which can be used to create a [`Flap`].
     pub fn builder() -> FlapBuilder {
         FlapBuilder::default()
@@ -231,7 +232,7 @@ impl Flap {
     }
 
     #[doc(alias = "content")]
-    pub fn connect_content_notify<F: Fn(&Flap) + 'static>(&self, f: F) -> SignalHandlerId {
+    pub fn connect_content_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_content_trampoline<F: Fn(&Flap) + 'static>(
             this: *mut ffi::AdwFlap,
             _param_spec: glib::ffi::gpointer,
@@ -254,7 +255,7 @@ impl Flap {
     }
 
     #[doc(alias = "flap")]
-    pub fn connect_flap_notify<F: Fn(&Flap) + 'static>(&self, f: F) -> SignalHandlerId {
+    pub fn connect_flap_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_flap_trampoline<F: Fn(&Flap) + 'static>(
             this: *mut ffi::AdwFlap,
             _param_spec: glib::ffi::gpointer,
@@ -277,7 +278,7 @@ impl Flap {
     }
 
     #[doc(alias = "flap-position")]
-    pub fn connect_flap_position_notify<F: Fn(&Flap) + 'static>(&self, f: F) -> SignalHandlerId {
+    pub fn connect_flap_position_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_flap_position_trampoline<F: Fn(&Flap) + 'static>(
             this: *mut ffi::AdwFlap,
             _param_spec: glib::ffi::gpointer,
@@ -300,7 +301,7 @@ impl Flap {
     }
 
     #[doc(alias = "fold-duration")]
-    pub fn connect_fold_duration_notify<F: Fn(&Flap) + 'static>(&self, f: F) -> SignalHandlerId {
+    pub fn connect_fold_duration_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_fold_duration_trampoline<F: Fn(&Flap) + 'static>(
             this: *mut ffi::AdwFlap,
             _param_spec: glib::ffi::gpointer,
@@ -323,7 +324,7 @@ impl Flap {
     }
 
     #[doc(alias = "fold-policy")]
-    pub fn connect_fold_policy_notify<F: Fn(&Flap) + 'static>(&self, f: F) -> SignalHandlerId {
+    pub fn connect_fold_policy_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_fold_policy_trampoline<F: Fn(&Flap) + 'static>(
             this: *mut ffi::AdwFlap,
             _param_spec: glib::ffi::gpointer,
@@ -346,7 +347,7 @@ impl Flap {
     }
 
     #[doc(alias = "folded")]
-    pub fn connect_folded_notify<F: Fn(&Flap) + 'static>(&self, f: F) -> SignalHandlerId {
+    pub fn connect_folded_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_folded_trampoline<F: Fn(&Flap) + 'static>(
             this: *mut ffi::AdwFlap,
             _param_spec: glib::ffi::gpointer,
@@ -369,7 +370,7 @@ impl Flap {
     }
 
     #[doc(alias = "locked")]
-    pub fn connect_locked_notify<F: Fn(&Flap) + 'static>(&self, f: F) -> SignalHandlerId {
+    pub fn connect_locked_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_locked_trampoline<F: Fn(&Flap) + 'static>(
             this: *mut ffi::AdwFlap,
             _param_spec: glib::ffi::gpointer,
@@ -392,7 +393,7 @@ impl Flap {
     }
 
     #[doc(alias = "modal")]
-    pub fn connect_modal_notify<F: Fn(&Flap) + 'static>(&self, f: F) -> SignalHandlerId {
+    pub fn connect_modal_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_modal_trampoline<F: Fn(&Flap) + 'static>(
             this: *mut ffi::AdwFlap,
             _param_spec: glib::ffi::gpointer,
@@ -415,7 +416,7 @@ impl Flap {
     }
 
     #[doc(alias = "reveal-duration")]
-    pub fn connect_reveal_duration_notify<F: Fn(&Flap) + 'static>(&self, f: F) -> SignalHandlerId {
+    pub fn connect_reveal_duration_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_reveal_duration_trampoline<F: Fn(&Flap) + 'static>(
             this: *mut ffi::AdwFlap,
             _param_spec: glib::ffi::gpointer,
@@ -438,7 +439,7 @@ impl Flap {
     }
 
     #[doc(alias = "reveal-flap")]
-    pub fn connect_reveal_flap_notify<F: Fn(&Flap) + 'static>(&self, f: F) -> SignalHandlerId {
+    pub fn connect_reveal_flap_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_reveal_flap_trampoline<F: Fn(&Flap) + 'static>(
             this: *mut ffi::AdwFlap,
             _param_spec: glib::ffi::gpointer,
@@ -461,7 +462,7 @@ impl Flap {
     }
 
     #[doc(alias = "reveal-progress")]
-    pub fn connect_reveal_progress_notify<F: Fn(&Flap) + 'static>(&self, f: F) -> SignalHandlerId {
+    pub fn connect_reveal_progress_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_reveal_progress_trampoline<F: Fn(&Flap) + 'static>(
             this: *mut ffi::AdwFlap,
             _param_spec: glib::ffi::gpointer,
@@ -484,7 +485,7 @@ impl Flap {
     }
 
     #[doc(alias = "separator")]
-    pub fn connect_separator_notify<F: Fn(&Flap) + 'static>(&self, f: F) -> SignalHandlerId {
+    pub fn connect_separator_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_separator_trampoline<F: Fn(&Flap) + 'static>(
             this: *mut ffi::AdwFlap,
             _param_spec: glib::ffi::gpointer,
@@ -507,7 +508,7 @@ impl Flap {
     }
 
     #[doc(alias = "swipe-to-close")]
-    pub fn connect_swipe_to_close_notify<F: Fn(&Flap) + 'static>(&self, f: F) -> SignalHandlerId {
+    pub fn connect_swipe_to_close_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_swipe_to_close_trampoline<F: Fn(&Flap) + 'static>(
             this: *mut ffi::AdwFlap,
             _param_spec: glib::ffi::gpointer,
@@ -530,7 +531,7 @@ impl Flap {
     }
 
     #[doc(alias = "swipe-to-open")]
-    pub fn connect_swipe_to_open_notify<F: Fn(&Flap) + 'static>(&self, f: F) -> SignalHandlerId {
+    pub fn connect_swipe_to_open_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_swipe_to_open_trampoline<F: Fn(&Flap) + 'static>(
             this: *mut ffi::AdwFlap,
             _param_spec: glib::ffi::gpointer,
@@ -553,7 +554,7 @@ impl Flap {
     }
 
     #[doc(alias = "transition-type")]
-    pub fn connect_transition_type_notify<F: Fn(&Flap) + 'static>(&self, f: F) -> SignalHandlerId {
+    pub fn connect_transition_type_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_transition_type_trampoline<F: Fn(&Flap) + 'static>(
             this: *mut ffi::AdwFlap,
             _param_spec: glib::ffi::gpointer,

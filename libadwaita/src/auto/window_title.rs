@@ -37,7 +37,8 @@ impl WindowTitle {
     }
 
     // rustdoc-stripper-ignore-next
-    /// Creates a new builder-style object to construct a [`WindowTitle`]
+    /// Creates a new builder-style object to construct a [`WindowTitle`].
+    ///
     /// This method returns an instance of [`WindowTitleBuilder`] which can be used to create a [`WindowTitle`].
     pub fn builder() -> WindowTitleBuilder {
         WindowTitleBuilder::default()
@@ -70,7 +71,7 @@ impl WindowTitle {
     }
 
     #[doc(alias = "subtitle")]
-    pub fn connect_subtitle_notify<F: Fn(&WindowTitle) + 'static>(&self, f: F) -> SignalHandlerId {
+    pub fn connect_subtitle_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_subtitle_trampoline<F: Fn(&WindowTitle) + 'static>(
             this: *mut ffi::AdwWindowTitle,
             _param_spec: glib::ffi::gpointer,
@@ -93,7 +94,7 @@ impl WindowTitle {
     }
 
     #[doc(alias = "title")]
-    pub fn connect_title_notify<F: Fn(&WindowTitle) + 'static>(&self, f: F) -> SignalHandlerId {
+    pub fn connect_title_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_title_trampoline<F: Fn(&WindowTitle) + 'static>(
             this: *mut ffi::AdwWindowTitle,
             _param_spec: glib::ffi::gpointer,

@@ -32,7 +32,8 @@ impl Carousel {
     }
 
     // rustdoc-stripper-ignore-next
-    /// Creates a new builder-style object to construct a [`Carousel`]
+    /// Creates a new builder-style object to construct a [`Carousel`].
+    ///
     /// This method returns an instance of [`CarouselBuilder`] which can be used to create a [`Carousel`].
     pub fn builder() -> CarouselBuilder {
         CarouselBuilder::default()
@@ -230,7 +231,7 @@ impl Carousel {
     }
 
     #[doc(alias = "page-changed")]
-    pub fn connect_page_changed<F: Fn(&Carousel, u32) + 'static>(&self, f: F) -> SignalHandlerId {
+    pub fn connect_page_changed<F: Fn(&Self, u32) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn page_changed_trampoline<F: Fn(&Carousel, u32) + 'static>(
             this: *mut ffi::AdwCarousel,
             index: libc::c_uint,
@@ -253,7 +254,7 @@ impl Carousel {
     }
 
     #[doc(alias = "allow-long-swipes")]
-    pub fn connect_allow_long_swipes_notify<F: Fn(&Carousel) + 'static>(
+    pub fn connect_allow_long_swipes_notify<F: Fn(&Self) + 'static>(
         &self,
         f: F,
     ) -> SignalHandlerId {
@@ -279,10 +280,7 @@ impl Carousel {
     }
 
     #[doc(alias = "allow-mouse-drag")]
-    pub fn connect_allow_mouse_drag_notify<F: Fn(&Carousel) + 'static>(
-        &self,
-        f: F,
-    ) -> SignalHandlerId {
+    pub fn connect_allow_mouse_drag_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_allow_mouse_drag_trampoline<F: Fn(&Carousel) + 'static>(
             this: *mut ffi::AdwCarousel,
             _param_spec: glib::ffi::gpointer,
@@ -305,7 +303,7 @@ impl Carousel {
     }
 
     #[doc(alias = "allow-scroll-wheel")]
-    pub fn connect_allow_scroll_wheel_notify<F: Fn(&Carousel) + 'static>(
+    pub fn connect_allow_scroll_wheel_notify<F: Fn(&Self) + 'static>(
         &self,
         f: F,
     ) -> SignalHandlerId {
@@ -331,7 +329,7 @@ impl Carousel {
     }
 
     #[doc(alias = "animation-duration")]
-    pub fn connect_animation_duration_notify<F: Fn(&Carousel) + 'static>(
+    pub fn connect_animation_duration_notify<F: Fn(&Self) + 'static>(
         &self,
         f: F,
     ) -> SignalHandlerId {
@@ -357,7 +355,7 @@ impl Carousel {
     }
 
     #[doc(alias = "interactive")]
-    pub fn connect_interactive_notify<F: Fn(&Carousel) + 'static>(&self, f: F) -> SignalHandlerId {
+    pub fn connect_interactive_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_interactive_trampoline<F: Fn(&Carousel) + 'static>(
             this: *mut ffi::AdwCarousel,
             _param_spec: glib::ffi::gpointer,
@@ -380,7 +378,7 @@ impl Carousel {
     }
 
     #[doc(alias = "n-pages")]
-    pub fn connect_n_pages_notify<F: Fn(&Carousel) + 'static>(&self, f: F) -> SignalHandlerId {
+    pub fn connect_n_pages_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_n_pages_trampoline<F: Fn(&Carousel) + 'static>(
             this: *mut ffi::AdwCarousel,
             _param_spec: glib::ffi::gpointer,
@@ -403,7 +401,7 @@ impl Carousel {
     }
 
     #[doc(alias = "position")]
-    pub fn connect_position_notify<F: Fn(&Carousel) + 'static>(&self, f: F) -> SignalHandlerId {
+    pub fn connect_position_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_position_trampoline<F: Fn(&Carousel) + 'static>(
             this: *mut ffi::AdwCarousel,
             _param_spec: glib::ffi::gpointer,
@@ -426,10 +424,7 @@ impl Carousel {
     }
 
     #[doc(alias = "reveal-duration")]
-    pub fn connect_reveal_duration_notify<F: Fn(&Carousel) + 'static>(
-        &self,
-        f: F,
-    ) -> SignalHandlerId {
+    pub fn connect_reveal_duration_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_reveal_duration_trampoline<F: Fn(&Carousel) + 'static>(
             this: *mut ffi::AdwCarousel,
             _param_spec: glib::ffi::gpointer,
@@ -452,7 +447,7 @@ impl Carousel {
     }
 
     #[doc(alias = "spacing")]
-    pub fn connect_spacing_notify<F: Fn(&Carousel) + 'static>(&self, f: F) -> SignalHandlerId {
+    pub fn connect_spacing_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_spacing_trampoline<F: Fn(&Carousel) + 'static>(
             this: *mut ffi::AdwCarousel,
             _param_spec: glib::ffi::gpointer,

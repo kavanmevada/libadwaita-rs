@@ -33,7 +33,8 @@ impl Squeezer {
     }
 
     // rustdoc-stripper-ignore-next
-    /// Creates a new builder-style object to construct a [`Squeezer`]
+    /// Creates a new builder-style object to construct a [`Squeezer`].
+    ///
     /// This method returns an instance of [`SqueezerBuilder`] which can be used to create a [`Squeezer`].
     pub fn builder() -> SqueezerBuilder {
         SqueezerBuilder::default()
@@ -175,7 +176,7 @@ impl Squeezer {
     }
 
     #[doc(alias = "homogeneous")]
-    pub fn connect_homogeneous_notify<F: Fn(&Squeezer) + 'static>(&self, f: F) -> SignalHandlerId {
+    pub fn connect_homogeneous_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_homogeneous_trampoline<F: Fn(&Squeezer) + 'static>(
             this: *mut ffi::AdwSqueezer,
             _param_spec: glib::ffi::gpointer,
@@ -198,10 +199,7 @@ impl Squeezer {
     }
 
     #[doc(alias = "interpolate-size")]
-    pub fn connect_interpolate_size_notify<F: Fn(&Squeezer) + 'static>(
-        &self,
-        f: F,
-    ) -> SignalHandlerId {
+    pub fn connect_interpolate_size_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_interpolate_size_trampoline<F: Fn(&Squeezer) + 'static>(
             this: *mut ffi::AdwSqueezer,
             _param_spec: glib::ffi::gpointer,
@@ -224,7 +222,7 @@ impl Squeezer {
     }
 
     #[doc(alias = "pages")]
-    pub fn connect_pages_notify<F: Fn(&Squeezer) + 'static>(&self, f: F) -> SignalHandlerId {
+    pub fn connect_pages_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_pages_trampoline<F: Fn(&Squeezer) + 'static>(
             this: *mut ffi::AdwSqueezer,
             _param_spec: glib::ffi::gpointer,
@@ -247,7 +245,7 @@ impl Squeezer {
     }
 
     #[doc(alias = "transition-duration")]
-    pub fn connect_transition_duration_notify<F: Fn(&Squeezer) + 'static>(
+    pub fn connect_transition_duration_notify<F: Fn(&Self) + 'static>(
         &self,
         f: F,
     ) -> SignalHandlerId {
@@ -273,7 +271,7 @@ impl Squeezer {
     }
 
     #[doc(alias = "transition-running")]
-    pub fn connect_transition_running_notify<F: Fn(&Squeezer) + 'static>(
+    pub fn connect_transition_running_notify<F: Fn(&Self) + 'static>(
         &self,
         f: F,
     ) -> SignalHandlerId {
@@ -299,10 +297,7 @@ impl Squeezer {
     }
 
     #[doc(alias = "transition-type")]
-    pub fn connect_transition_type_notify<F: Fn(&Squeezer) + 'static>(
-        &self,
-        f: F,
-    ) -> SignalHandlerId {
+    pub fn connect_transition_type_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_transition_type_trampoline<F: Fn(&Squeezer) + 'static>(
             this: *mut ffi::AdwSqueezer,
             _param_spec: glib::ffi::gpointer,
@@ -325,10 +320,7 @@ impl Squeezer {
     }
 
     #[doc(alias = "visible-child")]
-    pub fn connect_visible_child_notify<F: Fn(&Squeezer) + 'static>(
-        &self,
-        f: F,
-    ) -> SignalHandlerId {
+    pub fn connect_visible_child_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_visible_child_trampoline<F: Fn(&Squeezer) + 'static>(
             this: *mut ffi::AdwSqueezer,
             _param_spec: glib::ffi::gpointer,
@@ -351,7 +343,7 @@ impl Squeezer {
     }
 
     #[doc(alias = "xalign")]
-    pub fn connect_xalign_notify<F: Fn(&Squeezer) + 'static>(&self, f: F) -> SignalHandlerId {
+    pub fn connect_xalign_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_xalign_trampoline<F: Fn(&Squeezer) + 'static>(
             this: *mut ffi::AdwSqueezer,
             _param_spec: glib::ffi::gpointer,
@@ -374,7 +366,7 @@ impl Squeezer {
     }
 
     #[doc(alias = "yalign")]
-    pub fn connect_yalign_notify<F: Fn(&Squeezer) + 'static>(&self, f: F) -> SignalHandlerId {
+    pub fn connect_yalign_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_yalign_trampoline<F: Fn(&Squeezer) + 'static>(
             this: *mut ffi::AdwSqueezer,
             _param_spec: glib::ffi::gpointer,

@@ -32,7 +32,8 @@ impl TabView {
     }
 
     // rustdoc-stripper-ignore-next
-    /// Creates a new builder-style object to construct a [`TabView`]
+    /// Creates a new builder-style object to construct a [`TabView`].
+    ///
     /// This method returns an instance of [`TabViewBuilder`] which can be used to create a [`TabView`].
     pub fn builder() -> TabViewBuilder {
         TabViewBuilder::default()
@@ -363,7 +364,7 @@ impl TabView {
     }
 
     #[doc(alias = "close-page")]
-    pub fn connect_close_page<F: Fn(&TabView, &TabPage) -> bool + 'static>(
+    pub fn connect_close_page<F: Fn(&Self, &TabPage) -> bool + 'static>(
         &self,
         f: F,
     ) -> SignalHandlerId {
@@ -389,7 +390,7 @@ impl TabView {
     }
 
     #[doc(alias = "create-window")]
-    pub fn connect_create_window<F: Fn(&TabView) -> Option<TabView> + 'static>(
+    pub fn connect_create_window<F: Fn(&Self) -> Option<TabView> + 'static>(
         &self,
         f: F,
     ) -> SignalHandlerId {
@@ -418,7 +419,7 @@ impl TabView {
     }
 
     #[doc(alias = "indicator-activated")]
-    pub fn connect_indicator_activated<F: Fn(&TabView, &TabPage) + 'static>(
+    pub fn connect_indicator_activated<F: Fn(&Self, &TabPage) + 'static>(
         &self,
         f: F,
     ) -> SignalHandlerId {
@@ -444,7 +445,7 @@ impl TabView {
     }
 
     #[doc(alias = "page-attached")]
-    pub fn connect_page_attached<F: Fn(&TabView, &TabPage, i32) + 'static>(
+    pub fn connect_page_attached<F: Fn(&Self, &TabPage, i32) + 'static>(
         &self,
         f: F,
     ) -> SignalHandlerId {
@@ -471,7 +472,7 @@ impl TabView {
     }
 
     #[doc(alias = "page-detached")]
-    pub fn connect_page_detached<F: Fn(&TabView, &TabPage, i32) + 'static>(
+    pub fn connect_page_detached<F: Fn(&Self, &TabPage, i32) + 'static>(
         &self,
         f: F,
     ) -> SignalHandlerId {
@@ -498,7 +499,7 @@ impl TabView {
     }
 
     #[doc(alias = "page-reordered")]
-    pub fn connect_page_reordered<F: Fn(&TabView, &TabPage, i32) + 'static>(
+    pub fn connect_page_reordered<F: Fn(&Self, &TabPage, i32) + 'static>(
         &self,
         f: F,
     ) -> SignalHandlerId {
@@ -525,7 +526,7 @@ impl TabView {
     }
 
     #[doc(alias = "setup-menu")]
-    pub fn connect_setup_menu<F: Fn(&TabView, Option<&TabPage>) + 'static>(
+    pub fn connect_setup_menu<F: Fn(&Self, Option<&TabPage>) + 'static>(
         &self,
         f: F,
     ) -> SignalHandlerId {
@@ -554,7 +555,7 @@ impl TabView {
     }
 
     #[doc(alias = "default-icon")]
-    pub fn connect_default_icon_notify<F: Fn(&TabView) + 'static>(&self, f: F) -> SignalHandlerId {
+    pub fn connect_default_icon_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_default_icon_trampoline<F: Fn(&TabView) + 'static>(
             this: *mut ffi::AdwTabView,
             _param_spec: glib::ffi::gpointer,
@@ -577,7 +578,7 @@ impl TabView {
     }
 
     #[doc(alias = "is-transferring-page")]
-    pub fn connect_is_transferring_page_notify<F: Fn(&TabView) + 'static>(
+    pub fn connect_is_transferring_page_notify<F: Fn(&Self) + 'static>(
         &self,
         f: F,
     ) -> SignalHandlerId {
@@ -603,7 +604,7 @@ impl TabView {
     }
 
     #[doc(alias = "menu-model")]
-    pub fn connect_menu_model_notify<F: Fn(&TabView) + 'static>(&self, f: F) -> SignalHandlerId {
+    pub fn connect_menu_model_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_menu_model_trampoline<F: Fn(&TabView) + 'static>(
             this: *mut ffi::AdwTabView,
             _param_spec: glib::ffi::gpointer,
@@ -626,7 +627,7 @@ impl TabView {
     }
 
     #[doc(alias = "n-pages")]
-    pub fn connect_n_pages_notify<F: Fn(&TabView) + 'static>(&self, f: F) -> SignalHandlerId {
+    pub fn connect_n_pages_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_n_pages_trampoline<F: Fn(&TabView) + 'static>(
             this: *mut ffi::AdwTabView,
             _param_spec: glib::ffi::gpointer,
@@ -649,10 +650,7 @@ impl TabView {
     }
 
     #[doc(alias = "n-pinned-pages")]
-    pub fn connect_n_pinned_pages_notify<F: Fn(&TabView) + 'static>(
-        &self,
-        f: F,
-    ) -> SignalHandlerId {
+    pub fn connect_n_pinned_pages_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_n_pinned_pages_trampoline<F: Fn(&TabView) + 'static>(
             this: *mut ffi::AdwTabView,
             _param_spec: glib::ffi::gpointer,
@@ -675,7 +673,7 @@ impl TabView {
     }
 
     #[doc(alias = "pages")]
-    pub fn connect_pages_notify<F: Fn(&TabView) + 'static>(&self, f: F) -> SignalHandlerId {
+    pub fn connect_pages_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_pages_trampoline<F: Fn(&TabView) + 'static>(
             this: *mut ffi::AdwTabView,
             _param_spec: glib::ffi::gpointer,
@@ -698,7 +696,7 @@ impl TabView {
     }
 
     #[doc(alias = "selected-page")]
-    pub fn connect_selected_page_notify<F: Fn(&TabView) + 'static>(&self, f: F) -> SignalHandlerId {
+    pub fn connect_selected_page_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_selected_page_trampoline<F: Fn(&TabView) + 'static>(
             this: *mut ffi::AdwTabView,
             _param_spec: glib::ffi::gpointer,
@@ -721,10 +719,7 @@ impl TabView {
     }
 
     #[doc(alias = "shortcut-widget")]
-    pub fn connect_shortcut_widget_notify<F: Fn(&TabView) + 'static>(
-        &self,
-        f: F,
-    ) -> SignalHandlerId {
+    pub fn connect_shortcut_widget_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_shortcut_widget_trampoline<F: Fn(&TabView) + 'static>(
             this: *mut ffi::AdwTabView,
             _param_spec: glib::ffi::gpointer,

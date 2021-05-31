@@ -32,7 +32,8 @@ impl ViewSwitcherTitle {
     }
 
     // rustdoc-stripper-ignore-next
-    /// Creates a new builder-style object to construct a [`ViewSwitcherTitle`]
+    /// Creates a new builder-style object to construct a [`ViewSwitcherTitle`].
+    ///
     /// This method returns an instance of [`ViewSwitcherTitleBuilder`] which can be used to create a [`ViewSwitcherTitle`].
     pub fn builder() -> ViewSwitcherTitleBuilder {
         ViewSwitcherTitleBuilder::default()
@@ -140,10 +141,7 @@ impl ViewSwitcherTitle {
     }
 
     #[doc(alias = "policy")]
-    pub fn connect_policy_notify<F: Fn(&ViewSwitcherTitle) + 'static>(
-        &self,
-        f: F,
-    ) -> SignalHandlerId {
+    pub fn connect_policy_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_policy_trampoline<F: Fn(&ViewSwitcherTitle) + 'static>(
             this: *mut ffi::AdwViewSwitcherTitle,
             _param_spec: glib::ffi::gpointer,
@@ -166,10 +164,7 @@ impl ViewSwitcherTitle {
     }
 
     #[doc(alias = "stack")]
-    pub fn connect_stack_notify<F: Fn(&ViewSwitcherTitle) + 'static>(
-        &self,
-        f: F,
-    ) -> SignalHandlerId {
+    pub fn connect_stack_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_stack_trampoline<F: Fn(&ViewSwitcherTitle) + 'static>(
             this: *mut ffi::AdwViewSwitcherTitle,
             _param_spec: glib::ffi::gpointer,
@@ -192,10 +187,7 @@ impl ViewSwitcherTitle {
     }
 
     #[doc(alias = "subtitle")]
-    pub fn connect_subtitle_notify<F: Fn(&ViewSwitcherTitle) + 'static>(
-        &self,
-        f: F,
-    ) -> SignalHandlerId {
+    pub fn connect_subtitle_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_subtitle_trampoline<F: Fn(&ViewSwitcherTitle) + 'static>(
             this: *mut ffi::AdwViewSwitcherTitle,
             _param_spec: glib::ffi::gpointer,
@@ -218,10 +210,7 @@ impl ViewSwitcherTitle {
     }
 
     #[doc(alias = "title")]
-    pub fn connect_title_notify<F: Fn(&ViewSwitcherTitle) + 'static>(
-        &self,
-        f: F,
-    ) -> SignalHandlerId {
+    pub fn connect_title_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_title_trampoline<F: Fn(&ViewSwitcherTitle) + 'static>(
             this: *mut ffi::AdwViewSwitcherTitle,
             _param_spec: glib::ffi::gpointer,
@@ -244,10 +233,7 @@ impl ViewSwitcherTitle {
     }
 
     #[doc(alias = "title-visible")]
-    pub fn connect_title_visible_notify<F: Fn(&ViewSwitcherTitle) + 'static>(
-        &self,
-        f: F,
-    ) -> SignalHandlerId {
+    pub fn connect_title_visible_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_title_visible_trampoline<
             F: Fn(&ViewSwitcherTitle) + 'static,
         >(
@@ -272,7 +258,7 @@ impl ViewSwitcherTitle {
     }
 
     #[doc(alias = "view-switcher-enabled")]
-    pub fn connect_view_switcher_enabled_notify<F: Fn(&ViewSwitcherTitle) + 'static>(
+    pub fn connect_view_switcher_enabled_notify<F: Fn(&Self) + 'static>(
         &self,
         f: F,
     ) -> SignalHandlerId {

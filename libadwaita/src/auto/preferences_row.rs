@@ -30,7 +30,8 @@ impl PreferencesRow {
     }
 
     // rustdoc-stripper-ignore-next
-    /// Creates a new builder-style object to construct a [`PreferencesRow`]
+    /// Creates a new builder-style object to construct a [`PreferencesRow`].
+    ///
     /// This method returns an instance of [`PreferencesRowBuilder`] which can be used to create a [`PreferencesRow`].
     pub fn builder() -> PreferencesRowBuilder {
         PreferencesRowBuilder::default()
@@ -459,13 +460,14 @@ impl<O: IsA<PreferencesRow>> PreferencesRowExt for O {
 
     #[doc(alias = "title")]
     fn connect_title_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
-        unsafe extern "C" fn notify_title_trampoline<P, F: Fn(&P) + 'static>(
+        unsafe extern "C" fn notify_title_trampoline<
+            P: IsA<PreferencesRow>,
+            F: Fn(&P) + 'static,
+        >(
             this: *mut ffi::AdwPreferencesRow,
             _param_spec: glib::ffi::gpointer,
             f: glib::ffi::gpointer,
-        ) where
-            P: IsA<PreferencesRow>,
-        {
+        ) {
             let f: &F = &*(f as *const F);
             f(&PreferencesRow::from_glib_borrow(this).unsafe_cast_ref())
         }
@@ -484,13 +486,14 @@ impl<O: IsA<PreferencesRow>> PreferencesRowExt for O {
 
     #[doc(alias = "use-underline")]
     fn connect_use_underline_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
-        unsafe extern "C" fn notify_use_underline_trampoline<P, F: Fn(&P) + 'static>(
+        unsafe extern "C" fn notify_use_underline_trampoline<
+            P: IsA<PreferencesRow>,
+            F: Fn(&P) + 'static,
+        >(
             this: *mut ffi::AdwPreferencesRow,
             _param_spec: glib::ffi::gpointer,
             f: glib::ffi::gpointer,
-        ) where
-            P: IsA<PreferencesRow>,
-        {
+        ) {
             let f: &F = &*(f as *const F);
             f(&PreferencesRow::from_glib_borrow(this).unsafe_cast_ref())
         }

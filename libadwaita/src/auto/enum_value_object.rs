@@ -39,7 +39,7 @@ impl EnumValueObject {
     }
 
     #[doc(alias = "name")]
-    pub fn connect_name_notify<F: Fn(&EnumValueObject) + 'static>(&self, f: F) -> SignalHandlerId {
+    pub fn connect_name_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_name_trampoline<F: Fn(&EnumValueObject) + 'static>(
             this: *mut ffi::AdwEnumValueObject,
             _param_spec: glib::ffi::gpointer,
@@ -62,7 +62,7 @@ impl EnumValueObject {
     }
 
     #[doc(alias = "nick")]
-    pub fn connect_nick_notify<F: Fn(&EnumValueObject) + 'static>(&self, f: F) -> SignalHandlerId {
+    pub fn connect_nick_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_nick_trampoline<F: Fn(&EnumValueObject) + 'static>(
             this: *mut ffi::AdwEnumValueObject,
             _param_spec: glib::ffi::gpointer,
@@ -85,7 +85,7 @@ impl EnumValueObject {
     }
 
     #[doc(alias = "value")]
-    pub fn connect_value_notify<F: Fn(&EnumValueObject) + 'static>(&self, f: F) -> SignalHandlerId {
+    pub fn connect_value_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_value_trampoline<F: Fn(&EnumValueObject) + 'static>(
             this: *mut ffi::AdwEnumValueObject,
             _param_spec: glib::ffi::gpointer,

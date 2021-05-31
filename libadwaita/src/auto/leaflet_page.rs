@@ -25,7 +25,8 @@ glib::wrapper! {
 
 impl LeafletPage {
     // rustdoc-stripper-ignore-next
-    /// Creates a new builder-style object to construct a [`LeafletPage`]
+    /// Creates a new builder-style object to construct a [`LeafletPage`].
+    ///
     /// This method returns an instance of [`LeafletPageBuilder`] which can be used to create a [`LeafletPage`].
     pub fn builder() -> LeafletPageBuilder {
         LeafletPageBuilder::default()
@@ -64,7 +65,7 @@ impl LeafletPage {
     }
 
     #[doc(alias = "name")]
-    pub fn connect_name_notify<F: Fn(&LeafletPage) + 'static>(&self, f: F) -> SignalHandlerId {
+    pub fn connect_name_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_name_trampoline<F: Fn(&LeafletPage) + 'static>(
             this: *mut ffi::AdwLeafletPage,
             _param_spec: glib::ffi::gpointer,
@@ -87,10 +88,7 @@ impl LeafletPage {
     }
 
     #[doc(alias = "navigatable")]
-    pub fn connect_navigatable_notify<F: Fn(&LeafletPage) + 'static>(
-        &self,
-        f: F,
-    ) -> SignalHandlerId {
+    pub fn connect_navigatable_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_navigatable_trampoline<F: Fn(&LeafletPage) + 'static>(
             this: *mut ffi::AdwLeafletPage,
             _param_spec: glib::ffi::gpointer,

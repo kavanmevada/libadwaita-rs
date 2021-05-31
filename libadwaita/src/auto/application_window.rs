@@ -31,7 +31,8 @@ impl ApplicationWindow {
     }
 
     // rustdoc-stripper-ignore-next
-    /// Creates a new builder-style object to construct a [`ApplicationWindow`]
+    /// Creates a new builder-style object to construct a [`ApplicationWindow`].
+    ///
     /// This method returns an instance of [`ApplicationWindowBuilder`] which can be used to create a [`ApplicationWindow`].
     pub fn builder() -> ApplicationWindowBuilder {
         ApplicationWindowBuilder::default()

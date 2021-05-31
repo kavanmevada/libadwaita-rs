@@ -25,7 +25,8 @@ glib::wrapper! {
 
 impl TabPage {
     // rustdoc-stripper-ignore-next
-    /// Creates a new builder-style object to construct a [`TabPage`]
+    /// Creates a new builder-style object to construct a [`TabPage`].
+    ///
     /// This method returns an instance of [`TabPageBuilder`] which can be used to create a [`TabPage`].
     pub fn builder() -> TabPageBuilder {
         TabPageBuilder::default()
@@ -163,7 +164,7 @@ impl TabPage {
     }
 
     #[doc(alias = "icon")]
-    pub fn connect_icon_notify<F: Fn(&TabPage) + 'static>(&self, f: F) -> SignalHandlerId {
+    pub fn connect_icon_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_icon_trampoline<F: Fn(&TabPage) + 'static>(
             this: *mut ffi::AdwTabPage,
             _param_spec: glib::ffi::gpointer,
@@ -186,7 +187,7 @@ impl TabPage {
     }
 
     #[doc(alias = "indicator-activatable")]
-    pub fn connect_indicator_activatable_notify<F: Fn(&TabPage) + 'static>(
+    pub fn connect_indicator_activatable_notify<F: Fn(&Self) + 'static>(
         &self,
         f: F,
     ) -> SignalHandlerId {
@@ -212,10 +213,7 @@ impl TabPage {
     }
 
     #[doc(alias = "indicator-icon")]
-    pub fn connect_indicator_icon_notify<F: Fn(&TabPage) + 'static>(
-        &self,
-        f: F,
-    ) -> SignalHandlerId {
+    pub fn connect_indicator_icon_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_indicator_icon_trampoline<F: Fn(&TabPage) + 'static>(
             this: *mut ffi::AdwTabPage,
             _param_spec: glib::ffi::gpointer,
@@ -238,7 +236,7 @@ impl TabPage {
     }
 
     #[doc(alias = "loading")]
-    pub fn connect_loading_notify<F: Fn(&TabPage) + 'static>(&self, f: F) -> SignalHandlerId {
+    pub fn connect_loading_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_loading_trampoline<F: Fn(&TabPage) + 'static>(
             this: *mut ffi::AdwTabPage,
             _param_spec: glib::ffi::gpointer,
@@ -261,10 +259,7 @@ impl TabPage {
     }
 
     #[doc(alias = "needs-attention")]
-    pub fn connect_needs_attention_notify<F: Fn(&TabPage) + 'static>(
-        &self,
-        f: F,
-    ) -> SignalHandlerId {
+    pub fn connect_needs_attention_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_needs_attention_trampoline<F: Fn(&TabPage) + 'static>(
             this: *mut ffi::AdwTabPage,
             _param_spec: glib::ffi::gpointer,
@@ -287,7 +282,7 @@ impl TabPage {
     }
 
     #[doc(alias = "pinned")]
-    pub fn connect_pinned_notify<F: Fn(&TabPage) + 'static>(&self, f: F) -> SignalHandlerId {
+    pub fn connect_pinned_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_pinned_trampoline<F: Fn(&TabPage) + 'static>(
             this: *mut ffi::AdwTabPage,
             _param_spec: glib::ffi::gpointer,
@@ -310,7 +305,7 @@ impl TabPage {
     }
 
     #[doc(alias = "selected")]
-    pub fn connect_selected_notify<F: Fn(&TabPage) + 'static>(&self, f: F) -> SignalHandlerId {
+    pub fn connect_selected_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_selected_trampoline<F: Fn(&TabPage) + 'static>(
             this: *mut ffi::AdwTabPage,
             _param_spec: glib::ffi::gpointer,
@@ -333,7 +328,7 @@ impl TabPage {
     }
 
     #[doc(alias = "title")]
-    pub fn connect_title_notify<F: Fn(&TabPage) + 'static>(&self, f: F) -> SignalHandlerId {
+    pub fn connect_title_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_title_trampoline<F: Fn(&TabPage) + 'static>(
             this: *mut ffi::AdwTabPage,
             _param_spec: glib::ffi::gpointer,
@@ -356,7 +351,7 @@ impl TabPage {
     }
 
     #[doc(alias = "tooltip")]
-    pub fn connect_tooltip_notify<F: Fn(&TabPage) + 'static>(&self, f: F) -> SignalHandlerId {
+    pub fn connect_tooltip_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_tooltip_trampoline<F: Fn(&TabPage) + 'static>(
             this: *mut ffi::AdwTabPage,
             _param_spec: glib::ffi::gpointer,

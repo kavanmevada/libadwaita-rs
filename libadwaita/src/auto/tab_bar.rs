@@ -32,7 +32,8 @@ impl TabBar {
     }
 
     // rustdoc-stripper-ignore-next
-    /// Creates a new builder-style object to construct a [`TabBar`]
+    /// Creates a new builder-style object to construct a [`TabBar`].
+    ///
     /// This method returns an instance of [`TabBarBuilder`] which can be used to create a [`TabBar`].
     pub fn builder() -> TabBarBuilder {
         TabBarBuilder::default()
@@ -143,7 +144,7 @@ impl TabBar {
     }
 
     #[doc(alias = "autohide")]
-    pub fn connect_autohide_notify<F: Fn(&TabBar) + 'static>(&self, f: F) -> SignalHandlerId {
+    pub fn connect_autohide_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_autohide_trampoline<F: Fn(&TabBar) + 'static>(
             this: *mut ffi::AdwTabBar,
             _param_spec: glib::ffi::gpointer,
@@ -166,7 +167,7 @@ impl TabBar {
     }
 
     #[doc(alias = "end-action-widget")]
-    pub fn connect_end_action_widget_notify<F: Fn(&TabBar) + 'static>(
+    pub fn connect_end_action_widget_notify<F: Fn(&Self) + 'static>(
         &self,
         f: F,
     ) -> SignalHandlerId {
@@ -192,7 +193,7 @@ impl TabBar {
     }
 
     #[doc(alias = "expand-tabs")]
-    pub fn connect_expand_tabs_notify<F: Fn(&TabBar) + 'static>(&self, f: F) -> SignalHandlerId {
+    pub fn connect_expand_tabs_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_expand_tabs_trampoline<F: Fn(&TabBar) + 'static>(
             this: *mut ffi::AdwTabBar,
             _param_spec: glib::ffi::gpointer,
@@ -215,7 +216,7 @@ impl TabBar {
     }
 
     #[doc(alias = "inverted")]
-    pub fn connect_inverted_notify<F: Fn(&TabBar) + 'static>(&self, f: F) -> SignalHandlerId {
+    pub fn connect_inverted_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_inverted_trampoline<F: Fn(&TabBar) + 'static>(
             this: *mut ffi::AdwTabBar,
             _param_spec: glib::ffi::gpointer,
@@ -238,7 +239,7 @@ impl TabBar {
     }
 
     #[doc(alias = "is-overflowing")]
-    pub fn connect_is_overflowing_notify<F: Fn(&TabBar) + 'static>(&self, f: F) -> SignalHandlerId {
+    pub fn connect_is_overflowing_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_is_overflowing_trampoline<F: Fn(&TabBar) + 'static>(
             this: *mut ffi::AdwTabBar,
             _param_spec: glib::ffi::gpointer,
@@ -261,7 +262,7 @@ impl TabBar {
     }
 
     #[doc(alias = "start-action-widget")]
-    pub fn connect_start_action_widget_notify<F: Fn(&TabBar) + 'static>(
+    pub fn connect_start_action_widget_notify<F: Fn(&Self) + 'static>(
         &self,
         f: F,
     ) -> SignalHandlerId {
@@ -287,7 +288,7 @@ impl TabBar {
     }
 
     #[doc(alias = "tabs-revealed")]
-    pub fn connect_tabs_revealed_notify<F: Fn(&TabBar) + 'static>(&self, f: F) -> SignalHandlerId {
+    pub fn connect_tabs_revealed_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_tabs_revealed_trampoline<F: Fn(&TabBar) + 'static>(
             this: *mut ffi::AdwTabBar,
             _param_spec: glib::ffi::gpointer,
@@ -310,7 +311,7 @@ impl TabBar {
     }
 
     #[doc(alias = "view")]
-    pub fn connect_view_notify<F: Fn(&TabBar) + 'static>(&self, f: F) -> SignalHandlerId {
+    pub fn connect_view_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_view_trampoline<F: Fn(&TabBar) + 'static>(
             this: *mut ffi::AdwTabBar,
             _param_spec: glib::ffi::gpointer,

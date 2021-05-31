@@ -35,7 +35,8 @@ impl Leaflet {
     }
 
     // rustdoc-stripper-ignore-next
-    /// Creates a new builder-style object to construct a [`Leaflet`]
+    /// Creates a new builder-style object to construct a [`Leaflet`].
+    ///
     /// This method returns an instance of [`LeafletBuilder`] which can be used to create a [`Leaflet`].
     pub fn builder() -> LeafletBuilder {
         LeafletBuilder::default()
@@ -426,10 +427,7 @@ impl Leaflet {
     }
 
     #[doc(alias = "can-swipe-back")]
-    pub fn connect_can_swipe_back_notify<F: Fn(&Leaflet) + 'static>(
-        &self,
-        f: F,
-    ) -> SignalHandlerId {
+    pub fn connect_can_swipe_back_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_can_swipe_back_trampoline<F: Fn(&Leaflet) + 'static>(
             this: *mut ffi::AdwLeaflet,
             _param_spec: glib::ffi::gpointer,
@@ -452,7 +450,7 @@ impl Leaflet {
     }
 
     #[doc(alias = "can-swipe-forward")]
-    pub fn connect_can_swipe_forward_notify<F: Fn(&Leaflet) + 'static>(
+    pub fn connect_can_swipe_forward_notify<F: Fn(&Self) + 'static>(
         &self,
         f: F,
     ) -> SignalHandlerId {
@@ -478,7 +476,7 @@ impl Leaflet {
     }
 
     #[doc(alias = "can-unfold")]
-    pub fn connect_can_unfold_notify<F: Fn(&Leaflet) + 'static>(&self, f: F) -> SignalHandlerId {
+    pub fn connect_can_unfold_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_can_unfold_trampoline<F: Fn(&Leaflet) + 'static>(
             this: *mut ffi::AdwLeaflet,
             _param_spec: glib::ffi::gpointer,
@@ -501,7 +499,7 @@ impl Leaflet {
     }
 
     #[doc(alias = "child-transition-duration")]
-    pub fn connect_child_transition_duration_notify<F: Fn(&Leaflet) + 'static>(
+    pub fn connect_child_transition_duration_notify<F: Fn(&Self) + 'static>(
         &self,
         f: F,
     ) -> SignalHandlerId {
@@ -529,7 +527,7 @@ impl Leaflet {
     }
 
     #[doc(alias = "child-transition-running")]
-    pub fn connect_child_transition_running_notify<F: Fn(&Leaflet) + 'static>(
+    pub fn connect_child_transition_running_notify<F: Fn(&Self) + 'static>(
         &self,
         f: F,
     ) -> SignalHandlerId {
@@ -557,7 +555,7 @@ impl Leaflet {
     }
 
     #[doc(alias = "folded")]
-    pub fn connect_folded_notify<F: Fn(&Leaflet) + 'static>(&self, f: F) -> SignalHandlerId {
+    pub fn connect_folded_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_folded_trampoline<F: Fn(&Leaflet) + 'static>(
             this: *mut ffi::AdwLeaflet,
             _param_spec: glib::ffi::gpointer,
@@ -580,7 +578,7 @@ impl Leaflet {
     }
 
     #[doc(alias = "hhomogeneous-folded")]
-    pub fn connect_hhomogeneous_folded_notify<F: Fn(&Leaflet) + 'static>(
+    pub fn connect_hhomogeneous_folded_notify<F: Fn(&Self) + 'static>(
         &self,
         f: F,
     ) -> SignalHandlerId {
@@ -606,7 +604,7 @@ impl Leaflet {
     }
 
     #[doc(alias = "hhomogeneous-unfolded")]
-    pub fn connect_hhomogeneous_unfolded_notify<F: Fn(&Leaflet) + 'static>(
+    pub fn connect_hhomogeneous_unfolded_notify<F: Fn(&Self) + 'static>(
         &self,
         f: F,
     ) -> SignalHandlerId {
@@ -632,10 +630,7 @@ impl Leaflet {
     }
 
     #[doc(alias = "interpolate-size")]
-    pub fn connect_interpolate_size_notify<F: Fn(&Leaflet) + 'static>(
-        &self,
-        f: F,
-    ) -> SignalHandlerId {
+    pub fn connect_interpolate_size_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_interpolate_size_trampoline<F: Fn(&Leaflet) + 'static>(
             this: *mut ffi::AdwLeaflet,
             _param_spec: glib::ffi::gpointer,
@@ -658,7 +653,7 @@ impl Leaflet {
     }
 
     #[doc(alias = "mode-transition-duration")]
-    pub fn connect_mode_transition_duration_notify<F: Fn(&Leaflet) + 'static>(
+    pub fn connect_mode_transition_duration_notify<F: Fn(&Self) + 'static>(
         &self,
         f: F,
     ) -> SignalHandlerId {
@@ -686,7 +681,7 @@ impl Leaflet {
     }
 
     #[doc(alias = "pages")]
-    pub fn connect_pages_notify<F: Fn(&Leaflet) + 'static>(&self, f: F) -> SignalHandlerId {
+    pub fn connect_pages_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_pages_trampoline<F: Fn(&Leaflet) + 'static>(
             this: *mut ffi::AdwLeaflet,
             _param_spec: glib::ffi::gpointer,
@@ -709,10 +704,7 @@ impl Leaflet {
     }
 
     #[doc(alias = "transition-type")]
-    pub fn connect_transition_type_notify<F: Fn(&Leaflet) + 'static>(
-        &self,
-        f: F,
-    ) -> SignalHandlerId {
+    pub fn connect_transition_type_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_transition_type_trampoline<F: Fn(&Leaflet) + 'static>(
             this: *mut ffi::AdwLeaflet,
             _param_spec: glib::ffi::gpointer,
@@ -735,7 +727,7 @@ impl Leaflet {
     }
 
     #[doc(alias = "vhomogeneous-folded")]
-    pub fn connect_vhomogeneous_folded_notify<F: Fn(&Leaflet) + 'static>(
+    pub fn connect_vhomogeneous_folded_notify<F: Fn(&Self) + 'static>(
         &self,
         f: F,
     ) -> SignalHandlerId {
@@ -761,7 +753,7 @@ impl Leaflet {
     }
 
     #[doc(alias = "vhomogeneous-unfolded")]
-    pub fn connect_vhomogeneous_unfolded_notify<F: Fn(&Leaflet) + 'static>(
+    pub fn connect_vhomogeneous_unfolded_notify<F: Fn(&Self) + 'static>(
         &self,
         f: F,
     ) -> SignalHandlerId {
@@ -787,7 +779,7 @@ impl Leaflet {
     }
 
     #[doc(alias = "visible-child")]
-    pub fn connect_visible_child_notify<F: Fn(&Leaflet) + 'static>(&self, f: F) -> SignalHandlerId {
+    pub fn connect_visible_child_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_visible_child_trampoline<F: Fn(&Leaflet) + 'static>(
             this: *mut ffi::AdwLeaflet,
             _param_spec: glib::ffi::gpointer,
@@ -810,7 +802,7 @@ impl Leaflet {
     }
 
     #[doc(alias = "visible-child-name")]
-    pub fn connect_visible_child_name_notify<F: Fn(&Leaflet) + 'static>(
+    pub fn connect_visible_child_name_notify<F: Fn(&Self) + 'static>(
         &self,
         f: F,
     ) -> SignalHandlerId {

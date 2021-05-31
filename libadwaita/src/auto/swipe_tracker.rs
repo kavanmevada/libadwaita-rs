@@ -37,7 +37,8 @@ impl SwipeTracker {
     }
 
     // rustdoc-stripper-ignore-next
-    /// Creates a new builder-style object to construct a [`SwipeTracker`]
+    /// Creates a new builder-style object to construct a [`SwipeTracker`].
+    ///
     /// This method returns an instance of [`SwipeTrackerBuilder`] which can be used to create a [`SwipeTracker`].
     pub fn builder() -> SwipeTrackerBuilder {
         SwipeTrackerBuilder::default()
@@ -123,7 +124,7 @@ impl SwipeTracker {
     }
 
     #[doc(alias = "begin-swipe")]
-    pub fn connect_begin_swipe<F: Fn(&SwipeTracker, NavigationDirection) + 'static>(
+    pub fn connect_begin_swipe<F: Fn(&Self, NavigationDirection) + 'static>(
         &self,
         f: F,
     ) -> SignalHandlerId {
@@ -151,10 +152,7 @@ impl SwipeTracker {
     }
 
     #[doc(alias = "end-swipe")]
-    pub fn connect_end_swipe<F: Fn(&SwipeTracker, i64, f64) + 'static>(
-        &self,
-        f: F,
-    ) -> SignalHandlerId {
+    pub fn connect_end_swipe<F: Fn(&Self, i64, f64) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn end_swipe_trampoline<F: Fn(&SwipeTracker, i64, f64) + 'static>(
             this: *mut ffi::AdwSwipeTracker,
             duration: i64,
@@ -178,10 +176,7 @@ impl SwipeTracker {
     }
 
     #[doc(alias = "update-swipe")]
-    pub fn connect_update_swipe<F: Fn(&SwipeTracker, f64) + 'static>(
-        &self,
-        f: F,
-    ) -> SignalHandlerId {
+    pub fn connect_update_swipe<F: Fn(&Self, f64) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn update_swipe_trampoline<F: Fn(&SwipeTracker, f64) + 'static>(
             this: *mut ffi::AdwSwipeTracker,
             progress: libc::c_double,
@@ -204,7 +199,7 @@ impl SwipeTracker {
     }
 
     #[doc(alias = "allow-long-swipes")]
-    pub fn connect_allow_long_swipes_notify<F: Fn(&SwipeTracker) + 'static>(
+    pub fn connect_allow_long_swipes_notify<F: Fn(&Self) + 'static>(
         &self,
         f: F,
     ) -> SignalHandlerId {
@@ -230,10 +225,7 @@ impl SwipeTracker {
     }
 
     #[doc(alias = "allow-mouse-drag")]
-    pub fn connect_allow_mouse_drag_notify<F: Fn(&SwipeTracker) + 'static>(
-        &self,
-        f: F,
-    ) -> SignalHandlerId {
+    pub fn connect_allow_mouse_drag_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_allow_mouse_drag_trampoline<F: Fn(&SwipeTracker) + 'static>(
             this: *mut ffi::AdwSwipeTracker,
             _param_spec: glib::ffi::gpointer,
@@ -256,7 +248,7 @@ impl SwipeTracker {
     }
 
     #[doc(alias = "enabled")]
-    pub fn connect_enabled_notify<F: Fn(&SwipeTracker) + 'static>(&self, f: F) -> SignalHandlerId {
+    pub fn connect_enabled_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_enabled_trampoline<F: Fn(&SwipeTracker) + 'static>(
             this: *mut ffi::AdwSwipeTracker,
             _param_spec: glib::ffi::gpointer,
@@ -279,7 +271,7 @@ impl SwipeTracker {
     }
 
     #[doc(alias = "reversed")]
-    pub fn connect_reversed_notify<F: Fn(&SwipeTracker) + 'static>(&self, f: F) -> SignalHandlerId {
+    pub fn connect_reversed_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_reversed_trampoline<F: Fn(&SwipeTracker) + 'static>(
             this: *mut ffi::AdwSwipeTracker,
             _param_spec: glib::ffi::gpointer,

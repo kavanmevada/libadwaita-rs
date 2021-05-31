@@ -32,7 +32,8 @@ impl ViewSwitcherBar {
     }
 
     // rustdoc-stripper-ignore-next
-    /// Creates a new builder-style object to construct a [`ViewSwitcherBar`]
+    /// Creates a new builder-style object to construct a [`ViewSwitcherBar`].
+    ///
     /// This method returns an instance of [`ViewSwitcherBarBuilder`] which can be used to create a [`ViewSwitcherBar`].
     pub fn builder() -> ViewSwitcherBarBuilder {
         ViewSwitcherBarBuilder::default()
@@ -78,10 +79,7 @@ impl ViewSwitcherBar {
     }
 
     #[doc(alias = "policy")]
-    pub fn connect_policy_notify<F: Fn(&ViewSwitcherBar) + 'static>(
-        &self,
-        f: F,
-    ) -> SignalHandlerId {
+    pub fn connect_policy_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_policy_trampoline<F: Fn(&ViewSwitcherBar) + 'static>(
             this: *mut ffi::AdwViewSwitcherBar,
             _param_spec: glib::ffi::gpointer,
@@ -104,10 +102,7 @@ impl ViewSwitcherBar {
     }
 
     #[doc(alias = "reveal")]
-    pub fn connect_reveal_notify<F: Fn(&ViewSwitcherBar) + 'static>(
-        &self,
-        f: F,
-    ) -> SignalHandlerId {
+    pub fn connect_reveal_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_reveal_trampoline<F: Fn(&ViewSwitcherBar) + 'static>(
             this: *mut ffi::AdwViewSwitcherBar,
             _param_spec: glib::ffi::gpointer,
@@ -130,7 +125,7 @@ impl ViewSwitcherBar {
     }
 
     #[doc(alias = "stack")]
-    pub fn connect_stack_notify<F: Fn(&ViewSwitcherBar) + 'static>(&self, f: F) -> SignalHandlerId {
+    pub fn connect_stack_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_stack_trampoline<F: Fn(&ViewSwitcherBar) + 'static>(
             this: *mut ffi::AdwViewSwitcherBar,
             _param_spec: glib::ffi::gpointer,

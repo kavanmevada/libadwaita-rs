@@ -32,7 +32,8 @@ impl HeaderBar {
     }
 
     // rustdoc-stripper-ignore-next
-    /// Creates a new builder-style object to construct a [`HeaderBar`]
+    /// Creates a new builder-style object to construct a [`HeaderBar`].
+    ///
     /// This method returns an instance of [`HeaderBarBuilder`] which can be used to create a [`HeaderBar`].
     pub fn builder() -> HeaderBarBuilder {
         HeaderBarBuilder::default()
@@ -156,10 +157,7 @@ impl HeaderBar {
     }
 
     #[doc(alias = "centering-policy")]
-    pub fn connect_centering_policy_notify<F: Fn(&HeaderBar) + 'static>(
-        &self,
-        f: F,
-    ) -> SignalHandlerId {
+    pub fn connect_centering_policy_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_centering_policy_trampoline<F: Fn(&HeaderBar) + 'static>(
             this: *mut ffi::AdwHeaderBar,
             _param_spec: glib::ffi::gpointer,
@@ -182,7 +180,7 @@ impl HeaderBar {
     }
 
     #[doc(alias = "decoration-layout")]
-    pub fn connect_decoration_layout_notify<F: Fn(&HeaderBar) + 'static>(
+    pub fn connect_decoration_layout_notify<F: Fn(&Self) + 'static>(
         &self,
         f: F,
     ) -> SignalHandlerId {
@@ -208,7 +206,7 @@ impl HeaderBar {
     }
 
     #[doc(alias = "show-end-title-buttons")]
-    pub fn connect_show_end_title_buttons_notify<F: Fn(&HeaderBar) + 'static>(
+    pub fn connect_show_end_title_buttons_notify<F: Fn(&Self) + 'static>(
         &self,
         f: F,
     ) -> SignalHandlerId {
@@ -236,7 +234,7 @@ impl HeaderBar {
     }
 
     #[doc(alias = "show-start-title-buttons")]
-    pub fn connect_show_start_title_buttons_notify<F: Fn(&HeaderBar) + 'static>(
+    pub fn connect_show_start_title_buttons_notify<F: Fn(&Self) + 'static>(
         &self,
         f: F,
     ) -> SignalHandlerId {
@@ -264,10 +262,7 @@ impl HeaderBar {
     }
 
     #[doc(alias = "title-widget")]
-    pub fn connect_title_widget_notify<F: Fn(&HeaderBar) + 'static>(
-        &self,
-        f: F,
-    ) -> SignalHandlerId {
+    pub fn connect_title_widget_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_title_widget_trampoline<F: Fn(&HeaderBar) + 'static>(
             this: *mut ffi::AdwHeaderBar,
             _param_spec: glib::ffi::gpointer,

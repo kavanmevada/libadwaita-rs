@@ -25,7 +25,8 @@ glib::wrapper! {
 
 impl SqueezerPage {
     // rustdoc-stripper-ignore-next
-    /// Creates a new builder-style object to construct a [`SqueezerPage`]
+    /// Creates a new builder-style object to construct a [`SqueezerPage`].
+    ///
     /// This method returns an instance of [`SqueezerPageBuilder`] which can be used to create a [`SqueezerPage`].
     pub fn builder() -> SqueezerPageBuilder {
         SqueezerPageBuilder::default()
@@ -51,7 +52,7 @@ impl SqueezerPage {
     }
 
     #[doc(alias = "enabled")]
-    pub fn connect_enabled_notify<F: Fn(&SqueezerPage) + 'static>(&self, f: F) -> SignalHandlerId {
+    pub fn connect_enabled_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_enabled_trampoline<F: Fn(&SqueezerPage) + 'static>(
             this: *mut ffi::AdwSqueezerPage,
             _param_spec: glib::ffi::gpointer,

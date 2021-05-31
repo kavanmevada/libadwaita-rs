@@ -30,7 +30,8 @@ impl Bin {
     }
 
     // rustdoc-stripper-ignore-next
-    /// Creates a new builder-style object to construct a [`Bin`]
+    /// Creates a new builder-style object to construct a [`Bin`].
+    ///
     /// This method returns an instance of [`BinBuilder`] which can be used to create a [`Bin`].
     pub fn builder() -> BinBuilder {
         BinBuilder::default()
@@ -373,13 +374,11 @@ impl<O: IsA<Bin>> BinExt for O {
 
     #[doc(alias = "child")]
     fn connect_child_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
-        unsafe extern "C" fn notify_child_trampoline<P, F: Fn(&P) + 'static>(
+        unsafe extern "C" fn notify_child_trampoline<P: IsA<Bin>, F: Fn(&P) + 'static>(
             this: *mut ffi::AdwBin,
             _param_spec: glib::ffi::gpointer,
             f: glib::ffi::gpointer,
-        ) where
-            P: IsA<Bin>,
-        {
+        ) {
             let f: &F = &*(f as *const F);
             f(&Bin::from_glib_borrow(this).unsafe_cast_ref())
         }

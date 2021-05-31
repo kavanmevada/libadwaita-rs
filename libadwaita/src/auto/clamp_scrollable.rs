@@ -31,7 +31,8 @@ impl ClampScrollable {
     }
 
     // rustdoc-stripper-ignore-next
-    /// Creates a new builder-style object to construct a [`ClampScrollable`]
+    /// Creates a new builder-style object to construct a [`ClampScrollable`].
+    ///
     /// This method returns an instance of [`ClampScrollableBuilder`] which can be used to create a [`ClampScrollable`].
     pub fn builder() -> ClampScrollableBuilder {
         ClampScrollableBuilder::default()
@@ -83,7 +84,7 @@ impl ClampScrollable {
     }
 
     #[doc(alias = "child")]
-    pub fn connect_child_notify<F: Fn(&ClampScrollable) + 'static>(&self, f: F) -> SignalHandlerId {
+    pub fn connect_child_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_child_trampoline<F: Fn(&ClampScrollable) + 'static>(
             this: *mut ffi::AdwClampScrollable,
             _param_spec: glib::ffi::gpointer,
@@ -106,10 +107,7 @@ impl ClampScrollable {
     }
 
     #[doc(alias = "maximum-size")]
-    pub fn connect_maximum_size_notify<F: Fn(&ClampScrollable) + 'static>(
-        &self,
-        f: F,
-    ) -> SignalHandlerId {
+    pub fn connect_maximum_size_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_maximum_size_trampoline<F: Fn(&ClampScrollable) + 'static>(
             this: *mut ffi::AdwClampScrollable,
             _param_spec: glib::ffi::gpointer,
@@ -132,7 +130,7 @@ impl ClampScrollable {
     }
 
     #[doc(alias = "tightening-threshold")]
-    pub fn connect_tightening_threshold_notify<F: Fn(&ClampScrollable) + 'static>(
+    pub fn connect_tightening_threshold_notify<F: Fn(&Self) + 'static>(
         &self,
         f: F,
     ) -> SignalHandlerId {

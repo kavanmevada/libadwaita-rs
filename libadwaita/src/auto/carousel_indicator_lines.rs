@@ -34,7 +34,8 @@ impl CarouselIndicatorLines {
     }
 
     // rustdoc-stripper-ignore-next
-    /// Creates a new builder-style object to construct a [`CarouselIndicatorLines`]
+    /// Creates a new builder-style object to construct a [`CarouselIndicatorLines`].
+    ///
     /// This method returns an instance of [`CarouselIndicatorLinesBuilder`] which can be used to create a [`CarouselIndicatorLines`].
     pub fn builder() -> CarouselIndicatorLinesBuilder {
         CarouselIndicatorLinesBuilder::default()
@@ -61,10 +62,7 @@ impl CarouselIndicatorLines {
     }
 
     #[doc(alias = "carousel")]
-    pub fn connect_carousel_notify<F: Fn(&CarouselIndicatorLines) + 'static>(
-        &self,
-        f: F,
-    ) -> SignalHandlerId {
+    pub fn connect_carousel_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_carousel_trampoline<
             F: Fn(&CarouselIndicatorLines) + 'static,
         >(

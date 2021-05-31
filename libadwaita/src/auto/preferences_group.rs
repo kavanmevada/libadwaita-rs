@@ -30,7 +30,8 @@ impl PreferencesGroup {
     }
 
     // rustdoc-stripper-ignore-next
-    /// Creates a new builder-style object to construct a [`PreferencesGroup`]
+    /// Creates a new builder-style object to construct a [`PreferencesGroup`].
+    ///
     /// This method returns an instance of [`PreferencesGroupBuilder`] which can be used to create a [`PreferencesGroup`].
     pub fn builder() -> PreferencesGroupBuilder {
         PreferencesGroupBuilder::default()
@@ -438,13 +439,14 @@ impl<O: IsA<PreferencesGroup>> PreferencesGroupExt for O {
 
     #[doc(alias = "description")]
     fn connect_description_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
-        unsafe extern "C" fn notify_description_trampoline<P, F: Fn(&P) + 'static>(
+        unsafe extern "C" fn notify_description_trampoline<
+            P: IsA<PreferencesGroup>,
+            F: Fn(&P) + 'static,
+        >(
             this: *mut ffi::AdwPreferencesGroup,
             _param_spec: glib::ffi::gpointer,
             f: glib::ffi::gpointer,
-        ) where
-            P: IsA<PreferencesGroup>,
-        {
+        ) {
             let f: &F = &*(f as *const F);
             f(&PreferencesGroup::from_glib_borrow(this).unsafe_cast_ref())
         }
@@ -463,13 +465,14 @@ impl<O: IsA<PreferencesGroup>> PreferencesGroupExt for O {
 
     #[doc(alias = "title")]
     fn connect_title_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
-        unsafe extern "C" fn notify_title_trampoline<P, F: Fn(&P) + 'static>(
+        unsafe extern "C" fn notify_title_trampoline<
+            P: IsA<PreferencesGroup>,
+            F: Fn(&P) + 'static,
+        >(
             this: *mut ffi::AdwPreferencesGroup,
             _param_spec: glib::ffi::gpointer,
             f: glib::ffi::gpointer,
-        ) where
-            P: IsA<PreferencesGroup>,
-        {
+        ) {
             let f: &F = &*(f as *const F);
             f(&PreferencesGroup::from_glib_borrow(this).unsafe_cast_ref())
         }

@@ -32,7 +32,8 @@ impl PreferencesWindow {
     }
 
     // rustdoc-stripper-ignore-next
-    /// Creates a new builder-style object to construct a [`PreferencesWindow`]
+    /// Creates a new builder-style object to construct a [`PreferencesWindow`].
+    ///
     /// This method returns an instance of [`PreferencesWindowBuilder`] which can be used to create a [`PreferencesWindow`].
     pub fn builder() -> PreferencesWindowBuilder {
         PreferencesWindowBuilder::default()
@@ -659,13 +660,14 @@ impl<O: IsA<PreferencesWindow>> PreferencesWindowExt for O {
 
     #[doc(alias = "can-swipe-back")]
     fn connect_can_swipe_back_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
-        unsafe extern "C" fn notify_can_swipe_back_trampoline<P, F: Fn(&P) + 'static>(
+        unsafe extern "C" fn notify_can_swipe_back_trampoline<
+            P: IsA<PreferencesWindow>,
+            F: Fn(&P) + 'static,
+        >(
             this: *mut ffi::AdwPreferencesWindow,
             _param_spec: glib::ffi::gpointer,
             f: glib::ffi::gpointer,
-        ) where
-            P: IsA<PreferencesWindow>,
-        {
+        ) {
             let f: &F = &*(f as *const F);
             f(&PreferencesWindow::from_glib_borrow(this).unsafe_cast_ref())
         }
@@ -684,13 +686,14 @@ impl<O: IsA<PreferencesWindow>> PreferencesWindowExt for O {
 
     #[doc(alias = "search-enabled")]
     fn connect_search_enabled_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
-        unsafe extern "C" fn notify_search_enabled_trampoline<P, F: Fn(&P) + 'static>(
+        unsafe extern "C" fn notify_search_enabled_trampoline<
+            P: IsA<PreferencesWindow>,
+            F: Fn(&P) + 'static,
+        >(
             this: *mut ffi::AdwPreferencesWindow,
             _param_spec: glib::ffi::gpointer,
             f: glib::ffi::gpointer,
-        ) where
-            P: IsA<PreferencesWindow>,
-        {
+        ) {
             let f: &F = &*(f as *const F);
             f(&PreferencesWindow::from_glib_borrow(this).unsafe_cast_ref())
         }

@@ -30,7 +30,8 @@ impl ClampLayout {
     }
 
     // rustdoc-stripper-ignore-next
-    /// Creates a new builder-style object to construct a [`ClampLayout`]
+    /// Creates a new builder-style object to construct a [`ClampLayout`].
+    ///
     /// This method returns an instance of [`ClampLayoutBuilder`] which can be used to create a [`ClampLayout`].
     pub fn builder() -> ClampLayoutBuilder {
         ClampLayoutBuilder::default()
@@ -66,10 +67,7 @@ impl ClampLayout {
     }
 
     #[doc(alias = "maximum-size")]
-    pub fn connect_maximum_size_notify<F: Fn(&ClampLayout) + 'static>(
-        &self,
-        f: F,
-    ) -> SignalHandlerId {
+    pub fn connect_maximum_size_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_maximum_size_trampoline<F: Fn(&ClampLayout) + 'static>(
             this: *mut ffi::AdwClampLayout,
             _param_spec: glib::ffi::gpointer,
@@ -92,7 +90,7 @@ impl ClampLayout {
     }
 
     #[doc(alias = "tightening-threshold")]
-    pub fn connect_tightening_threshold_notify<F: Fn(&ClampLayout) + 'static>(
+    pub fn connect_tightening_threshold_notify<F: Fn(&Self) + 'static>(
         &self,
         f: F,
     ) -> SignalHandlerId {
