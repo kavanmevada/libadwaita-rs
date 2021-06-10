@@ -7,6 +7,7 @@ use glib::translate::*;
 use std::fmt;
 
 glib::wrapper! {
+    #[doc(alias = "AdwValueObject")]
     pub struct ValueObject(Object<ffi::AdwValueObject, ffi::AdwValueObjectClass>);
 
     match fn {

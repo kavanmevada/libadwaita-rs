@@ -16,6 +16,7 @@ use std::fmt;
 use std::mem::transmute;
 
 glib::wrapper! {
+    #[doc(alias = "AdwSqueezerPage")]
     pub struct SqueezerPage(Object<ffi::AdwSqueezerPage, ffi::AdwSqueezerPageClass>);
 
     match fn {

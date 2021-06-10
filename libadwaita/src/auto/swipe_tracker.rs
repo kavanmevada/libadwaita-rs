@@ -18,6 +18,7 @@ use std::fmt;
 use std::mem::transmute;
 
 glib::wrapper! {
+    #[doc(alias = "AdwSwipeTracker")]
     pub struct SwipeTracker(Object<ffi::AdwSwipeTracker, ffi::AdwSwipeTrackerClass>) @implements gtk::Orientable;
 
     match fn {

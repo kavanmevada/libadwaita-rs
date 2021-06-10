@@ -17,6 +17,7 @@ use std::fmt;
 use std::mem::transmute;
 
 glib::wrapper! {
+    #[doc(alias = "AdwPreferencesWindow")]
     pub struct PreferencesWindow(Object<ffi::AdwPreferencesWindow, ffi::AdwPreferencesWindowClass>) @extends Window, gtk::Window, gtk::Widget, @implements gtk::Accessible, gtk::Buildable, gtk::ConstraintTarget, gtk::Native, gtk::Root, gtk::ShortcutManager;
 
     match fn {

@@ -15,6 +15,7 @@ use std::fmt;
 use std::mem::transmute;
 
 glib::wrapper! {
+    #[doc(alias = "AdwComboRow")]
     pub struct ComboRow(Object<ffi::AdwComboRow, ffi::AdwComboRowClass>) @extends ActionRow, PreferencesRow, gtk::ListBoxRow, gtk::Widget, @implements gtk::Accessible, gtk::Buildable, gtk::ConstraintTarget, gtk::Actionable;
 
     match fn {

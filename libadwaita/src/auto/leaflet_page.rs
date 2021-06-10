@@ -16,6 +16,7 @@ use std::fmt;
 use std::mem::transmute;
 
 glib::wrapper! {
+    #[doc(alias = "AdwLeafletPage")]
     pub struct LeafletPage(Object<ffi::AdwLeafletPage, ffi::AdwLeafletPageClass>);
 
     match fn {

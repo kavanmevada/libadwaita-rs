@@ -15,6 +15,7 @@ use std::fmt;
 use std::mem::transmute;
 
 glib::wrapper! {
+    #[doc(alias = "AdwPreferencesGroup")]
     pub struct PreferencesGroup(Object<ffi::AdwPreferencesGroup, ffi::AdwPreferencesGroupClass>) @extends gtk::Widget, @implements gtk::Accessible, gtk::Buildable, gtk::ConstraintTarget;
 
     match fn {

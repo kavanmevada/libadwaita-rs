@@ -16,6 +16,7 @@ use std::fmt;
 use std::mem::transmute;
 
 glib::wrapper! {
+    #[doc(alias = "AdwClampScrollable")]
     pub struct ClampScrollable(Object<ffi::AdwClampScrollable, ffi::AdwClampScrollableClass>) @extends gtk::Widget, @implements gtk::Accessible, gtk::Buildable, gtk::ConstraintTarget, gtk::Orientable, gtk::Scrollable;
 
     match fn {

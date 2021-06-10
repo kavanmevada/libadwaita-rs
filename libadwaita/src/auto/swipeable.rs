@@ -10,6 +10,7 @@ use std::fmt;
 use std::mem;
 
 glib::wrapper! {
+    #[doc(alias = "AdwSwipeable")]
     pub struct Swipeable(Interface<ffi::AdwSwipeable, ffi::AdwSwipeableInterface>) @requires gtk::Widget, gtk::Accessible, gtk::Buildable, gtk::ConstraintTarget;
 
     match fn {

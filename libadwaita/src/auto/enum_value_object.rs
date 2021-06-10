@@ -12,6 +12,7 @@ use std::fmt;
 use std::mem::transmute;
 
 glib::wrapper! {
+    #[doc(alias = "AdwEnumValueObject")]
     pub struct EnumValueObject(Object<ffi::AdwEnumValueObject, ffi::AdwEnumValueObjectClass>);
 
     match fn {

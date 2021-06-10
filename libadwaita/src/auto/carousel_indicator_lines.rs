@@ -17,6 +17,7 @@ use std::fmt;
 use std::mem::transmute;
 
 glib::wrapper! {
+    #[doc(alias = "AdwCarouselIndicatorLines")]
     pub struct CarouselIndicatorLines(Object<ffi::AdwCarouselIndicatorLines, ffi::AdwCarouselIndicatorLinesClass>) @extends gtk::Widget, @implements gtk::Accessible, gtk::Buildable, gtk::ConstraintTarget, gtk::Orientable;
 
     match fn {

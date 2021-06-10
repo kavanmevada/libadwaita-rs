@@ -17,6 +17,7 @@ use std::fmt;
 use std::mem::transmute;
 
 glib::wrapper! {
+    #[doc(alias = "AdwViewSwitcherBar")]
     pub struct ViewSwitcherBar(Object<ffi::AdwViewSwitcherBar, ffi::AdwViewSwitcherBarClass>) @extends gtk::Widget, @implements gtk::Accessible, gtk::Buildable, gtk::ConstraintTarget;
 
     match fn {

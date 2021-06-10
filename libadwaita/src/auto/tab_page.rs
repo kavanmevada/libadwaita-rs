@@ -16,6 +16,7 @@ use std::fmt;
 use std::mem::transmute;
 
 glib::wrapper! {
+    #[doc(alias = "AdwTabPage")]
     pub struct TabPage(Object<ffi::AdwTabPage, ffi::AdwTabPageClass>);
 
     match fn {

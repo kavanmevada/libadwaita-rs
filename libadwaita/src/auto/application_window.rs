@@ -11,6 +11,7 @@ use glib::ToValue;
 use std::fmt;
 
 glib::wrapper! {
+    #[doc(alias = "AdwApplicationWindow")]
     pub struct ApplicationWindow(Object<ffi::AdwApplicationWindow, ffi::AdwApplicationWindowClass>) @extends gtk::ApplicationWindow, gtk::Window, gtk::Widget, @implements gtk::Accessible, gtk::Buildable, gtk::ConstraintTarget, gtk::Native, gtk::Root, gtk::ShortcutManager, gio::ActionGroup, gio::ActionMap;
 
     match fn {

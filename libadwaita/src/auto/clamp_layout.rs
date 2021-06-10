@@ -15,6 +15,7 @@ use std::fmt;
 use std::mem::transmute;
 
 glib::wrapper! {
+    #[doc(alias = "AdwClampLayout")]
     pub struct ClampLayout(Object<ffi::AdwClampLayout, ffi::AdwClampLayoutClass>) @extends gtk::LayoutManager, @implements gtk::Orientable;
 
     match fn {

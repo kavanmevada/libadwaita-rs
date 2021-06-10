@@ -7,6 +7,7 @@ use glib::translate::*;
 use std::fmt;
 
 glib::wrapper! {
+    #[doc(alias = "AdwEnumListModel")]
     pub struct EnumListModel(Object<ffi::AdwEnumListModel, ffi::AdwEnumListModelClass>) @implements gio::ListModel;
 
     match fn {
