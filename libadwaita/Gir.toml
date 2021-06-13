@@ -89,6 +89,7 @@ manual = [
     "Gtk.LayoutManager",
     "Gtk.ListBoxRow",
     "Gtk.ListItemFactory",
+    "Gtk.ListView",
     "Gtk.Native",
     "Gtk.Orientable",
     "Gtk.Orientation",
@@ -97,6 +98,7 @@ manual = [
     "Gtk.Root",
     "Gtk.Scrollable",
     "Gtk.ScrollablePolicy",
+    "Gtk.ScrolledWindow",
     "Gtk.SelectionModel",
     "Gtk.ShortcutManager",
     "Gtk.Stack",
@@ -104,6 +106,10 @@ manual = [
     "Gtk.Window",
     "Pango.EllipsizeMode",
 ]
+
+[[object]]
+name = "Gtk.Window"
+trait_name = "GtkWindowExt"
 
 [[object]]
 name = "Adw.*"
