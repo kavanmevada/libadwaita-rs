@@ -103,12 +103,12 @@ manual = [
     "Gtk.ShortcutManager",
     "Gtk.Stack",
     "Gtk.Widget",
-    "Gtk.Window",
     "Pango.EllipsizeMode",
 ]
 
 [[object]]
 name = "Gtk.Window"
+status = "manual"
 trait_name = "GtkWindowExt"
 
 [[object]]

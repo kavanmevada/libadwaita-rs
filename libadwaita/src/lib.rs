@@ -1,5 +1,7 @@
 // Re-export the -sys bindings
 pub use ffi;
+#[doc(hidden)]
+pub use gtk;
 
 /// Asserts that this is the main thread and `gtk::init` has been called.
 macro_rules! assert_initialized_main_thread {
