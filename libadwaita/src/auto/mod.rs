@@ -70,7 +70,6 @@ pub use self::leaflet::LeafletBuilder;
 
 mod leaflet_page;
 pub use self::leaflet_page::LeafletPage;
-pub use self::leaflet_page::LeafletPageBuilder;
 
 mod preferences_group;
 pub use self::preferences_group::PreferencesGroupBuilder;
@@ -94,7 +93,6 @@ pub use self::squeezer::SqueezerBuilder;
 
 mod squeezer_page;
 pub use self::squeezer_page::SqueezerPage;
-pub use self::squeezer_page::SqueezerPageBuilder;
 
 mod status_page;
 pub use self::status_page::StatusPage;
@@ -113,7 +111,6 @@ pub use self::tab_bar::TabBarBuilder;
 
 mod tab_page;
 pub use self::tab_page::TabPage;
-pub use self::tab_page::TabPageBuilder;
 
 mod tab_view;
 pub use self::tab_view::TabView;

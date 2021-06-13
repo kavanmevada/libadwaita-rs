@@ -39,7 +39,6 @@ generate = [
     "Adw.FlapTransitionType",
     "Adw.HeaderBar",
     "Adw.Leaflet",
-    "Adw.LeafletPage",
     "Adw.LeafletTransitionType",
     "Adw.NavigationDirection",
     "Adw.PreferencesGroup",
@@ -47,13 +46,11 @@ generate = [
     "Adw.PreferencesRow",
     "Adw.PreferencesWindow",
     "Adw.Squeezer",
-    "Adw.SqueezerPage",
     "Adw.SqueezerTransitionType",
     "Adw.StatusPage",
     "Adw.SwipeTracker",
     "Adw.Swipeable",
     "Adw.TabView",
-    "Adw.TabPage",
     "Adw.ViewSwitcher",
     "Adw.ViewSwitcherBar",
     "Adw.ViewSwitcherPolicy",
@@ -131,12 +128,17 @@ status = "generate"
 generate_builder = false
 
 [[object]]
-name = "Adw.ValueObject"
+name = "Adw.EnumValueObject"
 status = "generate"
 generate_builder = false
 
 [[object]]
-name = "Adw.EnumValueObject"
+name = "Adw.LeafletPage"
+status = "generate"
+generate_builder = false
+
+[[object]]
+name = "Adw.SqueezerPage"
 status = "generate"
 generate_builder = false
 
@@ -149,3 +151,13 @@ status = "generate"
     [[object.signal]]
     name = "extra-drag-drop"
     ignore = true # manual: *mut gobject_ffi::GValue doesn't implement glib::from_glib_borrow
+
+[[object]]
+name = "Adw.TabPage"
+status = "generate"
+generate_builder = false
+
+[[object]]
+name = "Adw.ValueObject"
+status = "generate"
+generate_builder = false

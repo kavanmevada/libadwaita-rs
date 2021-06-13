@@ -3,14 +3,11 @@
 // from gir-files (https://github.com/gtk-rs/gir-files.git)
 // DO NOT EDIT
 
-use glib::object::Cast;
 use glib::object::IsA;
 use glib::object::ObjectType as ObjectType_;
 use glib::signal::connect_raw;
 use glib::signal::SignalHandlerId;
 use glib::translate::*;
-use glib::StaticType;
-use glib::ToValue;
 use std::boxed::Box as Box_;
 use std::fmt;
 use std::mem::transmute;
@@ -25,14 +22,6 @@ glib::wrapper! {
 }
 
 impl TabPage {
-    // rustdoc-stripper-ignore-next
-    /// Creates a new builder-style object to construct a [`TabPage`].
-    ///
-    /// This method returns an instance of [`TabPageBuilder`] which can be used to create a [`TabPage`].
-    pub fn builder() -> TabPageBuilder {
-        TabPageBuilder::default()
-    }
-
     #[doc(alias = "adw_tab_page_get_child")]
     #[doc(alias = "get_child")]
     pub fn child(&self) -> Option<gtk::Widget> {
@@ -372,108 +361,6 @@ impl TabPage {
                 Box_::into_raw(f),
             )
         }
-    }
-}
-
-#[derive(Clone, Default)]
-// rustdoc-stripper-ignore-next
-/// A builder for generating a [`TabPage`].
-pub struct TabPageBuilder {
-    child: Option<gtk::Widget>,
-    icon: Option<gio::Icon>,
-    indicator_activatable: Option<bool>,
-    indicator_icon: Option<gio::Icon>,
-    loading: Option<bool>,
-    needs_attention: Option<bool>,
-    parent: Option<TabPage>,
-    title: Option<String>,
-    tooltip: Option<String>,
-}
-
-impl TabPageBuilder {
-    // rustdoc-stripper-ignore-next
-    /// Create a new [`TabPageBuilder`].
-    pub fn new() -> Self {
-        Self::default()
-    }
-
-    // rustdoc-stripper-ignore-next
-    /// Build the [`TabPage`].
-    pub fn build(self) -> TabPage {
-        let mut properties: Vec<(&str, &dyn ToValue)> = vec![];
-        if let Some(ref child) = self.child {
-            properties.push(("child", child));
-        }
-        if let Some(ref icon) = self.icon {
-            properties.push(("icon", icon));
-        }
-        if let Some(ref indicator_activatable) = self.indicator_activatable {
-            properties.push(("indicator-activatable", indicator_activatable));
-        }
-        if let Some(ref indicator_icon) = self.indicator_icon {
-            properties.push(("indicator-icon", indicator_icon));
-        }
-        if let Some(ref loading) = self.loading {
-            properties.push(("loading", loading));
-        }
-        if let Some(ref needs_attention) = self.needs_attention {
-            properties.push(("needs-attention", needs_attention));
-        }
-        if let Some(ref parent) = self.parent {
-            properties.push(("parent", parent));
-        }
-        if let Some(ref title) = self.title {
-            properties.push(("title", title));
-        }
-        if let Some(ref tooltip) = self.tooltip {
-            properties.push(("tooltip", tooltip));
-        }
-        glib::Object::new::<TabPage>(&properties).expect("Failed to create an instance of TabPage")
-    }
-
-    pub fn child<P: IsA<gtk::Widget>>(mut self, child: &P) -> Self {
-        self.child = Some(child.clone().upcast());
-        self
-    }
-
-    pub fn icon<P: IsA<gio::Icon>>(mut self, icon: &P) -> Self {
-        self.icon = Some(icon.clone().upcast());
-        self
-    }
-
-    pub fn indicator_activatable(mut self, indicator_activatable: bool) -> Self {
-        self.indicator_activatable = Some(indicator_activatable);
-        self
-    }
-
-    pub fn indicator_icon<P: IsA<gio::Icon>>(mut self, indicator_icon: &P) -> Self {
-        self.indicator_icon = Some(indicator_icon.clone().upcast());
-        self
-    }
-
-    pub fn loading(mut self, loading: bool) -> Self {
-        self.loading = Some(loading);
-        self
-    }
-
-    pub fn needs_attention(mut self, needs_attention: bool) -> Self {
-        self.needs_attention = Some(needs_attention);
-        self
-    }
-
-    pub fn parent(mut self, parent: &TabPage) -> Self {
-        self.parent = Some(parent.clone());
-        self
-    }
-
-    pub fn title(mut self, title: &str) -> Self {
-        self.title = Some(title.to_string());
-        self
-    }
-
-    pub fn tooltip(mut self, tooltip: &str) -> Self {
-        self.tooltip = Some(tooltip.to_string());
-        self
     }
 }
 

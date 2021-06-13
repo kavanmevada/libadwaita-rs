@@ -3,14 +3,10 @@
 // from gir-files (https://github.com/gtk-rs/gir-files.git)
 // DO NOT EDIT
 
-use glib::object::Cast;
-use glib::object::IsA;
 use glib::object::ObjectType as ObjectType_;
 use glib::signal::connect_raw;
 use glib::signal::SignalHandlerId;
 use glib::translate::*;
-use glib::StaticType;
-use glib::ToValue;
 use std::boxed::Box as Box_;
 use std::fmt;
 use std::mem::transmute;
@@ -25,14 +21,6 @@ glib::wrapper! {
 }
 
 impl LeafletPage {
-    // rustdoc-stripper-ignore-next
-    /// Creates a new builder-style object to construct a [`LeafletPage`].
-    ///
-    /// This method returns an instance of [`LeafletPageBuilder`] which can be used to create a [`LeafletPage`].
-    pub fn builder() -> LeafletPageBuilder {
-        LeafletPageBuilder::default()
-    }
-
     #[doc(alias = "adw_leaflet_page_get_child")]
     #[doc(alias = "get_child")]
     pub fn child(&self) -> Option<gtk::Widget> {
@@ -109,55 +97,6 @@ impl LeafletPage {
                 Box_::into_raw(f),
             )
         }
-    }
-}
-
-#[derive(Clone, Default)]
-// rustdoc-stripper-ignore-next
-/// A builder for generating a [`LeafletPage`].
-pub struct LeafletPageBuilder {
-    child: Option<gtk::Widget>,
-    name: Option<String>,
-    navigatable: Option<bool>,
-}
-
-impl LeafletPageBuilder {
-    // rustdoc-stripper-ignore-next
-    /// Create a new [`LeafletPageBuilder`].
-    pub fn new() -> Self {
-        Self::default()
-    }
-
-    // rustdoc-stripper-ignore-next
-    /// Build the [`LeafletPage`].
-    pub fn build(self) -> LeafletPage {
-        let mut properties: Vec<(&str, &dyn ToValue)> = vec![];
-        if let Some(ref child) = self.child {
-            properties.push(("child", child));
-        }
-        if let Some(ref name) = self.name {
-            properties.push(("name", name));
-        }
-        if let Some(ref navigatable) = self.navigatable {
-            properties.push(("navigatable", navigatable));
-        }
-        glib::Object::new::<LeafletPage>(&properties)
-            .expect("Failed to create an instance of LeafletPage")
-    }
-
-    pub fn child<P: IsA<gtk::Widget>>(mut self, child: &P) -> Self {
-        self.child = Some(child.clone().upcast());
-        self
-    }
-
-    pub fn name(mut self, name: &str) -> Self {
-        self.name = Some(name.to_string());
-        self
-    }
-
-    pub fn navigatable(mut self, navigatable: bool) -> Self {
-        self.navigatable = Some(navigatable);
-        self
     }
 }
 
