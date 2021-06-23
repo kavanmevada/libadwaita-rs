@@ -31,7 +31,6 @@ docs:
     # generate the docs
     - cargo install rustdoc-stripper
     - ./generator.py --embed-docs
-    - ./fix-gir-mistakes.sh
     - rustup default nightly
     - eval $(./gir-rustdoc.py pre-docs)
     - cargo doc --features dox --no-deps
