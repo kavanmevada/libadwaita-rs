@@ -32,9 +32,9 @@ impl StatusPage {
     }
 
     // rustdoc-stripper-ignore-next
-    /// Creates a new builder-style object to construct a [`StatusPage`].
+    /// Creates a new builder-pattern struct instance to construct [`StatusPage`] objects.
     ///
-    /// This method returns an instance of [`StatusPageBuilder`] which can be used to create a [`StatusPage`].
+    /// This method returns an instance of [`StatusPageBuilder`] which can be used to create [`StatusPage`] objects.
     pub fn builder() -> StatusPageBuilder {
         StatusPageBuilder::default()
     }
@@ -198,7 +198,9 @@ impl Default for StatusPage {
 
 #[derive(Clone, Default)]
 // rustdoc-stripper-ignore-next
-/// A builder for generating a [`StatusPage`].
+/// A [builder-pattern] type to construct [`StatusPage`] objects.
+///
+/// [builder-pattern]: https://doc.rust-lang.org/1.0.0/style/ownership/builders.html
 pub struct StatusPageBuilder {
     child: Option<gtk::Widget>,
     description: Option<String>,

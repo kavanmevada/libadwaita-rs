@@ -38,9 +38,9 @@ impl SwipeTracker {
     }
 
     // rustdoc-stripper-ignore-next
-    /// Creates a new builder-style object to construct a [`SwipeTracker`].
+    /// Creates a new builder-pattern struct instance to construct [`SwipeTracker`] objects.
     ///
-    /// This method returns an instance of [`SwipeTrackerBuilder`] which can be used to create a [`SwipeTracker`].
+    /// This method returns an instance of [`SwipeTrackerBuilder`] which can be used to create [`SwipeTracker`] objects.
     pub fn builder() -> SwipeTrackerBuilder {
         SwipeTrackerBuilder::default()
     }
@@ -297,7 +297,9 @@ impl SwipeTracker {
 
 #[derive(Clone, Default)]
 // rustdoc-stripper-ignore-next
-/// A builder for generating a [`SwipeTracker`].
+/// A [builder-pattern] type to construct [`SwipeTracker`] objects.
+///
+/// [builder-pattern]: https://doc.rust-lang.org/1.0.0/style/ownership/builders.html
 pub struct SwipeTrackerBuilder {
     allow_long_swipes: Option<bool>,
     allow_mouse_drag: Option<bool>,

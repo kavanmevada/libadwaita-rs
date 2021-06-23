@@ -33,9 +33,9 @@ impl ViewSwitcherTitle {
     }
 
     // rustdoc-stripper-ignore-next
-    /// Creates a new builder-style object to construct a [`ViewSwitcherTitle`].
+    /// Creates a new builder-pattern struct instance to construct [`ViewSwitcherTitle`] objects.
     ///
-    /// This method returns an instance of [`ViewSwitcherTitleBuilder`] which can be used to create a [`ViewSwitcherTitle`].
+    /// This method returns an instance of [`ViewSwitcherTitleBuilder`] which can be used to create [`ViewSwitcherTitle`] objects.
     pub fn builder() -> ViewSwitcherTitleBuilder {
         ViewSwitcherTitleBuilder::default()
     }
@@ -295,7 +295,9 @@ impl Default for ViewSwitcherTitle {
 
 #[derive(Clone, Default)]
 // rustdoc-stripper-ignore-next
-/// A builder for generating a [`ViewSwitcherTitle`].
+/// A [builder-pattern] type to construct [`ViewSwitcherTitle`] objects.
+///
+/// [builder-pattern]: https://doc.rust-lang.org/1.0.0/style/ownership/builders.html
 pub struct ViewSwitcherTitleBuilder {
     policy: Option<ViewSwitcherPolicy>,
     stack: Option<gtk::Stack>,

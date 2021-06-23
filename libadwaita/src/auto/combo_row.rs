@@ -196,7 +196,6 @@ impl<O: IsA<ComboRow>> ComboRowExt for O {
         }
     }
 
-    #[doc(alias = "expression")]
     fn connect_expression_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_expression_trampoline<P: IsA<ComboRow>, F: Fn(&P) + 'static>(
             this: *mut ffi::AdwComboRow,
@@ -204,7 +203,7 @@ impl<O: IsA<ComboRow>> ComboRowExt for O {
             f: glib::ffi::gpointer,
         ) {
             let f: &F = &*(f as *const F);
-            f(&ComboRow::from_glib_borrow(this).unsafe_cast_ref())
+            f(ComboRow::from_glib_borrow(this).unsafe_cast_ref())
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
@@ -219,7 +218,6 @@ impl<O: IsA<ComboRow>> ComboRowExt for O {
         }
     }
 
-    #[doc(alias = "factory")]
     fn connect_factory_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_factory_trampoline<P: IsA<ComboRow>, F: Fn(&P) + 'static>(
             this: *mut ffi::AdwComboRow,
@@ -227,7 +225,7 @@ impl<O: IsA<ComboRow>> ComboRowExt for O {
             f: glib::ffi::gpointer,
         ) {
             let f: &F = &*(f as *const F);
-            f(&ComboRow::from_glib_borrow(this).unsafe_cast_ref())
+            f(ComboRow::from_glib_borrow(this).unsafe_cast_ref())
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
@@ -242,7 +240,6 @@ impl<O: IsA<ComboRow>> ComboRowExt for O {
         }
     }
 
-    #[doc(alias = "list-factory")]
     fn connect_list_factory_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_list_factory_trampoline<
             P: IsA<ComboRow>,
@@ -253,7 +250,7 @@ impl<O: IsA<ComboRow>> ComboRowExt for O {
             f: glib::ffi::gpointer,
         ) {
             let f: &F = &*(f as *const F);
-            f(&ComboRow::from_glib_borrow(this).unsafe_cast_ref())
+            f(ComboRow::from_glib_borrow(this).unsafe_cast_ref())
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
@@ -268,7 +265,6 @@ impl<O: IsA<ComboRow>> ComboRowExt for O {
         }
     }
 
-    #[doc(alias = "model")]
     fn connect_model_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_model_trampoline<P: IsA<ComboRow>, F: Fn(&P) + 'static>(
             this: *mut ffi::AdwComboRow,
@@ -276,7 +272,7 @@ impl<O: IsA<ComboRow>> ComboRowExt for O {
             f: glib::ffi::gpointer,
         ) {
             let f: &F = &*(f as *const F);
-            f(&ComboRow::from_glib_borrow(this).unsafe_cast_ref())
+            f(ComboRow::from_glib_borrow(this).unsafe_cast_ref())
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
@@ -291,7 +287,6 @@ impl<O: IsA<ComboRow>> ComboRowExt for O {
         }
     }
 
-    #[doc(alias = "selected")]
     fn connect_selected_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_selected_trampoline<P: IsA<ComboRow>, F: Fn(&P) + 'static>(
             this: *mut ffi::AdwComboRow,
@@ -299,7 +294,7 @@ impl<O: IsA<ComboRow>> ComboRowExt for O {
             f: glib::ffi::gpointer,
         ) {
             let f: &F = &*(f as *const F);
-            f(&ComboRow::from_glib_borrow(this).unsafe_cast_ref())
+            f(ComboRow::from_glib_borrow(this).unsafe_cast_ref())
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
@@ -314,7 +309,6 @@ impl<O: IsA<ComboRow>> ComboRowExt for O {
         }
     }
 
-    #[doc(alias = "selected-item")]
     fn connect_selected_item_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_selected_item_trampoline<
             P: IsA<ComboRow>,
@@ -325,7 +319,7 @@ impl<O: IsA<ComboRow>> ComboRowExt for O {
             f: glib::ffi::gpointer,
         ) {
             let f: &F = &*(f as *const F);
-            f(&ComboRow::from_glib_borrow(this).unsafe_cast_ref())
+            f(ComboRow::from_glib_borrow(this).unsafe_cast_ref())
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
@@ -340,7 +334,6 @@ impl<O: IsA<ComboRow>> ComboRowExt for O {
         }
     }
 
-    #[doc(alias = "use-subtitle")]
     fn connect_use_subtitle_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_use_subtitle_trampoline<
             P: IsA<ComboRow>,
@@ -351,7 +344,7 @@ impl<O: IsA<ComboRow>> ComboRowExt for O {
             f: glib::ffi::gpointer,
         ) {
             let f: &F = &*(f as *const F);
-            f(&ComboRow::from_glib_borrow(this).unsafe_cast_ref())
+            f(ComboRow::from_glib_borrow(this).unsafe_cast_ref())
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);

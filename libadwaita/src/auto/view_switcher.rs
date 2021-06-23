@@ -33,9 +33,9 @@ impl ViewSwitcher {
     }
 
     // rustdoc-stripper-ignore-next
-    /// Creates a new builder-style object to construct a [`ViewSwitcher`].
+    /// Creates a new builder-pattern struct instance to construct [`ViewSwitcher`] objects.
     ///
-    /// This method returns an instance of [`ViewSwitcherBuilder`] which can be used to create a [`ViewSwitcher`].
+    /// This method returns an instance of [`ViewSwitcherBuilder`] which can be used to create [`ViewSwitcher`] objects.
     pub fn builder() -> ViewSwitcherBuilder {
         ViewSwitcherBuilder::default()
     }
@@ -161,7 +161,9 @@ impl Default for ViewSwitcher {
 
 #[derive(Clone, Default)]
 // rustdoc-stripper-ignore-next
-/// A builder for generating a [`ViewSwitcher`].
+/// A [builder-pattern] type to construct [`ViewSwitcher`] objects.
+///
+/// [builder-pattern]: https://doc.rust-lang.org/1.0.0/style/ownership/builders.html
 pub struct ViewSwitcherBuilder {
     narrow_ellipsize: Option<pango::EllipsizeMode>,
     policy: Option<ViewSwitcherPolicy>,

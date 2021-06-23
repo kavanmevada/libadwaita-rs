@@ -35,9 +35,9 @@ impl Flap {
     }
 
     // rustdoc-stripper-ignore-next
-    /// Creates a new builder-style object to construct a [`Flap`].
+    /// Creates a new builder-pattern struct instance to construct [`Flap`] objects.
     ///
-    /// This method returns an instance of [`FlapBuilder`] which can be used to create a [`Flap`].
+    /// This method returns an instance of [`FlapBuilder`] which can be used to create [`Flap`] objects.
     pub fn builder() -> FlapBuilder {
         FlapBuilder::default()
     }
@@ -586,7 +586,9 @@ impl Default for Flap {
 
 #[derive(Clone, Default)]
 // rustdoc-stripper-ignore-next
-/// A builder for generating a [`Flap`].
+/// A [builder-pattern] type to construct [`Flap`] objects.
+///
+/// [builder-pattern]: https://doc.rust-lang.org/1.0.0/style/ownership/builders.html
 pub struct FlapBuilder {
     content: Option<gtk::Widget>,
     flap: Option<gtk::Widget>,

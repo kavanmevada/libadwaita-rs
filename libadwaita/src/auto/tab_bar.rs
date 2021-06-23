@@ -33,9 +33,9 @@ impl TabBar {
     }
 
     // rustdoc-stripper-ignore-next
-    /// Creates a new builder-style object to construct a [`TabBar`].
+    /// Creates a new builder-pattern struct instance to construct [`TabBar`] objects.
     ///
-    /// This method returns an instance of [`TabBarBuilder`] which can be used to create a [`TabBar`].
+    /// This method returns an instance of [`TabBarBuilder`] which can be used to create [`TabBar`] objects.
     pub fn builder() -> TabBarBuilder {
         TabBarBuilder::default()
     }
@@ -343,7 +343,9 @@ impl Default for TabBar {
 
 #[derive(Clone, Default)]
 // rustdoc-stripper-ignore-next
-/// A builder for generating a [`TabBar`].
+/// A [builder-pattern] type to construct [`TabBar`] objects.
+///
+/// [builder-pattern]: https://doc.rust-lang.org/1.0.0/style/ownership/builders.html
 pub struct TabBarBuilder {
     autohide: Option<bool>,
     end_action_widget: Option<gtk::Widget>,

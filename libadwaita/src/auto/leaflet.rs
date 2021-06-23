@@ -36,9 +36,9 @@ impl Leaflet {
     }
 
     // rustdoc-stripper-ignore-next
-    /// Creates a new builder-style object to construct a [`Leaflet`].
+    /// Creates a new builder-pattern struct instance to construct [`Leaflet`] objects.
     ///
-    /// This method returns an instance of [`LeafletBuilder`] which can be used to create a [`Leaflet`].
+    /// This method returns an instance of [`LeafletBuilder`] which can be used to create [`Leaflet`] objects.
     pub fn builder() -> LeafletBuilder {
         LeafletBuilder::default()
     }
@@ -837,7 +837,9 @@ impl Default for Leaflet {
 
 #[derive(Clone, Default)]
 // rustdoc-stripper-ignore-next
-/// A builder for generating a [`Leaflet`].
+/// A [builder-pattern] type to construct [`Leaflet`] objects.
+///
+/// [builder-pattern]: https://doc.rust-lang.org/1.0.0/style/ownership/builders.html
 pub struct LeafletBuilder {
     can_swipe_back: Option<bool>,
     can_swipe_forward: Option<bool>,

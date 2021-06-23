@@ -32,9 +32,9 @@ impl ActionRow {
     }
 
     // rustdoc-stripper-ignore-next
-    /// Creates a new builder-style object to construct a [`ActionRow`].
+    /// Creates a new builder-pattern struct instance to construct [`ActionRow`] objects.
     ///
-    /// This method returns an instance of [`ActionRowBuilder`] which can be used to create a [`ActionRow`].
+    /// This method returns an instance of [`ActionRowBuilder`] which can be used to create [`ActionRow`] objects.
     pub fn builder() -> ActionRowBuilder {
         ActionRowBuilder::default()
     }
@@ -48,7 +48,9 @@ impl Default for ActionRow {
 
 #[derive(Clone, Default)]
 // rustdoc-stripper-ignore-next
-/// A builder for generating a [`ActionRow`].
+/// A [builder-pattern] type to construct [`ActionRow`] objects.
+///
+/// [builder-pattern]: https://doc.rust-lang.org/1.0.0/style/ownership/builders.html
 pub struct ActionRowBuilder {
     activatable_widget: Option<gtk::Widget>,
     icon_name: Option<String>,
@@ -623,14 +625,13 @@ impl<O: IsA<ActionRow>> ActionRowExt for O {
         }
     }
 
-    #[doc(alias = "activated")]
     fn connect_activated<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn activated_trampoline<P: IsA<ActionRow>, F: Fn(&P) + 'static>(
             this: *mut ffi::AdwActionRow,
             f: glib::ffi::gpointer,
         ) {
             let f: &F = &*(f as *const F);
-            f(&ActionRow::from_glib_borrow(this).unsafe_cast_ref())
+            f(ActionRow::from_glib_borrow(this).unsafe_cast_ref())
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
@@ -645,7 +646,6 @@ impl<O: IsA<ActionRow>> ActionRowExt for O {
         }
     }
 
-    #[doc(alias = "activatable-widget")]
     fn connect_activatable_widget_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_activatable_widget_trampoline<
             P: IsA<ActionRow>,
@@ -656,7 +656,7 @@ impl<O: IsA<ActionRow>> ActionRowExt for O {
             f: glib::ffi::gpointer,
         ) {
             let f: &F = &*(f as *const F);
-            f(&ActionRow::from_glib_borrow(this).unsafe_cast_ref())
+            f(ActionRow::from_glib_borrow(this).unsafe_cast_ref())
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
@@ -671,7 +671,6 @@ impl<O: IsA<ActionRow>> ActionRowExt for O {
         }
     }
 
-    #[doc(alias = "icon-name")]
     fn connect_icon_name_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_icon_name_trampoline<P: IsA<ActionRow>, F: Fn(&P) + 'static>(
             this: *mut ffi::AdwActionRow,
@@ -679,7 +678,7 @@ impl<O: IsA<ActionRow>> ActionRowExt for O {
             f: glib::ffi::gpointer,
         ) {
             let f: &F = &*(f as *const F);
-            f(&ActionRow::from_glib_borrow(this).unsafe_cast_ref())
+            f(ActionRow::from_glib_borrow(this).unsafe_cast_ref())
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
@@ -694,7 +693,6 @@ impl<O: IsA<ActionRow>> ActionRowExt for O {
         }
     }
 
-    #[doc(alias = "subtitle")]
     fn connect_subtitle_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_subtitle_trampoline<P: IsA<ActionRow>, F: Fn(&P) + 'static>(
             this: *mut ffi::AdwActionRow,
@@ -702,7 +700,7 @@ impl<O: IsA<ActionRow>> ActionRowExt for O {
             f: glib::ffi::gpointer,
         ) {
             let f: &F = &*(f as *const F);
-            f(&ActionRow::from_glib_borrow(this).unsafe_cast_ref())
+            f(ActionRow::from_glib_borrow(this).unsafe_cast_ref())
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
@@ -717,7 +715,6 @@ impl<O: IsA<ActionRow>> ActionRowExt for O {
         }
     }
 
-    #[doc(alias = "subtitle-lines")]
     fn connect_subtitle_lines_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_subtitle_lines_trampoline<
             P: IsA<ActionRow>,
@@ -728,7 +725,7 @@ impl<O: IsA<ActionRow>> ActionRowExt for O {
             f: glib::ffi::gpointer,
         ) {
             let f: &F = &*(f as *const F);
-            f(&ActionRow::from_glib_borrow(this).unsafe_cast_ref())
+            f(ActionRow::from_glib_borrow(this).unsafe_cast_ref())
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
@@ -743,7 +740,6 @@ impl<O: IsA<ActionRow>> ActionRowExt for O {
         }
     }
 
-    #[doc(alias = "title-lines")]
     fn connect_title_lines_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_title_lines_trampoline<
             P: IsA<ActionRow>,
@@ -754,7 +750,7 @@ impl<O: IsA<ActionRow>> ActionRowExt for O {
             f: glib::ffi::gpointer,
         ) {
             let f: &F = &*(f as *const F);
-            f(&ActionRow::from_glib_borrow(this).unsafe_cast_ref())
+            f(ActionRow::from_glib_borrow(this).unsafe_cast_ref())
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
@@ -769,7 +765,6 @@ impl<O: IsA<ActionRow>> ActionRowExt for O {
         }
     }
 
-    #[doc(alias = "use-underline")]
     fn connect_use_underline_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_use_underline_trampoline<
             P: IsA<ActionRow>,
@@ -780,7 +775,7 @@ impl<O: IsA<ActionRow>> ActionRowExt for O {
             f: glib::ffi::gpointer,
         ) {
             let f: &F = &*(f as *const F);
-            f(&ActionRow::from_glib_borrow(this).unsafe_cast_ref())
+            f(ActionRow::from_glib_borrow(this).unsafe_cast_ref())
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);

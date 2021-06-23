@@ -35,9 +35,9 @@ impl CarouselIndicatorLines {
     }
 
     // rustdoc-stripper-ignore-next
-    /// Creates a new builder-style object to construct a [`CarouselIndicatorLines`].
+    /// Creates a new builder-pattern struct instance to construct [`CarouselIndicatorLines`] objects.
     ///
-    /// This method returns an instance of [`CarouselIndicatorLinesBuilder`] which can be used to create a [`CarouselIndicatorLines`].
+    /// This method returns an instance of [`CarouselIndicatorLinesBuilder`] which can be used to create [`CarouselIndicatorLines`] objects.
     pub fn builder() -> CarouselIndicatorLinesBuilder {
         CarouselIndicatorLinesBuilder::default()
     }
@@ -96,7 +96,9 @@ impl Default for CarouselIndicatorLines {
 
 #[derive(Clone, Default)]
 // rustdoc-stripper-ignore-next
-/// A builder for generating a [`CarouselIndicatorLines`].
+/// A [builder-pattern] type to construct [`CarouselIndicatorLines`] objects.
+///
+/// [builder-pattern]: https://doc.rust-lang.org/1.0.0/style/ownership/builders.html
 pub struct CarouselIndicatorLinesBuilder {
     carousel: Option<Carousel>,
     can_focus: Option<bool>,

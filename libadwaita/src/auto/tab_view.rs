@@ -33,9 +33,9 @@ impl TabView {
     }
 
     // rustdoc-stripper-ignore-next
-    /// Creates a new builder-style object to construct a [`TabView`].
+    /// Creates a new builder-pattern struct instance to construct [`TabView`] objects.
     ///
-    /// This method returns an instance of [`TabViewBuilder`] which can be used to create a [`TabView`].
+    /// This method returns an instance of [`TabViewBuilder`] which can be used to create [`TabView`] objects.
     pub fn builder() -> TabViewBuilder {
         TabViewBuilder::default()
     }
@@ -751,7 +751,9 @@ impl Default for TabView {
 
 #[derive(Clone, Default)]
 // rustdoc-stripper-ignore-next
-/// A builder for generating a [`TabView`].
+/// A [builder-pattern] type to construct [`TabView`] objects.
+///
+/// [builder-pattern]: https://doc.rust-lang.org/1.0.0/style/ownership/builders.html
 pub struct TabViewBuilder {
     default_icon: Option<gio::Icon>,
     menu_model: Option<gio::MenuModel>,

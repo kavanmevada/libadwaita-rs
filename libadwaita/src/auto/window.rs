@@ -27,9 +27,9 @@ impl Window {
     }
 
     // rustdoc-stripper-ignore-next
-    /// Creates a new builder-style object to construct a [`Window`].
+    /// Creates a new builder-pattern struct instance to construct [`Window`] objects.
     ///
-    /// This method returns an instance of [`WindowBuilder`] which can be used to create a [`Window`].
+    /// This method returns an instance of [`WindowBuilder`] which can be used to create [`Window`] objects.
     pub fn builder() -> WindowBuilder {
         WindowBuilder::default()
     }
@@ -43,7 +43,9 @@ impl Default for Window {
 
 #[derive(Clone, Default)]
 // rustdoc-stripper-ignore-next
-/// A builder for generating a [`Window`].
+/// A [builder-pattern] type to construct [`Window`] objects.
+///
+/// [builder-pattern]: https://doc.rust-lang.org/1.0.0/style/ownership/builders.html
 pub struct WindowBuilder {
     application: Option<gtk::Application>,
     child: Option<gtk::Widget>,

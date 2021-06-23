@@ -33,9 +33,9 @@ impl Carousel {
     }
 
     // rustdoc-stripper-ignore-next
-    /// Creates a new builder-style object to construct a [`Carousel`].
+    /// Creates a new builder-pattern struct instance to construct [`Carousel`] objects.
     ///
-    /// This method returns an instance of [`CarouselBuilder`] which can be used to create a [`Carousel`].
+    /// This method returns an instance of [`CarouselBuilder`] which can be used to create [`Carousel`] objects.
     pub fn builder() -> CarouselBuilder {
         CarouselBuilder::default()
     }
@@ -479,7 +479,9 @@ impl Default for Carousel {
 
 #[derive(Clone, Default)]
 // rustdoc-stripper-ignore-next
-/// A builder for generating a [`Carousel`].
+/// A [builder-pattern] type to construct [`Carousel`] objects.
+///
+/// [builder-pattern]: https://doc.rust-lang.org/1.0.0/style/ownership/builders.html
 pub struct CarouselBuilder {
     allow_long_swipes: Option<bool>,
     allow_mouse_drag: Option<bool>,

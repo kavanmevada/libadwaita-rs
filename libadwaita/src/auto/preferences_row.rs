@@ -31,9 +31,9 @@ impl PreferencesRow {
     }
 
     // rustdoc-stripper-ignore-next
-    /// Creates a new builder-style object to construct a [`PreferencesRow`].
+    /// Creates a new builder-pattern struct instance to construct [`PreferencesRow`] objects.
     ///
-    /// This method returns an instance of [`PreferencesRowBuilder`] which can be used to create a [`PreferencesRow`].
+    /// This method returns an instance of [`PreferencesRowBuilder`] which can be used to create [`PreferencesRow`] objects.
     pub fn builder() -> PreferencesRowBuilder {
         PreferencesRowBuilder::default()
     }
@@ -47,7 +47,9 @@ impl Default for PreferencesRow {
 
 #[derive(Clone, Default)]
 // rustdoc-stripper-ignore-next
-/// A builder for generating a [`PreferencesRow`].
+/// A [builder-pattern] type to construct [`PreferencesRow`] objects.
+///
+/// [builder-pattern]: https://doc.rust-lang.org/1.0.0/style/ownership/builders.html
 pub struct PreferencesRowBuilder {
     title: Option<String>,
     use_underline: Option<bool>,
@@ -459,7 +461,6 @@ impl<O: IsA<PreferencesRow>> PreferencesRowExt for O {
         }
     }
 
-    #[doc(alias = "title")]
     fn connect_title_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_title_trampoline<
             P: IsA<PreferencesRow>,
@@ -470,7 +471,7 @@ impl<O: IsA<PreferencesRow>> PreferencesRowExt for O {
             f: glib::ffi::gpointer,
         ) {
             let f: &F = &*(f as *const F);
-            f(&PreferencesRow::from_glib_borrow(this).unsafe_cast_ref())
+            f(PreferencesRow::from_glib_borrow(this).unsafe_cast_ref())
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
@@ -485,7 +486,6 @@ impl<O: IsA<PreferencesRow>> PreferencesRowExt for O {
         }
     }
 
-    #[doc(alias = "use-underline")]
     fn connect_use_underline_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_use_underline_trampoline<
             P: IsA<PreferencesRow>,
@@ -496,7 +496,7 @@ impl<O: IsA<PreferencesRow>> PreferencesRowExt for O {
             f: glib::ffi::gpointer,
         ) {
             let f: &F = &*(f as *const F);
-            f(&PreferencesRow::from_glib_borrow(this).unsafe_cast_ref())
+            f(PreferencesRow::from_glib_borrow(this).unsafe_cast_ref())
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);

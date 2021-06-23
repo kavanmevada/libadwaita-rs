@@ -33,9 +33,9 @@ impl PreferencesWindow {
     }
 
     // rustdoc-stripper-ignore-next
-    /// Creates a new builder-style object to construct a [`PreferencesWindow`].
+    /// Creates a new builder-pattern struct instance to construct [`PreferencesWindow`] objects.
     ///
-    /// This method returns an instance of [`PreferencesWindowBuilder`] which can be used to create a [`PreferencesWindow`].
+    /// This method returns an instance of [`PreferencesWindowBuilder`] which can be used to create [`PreferencesWindow`] objects.
     pub fn builder() -> PreferencesWindowBuilder {
         PreferencesWindowBuilder::default()
     }
@@ -49,7 +49,9 @@ impl Default for PreferencesWindow {
 
 #[derive(Clone, Default)]
 // rustdoc-stripper-ignore-next
-/// A builder for generating a [`PreferencesWindow`].
+/// A [builder-pattern] type to construct [`PreferencesWindow`] objects.
+///
+/// [builder-pattern]: https://doc.rust-lang.org/1.0.0/style/ownership/builders.html
 pub struct PreferencesWindowBuilder {
     can_swipe_back: Option<bool>,
     search_enabled: Option<bool>,
@@ -659,7 +661,6 @@ impl<O: IsA<PreferencesWindow>> PreferencesWindowExt for O {
         }
     }
 
-    #[doc(alias = "can-swipe-back")]
     fn connect_can_swipe_back_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_can_swipe_back_trampoline<
             P: IsA<PreferencesWindow>,
@@ -670,7 +671,7 @@ impl<O: IsA<PreferencesWindow>> PreferencesWindowExt for O {
             f: glib::ffi::gpointer,
         ) {
             let f: &F = &*(f as *const F);
-            f(&PreferencesWindow::from_glib_borrow(this).unsafe_cast_ref())
+            f(PreferencesWindow::from_glib_borrow(this).unsafe_cast_ref())
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
@@ -685,7 +686,6 @@ impl<O: IsA<PreferencesWindow>> PreferencesWindowExt for O {
         }
     }
 
-    #[doc(alias = "search-enabled")]
     fn connect_search_enabled_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_search_enabled_trampoline<
             P: IsA<PreferencesWindow>,
@@ -696,7 +696,7 @@ impl<O: IsA<PreferencesWindow>> PreferencesWindowExt for O {
             f: glib::ffi::gpointer,
         ) {
             let f: &F = &*(f as *const F);
-            f(&PreferencesWindow::from_glib_borrow(this).unsafe_cast_ref())
+            f(PreferencesWindow::from_glib_borrow(this).unsafe_cast_ref())
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);

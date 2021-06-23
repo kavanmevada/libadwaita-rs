@@ -38,9 +38,9 @@ impl WindowTitle {
     }
 
     // rustdoc-stripper-ignore-next
-    /// Creates a new builder-style object to construct a [`WindowTitle`].
+    /// Creates a new builder-pattern struct instance to construct [`WindowTitle`] objects.
     ///
-    /// This method returns an instance of [`WindowTitleBuilder`] which can be used to create a [`WindowTitle`].
+    /// This method returns an instance of [`WindowTitleBuilder`] which can be used to create [`WindowTitle`] objects.
     pub fn builder() -> WindowTitleBuilder {
         WindowTitleBuilder::default()
     }
@@ -120,7 +120,9 @@ impl WindowTitle {
 
 #[derive(Clone, Default)]
 // rustdoc-stripper-ignore-next
-/// A builder for generating a [`WindowTitle`].
+/// A [builder-pattern] type to construct [`WindowTitle`] objects.
+///
+/// [builder-pattern]: https://doc.rust-lang.org/1.0.0/style/ownership/builders.html
 pub struct WindowTitleBuilder {
     subtitle: Option<String>,
     title: Option<String>,

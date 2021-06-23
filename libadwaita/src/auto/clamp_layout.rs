@@ -31,9 +31,9 @@ impl ClampLayout {
     }
 
     // rustdoc-stripper-ignore-next
-    /// Creates a new builder-style object to construct a [`ClampLayout`].
+    /// Creates a new builder-pattern struct instance to construct [`ClampLayout`] objects.
     ///
-    /// This method returns an instance of [`ClampLayoutBuilder`] which can be used to create a [`ClampLayout`].
+    /// This method returns an instance of [`ClampLayoutBuilder`] which can be used to create [`ClampLayout`] objects.
     pub fn builder() -> ClampLayoutBuilder {
         ClampLayoutBuilder::default()
     }
@@ -127,7 +127,9 @@ impl Default for ClampLayout {
 
 #[derive(Clone, Default)]
 // rustdoc-stripper-ignore-next
-/// A builder for generating a [`ClampLayout`].
+/// A [builder-pattern] type to construct [`ClampLayout`] objects.
+///
+/// [builder-pattern]: https://doc.rust-lang.org/1.0.0/style/ownership/builders.html
 pub struct ClampLayoutBuilder {
     maximum_size: Option<i32>,
     tightening_threshold: Option<i32>,

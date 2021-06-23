@@ -33,9 +33,9 @@ impl ViewSwitcherBar {
     }
 
     // rustdoc-stripper-ignore-next
-    /// Creates a new builder-style object to construct a [`ViewSwitcherBar`].
+    /// Creates a new builder-pattern struct instance to construct [`ViewSwitcherBar`] objects.
     ///
-    /// This method returns an instance of [`ViewSwitcherBarBuilder`] which can be used to create a [`ViewSwitcherBar`].
+    /// This method returns an instance of [`ViewSwitcherBarBuilder`] which can be used to create [`ViewSwitcherBar`] objects.
     pub fn builder() -> ViewSwitcherBarBuilder {
         ViewSwitcherBarBuilder::default()
     }
@@ -157,7 +157,9 @@ impl Default for ViewSwitcherBar {
 
 #[derive(Clone, Default)]
 // rustdoc-stripper-ignore-next
-/// A builder for generating a [`ViewSwitcherBar`].
+/// A [builder-pattern] type to construct [`ViewSwitcherBar`] objects.
+///
+/// [builder-pattern]: https://doc.rust-lang.org/1.0.0/style/ownership/builders.html
 pub struct ViewSwitcherBarBuilder {
     policy: Option<ViewSwitcherPolicy>,
     reveal: Option<bool>,

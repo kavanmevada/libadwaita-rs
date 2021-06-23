@@ -32,9 +32,9 @@ impl ExpanderRow {
     }
 
     // rustdoc-stripper-ignore-next
-    /// Creates a new builder-style object to construct a [`ExpanderRow`].
+    /// Creates a new builder-pattern struct instance to construct [`ExpanderRow`] objects.
     ///
-    /// This method returns an instance of [`ExpanderRowBuilder`] which can be used to create a [`ExpanderRow`].
+    /// This method returns an instance of [`ExpanderRowBuilder`] which can be used to create [`ExpanderRow`] objects.
     pub fn builder() -> ExpanderRowBuilder {
         ExpanderRowBuilder::default()
     }
@@ -48,7 +48,9 @@ impl Default for ExpanderRow {
 
 #[derive(Clone, Default)]
 // rustdoc-stripper-ignore-next
-/// A builder for generating a [`ExpanderRow`].
+/// A [builder-pattern] type to construct [`ExpanderRow`] objects.
+///
+/// [builder-pattern]: https://doc.rust-lang.org/1.0.0/style/ownership/builders.html
 pub struct ExpanderRowBuilder {
     enable_expansion: Option<bool>,
     expanded: Option<bool>,
@@ -637,7 +639,6 @@ impl<O: IsA<ExpanderRow>> ExpanderRowExt for O {
         }
     }
 
-    #[doc(alias = "enable-expansion")]
     fn connect_enable_expansion_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_enable_expansion_trampoline<
             P: IsA<ExpanderRow>,
@@ -648,7 +649,7 @@ impl<O: IsA<ExpanderRow>> ExpanderRowExt for O {
             f: glib::ffi::gpointer,
         ) {
             let f: &F = &*(f as *const F);
-            f(&ExpanderRow::from_glib_borrow(this).unsafe_cast_ref())
+            f(ExpanderRow::from_glib_borrow(this).unsafe_cast_ref())
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
@@ -663,7 +664,6 @@ impl<O: IsA<ExpanderRow>> ExpanderRowExt for O {
         }
     }
 
-    #[doc(alias = "expanded")]
     fn connect_expanded_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_expanded_trampoline<
             P: IsA<ExpanderRow>,
@@ -674,7 +674,7 @@ impl<O: IsA<ExpanderRow>> ExpanderRowExt for O {
             f: glib::ffi::gpointer,
         ) {
             let f: &F = &*(f as *const F);
-            f(&ExpanderRow::from_glib_borrow(this).unsafe_cast_ref())
+            f(ExpanderRow::from_glib_borrow(this).unsafe_cast_ref())
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
@@ -689,7 +689,6 @@ impl<O: IsA<ExpanderRow>> ExpanderRowExt for O {
         }
     }
 
-    #[doc(alias = "icon-name")]
     fn connect_icon_name_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_icon_name_trampoline<
             P: IsA<ExpanderRow>,
@@ -700,7 +699,7 @@ impl<O: IsA<ExpanderRow>> ExpanderRowExt for O {
             f: glib::ffi::gpointer,
         ) {
             let f: &F = &*(f as *const F);
-            f(&ExpanderRow::from_glib_borrow(this).unsafe_cast_ref())
+            f(ExpanderRow::from_glib_borrow(this).unsafe_cast_ref())
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
@@ -715,7 +714,6 @@ impl<O: IsA<ExpanderRow>> ExpanderRowExt for O {
         }
     }
 
-    #[doc(alias = "show-enable-switch")]
     fn connect_show_enable_switch_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_show_enable_switch_trampoline<
             P: IsA<ExpanderRow>,
@@ -726,7 +724,7 @@ impl<O: IsA<ExpanderRow>> ExpanderRowExt for O {
             f: glib::ffi::gpointer,
         ) {
             let f: &F = &*(f as *const F);
-            f(&ExpanderRow::from_glib_borrow(this).unsafe_cast_ref())
+            f(ExpanderRow::from_glib_borrow(this).unsafe_cast_ref())
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
@@ -741,7 +739,6 @@ impl<O: IsA<ExpanderRow>> ExpanderRowExt for O {
         }
     }
 
-    #[doc(alias = "subtitle")]
     fn connect_subtitle_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_subtitle_trampoline<
             P: IsA<ExpanderRow>,
@@ -752,7 +749,7 @@ impl<O: IsA<ExpanderRow>> ExpanderRowExt for O {
             f: glib::ffi::gpointer,
         ) {
             let f: &F = &*(f as *const F);
-            f(&ExpanderRow::from_glib_borrow(this).unsafe_cast_ref())
+            f(ExpanderRow::from_glib_borrow(this).unsafe_cast_ref())
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
@@ -767,7 +764,6 @@ impl<O: IsA<ExpanderRow>> ExpanderRowExt for O {
         }
     }
 
-    #[doc(alias = "use-underline")]
     fn connect_use_underline_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_use_underline_trampoline<
             P: IsA<ExpanderRow>,
@@ -778,7 +774,7 @@ impl<O: IsA<ExpanderRow>> ExpanderRowExt for O {
             f: glib::ffi::gpointer,
         ) {
             let f: &F = &*(f as *const F);
-            f(&ExpanderRow::from_glib_borrow(this).unsafe_cast_ref())
+            f(ExpanderRow::from_glib_borrow(this).unsafe_cast_ref())
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);

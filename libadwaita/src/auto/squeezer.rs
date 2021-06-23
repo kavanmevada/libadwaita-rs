@@ -34,9 +34,9 @@ impl Squeezer {
     }
 
     // rustdoc-stripper-ignore-next
-    /// Creates a new builder-style object to construct a [`Squeezer`].
+    /// Creates a new builder-pattern struct instance to construct [`Squeezer`] objects.
     ///
-    /// This method returns an instance of [`SqueezerBuilder`] which can be used to create a [`Squeezer`].
+    /// This method returns an instance of [`SqueezerBuilder`] which can be used to create [`Squeezer`] objects.
     pub fn builder() -> SqueezerBuilder {
         SqueezerBuilder::default()
     }
@@ -398,7 +398,9 @@ impl Default for Squeezer {
 
 #[derive(Clone, Default)]
 // rustdoc-stripper-ignore-next
-/// A builder for generating a [`Squeezer`].
+/// A [builder-pattern] type to construct [`Squeezer`] objects.
+///
+/// [builder-pattern]: https://doc.rust-lang.org/1.0.0/style/ownership/builders.html
 pub struct SqueezerBuilder {
     homogeneous: Option<bool>,
     interpolate_size: Option<bool>,

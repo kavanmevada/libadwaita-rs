@@ -31,9 +31,9 @@ impl PreferencesGroup {
     }
 
     // rustdoc-stripper-ignore-next
-    /// Creates a new builder-style object to construct a [`PreferencesGroup`].
+    /// Creates a new builder-pattern struct instance to construct [`PreferencesGroup`] objects.
     ///
-    /// This method returns an instance of [`PreferencesGroupBuilder`] which can be used to create a [`PreferencesGroup`].
+    /// This method returns an instance of [`PreferencesGroupBuilder`] which can be used to create [`PreferencesGroup`] objects.
     pub fn builder() -> PreferencesGroupBuilder {
         PreferencesGroupBuilder::default()
     }
@@ -47,7 +47,9 @@ impl Default for PreferencesGroup {
 
 #[derive(Clone, Default)]
 // rustdoc-stripper-ignore-next
-/// A builder for generating a [`PreferencesGroup`].
+/// A [builder-pattern] type to construct [`PreferencesGroup`] objects.
+///
+/// [builder-pattern]: https://doc.rust-lang.org/1.0.0/style/ownership/builders.html
 pub struct PreferencesGroupBuilder {
     description: Option<String>,
     title: Option<String>,
@@ -438,7 +440,6 @@ impl<O: IsA<PreferencesGroup>> PreferencesGroupExt for O {
         }
     }
 
-    #[doc(alias = "description")]
     fn connect_description_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_description_trampoline<
             P: IsA<PreferencesGroup>,
@@ -449,7 +450,7 @@ impl<O: IsA<PreferencesGroup>> PreferencesGroupExt for O {
             f: glib::ffi::gpointer,
         ) {
             let f: &F = &*(f as *const F);
-            f(&PreferencesGroup::from_glib_borrow(this).unsafe_cast_ref())
+            f(PreferencesGroup::from_glib_borrow(this).unsafe_cast_ref())
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
@@ -464,7 +465,6 @@ impl<O: IsA<PreferencesGroup>> PreferencesGroupExt for O {
         }
     }
 
-    #[doc(alias = "title")]
     fn connect_title_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_title_trampoline<
             P: IsA<PreferencesGroup>,
@@ -475,7 +475,7 @@ impl<O: IsA<PreferencesGroup>> PreferencesGroupExt for O {
             f: glib::ffi::gpointer,
         ) {
             let f: &F = &*(f as *const F);
-            f(&PreferencesGroup::from_glib_borrow(this).unsafe_cast_ref())
+            f(PreferencesGroup::from_glib_borrow(this).unsafe_cast_ref())
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);

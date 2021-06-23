@@ -39,9 +39,9 @@ impl Avatar {
     }
 
     // rustdoc-stripper-ignore-next
-    /// Creates a new builder-style object to construct a [`Avatar`].
+    /// Creates a new builder-pattern struct instance to construct [`Avatar`] objects.
     ///
-    /// This method returns an instance of [`AvatarBuilder`] which can be used to create a [`Avatar`].
+    /// This method returns an instance of [`AvatarBuilder`] which can be used to create [`Avatar`] objects.
     pub fn builder() -> AvatarBuilder {
         AvatarBuilder::default()
     }
@@ -243,7 +243,9 @@ impl Avatar {
 
 #[derive(Clone, Default)]
 // rustdoc-stripper-ignore-next
-/// A builder for generating a [`Avatar`].
+/// A [builder-pattern] type to construct [`Avatar`] objects.
+///
+/// [builder-pattern]: https://doc.rust-lang.org/1.0.0/style/ownership/builders.html
 pub struct AvatarBuilder {
     custom_image: Option<gdk::Paintable>,
     icon_name: Option<String>,

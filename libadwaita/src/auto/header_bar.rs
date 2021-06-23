@@ -33,9 +33,9 @@ impl HeaderBar {
     }
 
     // rustdoc-stripper-ignore-next
-    /// Creates a new builder-style object to construct a [`HeaderBar`].
+    /// Creates a new builder-pattern struct instance to construct [`HeaderBar`] objects.
     ///
-    /// This method returns an instance of [`HeaderBarBuilder`] which can be used to create a [`HeaderBar`].
+    /// This method returns an instance of [`HeaderBarBuilder`] which can be used to create [`HeaderBar`] objects.
     pub fn builder() -> HeaderBarBuilder {
         HeaderBarBuilder::default()
     }
@@ -294,7 +294,9 @@ impl Default for HeaderBar {
 
 #[derive(Clone, Default)]
 // rustdoc-stripper-ignore-next
-/// A builder for generating a [`HeaderBar`].
+/// A [builder-pattern] type to construct [`HeaderBar`] objects.
+///
+/// [builder-pattern]: https://doc.rust-lang.org/1.0.0/style/ownership/builders.html
 pub struct HeaderBarBuilder {
     centering_policy: Option<CenteringPolicy>,
     decoration_layout: Option<String>,

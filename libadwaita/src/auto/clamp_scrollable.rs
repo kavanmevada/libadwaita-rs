@@ -32,9 +32,9 @@ impl ClampScrollable {
     }
 
     // rustdoc-stripper-ignore-next
-    /// Creates a new builder-style object to construct a [`ClampScrollable`].
+    /// Creates a new builder-pattern struct instance to construct [`ClampScrollable`] objects.
     ///
-    /// This method returns an instance of [`ClampScrollableBuilder`] which can be used to create a [`ClampScrollable`].
+    /// This method returns an instance of [`ClampScrollableBuilder`] which can be used to create [`ClampScrollable`] objects.
     pub fn builder() -> ClampScrollableBuilder {
         ClampScrollableBuilder::default()
     }
@@ -167,7 +167,9 @@ impl Default for ClampScrollable {
 
 #[derive(Clone, Default)]
 // rustdoc-stripper-ignore-next
-/// A builder for generating a [`ClampScrollable`].
+/// A [builder-pattern] type to construct [`ClampScrollable`] objects.
+///
+/// [builder-pattern]: https://doc.rust-lang.org/1.0.0/style/ownership/builders.html
 pub struct ClampScrollableBuilder {
     child: Option<gtk::Widget>,
     maximum_size: Option<i32>,

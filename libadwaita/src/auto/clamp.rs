@@ -32,9 +32,9 @@ impl Clamp {
     }
 
     // rustdoc-stripper-ignore-next
-    /// Creates a new builder-style object to construct a [`Clamp`].
+    /// Creates a new builder-pattern struct instance to construct [`Clamp`] objects.
     ///
-    /// This method returns an instance of [`ClampBuilder`] which can be used to create a [`Clamp`].
+    /// This method returns an instance of [`ClampBuilder`] which can be used to create [`Clamp`] objects.
     pub fn builder() -> ClampBuilder {
         ClampBuilder::default()
     }
@@ -162,7 +162,9 @@ impl Default for Clamp {
 
 #[derive(Clone, Default)]
 // rustdoc-stripper-ignore-next
-/// A builder for generating a [`Clamp`].
+/// A [builder-pattern] type to construct [`Clamp`] objects.
+///
+/// [builder-pattern]: https://doc.rust-lang.org/1.0.0/style/ownership/builders.html
 pub struct ClampBuilder {
     child: Option<gtk::Widget>,
     maximum_size: Option<i32>,

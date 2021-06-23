@@ -32,9 +32,9 @@ impl PreferencesPage {
     }
 
     // rustdoc-stripper-ignore-next
-    /// Creates a new builder-style object to construct a [`PreferencesPage`].
+    /// Creates a new builder-pattern struct instance to construct [`PreferencesPage`] objects.
     ///
-    /// This method returns an instance of [`PreferencesPageBuilder`] which can be used to create a [`PreferencesPage`].
+    /// This method returns an instance of [`PreferencesPageBuilder`] which can be used to create [`PreferencesPage`] objects.
     pub fn builder() -> PreferencesPageBuilder {
         PreferencesPageBuilder::default()
     }
@@ -48,7 +48,9 @@ impl Default for PreferencesPage {
 
 #[derive(Clone, Default)]
 // rustdoc-stripper-ignore-next
-/// A builder for generating a [`PreferencesPage`].
+/// A [builder-pattern] type to construct [`PreferencesPage`] objects.
+///
+/// [builder-pattern]: https://doc.rust-lang.org/1.0.0/style/ownership/builders.html
 pub struct PreferencesPageBuilder {
     icon_name: Option<String>,
     title: Option<String>,
@@ -475,7 +477,6 @@ impl<O: IsA<PreferencesPage>> PreferencesPageExt for O {
         }
     }
 
-    #[doc(alias = "icon-name")]
     fn connect_icon_name_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_icon_name_trampoline<
             P: IsA<PreferencesPage>,
@@ -486,7 +487,7 @@ impl<O: IsA<PreferencesPage>> PreferencesPageExt for O {
             f: glib::ffi::gpointer,
         ) {
             let f: &F = &*(f as *const F);
-            f(&PreferencesPage::from_glib_borrow(this).unsafe_cast_ref())
+            f(PreferencesPage::from_glib_borrow(this).unsafe_cast_ref())
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
@@ -501,7 +502,6 @@ impl<O: IsA<PreferencesPage>> PreferencesPageExt for O {
         }
     }
 
-    #[doc(alias = "title")]
     fn connect_title_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_title_trampoline<
             P: IsA<PreferencesPage>,
@@ -512,7 +512,7 @@ impl<O: IsA<PreferencesPage>> PreferencesPageExt for O {
             f: glib::ffi::gpointer,
         ) {
             let f: &F = &*(f as *const F);
-            f(&PreferencesPage::from_glib_borrow(this).unsafe_cast_ref())
+            f(PreferencesPage::from_glib_borrow(this).unsafe_cast_ref())
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
@@ -527,7 +527,6 @@ impl<O: IsA<PreferencesPage>> PreferencesPageExt for O {
         }
     }
 
-    #[doc(alias = "use-underline")]
     fn connect_use_underline_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_use_underline_trampoline<
             P: IsA<PreferencesPage>,
@@ -538,7 +537,7 @@ impl<O: IsA<PreferencesPage>> PreferencesPageExt for O {
             f: glib::ffi::gpointer,
         ) {
             let f: &F = &*(f as *const F);
-            f(&PreferencesPage::from_glib_borrow(this).unsafe_cast_ref())
+            f(PreferencesPage::from_glib_borrow(this).unsafe_cast_ref())
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);

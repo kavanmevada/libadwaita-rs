@@ -31,9 +31,9 @@ impl Bin {
     }
 
     // rustdoc-stripper-ignore-next
-    /// Creates a new builder-style object to construct a [`Bin`].
+    /// Creates a new builder-pattern struct instance to construct [`Bin`] objects.
     ///
-    /// This method returns an instance of [`BinBuilder`] which can be used to create a [`Bin`].
+    /// This method returns an instance of [`BinBuilder`] which can be used to create [`Bin`] objects.
     pub fn builder() -> BinBuilder {
         BinBuilder::default()
     }
@@ -47,7 +47,9 @@ impl Default for Bin {
 
 #[derive(Clone, Default)]
 // rustdoc-stripper-ignore-next
-/// A builder for generating a [`Bin`].
+/// A [builder-pattern] type to construct [`Bin`] objects.
+///
+/// [builder-pattern]: https://doc.rust-lang.org/1.0.0/style/ownership/builders.html
 pub struct BinBuilder {
     child: Option<gtk::Widget>,
     can_focus: Option<bool>,
@@ -373,7 +375,6 @@ impl<O: IsA<Bin>> BinExt for O {
         }
     }
 
-    #[doc(alias = "child")]
     fn connect_child_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_child_trampoline<P: IsA<Bin>, F: Fn(&P) + 'static>(
             this: *mut ffi::AdwBin,
@@ -381,7 +382,7 @@ impl<O: IsA<Bin>> BinExt for O {
             f: glib::ffi::gpointer,
         ) {
             let f: &F = &*(f as *const F);
-            f(&Bin::from_glib_borrow(this).unsafe_cast_ref())
+            f(Bin::from_glib_borrow(this).unsafe_cast_ref())
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
