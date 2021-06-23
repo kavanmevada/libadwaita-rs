@@ -1,3 +1,10 @@
+variables:
+  # format is <branch>=<name>
+  # the name is used in the URL
+  # latest release must be at the top
+  # (only relevant on main branch)
+  RELEASES: 0.1=0.1.0-alpha
+
 image: "ghcr.io/gtk-rs/gtk4-rs/gtk4:latest"
 
 before_script:
@@ -7,33 +14,43 @@ before_script:
   - meson _build --prefix=/usr -Dlibadwaita:tests=false -Dlibadwaita:examples=false -Dlibadwaita:vapi=false
   - ninja -C _build install
   - git submodule update --init
+  - curl --proto '=https' --tlsv1.2 -sSf -o gir-rustdoc.py
+    https://gitlab.gnome.org/World/Rust/gir-rustdoc/-/raw/main/gir-rustdoc.py
+  - chmod +x gir-rustdoc.py
 
 build:
   script:
     - cargo build --all-features
     - xvfb-run -a -s "-screen 0 1024x768x24" cargo test
 
-pages:
+docs:
+  stage: test
   variables:
     GIT_SUBMODULE_STRATEGY: recursive
-    RUSTDOCFLAGS: >
-      -Z unstable-options
-      --enable-index-page
-      --extern-html-root-url=gdk_pixbuf=https://gtk-rs.org/gtk-rs-core/git/docs 
-      --extern-html-root-url=gio=https://gtk-rs.org/gtk-rs-core/git/docs 
-      --extern-html-root-url=glib=https://gtk-rs.org/gtk-rs-core/git/docs 
-      --extern-html-root-url=pango=https://gtk-rs.org/gtk-rs-core/git/docs 
-      --extern-html-root-url=gdk4=https://gtk-rs.org/gtk4-rs/git/docs 
-      --extern-html-root-url=gtk4=https://gtk-rs.org/gtk4-rs/git/docs
   script:
     # generate the docs
     - cargo install rustdoc-stripper
-    - ./generator.py --embed-docs --yes ./
-    - cargo doc -p libadwaita -p libadwaita-sys --features dox --no-deps
-    - mv target/doc/ public
+    - ./generator.py --embed-docs
+    - ./fix-gir-mistakes.sh
+    - rustup default nightly
+    - eval $(./gir-rustdoc.py pre-docs)
+    - cargo doc --features dox --no-deps
+    - mv target/doc/ docs
+  artifacts:
+    paths:
+      - docs
+
+pages:
+  stage: deploy
+  script:
+    - ./gir-rustdoc.py html-index
+    # main docs
+    - mkdir public/git
+    - mv docs public/git/docs
+    # stable docs
+    - ./gir-rustdoc.py docs-from-artifacts
   artifacts:
     paths:
       - public
-  only:
-    refs:
-      - master
+  rules:
+    - if: $CI_DEFAULT_BRANCH == $CI_COMMIT_BRANCH
