@@ -1,10 +1,14 @@
 [package]
 name = "libadwaita-sys"
-version = "0.1.0"
+version = "0.1.0-alpha"
 authors = ["Bilal Elmoussaoui <bil.elmoussaoui@gmail.com>"]
 edition = "2018"
 build = "build.rs"
 links = "libadwaita-1"
+categories = ["api-bindings", "gui"]
+keywords = ["gtk4-rs", "gnome", "adwaita", "GUI"]
+repository = "https://gitlab.gnome.org/World/Rust/libadwaita-rs"
+documentation = "https://world.pages.gitlab.gnome.org/Rust/libadwaita-rs/libadwaita_sys/index.html"
 [package.metadata.system-deps.libadwaita_1]
 name = "libadwaita-1"
 version = "1"
