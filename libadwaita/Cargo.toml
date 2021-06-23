@@ -4,9 +4,10 @@ version = "0.1.0-alpha"
 authors = ["Bilal Elmoussaoui <bil.elmoussaoui@gmail.com>"]
 edition = "2018"
 readme = "../README.md"
+homepage = "https://world.pages.gitlab.gnome.org/Rust/libadwaita-rs/"
 description = "Rust bindings for libadwaita"
 repository = "https://gitlab.gnome.org/World/Rust/libadwaita-rs"
-documentation = "https://world.pages.gitlab.gnome.org/Rust/libadwaita-rs/libadwaita_sys/index.html"
+documentation = "https://world.pages.gitlab.gnome.org/Rust/libadwaita-rs/stable/latest/docs/libadwaita"
 categories = ["api-bindings", "gui"]
 keywords = ["gtk4-rs", "gnome", "adwaita", "GUI"]
 
