@@ -6,6 +6,7 @@ edition = "2018"
 readme = "../README.md"
 homepage = "https://world.pages.gitlab.gnome.org/Rust/libadwaita-rs/"
 description = "Rust bindings for libadwaita"
+license = "MIT"
 repository = "https://gitlab.gnome.org/World/Rust/libadwaita-rs"
 documentation = "https://world.pages.gitlab.gnome.org/Rust/libadwaita-rs/stable/latest/docs/libadwaita"
 categories = ["api-bindings", "gui"]
