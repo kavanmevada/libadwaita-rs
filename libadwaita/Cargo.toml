@@ -1,6 +1,6 @@
 [package]
 name = "libadwaita"
-version = "0.1.0-alpha"
+version = "0.1.0-alpha-2"
 authors = ["Bilal Elmoussaoui <bil.elmoussaoui@gmail.com>"]
 edition = "2018"
 readme = "../README.md"
@@ -38,13 +38,13 @@ version = "0.14"
 
 [dependencies.gdk]
 package = "gdk4"
-version = "0.1"
+version = "0.2"
 
 [dependencies.gtk]
 package = "gtk4"
-version = "0.1"
+version = "0.2"
 
 [dependencies.ffi]
 package = "libadwaita-sys"
 path = './sys'
-version = "0.1.0-alpha"
+version = "0.1.0-alpha-2"

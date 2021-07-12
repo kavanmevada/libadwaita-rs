@@ -1,6 +1,6 @@
 [package]
 name = "libadwaita-sys"
-version = "0.1.0-alpha"
+version = "0.1.0-alpha-2"
 authors = ["Bilal Elmoussaoui <bil.elmoussaoui@gmail.com>"]
 edition = "2018"
 build = "build.rs"
@@ -41,11 +41,11 @@ version = "0.14"
 
 [dependencies.gtk-sys]
 package = "gtk4-sys"
-version = "0.1"
+version = "0.2"
 
 [dependencies.gdk-sys]
 package = "gdk4-sys"
-version = "0.1"
+version = "0.2"
 
 [build-dependencies]
 system-deps = "3"
