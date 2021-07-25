@@ -44,6 +44,10 @@ pub const ADW_FLAP_TRANSITION_TYPE_OVER: AdwFlapTransitionType = 0;
 pub const ADW_FLAP_TRANSITION_TYPE_UNDER: AdwFlapTransitionType = 1;
 pub const ADW_FLAP_TRANSITION_TYPE_SLIDE: AdwFlapTransitionType = 2;
 
+pub type AdwFoldThresholdPolicy = c_int;
+pub const ADW_FOLD_THRESHOLD_POLICY_MINIMUM: AdwFoldThresholdPolicy = 0;
+pub const ADW_FOLD_THRESHOLD_POLICY_NATURAL: AdwFoldThresholdPolicy = 1;
+
 pub type AdwLeafletTransitionType = c_int;
 pub const ADW_LEAFLET_TRANSITION_TYPE_OVER: AdwLeafletTransitionType = 0;
 pub const ADW_LEAFLET_TRANSITION_TYPE_UNDER: AdwLeafletTransitionType = 1;
@@ -528,6 +532,34 @@ impl ::std::fmt::Debug for AdwValueObjectClass {
 
 #[repr(C)]
 #[derive(Copy, Clone)]
+pub struct AdwViewStackClass {
+    pub parent_class: gtk::GtkWidgetClass,
+}
+
+impl ::std::fmt::Debug for AdwViewStackClass {
+    fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+        f.debug_struct(&format!("AdwViewStackClass @ {:p}", self))
+            .field("parent_class", &self.parent_class)
+            .finish()
+    }
+}
+
+#[repr(C)]
+#[derive(Copy, Clone)]
+pub struct AdwViewStackPageClass {
+    pub parent_class: gobject::GObjectClass,
+}
+
+impl ::std::fmt::Debug for AdwViewStackPageClass {
+    fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+        f.debug_struct(&format!("AdwViewStackPageClass @ {:p}", self))
+            .field("parent_class", &self.parent_class)
+            .finish()
+    }
+}
+
+#[repr(C)]
+#[derive(Copy, Clone)]
 pub struct AdwViewSwitcherBarClass {
     pub parent_class: gtk::GtkWidgetClass,
 }
@@ -928,6 +960,26 @@ impl ::std::fmt::Debug for AdwValueObject {
 }
 
 #[repr(C)]
+pub struct AdwViewStack(c_void);
+
+impl ::std::fmt::Debug for AdwViewStack {
+    fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+        f.debug_struct(&format!("AdwViewStack @ {:p}", self))
+            .finish()
+    }
+}
+
+#[repr(C)]
+pub struct AdwViewStackPage(c_void);
+
+impl ::std::fmt::Debug for AdwViewStackPage {
+    fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+        f.debug_struct(&format!("AdwViewStackPage @ {:p}", self))
+            .finish()
+    }
+}
+
+#[repr(C)]
 pub struct AdwViewSwitcher(c_void);
 
 impl ::std::fmt::Debug for AdwViewSwitcher {
@@ -1008,6 +1060,11 @@ extern "C" {
     // AdwFlapTransitionType
     //=========================================================================
     pub fn adw_flap_transition_type_get_type() -> GType;
+
+    //=========================================================================
+    // AdwFoldThresholdPolicy
+    //=========================================================================
+    pub fn adw_fold_threshold_policy_get_type() -> GType;
 
     //=========================================================================
     // AdwLeafletTransitionType
@@ -1299,6 +1356,7 @@ extern "C" {
     pub fn adw_flap_get_flap_position(self_: *mut AdwFlap) -> gtk::GtkPackType;
     pub fn adw_flap_get_fold_duration(self_: *mut AdwFlap) -> c_uint;
     pub fn adw_flap_get_fold_policy(self_: *mut AdwFlap) -> AdwFlapFoldPolicy;
+    pub fn adw_flap_get_fold_threshold_policy(self_: *mut AdwFlap) -> AdwFoldThresholdPolicy;
     pub fn adw_flap_get_folded(self_: *mut AdwFlap) -> gboolean;
     pub fn adw_flap_get_locked(self_: *mut AdwFlap) -> gboolean;
     pub fn adw_flap_get_modal(self_: *mut AdwFlap) -> gboolean;
@@ -1314,6 +1372,7 @@ extern "C" {
     pub fn adw_flap_set_flap_position(self_: *mut AdwFlap, position: gtk::GtkPackType);
     pub fn adw_flap_set_fold_duration(self_: *mut AdwFlap, duration: c_uint);
     pub fn adw_flap_set_fold_policy(self_: *mut AdwFlap, policy: AdwFlapFoldPolicy);
+    pub fn adw_flap_set_fold_threshold_policy(self_: *mut AdwFlap, policy: AdwFoldThresholdPolicy);
     pub fn adw_flap_set_locked(self_: *mut AdwFlap, locked: gboolean);
     pub fn adw_flap_set_modal(self_: *mut AdwFlap, modal: gboolean);
     pub fn adw_flap_set_reveal_duration(self_: *mut AdwFlap, duration: c_uint);
@@ -1373,6 +1432,7 @@ extern "C" {
     ) -> *mut gtk::GtkWidget;
     pub fn adw_leaflet_get_child_transition_duration(self_: *mut AdwLeaflet) -> c_uint;
     pub fn adw_leaflet_get_child_transition_running(self_: *mut AdwLeaflet) -> gboolean;
+    pub fn adw_leaflet_get_fold_threshold_policy(self_: *mut AdwLeaflet) -> AdwFoldThresholdPolicy;
     pub fn adw_leaflet_get_folded(self_: *mut AdwLeaflet) -> gboolean;
     pub fn adw_leaflet_get_homogeneous(
         self_: *mut AdwLeaflet,
@@ -1412,6 +1472,10 @@ extern "C" {
     pub fn adw_leaflet_set_can_swipe_forward(self_: *mut AdwLeaflet, can_swipe_forward: gboolean);
     pub fn adw_leaflet_set_can_unfold(self_: *mut AdwLeaflet, can_unfold: gboolean);
     pub fn adw_leaflet_set_child_transition_duration(self_: *mut AdwLeaflet, duration: c_uint);
+    pub fn adw_leaflet_set_fold_threshold_policy(
+        self_: *mut AdwLeaflet,
+        policy: AdwFoldThresholdPolicy,
+    );
     pub fn adw_leaflet_set_homogeneous(
         self_: *mut AdwLeaflet,
         folded: gboolean,
@@ -1468,6 +1532,7 @@ extern "C" {
         group: *mut AdwPreferencesGroup,
     );
     pub fn adw_preferences_page_get_icon_name(self_: *mut AdwPreferencesPage) -> *const c_char;
+    pub fn adw_preferences_page_get_name(self_: *mut AdwPreferencesPage) -> *const c_char;
     pub fn adw_preferences_page_get_title(self_: *mut AdwPreferencesPage) -> *const c_char;
     pub fn adw_preferences_page_get_use_underline(self_: *mut AdwPreferencesPage) -> gboolean;
     pub fn adw_preferences_page_remove(
@@ -1478,6 +1543,7 @@ extern "C" {
         self_: *mut AdwPreferencesPage,
         icon_name: *const c_char,
     );
+    pub fn adw_preferences_page_set_name(self_: *mut AdwPreferencesPage, name: *const c_char);
     pub fn adw_preferences_page_set_title(self_: *mut AdwPreferencesPage, title: *const c_char);
     pub fn adw_preferences_page_set_use_underline(
         self_: *mut AdwPreferencesPage,
@@ -1509,6 +1575,12 @@ extern "C" {
     pub fn adw_preferences_window_close_subpage(self_: *mut AdwPreferencesWindow);
     pub fn adw_preferences_window_get_can_swipe_back(self_: *mut AdwPreferencesWindow) -> gboolean;
     pub fn adw_preferences_window_get_search_enabled(self_: *mut AdwPreferencesWindow) -> gboolean;
+    pub fn adw_preferences_window_get_visible_page(
+        self_: *mut AdwPreferencesWindow,
+    ) -> *mut AdwPreferencesPage;
+    pub fn adw_preferences_window_get_visible_page_name(
+        self_: *mut AdwPreferencesWindow,
+    ) -> *const c_char;
     pub fn adw_preferences_window_present_subpage(
         self_: *mut AdwPreferencesWindow,
         subpage: *mut gtk::GtkWidget,
@@ -1524,6 +1596,14 @@ extern "C" {
     pub fn adw_preferences_window_set_search_enabled(
         self_: *mut AdwPreferencesWindow,
         search_enabled: gboolean,
+    );
+    pub fn adw_preferences_window_set_visible_page(
+        self_: *mut AdwPreferencesWindow,
+        page: *mut AdwPreferencesPage,
+    );
+    pub fn adw_preferences_window_set_visible_page_name(
+        self_: *mut AdwPreferencesWindow,
+        name: *const c_char,
     );
 
     //=========================================================================
@@ -1753,6 +1833,80 @@ extern "C" {
     pub fn adw_value_object_get_value(value: *mut AdwValueObject) -> *const gobject::GValue;
 
     //=========================================================================
+    // AdwViewStack
+    //=========================================================================
+    pub fn adw_view_stack_get_type() -> GType;
+    pub fn adw_view_stack_new() -> *mut gtk::GtkWidget;
+    pub fn adw_view_stack_add(
+        self_: *mut AdwViewStack,
+        child: *mut gtk::GtkWidget,
+    ) -> *mut AdwViewStackPage;
+    pub fn adw_view_stack_add_named(
+        self_: *mut AdwViewStack,
+        child: *mut gtk::GtkWidget,
+        name: *const c_char,
+    ) -> *mut AdwViewStackPage;
+    pub fn adw_view_stack_add_titled(
+        self_: *mut AdwViewStack,
+        child: *mut gtk::GtkWidget,
+        name: *const c_char,
+        title: *const c_char,
+    ) -> *mut AdwViewStackPage;
+    pub fn adw_view_stack_get_child_by_name(
+        self_: *mut AdwViewStack,
+        name: *const c_char,
+    ) -> *mut gtk::GtkWidget;
+    pub fn adw_view_stack_get_hhomogeneous(self_: *mut AdwViewStack) -> gboolean;
+    pub fn adw_view_stack_get_interpolate_size(self_: *mut AdwViewStack) -> gboolean;
+    pub fn adw_view_stack_get_page(
+        self_: *mut AdwViewStack,
+        child: *mut gtk::GtkWidget,
+    ) -> *mut AdwViewStackPage;
+    pub fn adw_view_stack_get_pages(self_: *mut AdwViewStack) -> *mut gtk::GtkSelectionModel;
+    pub fn adw_view_stack_get_transition_running(self_: *mut AdwViewStack) -> gboolean;
+    pub fn adw_view_stack_get_vhomogeneous(self_: *mut AdwViewStack) -> gboolean;
+    pub fn adw_view_stack_get_visible_child(self_: *mut AdwViewStack) -> *mut gtk::GtkWidget;
+    pub fn adw_view_stack_get_visible_child_name(self_: *mut AdwViewStack) -> *const c_char;
+    pub fn adw_view_stack_remove(self_: *mut AdwViewStack, child: *mut gtk::GtkWidget);
+    pub fn adw_view_stack_set_hhomogeneous(self_: *mut AdwViewStack, hhomogeneous: gboolean);
+    pub fn adw_view_stack_set_interpolate_size(
+        self_: *mut AdwViewStack,
+        interpolate_size: gboolean,
+    );
+    pub fn adw_view_stack_set_vhomogeneous(self_: *mut AdwViewStack, vhomogeneous: gboolean);
+    pub fn adw_view_stack_set_visible_child(self_: *mut AdwViewStack, child: *mut gtk::GtkWidget);
+    pub fn adw_view_stack_set_visible_child_name(self_: *mut AdwViewStack, name: *const c_char);
+
+    //=========================================================================
+    // AdwViewStackPage
+    //=========================================================================
+    pub fn adw_view_stack_page_get_type() -> GType;
+    pub fn adw_view_stack_page_get_badge_number(self_: *mut AdwViewStackPage) -> c_uint;
+    pub fn adw_view_stack_page_get_child(self_: *mut AdwViewStackPage) -> *mut gtk::GtkWidget;
+    pub fn adw_view_stack_page_get_icon_name(self_: *mut AdwViewStackPage) -> *const c_char;
+    pub fn adw_view_stack_page_get_name(self_: *mut AdwViewStackPage) -> *const c_char;
+    pub fn adw_view_stack_page_get_needs_attention(self_: *mut AdwViewStackPage) -> gboolean;
+    pub fn adw_view_stack_page_get_title(self_: *mut AdwViewStackPage) -> *const c_char;
+    pub fn adw_view_stack_page_get_use_underline(self_: *mut AdwViewStackPage) -> gboolean;
+    pub fn adw_view_stack_page_get_visible(self_: *mut AdwViewStackPage) -> gboolean;
+    pub fn adw_view_stack_page_set_badge_number(self_: *mut AdwViewStackPage, badge_number: c_uint);
+    pub fn adw_view_stack_page_set_icon_name(
+        self_: *mut AdwViewStackPage,
+        icon_name: *const c_char,
+    );
+    pub fn adw_view_stack_page_set_name(self_: *mut AdwViewStackPage, name: *const c_char);
+    pub fn adw_view_stack_page_set_needs_attention(
+        self_: *mut AdwViewStackPage,
+        needs_attention: gboolean,
+    );
+    pub fn adw_view_stack_page_set_title(self_: *mut AdwViewStackPage, title: *const c_char);
+    pub fn adw_view_stack_page_set_use_underline(
+        self_: *mut AdwViewStackPage,
+        use_underline: gboolean,
+    );
+    pub fn adw_view_stack_page_set_visible(self_: *mut AdwViewStackPage, visible: gboolean);
+
+    //=========================================================================
     // AdwViewSwitcher
     //=========================================================================
     pub fn adw_view_switcher_get_type() -> GType;
@@ -1761,13 +1915,13 @@ extern "C" {
         self_: *mut AdwViewSwitcher,
     ) -> pango::PangoEllipsizeMode;
     pub fn adw_view_switcher_get_policy(self_: *mut AdwViewSwitcher) -> AdwViewSwitcherPolicy;
-    pub fn adw_view_switcher_get_stack(self_: *mut AdwViewSwitcher) -> *mut gtk::GtkStack;
+    pub fn adw_view_switcher_get_stack(self_: *mut AdwViewSwitcher) -> *mut AdwViewStack;
     pub fn adw_view_switcher_set_narrow_ellipsize(
         self_: *mut AdwViewSwitcher,
         mode: pango::PangoEllipsizeMode,
     );
     pub fn adw_view_switcher_set_policy(self_: *mut AdwViewSwitcher, policy: AdwViewSwitcherPolicy);
-    pub fn adw_view_switcher_set_stack(self_: *mut AdwViewSwitcher, stack: *mut gtk::GtkStack);
+    pub fn adw_view_switcher_set_stack(self_: *mut AdwViewSwitcher, stack: *mut AdwViewStack);
 
     //=========================================================================
     // AdwViewSwitcherBar
@@ -1778,7 +1932,7 @@ extern "C" {
         self_: *mut AdwViewSwitcherBar,
     ) -> AdwViewSwitcherPolicy;
     pub fn adw_view_switcher_bar_get_reveal(self_: *mut AdwViewSwitcherBar) -> gboolean;
-    pub fn adw_view_switcher_bar_get_stack(self_: *mut AdwViewSwitcherBar) -> *mut gtk::GtkStack;
+    pub fn adw_view_switcher_bar_get_stack(self_: *mut AdwViewSwitcherBar) -> *mut AdwViewStack;
     pub fn adw_view_switcher_bar_set_policy(
         self_: *mut AdwViewSwitcherBar,
         policy: AdwViewSwitcherPolicy,
@@ -1786,7 +1940,7 @@ extern "C" {
     pub fn adw_view_switcher_bar_set_reveal(self_: *mut AdwViewSwitcherBar, reveal: gboolean);
     pub fn adw_view_switcher_bar_set_stack(
         self_: *mut AdwViewSwitcherBar,
-        stack: *mut gtk::GtkStack,
+        stack: *mut AdwViewStack,
     );
 
     //=========================================================================
@@ -1797,9 +1951,8 @@ extern "C" {
     pub fn adw_view_switcher_title_get_policy(
         self_: *mut AdwViewSwitcherTitle,
     ) -> AdwViewSwitcherPolicy;
-    pub fn adw_view_switcher_title_get_stack(
-        self_: *mut AdwViewSwitcherTitle,
-    ) -> *mut gtk::GtkStack;
+    pub fn adw_view_switcher_title_get_stack(self_: *mut AdwViewSwitcherTitle)
+        -> *mut AdwViewStack;
     pub fn adw_view_switcher_title_get_subtitle(self_: *mut AdwViewSwitcherTitle) -> *const c_char;
     pub fn adw_view_switcher_title_get_title(self_: *mut AdwViewSwitcherTitle) -> *const c_char;
     pub fn adw_view_switcher_title_get_title_visible(self_: *mut AdwViewSwitcherTitle) -> gboolean;
@@ -1812,7 +1965,7 @@ extern "C" {
     );
     pub fn adw_view_switcher_title_set_stack(
         self_: *mut AdwViewSwitcherTitle,
-        stack: *mut gtk::GtkStack,
+        stack: *mut AdwViewStack,
     );
     pub fn adw_view_switcher_title_set_subtitle(
         self_: *mut AdwViewSwitcherTitle,

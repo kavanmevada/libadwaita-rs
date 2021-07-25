@@ -31,6 +31,7 @@ int main() {
     printf("%s;%zu;%zu\n", "AdwFlapClass", sizeof(AdwFlapClass), alignof(AdwFlapClass));
     printf("%s;%zu;%zu\n", "AdwFlapFoldPolicy", sizeof(AdwFlapFoldPolicy), alignof(AdwFlapFoldPolicy));
     printf("%s;%zu;%zu\n", "AdwFlapTransitionType", sizeof(AdwFlapTransitionType), alignof(AdwFlapTransitionType));
+    printf("%s;%zu;%zu\n", "AdwFoldThresholdPolicy", sizeof(AdwFoldThresholdPolicy), alignof(AdwFoldThresholdPolicy));
     printf("%s;%zu;%zu\n", "AdwHeaderBarClass", sizeof(AdwHeaderBarClass), alignof(AdwHeaderBarClass));
     printf("%s;%zu;%zu\n", "AdwLeafletClass", sizeof(AdwLeafletClass), alignof(AdwLeafletClass));
     printf("%s;%zu;%zu\n", "AdwLeafletPageClass", sizeof(AdwLeafletPageClass), alignof(AdwLeafletPageClass));
@@ -54,6 +55,8 @@ int main() {
     printf("%s;%zu;%zu\n", "AdwTabPageClass", sizeof(AdwTabPageClass), alignof(AdwTabPageClass));
     printf("%s;%zu;%zu\n", "AdwTabViewClass", sizeof(AdwTabViewClass), alignof(AdwTabViewClass));
     printf("%s;%zu;%zu\n", "AdwValueObjectClass", sizeof(AdwValueObjectClass), alignof(AdwValueObjectClass));
+    printf("%s;%zu;%zu\n", "AdwViewStackClass", sizeof(AdwViewStackClass), alignof(AdwViewStackClass));
+    printf("%s;%zu;%zu\n", "AdwViewStackPageClass", sizeof(AdwViewStackPageClass), alignof(AdwViewStackPageClass));
     printf("%s;%zu;%zu\n", "AdwViewSwitcherBarClass", sizeof(AdwViewSwitcherBarClass), alignof(AdwViewSwitcherBarClass));
     printf("%s;%zu;%zu\n", "AdwViewSwitcherClass", sizeof(AdwViewSwitcherClass), alignof(AdwViewSwitcherClass));
     printf("%s;%zu;%zu\n", "AdwViewSwitcherPolicy", sizeof(AdwViewSwitcherPolicy), alignof(AdwViewSwitcherPolicy));

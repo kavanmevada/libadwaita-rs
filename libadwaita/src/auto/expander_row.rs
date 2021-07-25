@@ -490,13 +490,13 @@ pub trait ExpanderRowExt: 'static {
     fn set_expanded(&self, expanded: bool);
 
     #[doc(alias = "adw_expander_row_set_icon_name")]
-    fn set_icon_name(&self, icon_name: &str);
+    fn set_icon_name(&self, icon_name: Option<&str>);
 
     #[doc(alias = "adw_expander_row_set_show_enable_switch")]
     fn set_show_enable_switch(&self, show_enable_switch: bool);
 
     #[doc(alias = "adw_expander_row_set_subtitle")]
-    fn set_subtitle(&self, subtitle: Option<&str>);
+    fn set_subtitle(&self, subtitle: &str);
 
     #[doc(alias = "enable-expansion")]
     fn connect_enable_expansion_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
@@ -612,7 +612,7 @@ impl<O: IsA<ExpanderRow>> ExpanderRowExt for O {
         }
     }
 
-    fn set_icon_name(&self, icon_name: &str) {
+    fn set_icon_name(&self, icon_name: Option<&str>) {
         unsafe {
             ffi::adw_expander_row_set_icon_name(
                 self.as_ref().to_glib_none().0,
@@ -630,7 +630,7 @@ impl<O: IsA<ExpanderRow>> ExpanderRowExt for O {
         }
     }
 
-    fn set_subtitle(&self, subtitle: Option<&str>) {
+    fn set_subtitle(&self, subtitle: &str) {
         unsafe {
             ffi::adw_expander_row_set_subtitle(
                 self.as_ref().to_glib_none().0,

@@ -140,14 +140,14 @@ impl TabPage {
     }
 
     #[doc(alias = "adw_tab_page_set_title")]
-    pub fn set_title(&self, title: Option<&str>) {
+    pub fn set_title(&self, title: &str) {
         unsafe {
             ffi::adw_tab_page_set_title(self.to_glib_none().0, title.to_glib_none().0);
         }
     }
 
     #[doc(alias = "adw_tab_page_set_tooltip")]
-    pub fn set_tooltip(&self, tooltip: Option<&str>) {
+    pub fn set_tooltip(&self, tooltip: &str) {
         unsafe {
             ffi::adw_tab_page_set_tooltip(self.to_glib_none().0, tooltip.to_glib_none().0);
         }

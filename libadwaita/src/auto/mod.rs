@@ -119,6 +119,13 @@ pub use self::tab_view::TabViewBuilder;
 mod value_object;
 pub use self::value_object::ValueObject;
 
+mod view_stack;
+pub use self::view_stack::ViewStack;
+pub use self::view_stack::ViewStackBuilder;
+
+mod view_stack_page;
+pub use self::view_stack_page::ViewStackPage;
+
 mod view_switcher;
 pub use self::view_switcher::ViewSwitcher;
 pub use self::view_switcher::ViewSwitcherBuilder;
@@ -143,6 +150,7 @@ mod enums;
 pub use self::enums::CenteringPolicy;
 pub use self::enums::FlapFoldPolicy;
 pub use self::enums::FlapTransitionType;
+pub use self::enums::FoldThresholdPolicy;
 pub use self::enums::LeafletTransitionType;
 pub use self::enums::NavigationDirection;
 pub use self::enums::SqueezerTransitionType;

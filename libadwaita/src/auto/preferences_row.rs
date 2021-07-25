@@ -414,7 +414,7 @@ pub trait PreferencesRowExt: 'static {
     fn uses_underline(&self) -> bool;
 
     #[doc(alias = "adw_preferences_row_set_title")]
-    fn set_title(&self, title: Option<&str>);
+    fn set_title(&self, title: &str);
 
     #[doc(alias = "adw_preferences_row_set_use_underline")]
     fn set_use_underline(&self, use_underline: bool);
@@ -443,7 +443,7 @@ impl<O: IsA<PreferencesRow>> PreferencesRowExt for O {
         }
     }
 
-    fn set_title(&self, title: Option<&str>) {
+    fn set_title(&self, title: &str) {
         unsafe {
             ffi::adw_preferences_row_set_title(
                 self.as_ref().to_glib_none().0,

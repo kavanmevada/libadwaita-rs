@@ -274,6 +274,90 @@ impl ToValue for FlapTransitionType {
 
 #[derive(Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Clone, Copy)]
 #[non_exhaustive]
+#[doc(alias = "AdwFoldThresholdPolicy")]
+pub enum FoldThresholdPolicy {
+    #[doc(alias = "ADW_FOLD_THRESHOLD_POLICY_MINIMUM")]
+    Minimum,
+    #[doc(alias = "ADW_FOLD_THRESHOLD_POLICY_NATURAL")]
+    Natural,
+    #[doc(hidden)]
+    __Unknown(i32),
+}
+
+impl fmt::Display for FoldThresholdPolicy {
+    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
+        write!(
+            f,
+            "FoldThresholdPolicy::{}",
+            match *self {
+                Self::Minimum => "Minimum",
+                Self::Natural => "Natural",
+                _ => "Unknown",
+            }
+        )
+    }
+}
+
+#[doc(hidden)]
+impl IntoGlib for FoldThresholdPolicy {
+    type GlibType = ffi::AdwFoldThresholdPolicy;
+
+    fn into_glib(self) -> ffi::AdwFoldThresholdPolicy {
+        match self {
+            Self::Minimum => ffi::ADW_FOLD_THRESHOLD_POLICY_MINIMUM,
+            Self::Natural => ffi::ADW_FOLD_THRESHOLD_POLICY_NATURAL,
+            Self::__Unknown(value) => value,
+        }
+    }
+}
+
+#[doc(hidden)]
+impl FromGlib<ffi::AdwFoldThresholdPolicy> for FoldThresholdPolicy {
+    unsafe fn from_glib(value: ffi::AdwFoldThresholdPolicy) -> Self {
+        skip_assert_initialized!();
+        match value {
+            ffi::ADW_FOLD_THRESHOLD_POLICY_MINIMUM => Self::Minimum,
+            ffi::ADW_FOLD_THRESHOLD_POLICY_NATURAL => Self::Natural,
+            value => Self::__Unknown(value),
+        }
+    }
+}
+
+impl StaticType for FoldThresholdPolicy {
+    fn static_type() -> Type {
+        unsafe { from_glib(ffi::adw_fold_threshold_policy_get_type()) }
+    }
+}
+
+impl glib::value::ValueType for FoldThresholdPolicy {
+    type Type = Self;
+}
+
+unsafe impl<'a> FromValue<'a> for FoldThresholdPolicy {
+    type Checker = glib::value::GenericValueTypeChecker<Self>;
+
+    unsafe fn from_value(value: &'a glib::Value) -> Self {
+        skip_assert_initialized!();
+        from_glib(glib::gobject_ffi::g_value_get_enum(value.to_glib_none().0))
+    }
+}
+
+impl ToValue for FoldThresholdPolicy {
+    fn to_value(&self) -> glib::Value {
+        let mut value = glib::Value::for_value_type::<Self>();
+        unsafe {
+            glib::gobject_ffi::g_value_set_enum(value.to_glib_none_mut().0, self.into_glib());
+        }
+        value
+    }
+
+    fn value_type(&self) -> glib::Type {
+        Self::static_type()
+    }
+}
+
+#[derive(Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Clone, Copy)]
+#[non_exhaustive]
 #[doc(alias = "AdwLeafletTransitionType")]
 pub enum LeafletTransitionType {
     #[doc(alias = "ADW_LEAFLET_TRANSITION_TYPE_OVER")]

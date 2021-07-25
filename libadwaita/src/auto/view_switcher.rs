@@ -3,6 +3,7 @@
 // from gir-files (https://github.com/gtk-rs/gir-files.git)
 // DO NOT EDIT
 
+use crate::ViewStack;
 use crate::ViewSwitcherPolicy;
 use glib::object::Cast;
 use glib::object::IsA;
@@ -58,7 +59,7 @@ impl ViewSwitcher {
 
     #[doc(alias = "adw_view_switcher_get_stack")]
     #[doc(alias = "get_stack")]
-    pub fn stack(&self) -> Option<gtk::Stack> {
+    pub fn stack(&self) -> Option<ViewStack> {
         unsafe { from_glib_none(ffi::adw_view_switcher_get_stack(self.to_glib_none().0)) }
     }
 
@@ -77,7 +78,7 @@ impl ViewSwitcher {
     }
 
     #[doc(alias = "adw_view_switcher_set_stack")]
-    pub fn set_stack(&self, stack: Option<&gtk::Stack>) {
+    pub fn set_stack(&self, stack: Option<&ViewStack>) {
         unsafe {
             ffi::adw_view_switcher_set_stack(self.to_glib_none().0, stack.to_glib_none().0);
         }
@@ -167,7 +168,7 @@ impl Default for ViewSwitcher {
 pub struct ViewSwitcherBuilder {
     narrow_ellipsize: Option<pango::EllipsizeMode>,
     policy: Option<ViewSwitcherPolicy>,
-    stack: Option<gtk::Stack>,
+    stack: Option<ViewStack>,
     can_focus: Option<bool>,
     can_target: Option<bool>,
     css_classes: Option<Vec<String>>,
@@ -324,7 +325,7 @@ impl ViewSwitcherBuilder {
         self
     }
 
-    pub fn stack(mut self, stack: &gtk::Stack) -> Self {
+    pub fn stack(mut self, stack: &ViewStack) -> Self {
         self.stack = Some(stack.clone());
         self
     }

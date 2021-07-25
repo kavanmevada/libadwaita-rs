@@ -34,6 +34,7 @@ generate = [
     "Adw.ClampLayout",
     "Adw.ClampScrollable",
     "Adw.ExpanderRow",
+    "Adw.FoldThresholdPolicy",
     "Adw.Flap",
     "Adw.FlapFoldPolicy",
     "Adw.FlapTransitionType",
@@ -51,6 +52,7 @@ generate = [
     "Adw.SwipeTracker",
     "Adw.Swipeable",
     "Adw.TabView",
+    "Adw.ViewStack",
     "Adw.ViewSwitcher",
     "Adw.ViewSwitcherBar",
     "Adw.ViewSwitcherPolicy",
@@ -165,5 +167,10 @@ generate_builder = false
 
 [[object]]
 name = "Adw.ValueObject"
+status = "generate"
+generate_builder = false
+
+[[object]]
+name = "Adw.ViewStackPage"
 status = "generate"
 generate_builder = false

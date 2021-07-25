@@ -487,10 +487,10 @@ pub trait ActionRowExt: 'static {
     fn set_activatable_widget<P: IsA<gtk::Widget>>(&self, widget: Option<&P>);
 
     #[doc(alias = "adw_action_row_set_icon_name")]
-    fn set_icon_name(&self, icon_name: &str);
+    fn set_icon_name(&self, icon_name: Option<&str>);
 
     #[doc(alias = "adw_action_row_set_subtitle")]
-    fn set_subtitle(&self, subtitle: Option<&str>);
+    fn set_subtitle(&self, subtitle: &str);
 
     #[doc(alias = "adw_action_row_set_subtitle_lines")]
     fn set_subtitle_lines(&self, subtitle_lines: i32);
@@ -595,7 +595,7 @@ impl<O: IsA<ActionRow>> ActionRowExt for O {
         }
     }
 
-    fn set_icon_name(&self, icon_name: &str) {
+    fn set_icon_name(&self, icon_name: Option<&str>) {
         unsafe {
             ffi::adw_action_row_set_icon_name(
                 self.as_ref().to_glib_none().0,
@@ -604,7 +604,7 @@ impl<O: IsA<ActionRow>> ActionRowExt for O {
         }
     }
 
-    fn set_subtitle(&self, subtitle: Option<&str>) {
+    fn set_subtitle(&self, subtitle: &str) {
         unsafe {
             ffi::adw_action_row_set_subtitle(
                 self.as_ref().to_glib_none().0,

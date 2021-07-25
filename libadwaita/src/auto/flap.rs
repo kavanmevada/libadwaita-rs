@@ -5,6 +5,7 @@
 
 use crate::FlapFoldPolicy;
 use crate::FlapTransitionType;
+use crate::FoldThresholdPolicy;
 use crate::Swipeable;
 use glib::object::Cast;
 use glib::object::IsA;
@@ -70,6 +71,16 @@ impl Flap {
     #[doc(alias = "get_fold_policy")]
     pub fn fold_policy(&self) -> FlapFoldPolicy {
         unsafe { from_glib(ffi::adw_flap_get_fold_policy(self.to_glib_none().0)) }
+    }
+
+    #[doc(alias = "adw_flap_get_fold_threshold_policy")]
+    #[doc(alias = "get_fold_threshold_policy")]
+    pub fn fold_threshold_policy(&self) -> FoldThresholdPolicy {
+        unsafe {
+            from_glib(ffi::adw_flap_get_fold_threshold_policy(
+                self.to_glib_none().0,
+            ))
+        }
     }
 
     #[doc(alias = "adw_flap_get_folded")]
@@ -170,6 +181,13 @@ impl Flap {
     pub fn set_fold_policy(&self, policy: FlapFoldPolicy) {
         unsafe {
             ffi::adw_flap_set_fold_policy(self.to_glib_none().0, policy.into_glib());
+        }
+    }
+
+    #[doc(alias = "adw_flap_set_fold_threshold_policy")]
+    pub fn set_fold_threshold_policy(&self, policy: FoldThresholdPolicy) {
+        unsafe {
+            ffi::adw_flap_set_fold_threshold_policy(self.to_glib_none().0, policy.into_glib());
         }
     }
 
@@ -341,6 +359,32 @@ impl Flap {
                 b"notify::fold-policy\0".as_ptr() as *const _,
                 Some(transmute::<_, unsafe extern "C" fn()>(
                     notify_fold_policy_trampoline::<F> as *const (),
+                )),
+                Box_::into_raw(f),
+            )
+        }
+    }
+
+    #[doc(alias = "fold-threshold-policy")]
+    pub fn connect_fold_threshold_policy_notify<F: Fn(&Self) + 'static>(
+        &self,
+        f: F,
+    ) -> SignalHandlerId {
+        unsafe extern "C" fn notify_fold_threshold_policy_trampoline<F: Fn(&Flap) + 'static>(
+            this: *mut ffi::AdwFlap,
+            _param_spec: glib::ffi::gpointer,
+            f: glib::ffi::gpointer,
+        ) {
+            let f: &F = &*(f as *const F);
+            f(&from_glib_borrow(this))
+        }
+        unsafe {
+            let f: Box_<F> = Box_::new(f);
+            connect_raw(
+                self.as_ptr() as *mut _,
+                b"notify::fold-threshold-policy\0".as_ptr() as *const _,
+                Some(transmute::<_, unsafe extern "C" fn()>(
+                    notify_fold_threshold_policy_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
             )
@@ -595,6 +639,7 @@ pub struct FlapBuilder {
     flap_position: Option<gtk::PackType>,
     fold_duration: Option<u32>,
     fold_policy: Option<FlapFoldPolicy>,
+    fold_threshold_policy: Option<FoldThresholdPolicy>,
     locked: Option<bool>,
     modal: Option<bool>,
     reveal_duration: Option<u32>,
@@ -661,6 +706,9 @@ impl FlapBuilder {
         }
         if let Some(ref fold_policy) = self.fold_policy {
             properties.push(("fold-policy", fold_policy));
+        }
+        if let Some(ref fold_threshold_policy) = self.fold_threshold_policy {
+            properties.push(("fold-threshold-policy", fold_threshold_policy));
         }
         if let Some(ref locked) = self.locked {
             properties.push(("locked", locked));
@@ -804,6 +852,11 @@ impl FlapBuilder {
 
     pub fn fold_policy(mut self, fold_policy: FlapFoldPolicy) -> Self {
         self.fold_policy = Some(fold_policy);
+        self
+    }
+
+    pub fn fold_threshold_policy(mut self, fold_threshold_policy: FoldThresholdPolicy) -> Self {
+        self.fold_threshold_policy = Some(fold_threshold_policy);
         self
     }
 

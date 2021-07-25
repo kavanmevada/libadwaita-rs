@@ -373,6 +373,13 @@ const RUST_LAYOUTS: &[(&str, Layout)] = &[
         },
     ),
     (
+        "AdwFoldThresholdPolicy",
+        Layout {
+            size: size_of::<AdwFoldThresholdPolicy>(),
+            alignment: align_of::<AdwFoldThresholdPolicy>(),
+        },
+    ),
+    (
         "AdwHeaderBarClass",
         Layout {
             size: size_of::<AdwHeaderBarClass>(),
@@ -534,6 +541,20 @@ const RUST_LAYOUTS: &[(&str, Layout)] = &[
         },
     ),
     (
+        "AdwViewStackClass",
+        Layout {
+            size: size_of::<AdwViewStackClass>(),
+            alignment: align_of::<AdwViewStackClass>(),
+        },
+    ),
+    (
+        "AdwViewStackPageClass",
+        Layout {
+            size: size_of::<AdwViewStackPageClass>(),
+            alignment: align_of::<AdwViewStackPageClass>(),
+        },
+    ),
+    (
         "AdwViewSwitcherBarClass",
         Layout {
             size: size_of::<AdwViewSwitcherBarClass>(),
@@ -593,6 +614,8 @@ const RUST_CONSTANTS: &[(&str, &str)] = &[
     ("(gint) ADW_FLAP_TRANSITION_TYPE_OVER", "0"),
     ("(gint) ADW_FLAP_TRANSITION_TYPE_SLIDE", "2"),
     ("(gint) ADW_FLAP_TRANSITION_TYPE_UNDER", "1"),
+    ("(gint) ADW_FOLD_THRESHOLD_POLICY_MINIMUM", "0"),
+    ("(gint) ADW_FOLD_THRESHOLD_POLICY_NATURAL", "1"),
     ("(gint) ADW_LEAFLET_TRANSITION_TYPE_OVER", "0"),
     ("(gint) ADW_LEAFLET_TRANSITION_TYPE_SLIDE", "2"),
     ("(gint) ADW_LEAFLET_TRANSITION_TYPE_UNDER", "1"),

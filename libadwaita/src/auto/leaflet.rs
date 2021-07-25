@@ -3,6 +3,7 @@
 // from gir-files (https://github.com/gtk-rs/gir-files.git)
 // DO NOT EDIT
 
+use crate::FoldThresholdPolicy;
 use crate::LeafletPage;
 use crate::LeafletTransitionType;
 use crate::NavigationDirection;
@@ -108,6 +109,16 @@ impl Leaflet {
     pub fn is_child_transition_running(&self) -> bool {
         unsafe {
             from_glib(ffi::adw_leaflet_get_child_transition_running(
+                self.to_glib_none().0,
+            ))
+        }
+    }
+
+    #[doc(alias = "adw_leaflet_get_fold_threshold_policy")]
+    #[doc(alias = "get_fold_threshold_policy")]
+    pub fn fold_threshold_policy(&self) -> FoldThresholdPolicy {
+        unsafe {
+            from_glib(ffi::adw_leaflet_get_fold_threshold_policy(
                 self.to_glib_none().0,
             ))
         }
@@ -267,6 +278,13 @@ impl Leaflet {
     pub fn set_child_transition_duration(&self, duration: u32) {
         unsafe {
             ffi::adw_leaflet_set_child_transition_duration(self.to_glib_none().0, duration);
+        }
+    }
+
+    #[doc(alias = "adw_leaflet_set_fold_threshold_policy")]
+    pub fn set_fold_threshold_policy(&self, policy: FoldThresholdPolicy) {
+        unsafe {
+            ffi::adw_leaflet_set_fold_threshold_policy(self.to_glib_none().0, policy.into_glib());
         }
     }
 
@@ -549,6 +567,32 @@ impl Leaflet {
                 b"notify::child-transition-running\0".as_ptr() as *const _,
                 Some(transmute::<_, unsafe extern "C" fn()>(
                     notify_child_transition_running_trampoline::<F> as *const (),
+                )),
+                Box_::into_raw(f),
+            )
+        }
+    }
+
+    #[doc(alias = "fold-threshold-policy")]
+    pub fn connect_fold_threshold_policy_notify<F: Fn(&Self) + 'static>(
+        &self,
+        f: F,
+    ) -> SignalHandlerId {
+        unsafe extern "C" fn notify_fold_threshold_policy_trampoline<F: Fn(&Leaflet) + 'static>(
+            this: *mut ffi::AdwLeaflet,
+            _param_spec: glib::ffi::gpointer,
+            f: glib::ffi::gpointer,
+        ) {
+            let f: &F = &*(f as *const F);
+            f(&from_glib_borrow(this))
+        }
+        unsafe {
+            let f: Box_<F> = Box_::new(f);
+            connect_raw(
+                self.as_ptr() as *mut _,
+                b"notify::fold-threshold-policy\0".as_ptr() as *const _,
+                Some(transmute::<_, unsafe extern "C" fn()>(
+                    notify_fold_threshold_policy_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
             )
@@ -845,6 +889,7 @@ pub struct LeafletBuilder {
     can_swipe_forward: Option<bool>,
     can_unfold: Option<bool>,
     child_transition_duration: Option<u32>,
+    fold_threshold_policy: Option<FoldThresholdPolicy>,
     hhomogeneous_folded: Option<bool>,
     hhomogeneous_unfolded: Option<bool>,
     interpolate_size: Option<bool>,
@@ -909,6 +954,9 @@ impl LeafletBuilder {
         }
         if let Some(ref child_transition_duration) = self.child_transition_duration {
             properties.push(("child-transition-duration", child_transition_duration));
+        }
+        if let Some(ref fold_threshold_policy) = self.fold_threshold_policy {
+            properties.push(("fold-threshold-policy", fold_threshold_policy));
         }
         if let Some(ref hhomogeneous_folded) = self.hhomogeneous_folded {
             properties.push(("hhomogeneous-folded", hhomogeneous_folded));
@@ -1050,6 +1098,11 @@ impl LeafletBuilder {
 
     pub fn child_transition_duration(mut self, child_transition_duration: u32) -> Self {
         self.child_transition_duration = Some(child_transition_duration);
+        self
+    }
+
+    pub fn fold_threshold_policy(mut self, fold_threshold_policy: FoldThresholdPolicy) -> Self {
+        self.fold_threshold_policy = Some(fold_threshold_policy);
         self
     }
 

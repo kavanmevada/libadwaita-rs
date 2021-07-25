@@ -3,8 +3,7 @@
 // from gir-files (https://github.com/gtk-rs/gir-files.git)
 // DO NOT EDIT
 
-use crate::ViewStack;
-use crate::ViewSwitcherPolicy;
+use crate::ViewStackPage;
 use glib::object::Cast;
 use glib::object::IsA;
 use glib::object::ObjectType as ObjectType_;
@@ -18,134 +17,202 @@ use std::fmt;
 use std::mem::transmute;
 
 glib::wrapper! {
-    #[doc(alias = "AdwViewSwitcherTitle")]
-    pub struct ViewSwitcherTitle(Object<ffi::AdwViewSwitcherTitle, ffi::AdwViewSwitcherTitleClass>) @extends gtk::Widget, @implements gtk::Accessible, gtk::Buildable, gtk::ConstraintTarget;
+    #[doc(alias = "AdwViewStack")]
+    pub struct ViewStack(Object<ffi::AdwViewStack, ffi::AdwViewStackClass>) @extends gtk::Widget, @implements gtk::Accessible, gtk::Buildable, gtk::ConstraintTarget;
 
     match fn {
-        type_ => || ffi::adw_view_switcher_title_get_type(),
+        type_ => || ffi::adw_view_stack_get_type(),
     }
 }
 
-impl ViewSwitcherTitle {
-    #[doc(alias = "adw_view_switcher_title_new")]
-    pub fn new() -> ViewSwitcherTitle {
+impl ViewStack {
+    #[doc(alias = "adw_view_stack_new")]
+    pub fn new() -> ViewStack {
         assert_initialized_main_thread!();
-        unsafe { gtk::Widget::from_glib_none(ffi::adw_view_switcher_title_new()).unsafe_cast() }
+        unsafe { gtk::Widget::from_glib_none(ffi::adw_view_stack_new()).unsafe_cast() }
     }
 
     // rustdoc-stripper-ignore-next
-    /// Creates a new builder-pattern struct instance to construct [`ViewSwitcherTitle`] objects.
+    /// Creates a new builder-pattern struct instance to construct [`ViewStack`] objects.
     ///
-    /// This method returns an instance of [`ViewSwitcherTitleBuilder`] which can be used to create [`ViewSwitcherTitle`] objects.
-    pub fn builder() -> ViewSwitcherTitleBuilder {
-        ViewSwitcherTitleBuilder::default()
+    /// This method returns an instance of [`ViewStackBuilder`] which can be used to create [`ViewStack`] objects.
+    pub fn builder() -> ViewStackBuilder {
+        ViewStackBuilder::default()
     }
 
-    #[doc(alias = "adw_view_switcher_title_get_policy")]
-    #[doc(alias = "get_policy")]
-    pub fn policy(&self) -> ViewSwitcherPolicy {
+    #[doc(alias = "adw_view_stack_add")]
+    pub fn add<P: IsA<gtk::Widget>>(&self, child: &P) -> Option<ViewStackPage> {
         unsafe {
-            from_glib(ffi::adw_view_switcher_title_get_policy(
+            from_glib_none(ffi::adw_view_stack_add(
+                self.to_glib_none().0,
+                child.as_ref().to_glib_none().0,
+            ))
+        }
+    }
+
+    #[doc(alias = "adw_view_stack_add_named")]
+    pub fn add_named<P: IsA<gtk::Widget>>(
+        &self,
+        child: &P,
+        name: Option<&str>,
+    ) -> Option<ViewStackPage> {
+        unsafe {
+            from_glib_none(ffi::adw_view_stack_add_named(
+                self.to_glib_none().0,
+                child.as_ref().to_glib_none().0,
+                name.to_glib_none().0,
+            ))
+        }
+    }
+
+    #[doc(alias = "adw_view_stack_add_titled")]
+    pub fn add_titled<P: IsA<gtk::Widget>>(
+        &self,
+        child: &P,
+        name: Option<&str>,
+        title: &str,
+    ) -> Option<ViewStackPage> {
+        unsafe {
+            from_glib_none(ffi::adw_view_stack_add_titled(
+                self.to_glib_none().0,
+                child.as_ref().to_glib_none().0,
+                name.to_glib_none().0,
+                title.to_glib_none().0,
+            ))
+        }
+    }
+
+    #[doc(alias = "adw_view_stack_get_child_by_name")]
+    #[doc(alias = "get_child_by_name")]
+    pub fn child_by_name(&self, name: &str) -> Option<gtk::Widget> {
+        unsafe {
+            from_glib_none(ffi::adw_view_stack_get_child_by_name(
+                self.to_glib_none().0,
+                name.to_glib_none().0,
+            ))
+        }
+    }
+
+    #[doc(alias = "adw_view_stack_get_hhomogeneous")]
+    #[doc(alias = "get_hhomogeneous")]
+    pub fn is_hhomogeneous(&self) -> bool {
+        unsafe { from_glib(ffi::adw_view_stack_get_hhomogeneous(self.to_glib_none().0)) }
+    }
+
+    #[doc(alias = "adw_view_stack_get_interpolate_size")]
+    #[doc(alias = "get_interpolate_size")]
+    pub fn is_interpolate_size(&self) -> bool {
+        unsafe {
+            from_glib(ffi::adw_view_stack_get_interpolate_size(
                 self.to_glib_none().0,
             ))
         }
     }
 
-    #[doc(alias = "adw_view_switcher_title_get_stack")]
-    #[doc(alias = "get_stack")]
-    pub fn stack(&self) -> Option<ViewStack> {
+    #[doc(alias = "adw_view_stack_get_page")]
+    #[doc(alias = "get_page")]
+    pub fn page<P: IsA<gtk::Widget>>(&self, child: &P) -> Option<ViewStackPage> {
         unsafe {
-            from_glib_none(ffi::adw_view_switcher_title_get_stack(
+            from_glib_none(ffi::adw_view_stack_get_page(
+                self.to_glib_none().0,
+                child.as_ref().to_glib_none().0,
+            ))
+        }
+    }
+
+    #[doc(alias = "adw_view_stack_get_pages")]
+    #[doc(alias = "get_pages")]
+    pub fn pages(&self) -> Option<gtk::SelectionModel> {
+        unsafe { from_glib_full(ffi::adw_view_stack_get_pages(self.to_glib_none().0)) }
+    }
+
+    #[doc(alias = "adw_view_stack_get_transition_running")]
+    #[doc(alias = "get_transition_running")]
+    pub fn is_transition_running(&self) -> bool {
+        unsafe {
+            from_glib(ffi::adw_view_stack_get_transition_running(
                 self.to_glib_none().0,
             ))
         }
     }
 
-    #[doc(alias = "adw_view_switcher_title_get_subtitle")]
-    #[doc(alias = "get_subtitle")]
-    pub fn subtitle(&self) -> Option<glib::GString> {
+    #[doc(alias = "adw_view_stack_get_vhomogeneous")]
+    #[doc(alias = "get_vhomogeneous")]
+    pub fn is_vhomogeneous(&self) -> bool {
+        unsafe { from_glib(ffi::adw_view_stack_get_vhomogeneous(self.to_glib_none().0)) }
+    }
+
+    #[doc(alias = "adw_view_stack_get_visible_child")]
+    #[doc(alias = "get_visible_child")]
+    pub fn visible_child(&self) -> Option<gtk::Widget> {
+        unsafe { from_glib_none(ffi::adw_view_stack_get_visible_child(self.to_glib_none().0)) }
+    }
+
+    #[doc(alias = "adw_view_stack_get_visible_child_name")]
+    #[doc(alias = "get_visible_child_name")]
+    pub fn visible_child_name(&self) -> Option<glib::GString> {
         unsafe {
-            from_glib_none(ffi::adw_view_switcher_title_get_subtitle(
+            from_glib_none(ffi::adw_view_stack_get_visible_child_name(
                 self.to_glib_none().0,
             ))
         }
     }
 
-    #[doc(alias = "adw_view_switcher_title_get_title")]
-    #[doc(alias = "get_title")]
-    pub fn title(&self) -> Option<glib::GString> {
+    #[doc(alias = "adw_view_stack_remove")]
+    pub fn remove<P: IsA<gtk::Widget>>(&self, child: &P) {
         unsafe {
-            from_glib_none(ffi::adw_view_switcher_title_get_title(
+            ffi::adw_view_stack_remove(self.to_glib_none().0, child.as_ref().to_glib_none().0);
+        }
+    }
+
+    #[doc(alias = "adw_view_stack_set_hhomogeneous")]
+    pub fn set_hhomogeneous(&self, hhomogeneous: bool) {
+        unsafe {
+            ffi::adw_view_stack_set_hhomogeneous(self.to_glib_none().0, hhomogeneous.into_glib());
+        }
+    }
+
+    #[doc(alias = "adw_view_stack_set_interpolate_size")]
+    pub fn set_interpolate_size(&self, interpolate_size: bool) {
+        unsafe {
+            ffi::adw_view_stack_set_interpolate_size(
                 self.to_glib_none().0,
-            ))
-        }
-    }
-
-    #[doc(alias = "adw_view_switcher_title_get_title_visible")]
-    #[doc(alias = "get_title_visible")]
-    pub fn is_title_visible(&self) -> bool {
-        unsafe {
-            from_glib(ffi::adw_view_switcher_title_get_title_visible(
-                self.to_glib_none().0,
-            ))
-        }
-    }
-
-    #[doc(alias = "adw_view_switcher_title_get_view_switcher_enabled")]
-    #[doc(alias = "get_view_switcher_enabled")]
-    pub fn is_view_switcher_enabled(&self) -> bool {
-        unsafe {
-            from_glib(ffi::adw_view_switcher_title_get_view_switcher_enabled(
-                self.to_glib_none().0,
-            ))
-        }
-    }
-
-    #[doc(alias = "adw_view_switcher_title_set_policy")]
-    pub fn set_policy(&self, policy: ViewSwitcherPolicy) {
-        unsafe {
-            ffi::adw_view_switcher_title_set_policy(self.to_glib_none().0, policy.into_glib());
-        }
-    }
-
-    #[doc(alias = "adw_view_switcher_title_set_stack")]
-    pub fn set_stack(&self, stack: Option<&ViewStack>) {
-        unsafe {
-            ffi::adw_view_switcher_title_set_stack(self.to_glib_none().0, stack.to_glib_none().0);
-        }
-    }
-
-    #[doc(alias = "adw_view_switcher_title_set_subtitle")]
-    pub fn set_subtitle(&self, subtitle: &str) {
-        unsafe {
-            ffi::adw_view_switcher_title_set_subtitle(
-                self.to_glib_none().0,
-                subtitle.to_glib_none().0,
+                interpolate_size.into_glib(),
             );
         }
     }
 
-    #[doc(alias = "adw_view_switcher_title_set_title")]
-    pub fn set_title(&self, title: &str) {
+    #[doc(alias = "adw_view_stack_set_vhomogeneous")]
+    pub fn set_vhomogeneous(&self, vhomogeneous: bool) {
         unsafe {
-            ffi::adw_view_switcher_title_set_title(self.to_glib_none().0, title.to_glib_none().0);
+            ffi::adw_view_stack_set_vhomogeneous(self.to_glib_none().0, vhomogeneous.into_glib());
         }
     }
 
-    #[doc(alias = "adw_view_switcher_title_set_view_switcher_enabled")]
-    pub fn set_view_switcher_enabled(&self, enabled: bool) {
+    #[doc(alias = "adw_view_stack_set_visible_child")]
+    pub fn set_visible_child<P: IsA<gtk::Widget>>(&self, child: &P) {
         unsafe {
-            ffi::adw_view_switcher_title_set_view_switcher_enabled(
+            ffi::adw_view_stack_set_visible_child(
                 self.to_glib_none().0,
-                enabled.into_glib(),
+                child.as_ref().to_glib_none().0,
             );
         }
     }
 
-    #[doc(alias = "policy")]
-    pub fn connect_policy_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
-        unsafe extern "C" fn notify_policy_trampoline<F: Fn(&ViewSwitcherTitle) + 'static>(
-            this: *mut ffi::AdwViewSwitcherTitle,
+    #[doc(alias = "adw_view_stack_set_visible_child_name")]
+    pub fn set_visible_child_name(&self, name: &str) {
+        unsafe {
+            ffi::adw_view_stack_set_visible_child_name(
+                self.to_glib_none().0,
+                name.to_glib_none().0,
+            );
+        }
+    }
+
+    #[doc(alias = "hhomogeneous")]
+    pub fn connect_hhomogeneous_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
+        unsafe extern "C" fn notify_hhomogeneous_trampoline<F: Fn(&ViewStack) + 'static>(
+            this: *mut ffi::AdwViewStack,
             _param_spec: glib::ffi::gpointer,
             f: glib::ffi::gpointer,
         ) {
@@ -156,19 +223,19 @@ impl ViewSwitcherTitle {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
-                b"notify::policy\0".as_ptr() as *const _,
+                b"notify::hhomogeneous\0".as_ptr() as *const _,
                 Some(transmute::<_, unsafe extern "C" fn()>(
-                    notify_policy_trampoline::<F> as *const (),
+                    notify_hhomogeneous_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
             )
         }
     }
 
-    #[doc(alias = "stack")]
-    pub fn connect_stack_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
-        unsafe extern "C" fn notify_stack_trampoline<F: Fn(&ViewSwitcherTitle) + 'static>(
-            this: *mut ffi::AdwViewSwitcherTitle,
+    #[doc(alias = "interpolate-size")]
+    pub fn connect_interpolate_size_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
+        unsafe extern "C" fn notify_interpolate_size_trampoline<F: Fn(&ViewStack) + 'static>(
+            this: *mut ffi::AdwViewStack,
             _param_spec: glib::ffi::gpointer,
             f: glib::ffi::gpointer,
         ) {
@@ -179,19 +246,19 @@ impl ViewSwitcherTitle {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
-                b"notify::stack\0".as_ptr() as *const _,
+                b"notify::interpolate-size\0".as_ptr() as *const _,
                 Some(transmute::<_, unsafe extern "C" fn()>(
-                    notify_stack_trampoline::<F> as *const (),
+                    notify_interpolate_size_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
             )
         }
     }
 
-    #[doc(alias = "subtitle")]
-    pub fn connect_subtitle_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
-        unsafe extern "C" fn notify_subtitle_trampoline<F: Fn(&ViewSwitcherTitle) + 'static>(
-            this: *mut ffi::AdwViewSwitcherTitle,
+    #[doc(alias = "pages")]
+    pub fn connect_pages_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
+        unsafe extern "C" fn notify_pages_trampoline<F: Fn(&ViewStack) + 'static>(
+            this: *mut ffi::AdwViewStack,
             _param_spec: glib::ffi::gpointer,
             f: glib::ffi::gpointer,
         ) {
@@ -202,72 +269,22 @@ impl ViewSwitcherTitle {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
-                b"notify::subtitle\0".as_ptr() as *const _,
+                b"notify::pages\0".as_ptr() as *const _,
                 Some(transmute::<_, unsafe extern "C" fn()>(
-                    notify_subtitle_trampoline::<F> as *const (),
+                    notify_pages_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
             )
         }
     }
 
-    #[doc(alias = "title")]
-    pub fn connect_title_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
-        unsafe extern "C" fn notify_title_trampoline<F: Fn(&ViewSwitcherTitle) + 'static>(
-            this: *mut ffi::AdwViewSwitcherTitle,
-            _param_spec: glib::ffi::gpointer,
-            f: glib::ffi::gpointer,
-        ) {
-            let f: &F = &*(f as *const F);
-            f(&from_glib_borrow(this))
-        }
-        unsafe {
-            let f: Box_<F> = Box_::new(f);
-            connect_raw(
-                self.as_ptr() as *mut _,
-                b"notify::title\0".as_ptr() as *const _,
-                Some(transmute::<_, unsafe extern "C" fn()>(
-                    notify_title_trampoline::<F> as *const (),
-                )),
-                Box_::into_raw(f),
-            )
-        }
-    }
-
-    #[doc(alias = "title-visible")]
-    pub fn connect_title_visible_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
-        unsafe extern "C" fn notify_title_visible_trampoline<
-            F: Fn(&ViewSwitcherTitle) + 'static,
-        >(
-            this: *mut ffi::AdwViewSwitcherTitle,
-            _param_spec: glib::ffi::gpointer,
-            f: glib::ffi::gpointer,
-        ) {
-            let f: &F = &*(f as *const F);
-            f(&from_glib_borrow(this))
-        }
-        unsafe {
-            let f: Box_<F> = Box_::new(f);
-            connect_raw(
-                self.as_ptr() as *mut _,
-                b"notify::title-visible\0".as_ptr() as *const _,
-                Some(transmute::<_, unsafe extern "C" fn()>(
-                    notify_title_visible_trampoline::<F> as *const (),
-                )),
-                Box_::into_raw(f),
-            )
-        }
-    }
-
-    #[doc(alias = "view-switcher-enabled")]
-    pub fn connect_view_switcher_enabled_notify<F: Fn(&Self) + 'static>(
+    #[doc(alias = "transition-running")]
+    pub fn connect_transition_running_notify<F: Fn(&Self) + 'static>(
         &self,
         f: F,
     ) -> SignalHandlerId {
-        unsafe extern "C" fn notify_view_switcher_enabled_trampoline<
-            F: Fn(&ViewSwitcherTitle) + 'static,
-        >(
-            this: *mut ffi::AdwViewSwitcherTitle,
+        unsafe extern "C" fn notify_transition_running_trampoline<F: Fn(&ViewStack) + 'static>(
+            this: *mut ffi::AdwViewStack,
             _param_spec: glib::ffi::gpointer,
             f: glib::ffi::gpointer,
         ) {
@@ -278,9 +295,81 @@ impl ViewSwitcherTitle {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
-                b"notify::view-switcher-enabled\0".as_ptr() as *const _,
+                b"notify::transition-running\0".as_ptr() as *const _,
                 Some(transmute::<_, unsafe extern "C" fn()>(
-                    notify_view_switcher_enabled_trampoline::<F> as *const (),
+                    notify_transition_running_trampoline::<F> as *const (),
+                )),
+                Box_::into_raw(f),
+            )
+        }
+    }
+
+    #[doc(alias = "vhomogeneous")]
+    pub fn connect_vhomogeneous_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
+        unsafe extern "C" fn notify_vhomogeneous_trampoline<F: Fn(&ViewStack) + 'static>(
+            this: *mut ffi::AdwViewStack,
+            _param_spec: glib::ffi::gpointer,
+            f: glib::ffi::gpointer,
+        ) {
+            let f: &F = &*(f as *const F);
+            f(&from_glib_borrow(this))
+        }
+        unsafe {
+            let f: Box_<F> = Box_::new(f);
+            connect_raw(
+                self.as_ptr() as *mut _,
+                b"notify::vhomogeneous\0".as_ptr() as *const _,
+                Some(transmute::<_, unsafe extern "C" fn()>(
+                    notify_vhomogeneous_trampoline::<F> as *const (),
+                )),
+                Box_::into_raw(f),
+            )
+        }
+    }
+
+    #[doc(alias = "visible-child")]
+    pub fn connect_visible_child_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
+        unsafe extern "C" fn notify_visible_child_trampoline<F: Fn(&ViewStack) + 'static>(
+            this: *mut ffi::AdwViewStack,
+            _param_spec: glib::ffi::gpointer,
+            f: glib::ffi::gpointer,
+        ) {
+            let f: &F = &*(f as *const F);
+            f(&from_glib_borrow(this))
+        }
+        unsafe {
+            let f: Box_<F> = Box_::new(f);
+            connect_raw(
+                self.as_ptr() as *mut _,
+                b"notify::visible-child\0".as_ptr() as *const _,
+                Some(transmute::<_, unsafe extern "C" fn()>(
+                    notify_visible_child_trampoline::<F> as *const (),
+                )),
+                Box_::into_raw(f),
+            )
+        }
+    }
+
+    #[doc(alias = "visible-child-name")]
+    pub fn connect_visible_child_name_notify<F: Fn(&Self) + 'static>(
+        &self,
+        f: F,
+    ) -> SignalHandlerId {
+        unsafe extern "C" fn notify_visible_child_name_trampoline<F: Fn(&ViewStack) + 'static>(
+            this: *mut ffi::AdwViewStack,
+            _param_spec: glib::ffi::gpointer,
+            f: glib::ffi::gpointer,
+        ) {
+            let f: &F = &*(f as *const F);
+            f(&from_glib_borrow(this))
+        }
+        unsafe {
+            let f: Box_<F> = Box_::new(f);
+            connect_raw(
+                self.as_ptr() as *mut _,
+                b"notify::visible-child-name\0".as_ptr() as *const _,
+                Some(transmute::<_, unsafe extern "C" fn()>(
+                    notify_visible_child_name_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
             )
@@ -288,7 +377,7 @@ impl ViewSwitcherTitle {
     }
 }
 
-impl Default for ViewSwitcherTitle {
+impl Default for ViewStack {
     fn default() -> Self {
         Self::new()
     }
@@ -296,15 +385,15 @@ impl Default for ViewSwitcherTitle {
 
 #[derive(Clone, Default)]
 // rustdoc-stripper-ignore-next
-/// A [builder-pattern] type to construct [`ViewSwitcherTitle`] objects.
+/// A [builder-pattern] type to construct [`ViewStack`] objects.
 ///
 /// [builder-pattern]: https://doc.rust-lang.org/1.0.0/style/ownership/builders.html
-pub struct ViewSwitcherTitleBuilder {
-    policy: Option<ViewSwitcherPolicy>,
-    stack: Option<ViewStack>,
-    subtitle: Option<String>,
-    title: Option<String>,
-    view_switcher_enabled: Option<bool>,
+pub struct ViewStackBuilder {
+    hhomogeneous: Option<bool>,
+    interpolate_size: Option<bool>,
+    vhomogeneous: Option<bool>,
+    visible_child: Option<gtk::Widget>,
+    visible_child_name: Option<String>,
     can_focus: Option<bool>,
     can_target: Option<bool>,
     css_classes: Option<Vec<String>>,
@@ -337,31 +426,31 @@ pub struct ViewSwitcherTitleBuilder {
     accessible_role: Option<gtk::AccessibleRole>,
 }
 
-impl ViewSwitcherTitleBuilder {
+impl ViewStackBuilder {
     // rustdoc-stripper-ignore-next
-    /// Create a new [`ViewSwitcherTitleBuilder`].
+    /// Create a new [`ViewStackBuilder`].
     pub fn new() -> Self {
         Self::default()
     }
 
     // rustdoc-stripper-ignore-next
-    /// Build the [`ViewSwitcherTitle`].
-    pub fn build(self) -> ViewSwitcherTitle {
+    /// Build the [`ViewStack`].
+    pub fn build(self) -> ViewStack {
         let mut properties: Vec<(&str, &dyn ToValue)> = vec![];
-        if let Some(ref policy) = self.policy {
-            properties.push(("policy", policy));
+        if let Some(ref hhomogeneous) = self.hhomogeneous {
+            properties.push(("hhomogeneous", hhomogeneous));
         }
-        if let Some(ref stack) = self.stack {
-            properties.push(("stack", stack));
+        if let Some(ref interpolate_size) = self.interpolate_size {
+            properties.push(("interpolate-size", interpolate_size));
         }
-        if let Some(ref subtitle) = self.subtitle {
-            properties.push(("subtitle", subtitle));
+        if let Some(ref vhomogeneous) = self.vhomogeneous {
+            properties.push(("vhomogeneous", vhomogeneous));
         }
-        if let Some(ref title) = self.title {
-            properties.push(("title", title));
+        if let Some(ref visible_child) = self.visible_child {
+            properties.push(("visible-child", visible_child));
         }
-        if let Some(ref view_switcher_enabled) = self.view_switcher_enabled {
-            properties.push(("view-switcher-enabled", view_switcher_enabled));
+        if let Some(ref visible_child_name) = self.visible_child_name {
+            properties.push(("visible-child-name", visible_child_name));
         }
         if let Some(ref can_focus) = self.can_focus {
             properties.push(("can-focus", can_focus));
@@ -453,32 +542,32 @@ impl ViewSwitcherTitleBuilder {
         if let Some(ref accessible_role) = self.accessible_role {
             properties.push(("accessible-role", accessible_role));
         }
-        glib::Object::new::<ViewSwitcherTitle>(&properties)
-            .expect("Failed to create an instance of ViewSwitcherTitle")
+        glib::Object::new::<ViewStack>(&properties)
+            .expect("Failed to create an instance of ViewStack")
     }
 
-    pub fn policy(mut self, policy: ViewSwitcherPolicy) -> Self {
-        self.policy = Some(policy);
+    pub fn hhomogeneous(mut self, hhomogeneous: bool) -> Self {
+        self.hhomogeneous = Some(hhomogeneous);
         self
     }
 
-    pub fn stack(mut self, stack: &ViewStack) -> Self {
-        self.stack = Some(stack.clone());
+    pub fn interpolate_size(mut self, interpolate_size: bool) -> Self {
+        self.interpolate_size = Some(interpolate_size);
         self
     }
 
-    pub fn subtitle(mut self, subtitle: &str) -> Self {
-        self.subtitle = Some(subtitle.to_string());
+    pub fn vhomogeneous(mut self, vhomogeneous: bool) -> Self {
+        self.vhomogeneous = Some(vhomogeneous);
         self
     }
 
-    pub fn title(mut self, title: &str) -> Self {
-        self.title = Some(title.to_string());
+    pub fn visible_child<P: IsA<gtk::Widget>>(mut self, visible_child: &P) -> Self {
+        self.visible_child = Some(visible_child.clone().upcast());
         self
     }
 
-    pub fn view_switcher_enabled(mut self, view_switcher_enabled: bool) -> Self {
-        self.view_switcher_enabled = Some(view_switcher_enabled);
+    pub fn visible_child_name(mut self, visible_child_name: &str) -> Self {
+        self.visible_child_name = Some(visible_child_name.to_string());
         self
     }
 
@@ -633,8 +722,8 @@ impl ViewSwitcherTitleBuilder {
     }
 }
 
-impl fmt::Display for ViewSwitcherTitle {
+impl fmt::Display for ViewStack {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        f.write_str("ViewSwitcherTitle")
+        f.write_str("ViewStack")
     }
 }

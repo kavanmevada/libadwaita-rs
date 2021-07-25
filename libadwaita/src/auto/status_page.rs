@@ -91,7 +91,7 @@ impl StatusPage {
     }
 
     #[doc(alias = "adw_status_page_set_title")]
-    pub fn set_title(&self, title: Option<&str>) {
+    pub fn set_title(&self, title: &str) {
         unsafe {
             ffi::adw_status_page_set_title(self.to_glib_none().0, title.to_glib_none().0);
         }

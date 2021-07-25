@@ -26,7 +26,7 @@ glib::wrapper! {
 
 impl WindowTitle {
     #[doc(alias = "adw_window_title_new")]
-    pub fn new(title: Option<&str>, subtitle: Option<&str>) -> WindowTitle {
+    pub fn new(title: &str, subtitle: &str) -> WindowTitle {
         assert_initialized_main_thread!();
         unsafe {
             gtk::Widget::from_glib_none(ffi::adw_window_title_new(
@@ -58,14 +58,14 @@ impl WindowTitle {
     }
 
     #[doc(alias = "adw_window_title_set_subtitle")]
-    pub fn set_subtitle(&self, subtitle: Option<&str>) {
+    pub fn set_subtitle(&self, subtitle: &str) {
         unsafe {
             ffi::adw_window_title_set_subtitle(self.to_glib_none().0, subtitle.to_glib_none().0);
         }
     }
 
     #[doc(alias = "adw_window_title_set_title")]
-    pub fn set_title(&self, title: Option<&str>) {
+    pub fn set_title(&self, title: &str) {
         unsafe {
             ffi::adw_window_title_set_title(self.to_glib_none().0, title.to_glib_none().0);
         }

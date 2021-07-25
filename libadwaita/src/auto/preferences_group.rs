@@ -378,7 +378,7 @@ pub trait PreferencesGroupExt: 'static {
     fn set_description(&self, description: Option<&str>);
 
     #[doc(alias = "adw_preferences_group_set_title")]
-    fn set_title(&self, title: Option<&str>);
+    fn set_title(&self, title: &str);
 
     #[doc(alias = "description")]
     fn connect_description_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
@@ -431,7 +431,7 @@ impl<O: IsA<PreferencesGroup>> PreferencesGroupExt for O {
         }
     }
 
-    fn set_title(&self, title: Option<&str>) {
+    fn set_title(&self, title: &str) {
         unsafe {
             ffi::adw_preferences_group_set_title(
                 self.as_ref().to_glib_none().0,
