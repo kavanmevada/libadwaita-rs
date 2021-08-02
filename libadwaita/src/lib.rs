@@ -111,6 +111,7 @@ macro_rules! skip_assert_initialized {
 #[allow(clippy::type_complexity)]
 mod auto;
 
+mod application;
 mod combo_row;
 mod tab_bar;
 pub use combo_row::ComboRowBuilder;

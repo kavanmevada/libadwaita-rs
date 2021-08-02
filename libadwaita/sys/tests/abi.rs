@@ -226,6 +226,20 @@ const RUST_LAYOUTS: &[(&str, Layout)] = &[
         },
     ),
     (
+        "AdwApplication",
+        Layout {
+            size: size_of::<AdwApplication>(),
+            alignment: align_of::<AdwApplication>(),
+        },
+    ),
+    (
+        "AdwApplicationClass",
+        Layout {
+            size: size_of::<AdwApplicationClass>(),
+            alignment: align_of::<AdwApplicationClass>(),
+        },
+    ),
+    (
         "AdwApplicationWindow",
         Layout {
             size: size_of::<AdwApplicationWindow>(),

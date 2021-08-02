@@ -86,6 +86,21 @@ impl ::std::fmt::Debug for AdwActionRowClass {
 
 #[repr(C)]
 #[derive(Copy, Clone)]
+pub struct AdwApplicationClass {
+    pub parent_class: gtk::GtkApplicationClass,
+    pub padding: [gpointer; 4],
+}
+
+impl ::std::fmt::Debug for AdwApplicationClass {
+    fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+        f.debug_struct(&format!("AdwApplicationClass @ {:p}", self))
+            .field("parent_class", &self.parent_class)
+            .finish()
+    }
+}
+
+#[repr(C)]
+#[derive(Copy, Clone)]
 pub struct AdwApplicationWindowClass {
     pub parent_class: gtk::GtkApplicationWindowClass,
     pub padding: [gpointer; 4],
@@ -646,6 +661,20 @@ impl ::std::fmt::Debug for AdwActionRow {
 
 #[repr(C)]
 #[derive(Copy, Clone)]
+pub struct AdwApplication {
+    pub parent_instance: gtk::GtkApplication,
+}
+
+impl ::std::fmt::Debug for AdwApplication {
+    fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+        f.debug_struct(&format!("AdwApplication @ {:p}", self))
+            .field("parent_instance", &self.parent_instance)
+            .finish()
+    }
+}
+
+#[repr(C)]
+#[derive(Copy, Clone)]
 pub struct AdwApplicationWindow {
     pub parent_instance: gtk::GtkApplicationWindow,
 }
@@ -1110,6 +1139,15 @@ extern "C" {
     pub fn adw_action_row_set_subtitle_lines(self_: *mut AdwActionRow, subtitle_lines: c_int);
     pub fn adw_action_row_set_title_lines(self_: *mut AdwActionRow, title_lines: c_int);
     pub fn adw_action_row_set_use_underline(self_: *mut AdwActionRow, use_underline: gboolean);
+
+    //=========================================================================
+    // AdwApplication
+    //=========================================================================
+    pub fn adw_application_get_type() -> GType;
+    pub fn adw_application_new(
+        application_id: *const c_char,
+        flags: gio::GApplicationFlags,
+    ) -> *mut AdwApplication;
 
     //=========================================================================
     // AdwApplicationWindow
@@ -1615,6 +1653,7 @@ extern "C" {
         self_: *mut AdwSqueezer,
         child: *mut gtk::GtkWidget,
     ) -> *mut AdwSqueezerPage;
+    pub fn adw_squeezer_get_allow_none(self_: *mut AdwSqueezer) -> gboolean;
     pub fn adw_squeezer_get_homogeneous(self_: *mut AdwSqueezer) -> gboolean;
     pub fn adw_squeezer_get_interpolate_size(self_: *mut AdwSqueezer) -> gboolean;
     pub fn adw_squeezer_get_page(
@@ -1629,6 +1668,7 @@ extern "C" {
     pub fn adw_squeezer_get_xalign(self_: *mut AdwSqueezer) -> c_float;
     pub fn adw_squeezer_get_yalign(self_: *mut AdwSqueezer) -> c_float;
     pub fn adw_squeezer_remove(self_: *mut AdwSqueezer, child: *mut gtk::GtkWidget);
+    pub fn adw_squeezer_set_allow_none(self_: *mut AdwSqueezer, allow_none: gboolean);
     pub fn adw_squeezer_set_homogeneous(self_: *mut AdwSqueezer, homogeneous: gboolean);
     pub fn adw_squeezer_set_interpolate_size(self_: *mut AdwSqueezer, interpolate_size: gboolean);
     pub fn adw_squeezer_set_transition_duration(self_: *mut AdwSqueezer, duration: c_uint);
