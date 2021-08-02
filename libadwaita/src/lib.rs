@@ -66,7 +66,7 @@
 //!         // Adwaitas' ApplicationWindow does not include a HeaderBar
 //!         content.append(
 //!             &HeaderBar::builder()
-//!                 .title_widget(&adw::WindowTitle::new(Some("First App"), None))
+//!                 .title_widget(&adw::WindowTitle::new("First App", ""))
 //!                 .build(),
 //!         );
 //!         content.append(&list);
