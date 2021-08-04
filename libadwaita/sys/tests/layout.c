@@ -10,6 +10,8 @@
 int main() {
     printf("%s;%zu;%zu\n", "AdwActionRow", sizeof(AdwActionRow), alignof(AdwActionRow));
     printf("%s;%zu;%zu\n", "AdwActionRowClass", sizeof(AdwActionRowClass), alignof(AdwActionRowClass));
+    printf("%s;%zu;%zu\n", "AdwApplication", sizeof(AdwApplication), alignof(AdwApplication));
+    printf("%s;%zu;%zu\n", "AdwApplicationClass", sizeof(AdwApplicationClass), alignof(AdwApplicationClass));
     printf("%s;%zu;%zu\n", "AdwApplicationWindow", sizeof(AdwApplicationWindow), alignof(AdwApplicationWindow));
     printf("%s;%zu;%zu\n", "AdwApplicationWindowClass", sizeof(AdwApplicationWindowClass), alignof(AdwApplicationWindowClass));
     printf("%s;%zu;%zu\n", "AdwAvatarClass", sizeof(AdwAvatarClass), alignof(AdwAvatarClass));

@@ -71,6 +71,7 @@ manual = [
     "Gdk.Paintable",
     "Gdk.Rectangle",
     "GdkPixbuf.Pixbuf",
+    "Gio.Application",
     "Gio.ActionGroup",
     "Gio.ActionMap",
     "Gio.Icon",
@@ -119,6 +120,14 @@ status = "generate"
     [[object.function]]
     name = "get_enable_animations"
     rename = "is_animations_enabled"
+
+[[object]]
+name = "Adw.Application"
+status = "generate"
+builder_postprocess = "Application::register_startup_hook(&ret);"
+    [[object.function]]
+    name = "new"
+    manual = true
 
 [[object]]
 name = "Adw.ComboRow"

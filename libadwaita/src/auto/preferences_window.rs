@@ -55,8 +55,8 @@ impl Default for PreferencesWindow {
 pub struct PreferencesWindowBuilder {
     can_swipe_back: Option<bool>,
     search_enabled: Option<bool>,
-    visible_child_name: Option<String>,
     visible_page: Option<gtk::Widget>,
+    visible_page_name: Option<String>,
     application: Option<gtk::Application>,
     child: Option<gtk::Widget>,
     decorated: Option<bool>,
@@ -128,11 +128,11 @@ impl PreferencesWindowBuilder {
         if let Some(ref search_enabled) = self.search_enabled {
             properties.push(("search-enabled", search_enabled));
         }
-        if let Some(ref visible_child_name) = self.visible_child_name {
-            properties.push(("visible-child-name", visible_child_name));
-        }
         if let Some(ref visible_page) = self.visible_page {
             properties.push(("visible-page", visible_page));
+        }
+        if let Some(ref visible_page_name) = self.visible_page_name {
+            properties.push(("visible-page-name", visible_page_name));
         }
         if let Some(ref application) = self.application {
             properties.push(("application", application));
@@ -304,13 +304,13 @@ impl PreferencesWindowBuilder {
         self
     }
 
-    pub fn visible_child_name(mut self, visible_child_name: &str) -> Self {
-        self.visible_child_name = Some(visible_child_name.to_string());
+    pub fn visible_page<P: IsA<gtk::Widget>>(mut self, visible_page: &P) -> Self {
+        self.visible_page = Some(visible_page.clone().upcast());
         self
     }
 
-    pub fn visible_page<P: IsA<gtk::Widget>>(mut self, visible_page: &P) -> Self {
-        self.visible_page = Some(visible_page.clone().upcast());
+    pub fn visible_page_name(mut self, visible_page_name: &str) -> Self {
+        self.visible_page_name = Some(visible_page_name.to_string());
         self
     }
 
@@ -618,23 +618,17 @@ pub trait PreferencesWindowExt: 'static {
     #[doc(alias = "adw_preferences_window_set_visible_page_name")]
     fn set_visible_page_name(&self, name: &str);
 
-    #[doc(alias = "visible-child-name")]
-    fn visible_child_name(&self) -> Option<glib::GString>;
-
-    #[doc(alias = "visible-child-name")]
-    fn set_visible_child_name(&self, visible_child_name: Option<&str>);
-
     #[doc(alias = "can-swipe-back")]
     fn connect_can_swipe_back_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
 
     #[doc(alias = "search-enabled")]
     fn connect_search_enabled_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
 
-    #[doc(alias = "visible-child-name")]
-    fn connect_visible_child_name_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
-
     #[doc(alias = "visible-page")]
     fn connect_visible_page_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
+
+    #[doc(alias = "visible-page-name")]
+    fn connect_visible_page_name_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
 }
 
 impl<O: IsA<PreferencesWindow>> PreferencesWindowExt for O {
@@ -739,30 +733,6 @@ impl<O: IsA<PreferencesWindow>> PreferencesWindowExt for O {
         }
     }
 
-    fn visible_child_name(&self) -> Option<glib::GString> {
-        unsafe {
-            let mut value = glib::Value::from_type(<glib::GString as StaticType>::static_type());
-            glib::gobject_ffi::g_object_get_property(
-                self.to_glib_none().0 as *mut glib::gobject_ffi::GObject,
-                b"visible-child-name\0".as_ptr() as *const _,
-                value.to_glib_none_mut().0,
-            );
-            value
-                .get()
-                .expect("Return Value for property `visible-child-name` getter")
-        }
-    }
-
-    fn set_visible_child_name(&self, visible_child_name: Option<&str>) {
-        unsafe {
-            glib::gobject_ffi::g_object_set_property(
-                self.to_glib_none().0 as *mut glib::gobject_ffi::GObject,
-                b"visible-child-name\0".as_ptr() as *const _,
-                visible_child_name.to_value().to_glib_none().0,
-            );
-        }
-    }
-
     fn connect_can_swipe_back_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_can_swipe_back_trampoline<
             P: IsA<PreferencesWindow>,
@@ -813,31 +783,6 @@ impl<O: IsA<PreferencesWindow>> PreferencesWindowExt for O {
         }
     }
 
-    fn connect_visible_child_name_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
-        unsafe extern "C" fn notify_visible_child_name_trampoline<
-            P: IsA<PreferencesWindow>,
-            F: Fn(&P) + 'static,
-        >(
-            this: *mut ffi::AdwPreferencesWindow,
-            _param_spec: glib::ffi::gpointer,
-            f: glib::ffi::gpointer,
-        ) {
-            let f: &F = &*(f as *const F);
-            f(PreferencesWindow::from_glib_borrow(this).unsafe_cast_ref())
-        }
-        unsafe {
-            let f: Box_<F> = Box_::new(f);
-            connect_raw(
-                self.as_ptr() as *mut _,
-                b"notify::visible-child-name\0".as_ptr() as *const _,
-                Some(transmute::<_, unsafe extern "C" fn()>(
-                    notify_visible_child_name_trampoline::<Self, F> as *const (),
-                )),
-                Box_::into_raw(f),
-            )
-        }
-    }
-
     fn connect_visible_page_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_visible_page_trampoline<
             P: IsA<PreferencesWindow>,
@@ -857,6 +802,31 @@ impl<O: IsA<PreferencesWindow>> PreferencesWindowExt for O {
                 b"notify::visible-page\0".as_ptr() as *const _,
                 Some(transmute::<_, unsafe extern "C" fn()>(
                     notify_visible_page_trampoline::<Self, F> as *const (),
+                )),
+                Box_::into_raw(f),
+            )
+        }
+    }
+
+    fn connect_visible_page_name_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
+        unsafe extern "C" fn notify_visible_page_name_trampoline<
+            P: IsA<PreferencesWindow>,
+            F: Fn(&P) + 'static,
+        >(
+            this: *mut ffi::AdwPreferencesWindow,
+            _param_spec: glib::ffi::gpointer,
+            f: glib::ffi::gpointer,
+        ) {
+            let f: &F = &*(f as *const F);
+            f(PreferencesWindow::from_glib_borrow(this).unsafe_cast_ref())
+        }
+        unsafe {
+            let f: Box_<F> = Box_::new(f);
+            connect_raw(
+                self.as_ptr() as *mut _,
+                b"notify::visible-page-name\0".as_ptr() as *const _,
+                Some(transmute::<_, unsafe extern "C" fn()>(
+                    notify_visible_page_name_trampoline::<Self, F> as *const (),
                 )),
                 Box_::into_raw(f),
             )

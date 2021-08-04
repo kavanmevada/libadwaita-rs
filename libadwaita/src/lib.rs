@@ -66,7 +66,7 @@
 //!         // Adwaitas' ApplicationWindow does not include a HeaderBar
 //!         content.append(
 //!             &HeaderBar::builder()
-//!                 .title_widget(&adw::WindowTitle::new(Some("First App"), None))
+//!                 .title_widget(&adw::WindowTitle::new("First App", ""))
 //!                 .build(),
 //!         );
 //!         content.append(&list);
@@ -111,6 +111,7 @@ macro_rules! skip_assert_initialized {
 #[allow(clippy::type_complexity)]
 mod auto;
 
+mod application;
 mod combo_row;
 mod tab_bar;
 pub use combo_row::ComboRowBuilder;

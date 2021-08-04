@@ -7,6 +7,10 @@ mod action_row;
 pub use self::action_row::ActionRowBuilder;
 pub use self::action_row::{ActionRow, NONE_ACTION_ROW};
 
+mod application;
+pub use self::application::ApplicationBuilder;
+pub use self::application::{Application, NONE_APPLICATION};
+
 mod application_window;
 pub use self::application_window::ApplicationWindowBuilder;
 pub use self::application_window::{ApplicationWindow, NONE_APPLICATION_WINDOW};

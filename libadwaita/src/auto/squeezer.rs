@@ -51,6 +51,12 @@ impl Squeezer {
         }
     }
 
+    #[doc(alias = "adw_squeezer_get_allow_none")]
+    #[doc(alias = "get_allow_none")]
+    pub fn allows_none(&self) -> bool {
+        unsafe { from_glib(ffi::adw_squeezer_get_allow_none(self.to_glib_none().0)) }
+    }
+
     #[doc(alias = "adw_squeezer_get_homogeneous")]
     #[doc(alias = "get_homogeneous")]
     pub fn is_homogeneous(&self) -> bool {
@@ -131,6 +137,13 @@ impl Squeezer {
         }
     }
 
+    #[doc(alias = "adw_squeezer_set_allow_none")]
+    pub fn set_allow_none(&self, allow_none: bool) {
+        unsafe {
+            ffi::adw_squeezer_set_allow_none(self.to_glib_none().0, allow_none.into_glib());
+        }
+    }
+
     #[doc(alias = "adw_squeezer_set_homogeneous")]
     pub fn set_homogeneous(&self, homogeneous: bool) {
         unsafe {
@@ -173,6 +186,29 @@ impl Squeezer {
     pub fn set_yalign(&self, yalign: f32) {
         unsafe {
             ffi::adw_squeezer_set_yalign(self.to_glib_none().0, yalign);
+        }
+    }
+
+    #[doc(alias = "allow-none")]
+    pub fn connect_allow_none_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
+        unsafe extern "C" fn notify_allow_none_trampoline<F: Fn(&Squeezer) + 'static>(
+            this: *mut ffi::AdwSqueezer,
+            _param_spec: glib::ffi::gpointer,
+            f: glib::ffi::gpointer,
+        ) {
+            let f: &F = &*(f as *const F);
+            f(&from_glib_borrow(this))
+        }
+        unsafe {
+            let f: Box_<F> = Box_::new(f);
+            connect_raw(
+                self.as_ptr() as *mut _,
+                b"notify::allow-none\0".as_ptr() as *const _,
+                Some(transmute::<_, unsafe extern "C" fn()>(
+                    notify_allow_none_trampoline::<F> as *const (),
+                )),
+                Box_::into_raw(f),
+            )
         }
     }
 
@@ -402,6 +438,7 @@ impl Default for Squeezer {
 ///
 /// [builder-pattern]: https://doc.rust-lang.org/1.0.0/style/ownership/builders.html
 pub struct SqueezerBuilder {
+    allow_none: Option<bool>,
     homogeneous: Option<bool>,
     interpolate_size: Option<bool>,
     transition_duration: Option<u32>,
@@ -452,6 +489,9 @@ impl SqueezerBuilder {
     /// Build the [`Squeezer`].
     pub fn build(self) -> Squeezer {
         let mut properties: Vec<(&str, &dyn ToValue)> = vec![];
+        if let Some(ref allow_none) = self.allow_none {
+            properties.push(("allow-none", allow_none));
+        }
         if let Some(ref homogeneous) = self.homogeneous {
             properties.push(("homogeneous", homogeneous));
         }
@@ -565,6 +605,11 @@ impl SqueezerBuilder {
         }
         glib::Object::new::<Squeezer>(&properties)
             .expect("Failed to create an instance of Squeezer")
+    }
+
+    pub fn allow_none(mut self, allow_none: bool) -> Self {
+        self.allow_none = Some(allow_none);
+        self
     }
 
     pub fn homogeneous(mut self, homogeneous: bool) -> Self {

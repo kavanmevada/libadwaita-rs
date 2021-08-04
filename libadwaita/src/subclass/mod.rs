@@ -1,4 +1,5 @@
 pub mod action_row;
+pub mod application;
 pub mod application_window;
 pub mod bin;
 pub mod combo_row;
@@ -11,6 +12,7 @@ pub mod window;
 
 pub mod prelude {
     pub use super::action_row::ActionRowImpl;
+    pub use super::application::AdwApplicationImpl;
     pub use super::application_window::AdwApplicationWindowImpl;
     pub use super::bin::BinImpl;
     pub use super::combo_row::ComboRowImpl;
