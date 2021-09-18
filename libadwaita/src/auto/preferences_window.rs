@@ -57,6 +57,7 @@ pub struct PreferencesWindowBuilder {
     search_enabled: Option<bool>,
     visible_page: Option<gtk::Widget>,
     visible_page_name: Option<String>,
+    content: Option<gtk::Widget>,
     application: Option<gtk::Application>,
     child: Option<gtk::Widget>,
     decorated: Option<bool>,
@@ -133,6 +134,9 @@ impl PreferencesWindowBuilder {
         }
         if let Some(ref visible_page_name) = self.visible_page_name {
             properties.push(("visible-page-name", visible_page_name));
+        }
+        if let Some(ref content) = self.content {
+            properties.push(("content", content));
         }
         if let Some(ref application) = self.application {
             properties.push(("application", application));
@@ -311,6 +315,11 @@ impl PreferencesWindowBuilder {
 
     pub fn visible_page_name(mut self, visible_page_name: &str) -> Self {
         self.visible_page_name = Some(visible_page_name.to_string());
+        self
+    }
+
+    pub fn content<P: IsA<gtk::Widget>>(mut self, content: &P) -> Self {
+        self.content = Some(content.clone().upcast());
         self
     }
 

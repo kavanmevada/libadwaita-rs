@@ -4,7 +4,6 @@
 // DO NOT EDIT
 
 use crate::ViewStack;
-use crate::ViewSwitcherPolicy;
 use glib::object::Cast;
 use glib::object::IsA;
 use glib::object::ObjectType as ObjectType_;
@@ -41,12 +40,6 @@ impl ViewSwitcherBar {
         ViewSwitcherBarBuilder::default()
     }
 
-    #[doc(alias = "adw_view_switcher_bar_get_policy")]
-    #[doc(alias = "get_policy")]
-    pub fn policy(&self) -> ViewSwitcherPolicy {
-        unsafe { from_glib(ffi::adw_view_switcher_bar_get_policy(self.to_glib_none().0)) }
-    }
-
     #[doc(alias = "adw_view_switcher_bar_get_reveal")]
     #[doc(alias = "get_reveal")]
     pub fn reveals(&self) -> bool {
@@ -57,13 +50,6 @@ impl ViewSwitcherBar {
     #[doc(alias = "get_stack")]
     pub fn stack(&self) -> Option<ViewStack> {
         unsafe { from_glib_none(ffi::adw_view_switcher_bar_get_stack(self.to_glib_none().0)) }
-    }
-
-    #[doc(alias = "adw_view_switcher_bar_set_policy")]
-    pub fn set_policy(&self, policy: ViewSwitcherPolicy) {
-        unsafe {
-            ffi::adw_view_switcher_bar_set_policy(self.to_glib_none().0, policy.into_glib());
-        }
     }
 
     #[doc(alias = "adw_view_switcher_bar_set_reveal")]
@@ -77,29 +63,6 @@ impl ViewSwitcherBar {
     pub fn set_stack(&self, stack: Option<&ViewStack>) {
         unsafe {
             ffi::adw_view_switcher_bar_set_stack(self.to_glib_none().0, stack.to_glib_none().0);
-        }
-    }
-
-    #[doc(alias = "policy")]
-    pub fn connect_policy_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
-        unsafe extern "C" fn notify_policy_trampoline<F: Fn(&ViewSwitcherBar) + 'static>(
-            this: *mut ffi::AdwViewSwitcherBar,
-            _param_spec: glib::ffi::gpointer,
-            f: glib::ffi::gpointer,
-        ) {
-            let f: &F = &*(f as *const F);
-            f(&from_glib_borrow(this))
-        }
-        unsafe {
-            let f: Box_<F> = Box_::new(f);
-            connect_raw(
-                self.as_ptr() as *mut _,
-                b"notify::policy\0".as_ptr() as *const _,
-                Some(transmute::<_, unsafe extern "C" fn()>(
-                    notify_policy_trampoline::<F> as *const (),
-                )),
-                Box_::into_raw(f),
-            )
         }
     }
 
@@ -162,7 +125,6 @@ impl Default for ViewSwitcherBar {
 ///
 /// [builder-pattern]: https://doc.rust-lang.org/1.0.0/style/ownership/builders.html
 pub struct ViewSwitcherBarBuilder {
-    policy: Option<ViewSwitcherPolicy>,
     reveal: Option<bool>,
     stack: Option<ViewStack>,
     can_focus: Option<bool>,
@@ -208,9 +170,6 @@ impl ViewSwitcherBarBuilder {
     /// Build the [`ViewSwitcherBar`].
     pub fn build(self) -> ViewSwitcherBar {
         let mut properties: Vec<(&str, &dyn ToValue)> = vec![];
-        if let Some(ref policy) = self.policy {
-            properties.push(("policy", policy));
-        }
         if let Some(ref reveal) = self.reveal {
             properties.push(("reveal", reveal));
         }
@@ -309,11 +268,6 @@ impl ViewSwitcherBarBuilder {
         }
         glib::Object::new::<ViewSwitcherBar>(&properties)
             .expect("Failed to create an instance of ViewSwitcherBar")
-    }
-
-    pub fn policy(mut self, policy: ViewSwitcherPolicy) -> Self {
-        self.policy = Some(policy);
-        self
     }
 
     pub fn reveal(mut self, reveal: bool) -> Self {

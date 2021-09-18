@@ -38,7 +38,7 @@ pub struct ApplicationBuilder {
     register_session: Option<bool>,
     action_group: Option<gio::ActionGroup>,
     application_id: Option<String>,
-    //flags: /*Unknown type*/,
+    flags: Option<gio::ApplicationFlags>,
     inactivity_timeout: Option<u32>,
     resource_base_path: Option<String>,
 }
@@ -65,6 +65,9 @@ impl ApplicationBuilder {
         }
         if let Some(ref application_id) = self.application_id {
             properties.push(("application-id", application_id));
+        }
+        if let Some(ref flags) = self.flags {
+            properties.push(("flags", flags));
         }
         if let Some(ref inactivity_timeout) = self.inactivity_timeout {
             properties.push(("inactivity-timeout", inactivity_timeout));
@@ -97,6 +100,11 @@ impl ApplicationBuilder {
 
     pub fn application_id(mut self, application_id: &str) -> Self {
         self.application_id = Some(application_id.to_string());
+        self
+    }
+
+    pub fn flags(mut self, flags: gio::ApplicationFlags) -> Self {
+        self.flags = Some(flags);
         self
     }
 

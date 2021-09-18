@@ -26,6 +26,7 @@ generate = [
     "Adw.ApplicationWindow",
     "Adw.Avatar",
     "Adw.Bin",
+    "Adw.ButtonContent",
     "Adw.Carousel",
     "Adw.CarouselIndicatorDots",
     "Adw.CarouselIndicatorLines",
@@ -38,6 +39,7 @@ generate = [
     "Adw.Flap",
     "Adw.FlapFoldPolicy",
     "Adw.FlapTransitionType",
+    "Adw.EnumListItem",
     "Adw.HeaderBar",
     "Adw.Leaflet",
     "Adw.LeafletTransitionType",
@@ -46,6 +48,7 @@ generate = [
     "Adw.PreferencesPage",
     "Adw.PreferencesRow",
     "Adw.PreferencesWindow",
+    "Adw.SplitButton", 
     "Adw.Squeezer",
     "Adw.SqueezerTransitionType",
     "Adw.StatusPage",
@@ -72,6 +75,7 @@ manual = [
     "Gdk.Rectangle",
     "GdkPixbuf.Pixbuf",
     "Gio.Application",
+    "Gio.ApplicationFlags",
     "Gio.ActionGroup",
     "Gio.ActionMap",
     "Gio.Icon",
@@ -84,6 +88,7 @@ manual = [
     "Gtk.Align",
     "Gtk.Application",
     "Gtk.ApplicationWindow",
+    "Gtk.ArrowType",
     "Gtk.Buildable",
     "Gtk.ConstraintTarget",
     "Gtk.Entry",
@@ -98,6 +103,7 @@ manual = [
     "Gtk.Orientation",
     "Gtk.Overflow",
     "Gtk.PackType",
+    "Gtk.Popover",
     "Gtk.Root",
     "Gtk.Scrollable",
     "Gtk.ScrollablePolicy",
@@ -144,10 +150,6 @@ name = "Adw.EnumListModel"
 status = "generate"
 generate_builder = false
 
-[[object]]
-name = "Adw.EnumValueObject"
-status = "generate"
-generate_builder = false
 
 [[object]]
 name = "Adw.LeafletPage"
@@ -171,11 +173,6 @@ status = "generate"
 
 [[object]]
 name = "Adw.TabPage"
-status = "generate"
-generate_builder = false
-
-[[object]]
-name = "Adw.ValueObject"
 status = "generate"
 generate_builder = false
 

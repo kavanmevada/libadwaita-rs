@@ -617,8 +617,6 @@ impl ToValue for SqueezerTransitionType {
 #[non_exhaustive]
 #[doc(alias = "AdwViewSwitcherPolicy")]
 pub enum ViewSwitcherPolicy {
-    #[doc(alias = "ADW_VIEW_SWITCHER_POLICY_AUTO")]
-    Auto,
     #[doc(alias = "ADW_VIEW_SWITCHER_POLICY_NARROW")]
     Narrow,
     #[doc(alias = "ADW_VIEW_SWITCHER_POLICY_WIDE")]
@@ -633,7 +631,6 @@ impl fmt::Display for ViewSwitcherPolicy {
             f,
             "ViewSwitcherPolicy::{}",
             match *self {
-                Self::Auto => "Auto",
                 Self::Narrow => "Narrow",
                 Self::Wide => "Wide",
                 _ => "Unknown",
@@ -648,7 +645,6 @@ impl IntoGlib for ViewSwitcherPolicy {
 
     fn into_glib(self) -> ffi::AdwViewSwitcherPolicy {
         match self {
-            Self::Auto => ffi::ADW_VIEW_SWITCHER_POLICY_AUTO,
             Self::Narrow => ffi::ADW_VIEW_SWITCHER_POLICY_NARROW,
             Self::Wide => ffi::ADW_VIEW_SWITCHER_POLICY_WIDE,
             Self::__Unknown(value) => value,
@@ -661,7 +657,6 @@ impl FromGlib<ffi::AdwViewSwitcherPolicy> for ViewSwitcherPolicy {
     unsafe fn from_glib(value: ffi::AdwViewSwitcherPolicy) -> Self {
         skip_assert_initialized!();
         match value {
-            ffi::ADW_VIEW_SWITCHER_POLICY_AUTO => Self::Auto,
             ffi::ADW_VIEW_SWITCHER_POLICY_NARROW => Self::Narrow,
             ffi::ADW_VIEW_SWITCHER_POLICY_WIDE => Self::Wide,
             value => Self::__Unknown(value),

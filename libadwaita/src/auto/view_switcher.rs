@@ -41,16 +41,6 @@ impl ViewSwitcher {
         ViewSwitcherBuilder::default()
     }
 
-    #[doc(alias = "adw_view_switcher_get_narrow_ellipsize")]
-    #[doc(alias = "get_narrow_ellipsize")]
-    pub fn narrow_ellipsize(&self) -> pango::EllipsizeMode {
-        unsafe {
-            from_glib(ffi::adw_view_switcher_get_narrow_ellipsize(
-                self.to_glib_none().0,
-            ))
-        }
-    }
-
     #[doc(alias = "adw_view_switcher_get_policy")]
     #[doc(alias = "get_policy")]
     pub fn policy(&self) -> ViewSwitcherPolicy {
@@ -61,13 +51,6 @@ impl ViewSwitcher {
     #[doc(alias = "get_stack")]
     pub fn stack(&self) -> Option<ViewStack> {
         unsafe { from_glib_none(ffi::adw_view_switcher_get_stack(self.to_glib_none().0)) }
-    }
-
-    #[doc(alias = "adw_view_switcher_set_narrow_ellipsize")]
-    pub fn set_narrow_ellipsize(&self, mode: pango::EllipsizeMode) {
-        unsafe {
-            ffi::adw_view_switcher_set_narrow_ellipsize(self.to_glib_none().0, mode.into_glib());
-        }
     }
 
     #[doc(alias = "adw_view_switcher_set_policy")]
@@ -81,29 +64,6 @@ impl ViewSwitcher {
     pub fn set_stack(&self, stack: Option<&ViewStack>) {
         unsafe {
             ffi::adw_view_switcher_set_stack(self.to_glib_none().0, stack.to_glib_none().0);
-        }
-    }
-
-    #[doc(alias = "narrow-ellipsize")]
-    pub fn connect_narrow_ellipsize_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
-        unsafe extern "C" fn notify_narrow_ellipsize_trampoline<F: Fn(&ViewSwitcher) + 'static>(
-            this: *mut ffi::AdwViewSwitcher,
-            _param_spec: glib::ffi::gpointer,
-            f: glib::ffi::gpointer,
-        ) {
-            let f: &F = &*(f as *const F);
-            f(&from_glib_borrow(this))
-        }
-        unsafe {
-            let f: Box_<F> = Box_::new(f);
-            connect_raw(
-                self.as_ptr() as *mut _,
-                b"notify::narrow-ellipsize\0".as_ptr() as *const _,
-                Some(transmute::<_, unsafe extern "C" fn()>(
-                    notify_narrow_ellipsize_trampoline::<F> as *const (),
-                )),
-                Box_::into_raw(f),
-            )
         }
     }
 
@@ -166,7 +126,6 @@ impl Default for ViewSwitcher {
 ///
 /// [builder-pattern]: https://doc.rust-lang.org/1.0.0/style/ownership/builders.html
 pub struct ViewSwitcherBuilder {
-    narrow_ellipsize: Option<pango::EllipsizeMode>,
     policy: Option<ViewSwitcherPolicy>,
     stack: Option<ViewStack>,
     can_focus: Option<bool>,
@@ -212,9 +171,6 @@ impl ViewSwitcherBuilder {
     /// Build the [`ViewSwitcher`].
     pub fn build(self) -> ViewSwitcher {
         let mut properties: Vec<(&str, &dyn ToValue)> = vec![];
-        if let Some(ref narrow_ellipsize) = self.narrow_ellipsize {
-            properties.push(("narrow-ellipsize", narrow_ellipsize));
-        }
         if let Some(ref policy) = self.policy {
             properties.push(("policy", policy));
         }
@@ -313,11 +269,6 @@ impl ViewSwitcherBuilder {
         }
         glib::Object::new::<ViewSwitcher>(&properties)
             .expect("Failed to create an instance of ViewSwitcher")
-    }
-
-    pub fn narrow_ellipsize(mut self, narrow_ellipsize: pango::EllipsizeMode) -> Self {
-        self.narrow_ellipsize = Some(narrow_ellipsize);
-        self
     }
 
     pub fn policy(mut self, policy: ViewSwitcherPolicy) -> Self {

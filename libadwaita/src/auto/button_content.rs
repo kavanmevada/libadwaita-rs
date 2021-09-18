@@ -3,7 +3,6 @@
 // from gir-files (https://github.com/gtk-rs/gir-files.git)
 // DO NOT EDIT
 
-use crate::ViewStack;
 use glib::object::Cast;
 use glib::object::IsA;
 use glib::object::ObjectType as ObjectType_;
@@ -17,117 +16,82 @@ use std::fmt;
 use std::mem::transmute;
 
 glib::wrapper! {
-    #[doc(alias = "AdwViewSwitcherTitle")]
-    pub struct ViewSwitcherTitle(Object<ffi::AdwViewSwitcherTitle, ffi::AdwViewSwitcherTitleClass>) @extends gtk::Widget, @implements gtk::Accessible, gtk::Buildable, gtk::ConstraintTarget;
+    #[doc(alias = "AdwButtonContent")]
+    pub struct ButtonContent(Object<ffi::AdwButtonContent, ffi::AdwButtonContentClass>) @extends gtk::Widget, @implements gtk::Accessible, gtk::Buildable, gtk::ConstraintTarget;
 
     match fn {
-        type_ => || ffi::adw_view_switcher_title_get_type(),
+        type_ => || ffi::adw_button_content_get_type(),
     }
 }
 
-impl ViewSwitcherTitle {
-    #[doc(alias = "adw_view_switcher_title_new")]
-    pub fn new() -> ViewSwitcherTitle {
+impl ButtonContent {
+    #[doc(alias = "adw_button_content_new")]
+    pub fn new() -> ButtonContent {
         assert_initialized_main_thread!();
-        unsafe { gtk::Widget::from_glib_none(ffi::adw_view_switcher_title_new()).unsafe_cast() }
+        unsafe { gtk::Widget::from_glib_none(ffi::adw_button_content_new()).unsafe_cast() }
     }
 
     // rustdoc-stripper-ignore-next
-    /// Creates a new builder-pattern struct instance to construct [`ViewSwitcherTitle`] objects.
+    /// Creates a new builder-pattern struct instance to construct [`ButtonContent`] objects.
     ///
-    /// This method returns an instance of [`ViewSwitcherTitleBuilder`] which can be used to create [`ViewSwitcherTitle`] objects.
-    pub fn builder() -> ViewSwitcherTitleBuilder {
-        ViewSwitcherTitleBuilder::default()
+    /// This method returns an instance of [`ButtonContentBuilder`] which can be used to create [`ButtonContent`] objects.
+    pub fn builder() -> ButtonContentBuilder {
+        ButtonContentBuilder::default()
     }
 
-    #[doc(alias = "adw_view_switcher_title_get_stack")]
-    #[doc(alias = "get_stack")]
-    pub fn stack(&self) -> Option<ViewStack> {
+    #[doc(alias = "adw_button_content_get_icon_name")]
+    #[doc(alias = "get_icon_name")]
+    pub fn icon_name(&self) -> Option<glib::GString> {
+        unsafe { from_glib_none(ffi::adw_button_content_get_icon_name(self.to_glib_none().0)) }
+    }
+
+    #[doc(alias = "adw_button_content_get_label")]
+    #[doc(alias = "get_label")]
+    pub fn label(&self) -> Option<glib::GString> {
+        unsafe { from_glib_none(ffi::adw_button_content_get_label(self.to_glib_none().0)) }
+    }
+
+    #[doc(alias = "adw_button_content_get_use_underline")]
+    #[doc(alias = "get_use_underline")]
+    pub fn uses_underline(&self) -> bool {
         unsafe {
-            from_glib_none(ffi::adw_view_switcher_title_get_stack(
+            from_glib(ffi::adw_button_content_get_use_underline(
                 self.to_glib_none().0,
             ))
         }
     }
 
-    #[doc(alias = "adw_view_switcher_title_get_subtitle")]
-    #[doc(alias = "get_subtitle")]
-    pub fn subtitle(&self) -> Option<glib::GString> {
+    #[doc(alias = "adw_button_content_set_icon_name")]
+    pub fn set_icon_name(&self, icon_name: &str) {
         unsafe {
-            from_glib_none(ffi::adw_view_switcher_title_get_subtitle(
+            ffi::adw_button_content_set_icon_name(
                 self.to_glib_none().0,
-            ))
-        }
-    }
-
-    #[doc(alias = "adw_view_switcher_title_get_title")]
-    #[doc(alias = "get_title")]
-    pub fn title(&self) -> Option<glib::GString> {
-        unsafe {
-            from_glib_none(ffi::adw_view_switcher_title_get_title(
-                self.to_glib_none().0,
-            ))
-        }
-    }
-
-    #[doc(alias = "adw_view_switcher_title_get_title_visible")]
-    #[doc(alias = "get_title_visible")]
-    pub fn is_title_visible(&self) -> bool {
-        unsafe {
-            from_glib(ffi::adw_view_switcher_title_get_title_visible(
-                self.to_glib_none().0,
-            ))
-        }
-    }
-
-    #[doc(alias = "adw_view_switcher_title_get_view_switcher_enabled")]
-    #[doc(alias = "get_view_switcher_enabled")]
-    pub fn is_view_switcher_enabled(&self) -> bool {
-        unsafe {
-            from_glib(ffi::adw_view_switcher_title_get_view_switcher_enabled(
-                self.to_glib_none().0,
-            ))
-        }
-    }
-
-    #[doc(alias = "adw_view_switcher_title_set_stack")]
-    pub fn set_stack(&self, stack: Option<&ViewStack>) {
-        unsafe {
-            ffi::adw_view_switcher_title_set_stack(self.to_glib_none().0, stack.to_glib_none().0);
-        }
-    }
-
-    #[doc(alias = "adw_view_switcher_title_set_subtitle")]
-    pub fn set_subtitle(&self, subtitle: &str) {
-        unsafe {
-            ffi::adw_view_switcher_title_set_subtitle(
-                self.to_glib_none().0,
-                subtitle.to_glib_none().0,
+                icon_name.to_glib_none().0,
             );
         }
     }
 
-    #[doc(alias = "adw_view_switcher_title_set_title")]
-    pub fn set_title(&self, title: &str) {
+    #[doc(alias = "adw_button_content_set_label")]
+    pub fn set_label(&self, label: &str) {
         unsafe {
-            ffi::adw_view_switcher_title_set_title(self.to_glib_none().0, title.to_glib_none().0);
+            ffi::adw_button_content_set_label(self.to_glib_none().0, label.to_glib_none().0);
         }
     }
 
-    #[doc(alias = "adw_view_switcher_title_set_view_switcher_enabled")]
-    pub fn set_view_switcher_enabled(&self, enabled: bool) {
+    #[doc(alias = "adw_button_content_set_use_underline")]
+    pub fn set_use_underline(&self, use_underline: bool) {
         unsafe {
-            ffi::adw_view_switcher_title_set_view_switcher_enabled(
+            ffi::adw_button_content_set_use_underline(
                 self.to_glib_none().0,
-                enabled.into_glib(),
+                use_underline.into_glib(),
             );
         }
     }
 
-    #[doc(alias = "stack")]
-    pub fn connect_stack_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
-        unsafe extern "C" fn notify_stack_trampoline<F: Fn(&ViewSwitcherTitle) + 'static>(
-            this: *mut ffi::AdwViewSwitcherTitle,
+    #[doc(alias = "icon-name")]
+    pub fn connect_icon_name_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
+        unsafe extern "C" fn notify_icon_name_trampoline<F: Fn(&ButtonContent) + 'static>(
+            this: *mut ffi::AdwButtonContent,
             _param_spec: glib::ffi::gpointer,
             f: glib::ffi::gpointer,
         ) {
@@ -138,19 +102,19 @@ impl ViewSwitcherTitle {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
-                b"notify::stack\0".as_ptr() as *const _,
+                b"notify::icon-name\0".as_ptr() as *const _,
                 Some(transmute::<_, unsafe extern "C" fn()>(
-                    notify_stack_trampoline::<F> as *const (),
+                    notify_icon_name_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
             )
         }
     }
 
-    #[doc(alias = "subtitle")]
-    pub fn connect_subtitle_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
-        unsafe extern "C" fn notify_subtitle_trampoline<F: Fn(&ViewSwitcherTitle) + 'static>(
-            this: *mut ffi::AdwViewSwitcherTitle,
+    #[doc(alias = "label")]
+    pub fn connect_label_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
+        unsafe extern "C" fn notify_label_trampoline<F: Fn(&ButtonContent) + 'static>(
+            this: *mut ffi::AdwButtonContent,
             _param_spec: glib::ffi::gpointer,
             f: glib::ffi::gpointer,
         ) {
@@ -161,19 +125,19 @@ impl ViewSwitcherTitle {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
-                b"notify::subtitle\0".as_ptr() as *const _,
+                b"notify::label\0".as_ptr() as *const _,
                 Some(transmute::<_, unsafe extern "C" fn()>(
-                    notify_subtitle_trampoline::<F> as *const (),
+                    notify_label_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
             )
         }
     }
 
-    #[doc(alias = "title")]
-    pub fn connect_title_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
-        unsafe extern "C" fn notify_title_trampoline<F: Fn(&ViewSwitcherTitle) + 'static>(
-            this: *mut ffi::AdwViewSwitcherTitle,
+    #[doc(alias = "use-underline")]
+    pub fn connect_use_underline_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
+        unsafe extern "C" fn notify_use_underline_trampoline<F: Fn(&ButtonContent) + 'static>(
+            this: *mut ffi::AdwButtonContent,
             _param_spec: glib::ffi::gpointer,
             f: glib::ffi::gpointer,
         ) {
@@ -184,62 +148,9 @@ impl ViewSwitcherTitle {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
-                b"notify::title\0".as_ptr() as *const _,
+                b"notify::use-underline\0".as_ptr() as *const _,
                 Some(transmute::<_, unsafe extern "C" fn()>(
-                    notify_title_trampoline::<F> as *const (),
-                )),
-                Box_::into_raw(f),
-            )
-        }
-    }
-
-    #[doc(alias = "title-visible")]
-    pub fn connect_title_visible_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
-        unsafe extern "C" fn notify_title_visible_trampoline<
-            F: Fn(&ViewSwitcherTitle) + 'static,
-        >(
-            this: *mut ffi::AdwViewSwitcherTitle,
-            _param_spec: glib::ffi::gpointer,
-            f: glib::ffi::gpointer,
-        ) {
-            let f: &F = &*(f as *const F);
-            f(&from_glib_borrow(this))
-        }
-        unsafe {
-            let f: Box_<F> = Box_::new(f);
-            connect_raw(
-                self.as_ptr() as *mut _,
-                b"notify::title-visible\0".as_ptr() as *const _,
-                Some(transmute::<_, unsafe extern "C" fn()>(
-                    notify_title_visible_trampoline::<F> as *const (),
-                )),
-                Box_::into_raw(f),
-            )
-        }
-    }
-
-    #[doc(alias = "view-switcher-enabled")]
-    pub fn connect_view_switcher_enabled_notify<F: Fn(&Self) + 'static>(
-        &self,
-        f: F,
-    ) -> SignalHandlerId {
-        unsafe extern "C" fn notify_view_switcher_enabled_trampoline<
-            F: Fn(&ViewSwitcherTitle) + 'static,
-        >(
-            this: *mut ffi::AdwViewSwitcherTitle,
-            _param_spec: glib::ffi::gpointer,
-            f: glib::ffi::gpointer,
-        ) {
-            let f: &F = &*(f as *const F);
-            f(&from_glib_borrow(this))
-        }
-        unsafe {
-            let f: Box_<F> = Box_::new(f);
-            connect_raw(
-                self.as_ptr() as *mut _,
-                b"notify::view-switcher-enabled\0".as_ptr() as *const _,
-                Some(transmute::<_, unsafe extern "C" fn()>(
-                    notify_view_switcher_enabled_trampoline::<F> as *const (),
+                    notify_use_underline_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
             )
@@ -247,7 +158,7 @@ impl ViewSwitcherTitle {
     }
 }
 
-impl Default for ViewSwitcherTitle {
+impl Default for ButtonContent {
     fn default() -> Self {
         Self::new()
     }
@@ -255,14 +166,13 @@ impl Default for ViewSwitcherTitle {
 
 #[derive(Clone, Default)]
 // rustdoc-stripper-ignore-next
-/// A [builder-pattern] type to construct [`ViewSwitcherTitle`] objects.
+/// A [builder-pattern] type to construct [`ButtonContent`] objects.
 ///
 /// [builder-pattern]: https://doc.rust-lang.org/1.0.0/style/ownership/builders.html
-pub struct ViewSwitcherTitleBuilder {
-    stack: Option<ViewStack>,
-    subtitle: Option<String>,
-    title: Option<String>,
-    view_switcher_enabled: Option<bool>,
+pub struct ButtonContentBuilder {
+    icon_name: Option<String>,
+    label: Option<String>,
+    use_underline: Option<bool>,
     can_focus: Option<bool>,
     can_target: Option<bool>,
     css_classes: Option<Vec<String>>,
@@ -295,28 +205,25 @@ pub struct ViewSwitcherTitleBuilder {
     accessible_role: Option<gtk::AccessibleRole>,
 }
 
-impl ViewSwitcherTitleBuilder {
+impl ButtonContentBuilder {
     // rustdoc-stripper-ignore-next
-    /// Create a new [`ViewSwitcherTitleBuilder`].
+    /// Create a new [`ButtonContentBuilder`].
     pub fn new() -> Self {
         Self::default()
     }
 
     // rustdoc-stripper-ignore-next
-    /// Build the [`ViewSwitcherTitle`].
-    pub fn build(self) -> ViewSwitcherTitle {
+    /// Build the [`ButtonContent`].
+    pub fn build(self) -> ButtonContent {
         let mut properties: Vec<(&str, &dyn ToValue)> = vec![];
-        if let Some(ref stack) = self.stack {
-            properties.push(("stack", stack));
+        if let Some(ref icon_name) = self.icon_name {
+            properties.push(("icon-name", icon_name));
         }
-        if let Some(ref subtitle) = self.subtitle {
-            properties.push(("subtitle", subtitle));
+        if let Some(ref label) = self.label {
+            properties.push(("label", label));
         }
-        if let Some(ref title) = self.title {
-            properties.push(("title", title));
-        }
-        if let Some(ref view_switcher_enabled) = self.view_switcher_enabled {
-            properties.push(("view-switcher-enabled", view_switcher_enabled));
+        if let Some(ref use_underline) = self.use_underline {
+            properties.push(("use-underline", use_underline));
         }
         if let Some(ref can_focus) = self.can_focus {
             properties.push(("can-focus", can_focus));
@@ -408,27 +315,22 @@ impl ViewSwitcherTitleBuilder {
         if let Some(ref accessible_role) = self.accessible_role {
             properties.push(("accessible-role", accessible_role));
         }
-        glib::Object::new::<ViewSwitcherTitle>(&properties)
-            .expect("Failed to create an instance of ViewSwitcherTitle")
+        glib::Object::new::<ButtonContent>(&properties)
+            .expect("Failed to create an instance of ButtonContent")
     }
 
-    pub fn stack(mut self, stack: &ViewStack) -> Self {
-        self.stack = Some(stack.clone());
+    pub fn icon_name(mut self, icon_name: &str) -> Self {
+        self.icon_name = Some(icon_name.to_string());
         self
     }
 
-    pub fn subtitle(mut self, subtitle: &str) -> Self {
-        self.subtitle = Some(subtitle.to_string());
+    pub fn label(mut self, label: &str) -> Self {
+        self.label = Some(label.to_string());
         self
     }
 
-    pub fn title(mut self, title: &str) -> Self {
-        self.title = Some(title.to_string());
-        self
-    }
-
-    pub fn view_switcher_enabled(mut self, view_switcher_enabled: bool) -> Self {
-        self.view_switcher_enabled = Some(view_switcher_enabled);
+    pub fn use_underline(mut self, use_underline: bool) -> Self {
+        self.use_underline = Some(use_underline);
         self
     }
 
@@ -583,8 +485,8 @@ impl ViewSwitcherTitleBuilder {
     }
 }
 
-impl fmt::Display for ViewSwitcherTitle {
+impl fmt::Display for ButtonContent {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        f.write_str("ViewSwitcherTitle")
+        f.write_str("ButtonContent")
     }
 }

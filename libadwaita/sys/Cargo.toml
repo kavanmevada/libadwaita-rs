@@ -48,7 +48,7 @@ package = "gdk4-sys"
 version = "0.2"
 
 [build-dependencies]
-system-deps = "3"
+system-deps = "4"
 
 [dev-dependencies]
 shell-words = "1.0.0"

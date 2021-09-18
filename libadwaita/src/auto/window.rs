@@ -5,10 +5,14 @@
 
 use glib::object::Cast;
 use glib::object::IsA;
+use glib::signal::connect_raw;
+use glib::signal::SignalHandlerId;
 use glib::translate::*;
 use glib::StaticType;
 use glib::ToValue;
+use std::boxed::Box as Box_;
 use std::fmt;
+use std::mem::transmute;
 
 glib::wrapper! {
     #[doc(alias = "AdwWindow")]
@@ -47,6 +51,7 @@ impl Default for Window {
 ///
 /// [builder-pattern]: https://doc.rust-lang.org/1.0.0/style/ownership/builders.html
 pub struct WindowBuilder {
+    content: Option<gtk::Widget>,
     application: Option<gtk::Application>,
     child: Option<gtk::Widget>,
     decorated: Option<bool>,
@@ -112,6 +117,9 @@ impl WindowBuilder {
     /// Build the [`Window`].
     pub fn build(self) -> Window {
         let mut properties: Vec<(&str, &dyn ToValue)> = vec![];
+        if let Some(ref content) = self.content {
+            properties.push(("content", content));
+        }
         if let Some(ref application) = self.application {
             properties.push(("application", application));
         }
@@ -269,6 +277,11 @@ impl WindowBuilder {
             properties.push(("accessible-role", accessible_role));
         }
         glib::Object::new::<Window>(&properties).expect("Failed to create an instance of Window")
+    }
+
+    pub fn content<P: IsA<gtk::Widget>>(mut self, content: &P) -> Self {
+        self.content = Some(content.clone().upcast());
+        self
     }
 
     pub fn application<P: IsA<gtk::Application>>(mut self, application: &P) -> Self {
@@ -535,25 +548,50 @@ impl WindowBuilder {
 pub const NONE_WINDOW: Option<&Window> = None;
 
 pub trait WindowExt: 'static {
-    #[doc(alias = "adw_window_get_child")]
-    #[doc(alias = "get_child")]
-    fn child(&self) -> Option<gtk::Widget>;
+    #[doc(alias = "adw_window_get_content")]
+    #[doc(alias = "get_content")]
+    fn content(&self) -> Option<gtk::Widget>;
 
-    #[doc(alias = "adw_window_set_child")]
-    fn set_child<P: IsA<gtk::Widget>>(&self, child: Option<&P>);
+    #[doc(alias = "adw_window_set_content")]
+    fn set_content<P: IsA<gtk::Widget>>(&self, content: Option<&P>);
+
+    #[doc(alias = "content")]
+    fn connect_content_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
 }
 
 impl<O: IsA<Window>> WindowExt for O {
-    fn child(&self) -> Option<gtk::Widget> {
-        unsafe { from_glib_none(ffi::adw_window_get_child(self.as_ref().to_glib_none().0)) }
+    fn content(&self) -> Option<gtk::Widget> {
+        unsafe { from_glib_none(ffi::adw_window_get_content(self.as_ref().to_glib_none().0)) }
     }
 
-    fn set_child<P: IsA<gtk::Widget>>(&self, child: Option<&P>) {
+    fn set_content<P: IsA<gtk::Widget>>(&self, content: Option<&P>) {
         unsafe {
-            ffi::adw_window_set_child(
+            ffi::adw_window_set_content(
                 self.as_ref().to_glib_none().0,
-                child.map(|p| p.as_ref()).to_glib_none().0,
+                content.map(|p| p.as_ref()).to_glib_none().0,
             );
+        }
+    }
+
+    fn connect_content_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
+        unsafe extern "C" fn notify_content_trampoline<P: IsA<Window>, F: Fn(&P) + 'static>(
+            this: *mut ffi::AdwWindow,
+            _param_spec: glib::ffi::gpointer,
+            f: glib::ffi::gpointer,
+        ) {
+            let f: &F = &*(f as *const F);
+            f(Window::from_glib_borrow(this).unsafe_cast_ref())
+        }
+        unsafe {
+            let f: Box_<F> = Box_::new(f);
+            connect_raw(
+                self.as_ptr() as *mut _,
+                b"notify::content\0".as_ptr() as *const _,
+                Some(transmute::<_, unsafe extern "C" fn()>(
+                    notify_content_trampoline::<Self, F> as *const (),
+                )),
+                Box_::into_raw(f),
+            )
         }
     }
 }

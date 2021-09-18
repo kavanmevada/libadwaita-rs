@@ -3,6 +3,7 @@
 // from gir-files (https://github.com/gtk-rs/gir-files.git)
 // DO NOT EDIT
 
+use crate::FoldThresholdPolicy;
 use crate::SqueezerPage;
 use crate::SqueezerTransitionType;
 use glib::object::Cast;
@@ -90,6 +91,16 @@ impl Squeezer {
         unsafe { from_glib_full(ffi::adw_squeezer_get_pages(self.to_glib_none().0)) }
     }
 
+    #[doc(alias = "adw_squeezer_get_switch_threshold_policy")]
+    #[doc(alias = "get_switch_threshold_policy")]
+    pub fn switch_threshold_policy(&self) -> FoldThresholdPolicy {
+        unsafe {
+            from_glib(ffi::adw_squeezer_get_switch_threshold_policy(
+                self.to_glib_none().0,
+            ))
+        }
+    }
+
     #[doc(alias = "adw_squeezer_get_transition_duration")]
     #[doc(alias = "get_transition_duration")]
     pub fn transition_duration(&self) -> u32 {
@@ -157,6 +168,16 @@ impl Squeezer {
             ffi::adw_squeezer_set_interpolate_size(
                 self.to_glib_none().0,
                 interpolate_size.into_glib(),
+            );
+        }
+    }
+
+    #[doc(alias = "adw_squeezer_set_switch_threshold_policy")]
+    pub fn set_switch_threshold_policy(&self, policy: FoldThresholdPolicy) {
+        unsafe {
+            ffi::adw_squeezer_set_switch_threshold_policy(
+                self.to_glib_none().0,
+                policy.into_glib(),
             );
         }
     }
@@ -275,6 +296,34 @@ impl Squeezer {
                 b"notify::pages\0".as_ptr() as *const _,
                 Some(transmute::<_, unsafe extern "C" fn()>(
                     notify_pages_trampoline::<F> as *const (),
+                )),
+                Box_::into_raw(f),
+            )
+        }
+    }
+
+    #[doc(alias = "switch-threshold-policy")]
+    pub fn connect_switch_threshold_policy_notify<F: Fn(&Self) + 'static>(
+        &self,
+        f: F,
+    ) -> SignalHandlerId {
+        unsafe extern "C" fn notify_switch_threshold_policy_trampoline<
+            F: Fn(&Squeezer) + 'static,
+        >(
+            this: *mut ffi::AdwSqueezer,
+            _param_spec: glib::ffi::gpointer,
+            f: glib::ffi::gpointer,
+        ) {
+            let f: &F = &*(f as *const F);
+            f(&from_glib_borrow(this))
+        }
+        unsafe {
+            let f: Box_<F> = Box_::new(f);
+            connect_raw(
+                self.as_ptr() as *mut _,
+                b"notify::switch-threshold-policy\0".as_ptr() as *const _,
+                Some(transmute::<_, unsafe extern "C" fn()>(
+                    notify_switch_threshold_policy_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
             )
@@ -441,6 +490,7 @@ pub struct SqueezerBuilder {
     allow_none: Option<bool>,
     homogeneous: Option<bool>,
     interpolate_size: Option<bool>,
+    switch_threshold_policy: Option<FoldThresholdPolicy>,
     transition_duration: Option<u32>,
     transition_type: Option<SqueezerTransitionType>,
     xalign: Option<f32>,
@@ -497,6 +547,9 @@ impl SqueezerBuilder {
         }
         if let Some(ref interpolate_size) = self.interpolate_size {
             properties.push(("interpolate-size", interpolate_size));
+        }
+        if let Some(ref switch_threshold_policy) = self.switch_threshold_policy {
+            properties.push(("switch-threshold-policy", switch_threshold_policy));
         }
         if let Some(ref transition_duration) = self.transition_duration {
             properties.push(("transition-duration", transition_duration));
@@ -619,6 +672,11 @@ impl SqueezerBuilder {
 
     pub fn interpolate_size(mut self, interpolate_size: bool) -> Self {
         self.interpolate_size = Some(interpolate_size);
+        self
+    }
+
+    pub fn switch_threshold_policy(mut self, switch_threshold_policy: FoldThresholdPolicy) -> Self {
+        self.switch_threshold_policy = Some(switch_threshold_policy);
         self
     }
 

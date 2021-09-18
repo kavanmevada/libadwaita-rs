@@ -23,6 +23,10 @@ mod bin;
 pub use self::bin::BinBuilder;
 pub use self::bin::{Bin, NONE_BIN};
 
+mod button_content;
+pub use self::button_content::ButtonContent;
+pub use self::button_content::ButtonContentBuilder;
+
 mod carousel;
 pub use self::carousel::Carousel;
 pub use self::carousel::CarouselBuilder;
@@ -50,11 +54,11 @@ pub use self::clamp_scrollable::ClampScrollableBuilder;
 mod combo_row;
 pub use self::combo_row::{ComboRow, NONE_COMBO_ROW};
 
+mod enum_list_item;
+pub use self::enum_list_item::EnumListItem;
+
 mod enum_list_model;
 pub use self::enum_list_model::EnumListModel;
-
-mod enum_value_object;
-pub use self::enum_value_object::EnumValueObject;
 
 mod expander_row;
 pub use self::expander_row::ExpanderRowBuilder;
@@ -91,6 +95,10 @@ mod preferences_window;
 pub use self::preferences_window::PreferencesWindowBuilder;
 pub use self::preferences_window::{PreferencesWindow, NONE_PREFERENCES_WINDOW};
 
+mod split_button;
+pub use self::split_button::SplitButton;
+pub use self::split_button::SplitButtonBuilder;
+
 mod squeezer;
 pub use self::squeezer::Squeezer;
 pub use self::squeezer::SqueezerBuilder;
@@ -119,9 +127,6 @@ pub use self::tab_page::TabPage;
 mod tab_view;
 pub use self::tab_view::TabView;
 pub use self::tab_view::TabViewBuilder;
-
-mod value_object;
-pub use self::value_object::ValueObject;
 
 mod view_stack;
 pub use self::view_stack::ViewStack;
@@ -161,6 +166,9 @@ pub use self::enums::SqueezerTransitionType;
 pub use self::enums::ViewSwitcherPolicy;
 
 pub mod functions;
+
+mod constants;
+pub use self::constants::VERSION_S;
 
 #[doc(hidden)]
 pub mod traits {

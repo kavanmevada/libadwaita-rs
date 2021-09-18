@@ -12,37 +12,37 @@ use std::fmt;
 use std::mem::transmute;
 
 glib::wrapper! {
-    #[doc(alias = "AdwEnumValueObject")]
-    pub struct EnumValueObject(Object<ffi::AdwEnumValueObject, ffi::AdwEnumValueObjectClass>);
+    #[doc(alias = "AdwEnumListItem")]
+    pub struct EnumListItem(Object<ffi::AdwEnumListItem, ffi::AdwEnumListItemClass>);
 
     match fn {
-        type_ => || ffi::adw_enum_value_object_get_type(),
+        type_ => || ffi::adw_enum_list_item_get_type(),
     }
 }
 
-impl EnumValueObject {
-    #[doc(alias = "adw_enum_value_object_get_name")]
+impl EnumListItem {
+    #[doc(alias = "adw_enum_list_item_get_name")]
     #[doc(alias = "get_name")]
     pub fn name(&self) -> Option<glib::GString> {
-        unsafe { from_glib_none(ffi::adw_enum_value_object_get_name(self.to_glib_none().0)) }
+        unsafe { from_glib_none(ffi::adw_enum_list_item_get_name(self.to_glib_none().0)) }
     }
 
-    #[doc(alias = "adw_enum_value_object_get_nick")]
+    #[doc(alias = "adw_enum_list_item_get_nick")]
     #[doc(alias = "get_nick")]
     pub fn nick(&self) -> Option<glib::GString> {
-        unsafe { from_glib_none(ffi::adw_enum_value_object_get_nick(self.to_glib_none().0)) }
+        unsafe { from_glib_none(ffi::adw_enum_list_item_get_nick(self.to_glib_none().0)) }
     }
 
-    #[doc(alias = "adw_enum_value_object_get_value")]
+    #[doc(alias = "adw_enum_list_item_get_value")]
     #[doc(alias = "get_value")]
     pub fn value(&self) -> i32 {
-        unsafe { ffi::adw_enum_value_object_get_value(self.to_glib_none().0) }
+        unsafe { ffi::adw_enum_list_item_get_value(self.to_glib_none().0) }
     }
 
     #[doc(alias = "name")]
     pub fn connect_name_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
-        unsafe extern "C" fn notify_name_trampoline<F: Fn(&EnumValueObject) + 'static>(
-            this: *mut ffi::AdwEnumValueObject,
+        unsafe extern "C" fn notify_name_trampoline<F: Fn(&EnumListItem) + 'static>(
+            this: *mut ffi::AdwEnumListItem,
             _param_spec: glib::ffi::gpointer,
             f: glib::ffi::gpointer,
         ) {
@@ -64,8 +64,8 @@ impl EnumValueObject {
 
     #[doc(alias = "nick")]
     pub fn connect_nick_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
-        unsafe extern "C" fn notify_nick_trampoline<F: Fn(&EnumValueObject) + 'static>(
-            this: *mut ffi::AdwEnumValueObject,
+        unsafe extern "C" fn notify_nick_trampoline<F: Fn(&EnumListItem) + 'static>(
+            this: *mut ffi::AdwEnumListItem,
             _param_spec: glib::ffi::gpointer,
             f: glib::ffi::gpointer,
         ) {
@@ -87,8 +87,8 @@ impl EnumValueObject {
 
     #[doc(alias = "value")]
     pub fn connect_value_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
-        unsafe extern "C" fn notify_value_trampoline<F: Fn(&EnumValueObject) + 'static>(
-            this: *mut ffi::AdwEnumValueObject,
+        unsafe extern "C" fn notify_value_trampoline<F: Fn(&EnumListItem) + 'static>(
+            this: *mut ffi::AdwEnumListItem,
             _param_spec: glib::ffi::gpointer,
             f: glib::ffi::gpointer,
         ) {
@@ -109,8 +109,8 @@ impl EnumValueObject {
     }
 }
 
-impl fmt::Display for EnumValueObject {
+impl fmt::Display for EnumListItem {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        f.write_str("EnumValueObject")
+        f.write_str("EnumListItem")
     }
 }
