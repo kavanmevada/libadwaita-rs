@@ -4,8 +4,11 @@ variables:
   # latest release must be at the top
   # (only relevant on main branch)
   RELEASES: |
-    v0.1=0.1.0-alpha
+    v0.1=0.1.0-alpha-5
+    v0.1=0.1.0-alpha-4
+    v0.1=0.1.0-alpha-3
     v0.1=0.1.0-alpha-2
+    v0.1=0.1.0-alpha
 
 image: "ghcr.io/gtk-rs/gtk4-rs/gtk4:latest"
 
