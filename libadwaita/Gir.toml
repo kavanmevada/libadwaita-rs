@@ -34,6 +34,7 @@ generate = [
     "Adw.Clamp",
     "Adw.ClampLayout",
     "Adw.ClampScrollable",
+    "Adw.ColorScheme",
     "Adw.ExpanderRow",
     "Adw.FoldThresholdPolicy",
     "Adw.Flap",
@@ -73,7 +74,7 @@ manual = [
     "Gdk.DragAction",
     "Gdk.Paintable",
     "Gdk.Rectangle",
-    "GdkPixbuf.Pixbuf",
+    "Gdk.Texture",
     "Gio.Application",
     "Gio.ApplicationFlags",
     "Gio.ActionGroup",
@@ -134,6 +135,10 @@ builder_postprocess = "Application::register_startup_hook(&ret);"
     [[object.function]]
     name = "new"
     manual = true
+    [[object.function]]
+    name = "get_style_manager"
+        [object.function.return]
+        nullable = false
 
 [[object]]
 name = "Adw.ComboRow"
@@ -150,11 +155,18 @@ name = "Adw.EnumListModel"
 status = "generate"
 generate_builder = false
 
-
 [[object]]
 name = "Adw.LeafletPage"
 status = "generate"
 generate_builder = false
+
+[[object]]
+name = "Adw.StyleManager"
+status = "generate"
+generate_builder = false
+    [[object.function]]
+    name = "get_system_supports_color_schemes"
+    rename = "system_supports_color_schemes"
 
 [[object]]
 name = "Adw.SqueezerPage"

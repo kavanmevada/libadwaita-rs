@@ -25,6 +25,7 @@ int main() {
     printf("%s;%zu;%zu\n", "AdwClampClass", sizeof(AdwClampClass), alignof(AdwClampClass));
     printf("%s;%zu;%zu\n", "AdwClampLayoutClass", sizeof(AdwClampLayoutClass), alignof(AdwClampLayoutClass));
     printf("%s;%zu;%zu\n", "AdwClampScrollableClass", sizeof(AdwClampScrollableClass), alignof(AdwClampScrollableClass));
+    printf("%s;%zu;%zu\n", "AdwColorScheme", sizeof(AdwColorScheme), alignof(AdwColorScheme));
     printf("%s;%zu;%zu\n", "AdwComboRow", sizeof(AdwComboRow), alignof(AdwComboRow));
     printf("%s;%zu;%zu\n", "AdwComboRowClass", sizeof(AdwComboRowClass), alignof(AdwComboRowClass));
     printf("%s;%zu;%zu\n", "AdwEnumListItemClass", sizeof(AdwEnumListItemClass), alignof(AdwEnumListItemClass));
@@ -53,6 +54,7 @@ int main() {
     printf("%s;%zu;%zu\n", "AdwSqueezerPageClass", sizeof(AdwSqueezerPageClass), alignof(AdwSqueezerPageClass));
     printf("%s;%zu;%zu\n", "AdwSqueezerTransitionType", sizeof(AdwSqueezerTransitionType), alignof(AdwSqueezerTransitionType));
     printf("%s;%zu;%zu\n", "AdwStatusPageClass", sizeof(AdwStatusPageClass), alignof(AdwStatusPageClass));
+    printf("%s;%zu;%zu\n", "AdwStyleManagerClass", sizeof(AdwStyleManagerClass), alignof(AdwStyleManagerClass));
     printf("%s;%zu;%zu\n", "AdwSwipeTrackerClass", sizeof(AdwSwipeTrackerClass), alignof(AdwSwipeTrackerClass));
     printf("%s;%zu;%zu\n", "AdwSwipeableInterface", sizeof(AdwSwipeableInterface), alignof(AdwSwipeableInterface));
     printf("%s;%zu;%zu\n", "AdwTabBarClass", sizeof(AdwTabBarClass), alignof(AdwTabBarClass));

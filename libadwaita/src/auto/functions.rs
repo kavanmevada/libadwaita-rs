@@ -30,3 +30,9 @@ pub fn init() {
         ffi::adw_init();
     }
 }
+
+#[doc(alias = "adw_is_initialized")]
+pub fn is_initialized() -> bool {
+    assert_initialized_main_thread!();
+    unsafe { from_glib(ffi::adw_is_initialized()) }
+}
