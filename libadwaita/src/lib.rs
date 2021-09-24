@@ -27,6 +27,7 @@
 //! ```no_run
 //! # use libadwaita as adw;
 //! use adw::prelude::*;
+//! use gtk::prelude::*;
 //!
 //! use adw::{ActionRow, ApplicationWindow, HeaderBar};
 //! use gtk::{Application, Box, ListBox, Orientation};
