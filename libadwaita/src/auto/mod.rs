@@ -177,7 +177,7 @@ pub use self::constants::VERSION_S;
 #[doc(hidden)]
 pub mod traits {
     pub use super::action_row::ActionRowExt;
-    pub use super::application::ApplicationExt;
+    pub use super::application::AdwApplicationExt;
     pub use super::application_window::ApplicationWindowExt;
     pub use super::bin::BinExt;
     pub use super::combo_row::ComboRowExt;

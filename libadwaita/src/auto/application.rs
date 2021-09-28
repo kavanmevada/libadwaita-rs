@@ -127,7 +127,7 @@ impl ApplicationBuilder {
 
 pub const NONE_APPLICATION: Option<&Application> = None;
 
-pub trait ApplicationExt: 'static {
+pub trait AdwApplicationExt: 'static {
     #[doc(alias = "adw_application_get_style_manager")]
     #[doc(alias = "get_style_manager")]
     fn style_manager(&self) -> StyleManager;
@@ -136,7 +136,7 @@ pub trait ApplicationExt: 'static {
     fn connect_style_manager_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
 }
 
-impl<O: IsA<Application>> ApplicationExt for O {
+impl<O: IsA<Application>> AdwApplicationExt for O {
     fn style_manager(&self) -> StyleManager {
         unsafe {
             from_glib_none(ffi::adw_application_get_style_manager(
