@@ -331,6 +331,13 @@ const RUST_LAYOUTS: &[(&str, Layout)] = &[
         },
     ),
     (
+        "AdwColorScheme",
+        Layout {
+            size: size_of::<AdwColorScheme>(),
+            alignment: align_of::<AdwColorScheme>(),
+        },
+    ),
+    (
         "AdwComboRow",
         Layout {
             size: size_of::<AdwComboRow>(),
@@ -527,6 +534,13 @@ const RUST_LAYOUTS: &[(&str, Layout)] = &[
         },
     ),
     (
+        "AdwStyleManagerClass",
+        Layout {
+            size: size_of::<AdwStyleManagerClass>(),
+            alignment: align_of::<AdwStyleManagerClass>(),
+        },
+    ),
+    (
         "AdwSwipeTrackerClass",
         Layout {
             size: size_of::<AdwSwipeTrackerClass>(),
@@ -629,6 +643,11 @@ const RUST_LAYOUTS: &[(&str, Layout)] = &[
 const RUST_CONSTANTS: &[(&str, &str)] = &[
     ("(gint) ADW_CENTERING_POLICY_LOOSE", "0"),
     ("(gint) ADW_CENTERING_POLICY_STRICT", "1"),
+    ("(gint) ADW_COLOR_SCHEME_DEFAULT", "0"),
+    ("(gint) ADW_COLOR_SCHEME_FORCE_DARK", "4"),
+    ("(gint) ADW_COLOR_SCHEME_FORCE_LIGHT", "1"),
+    ("(gint) ADW_COLOR_SCHEME_PREFER_DARK", "3"),
+    ("(gint) ADW_COLOR_SCHEME_PREFER_LIGHT", "2"),
     ("(gint) ADW_FLAP_FOLD_POLICY_ALWAYS", "1"),
     ("(gint) ADW_FLAP_FOLD_POLICY_AUTO", "2"),
     ("(gint) ADW_FLAP_FOLD_POLICY_NEVER", "0"),
@@ -647,7 +666,7 @@ const RUST_CONSTANTS: &[(&str, &str)] = &[
     ("(gint) ADW_NAVIGATION_DIRECTION_FORWARD", "1"),
     ("(gint) ADW_SQUEEZER_TRANSITION_TYPE_CROSSFADE", "1"),
     ("(gint) ADW_SQUEEZER_TRANSITION_TYPE_NONE", "0"),
-    ("ADW_VERSION_S", "1.0.0-alpha.2"),
+    ("ADW_VERSION_S", "1.0.0.alpha.3"),
     ("(gint) ADW_VIEW_SWITCHER_POLICY_NARROW", "0"),
     ("(gint) ADW_VIEW_SWITCHER_POLICY_WIDE", "1"),
 ];

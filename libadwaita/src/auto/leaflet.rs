@@ -132,20 +132,8 @@ impl Leaflet {
 
     #[doc(alias = "adw_leaflet_get_homogeneous")]
     #[doc(alias = "get_homogeneous")]
-    pub fn is_homogeneous(&self, folded: bool, orientation: gtk::Orientation) -> bool {
-        unsafe {
-            from_glib(ffi::adw_leaflet_get_homogeneous(
-                self.to_glib_none().0,
-                folded.into_glib(),
-                orientation.into_glib(),
-            ))
-        }
-    }
-
-    #[doc(alias = "adw_leaflet_get_interpolate_size")]
-    #[doc(alias = "get_interpolate_size")]
-    pub fn is_interpolate_size(&self) -> bool {
-        unsafe { from_glib(ffi::adw_leaflet_get_interpolate_size(self.to_glib_none().0)) }
+    pub fn is_homogeneous(&self) -> bool {
+        unsafe { from_glib(ffi::adw_leaflet_get_homogeneous(self.to_glib_none().0)) }
     }
 
     #[doc(alias = "adw_leaflet_get_mode_transition_duration")]
@@ -289,24 +277,9 @@ impl Leaflet {
     }
 
     #[doc(alias = "adw_leaflet_set_homogeneous")]
-    pub fn set_homogeneous(&self, folded: bool, orientation: gtk::Orientation, homogeneous: bool) {
+    pub fn set_homogeneous(&self, homogeneous: bool) {
         unsafe {
-            ffi::adw_leaflet_set_homogeneous(
-                self.to_glib_none().0,
-                folded.into_glib(),
-                orientation.into_glib(),
-                homogeneous.into_glib(),
-            );
-        }
-    }
-
-    #[doc(alias = "adw_leaflet_set_interpolate_size")]
-    pub fn set_interpolate_size(&self, interpolate_size: bool) {
-        unsafe {
-            ffi::adw_leaflet_set_interpolate_size(
-                self.to_glib_none().0,
-                interpolate_size.into_glib(),
-            );
+            ffi::adw_leaflet_set_homogeneous(self.to_glib_none().0, homogeneous.into_glib());
         }
     }
 
@@ -338,110 +311,6 @@ impl Leaflet {
     pub fn set_visible_child_name(&self, name: &str) {
         unsafe {
             ffi::adw_leaflet_set_visible_child_name(self.to_glib_none().0, name.to_glib_none().0);
-        }
-    }
-
-    #[doc(alias = "hhomogeneous-folded")]
-    pub fn is_hhomogeneous_folded(&self) -> bool {
-        unsafe {
-            let mut value = glib::Value::from_type(<bool as StaticType>::static_type());
-            glib::gobject_ffi::g_object_get_property(
-                self.as_ptr() as *mut glib::gobject_ffi::GObject,
-                b"hhomogeneous-folded\0".as_ptr() as *const _,
-                value.to_glib_none_mut().0,
-            );
-            value
-                .get()
-                .expect("Return Value for property `hhomogeneous-folded` getter")
-        }
-    }
-
-    #[doc(alias = "hhomogeneous-folded")]
-    pub fn set_hhomogeneous_folded(&self, hhomogeneous_folded: bool) {
-        unsafe {
-            glib::gobject_ffi::g_object_set_property(
-                self.as_ptr() as *mut glib::gobject_ffi::GObject,
-                b"hhomogeneous-folded\0".as_ptr() as *const _,
-                hhomogeneous_folded.to_value().to_glib_none().0,
-            );
-        }
-    }
-
-    #[doc(alias = "hhomogeneous-unfolded")]
-    pub fn is_hhomogeneous_unfolded(&self) -> bool {
-        unsafe {
-            let mut value = glib::Value::from_type(<bool as StaticType>::static_type());
-            glib::gobject_ffi::g_object_get_property(
-                self.as_ptr() as *mut glib::gobject_ffi::GObject,
-                b"hhomogeneous-unfolded\0".as_ptr() as *const _,
-                value.to_glib_none_mut().0,
-            );
-            value
-                .get()
-                .expect("Return Value for property `hhomogeneous-unfolded` getter")
-        }
-    }
-
-    #[doc(alias = "hhomogeneous-unfolded")]
-    pub fn set_hhomogeneous_unfolded(&self, hhomogeneous_unfolded: bool) {
-        unsafe {
-            glib::gobject_ffi::g_object_set_property(
-                self.as_ptr() as *mut glib::gobject_ffi::GObject,
-                b"hhomogeneous-unfolded\0".as_ptr() as *const _,
-                hhomogeneous_unfolded.to_value().to_glib_none().0,
-            );
-        }
-    }
-
-    #[doc(alias = "vhomogeneous-folded")]
-    pub fn is_vhomogeneous_folded(&self) -> bool {
-        unsafe {
-            let mut value = glib::Value::from_type(<bool as StaticType>::static_type());
-            glib::gobject_ffi::g_object_get_property(
-                self.as_ptr() as *mut glib::gobject_ffi::GObject,
-                b"vhomogeneous-folded\0".as_ptr() as *const _,
-                value.to_glib_none_mut().0,
-            );
-            value
-                .get()
-                .expect("Return Value for property `vhomogeneous-folded` getter")
-        }
-    }
-
-    #[doc(alias = "vhomogeneous-folded")]
-    pub fn set_vhomogeneous_folded(&self, vhomogeneous_folded: bool) {
-        unsafe {
-            glib::gobject_ffi::g_object_set_property(
-                self.as_ptr() as *mut glib::gobject_ffi::GObject,
-                b"vhomogeneous-folded\0".as_ptr() as *const _,
-                vhomogeneous_folded.to_value().to_glib_none().0,
-            );
-        }
-    }
-
-    #[doc(alias = "vhomogeneous-unfolded")]
-    pub fn is_vhomogeneous_unfolded(&self) -> bool {
-        unsafe {
-            let mut value = glib::Value::from_type(<bool as StaticType>::static_type());
-            glib::gobject_ffi::g_object_get_property(
-                self.as_ptr() as *mut glib::gobject_ffi::GObject,
-                b"vhomogeneous-unfolded\0".as_ptr() as *const _,
-                value.to_glib_none_mut().0,
-            );
-            value
-                .get()
-                .expect("Return Value for property `vhomogeneous-unfolded` getter")
-        }
-    }
-
-    #[doc(alias = "vhomogeneous-unfolded")]
-    pub fn set_vhomogeneous_unfolded(&self, vhomogeneous_unfolded: bool) {
-        unsafe {
-            glib::gobject_ffi::g_object_set_property(
-                self.as_ptr() as *mut glib::gobject_ffi::GObject,
-                b"vhomogeneous-unfolded\0".as_ptr() as *const _,
-                vhomogeneous_unfolded.to_value().to_glib_none().0,
-            );
         }
     }
 
@@ -622,12 +491,9 @@ impl Leaflet {
         }
     }
 
-    #[doc(alias = "hhomogeneous-folded")]
-    pub fn connect_hhomogeneous_folded_notify<F: Fn(&Self) + 'static>(
-        &self,
-        f: F,
-    ) -> SignalHandlerId {
-        unsafe extern "C" fn notify_hhomogeneous_folded_trampoline<F: Fn(&Leaflet) + 'static>(
+    #[doc(alias = "homogeneous")]
+    pub fn connect_homogeneous_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
+        unsafe extern "C" fn notify_homogeneous_trampoline<F: Fn(&Leaflet) + 'static>(
             this: *mut ffi::AdwLeaflet,
             _param_spec: glib::ffi::gpointer,
             f: glib::ffi::gpointer,
@@ -639,58 +505,9 @@ impl Leaflet {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
-                b"notify::hhomogeneous-folded\0".as_ptr() as *const _,
+                b"notify::homogeneous\0".as_ptr() as *const _,
                 Some(transmute::<_, unsafe extern "C" fn()>(
-                    notify_hhomogeneous_folded_trampoline::<F> as *const (),
-                )),
-                Box_::into_raw(f),
-            )
-        }
-    }
-
-    #[doc(alias = "hhomogeneous-unfolded")]
-    pub fn connect_hhomogeneous_unfolded_notify<F: Fn(&Self) + 'static>(
-        &self,
-        f: F,
-    ) -> SignalHandlerId {
-        unsafe extern "C" fn notify_hhomogeneous_unfolded_trampoline<F: Fn(&Leaflet) + 'static>(
-            this: *mut ffi::AdwLeaflet,
-            _param_spec: glib::ffi::gpointer,
-            f: glib::ffi::gpointer,
-        ) {
-            let f: &F = &*(f as *const F);
-            f(&from_glib_borrow(this))
-        }
-        unsafe {
-            let f: Box_<F> = Box_::new(f);
-            connect_raw(
-                self.as_ptr() as *mut _,
-                b"notify::hhomogeneous-unfolded\0".as_ptr() as *const _,
-                Some(transmute::<_, unsafe extern "C" fn()>(
-                    notify_hhomogeneous_unfolded_trampoline::<F> as *const (),
-                )),
-                Box_::into_raw(f),
-            )
-        }
-    }
-
-    #[doc(alias = "interpolate-size")]
-    pub fn connect_interpolate_size_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
-        unsafe extern "C" fn notify_interpolate_size_trampoline<F: Fn(&Leaflet) + 'static>(
-            this: *mut ffi::AdwLeaflet,
-            _param_spec: glib::ffi::gpointer,
-            f: glib::ffi::gpointer,
-        ) {
-            let f: &F = &*(f as *const F);
-            f(&from_glib_borrow(this))
-        }
-        unsafe {
-            let f: Box_<F> = Box_::new(f);
-            connect_raw(
-                self.as_ptr() as *mut _,
-                b"notify::interpolate-size\0".as_ptr() as *const _,
-                Some(transmute::<_, unsafe extern "C" fn()>(
-                    notify_interpolate_size_trampoline::<F> as *const (),
+                    notify_homogeneous_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
             )
@@ -771,58 +588,6 @@ impl Leaflet {
         }
     }
 
-    #[doc(alias = "vhomogeneous-folded")]
-    pub fn connect_vhomogeneous_folded_notify<F: Fn(&Self) + 'static>(
-        &self,
-        f: F,
-    ) -> SignalHandlerId {
-        unsafe extern "C" fn notify_vhomogeneous_folded_trampoline<F: Fn(&Leaflet) + 'static>(
-            this: *mut ffi::AdwLeaflet,
-            _param_spec: glib::ffi::gpointer,
-            f: glib::ffi::gpointer,
-        ) {
-            let f: &F = &*(f as *const F);
-            f(&from_glib_borrow(this))
-        }
-        unsafe {
-            let f: Box_<F> = Box_::new(f);
-            connect_raw(
-                self.as_ptr() as *mut _,
-                b"notify::vhomogeneous-folded\0".as_ptr() as *const _,
-                Some(transmute::<_, unsafe extern "C" fn()>(
-                    notify_vhomogeneous_folded_trampoline::<F> as *const (),
-                )),
-                Box_::into_raw(f),
-            )
-        }
-    }
-
-    #[doc(alias = "vhomogeneous-unfolded")]
-    pub fn connect_vhomogeneous_unfolded_notify<F: Fn(&Self) + 'static>(
-        &self,
-        f: F,
-    ) -> SignalHandlerId {
-        unsafe extern "C" fn notify_vhomogeneous_unfolded_trampoline<F: Fn(&Leaflet) + 'static>(
-            this: *mut ffi::AdwLeaflet,
-            _param_spec: glib::ffi::gpointer,
-            f: glib::ffi::gpointer,
-        ) {
-            let f: &F = &*(f as *const F);
-            f(&from_glib_borrow(this))
-        }
-        unsafe {
-            let f: Box_<F> = Box_::new(f);
-            connect_raw(
-                self.as_ptr() as *mut _,
-                b"notify::vhomogeneous-unfolded\0".as_ptr() as *const _,
-                Some(transmute::<_, unsafe extern "C" fn()>(
-                    notify_vhomogeneous_unfolded_trampoline::<F> as *const (),
-                )),
-                Box_::into_raw(f),
-            )
-        }
-    }
-
     #[doc(alias = "visible-child")]
     pub fn connect_visible_child_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_visible_child_trampoline<F: Fn(&Leaflet) + 'static>(
@@ -890,13 +655,9 @@ pub struct LeafletBuilder {
     can_unfold: Option<bool>,
     child_transition_duration: Option<u32>,
     fold_threshold_policy: Option<FoldThresholdPolicy>,
-    hhomogeneous_folded: Option<bool>,
-    hhomogeneous_unfolded: Option<bool>,
-    interpolate_size: Option<bool>,
+    homogeneous: Option<bool>,
     mode_transition_duration: Option<u32>,
     transition_type: Option<LeafletTransitionType>,
-    vhomogeneous_folded: Option<bool>,
-    vhomogeneous_unfolded: Option<bool>,
     visible_child: Option<gtk::Widget>,
     visible_child_name: Option<String>,
     can_focus: Option<bool>,
@@ -958,26 +719,14 @@ impl LeafletBuilder {
         if let Some(ref fold_threshold_policy) = self.fold_threshold_policy {
             properties.push(("fold-threshold-policy", fold_threshold_policy));
         }
-        if let Some(ref hhomogeneous_folded) = self.hhomogeneous_folded {
-            properties.push(("hhomogeneous-folded", hhomogeneous_folded));
-        }
-        if let Some(ref hhomogeneous_unfolded) = self.hhomogeneous_unfolded {
-            properties.push(("hhomogeneous-unfolded", hhomogeneous_unfolded));
-        }
-        if let Some(ref interpolate_size) = self.interpolate_size {
-            properties.push(("interpolate-size", interpolate_size));
+        if let Some(ref homogeneous) = self.homogeneous {
+            properties.push(("homogeneous", homogeneous));
         }
         if let Some(ref mode_transition_duration) = self.mode_transition_duration {
             properties.push(("mode-transition-duration", mode_transition_duration));
         }
         if let Some(ref transition_type) = self.transition_type {
             properties.push(("transition-type", transition_type));
-        }
-        if let Some(ref vhomogeneous_folded) = self.vhomogeneous_folded {
-            properties.push(("vhomogeneous-folded", vhomogeneous_folded));
-        }
-        if let Some(ref vhomogeneous_unfolded) = self.vhomogeneous_unfolded {
-            properties.push(("vhomogeneous-unfolded", vhomogeneous_unfolded));
         }
         if let Some(ref visible_child) = self.visible_child {
             properties.push(("visible-child", visible_child));
@@ -1106,18 +855,8 @@ impl LeafletBuilder {
         self
     }
 
-    pub fn hhomogeneous_folded(mut self, hhomogeneous_folded: bool) -> Self {
-        self.hhomogeneous_folded = Some(hhomogeneous_folded);
-        self
-    }
-
-    pub fn hhomogeneous_unfolded(mut self, hhomogeneous_unfolded: bool) -> Self {
-        self.hhomogeneous_unfolded = Some(hhomogeneous_unfolded);
-        self
-    }
-
-    pub fn interpolate_size(mut self, interpolate_size: bool) -> Self {
-        self.interpolate_size = Some(interpolate_size);
+    pub fn homogeneous(mut self, homogeneous: bool) -> Self {
+        self.homogeneous = Some(homogeneous);
         self
     }
 
@@ -1128,16 +867,6 @@ impl LeafletBuilder {
 
     pub fn transition_type(mut self, transition_type: LeafletTransitionType) -> Self {
         self.transition_type = Some(transition_type);
-        self
-    }
-
-    pub fn vhomogeneous_folded(mut self, vhomogeneous_folded: bool) -> Self {
-        self.vhomogeneous_folded = Some(vhomogeneous_folded);
-        self
-    }
-
-    pub fn vhomogeneous_unfolded(mut self, vhomogeneous_unfolded: bool) -> Self {
-        self.vhomogeneous_unfolded = Some(vhomogeneous_unfolded);
         self
     }
 

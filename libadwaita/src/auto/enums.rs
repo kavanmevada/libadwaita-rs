@@ -96,6 +96,105 @@ impl ToValue for CenteringPolicy {
 
 #[derive(Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Clone, Copy)]
 #[non_exhaustive]
+#[doc(alias = "AdwColorScheme")]
+pub enum ColorScheme {
+    #[doc(alias = "ADW_COLOR_SCHEME_DEFAULT")]
+    Default,
+    #[doc(alias = "ADW_COLOR_SCHEME_FORCE_LIGHT")]
+    ForceLight,
+    #[doc(alias = "ADW_COLOR_SCHEME_PREFER_LIGHT")]
+    PreferLight,
+    #[doc(alias = "ADW_COLOR_SCHEME_PREFER_DARK")]
+    PreferDark,
+    #[doc(alias = "ADW_COLOR_SCHEME_FORCE_DARK")]
+    ForceDark,
+    #[doc(hidden)]
+    __Unknown(i32),
+}
+
+impl fmt::Display for ColorScheme {
+    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
+        write!(
+            f,
+            "ColorScheme::{}",
+            match *self {
+                Self::Default => "Default",
+                Self::ForceLight => "ForceLight",
+                Self::PreferLight => "PreferLight",
+                Self::PreferDark => "PreferDark",
+                Self::ForceDark => "ForceDark",
+                _ => "Unknown",
+            }
+        )
+    }
+}
+
+#[doc(hidden)]
+impl IntoGlib for ColorScheme {
+    type GlibType = ffi::AdwColorScheme;
+
+    fn into_glib(self) -> ffi::AdwColorScheme {
+        match self {
+            Self::Default => ffi::ADW_COLOR_SCHEME_DEFAULT,
+            Self::ForceLight => ffi::ADW_COLOR_SCHEME_FORCE_LIGHT,
+            Self::PreferLight => ffi::ADW_COLOR_SCHEME_PREFER_LIGHT,
+            Self::PreferDark => ffi::ADW_COLOR_SCHEME_PREFER_DARK,
+            Self::ForceDark => ffi::ADW_COLOR_SCHEME_FORCE_DARK,
+            Self::__Unknown(value) => value,
+        }
+    }
+}
+
+#[doc(hidden)]
+impl FromGlib<ffi::AdwColorScheme> for ColorScheme {
+    unsafe fn from_glib(value: ffi::AdwColorScheme) -> Self {
+        skip_assert_initialized!();
+        match value {
+            ffi::ADW_COLOR_SCHEME_DEFAULT => Self::Default,
+            ffi::ADW_COLOR_SCHEME_FORCE_LIGHT => Self::ForceLight,
+            ffi::ADW_COLOR_SCHEME_PREFER_LIGHT => Self::PreferLight,
+            ffi::ADW_COLOR_SCHEME_PREFER_DARK => Self::PreferDark,
+            ffi::ADW_COLOR_SCHEME_FORCE_DARK => Self::ForceDark,
+            value => Self::__Unknown(value),
+        }
+    }
+}
+
+impl StaticType for ColorScheme {
+    fn static_type() -> Type {
+        unsafe { from_glib(ffi::adw_color_scheme_get_type()) }
+    }
+}
+
+impl glib::value::ValueType for ColorScheme {
+    type Type = Self;
+}
+
+unsafe impl<'a> FromValue<'a> for ColorScheme {
+    type Checker = glib::value::GenericValueTypeChecker<Self>;
+
+    unsafe fn from_value(value: &'a glib::Value) -> Self {
+        skip_assert_initialized!();
+        from_glib(glib::gobject_ffi::g_value_get_enum(value.to_glib_none().0))
+    }
+}
+
+impl ToValue for ColorScheme {
+    fn to_value(&self) -> glib::Value {
+        let mut value = glib::Value::for_value_type::<Self>();
+        unsafe {
+            glib::gobject_ffi::g_value_set_enum(value.to_glib_none_mut().0, self.into_glib());
+        }
+        value
+    }
+
+    fn value_type(&self) -> glib::Type {
+        Self::static_type()
+    }
+}
+
+#[derive(Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Clone, Copy)]
+#[non_exhaustive]
 #[doc(alias = "AdwFlapFoldPolicy")]
 pub enum FlapFoldPolicy {
     #[doc(alias = "ADW_FLAP_FOLD_POLICY_NEVER")]

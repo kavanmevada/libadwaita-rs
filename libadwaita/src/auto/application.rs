@@ -3,11 +3,17 @@
 // from gir-files (https://github.com/gtk-rs/gir-files.git)
 // DO NOT EDIT
 
+use crate::StyleManager;
 use glib::object::Cast;
 use glib::object::IsA;
+use glib::signal::connect_raw;
+use glib::signal::SignalHandlerId;
+use glib::translate::*;
 use glib::StaticType;
 use glib::ToValue;
+use std::boxed::Box as Box_;
 use std::fmt;
+use std::mem::transmute;
 
 glib::wrapper! {
     #[doc(alias = "AdwApplication")]
@@ -120,6 +126,50 @@ impl ApplicationBuilder {
 }
 
 pub const NONE_APPLICATION: Option<&Application> = None;
+
+pub trait AdwApplicationExt: 'static {
+    #[doc(alias = "adw_application_get_style_manager")]
+    #[doc(alias = "get_style_manager")]
+    fn style_manager(&self) -> StyleManager;
+
+    #[doc(alias = "style-manager")]
+    fn connect_style_manager_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
+}
+
+impl<O: IsA<Application>> AdwApplicationExt for O {
+    fn style_manager(&self) -> StyleManager {
+        unsafe {
+            from_glib_none(ffi::adw_application_get_style_manager(
+                self.as_ref().to_glib_none().0,
+            ))
+        }
+    }
+
+    fn connect_style_manager_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
+        unsafe extern "C" fn notify_style_manager_trampoline<
+            P: IsA<Application>,
+            F: Fn(&P) + 'static,
+        >(
+            this: *mut ffi::AdwApplication,
+            _param_spec: glib::ffi::gpointer,
+            f: glib::ffi::gpointer,
+        ) {
+            let f: &F = &*(f as *const F);
+            f(Application::from_glib_borrow(this).unsafe_cast_ref())
+        }
+        unsafe {
+            let f: Box_<F> = Box_::new(f);
+            connect_raw(
+                self.as_ptr() as *mut _,
+                b"notify::style-manager\0".as_ptr() as *const _,
+                Some(transmute::<_, unsafe extern "C" fn()>(
+                    notify_style_manager_trampoline::<Self, F> as *const (),
+                )),
+                Box_::into_raw(f),
+            )
+        }
+    }
+}
 
 impl fmt::Display for Application {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {

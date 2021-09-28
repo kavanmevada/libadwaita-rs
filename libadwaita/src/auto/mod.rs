@@ -110,6 +110,9 @@ mod status_page;
 pub use self::status_page::StatusPage;
 pub use self::status_page::StatusPageBuilder;
 
+mod style_manager;
+pub use self::style_manager::StyleManager;
+
 mod swipe_tracker;
 pub use self::swipe_tracker::SwipeTracker;
 pub use self::swipe_tracker::SwipeTrackerBuilder;
@@ -157,6 +160,7 @@ pub use self::window_title::WindowTitleBuilder;
 
 mod enums;
 pub use self::enums::CenteringPolicy;
+pub use self::enums::ColorScheme;
 pub use self::enums::FlapFoldPolicy;
 pub use self::enums::FlapTransitionType;
 pub use self::enums::FoldThresholdPolicy;
@@ -173,6 +177,7 @@ pub use self::constants::VERSION_S;
 #[doc(hidden)]
 pub mod traits {
     pub use super::action_row::ActionRowExt;
+    pub use super::application::AdwApplicationExt;
     pub use super::application_window::ApplicationWindowExt;
     pub use super::bin::BinExt;
     pub use super::combo_row::ComboRowExt;

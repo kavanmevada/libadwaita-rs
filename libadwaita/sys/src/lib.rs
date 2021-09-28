@@ -34,6 +34,13 @@ pub type AdwCenteringPolicy = c_int;
 pub const ADW_CENTERING_POLICY_LOOSE: AdwCenteringPolicy = 0;
 pub const ADW_CENTERING_POLICY_STRICT: AdwCenteringPolicy = 1;
 
+pub type AdwColorScheme = c_int;
+pub const ADW_COLOR_SCHEME_DEFAULT: AdwColorScheme = 0;
+pub const ADW_COLOR_SCHEME_FORCE_LIGHT: AdwColorScheme = 1;
+pub const ADW_COLOR_SCHEME_PREFER_LIGHT: AdwColorScheme = 2;
+pub const ADW_COLOR_SCHEME_PREFER_DARK: AdwColorScheme = 3;
+pub const ADW_COLOR_SCHEME_FORCE_DARK: AdwColorScheme = 4;
+
 pub type AdwFlapFoldPolicy = c_int;
 pub const ADW_FLAP_FOLD_POLICY_NEVER: AdwFlapFoldPolicy = 0;
 pub const ADW_FLAP_FOLD_POLICY_ALWAYS: AdwFlapFoldPolicy = 1;
@@ -69,7 +76,7 @@ pub const ADW_VIEW_SWITCHER_POLICY_WIDE: AdwViewSwitcherPolicy = 1;
 pub const ADW_MAJOR_VERSION: c_int = 1;
 pub const ADW_MICRO_VERSION: c_int = 0;
 pub const ADW_MINOR_VERSION: c_int = 0;
-pub const ADW_VERSION_S: *const c_char = b"1.0.0-alpha.2\0" as *const u8 as *const c_char;
+pub const ADW_VERSION_S: *const c_char = b"1.0.0.alpha.3\0" as *const u8 as *const c_char;
 
 // Records
 #[repr(C)]
@@ -470,6 +477,20 @@ pub struct AdwStatusPageClass {
 impl ::std::fmt::Debug for AdwStatusPageClass {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
         f.debug_struct(&format!("AdwStatusPageClass @ {:p}", self))
+            .field("parent_class", &self.parent_class)
+            .finish()
+    }
+}
+
+#[repr(C)]
+#[derive(Copy, Clone)]
+pub struct AdwStyleManagerClass {
+    pub parent_class: gobject::GObjectClass,
+}
+
+impl ::std::fmt::Debug for AdwStyleManagerClass {
+    fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+        f.debug_struct(&format!("AdwStyleManagerClass @ {:p}", self))
             .field("parent_class", &self.parent_class)
             .finish()
     }
@@ -981,6 +1002,16 @@ impl ::std::fmt::Debug for AdwStatusPage {
 }
 
 #[repr(C)]
+pub struct AdwStyleManager(c_void);
+
+impl ::std::fmt::Debug for AdwStyleManager {
+    fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+        f.debug_struct(&format!("AdwStyleManager @ {:p}", self))
+            .finish()
+    }
+}
+
+#[repr(C)]
 pub struct AdwSwipeTracker(c_void);
 
 impl ::std::fmt::Debug for AdwSwipeTracker {
@@ -1110,6 +1141,11 @@ extern "C" {
     pub fn adw_centering_policy_get_type() -> GType;
 
     //=========================================================================
+    // AdwColorScheme
+    //=========================================================================
+    pub fn adw_color_scheme_get_type() -> GType;
+
+    //=========================================================================
     // AdwFlapFoldPolicy
     //=========================================================================
     pub fn adw_flap_fold_policy_get_type() -> GType;
@@ -1177,6 +1213,7 @@ extern "C" {
         application_id: *const c_char,
         flags: gio::GApplicationFlags,
     ) -> *mut AdwApplication;
+    pub fn adw_application_get_style_manager(self_: *mut AdwApplication) -> *mut AdwStyleManager;
 
     //=========================================================================
     // AdwApplicationWindow
@@ -1200,11 +1237,10 @@ extern "C" {
         text: *const c_char,
         show_initials: gboolean,
     ) -> *mut gtk::GtkWidget;
-    pub fn adw_avatar_draw_to_pixbuf(
+    pub fn adw_avatar_draw_to_texture(
         self_: *mut AdwAvatar,
-        size: c_int,
         scale_factor: c_int,
-    ) -> *mut gdk_pixbuf::GdkPixbuf;
+    ) -> *mut gdk::GdkTexture;
     pub fn adw_avatar_get_custom_image(self_: *mut AdwAvatar) -> *mut gdk::GdkPaintable;
     pub fn adw_avatar_get_icon_name(self_: *mut AdwAvatar) -> *const c_char;
     pub fn adw_avatar_get_show_initials(self_: *mut AdwAvatar) -> gboolean;
@@ -1516,12 +1552,7 @@ extern "C" {
     pub fn adw_leaflet_get_child_transition_running(self_: *mut AdwLeaflet) -> gboolean;
     pub fn adw_leaflet_get_fold_threshold_policy(self_: *mut AdwLeaflet) -> AdwFoldThresholdPolicy;
     pub fn adw_leaflet_get_folded(self_: *mut AdwLeaflet) -> gboolean;
-    pub fn adw_leaflet_get_homogeneous(
-        self_: *mut AdwLeaflet,
-        folded: gboolean,
-        orientation: gtk::GtkOrientation,
-    ) -> gboolean;
-    pub fn adw_leaflet_get_interpolate_size(self_: *mut AdwLeaflet) -> gboolean;
+    pub fn adw_leaflet_get_homogeneous(self_: *mut AdwLeaflet) -> gboolean;
     pub fn adw_leaflet_get_mode_transition_duration(self_: *mut AdwLeaflet) -> c_uint;
     pub fn adw_leaflet_get_page(
         self_: *mut AdwLeaflet,
@@ -1558,13 +1589,7 @@ extern "C" {
         self_: *mut AdwLeaflet,
         policy: AdwFoldThresholdPolicy,
     );
-    pub fn adw_leaflet_set_homogeneous(
-        self_: *mut AdwLeaflet,
-        folded: gboolean,
-        orientation: gtk::GtkOrientation,
-        homogeneous: gboolean,
-    );
-    pub fn adw_leaflet_set_interpolate_size(self_: *mut AdwLeaflet, interpolate_size: gboolean);
+    pub fn adw_leaflet_set_homogeneous(self_: *mut AdwLeaflet, homogeneous: gboolean);
     pub fn adw_leaflet_set_mode_transition_duration(self_: *mut AdwLeaflet, duration: c_uint);
     pub fn adw_leaflet_set_transition_type(
         self_: *mut AdwLeaflet,
@@ -1776,6 +1801,25 @@ extern "C" {
     pub fn adw_status_page_set_description(self_: *mut AdwStatusPage, description: *const c_char);
     pub fn adw_status_page_set_icon_name(self_: *mut AdwStatusPage, icon_name: *const c_char);
     pub fn adw_status_page_set_title(self_: *mut AdwStatusPage, title: *const c_char);
+
+    //=========================================================================
+    // AdwStyleManager
+    //=========================================================================
+    pub fn adw_style_manager_get_type() -> GType;
+    pub fn adw_style_manager_get_default() -> *mut AdwStyleManager;
+    pub fn adw_style_manager_get_for_display(display: *mut gdk::GdkDisplay)
+        -> *mut AdwStyleManager;
+    pub fn adw_style_manager_get_color_scheme(self_: *mut AdwStyleManager) -> AdwColorScheme;
+    pub fn adw_style_manager_get_dark(self_: *mut AdwStyleManager) -> gboolean;
+    pub fn adw_style_manager_get_display(self_: *mut AdwStyleManager) -> *mut gdk::GdkDisplay;
+    pub fn adw_style_manager_get_high_contrast(self_: *mut AdwStyleManager) -> gboolean;
+    pub fn adw_style_manager_get_system_supports_color_schemes(
+        self_: *mut AdwStyleManager,
+    ) -> gboolean;
+    pub fn adw_style_manager_set_color_scheme(
+        self_: *mut AdwStyleManager,
+        color_scheme: AdwColorScheme,
+    );
 
     //=========================================================================
     // AdwSwipeTracker
@@ -2107,5 +2151,6 @@ extern "C" {
     pub fn adw_ease_out_cubic(t: c_double) -> c_double;
     pub fn adw_get_enable_animations(widget: *mut gtk::GtkWidget) -> gboolean;
     pub fn adw_init();
+    pub fn adw_is_initialized() -> gboolean;
 
 }

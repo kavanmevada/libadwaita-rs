@@ -46,12 +46,11 @@ impl Avatar {
         AvatarBuilder::default()
     }
 
-    #[doc(alias = "adw_avatar_draw_to_pixbuf")]
-    pub fn draw_to_pixbuf(&self, size: i32, scale_factor: i32) -> Option<gdk_pixbuf::Pixbuf> {
+    #[doc(alias = "adw_avatar_draw_to_texture")]
+    pub fn draw_to_texture(&self, scale_factor: i32) -> Option<gdk::Texture> {
         unsafe {
-            from_glib_full(ffi::adw_avatar_draw_to_pixbuf(
+            from_glib_full(ffi::adw_avatar_draw_to_texture(
                 self.to_glib_none().0,
-                size,
                 scale_factor,
             ))
         }
