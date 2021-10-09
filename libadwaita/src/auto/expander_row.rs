@@ -57,8 +57,8 @@ pub struct ExpanderRowBuilder {
     icon_name: Option<String>,
     show_enable_switch: Option<bool>,
     subtitle: Option<String>,
-    use_underline: Option<bool>,
     title: Option<String>,
+    use_underline: Option<bool>,
     activatable: Option<bool>,
     child: Option<gtk::Widget>,
     selectable: Option<bool>,
@@ -122,11 +122,11 @@ impl ExpanderRowBuilder {
         if let Some(ref subtitle) = self.subtitle {
             properties.push(("subtitle", subtitle));
         }
-        if let Some(ref use_underline) = self.use_underline {
-            properties.push(("use-underline", use_underline));
-        }
         if let Some(ref title) = self.title {
             properties.push(("title", title));
+        }
+        if let Some(ref use_underline) = self.use_underline {
+            properties.push(("use-underline", use_underline));
         }
         if let Some(ref activatable) = self.activatable {
             properties.push(("activatable", activatable));
@@ -262,13 +262,13 @@ impl ExpanderRowBuilder {
         self
     }
 
-    pub fn use_underline(mut self, use_underline: bool) -> Self {
-        self.use_underline = Some(use_underline);
+    pub fn title(mut self, title: &str) -> Self {
+        self.title = Some(title.to_string());
         self
     }
 
-    pub fn title(mut self, title: &str) -> Self {
-        self.title = Some(title.to_string());
+    pub fn use_underline(mut self, use_underline: bool) -> Self {
+        self.use_underline = Some(use_underline);
         self
     }
 
@@ -451,14 +451,14 @@ impl ExpanderRowBuilder {
 pub const NONE_EXPANDER_ROW: Option<&ExpanderRow> = None;
 
 pub trait ExpanderRowExt: 'static {
-    #[doc(alias = "adw_expander_row_add")]
-    fn add<P: IsA<gtk::Widget>>(&self, child: &P);
-
     #[doc(alias = "adw_expander_row_add_action")]
     fn add_action<P: IsA<gtk::Widget>>(&self, widget: &P);
 
     #[doc(alias = "adw_expander_row_add_prefix")]
     fn add_prefix<P: IsA<gtk::Widget>>(&self, widget: &P);
+
+    #[doc(alias = "adw_expander_row_add_row")]
+    fn add_row<P: IsA<gtk::Widget>>(&self, child: &P);
 
     #[doc(alias = "adw_expander_row_get_enable_expansion")]
     #[doc(alias = "get_enable_expansion")]
@@ -512,21 +512,9 @@ pub trait ExpanderRowExt: 'static {
 
     #[doc(alias = "subtitle")]
     fn connect_subtitle_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
-
-    #[doc(alias = "use-underline")]
-    fn connect_use_underline_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
 }
 
 impl<O: IsA<ExpanderRow>> ExpanderRowExt for O {
-    fn add<P: IsA<gtk::Widget>>(&self, child: &P) {
-        unsafe {
-            ffi::adw_expander_row_add(
-                self.as_ref().to_glib_none().0,
-                child.as_ref().to_glib_none().0,
-            );
-        }
-    }
-
     fn add_action<P: IsA<gtk::Widget>>(&self, widget: &P) {
         unsafe {
             ffi::adw_expander_row_add_action(
@@ -541,6 +529,15 @@ impl<O: IsA<ExpanderRow>> ExpanderRowExt for O {
             ffi::adw_expander_row_add_prefix(
                 self.as_ref().to_glib_none().0,
                 widget.as_ref().to_glib_none().0,
+            );
+        }
+    }
+
+    fn add_row<P: IsA<gtk::Widget>>(&self, child: &P) {
+        unsafe {
+            ffi::adw_expander_row_add_row(
+                self.as_ref().to_glib_none().0,
+                child.as_ref().to_glib_none().0,
             );
         }
     }
@@ -758,31 +755,6 @@ impl<O: IsA<ExpanderRow>> ExpanderRowExt for O {
                 b"notify::subtitle\0".as_ptr() as *const _,
                 Some(transmute::<_, unsafe extern "C" fn()>(
                     notify_subtitle_trampoline::<Self, F> as *const (),
-                )),
-                Box_::into_raw(f),
-            )
-        }
-    }
-
-    fn connect_use_underline_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
-        unsafe extern "C" fn notify_use_underline_trampoline<
-            P: IsA<ExpanderRow>,
-            F: Fn(&P) + 'static,
-        >(
-            this: *mut ffi::AdwExpanderRow,
-            _param_spec: glib::ffi::gpointer,
-            f: glib::ffi::gpointer,
-        ) {
-            let f: &F = &*(f as *const F);
-            f(ExpanderRow::from_glib_borrow(this).unsafe_cast_ref())
-        }
-        unsafe {
-            let f: Box_<F> = Box_::new(f);
-            connect_raw(
-                self.as_ptr() as *mut _,
-                b"notify::use-underline\0".as_ptr() as *const _,
-                Some(transmute::<_, unsafe extern "C" fn()>(
-                    notify_use_underline_trampoline::<Self, F> as *const (),
                 )),
                 Box_::into_raw(f),
             )

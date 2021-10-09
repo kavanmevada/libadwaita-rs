@@ -1191,7 +1191,6 @@ extern "C" {
     pub fn adw_action_row_get_subtitle(self_: *mut AdwActionRow) -> *const c_char;
     pub fn adw_action_row_get_subtitle_lines(self_: *mut AdwActionRow) -> c_int;
     pub fn adw_action_row_get_title_lines(self_: *mut AdwActionRow) -> c_int;
-    pub fn adw_action_row_get_use_underline(self_: *mut AdwActionRow) -> gboolean;
     pub fn adw_action_row_remove(self_: *mut AdwActionRow, widget: *mut gtk::GtkWidget);
     pub fn adw_action_row_set_activatable_widget(
         self_: *mut AdwActionRow,
@@ -1201,7 +1200,6 @@ extern "C" {
     pub fn adw_action_row_set_subtitle(self_: *mut AdwActionRow, subtitle: *const c_char);
     pub fn adw_action_row_set_subtitle_lines(self_: *mut AdwActionRow, subtitle_lines: c_int);
     pub fn adw_action_row_set_title_lines(self_: *mut AdwActionRow, title_lines: c_int);
-    pub fn adw_action_row_set_use_underline(self_: *mut AdwActionRow, use_underline: gboolean);
 
     //=========================================================================
     // AdwApplication
@@ -1439,15 +1437,14 @@ extern "C" {
     //=========================================================================
     pub fn adw_expander_row_get_type() -> GType;
     pub fn adw_expander_row_new() -> *mut gtk::GtkWidget;
-    pub fn adw_expander_row_add(self_: *mut AdwExpanderRow, child: *mut gtk::GtkWidget);
     pub fn adw_expander_row_add_action(self_: *mut AdwExpanderRow, widget: *mut gtk::GtkWidget);
     pub fn adw_expander_row_add_prefix(self_: *mut AdwExpanderRow, widget: *mut gtk::GtkWidget);
+    pub fn adw_expander_row_add_row(self_: *mut AdwExpanderRow, child: *mut gtk::GtkWidget);
     pub fn adw_expander_row_get_enable_expansion(self_: *mut AdwExpanderRow) -> gboolean;
     pub fn adw_expander_row_get_expanded(self_: *mut AdwExpanderRow) -> gboolean;
     pub fn adw_expander_row_get_icon_name(self_: *mut AdwExpanderRow) -> *const c_char;
     pub fn adw_expander_row_get_show_enable_switch(self_: *mut AdwExpanderRow) -> gboolean;
     pub fn adw_expander_row_get_subtitle(self_: *mut AdwExpanderRow) -> *const c_char;
-    pub fn adw_expander_row_get_use_underline(self_: *mut AdwExpanderRow) -> gboolean;
     pub fn adw_expander_row_remove(self_: *mut AdwExpanderRow, child: *mut gtk::GtkWidget);
     pub fn adw_expander_row_set_enable_expansion(
         self_: *mut AdwExpanderRow,
@@ -1460,7 +1457,6 @@ extern "C" {
         show_enable_switch: gboolean,
     );
     pub fn adw_expander_row_set_subtitle(self_: *mut AdwExpanderRow, subtitle: *const c_char);
-    pub fn adw_expander_row_set_use_underline(self_: *mut AdwExpanderRow, use_underline: gboolean);
 
     //=========================================================================
     // AdwFlap
