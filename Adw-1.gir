@@ -62,19 +62,19 @@ respectively the title label and subtitle label.</doc>
       <constructor name="new" c:identifier="adw_action_row_new" version="1.0">
         <doc xml:space="preserve"
              filename="../src/adw-action-row.c"
-             line="421">Creates a new `AdwActionRow`.</doc>
+             line="399">Creates a new `AdwActionRow`.</doc>
         <source-position filename="../src/adw-action-row.h" line="40"/>
         <return-value transfer-ownership="none">
           <doc xml:space="preserve"
                filename="../src/adw-action-row.c"
-               line="426">the newly created `AdwActionRow`</doc>
+               line="404">the newly created `AdwActionRow`</doc>
           <type name="Gtk.Widget" c:type="GtkWidget*"/>
         </return-value>
       </constructor>
       <virtual-method name="activate" invoker="activate" version="1.0">
         <doc xml:space="preserve"
              filename="../src/adw-action-row.c"
-             line="869">Activates @self.</doc>
+             line="791">Activates @self.</doc>
         <source-position filename="../src/adw-action-row.h" line="33"/>
         <return-value transfer-ownership="none">
           <type name="none" c:type="void"/>
@@ -83,7 +83,7 @@ respectively the title label and subtitle label.</doc>
           <instance-parameter name="self" transfer-ownership="none">
             <doc xml:space="preserve"
                  filename="../src/adw-action-row.c"
-                 line="871">a `AdwActionRow`</doc>
+                 line="793">a `AdwActionRow`</doc>
             <type name="ActionRow" c:type="AdwActionRow*"/>
           </instance-parameter>
         </parameters>
@@ -93,8 +93,8 @@ respectively the title label and subtitle label.</doc>
               version="1.0">
         <doc xml:space="preserve"
              filename="../src/adw-action-row.c"
-             line="869">Activates @self.</doc>
-        <source-position filename="../src/adw-action-row.h" line="89"/>
+             line="791">Activates @self.</doc>
+        <source-position filename="../src/adw-action-row.h" line="83"/>
         <return-value transfer-ownership="none">
           <type name="none" c:type="void"/>
         </return-value>
@@ -102,7 +102,7 @@ respectively the title label and subtitle label.</doc>
           <instance-parameter name="self" transfer-ownership="none">
             <doc xml:space="preserve"
                  filename="../src/adw-action-row.c"
-                 line="871">a `AdwActionRow`</doc>
+                 line="793">a `AdwActionRow`</doc>
             <type name="ActionRow" c:type="AdwActionRow*"/>
           </instance-parameter>
         </parameters>
@@ -112,8 +112,8 @@ respectively the title label and subtitle label.</doc>
               version="1.0">
         <doc xml:space="preserve"
              filename="../src/adw-action-row.c"
-             line="790">Adds a prefix widget to @self.</doc>
-        <source-position filename="../src/adw-action-row.h" line="79"/>
+             line="712">Adds a prefix widget to @self.</doc>
+        <source-position filename="../src/adw-action-row.h" line="73"/>
         <return-value transfer-ownership="none">
           <type name="none" c:type="void"/>
         </return-value>
@@ -121,13 +121,13 @@ respectively the title label and subtitle label.</doc>
           <instance-parameter name="self" transfer-ownership="none">
             <doc xml:space="preserve"
                  filename="../src/adw-action-row.c"
-                 line="792">a `AdwActionRow`</doc>
+                 line="714">a `AdwActionRow`</doc>
             <type name="ActionRow" c:type="AdwActionRow*"/>
           </instance-parameter>
           <parameter name="widget" transfer-ownership="none">
             <doc xml:space="preserve"
                  filename="../src/adw-action-row.c"
-                 line="793">a widget</doc>
+                 line="715">a widget</doc>
             <type name="Gtk.Widget" c:type="GtkWidget*"/>
           </parameter>
         </parameters>
@@ -137,8 +137,8 @@ respectively the title label and subtitle label.</doc>
               version="1.0">
         <doc xml:space="preserve"
              filename="../src/adw-action-row.c"
-             line="814">Adds a suffix widget to @self.</doc>
-        <source-position filename="../src/adw-action-row.h" line="82"/>
+             line="736">Adds a suffix widget to @self.</doc>
+        <source-position filename="../src/adw-action-row.h" line="76"/>
         <return-value transfer-ownership="none">
           <type name="none" c:type="void"/>
         </return-value>
@@ -146,13 +146,13 @@ respectively the title label and subtitle label.</doc>
           <instance-parameter name="self" transfer-ownership="none">
             <doc xml:space="preserve"
                  filename="../src/adw-action-row.c"
-                 line="816">a `AdwActionRow`</doc>
+                 line="738">a `AdwActionRow`</doc>
             <type name="ActionRow" c:type="AdwActionRow*"/>
           </instance-parameter>
           <parameter name="widget" transfer-ownership="none">
             <doc xml:space="preserve"
                  filename="../src/adw-action-row.c"
-                 line="817">a widget</doc>
+                 line="739">a widget</doc>
             <type name="Gtk.Widget" c:type="GtkWidget*"/>
           </parameter>
         </parameters>
@@ -165,19 +165,19 @@ respectively the title label and subtitle label.</doc>
                    value="activatable-widget"/>
         <doc xml:space="preserve"
              filename="../src/adw-action-row.c"
-             line="540">Gets the widget activated when @self is activated.</doc>
+             line="518">Gets the widget activated when @self is activated.</doc>
         <source-position filename="../src/adw-action-row.h" line="55"/>
         <return-value transfer-ownership="none" nullable="1">
           <doc xml:space="preserve"
                filename="../src/adw-action-row.c"
-               line="546">the activatable widget for @self</doc>
+               line="524">the activatable widget for @self</doc>
           <type name="Gtk.Widget" c:type="GtkWidget*"/>
         </return-value>
         <parameters>
           <instance-parameter name="self" transfer-ownership="none">
             <doc xml:space="preserve"
                  filename="../src/adw-action-row.c"
-                 line="542">a `AdwActionRow`</doc>
+                 line="520">a `AdwActionRow`</doc>
             <type name="ActionRow" c:type="AdwActionRow*"/>
           </instance-parameter>
         </parameters>
@@ -189,19 +189,19 @@ respectively the title label and subtitle label.</doc>
         <attribute name="org.gtk.Method.get_property" value="icon-name"/>
         <doc xml:space="preserve"
              filename="../src/adw-action-row.c"
-             line="487">Gets the icon name for @self.</doc>
+             line="465">Gets the icon name for @self.</doc>
         <source-position filename="../src/adw-action-row.h" line="49"/>
         <return-value transfer-ownership="none" nullable="1">
           <doc xml:space="preserve"
                filename="../src/adw-action-row.c"
-               line="493">the icon name for @self</doc>
+               line="471">the icon name for @self</doc>
           <type name="utf8" c:type="const char*"/>
         </return-value>
         <parameters>
           <instance-parameter name="self" transfer-ownership="none">
             <doc xml:space="preserve"
                  filename="../src/adw-action-row.c"
-                 line="489">a `AdwActionRow`</doc>
+                 line="467">a `AdwActionRow`</doc>
             <type name="ActionRow" c:type="AdwActionRow*"/>
           </instance-parameter>
         </parameters>
@@ -213,19 +213,19 @@ respectively the title label and subtitle label.</doc>
         <attribute name="org.gtk.Method.get_property" value="subtitle"/>
         <doc xml:space="preserve"
              filename="../src/adw-action-row.c"
-             line="436">Gets the subtitle for @self.</doc>
+             line="414">Gets the subtitle for @self.</doc>
         <source-position filename="../src/adw-action-row.h" line="43"/>
         <return-value transfer-ownership="none" nullable="1">
           <doc xml:space="preserve"
                filename="../src/adw-action-row.c"
-               line="442">the subtitle for @self</doc>
+               line="420">the subtitle for @self</doc>
           <type name="utf8" c:type="const char*"/>
         </return-value>
         <parameters>
           <instance-parameter name="self" transfer-ownership="none">
             <doc xml:space="preserve"
                  filename="../src/adw-action-row.c"
-                 line="438">a `AdwActionRow`</doc>
+                 line="416">a `AdwActionRow`</doc>
             <type name="ActionRow" c:type="AdwActionRow*"/>
           </instance-parameter>
         </parameters>
@@ -237,15 +237,15 @@ respectively the title label and subtitle label.</doc>
         <attribute name="org.gtk.Method.get_property" value="subtitle-lines"/>
         <doc xml:space="preserve"
              filename="../src/adw-action-row.c"
-             line="730">Gets the number of lines at the end of which the subtitle label will be
+             line="652">Gets the number of lines at the end of which the subtitle label will be
 ellipsized.
 
 If the value is 0, the number of lines won't be limited.</doc>
-        <source-position filename="../src/adw-action-row.h" line="73"/>
+        <source-position filename="../src/adw-action-row.h" line="67"/>
         <return-value transfer-ownership="none">
           <doc xml:space="preserve"
                filename="../src/adw-action-row.c"
-               line="739">the number of lines at the end of which the subtitle label will be
+               line="661">the number of lines at the end of which the subtitle label will be
   ellipsized</doc>
           <type name="gint" c:type="int"/>
         </return-value>
@@ -253,7 +253,7 @@ If the value is 0, the number of lines won't be limited.</doc>
           <instance-parameter name="self" transfer-ownership="none">
             <doc xml:space="preserve"
                  filename="../src/adw-action-row.c"
-                 line="732">a `AdwActionRow`</doc>
+                 line="654">a `AdwActionRow`</doc>
             <type name="ActionRow" c:type="AdwActionRow*"/>
           </instance-parameter>
         </parameters>
@@ -265,15 +265,15 @@ If the value is 0, the number of lines won't be limited.</doc>
         <attribute name="org.gtk.Method.get_property" value="title-lines"/>
         <doc xml:space="preserve"
              filename="../src/adw-action-row.c"
-             line="670">Gets the number of lines at the end of which the title label will be
+             line="592">Gets the number of lines at the end of which the title label will be
 ellipsized.
 
 If the value is 0, the number of lines won't be limited.</doc>
-        <source-position filename="../src/adw-action-row.h" line="67"/>
+        <source-position filename="../src/adw-action-row.h" line="61"/>
         <return-value transfer-ownership="none">
           <doc xml:space="preserve"
                filename="../src/adw-action-row.c"
-               line="679">the number of lines at the end of which the title label will be
+               line="601">the number of lines at the end of which the title label will be
   ellipsized</doc>
           <type name="gint" c:type="int"/>
         </return-value>
@@ -281,31 +281,7 @@ If the value is 0, the number of lines won't be limited.</doc>
           <instance-parameter name="self" transfer-ownership="none">
             <doc xml:space="preserve"
                  filename="../src/adw-action-row.c"
-                 line="672">a `AdwActionRow`</doc>
-            <type name="ActionRow" c:type="AdwActionRow*"/>
-          </instance-parameter>
-        </parameters>
-      </method>
-      <method name="get_use_underline"
-              c:identifier="adw_action_row_get_use_underline"
-              glib:get-property="use-underline"
-              version="1.0">
-        <attribute name="org.gtk.Method.get_property" value="use-underline"/>
-        <doc xml:space="preserve"
-             filename="../src/adw-action-row.c"
-             line="614">Gets whether underlines in title or subtitle are interpreted as mnemonics.</doc>
-        <source-position filename="../src/adw-action-row.h" line="61"/>
-        <return-value transfer-ownership="none">
-          <doc xml:space="preserve"
-               filename="../src/adw-action-row.c"
-               line="620">`TRUE` if underlines are interpreted as mnemonics</doc>
-          <type name="gboolean" c:type="gboolean"/>
-        </return-value>
-        <parameters>
-          <instance-parameter name="self" transfer-ownership="none">
-            <doc xml:space="preserve"
-                 filename="../src/adw-action-row.c"
-                 line="616">a `AdwActionRow`</doc>
+                 line="594">a `AdwActionRow`</doc>
             <type name="ActionRow" c:type="AdwActionRow*"/>
           </instance-parameter>
         </parameters>
@@ -313,8 +289,8 @@ If the value is 0, the number of lines won't be limited.</doc>
       <method name="remove" c:identifier="adw_action_row_remove" version="1.0">
         <doc xml:space="preserve"
              filename="../src/adw-action-row.c"
-             line="838">Removes a child from @self.</doc>
-        <source-position filename="../src/adw-action-row.h" line="85"/>
+             line="760">Removes a child from @self.</doc>
+        <source-position filename="../src/adw-action-row.h" line="79"/>
         <return-value transfer-ownership="none">
           <type name="none" c:type="void"/>
         </return-value>
@@ -322,13 +298,13 @@ If the value is 0, the number of lines won't be limited.</doc>
           <instance-parameter name="self" transfer-ownership="none">
             <doc xml:space="preserve"
                  filename="../src/adw-action-row.c"
-                 line="840">a `AdwActionRow`</doc>
+                 line="762">a `AdwActionRow`</doc>
             <type name="ActionRow" c:type="AdwActionRow*"/>
           </instance-parameter>
           <parameter name="widget" transfer-ownership="none">
             <doc xml:space="preserve"
                  filename="../src/adw-action-row.c"
-                 line="841">the child to be removed</doc>
+                 line="763">the child to be removed</doc>
             <type name="Gtk.Widget" c:type="GtkWidget*"/>
           </parameter>
         </parameters>
@@ -341,7 +317,7 @@ If the value is 0, the number of lines won't be limited.</doc>
                    value="activatable-widget"/>
         <doc xml:space="preserve"
              filename="../src/adw-action-row.c"
-             line="574">Sets the widget to activate when @self is activated.</doc>
+             line="552">Sets the widget to activate when @self is activated.</doc>
         <source-position filename="../src/adw-action-row.h" line="57"/>
         <return-value transfer-ownership="none">
           <type name="none" c:type="void"/>
@@ -350,7 +326,7 @@ If the value is 0, the number of lines won't be limited.</doc>
           <instance-parameter name="self" transfer-ownership="none">
             <doc xml:space="preserve"
                  filename="../src/adw-action-row.c"
-                 line="576">a `AdwActionRow`</doc>
+                 line="554">a `AdwActionRow`</doc>
             <type name="ActionRow" c:type="AdwActionRow*"/>
           </instance-parameter>
           <parameter name="widget"
@@ -359,7 +335,7 @@ If the value is 0, the number of lines won't be limited.</doc>
                      allow-none="1">
             <doc xml:space="preserve"
                  filename="../src/adw-action-row.c"
-                 line="577">the target widget</doc>
+                 line="555">the target widget</doc>
             <type name="Gtk.Widget" c:type="GtkWidget*"/>
           </parameter>
         </parameters>
@@ -371,7 +347,7 @@ If the value is 0, the number of lines won't be limited.</doc>
         <attribute name="org.gtk.Method.set_property" value="icon-name"/>
         <doc xml:space="preserve"
              filename="../src/adw-action-row.c"
-             line="509">Sets the icon name for @self.</doc>
+             line="487">Sets the icon name for @self.</doc>
         <source-position filename="../src/adw-action-row.h" line="51"/>
         <return-value transfer-ownership="none">
           <type name="none" c:type="void"/>
@@ -380,7 +356,7 @@ If the value is 0, the number of lines won't be limited.</doc>
           <instance-parameter name="self" transfer-ownership="none">
             <doc xml:space="preserve"
                  filename="../src/adw-action-row.c"
-                 line="511">a `AdwActionRow`</doc>
+                 line="489">a `AdwActionRow`</doc>
             <type name="ActionRow" c:type="AdwActionRow*"/>
           </instance-parameter>
           <parameter name="icon_name"
@@ -389,7 +365,7 @@ If the value is 0, the number of lines won't be limited.</doc>
                      allow-none="1">
             <doc xml:space="preserve"
                  filename="../src/adw-action-row.c"
-                 line="512">the icon name</doc>
+                 line="490">the icon name</doc>
             <type name="utf8" c:type="const char*"/>
           </parameter>
         </parameters>
@@ -401,7 +377,7 @@ If the value is 0, the number of lines won't be limited.</doc>
         <attribute name="org.gtk.Method.set_property" value="subtitle"/>
         <doc xml:space="preserve"
              filename="../src/adw-action-row.c"
-             line="458">Sets the subtitle for @self.</doc>
+             line="436">Sets the subtitle for @self.</doc>
         <source-position filename="../src/adw-action-row.h" line="45"/>
         <return-value transfer-ownership="none">
           <type name="none" c:type="void"/>
@@ -410,13 +386,13 @@ If the value is 0, the number of lines won't be limited.</doc>
           <instance-parameter name="self" transfer-ownership="none">
             <doc xml:space="preserve"
                  filename="../src/adw-action-row.c"
-                 line="460">a `AdwActionRow`</doc>
+                 line="438">a `AdwActionRow`</doc>
             <type name="ActionRow" c:type="AdwActionRow*"/>
           </instance-parameter>
           <parameter name="subtitle" transfer-ownership="none">
             <doc xml:space="preserve"
                  filename="../src/adw-action-row.c"
-                 line="461">the subtitle</doc>
+                 line="439">the subtitle</doc>
             <type name="utf8" c:type="const char*"/>
           </parameter>
         </parameters>
@@ -428,37 +404,7 @@ If the value is 0, the number of lines won't be limited.</doc>
         <attribute name="org.gtk.Method.set_property" value="subtitle-lines"/>
         <doc xml:space="preserve"
              filename="../src/adw-action-row.c"
-             line="756">Sets the number of lines at the end of which the subtitle label will be
-ellipsized.
-
-If the value is 0, the number of lines won't be limited.</doc>
-        <source-position filename="../src/adw-action-row.h" line="75"/>
-        <return-value transfer-ownership="none">
-          <type name="none" c:type="void"/>
-        </return-value>
-        <parameters>
-          <instance-parameter name="self" transfer-ownership="none">
-            <doc xml:space="preserve"
-                 filename="../src/adw-action-row.c"
-                 line="758">a `AdwActionRow`</doc>
-            <type name="ActionRow" c:type="AdwActionRow*"/>
-          </instance-parameter>
-          <parameter name="subtitle_lines" transfer-ownership="none">
-            <doc xml:space="preserve"
-                 filename="../src/adw-action-row.c"
-                 line="759">the number of lines at the end of which the subtitle label will be ellipsized</doc>
-            <type name="gint" c:type="int"/>
-          </parameter>
-        </parameters>
-      </method>
-      <method name="set_title_lines"
-              c:identifier="adw_action_row_set_title_lines"
-              glib:set-property="title-lines"
-              version="1.0">
-        <attribute name="org.gtk.Method.set_property" value="title-lines"/>
-        <doc xml:space="preserve"
-             filename="../src/adw-action-row.c"
-             line="696">Sets the number of lines at the end of which the title label will be
+             line="678">Sets the number of lines at the end of which the subtitle label will be
 ellipsized.
 
 If the value is 0, the number of lines won't be limited.</doc>
@@ -470,25 +416,28 @@ If the value is 0, the number of lines won't be limited.</doc>
           <instance-parameter name="self" transfer-ownership="none">
             <doc xml:space="preserve"
                  filename="../src/adw-action-row.c"
-                 line="698">a `AdwActionRow`</doc>
+                 line="680">a `AdwActionRow`</doc>
             <type name="ActionRow" c:type="AdwActionRow*"/>
           </instance-parameter>
-          <parameter name="title_lines" transfer-ownership="none">
+          <parameter name="subtitle_lines" transfer-ownership="none">
             <doc xml:space="preserve"
                  filename="../src/adw-action-row.c"
-                 line="699">the number of lines at the end of which the title label will be ellipsized</doc>
+                 line="681">the number of lines at the end of which the subtitle label will be ellipsized</doc>
             <type name="gint" c:type="int"/>
           </parameter>
         </parameters>
       </method>
-      <method name="set_use_underline"
-              c:identifier="adw_action_row_set_use_underline"
-              glib:set-property="use-underline"
+      <method name="set_title_lines"
+              c:identifier="adw_action_row_set_title_lines"
+              glib:set-property="title-lines"
               version="1.0">
-        <attribute name="org.gtk.Method.set_property" value="use-underline"/>
+        <attribute name="org.gtk.Method.set_property" value="title-lines"/>
         <doc xml:space="preserve"
              filename="../src/adw-action-row.c"
-             line="636">Sets whether underlines in title or subtitle are interpreted as mnemonics.</doc>
+             line="618">Sets the number of lines at the end of which the title label will be
+ellipsized.
+
+If the value is 0, the number of lines won't be limited.</doc>
         <source-position filename="../src/adw-action-row.h" line="63"/>
         <return-value transfer-ownership="none">
           <type name="none" c:type="void"/>
@@ -497,14 +446,14 @@ If the value is 0, the number of lines won't be limited.</doc>
           <instance-parameter name="self" transfer-ownership="none">
             <doc xml:space="preserve"
                  filename="../src/adw-action-row.c"
-                 line="638">a `AdwActionRow`</doc>
+                 line="620">a `AdwActionRow`</doc>
             <type name="ActionRow" c:type="AdwActionRow*"/>
           </instance-parameter>
-          <parameter name="use_underline" transfer-ownership="none">
+          <parameter name="title_lines" transfer-ownership="none">
             <doc xml:space="preserve"
                  filename="../src/adw-action-row.c"
-                 line="639">whether underlines are interpreted as mnemonics</doc>
-            <type name="gboolean" c:type="gboolean"/>
+                 line="621">the number of lines at the end of which the title label will be ellipsized</doc>
+            <type name="gint" c:type="int"/>
           </parameter>
         </parameters>
       </method>
@@ -520,11 +469,11 @@ If the value is 0, the number of lines won't be limited.</doc>
                    value="adw_action_row_set_activatable_widget"/>
         <doc xml:space="preserve"
              filename="../src/adw-action-row.c"
-             line="249">The widget to activate when the row is activated.
+             line="241">The widget to activate when the row is activated.
 
 The row can be activated either by clicking on it, calling
 [method@Adw.ActionRow.activate], or via mnemonics in the title or the
-subtitle. See the [property@Adw.ActionRow:use-underline] property to
+subtitle. See the [property@Adw.PreferencesRow:use-underline] property to
 enable mnemonics.
 
 The target widget will be activated by emitting the
@@ -543,7 +492,7 @@ The target widget will be activated by emitting the
                    value="adw_action_row_set_icon_name"/>
         <doc xml:space="preserve"
              filename="../src/adw-action-row.c"
-             line="235">The icon name for this row.</doc>
+             line="227">The icon name for this row.</doc>
         <type name="utf8" c:type="gchar*"/>
       </property>
       <property name="subtitle"
@@ -558,7 +507,7 @@ The target widget will be activated by emitting the
                    value="adw_action_row_set_subtitle"/>
         <doc xml:space="preserve"
              filename="../src/adw-action-row.c"
-             line="271">The subtitle for this row.</doc>
+             line="263">The subtitle for this row.</doc>
         <type name="utf8" c:type="gchar*"/>
       </property>
       <property name="subtitle-lines"
@@ -573,7 +522,7 @@ The target widget will be activated by emitting the
                    value="adw_action_row_set_subtitle_lines"/>
         <doc xml:space="preserve"
              filename="../src/adw-action-row.c"
-             line="316">The number of lines at the end of which the subtitle label will be
+             line="294">The number of lines at the end of which the subtitle label will be
 ellipsized.
 
 If the value is 0, the number of lines won't be limited.</doc>
@@ -591,25 +540,10 @@ If the value is 0, the number of lines won't be limited.</doc>
                    value="adw_action_row_set_title_lines"/>
         <doc xml:space="preserve"
              filename="../src/adw-action-row.c"
-             line="299">The number of lines at the end of which the title label will be ellipsized.
+             line="277">The number of lines at the end of which the title label will be ellipsized.
 
 If the value is 0, the number of lines won't be limited.</doc>
         <type name="gint" c:type="gint"/>
-      </property>
-      <property name="use-underline"
-                version="1.0"
-                writable="1"
-                transfer-ownership="none"
-                setter="set_use_underline"
-                getter="get_use_underline">
-        <attribute name="org.gtk.Property.get"
-                   value="adw_action_row_get_use_underline"/>
-        <attribute name="org.gtk.Property.set"
-                   value="adw_action_row_set_use_underline"/>
-        <doc xml:space="preserve"
-             filename="../src/adw-action-row.c"
-             line="285">Whether underlines in title or subtitle are interpreted as mnemonics.</doc>
-        <type name="gboolean" c:type="gboolean"/>
       </property>
       <field name="parent_instance">
         <type name="PreferencesRow" c:type="AdwPreferencesRow"/>
@@ -617,7 +551,7 @@ If the value is 0, the number of lines won't be limited.</doc>
       <glib:signal name="activated" when="last" version="1.0">
         <doc xml:space="preserve"
              filename="../src/adw-action-row.c"
-             line="336">This signal is emitted after the row has been activated.</doc>
+             line="314">This signal is emitted after the row has been activated.</doc>
         <return-value transfer-ownership="none">
           <type name="none" c:type="void"/>
         </return-value>
@@ -643,7 +577,7 @@ If the value is 0, the number of lines won't be limited.</doc>
             <parameter name="self" transfer-ownership="none">
               <doc xml:space="preserve"
                    filename="../src/adw-action-row.c"
-                   line="871">a `AdwActionRow`</doc>
+                   line="793">a `AdwActionRow`</doc>
               <type name="ActionRow" c:type="AdwActionRow*"/>
             </parameter>
           </parameters>
@@ -2950,12 +2884,12 @@ child, `.medium` in-between, or none if it hasn't computed its size yet.</doc>
       <constructor name="new" c:identifier="adw_clamp_new" version="1.0">
         <doc xml:space="preserve"
              filename="../src/adw-clamp.c"
-             line="251">Creates a new `AdwClamp`.</doc>
+             line="252">Creates a new `AdwClamp`.</doc>
         <source-position filename="../src/adw-clamp.h" line="25"/>
         <return-value transfer-ownership="none">
           <doc xml:space="preserve"
                filename="../src/adw-clamp.c"
-               line="256">the newly created `AdwClamp`</doc>
+               line="257">the newly created `AdwClamp`</doc>
           <type name="Gtk.Widget" c:type="GtkWidget*"/>
         </return-value>
       </constructor>
@@ -2966,19 +2900,19 @@ child, `.medium` in-between, or none if it hasn't computed its size yet.</doc>
         <attribute name="org.gtk.Method.get_property" value="child"/>
         <doc xml:space="preserve"
              filename="../src/adw-clamp.c"
-             line="266">Gets the child widget of @self.</doc>
+             line="267">Gets the child widget of @self.</doc>
         <source-position filename="../src/adw-clamp.h" line="28"/>
         <return-value transfer-ownership="none" nullable="1">
           <doc xml:space="preserve"
                filename="../src/adw-clamp.c"
-               line="272">the child widget of @self</doc>
+               line="273">the child widget of @self</doc>
           <type name="Gtk.Widget" c:type="GtkWidget*"/>
         </return-value>
         <parameters>
           <instance-parameter name="self" transfer-ownership="none">
             <doc xml:space="preserve"
                  filename="../src/adw-clamp.c"
-                 line="268">a `AdwClamp`</doc>
+                 line="269">a `AdwClamp`</doc>
             <type name="Clamp" c:type="AdwClamp*"/>
           </instance-parameter>
         </parameters>
@@ -2990,19 +2924,19 @@ child, `.medium` in-between, or none if it hasn't computed its size yet.</doc>
         <attribute name="org.gtk.Method.get_property" value="maximum-size"/>
         <doc xml:space="preserve"
              filename="../src/adw-clamp.c"
-             line="313">Gets the maximum size allocated to the child.</doc>
+             line="314">Gets the maximum size allocated to the child.</doc>
         <source-position filename="../src/adw-clamp.h" line="34"/>
         <return-value transfer-ownership="none">
           <doc xml:space="preserve"
                filename="../src/adw-clamp.c"
-               line="319">the maximum size to allocate to the child</doc>
+               line="320">the maximum size to allocate to the child</doc>
           <type name="gint" c:type="int"/>
         </return-value>
         <parameters>
           <instance-parameter name="self" transfer-ownership="none">
             <doc xml:space="preserve"
                  filename="../src/adw-clamp.c"
-                 line="315">a `AdwClamp`</doc>
+                 line="316">a `AdwClamp`</doc>
             <type name="Clamp" c:type="AdwClamp*"/>
           </instance-parameter>
         </parameters>
@@ -3015,19 +2949,19 @@ child, `.medium` in-between, or none if it hasn't computed its size yet.</doc>
                    value="tightening-threshold"/>
         <doc xml:space="preserve"
              filename="../src/adw-clamp.c"
-             line="362">Gets the size above which the child is clamped.</doc>
+             line="363">Gets the size above which the child is clamped.</doc>
         <source-position filename="../src/adw-clamp.h" line="40"/>
         <return-value transfer-ownership="none">
           <doc xml:space="preserve"
                filename="../src/adw-clamp.c"
-               line="368">the size above which the child is clamped</doc>
+               line="369">the size above which the child is clamped</doc>
           <type name="gint" c:type="int"/>
         </return-value>
         <parameters>
           <instance-parameter name="self" transfer-ownership="none">
             <doc xml:space="preserve"
                  filename="../src/adw-clamp.c"
-                 line="364">a `AdwClamp`</doc>
+                 line="365">a `AdwClamp`</doc>
             <type name="Clamp" c:type="AdwClamp*"/>
           </instance-parameter>
         </parameters>
@@ -3039,7 +2973,7 @@ child, `.medium` in-between, or none if it hasn't computed its size yet.</doc>
         <attribute name="org.gtk.Method.set_property" value="child"/>
         <doc xml:space="preserve"
              filename="../src/adw-clamp.c"
-             line="284">Sets the child widget of @self.</doc>
+             line="285">Sets the child widget of @self.</doc>
         <source-position filename="../src/adw-clamp.h" line="30"/>
         <return-value transfer-ownership="none">
           <type name="none" c:type="void"/>
@@ -3048,7 +2982,7 @@ child, `.medium` in-between, or none if it hasn't computed its size yet.</doc>
           <instance-parameter name="self" transfer-ownership="none">
             <doc xml:space="preserve"
                  filename="../src/adw-clamp.c"
-                 line="286">a `AdwClamp`</doc>
+                 line="287">a `AdwClamp`</doc>
             <type name="Clamp" c:type="AdwClamp*"/>
           </instance-parameter>
           <parameter name="child"
@@ -3057,7 +2991,7 @@ child, `.medium` in-between, or none if it hasn't computed its size yet.</doc>
                      allow-none="1">
             <doc xml:space="preserve"
                  filename="../src/adw-clamp.c"
-                 line="287">the child widget</doc>
+                 line="288">the child widget</doc>
             <type name="Gtk.Widget" c:type="GtkWidget*"/>
           </parameter>
         </parameters>
@@ -3069,7 +3003,7 @@ child, `.medium` in-between, or none if it hasn't computed its size yet.</doc>
         <attribute name="org.gtk.Method.set_property" value="maximum-size"/>
         <doc xml:space="preserve"
              filename="../src/adw-clamp.c"
-             line="335">Sets the maximum size allocated to the child.</doc>
+             line="336">Sets the maximum size allocated to the child.</doc>
         <source-position filename="../src/adw-clamp.h" line="36"/>
         <return-value transfer-ownership="none">
           <type name="none" c:type="void"/>
@@ -3078,13 +3012,13 @@ child, `.medium` in-between, or none if it hasn't computed its size yet.</doc>
           <instance-parameter name="self" transfer-ownership="none">
             <doc xml:space="preserve"
                  filename="../src/adw-clamp.c"
-                 line="337">a `AdwClamp`</doc>
+                 line="338">a `AdwClamp`</doc>
             <type name="Clamp" c:type="AdwClamp*"/>
           </instance-parameter>
           <parameter name="maximum_size" transfer-ownership="none">
             <doc xml:space="preserve"
                  filename="../src/adw-clamp.c"
-                 line="338">the maximum size</doc>
+                 line="339">the maximum size</doc>
             <type name="gint" c:type="int"/>
           </parameter>
         </parameters>
@@ -3097,7 +3031,7 @@ child, `.medium` in-between, or none if it hasn't computed its size yet.</doc>
                    value="tightening-threshold"/>
         <doc xml:space="preserve"
              filename="../src/adw-clamp.c"
-             line="384">Sets the size above which the child is clamped.</doc>
+             line="385">Sets the size above which the child is clamped.</doc>
         <source-position filename="../src/adw-clamp.h" line="42"/>
         <return-value transfer-ownership="none">
           <type name="none" c:type="void"/>
@@ -3106,13 +3040,13 @@ child, `.medium` in-between, or none if it hasn't computed its size yet.</doc>
           <instance-parameter name="self" transfer-ownership="none">
             <doc xml:space="preserve"
                  filename="../src/adw-clamp.c"
-                 line="386">a `AdwClamp`</doc>
+                 line="387">a `AdwClamp`</doc>
             <type name="Clamp" c:type="AdwClamp*"/>
           </instance-parameter>
           <parameter name="tightening_threshold" transfer-ownership="none">
             <doc xml:space="preserve"
                  filename="../src/adw-clamp.c"
-                 line="387">the tightening threshold</doc>
+                 line="388">the tightening threshold</doc>
             <type name="gint" c:type="int"/>
           </parameter>
         </parameters>
@@ -3742,12 +3676,12 @@ contains a [class@Gtk.ScrolledWindow], which in turn contains a
       <constructor name="new" c:identifier="adw_combo_row_new" version="1.0">
         <doc xml:space="preserve"
              filename="../src/adw-combo-row.c"
-             line="539">Creates a new `AdwComboRow`.</doc>
+             line="533">Creates a new `AdwComboRow`.</doc>
         <source-position filename="../src/adw-combo-row.h" line="38"/>
         <return-value transfer-ownership="none">
           <doc xml:space="preserve"
                filename="../src/adw-combo-row.c"
-               line="544">the newly created `AdwComboRow`</doc>
+               line="538">the newly created `AdwComboRow`</doc>
           <type name="Gtk.Widget" c:type="GtkWidget*"/>
         </return-value>
       </constructor>
@@ -3758,19 +3692,19 @@ contains a [class@Gtk.ScrolledWindow], which in turn contains a
         <attribute name="org.gtk.Method.get_property" value="expression"/>
         <doc xml:space="preserve"
              filename="../src/adw-combo-row.c"
-             line="825">Gets the expression used to obtain strings from items.</doc>
+             line="819">Gets the expression used to obtain strings from items.</doc>
         <source-position filename="../src/adw-combo-row.h" line="68"/>
         <return-value transfer-ownership="none" nullable="1">
           <doc xml:space="preserve"
                filename="../src/adw-combo-row.c"
-               line="831">the expression used to obtain strings from items</doc>
+               line="825">the expression used to obtain strings from items</doc>
           <type name="Gtk.Expression" c:type="GtkExpression*"/>
         </return-value>
         <parameters>
           <instance-parameter name="self" transfer-ownership="none">
             <doc xml:space="preserve"
                  filename="../src/adw-combo-row.c"
-                 line="827">a `AdwComboRow`</doc>
+                 line="821">a `AdwComboRow`</doc>
             <type name="ComboRow" c:type="AdwComboRow*"/>
           </instance-parameter>
         </parameters>
@@ -3782,19 +3716,19 @@ contains a [class@Gtk.ScrolledWindow], which in turn contains a
         <attribute name="org.gtk.Method.get_property" value="factory"/>
         <doc xml:space="preserve"
              filename="../src/adw-combo-row.c"
-             line="719">Gets the factory that's currently used to populate list items.</doc>
+             line="713">Gets the factory that's currently used to populate list items.</doc>
         <source-position filename="../src/adw-combo-row.h" line="56"/>
         <return-value transfer-ownership="none" nullable="1">
           <doc xml:space="preserve"
                filename="../src/adw-combo-row.c"
-               line="725">the factory in use</doc>
+               line="719">the factory in use</doc>
           <type name="Gtk.ListItemFactory" c:type="GtkListItemFactory*"/>
         </return-value>
         <parameters>
           <instance-parameter name="self" transfer-ownership="none">
             <doc xml:space="preserve"
                  filename="../src/adw-combo-row.c"
-                 line="721">a `AdwComboRow`</doc>
+                 line="715">a `AdwComboRow`</doc>
             <type name="ComboRow" c:type="AdwComboRow*"/>
           </instance-parameter>
         </parameters>
@@ -3806,19 +3740,19 @@ contains a [class@Gtk.ScrolledWindow], which in turn contains a
         <attribute name="org.gtk.Method.get_property" value="list-factory"/>
         <doc xml:space="preserve"
              filename="../src/adw-combo-row.c"
-             line="772">Gets the factory that's currently used to populate list items in the popup.</doc>
+             line="766">Gets the factory that's currently used to populate list items in the popup.</doc>
         <source-position filename="../src/adw-combo-row.h" line="62"/>
         <return-value transfer-ownership="none" nullable="1">
           <doc xml:space="preserve"
                filename="../src/adw-combo-row.c"
-               line="778">the factory in use</doc>
+               line="772">the factory in use</doc>
           <type name="Gtk.ListItemFactory" c:type="GtkListItemFactory*"/>
         </return-value>
         <parameters>
           <instance-parameter name="self" transfer-ownership="none">
             <doc xml:space="preserve"
                  filename="../src/adw-combo-row.c"
-                 line="774">a `AdwComboRow`</doc>
+                 line="768">a `AdwComboRow`</doc>
             <type name="ComboRow" c:type="AdwComboRow*"/>
           </instance-parameter>
         </parameters>
@@ -3830,19 +3764,19 @@ contains a [class@Gtk.ScrolledWindow], which in turn contains a
         <attribute name="org.gtk.Method.get_property" value="model"/>
         <doc xml:space="preserve"
              filename="../src/adw-combo-row.c"
-             line="633">Gets the model that provides the displayed items.</doc>
+             line="627">Gets the model that provides the displayed items.</doc>
         <source-position filename="../src/adw-combo-row.h" line="41"/>
         <return-value transfer-ownership="none" nullable="1">
           <doc xml:space="preserve"
                filename="../src/adw-combo-row.c"
-               line="639">The model in use</doc>
+               line="633">The model in use</doc>
           <type name="Gio.ListModel" c:type="GListModel*"/>
         </return-value>
         <parameters>
           <instance-parameter name="self" transfer-ownership="none">
             <doc xml:space="preserve"
                  filename="../src/adw-combo-row.c"
-                 line="635">a `AdwComboRow`</doc>
+                 line="629">a `AdwComboRow`</doc>
             <type name="ComboRow" c:type="AdwComboRow*"/>
           </instance-parameter>
         </parameters>
@@ -3854,12 +3788,12 @@ contains a [class@Gtk.ScrolledWindow], which in turn contains a
         <attribute name="org.gtk.Method.get_property" value="selected"/>
         <doc xml:space="preserve"
              filename="../src/adw-combo-row.c"
-             line="582">Gets the position of the selected item.</doc>
+             line="576">Gets the position of the selected item.</doc>
         <source-position filename="../src/adw-combo-row.h" line="47"/>
         <return-value transfer-ownership="none">
           <doc xml:space="preserve"
                filename="../src/adw-combo-row.c"
-               line="588">the position of the selected item, or `GTK_INVALID_LIST_POSITION`
+               line="582">the position of the selected item, or `GTK_INVALID_LIST_POSITION`
   if no item is selected</doc>
           <type name="guint" c:type="guint"/>
         </return-value>
@@ -3867,7 +3801,7 @@ contains a [class@Gtk.ScrolledWindow], which in turn contains a
           <instance-parameter name="self" transfer-ownership="none">
             <doc xml:space="preserve"
                  filename="../src/adw-combo-row.c"
-                 line="584">a `AdwComboRow`</doc>
+                 line="578">a `AdwComboRow`</doc>
             <type name="ComboRow" c:type="AdwComboRow*"/>
           </instance-parameter>
         </parameters>
@@ -3879,19 +3813,19 @@ contains a [class@Gtk.ScrolledWindow], which in turn contains a
         <attribute name="org.gtk.Method.get_property" value="selected-item"/>
         <doc xml:space="preserve"
              filename="../src/adw-combo-row.c"
-             line="608">Gets the selected item.</doc>
+             line="602">Gets the selected item.</doc>
         <source-position filename="../src/adw-combo-row.h" line="53"/>
         <return-value transfer-ownership="none" nullable="1">
           <doc xml:space="preserve"
                filename="../src/adw-combo-row.c"
-               line="614">the selected item</doc>
+               line="608">the selected item</doc>
           <type name="GObject.Object" c:type="gpointer"/>
         </return-value>
         <parameters>
           <instance-parameter name="self" transfer-ownership="none">
             <doc xml:space="preserve"
                  filename="../src/adw-combo-row.c"
-                 line="610">a `AdwComboRow`</doc>
+                 line="604">a `AdwComboRow`</doc>
             <type name="ComboRow" c:type="AdwComboRow*"/>
           </instance-parameter>
         </parameters>
@@ -3903,19 +3837,19 @@ contains a [class@Gtk.ScrolledWindow], which in turn contains a
         <attribute name="org.gtk.Method.get_property" value="use-subtitle"/>
         <doc xml:space="preserve"
              filename="../src/adw-combo-row.c"
-             line="884">Gets whether to use the current value as the subtitle.</doc>
+             line="878">Gets whether to use the current value as the subtitle.</doc>
         <source-position filename="../src/adw-combo-row.h" line="74"/>
         <return-value transfer-ownership="none">
           <doc xml:space="preserve"
                filename="../src/adw-combo-row.c"
-               line="890">whether to use the current value as the subtitle</doc>
+               line="884">whether to use the current value as the subtitle</doc>
           <type name="gboolean" c:type="gboolean"/>
         </return-value>
         <parameters>
           <instance-parameter name="self" transfer-ownership="none">
             <doc xml:space="preserve"
                  filename="../src/adw-combo-row.c"
-                 line="886">a `AdwComboRow`</doc>
+                 line="880">a `AdwComboRow`</doc>
             <type name="ComboRow" c:type="AdwComboRow*"/>
           </instance-parameter>
         </parameters>
@@ -3927,7 +3861,7 @@ contains a [class@Gtk.ScrolledWindow], which in turn contains a
         <attribute name="org.gtk.Method.set_property" value="expression"/>
         <doc xml:space="preserve"
              filename="../src/adw-combo-row.c"
-             line="847">Sets the expression used to obtain strings from items.
+             line="841">Sets the expression used to obtain strings from items.
 
 The expression must have a value type of `G_TYPE_STRING`.</doc>
         <source-position filename="../src/adw-combo-row.h" line="70"/>
@@ -3938,7 +3872,7 @@ The expression must have a value type of `G_TYPE_STRING`.</doc>
           <instance-parameter name="self" transfer-ownership="none">
             <doc xml:space="preserve"
                  filename="../src/adw-combo-row.c"
-                 line="849">a `AdwComboRow`</doc>
+                 line="843">a `AdwComboRow`</doc>
             <type name="ComboRow" c:type="AdwComboRow*"/>
           </instance-parameter>
           <parameter name="expression"
@@ -3947,7 +3881,7 @@ The expression must have a value type of `G_TYPE_STRING`.</doc>
                      allow-none="1">
             <doc xml:space="preserve"
                  filename="../src/adw-combo-row.c"
-                 line="850">an expression</doc>
+                 line="844">an expression</doc>
             <type name="Gtk.Expression" c:type="GtkExpression*"/>
           </parameter>
         </parameters>
@@ -3959,7 +3893,7 @@ The expression must have a value type of `G_TYPE_STRING`.</doc>
         <attribute name="org.gtk.Method.set_property" value="factory"/>
         <doc xml:space="preserve"
              filename="../src/adw-combo-row.c"
-             line="741">Sets the `GtkListItemFactory` to use for populating list items.</doc>
+             line="735">Sets the `GtkListItemFactory` to use for populating list items.</doc>
         <source-position filename="../src/adw-combo-row.h" line="58"/>
         <return-value transfer-ownership="none">
           <type name="none" c:type="void"/>
@@ -3968,7 +3902,7 @@ The expression must have a value type of `G_TYPE_STRING`.</doc>
           <instance-parameter name="self" transfer-ownership="none">
             <doc xml:space="preserve"
                  filename="../src/adw-combo-row.c"
-                 line="743">a `AdwComboRow`</doc>
+                 line="737">a `AdwComboRow`</doc>
             <type name="ComboRow" c:type="AdwComboRow*"/>
           </instance-parameter>
           <parameter name="factory"
@@ -3977,7 +3911,7 @@ The expression must have a value type of `G_TYPE_STRING`.</doc>
                      allow-none="1">
             <doc xml:space="preserve"
                  filename="../src/adw-combo-row.c"
-                 line="744">the factory to use</doc>
+                 line="738">the factory to use</doc>
             <type name="Gtk.ListItemFactory" c:type="GtkListItemFactory*"/>
           </parameter>
         </parameters>
@@ -3989,7 +3923,7 @@ The expression must have a value type of `G_TYPE_STRING`.</doc>
         <attribute name="org.gtk.Method.set_property" value="list-factory"/>
         <doc xml:space="preserve"
              filename="../src/adw-combo-row.c"
-             line="794">Sets the `GtkListItemFactory` to use for populating list items in the popup.</doc>
+             line="788">Sets the `GtkListItemFactory` to use for populating list items in the popup.</doc>
         <source-position filename="../src/adw-combo-row.h" line="64"/>
         <return-value transfer-ownership="none">
           <type name="none" c:type="void"/>
@@ -3998,7 +3932,7 @@ The expression must have a value type of `G_TYPE_STRING`.</doc>
           <instance-parameter name="self" transfer-ownership="none">
             <doc xml:space="preserve"
                  filename="../src/adw-combo-row.c"
-                 line="796">a `AdwComboRow`</doc>
+                 line="790">a `AdwComboRow`</doc>
             <type name="ComboRow" c:type="AdwComboRow*"/>
           </instance-parameter>
           <parameter name="factory"
@@ -4007,7 +3941,7 @@ The expression must have a value type of `G_TYPE_STRING`.</doc>
                      allow-none="1">
             <doc xml:space="preserve"
                  filename="../src/adw-combo-row.c"
-                 line="797">the factory to use</doc>
+                 line="791">the factory to use</doc>
             <type name="Gtk.ListItemFactory" c:type="GtkListItemFactory*"/>
           </parameter>
         </parameters>
@@ -4019,7 +3953,7 @@ The expression must have a value type of `G_TYPE_STRING`.</doc>
         <attribute name="org.gtk.Method.set_property" value="model"/>
         <doc xml:space="preserve"
              filename="../src/adw-combo-row.c"
-             line="655">Sets the [iface@Gio.ListModel] to use.</doc>
+             line="649">Sets the [iface@Gio.ListModel] to use.</doc>
         <source-position filename="../src/adw-combo-row.h" line="43"/>
         <return-value transfer-ownership="none">
           <type name="none" c:type="void"/>
@@ -4028,7 +3962,7 @@ The expression must have a value type of `G_TYPE_STRING`.</doc>
           <instance-parameter name="self" transfer-ownership="none">
             <doc xml:space="preserve"
                  filename="../src/adw-combo-row.c"
-                 line="657">a `AdwComboRow`</doc>
+                 line="651">a `AdwComboRow`</doc>
             <type name="ComboRow" c:type="AdwComboRow*"/>
           </instance-parameter>
           <parameter name="model"
@@ -4037,7 +3971,7 @@ The expression must have a value type of `G_TYPE_STRING`.</doc>
                      allow-none="1">
             <doc xml:space="preserve"
                  filename="../src/adw-combo-row.c"
-                 line="658">the model to use</doc>
+                 line="652">the model to use</doc>
             <type name="Gio.ListModel" c:type="GListModel*"/>
           </parameter>
         </parameters>
@@ -4049,7 +3983,7 @@ The expression must have a value type of `G_TYPE_STRING`.</doc>
         <attribute name="org.gtk.Method.set_property" value="selected"/>
         <doc xml:space="preserve"
              filename="../src/adw-combo-row.c"
-             line="554">Selects the item at the given position.</doc>
+             line="548">Selects the item at the given position.</doc>
         <source-position filename="../src/adw-combo-row.h" line="49"/>
         <return-value transfer-ownership="none">
           <type name="none" c:type="void"/>
@@ -4058,13 +3992,13 @@ The expression must have a value type of `G_TYPE_STRING`.</doc>
           <instance-parameter name="self" transfer-ownership="none">
             <doc xml:space="preserve"
                  filename="../src/adw-combo-row.c"
-                 line="556">a `AdwComboRow`</doc>
+                 line="550">a `AdwComboRow`</doc>
             <type name="ComboRow" c:type="AdwComboRow*"/>
           </instance-parameter>
           <parameter name="position" transfer-ownership="none">
             <doc xml:space="preserve"
                  filename="../src/adw-combo-row.c"
-                 line="557">the position of the item to select, or `GTK_INVALID_LIST_POSITION`</doc>
+                 line="551">the position of the item to select, or `GTK_INVALID_LIST_POSITION`</doc>
             <type name="guint" c:type="guint"/>
           </parameter>
         </parameters>
@@ -4076,7 +4010,7 @@ The expression must have a value type of `G_TYPE_STRING`.</doc>
         <attribute name="org.gtk.Method.set_property" value="use-subtitle"/>
         <doc xml:space="preserve"
              filename="../src/adw-combo-row.c"
-             line="906">Sets whether to use the current value as the subtitle.</doc>
+             line="900">Sets whether to use the current value as the subtitle.</doc>
         <source-position filename="../src/adw-combo-row.h" line="76"/>
         <return-value transfer-ownership="none">
           <type name="none" c:type="void"/>
@@ -4085,13 +4019,13 @@ The expression must have a value type of `G_TYPE_STRING`.</doc>
           <instance-parameter name="self" transfer-ownership="none">
             <doc xml:space="preserve"
                  filename="../src/adw-combo-row.c"
-                 line="908">a `AdwComboRow`</doc>
+                 line="902">a `AdwComboRow`</doc>
             <type name="ComboRow" c:type="AdwComboRow*"/>
           </instance-parameter>
           <parameter name="use_subtitle" transfer-ownership="none">
             <doc xml:space="preserve"
                  filename="../src/adw-combo-row.c"
-                 line="909">whether to use the current value as the subtitle</doc>
+                 line="903">whether to use the current value as the subtitle</doc>
             <type name="gboolean" c:type="gboolean"/>
           </parameter>
         </parameters>
@@ -4108,7 +4042,7 @@ The expression must have a value type of `G_TYPE_STRING`.</doc>
                    value="adw_combo_row_set_expression"/>
         <doc xml:space="preserve"
              filename="../src/adw-combo-row.c"
-             line="480">An expression used to obtain strings from items.
+             line="474">An expression used to obtain strings from items.
 
 It's used to bind strings to labels produced by the default factory.
 
@@ -4128,7 +4062,7 @@ used to bind strings to labels produced by a default factory.</doc>
                    value="adw_combo_row_set_factory"/>
         <doc xml:space="preserve"
              filename="../src/adw-combo-row.c"
-             line="447">Factory for populating list items.
+             line="441">Factory for populating list items.
 
 This factory is always used for the item in the row. It is also used for
 items in the popup unless [property@Adw.ComboRow:list-factory] is set.</doc>
@@ -4146,7 +4080,7 @@ items in the popup unless [property@Adw.ComboRow:list-factory] is set.</doc>
                    value="adw_combo_row_set_list_factory"/>
         <doc xml:space="preserve"
              filename="../src/adw-combo-row.c"
-             line="464">The factory for populating list items in the popup.
+             line="458">The factory for populating list items in the popup.
 
 If this is not set, [property@Adw.ComboRow:factory] is used.</doc>
         <type name="Gtk.ListItemFactory"/>
@@ -4163,7 +4097,7 @@ If this is not set, [property@Adw.ComboRow:factory] is used.</doc>
                    value="adw_combo_row_set_model"/>
         <doc xml:space="preserve"
              filename="../src/adw-combo-row.c"
-             line="402">Model for the displayed items.</doc>
+             line="396">Model for the displayed items.</doc>
         <type name="Gio.ListModel"/>
       </property>
       <property name="selected"
@@ -4178,7 +4112,7 @@ If this is not set, [property@Adw.ComboRow:factory] is used.</doc>
                    value="adw_combo_row_set_selected"/>
         <doc xml:space="preserve"
              filename="../src/adw-combo-row.c"
-             line="416">The position of the selected item.
+             line="410">The position of the selected item.
 
 If no item is selected, the property has the value
 `GTK_INVALID_LIST_POSITION`.</doc>
@@ -4192,7 +4126,7 @@ If no item is selected, the property has the value
                    value="adw_combo_row_get_selected_item"/>
         <doc xml:space="preserve"
              filename="../src/adw-combo-row.c"
-             line="433">The selected item.</doc>
+             line="427">The selected item.</doc>
         <type name="GObject.Object"/>
       </property>
       <property name="use-subtitle"
@@ -4207,7 +4141,7 @@ If no item is selected, the property has the value
                    value="adw_combo_row_set_use_subtitle"/>
         <doc xml:space="preserve"
              filename="../src/adw-combo-row.c"
-             line="498">Whether to use the current value as the subtitle.
+             line="492">Whether to use the current value as the subtitle.
 
 If you use a custom list item factory, you will need to give the row a
 name conversion expression with [property@Adw.ComboRow:expression].
@@ -4510,47 +4444,22 @@ its arrow.</doc>
                    version="1.0">
         <doc xml:space="preserve"
              filename="../src/adw-expander-row.c"
-             line="314">Creates a new `AdwExpanderRow`.</doc>
+             line="291">Creates a new `AdwExpanderRow`.</doc>
         <source-position filename="../src/adw-expander-row.h" line="38"/>
         <return-value transfer-ownership="none">
           <doc xml:space="preserve"
                filename="../src/adw-expander-row.c"
-               line="319">the newly created `AdwExpanderRow`</doc>
+               line="296">the newly created `AdwExpanderRow`</doc>
           <type name="Gtk.Widget" c:type="GtkWidget*"/>
         </return-value>
       </constructor>
-      <method name="add" c:identifier="adw_expander_row_add" version="1.0">
-        <doc xml:space="preserve"
-             filename="../src/adw-expander-row.c"
-             line="672">Adds a widget to @self.
-
-The widget will appear in the expanding list below @self.</doc>
-        <source-position filename="../src/adw-expander-row.h" line="84"/>
-        <return-value transfer-ownership="none">
-          <type name="none" c:type="void"/>
-        </return-value>
-        <parameters>
-          <instance-parameter name="self" transfer-ownership="none">
-            <doc xml:space="preserve"
-                 filename="../src/adw-expander-row.c"
-                 line="674">a `AdwExpanderRow`</doc>
-            <type name="ExpanderRow" c:type="AdwExpanderRow*"/>
-          </instance-parameter>
-          <parameter name="child" transfer-ownership="none">
-            <doc xml:space="preserve"
-                 filename="../src/adw-expander-row.c"
-                 line="675">a widget</doc>
-            <type name="Gtk.Widget" c:type="GtkWidget*"/>
-          </parameter>
-        </parameters>
-      </method>
       <method name="add_action"
               c:identifier="adw_expander_row_add_action"
               version="1.0">
         <doc xml:space="preserve"
              filename="../src/adw-expander-row.c"
-             line="621">Adds an action widget to @self.</doc>
-        <source-position filename="../src/adw-expander-row.h" line="77"/>
+             line="554">Adds an action widget to @self.</doc>
+        <source-position filename="../src/adw-expander-row.h" line="71"/>
         <return-value transfer-ownership="none">
           <type name="none" c:type="void"/>
         </return-value>
@@ -4558,13 +4467,13 @@ The widget will appear in the expanding list below @self.</doc>
           <instance-parameter name="self" transfer-ownership="none">
             <doc xml:space="preserve"
                  filename="../src/adw-expander-row.c"
-                 line="623">a `AdwExpanderRow`</doc>
+                 line="556">a `AdwExpanderRow`</doc>
             <type name="ExpanderRow" c:type="AdwExpanderRow*"/>
           </instance-parameter>
           <parameter name="widget" transfer-ownership="none">
             <doc xml:space="preserve"
                  filename="../src/adw-expander-row.c"
-                 line="624">a widget</doc>
+                 line="557">a widget</doc>
             <type name="Gtk.Widget" c:type="GtkWidget*"/>
           </parameter>
         </parameters>
@@ -4574,8 +4483,8 @@ The widget will appear in the expanding list below @self.</doc>
               version="1.0">
         <doc xml:space="preserve"
              filename="../src/adw-expander-row.c"
-             line="645">Adds a prefix widget to @self.</doc>
-        <source-position filename="../src/adw-expander-row.h" line="80"/>
+             line="578">Adds a prefix widget to @self.</doc>
+        <source-position filename="../src/adw-expander-row.h" line="74"/>
         <return-value transfer-ownership="none">
           <type name="none" c:type="void"/>
         </return-value>
@@ -4583,13 +4492,40 @@ The widget will appear in the expanding list below @self.</doc>
           <instance-parameter name="self" transfer-ownership="none">
             <doc xml:space="preserve"
                  filename="../src/adw-expander-row.c"
-                 line="647">a `AdwExpanderRow`</doc>
+                 line="580">a `AdwExpanderRow`</doc>
             <type name="ExpanderRow" c:type="AdwExpanderRow*"/>
           </instance-parameter>
           <parameter name="widget" transfer-ownership="none">
             <doc xml:space="preserve"
                  filename="../src/adw-expander-row.c"
-                 line="648">a widget</doc>
+                 line="581">a widget</doc>
+            <type name="Gtk.Widget" c:type="GtkWidget*"/>
+          </parameter>
+        </parameters>
+      </method>
+      <method name="add_row"
+              c:identifier="adw_expander_row_add_row"
+              version="1.0">
+        <doc xml:space="preserve"
+             filename="../src/adw-expander-row.c"
+             line="605">Adds a widget to @self.
+
+The widget will appear in the expanding list below @self.</doc>
+        <source-position filename="../src/adw-expander-row.h" line="78"/>
+        <return-value transfer-ownership="none">
+          <type name="none" c:type="void"/>
+        </return-value>
+        <parameters>
+          <instance-parameter name="self" transfer-ownership="none">
+            <doc xml:space="preserve"
+                 filename="../src/adw-expander-row.c"
+                 line="607">a `AdwExpanderRow`</doc>
+            <type name="ExpanderRow" c:type="AdwExpanderRow*"/>
+          </instance-parameter>
+          <parameter name="child" transfer-ownership="none">
+            <doc xml:space="preserve"
+                 filename="../src/adw-expander-row.c"
+                 line="608">a widget</doc>
             <type name="Gtk.Widget" c:type="GtkWidget*"/>
           </parameter>
         </parameters>
@@ -4602,19 +4538,19 @@ The widget will appear in the expanding list below @self.</doc>
                    value="enable-expansion"/>
         <doc xml:space="preserve"
              filename="../src/adw-expander-row.c"
-             line="517">Gets whether the expansion of @self is enabled.</doc>
-        <source-position filename="../src/adw-expander-row.h" line="65"/>
+             line="450">Gets whether the expansion of @self is enabled.</doc>
+        <source-position filename="../src/adw-expander-row.h" line="59"/>
         <return-value transfer-ownership="none">
           <doc xml:space="preserve"
                filename="../src/adw-expander-row.c"
-               line="523">whether the expansion of @self is enabled.</doc>
+               line="456">whether the expansion of @self is enabled.</doc>
           <type name="gboolean" c:type="gboolean"/>
         </return-value>
         <parameters>
           <instance-parameter name="self" transfer-ownership="none">
             <doc xml:space="preserve"
                  filename="../src/adw-expander-row.c"
-                 line="519">a `AdwExpanderRow`</doc>
+                 line="452">a `AdwExpanderRow`</doc>
             <type name="ExpanderRow" c:type="AdwExpanderRow*"/>
           </instance-parameter>
         </parameters>
@@ -4626,19 +4562,19 @@ The widget will appear in the expanding list below @self.</doc>
         <attribute name="org.gtk.Method.get_property" value="expanded"/>
         <doc xml:space="preserve"
              filename="../src/adw-expander-row.c"
-             line="461">Gets whether @self is expanded.</doc>
-        <source-position filename="../src/adw-expander-row.h" line="59"/>
+             line="394">Gets whether @self is expanded.</doc>
+        <source-position filename="../src/adw-expander-row.h" line="53"/>
         <return-value transfer-ownership="none">
           <doc xml:space="preserve"
                filename="../src/adw-expander-row.c"
-               line="467">whether @self is expanded</doc>
+               line="400">whether @self is expanded</doc>
           <type name="gboolean" c:type="gboolean"/>
         </return-value>
         <parameters>
           <instance-parameter name="self" transfer-ownership="none">
             <doc xml:space="preserve"
                  filename="../src/adw-expander-row.c"
-                 line="463">a `AdwExpanderRow`</doc>
+                 line="396">a `AdwExpanderRow`</doc>
             <type name="ExpanderRow" c:type="AdwExpanderRow*"/>
           </instance-parameter>
         </parameters>
@@ -4650,19 +4586,19 @@ The widget will appear in the expanding list below @self.</doc>
         <attribute name="org.gtk.Method.get_property" value="icon-name"/>
         <doc xml:space="preserve"
              filename="../src/adw-expander-row.c"
-             line="417">Gets the icon name for @self.</doc>
-        <source-position filename="../src/adw-expander-row.h" line="53"/>
+             line="350">Gets the icon name for @self.</doc>
+        <source-position filename="../src/adw-expander-row.h" line="47"/>
         <return-value transfer-ownership="none" nullable="1">
           <doc xml:space="preserve"
                filename="../src/adw-expander-row.c"
-               line="423">the icon name for @self</doc>
+               line="356">the icon name for @self</doc>
           <type name="utf8" c:type="const char*"/>
         </return-value>
         <parameters>
           <instance-parameter name="self" transfer-ownership="none">
             <doc xml:space="preserve"
                  filename="../src/adw-expander-row.c"
-                 line="419">a `AdwExpanderRow`</doc>
+                 line="352">a `AdwExpanderRow`</doc>
             <type name="ExpanderRow" c:type="AdwExpanderRow*"/>
           </instance-parameter>
         </parameters>
@@ -4675,19 +4611,19 @@ The widget will appear in the expanding list below @self.</doc>
                    value="show-enable-switch"/>
         <doc xml:space="preserve"
              filename="../src/adw-expander-row.c"
-             line="570">Gets whether the switch enabling the expansion of @self is visible.</doc>
-        <source-position filename="../src/adw-expander-row.h" line="71"/>
+             line="503">Gets whether the switch enabling the expansion of @self is visible.</doc>
+        <source-position filename="../src/adw-expander-row.h" line="65"/>
         <return-value transfer-ownership="none">
           <doc xml:space="preserve"
                filename="../src/adw-expander-row.c"
-               line="576">whether the switch enabling the expansion is visible</doc>
+               line="509">whether the switch enabling the expansion is visible</doc>
           <type name="gboolean" c:type="gboolean"/>
         </return-value>
         <parameters>
           <instance-parameter name="self" transfer-ownership="none">
             <doc xml:space="preserve"
                  filename="../src/adw-expander-row.c"
-                 line="572">a `AdwExpanderRow`</doc>
+                 line="505">a `AdwExpanderRow`</doc>
             <type name="ExpanderRow" c:type="AdwExpanderRow*"/>
           </instance-parameter>
         </parameters>
@@ -4699,49 +4635,25 @@ The widget will appear in the expanding list below @self.</doc>
         <attribute name="org.gtk.Method.get_property" value="subtitle"/>
         <doc xml:space="preserve"
              filename="../src/adw-expander-row.c"
-             line="329">Gets the subtitle for @self.</doc>
+             line="306">Gets the subtitle for @self.</doc>
         <source-position filename="../src/adw-expander-row.h" line="41"/>
         <return-value transfer-ownership="none">
           <doc xml:space="preserve"
                filename="../src/adw-expander-row.c"
-               line="335">the subtitle for @self</doc>
+               line="312">the subtitle for @self</doc>
           <type name="utf8" c:type="const char*"/>
         </return-value>
         <parameters>
           <instance-parameter name="self" transfer-ownership="none">
             <doc xml:space="preserve"
                  filename="../src/adw-expander-row.c"
-                 line="331">a `AdwExpanderRow`</doc>
-            <type name="ExpanderRow" c:type="AdwExpanderRow*"/>
-          </instance-parameter>
-        </parameters>
-      </method>
-      <method name="get_use_underline"
-              c:identifier="adw_expander_row_get_use_underline"
-              glib:get-property="use-underline"
-              version="1.0">
-        <attribute name="org.gtk.Method.get_property" value="use-underline"/>
-        <doc xml:space="preserve"
-             filename="../src/adw-expander-row.c"
-             line="373">Gets whether underlines in title or subtitle are interpreted as mnemonics.</doc>
-        <source-position filename="../src/adw-expander-row.h" line="47"/>
-        <return-value transfer-ownership="none">
-          <doc xml:space="preserve"
-               filename="../src/adw-expander-row.c"
-               line="379">`TRUE` if underlines are interpreted as mnemonics</doc>
-          <type name="gboolean" c:type="gboolean"/>
-        </return-value>
-        <parameters>
-          <instance-parameter name="self" transfer-ownership="none">
-            <doc xml:space="preserve"
-                 filename="../src/adw-expander-row.c"
-                 line="375">a `AdwExpanderRow`</doc>
+                 line="308">a `AdwExpanderRow`</doc>
             <type name="ExpanderRow" c:type="AdwExpanderRow*"/>
           </instance-parameter>
         </parameters>
       </method>
       <method name="remove" c:identifier="adw_expander_row_remove">
-        <source-position filename="../src/adw-expander-row.h" line="87"/>
+        <source-position filename="../src/adw-expander-row.h" line="81"/>
         <return-value transfer-ownership="none">
           <type name="none" c:type="void"/>
         </return-value>
@@ -4762,8 +4674,8 @@ The widget will appear in the expanding list below @self.</doc>
                    value="enable-expansion"/>
         <doc xml:space="preserve"
              filename="../src/adw-expander-row.c"
-             line="539">Sets whether the expansion of @self is enabled.</doc>
-        <source-position filename="../src/adw-expander-row.h" line="67"/>
+             line="472">Sets whether the expansion of @self is enabled.</doc>
+        <source-position filename="../src/adw-expander-row.h" line="61"/>
         <return-value transfer-ownership="none">
           <type name="none" c:type="void"/>
         </return-value>
@@ -4771,13 +4683,13 @@ The widget will appear in the expanding list below @self.</doc>
           <instance-parameter name="self" transfer-ownership="none">
             <doc xml:space="preserve"
                  filename="../src/adw-expander-row.c"
-                 line="541">a `AdwExpanderRow`</doc>
+                 line="474">a `AdwExpanderRow`</doc>
             <type name="ExpanderRow" c:type="AdwExpanderRow*"/>
           </instance-parameter>
           <parameter name="enable_expansion" transfer-ownership="none">
             <doc xml:space="preserve"
                  filename="../src/adw-expander-row.c"
-                 line="542">whether to enable the expansion</doc>
+                 line="475">whether to enable the expansion</doc>
             <type name="gboolean" c:type="gboolean"/>
           </parameter>
         </parameters>
@@ -4789,8 +4701,8 @@ The widget will appear in the expanding list below @self.</doc>
         <attribute name="org.gtk.Method.set_property" value="expanded"/>
         <doc xml:space="preserve"
              filename="../src/adw-expander-row.c"
-             line="483">Sets whether @self is expanded.</doc>
-        <source-position filename="../src/adw-expander-row.h" line="61"/>
+             line="416">Sets whether @self is expanded.</doc>
+        <source-position filename="../src/adw-expander-row.h" line="55"/>
         <return-value transfer-ownership="none">
           <type name="none" c:type="void"/>
         </return-value>
@@ -4798,13 +4710,13 @@ The widget will appear in the expanding list below @self.</doc>
           <instance-parameter name="self" transfer-ownership="none">
             <doc xml:space="preserve"
                  filename="../src/adw-expander-row.c"
-                 line="485">a `AdwExpanderRow`</doc>
+                 line="418">a `AdwExpanderRow`</doc>
             <type name="ExpanderRow" c:type="AdwExpanderRow*"/>
           </instance-parameter>
           <parameter name="expanded" transfer-ownership="none">
             <doc xml:space="preserve"
                  filename="../src/adw-expander-row.c"
-                 line="486">whether to expand the row</doc>
+                 line="419">whether to expand the row</doc>
             <type name="gboolean" c:type="gboolean"/>
           </parameter>
         </parameters>
@@ -4816,8 +4728,8 @@ The widget will appear in the expanding list below @self.</doc>
         <attribute name="org.gtk.Method.set_property" value="icon-name"/>
         <doc xml:space="preserve"
              filename="../src/adw-expander-row.c"
-             line="439">Sets the icon name for @self.</doc>
-        <source-position filename="../src/adw-expander-row.h" line="55"/>
+             line="372">Sets the icon name for @self.</doc>
+        <source-position filename="../src/adw-expander-row.h" line="49"/>
         <return-value transfer-ownership="none">
           <type name="none" c:type="void"/>
         </return-value>
@@ -4825,7 +4737,7 @@ The widget will appear in the expanding list below @self.</doc>
           <instance-parameter name="self" transfer-ownership="none">
             <doc xml:space="preserve"
                  filename="../src/adw-expander-row.c"
-                 line="441">a `AdwExpanderRow`</doc>
+                 line="374">a `AdwExpanderRow`</doc>
             <type name="ExpanderRow" c:type="AdwExpanderRow*"/>
           </instance-parameter>
           <parameter name="icon_name"
@@ -4834,7 +4746,7 @@ The widget will appear in the expanding list below @self.</doc>
                      allow-none="1">
             <doc xml:space="preserve"
                  filename="../src/adw-expander-row.c"
-                 line="442">the icon name</doc>
+                 line="375">the icon name</doc>
             <type name="utf8" c:type="const char*"/>
           </parameter>
         </parameters>
@@ -4847,8 +4759,8 @@ The widget will appear in the expanding list below @self.</doc>
                    value="show-enable-switch"/>
         <doc xml:space="preserve"
              filename="../src/adw-expander-row.c"
-             line="592">Sets whether the switch enabling the expansion of @self is visible.</doc>
-        <source-position filename="../src/adw-expander-row.h" line="73"/>
+             line="525">Sets whether the switch enabling the expansion of @self is visible.</doc>
+        <source-position filename="../src/adw-expander-row.h" line="67"/>
         <return-value transfer-ownership="none">
           <type name="none" c:type="void"/>
         </return-value>
@@ -4856,13 +4768,13 @@ The widget will appear in the expanding list below @self.</doc>
           <instance-parameter name="self" transfer-ownership="none">
             <doc xml:space="preserve"
                  filename="../src/adw-expander-row.c"
-                 line="594">a `AdwExpanderRow`</doc>
+                 line="527">a `AdwExpanderRow`</doc>
             <type name="ExpanderRow" c:type="AdwExpanderRow*"/>
           </instance-parameter>
           <parameter name="show_enable_switch" transfer-ownership="none">
             <doc xml:space="preserve"
                  filename="../src/adw-expander-row.c"
-                 line="595">whether to show the switch enabling the expansion</doc>
+                 line="528">whether to show the switch enabling the expansion</doc>
             <type name="gboolean" c:type="gboolean"/>
           </parameter>
         </parameters>
@@ -4874,7 +4786,7 @@ The widget will appear in the expanding list below @self.</doc>
         <attribute name="org.gtk.Method.set_property" value="subtitle"/>
         <doc xml:space="preserve"
              filename="../src/adw-expander-row.c"
-             line="351">Sets the subtitle for @self.</doc>
+             line="328">Sets the subtitle for @self.</doc>
         <source-position filename="../src/adw-expander-row.h" line="43"/>
         <return-value transfer-ownership="none">
           <type name="none" c:type="void"/>
@@ -4883,41 +4795,14 @@ The widget will appear in the expanding list below @self.</doc>
           <instance-parameter name="self" transfer-ownership="none">
             <doc xml:space="preserve"
                  filename="../src/adw-expander-row.c"
-                 line="353">a `AdwExpanderRow`</doc>
+                 line="330">a `AdwExpanderRow`</doc>
             <type name="ExpanderRow" c:type="AdwExpanderRow*"/>
           </instance-parameter>
           <parameter name="subtitle" transfer-ownership="none">
             <doc xml:space="preserve"
                  filename="../src/adw-expander-row.c"
-                 line="354">the subtitle</doc>
+                 line="331">the subtitle</doc>
             <type name="utf8" c:type="const char*"/>
-          </parameter>
-        </parameters>
-      </method>
-      <method name="set_use_underline"
-              c:identifier="adw_expander_row_set_use_underline"
-              glib:set-property="use-underline"
-              version="1.0">
-        <attribute name="org.gtk.Method.set_property" value="use-underline"/>
-        <doc xml:space="preserve"
-             filename="../src/adw-expander-row.c"
-             line="395">Sets whether underlines in title or subtitle are interpreted as mnemonics.</doc>
-        <source-position filename="../src/adw-expander-row.h" line="49"/>
-        <return-value transfer-ownership="none">
-          <type name="none" c:type="void"/>
-        </return-value>
-        <parameters>
-          <instance-parameter name="self" transfer-ownership="none">
-            <doc xml:space="preserve"
-                 filename="../src/adw-expander-row.c"
-                 line="397">a `AdwExpanderRow`</doc>
-            <type name="ExpanderRow" c:type="AdwExpanderRow*"/>
-          </instance-parameter>
-          <parameter name="use_underline" transfer-ownership="none">
-            <doc xml:space="preserve"
-                 filename="../src/adw-expander-row.c"
-                 line="398">whether underlines are interpreted as mnemonics</doc>
-            <type name="gboolean" c:type="gboolean"/>
           </parameter>
         </parameters>
       </method>
@@ -4933,7 +4818,7 @@ The widget will appear in the expanding list below @self.</doc>
                    value="adw_expander_row_set_enable_expansion"/>
         <doc xml:space="preserve"
              filename="../src/adw-expander-row.c"
-             line="217">Whether expansion is enabled.</doc>
+             line="196">Whether expansion is enabled.</doc>
         <type name="gboolean" c:type="gboolean"/>
       </property>
       <property name="expanded"
@@ -4948,7 +4833,7 @@ The widget will appear in the expanding list below @self.</doc>
                    value="adw_expander_row_set_expanded"/>
         <doc xml:space="preserve"
              filename="../src/adw-expander-row.c"
-             line="203">Whether the row is expanded.</doc>
+             line="182">Whether the row is expanded.</doc>
         <type name="gboolean" c:type="gboolean"/>
       </property>
       <property name="icon-name"
@@ -4963,7 +4848,7 @@ The widget will appear in the expanding list below @self.</doc>
                    value="adw_expander_row_set_icon_name"/>
         <doc xml:space="preserve"
              filename="../src/adw-expander-row.c"
-             line="189">The icon name for this row.</doc>
+             line="168">The icon name for this row.</doc>
         <type name="utf8" c:type="gchar*"/>
       </property>
       <property name="show-enable-switch"
@@ -4978,7 +4863,7 @@ The widget will appear in the expanding list below @self.</doc>
                    value="adw_expander_row_set_show_enable_switch"/>
         <doc xml:space="preserve"
              filename="../src/adw-expander-row.c"
-             line="231">Whether the switch enabling the expansion is visible.</doc>
+             line="210">Whether the switch enabling the expansion is visible.</doc>
         <type name="gboolean" c:type="gboolean"/>
       </property>
       <property name="subtitle"
@@ -4993,23 +4878,8 @@ The widget will appear in the expanding list below @self.</doc>
                    value="adw_expander_row_set_subtitle"/>
         <doc xml:space="preserve"
              filename="../src/adw-expander-row.c"
-             line="161">The subtitle for this row.</doc>
+             line="154">The subtitle for this row.</doc>
         <type name="utf8" c:type="gchar*"/>
-      </property>
-      <property name="use-underline"
-                version="1.0"
-                writable="1"
-                transfer-ownership="none"
-                setter="set_use_underline"
-                getter="get_use_underline">
-        <attribute name="org.gtk.Property.get"
-                   value="adw_expander_row_get_use_underline"/>
-        <attribute name="org.gtk.Property.set"
-                   value="adw_expander_row_set_use_underline"/>
-        <doc xml:space="preserve"
-             filename="../src/adw-expander-row.c"
-             line="175">Whether underlines in title or subtitle are interpreted as mnemonics.</doc>
-        <type name="gboolean" c:type="gboolean"/>
       </property>
       <field name="parent_instance">
         <type name="PreferencesRow" c:type="AdwPreferencesRow"/>
@@ -11090,12 +10960,12 @@ into a small space such a sidebar or a popover.</doc>
       <constructor name="new" c:identifier="adw_status_page_new" version="1.0">
         <doc xml:space="preserve"
              filename="../src/adw-status-page.c"
-             line="268">Creates a new `AdwStatusPage`.</doc>
+             line="269">Creates a new `AdwStatusPage`.</doc>
         <source-position filename="../src/adw-status-page.h" line="25"/>
         <return-value transfer-ownership="none">
           <doc xml:space="preserve"
                filename="../src/adw-status-page.c"
-               line="273">the newly created `AdwStatusPage`</doc>
+               line="274">the newly created `AdwStatusPage`</doc>
           <type name="Gtk.Widget" c:type="GtkWidget*"/>
         </return-value>
       </constructor>
@@ -11106,19 +10976,19 @@ into a small space such a sidebar or a popover.</doc>
         <attribute name="org.gtk.Method.get_property" value="child"/>
         <doc xml:space="preserve"
              filename="../src/adw-status-page.c"
-             line="407">Gets the child widget of @self.</doc>
+             line="410">Gets the child widget of @self.</doc>
         <source-position filename="../src/adw-status-page.h" line="46"/>
         <return-value transfer-ownership="none" nullable="1">
           <doc xml:space="preserve"
                filename="../src/adw-status-page.c"
-               line="413">the child widget of @self</doc>
+               line="416">the child widget of @self</doc>
           <type name="Gtk.Widget" c:type="GtkWidget*"/>
         </return-value>
         <parameters>
           <instance-parameter name="self" transfer-ownership="none">
             <doc xml:space="preserve"
                  filename="../src/adw-status-page.c"
-                 line="409">a `AdwStatusPage`</doc>
+                 line="412">a `AdwStatusPage`</doc>
             <type name="StatusPage" c:type="AdwStatusPage*"/>
           </instance-parameter>
         </parameters>
@@ -11130,19 +11000,19 @@ into a small space such a sidebar or a popover.</doc>
         <attribute name="org.gtk.Method.get_property" value="description"/>
         <doc xml:space="preserve"
              filename="../src/adw-status-page.c"
-             line="366">Gets the description for @self.</doc>
+             line="369">Gets the description for @self.</doc>
         <source-position filename="../src/adw-status-page.h" line="40"/>
         <return-value transfer-ownership="none" nullable="1">
           <doc xml:space="preserve"
                filename="../src/adw-status-page.c"
-               line="372">the description</doc>
+               line="375">the description</doc>
           <type name="utf8" c:type="const char*"/>
         </return-value>
         <parameters>
           <instance-parameter name="self" transfer-ownership="none">
             <doc xml:space="preserve"
                  filename="../src/adw-status-page.c"
-                 line="368">a `AdwStatusPage`</doc>
+                 line="371">a `AdwStatusPage`</doc>
             <type name="StatusPage" c:type="AdwStatusPage*"/>
           </instance-parameter>
         </parameters>
@@ -11154,19 +11024,19 @@ into a small space such a sidebar or a popover.</doc>
         <attribute name="org.gtk.Method.get_property" value="icon-name"/>
         <doc xml:space="preserve"
              filename="../src/adw-status-page.c"
-             line="283">Gets the icon name for @self.</doc>
+             line="284">Gets the icon name for @self.</doc>
         <source-position filename="../src/adw-status-page.h" line="28"/>
         <return-value transfer-ownership="none" nullable="1">
           <doc xml:space="preserve"
                filename="../src/adw-status-page.c"
-               line="289">the icon name</doc>
+               line="290">the icon name</doc>
           <type name="utf8" c:type="const char*"/>
         </return-value>
         <parameters>
           <instance-parameter name="self" transfer-ownership="none">
             <doc xml:space="preserve"
                  filename="../src/adw-status-page.c"
-                 line="285">a `AdwStatusPage`</doc>
+                 line="286">a `AdwStatusPage`</doc>
             <type name="StatusPage" c:type="AdwStatusPage*"/>
           </instance-parameter>
         </parameters>
@@ -11178,19 +11048,19 @@ into a small space such a sidebar or a popover.</doc>
         <attribute name="org.gtk.Method.get_property" value="title"/>
         <doc xml:space="preserve"
              filename="../src/adw-status-page.c"
-             line="325">Gets the title for @self.</doc>
+             line="328">Gets the title for @self.</doc>
         <source-position filename="../src/adw-status-page.h" line="34"/>
         <return-value transfer-ownership="none">
           <doc xml:space="preserve"
                filename="../src/adw-status-page.c"
-               line="331">the title</doc>
+               line="334">the title</doc>
           <type name="utf8" c:type="const char*"/>
         </return-value>
         <parameters>
           <instance-parameter name="self" transfer-ownership="none">
             <doc xml:space="preserve"
                  filename="../src/adw-status-page.c"
-                 line="327">a `AdwStatusPage`</doc>
+                 line="330">a `AdwStatusPage`</doc>
             <type name="StatusPage" c:type="AdwStatusPage*"/>
           </instance-parameter>
         </parameters>
@@ -11202,7 +11072,7 @@ into a small space such a sidebar or a popover.</doc>
         <attribute name="org.gtk.Method.set_property" value="child"/>
         <doc xml:space="preserve"
              filename="../src/adw-status-page.c"
-             line="425">Sets the child widget of @self.</doc>
+             line="428">Sets the child widget of @self.</doc>
         <source-position filename="../src/adw-status-page.h" line="48"/>
         <return-value transfer-ownership="none">
           <type name="none" c:type="void"/>
@@ -11211,7 +11081,7 @@ into a small space such a sidebar or a popover.</doc>
           <instance-parameter name="self" transfer-ownership="none">
             <doc xml:space="preserve"
                  filename="../src/adw-status-page.c"
-                 line="427">a `AdwStatusPage`</doc>
+                 line="430">a `AdwStatusPage`</doc>
             <type name="StatusPage" c:type="AdwStatusPage*"/>
           </instance-parameter>
           <parameter name="child"
@@ -11220,7 +11090,7 @@ into a small space such a sidebar or a popover.</doc>
                      allow-none="1">
             <doc xml:space="preserve"
                  filename="../src/adw-status-page.c"
-                 line="428">the child widget</doc>
+                 line="431">the child widget</doc>
             <type name="Gtk.Widget" c:type="GtkWidget*"/>
           </parameter>
         </parameters>
@@ -11232,7 +11102,7 @@ into a small space such a sidebar or a popover.</doc>
         <attribute name="org.gtk.Method.set_property" value="description"/>
         <doc xml:space="preserve"
              filename="../src/adw-status-page.c"
-             line="384">Sets the description for @self.</doc>
+             line="387">Sets the description for @self.</doc>
         <source-position filename="../src/adw-status-page.h" line="42"/>
         <return-value transfer-ownership="none">
           <type name="none" c:type="void"/>
@@ -11241,7 +11111,7 @@ into a small space such a sidebar or a popover.</doc>
           <instance-parameter name="self" transfer-ownership="none">
             <doc xml:space="preserve"
                  filename="../src/adw-status-page.c"
-                 line="386">a `AdwStatusPage`</doc>
+                 line="389">a `AdwStatusPage`</doc>
             <type name="StatusPage" c:type="AdwStatusPage*"/>
           </instance-parameter>
           <parameter name="description"
@@ -11250,7 +11120,7 @@ into a small space such a sidebar or a popover.</doc>
                      allow-none="1">
             <doc xml:space="preserve"
                  filename="../src/adw-status-page.c"
-                 line="387">the description</doc>
+                 line="390">the description</doc>
             <type name="utf8" c:type="const char*"/>
           </parameter>
         </parameters>
@@ -11262,7 +11132,7 @@ into a small space such a sidebar or a popover.</doc>
         <attribute name="org.gtk.Method.set_property" value="icon-name"/>
         <doc xml:space="preserve"
              filename="../src/adw-status-page.c"
-             line="299">Sets the icon name for @self.</doc>
+             line="302">Sets the icon name for @self.</doc>
         <source-position filename="../src/adw-status-page.h" line="30"/>
         <return-value transfer-ownership="none">
           <type name="none" c:type="void"/>
@@ -11271,7 +11141,7 @@ into a small space such a sidebar or a popover.</doc>
           <instance-parameter name="self" transfer-ownership="none">
             <doc xml:space="preserve"
                  filename="../src/adw-status-page.c"
-                 line="301">a `AdwStatusPage`</doc>
+                 line="304">a `AdwStatusPage`</doc>
             <type name="StatusPage" c:type="AdwStatusPage*"/>
           </instance-parameter>
           <parameter name="icon_name"
@@ -11280,7 +11150,7 @@ into a small space such a sidebar or a popover.</doc>
                      allow-none="1">
             <doc xml:space="preserve"
                  filename="../src/adw-status-page.c"
-                 line="302">the icon name</doc>
+                 line="305">the icon name</doc>
             <type name="utf8" c:type="const char*"/>
           </parameter>
         </parameters>
@@ -11292,7 +11162,7 @@ into a small space such a sidebar or a popover.</doc>
         <attribute name="org.gtk.Method.set_property" value="title"/>
         <doc xml:space="preserve"
              filename="../src/adw-status-page.c"
-             line="343">Sets the title for @self.</doc>
+             line="346">Sets the title for @self.</doc>
         <source-position filename="../src/adw-status-page.h" line="36"/>
         <return-value transfer-ownership="none">
           <type name="none" c:type="void"/>
@@ -11301,13 +11171,13 @@ into a small space such a sidebar or a popover.</doc>
           <instance-parameter name="self" transfer-ownership="none">
             <doc xml:space="preserve"
                  filename="../src/adw-status-page.c"
-                 line="345">a `AdwStatusPage`</doc>
+                 line="348">a `AdwStatusPage`</doc>
             <type name="StatusPage" c:type="AdwStatusPage*"/>
           </instance-parameter>
           <parameter name="title" transfer-ownership="none">
             <doc xml:space="preserve"
                  filename="../src/adw-status-page.c"
-                 line="346">the title</doc>
+                 line="349">the title</doc>
             <type name="utf8" c:type="const char*"/>
           </parameter>
         </parameters>

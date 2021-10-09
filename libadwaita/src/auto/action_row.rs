@@ -57,8 +57,8 @@ pub struct ActionRowBuilder {
     subtitle: Option<String>,
     subtitle_lines: Option<i32>,
     title_lines: Option<i32>,
-    use_underline: Option<bool>,
     title: Option<String>,
+    use_underline: Option<bool>,
     activatable: Option<bool>,
     child: Option<gtk::Widget>,
     selectable: Option<bool>,
@@ -122,11 +122,11 @@ impl ActionRowBuilder {
         if let Some(ref title_lines) = self.title_lines {
             properties.push(("title-lines", title_lines));
         }
-        if let Some(ref use_underline) = self.use_underline {
-            properties.push(("use-underline", use_underline));
-        }
         if let Some(ref title) = self.title {
             properties.push(("title", title));
+        }
+        if let Some(ref use_underline) = self.use_underline {
+            properties.push(("use-underline", use_underline));
         }
         if let Some(ref activatable) = self.activatable {
             properties.push(("activatable", activatable));
@@ -262,13 +262,13 @@ impl ActionRowBuilder {
         self
     }
 
-    pub fn use_underline(mut self, use_underline: bool) -> Self {
-        self.use_underline = Some(use_underline);
+    pub fn title(mut self, title: &str) -> Self {
+        self.title = Some(title.to_string());
         self
     }
 
-    pub fn title(mut self, title: &str) -> Self {
-        self.title = Some(title.to_string());
+    pub fn use_underline(mut self, use_underline: bool) -> Self {
+        self.use_underline = Some(use_underline);
         self
     }
 
@@ -515,9 +515,6 @@ pub trait ActionRowExt: 'static {
 
     #[doc(alias = "title-lines")]
     fn connect_title_lines_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
-
-    #[doc(alias = "use-underline")]
-    fn connect_use_underline_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
 }
 
 impl<O: IsA<ActionRow>> ActionRowExt for O {
@@ -759,31 +756,6 @@ impl<O: IsA<ActionRow>> ActionRowExt for O {
                 b"notify::title-lines\0".as_ptr() as *const _,
                 Some(transmute::<_, unsafe extern "C" fn()>(
                     notify_title_lines_trampoline::<Self, F> as *const (),
-                )),
-                Box_::into_raw(f),
-            )
-        }
-    }
-
-    fn connect_use_underline_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
-        unsafe extern "C" fn notify_use_underline_trampoline<
-            P: IsA<ActionRow>,
-            F: Fn(&P) + 'static,
-        >(
-            this: *mut ffi::AdwActionRow,
-            _param_spec: glib::ffi::gpointer,
-            f: glib::ffi::gpointer,
-        ) {
-            let f: &F = &*(f as *const F);
-            f(ActionRow::from_glib_borrow(this).unsafe_cast_ref())
-        }
-        unsafe {
-            let f: Box_<F> = Box_::new(f);
-            connect_raw(
-                self.as_ptr() as *mut _,
-                b"notify::use-underline\0".as_ptr() as *const _,
-                Some(transmute::<_, unsafe extern "C" fn()>(
-                    notify_use_underline_trampoline::<Self, F> as *const (),
                 )),
                 Box_::into_raw(f),
             )
