@@ -120,6 +120,10 @@ manual = [
 name = "Gtk.Window"
 status = "manual"
 trait_name = "GtkWindowExt"
+    [[object.property]]
+    name = "child"
+    # adw use content not child, using it could result in a crash
+    ignore = true
 
 [[object]]
 name = "Adw.*"

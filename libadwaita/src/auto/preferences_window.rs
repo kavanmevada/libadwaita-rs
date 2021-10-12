@@ -59,7 +59,6 @@ pub struct PreferencesWindowBuilder {
     visible_page_name: Option<String>,
     content: Option<gtk::Widget>,
     application: Option<gtk::Application>,
-    child: Option<gtk::Widget>,
     decorated: Option<bool>,
     default_height: Option<i32>,
     default_widget: Option<gtk::Widget>,
@@ -140,9 +139,6 @@ impl PreferencesWindowBuilder {
         }
         if let Some(ref application) = self.application {
             properties.push(("application", application));
-        }
-        if let Some(ref child) = self.child {
-            properties.push(("child", child));
         }
         if let Some(ref decorated) = self.decorated {
             properties.push(("decorated", decorated));
@@ -325,11 +321,6 @@ impl PreferencesWindowBuilder {
 
     pub fn application<P: IsA<gtk::Application>>(mut self, application: &P) -> Self {
         self.application = Some(application.clone().upcast());
-        self
-    }
-
-    pub fn child<P: IsA<gtk::Widget>>(mut self, child: &P) -> Self {
-        self.child = Some(child.clone().upcast());
         self
     }
 
