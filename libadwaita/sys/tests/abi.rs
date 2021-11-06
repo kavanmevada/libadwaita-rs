@@ -576,6 +576,27 @@ const RUST_LAYOUTS: &[(&str, Layout)] = &[
         },
     ),
     (
+        "AdwToastClass",
+        Layout {
+            size: size_of::<AdwToastClass>(),
+            alignment: align_of::<AdwToastClass>(),
+        },
+    ),
+    (
+        "AdwToastOverlayClass",
+        Layout {
+            size: size_of::<AdwToastOverlayClass>(),
+            alignment: align_of::<AdwToastOverlayClass>(),
+        },
+    ),
+    (
+        "AdwToastPriority",
+        Layout {
+            size: size_of::<AdwToastPriority>(),
+            alignment: align_of::<AdwToastPriority>(),
+        },
+    ),
+    (
         "AdwViewStackClass",
         Layout {
             size: size_of::<AdwViewStackClass>(),
@@ -666,6 +687,8 @@ const RUST_CONSTANTS: &[(&str, &str)] = &[
     ("(gint) ADW_NAVIGATION_DIRECTION_FORWARD", "1"),
     ("(gint) ADW_SQUEEZER_TRANSITION_TYPE_CROSSFADE", "1"),
     ("(gint) ADW_SQUEEZER_TRANSITION_TYPE_NONE", "0"),
+    ("(gint) ADW_TOAST_PRIORITY_HIGH", "1"),
+    ("(gint) ADW_TOAST_PRIORITY_NORMAL", "0"),
     ("ADW_VERSION_S", "1.0.0.alpha.4"),
     ("(gint) ADW_VIEW_SWITCHER_POLICY_NARROW", "0"),
     ("(gint) ADW_VIEW_SWITCHER_POLICY_WIDE", "1"),

@@ -56,6 +56,7 @@ generate = [
     "Adw.SwipeTracker",
     "Adw.Swipeable",
     "Adw.TabView",
+    "Adw.ToastPriority",
     "Adw.ViewStack",
     "Adw.ViewSwitcher",
     "Adw.ViewSwitcherBar",
@@ -189,6 +190,18 @@ status = "generate"
     [[object.signal]]
     name = "extra-drag-drop"
     ignore = true # manual: *mut gobject_ffi::GValue doesn't implement glib::from_glib_borrow
+
+[[object]]
+name = "Adw.Toast"
+status = "generate"
+    [[object.function]]
+    name = "set_action_target"
+    ignore = true
+
+[[object]]
+name = "Adw.ToastOverlay"
+status = "generate"
+generate_builder = false
 
 [[object]]
 name = "Adw.TabPage"
