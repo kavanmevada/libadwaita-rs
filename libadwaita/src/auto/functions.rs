@@ -23,6 +23,27 @@ pub fn is_animations_enabled<P: IsA<gtk::Widget>>(widget: &P) -> bool {
     }
 }
 
+#[doc(alias = "adw_get_major_version")]
+#[doc(alias = "get_major_version")]
+pub fn major_version() -> u32 {
+    assert_initialized_main_thread!();
+    unsafe { ffi::adw_get_major_version() }
+}
+
+#[doc(alias = "adw_get_micro_version")]
+#[doc(alias = "get_micro_version")]
+pub fn micro_version() -> u32 {
+    assert_initialized_main_thread!();
+    unsafe { ffi::adw_get_micro_version() }
+}
+
+#[doc(alias = "adw_get_minor_version")]
+#[doc(alias = "get_minor_version")]
+pub fn minor_version() -> u32 {
+    assert_initialized_main_thread!();
+    unsafe { ffi::adw_get_minor_version() }
+}
+
 #[doc(alias = "adw_init")]
 pub fn init() {
     assert_initialized_main_thread!();

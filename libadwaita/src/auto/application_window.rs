@@ -73,6 +73,7 @@ pub struct ApplicationWindowBuilder {
     resizable: Option<bool>,
     startup_id: Option<String>,
     title: Option<String>,
+    titlebar: Option<gtk::Widget>,
     transient_for: Option<gtk::Window>,
     can_focus: Option<bool>,
     can_target: Option<bool>,
@@ -185,6 +186,9 @@ impl ApplicationWindowBuilder {
         }
         if let Some(ref title) = self.title {
             properties.push(("title", title));
+        }
+        if let Some(ref titlebar) = self.titlebar {
+            properties.push(("titlebar", titlebar));
         }
         if let Some(ref transient_for) = self.transient_for {
             properties.push(("transient-for", transient_for));
@@ -395,6 +399,11 @@ impl ApplicationWindowBuilder {
 
     pub fn title(mut self, title: &str) -> Self {
         self.title = Some(title.to_string());
+        self
+    }
+
+    pub fn titlebar<P: IsA<gtk::Widget>>(mut self, titlebar: &P) -> Self {
+        self.titlebar = Some(titlebar.clone().upcast());
         self
     }
 

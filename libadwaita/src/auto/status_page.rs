@@ -57,6 +57,12 @@ impl StatusPage {
         unsafe { from_glib_none(ffi::adw_status_page_get_icon_name(self.to_glib_none().0)) }
     }
 
+    #[doc(alias = "adw_status_page_get_paintable")]
+    #[doc(alias = "get_paintable")]
+    pub fn paintable(&self) -> Option<gdk::Paintable> {
+        unsafe { from_glib_none(ffi::adw_status_page_get_paintable(self.to_glib_none().0)) }
+    }
+
     #[doc(alias = "adw_status_page_get_title")]
     #[doc(alias = "get_title")]
     pub fn title(&self) -> Option<glib::GString> {
@@ -87,6 +93,16 @@ impl StatusPage {
     pub fn set_icon_name(&self, icon_name: Option<&str>) {
         unsafe {
             ffi::adw_status_page_set_icon_name(self.to_glib_none().0, icon_name.to_glib_none().0);
+        }
+    }
+
+    #[doc(alias = "adw_status_page_set_paintable")]
+    pub fn set_paintable<P: IsA<gdk::Paintable>>(&self, paintable: Option<&P>) {
+        unsafe {
+            ffi::adw_status_page_set_paintable(
+                self.to_glib_none().0,
+                paintable.map(|p| p.as_ref()).to_glib_none().0,
+            );
         }
     }
 
@@ -166,6 +182,29 @@ impl StatusPage {
         }
     }
 
+    #[doc(alias = "paintable")]
+    pub fn connect_paintable_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
+        unsafe extern "C" fn notify_paintable_trampoline<F: Fn(&StatusPage) + 'static>(
+            this: *mut ffi::AdwStatusPage,
+            _param_spec: glib::ffi::gpointer,
+            f: glib::ffi::gpointer,
+        ) {
+            let f: &F = &*(f as *const F);
+            f(&from_glib_borrow(this))
+        }
+        unsafe {
+            let f: Box_<F> = Box_::new(f);
+            connect_raw(
+                self.as_ptr() as *mut _,
+                b"notify::paintable\0".as_ptr() as *const _,
+                Some(transmute::<_, unsafe extern "C" fn()>(
+                    notify_paintable_trampoline::<F> as *const (),
+                )),
+                Box_::into_raw(f),
+            )
+        }
+    }
+
     #[doc(alias = "title")]
     pub fn connect_title_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_title_trampoline<F: Fn(&StatusPage) + 'static>(
@@ -205,6 +244,7 @@ pub struct StatusPageBuilder {
     child: Option<gtk::Widget>,
     description: Option<String>,
     icon_name: Option<String>,
+    paintable: Option<gdk::Paintable>,
     title: Option<String>,
     can_focus: Option<bool>,
     can_target: Option<bool>,
@@ -257,6 +297,9 @@ impl StatusPageBuilder {
         }
         if let Some(ref icon_name) = self.icon_name {
             properties.push(("icon-name", icon_name));
+        }
+        if let Some(ref paintable) = self.paintable {
+            properties.push(("paintable", paintable));
         }
         if let Some(ref title) = self.title {
             properties.push(("title", title));
@@ -367,6 +410,11 @@ impl StatusPageBuilder {
 
     pub fn icon_name(mut self, icon_name: &str) -> Self {
         self.icon_name = Some(icon_name.to_string());
+        self
+    }
+
+    pub fn paintable<P: IsA<gdk::Paintable>>(mut self, paintable: &P) -> Self {
+        self.paintable = Some(paintable.clone().upcast());
         self
     }
 
