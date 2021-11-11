@@ -130,28 +130,12 @@ impl Toast {
 
     #[doc(alias = "action-target")]
     pub fn action_target(&self) -> Option<glib::Variant> {
-        unsafe {
-            let mut value = glib::Value::from_type(<glib::Variant as StaticType>::static_type());
-            glib::gobject_ffi::g_object_get_property(
-                self.as_ptr() as *mut glib::gobject_ffi::GObject,
-                b"action-target\0".as_ptr() as *const _,
-                value.to_glib_none_mut().0,
-            );
-            value
-                .get()
-                .expect("Return Value for property `action-target` getter")
-        }
+        glib::ObjectExt::property(self, "action-target")
     }
 
     #[doc(alias = "action-target")]
     pub fn set_action_target(&self, action_target: Option<&glib::Variant>) {
-        unsafe {
-            glib::gobject_ffi::g_object_set_property(
-                self.as_ptr() as *mut glib::gobject_ffi::GObject,
-                b"action-target\0".as_ptr() as *const _,
-                action_target.to_value().to_glib_none().0,
-            );
-        }
+        glib::ObjectExt::set_property(self, "action-target", &action_target)
     }
 
     #[doc(alias = "dismissed")]
@@ -289,6 +273,13 @@ impl Toast {
                 Box_::into_raw(f),
             )
         }
+    }
+}
+
+impl Default for Toast {
+    fn default() -> Self {
+        glib::object::Object::new::<Self>(&[])
+            .expect("Can't construct Toast object with default parameters")
     }
 }
 

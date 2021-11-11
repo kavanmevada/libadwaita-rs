@@ -28,7 +28,7 @@ glib::wrapper! {
 
 impl SwipeTracker {
     #[doc(alias = "adw_swipe_tracker_new")]
-    pub fn new<P: IsA<Swipeable>>(swipeable: &P) -> SwipeTracker {
+    pub fn new(swipeable: &impl IsA<Swipeable>) -> SwipeTracker {
         skip_assert_initialized!();
         unsafe {
             from_glib_full(ffi::adw_swipe_tracker_new(
@@ -295,6 +295,13 @@ impl SwipeTracker {
     }
 }
 
+impl Default for SwipeTracker {
+    fn default() -> Self {
+        glib::object::Object::new::<Self>(&[])
+            .expect("Can't construct SwipeTracker object with default parameters")
+    }
+}
+
 #[derive(Clone, Default)]
 // rustdoc-stripper-ignore-next
 /// A [builder-pattern] type to construct [`SwipeTracker`] objects.
@@ -362,7 +369,7 @@ impl SwipeTrackerBuilder {
         self
     }
 
-    pub fn swipeable<P: IsA<Swipeable>>(mut self, swipeable: &P) -> Self {
+    pub fn swipeable(mut self, swipeable: &impl IsA<Swipeable>) -> Self {
         self.swipeable = Some(swipeable.clone().upcast());
         self
     }

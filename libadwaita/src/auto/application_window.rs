@@ -25,7 +25,7 @@ glib::wrapper! {
 
 impl ApplicationWindow {
     #[doc(alias = "adw_application_window_new")]
-    pub fn new<P: IsA<gtk::Application>>(app: &P) -> ApplicationWindow {
+    pub fn new(app: &impl IsA<gtk::Application>) -> ApplicationWindow {
         assert_initialized_main_thread!();
         unsafe {
             gtk::Widget::from_glib_none(ffi::adw_application_window_new(
@@ -41,6 +41,13 @@ impl ApplicationWindow {
     /// This method returns an instance of [`ApplicationWindowBuilder`] which can be used to create [`ApplicationWindow`] objects.
     pub fn builder() -> ApplicationWindowBuilder {
         ApplicationWindowBuilder::default()
+    }
+}
+
+impl Default for ApplicationWindow {
+    fn default() -> Self {
+        glib::object::Object::new::<Self>(&[])
+            .expect("Can't construct ApplicationWindow object with default parameters")
     }
 }
 
@@ -63,6 +70,8 @@ pub struct ApplicationWindowBuilder {
     focus_visible: Option<bool>,
     focus_widget: Option<gtk::Widget>,
     fullscreened: Option<bool>,
+    #[cfg(any(feature = "gtk_v4_2", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "gtk_v4_2")))]
     handle_menubar_accel: Option<bool>,
     hide_on_close: Option<bool>,
     icon_name: Option<String>,
@@ -72,6 +81,8 @@ pub struct ApplicationWindowBuilder {
     resizable: Option<bool>,
     startup_id: Option<String>,
     title: Option<String>,
+    #[cfg(any(feature = "gtk_v4_6", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "gtk_v4_6")))]
     titlebar: Option<gtk::Widget>,
     transient_for: Option<gtk::Window>,
     can_focus: Option<bool>,
@@ -156,6 +167,7 @@ impl ApplicationWindowBuilder {
         if let Some(ref fullscreened) = self.fullscreened {
             properties.push(("fullscreened", fullscreened));
         }
+        #[cfg(any(feature = "gtk_v4_2", feature = "dox"))]
         if let Some(ref handle_menubar_accel) = self.handle_menubar_accel {
             properties.push(("handle-menubar-accel", handle_menubar_accel));
         }
@@ -183,6 +195,7 @@ impl ApplicationWindowBuilder {
         if let Some(ref title) = self.title {
             properties.push(("title", title));
         }
+        #[cfg(any(feature = "gtk_v4_6", feature = "dox"))]
         if let Some(ref titlebar) = self.titlebar {
             properties.push(("titlebar", titlebar));
         }
@@ -283,7 +296,7 @@ impl ApplicationWindowBuilder {
             .expect("Failed to create an instance of ApplicationWindow")
     }
 
-    pub fn content<P: IsA<gtk::Widget>>(mut self, content: &P) -> Self {
+    pub fn content(mut self, content: &impl IsA<gtk::Widget>) -> Self {
         self.content = Some(content.clone().upcast());
         self
     }
@@ -293,7 +306,7 @@ impl ApplicationWindowBuilder {
         self
     }
 
-    pub fn application<P: IsA<gtk::Application>>(mut self, application: &P) -> Self {
+    pub fn application(mut self, application: &impl IsA<gtk::Application>) -> Self {
         self.application = Some(application.clone().upcast());
         self
     }
@@ -308,7 +321,7 @@ impl ApplicationWindowBuilder {
         self
     }
 
-    pub fn default_widget<P: IsA<gtk::Widget>>(mut self, default_widget: &P) -> Self {
+    pub fn default_widget(mut self, default_widget: &impl IsA<gtk::Widget>) -> Self {
         self.default_widget = Some(default_widget.clone().upcast());
         self
     }
@@ -338,7 +351,7 @@ impl ApplicationWindowBuilder {
         self
     }
 
-    pub fn focus_widget<P: IsA<gtk::Widget>>(mut self, focus_widget: &P) -> Self {
+    pub fn focus_widget(mut self, focus_widget: &impl IsA<gtk::Widget>) -> Self {
         self.focus_widget = Some(focus_widget.clone().upcast());
         self
     }
@@ -348,6 +361,8 @@ impl ApplicationWindowBuilder {
         self
     }
 
+    #[cfg(any(feature = "gtk_v4_2", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "gtk_v4_2")))]
     pub fn handle_menubar_accel(mut self, handle_menubar_accel: bool) -> Self {
         self.handle_menubar_accel = Some(handle_menubar_accel);
         self
@@ -393,12 +408,14 @@ impl ApplicationWindowBuilder {
         self
     }
 
-    pub fn titlebar<P: IsA<gtk::Widget>>(mut self, titlebar: &P) -> Self {
+    #[cfg(any(feature = "gtk_v4_6", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "gtk_v4_6")))]
+    pub fn titlebar(mut self, titlebar: &impl IsA<gtk::Widget>) -> Self {
         self.titlebar = Some(titlebar.clone().upcast());
         self
     }
 
-    pub fn transient_for<P: IsA<gtk::Window>>(mut self, transient_for: &P) -> Self {
+    pub fn transient_for(mut self, transient_for: &impl IsA<gtk::Window>) -> Self {
         self.transient_for = Some(transient_for.clone().upcast());
         self
     }
@@ -463,7 +480,7 @@ impl ApplicationWindowBuilder {
         self
     }
 
-    pub fn layout_manager<P: IsA<gtk::LayoutManager>>(mut self, layout_manager: &P) -> Self {
+    pub fn layout_manager(mut self, layout_manager: &impl IsA<gtk::LayoutManager>) -> Self {
         self.layout_manager = Some(layout_manager.clone().upcast());
         self
     }
@@ -554,7 +571,9 @@ impl ApplicationWindowBuilder {
     }
 }
 
-pub const NONE_APPLICATION_WINDOW: Option<&ApplicationWindow> = None;
+impl ApplicationWindow {
+    pub const NONE: Option<&'static ApplicationWindow> = None;
+}
 
 pub trait ApplicationWindowExt: 'static {
     #[doc(alias = "adw_application_window_get_content")]
@@ -562,7 +581,7 @@ pub trait ApplicationWindowExt: 'static {
     fn content(&self) -> Option<gtk::Widget>;
 
     #[doc(alias = "adw_application_window_set_content")]
-    fn set_content<P: IsA<gtk::Widget>>(&self, content: Option<&P>);
+    fn set_content(&self, content: Option<&impl IsA<gtk::Widget>>);
 
     #[doc(alias = "content")]
     fn connect_content_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
@@ -577,7 +596,7 @@ impl<O: IsA<ApplicationWindow>> ApplicationWindowExt for O {
         }
     }
 
-    fn set_content<P: IsA<gtk::Widget>>(&self, content: Option<&P>) {
+    fn set_content(&self, content: Option<&impl IsA<gtk::Widget>>) {
         unsafe {
             ffi::adw_application_window_set_content(
                 self.as_ref().to_glib_none().0,

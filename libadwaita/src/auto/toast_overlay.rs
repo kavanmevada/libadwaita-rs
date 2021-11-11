@@ -44,7 +44,7 @@ impl ToastOverlay {
     }
 
     #[doc(alias = "adw_toast_overlay_set_child")]
-    pub fn set_child<P: IsA<gtk::Widget>>(&self, child: Option<&P>) {
+    pub fn set_child(&self, child: Option<&impl IsA<gtk::Widget>>) {
         unsafe {
             ffi::adw_toast_overlay_set_child(
                 self.to_glib_none().0,

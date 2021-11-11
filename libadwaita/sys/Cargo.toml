@@ -25,24 +25,24 @@ name = "libadwaita_sys"
 libc = "0.2"
 
 [dependencies.gio-sys]
-version = "0.14"
+git = "https://github.com/gtk-rs/gtk-rs-core"
 
 [dependencies.glib-sys]
-version = "0.14"
+git = "https://github.com/gtk-rs/gtk-rs-core"
 
 [dependencies.gobject-sys]
-version = "0.14"
+git = "https://github.com/gtk-rs/gtk-rs-core"
 
 [dependencies.gtk-sys]
 package = "gtk4-sys"
-version = "0.3"
+git = "https://github.com/gtk-rs/gtk4-rs"
 
 [dependencies.gdk-sys]
 package = "gdk4-sys"
-version = "0.3"
+git = "https://github.com/gtk-rs/gtk4-rs"
 
 [build-dependencies]
-system-deps = "4"
+system-deps = "5"
 
 [dev-dependencies]
 shell-words = "1.0.0"

@@ -37,7 +37,9 @@ impl Default for ComboRow {
     }
 }
 
-pub const NONE_COMBO_ROW: Option<&ComboRow> = None;
+impl ComboRow {
+    pub const NONE: Option<&'static ComboRow> = None;
+}
 
 pub trait ComboRowExt: 'static {
     #[doc(alias = "adw_combo_row_get_expression")]
@@ -69,13 +71,13 @@ pub trait ComboRowExt: 'static {
     fn uses_subtitle(&self) -> bool;
 
     #[doc(alias = "adw_combo_row_set_factory")]
-    fn set_factory<P: IsA<gtk::ListItemFactory>>(&self, factory: Option<&P>);
+    fn set_factory(&self, factory: Option<&impl IsA<gtk::ListItemFactory>>);
 
     #[doc(alias = "adw_combo_row_set_list_factory")]
-    fn set_list_factory<P: IsA<gtk::ListItemFactory>>(&self, factory: Option<&P>);
+    fn set_list_factory(&self, factory: Option<&impl IsA<gtk::ListItemFactory>>);
 
     #[doc(alias = "adw_combo_row_set_model")]
-    fn set_model<P: IsA<gio::ListModel>>(&self, model: Option<&P>);
+    fn set_model(&self, model: Option<&impl IsA<gio::ListModel>>);
 
     #[doc(alias = "adw_combo_row_set_selected")]
     fn set_selected(&self, position: u32);
@@ -154,7 +156,7 @@ impl<O: IsA<ComboRow>> ComboRowExt for O {
         }
     }
 
-    fn set_factory<P: IsA<gtk::ListItemFactory>>(&self, factory: Option<&P>) {
+    fn set_factory(&self, factory: Option<&impl IsA<gtk::ListItemFactory>>) {
         unsafe {
             ffi::adw_combo_row_set_factory(
                 self.as_ref().to_glib_none().0,
@@ -163,7 +165,7 @@ impl<O: IsA<ComboRow>> ComboRowExt for O {
         }
     }
 
-    fn set_list_factory<P: IsA<gtk::ListItemFactory>>(&self, factory: Option<&P>) {
+    fn set_list_factory(&self, factory: Option<&impl IsA<gtk::ListItemFactory>>) {
         unsafe {
             ffi::adw_combo_row_set_list_factory(
                 self.as_ref().to_glib_none().0,
@@ -172,7 +174,7 @@ impl<O: IsA<ComboRow>> ComboRowExt for O {
         }
     }
 
-    fn set_model<P: IsA<gio::ListModel>>(&self, model: Option<&P>) {
+    fn set_model(&self, model: Option<&impl IsA<gio::ListModel>>) {
         unsafe {
             ffi::adw_combo_row_set_model(
                 self.as_ref().to_glib_none().0,

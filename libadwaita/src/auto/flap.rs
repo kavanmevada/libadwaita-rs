@@ -144,7 +144,7 @@ impl Flap {
     }
 
     #[doc(alias = "adw_flap_set_content")]
-    pub fn set_content<P: IsA<gtk::Widget>>(&self, content: Option<&P>) {
+    pub fn set_content(&self, content: Option<&impl IsA<gtk::Widget>>) {
         unsafe {
             ffi::adw_flap_set_content(
                 self.to_glib_none().0,
@@ -154,7 +154,7 @@ impl Flap {
     }
 
     #[doc(alias = "adw_flap_set_flap")]
-    pub fn set_flap<P: IsA<gtk::Widget>>(&self, flap: Option<&P>) {
+    pub fn set_flap(&self, flap: Option<&impl IsA<gtk::Widget>>) {
         unsafe {
             ffi::adw_flap_set_flap(
                 self.to_glib_none().0,
@@ -220,7 +220,7 @@ impl Flap {
     }
 
     #[doc(alias = "adw_flap_set_separator")]
-    pub fn set_separator<P: IsA<gtk::Widget>>(&self, separator: Option<&P>) {
+    pub fn set_separator(&self, separator: Option<&impl IsA<gtk::Widget>>) {
         unsafe {
             ffi::adw_flap_set_separator(
                 self.to_glib_none().0,
@@ -830,12 +830,12 @@ impl FlapBuilder {
         glib::Object::new::<Flap>(&properties).expect("Failed to create an instance of Flap")
     }
 
-    pub fn content<P: IsA<gtk::Widget>>(mut self, content: &P) -> Self {
+    pub fn content(mut self, content: &impl IsA<gtk::Widget>) -> Self {
         self.content = Some(content.clone().upcast());
         self
     }
 
-    pub fn flap<P: IsA<gtk::Widget>>(mut self, flap: &P) -> Self {
+    pub fn flap(mut self, flap: &impl IsA<gtk::Widget>) -> Self {
         self.flap = Some(flap.clone().upcast());
         self
     }
@@ -880,7 +880,7 @@ impl FlapBuilder {
         self
     }
 
-    pub fn separator<P: IsA<gtk::Widget>>(mut self, separator: &P) -> Self {
+    pub fn separator(mut self, separator: &impl IsA<gtk::Widget>) -> Self {
         self.separator = Some(separator.clone().upcast());
         self
     }
@@ -960,7 +960,7 @@ impl FlapBuilder {
         self
     }
 
-    pub fn layout_manager<P: IsA<gtk::LayoutManager>>(mut self, layout_manager: &P) -> Self {
+    pub fn layout_manager(mut self, layout_manager: &impl IsA<gtk::LayoutManager>) -> Self {
         self.layout_manager = Some(layout_manager.clone().upcast());
         self
     }

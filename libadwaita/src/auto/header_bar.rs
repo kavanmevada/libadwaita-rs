@@ -87,21 +87,21 @@ impl HeaderBar {
     }
 
     #[doc(alias = "adw_header_bar_pack_end")]
-    pub fn pack_end<P: IsA<gtk::Widget>>(&self, child: &P) {
+    pub fn pack_end(&self, child: &impl IsA<gtk::Widget>) {
         unsafe {
             ffi::adw_header_bar_pack_end(self.to_glib_none().0, child.as_ref().to_glib_none().0);
         }
     }
 
     #[doc(alias = "adw_header_bar_pack_start")]
-    pub fn pack_start<P: IsA<gtk::Widget>>(&self, child: &P) {
+    pub fn pack_start(&self, child: &impl IsA<gtk::Widget>) {
         unsafe {
             ffi::adw_header_bar_pack_start(self.to_glib_none().0, child.as_ref().to_glib_none().0);
         }
     }
 
     #[doc(alias = "adw_header_bar_remove")]
-    pub fn remove<P: IsA<gtk::Widget>>(&self, child: &P) {
+    pub fn remove(&self, child: &impl IsA<gtk::Widget>) {
         unsafe {
             ffi::adw_header_bar_remove(self.to_glib_none().0, child.as_ref().to_glib_none().0);
         }
@@ -148,7 +148,7 @@ impl HeaderBar {
     }
 
     #[doc(alias = "adw_header_bar_set_title_widget")]
-    pub fn set_title_widget<P: IsA<gtk::Widget>>(&self, title_widget: Option<&P>) {
+    pub fn set_title_widget(&self, title_widget: Option<&impl IsA<gtk::Widget>>) {
         unsafe {
             ffi::adw_header_bar_set_title_widget(
                 self.to_glib_none().0,
@@ -475,7 +475,7 @@ impl HeaderBarBuilder {
         self
     }
 
-    pub fn title_widget<P: IsA<gtk::Widget>>(mut self, title_widget: &P) -> Self {
+    pub fn title_widget(mut self, title_widget: &impl IsA<gtk::Widget>) -> Self {
         self.title_widget = Some(title_widget.clone().upcast());
         self
     }
@@ -540,7 +540,7 @@ impl HeaderBarBuilder {
         self
     }
 
-    pub fn layout_manager<P: IsA<gtk::LayoutManager>>(mut self, layout_manager: &P) -> Self {
+    pub fn layout_manager(mut self, layout_manager: &impl IsA<gtk::LayoutManager>) -> Self {
         self.layout_manager = Some(layout_manager.clone().upcast());
         self
     }

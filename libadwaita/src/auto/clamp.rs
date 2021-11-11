@@ -58,7 +58,7 @@ impl Clamp {
     }
 
     #[doc(alias = "adw_clamp_set_child")]
-    pub fn set_child<P: IsA<gtk::Widget>>(&self, child: Option<&P>) {
+    pub fn set_child(&self, child: Option<&impl IsA<gtk::Widget>>) {
         unsafe {
             ffi::adw_clamp_set_child(
                 self.to_glib_none().0,
@@ -318,7 +318,7 @@ impl ClampBuilder {
         glib::Object::new::<Clamp>(&properties).expect("Failed to create an instance of Clamp")
     }
 
-    pub fn child<P: IsA<gtk::Widget>>(mut self, child: &P) -> Self {
+    pub fn child(mut self, child: &impl IsA<gtk::Widget>) -> Self {
         self.child = Some(child.clone().upcast());
         self
     }
@@ -393,7 +393,7 @@ impl ClampBuilder {
         self
     }
 
-    pub fn layout_manager<P: IsA<gtk::LayoutManager>>(mut self, layout_manager: &P) -> Self {
+    pub fn layout_manager(mut self, layout_manager: &impl IsA<gtk::LayoutManager>) -> Self {
         self.layout_manager = Some(layout_manager.clone().upcast());
         self
     }

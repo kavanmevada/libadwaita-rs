@@ -18,7 +18,9 @@ glib::wrapper! {
     }
 }
 
-pub const NONE_SWIPEABLE: Option<&Swipeable> = None;
+impl Swipeable {
+    pub const NONE: Option<&'static Swipeable> = None;
+}
 
 pub trait SwipeableExt: 'static {
     #[doc(alias = "adw_swipeable_get_cancel_progress")]

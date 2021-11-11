@@ -17,6 +17,9 @@ name = "libadwaita"
 
 [features]
 dox = []
+gtk_v4_2 = []
+gtk_v4_4 = ["gtk_v4_2"]
+gtk_v4_6 = ["gtk_v4_4"]
 
 [package.metadata.docs.rs]
 features = ["dox"]
@@ -26,24 +29,24 @@ libc = '0.2'
 once_cell = "1.8"
 
 [dependencies.glib]
-version = "0.14"
+git = "https://github.com/gtk-rs/gtk-rs-core"
 
 [dependencies.gio]
-version = "0.14"
+git = "https://github.com/gtk-rs/gtk-rs-core"
 
 [dependencies.gdk-pixbuf]
-version = "0.14"
+git = "https://github.com/gtk-rs/gtk-rs-core"
 
 [dependencies.pango]
-version = "0.14"
+git = "https://github.com/gtk-rs/gtk-rs-core"
 
 [dependencies.gdk]
 package = "gdk4"
-version = "0.3"
+git = "https://github.com/gtk-rs/gtk4-rs"
 
 [dependencies.gtk]
 package = "gtk4"
-version = "0.3"
+git = "https://github.com/gtk-rs/gtk4-rs"
 
 [dependencies.ffi]
 package = "libadwaita-sys"

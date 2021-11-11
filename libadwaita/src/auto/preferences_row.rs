@@ -231,7 +231,7 @@ impl PreferencesRowBuilder {
         self
     }
 
-    pub fn child<P: IsA<gtk::Widget>>(mut self, child: &P) -> Self {
+    pub fn child(mut self, child: &impl IsA<gtk::Widget>) -> Self {
         self.child = Some(child.clone().upcast());
         self
     }
@@ -301,7 +301,7 @@ impl PreferencesRowBuilder {
         self
     }
 
-    pub fn layout_manager<P: IsA<gtk::LayoutManager>>(mut self, layout_manager: &P) -> Self {
+    pub fn layout_manager(mut self, layout_manager: &impl IsA<gtk::LayoutManager>) -> Self {
         self.layout_manager = Some(layout_manager.clone().upcast());
         self
     }
@@ -402,7 +402,9 @@ impl PreferencesRowBuilder {
     }
 }
 
-pub const NONE_PREFERENCES_ROW: Option<&PreferencesRow> = None;
+impl PreferencesRow {
+    pub const NONE: Option<&'static PreferencesRow> = None;
+}
 
 pub trait PreferencesRowExt: 'static {
     #[doc(alias = "adw_preferences_row_get_title")]

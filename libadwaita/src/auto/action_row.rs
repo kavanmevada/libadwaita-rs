@@ -237,7 +237,7 @@ impl ActionRowBuilder {
             .expect("Failed to create an instance of ActionRow")
     }
 
-    pub fn activatable_widget<P: IsA<gtk::Widget>>(mut self, activatable_widget: &P) -> Self {
+    pub fn activatable_widget(mut self, activatable_widget: &impl IsA<gtk::Widget>) -> Self {
         self.activatable_widget = Some(activatable_widget.clone().upcast());
         self
     }
@@ -277,7 +277,7 @@ impl ActionRowBuilder {
         self
     }
 
-    pub fn child<P: IsA<gtk::Widget>>(mut self, child: &P) -> Self {
+    pub fn child(mut self, child: &impl IsA<gtk::Widget>) -> Self {
         self.child = Some(child.clone().upcast());
         self
     }
@@ -347,7 +347,7 @@ impl ActionRowBuilder {
         self
     }
 
-    pub fn layout_manager<P: IsA<gtk::LayoutManager>>(mut self, layout_manager: &P) -> Self {
+    pub fn layout_manager(mut self, layout_manager: &impl IsA<gtk::LayoutManager>) -> Self {
         self.layout_manager = Some(layout_manager.clone().upcast());
         self
     }
@@ -448,17 +448,19 @@ impl ActionRowBuilder {
     }
 }
 
-pub const NONE_ACTION_ROW: Option<&ActionRow> = None;
+impl ActionRow {
+    pub const NONE: Option<&'static ActionRow> = None;
+}
 
 pub trait ActionRowExt: 'static {
     #[doc(alias = "adw_action_row_activate")]
     fn activate(&self);
 
     #[doc(alias = "adw_action_row_add_prefix")]
-    fn add_prefix<P: IsA<gtk::Widget>>(&self, widget: &P);
+    fn add_prefix(&self, widget: &impl IsA<gtk::Widget>);
 
     #[doc(alias = "adw_action_row_add_suffix")]
-    fn add_suffix<P: IsA<gtk::Widget>>(&self, widget: &P);
+    fn add_suffix(&self, widget: &impl IsA<gtk::Widget>);
 
     #[doc(alias = "adw_action_row_get_activatable_widget")]
     #[doc(alias = "get_activatable_widget")]
@@ -481,10 +483,10 @@ pub trait ActionRowExt: 'static {
     fn title_lines(&self) -> i32;
 
     #[doc(alias = "adw_action_row_remove")]
-    fn remove<P: IsA<gtk::Widget>>(&self, widget: &P);
+    fn remove(&self, widget: &impl IsA<gtk::Widget>);
 
     #[doc(alias = "adw_action_row_set_activatable_widget")]
-    fn set_activatable_widget<P: IsA<gtk::Widget>>(&self, widget: Option<&P>);
+    fn set_activatable_widget(&self, widget: Option<&impl IsA<gtk::Widget>>);
 
     #[doc(alias = "adw_action_row_set_icon_name")]
     fn set_icon_name(&self, icon_name: Option<&str>);
@@ -524,7 +526,7 @@ impl<O: IsA<ActionRow>> ActionRowExt for O {
         }
     }
 
-    fn add_prefix<P: IsA<gtk::Widget>>(&self, widget: &P) {
+    fn add_prefix(&self, widget: &impl IsA<gtk::Widget>) {
         unsafe {
             ffi::adw_action_row_add_prefix(
                 self.as_ref().to_glib_none().0,
@@ -533,7 +535,7 @@ impl<O: IsA<ActionRow>> ActionRowExt for O {
         }
     }
 
-    fn add_suffix<P: IsA<gtk::Widget>>(&self, widget: &P) {
+    fn add_suffix(&self, widget: &impl IsA<gtk::Widget>) {
         unsafe {
             ffi::adw_action_row_add_suffix(
                 self.as_ref().to_glib_none().0,
@@ -574,7 +576,7 @@ impl<O: IsA<ActionRow>> ActionRowExt for O {
         unsafe { ffi::adw_action_row_get_title_lines(self.as_ref().to_glib_none().0) }
     }
 
-    fn remove<P: IsA<gtk::Widget>>(&self, widget: &P) {
+    fn remove(&self, widget: &impl IsA<gtk::Widget>) {
         unsafe {
             ffi::adw_action_row_remove(
                 self.as_ref().to_glib_none().0,
@@ -583,7 +585,7 @@ impl<O: IsA<ActionRow>> ActionRowExt for O {
         }
     }
 
-    fn set_activatable_widget<P: IsA<gtk::Widget>>(&self, widget: Option<&P>) {
+    fn set_activatable_widget(&self, widget: Option<&impl IsA<gtk::Widget>>) {
         unsafe {
             ffi::adw_action_row_set_activatable_widget(
                 self.as_ref().to_glib_none().0,

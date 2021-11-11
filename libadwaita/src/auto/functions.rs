@@ -14,7 +14,7 @@ pub fn ease_out_cubic(t: f64) -> f64 {
 
 #[doc(alias = "adw_get_enable_animations")]
 #[doc(alias = "get_enable_animations")]
-pub fn is_animations_enabled<P: IsA<gtk::Widget>>(widget: &P) -> bool {
+pub fn is_animations_enabled(widget: &impl IsA<gtk::Widget>) -> bool {
     assert_initialized_main_thread!();
     unsafe {
         from_glib(ffi::adw_get_enable_animations(
