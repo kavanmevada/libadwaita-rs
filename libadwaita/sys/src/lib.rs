@@ -1725,6 +1725,7 @@ extern "C" {
         self_: *mut AdwPreferencesWindow,
         page: *mut AdwPreferencesPage,
     );
+    pub fn adw_preferences_window_add_toast(self_: *mut AdwPreferencesWindow, toast: *mut AdwToast);
     pub fn adw_preferences_window_close_subpage(self_: *mut AdwPreferencesWindow);
     pub fn adw_preferences_window_get_can_swipe_back(self_: *mut AdwPreferencesWindow) -> gboolean;
     pub fn adw_preferences_window_get_search_enabled(self_: *mut AdwPreferencesWindow) -> gboolean;
