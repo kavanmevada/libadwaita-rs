@@ -277,7 +277,7 @@ impl ExpanderRowBuilder {
         self
     }
 
-    pub fn child<P: IsA<gtk::Widget>>(mut self, child: &P) -> Self {
+    pub fn child(mut self, child: &impl IsA<gtk::Widget>) -> Self {
         self.child = Some(child.clone().upcast());
         self
     }
@@ -347,7 +347,7 @@ impl ExpanderRowBuilder {
         self
     }
 
-    pub fn layout_manager<P: IsA<gtk::LayoutManager>>(mut self, layout_manager: &P) -> Self {
+    pub fn layout_manager(mut self, layout_manager: &impl IsA<gtk::LayoutManager>) -> Self {
         self.layout_manager = Some(layout_manager.clone().upcast());
         self
     }
@@ -448,17 +448,19 @@ impl ExpanderRowBuilder {
     }
 }
 
-pub const NONE_EXPANDER_ROW: Option<&ExpanderRow> = None;
+impl ExpanderRow {
+    pub const NONE: Option<&'static ExpanderRow> = None;
+}
 
 pub trait ExpanderRowExt: 'static {
     #[doc(alias = "adw_expander_row_add_action")]
-    fn add_action<P: IsA<gtk::Widget>>(&self, widget: &P);
+    fn add_action(&self, widget: &impl IsA<gtk::Widget>);
 
     #[doc(alias = "adw_expander_row_add_prefix")]
-    fn add_prefix<P: IsA<gtk::Widget>>(&self, widget: &P);
+    fn add_prefix(&self, widget: &impl IsA<gtk::Widget>);
 
     #[doc(alias = "adw_expander_row_add_row")]
-    fn add_row<P: IsA<gtk::Widget>>(&self, child: &P);
+    fn add_row(&self, child: &impl IsA<gtk::Widget>);
 
     #[doc(alias = "adw_expander_row_get_enable_expansion")]
     #[doc(alias = "get_enable_expansion")]
@@ -481,7 +483,7 @@ pub trait ExpanderRowExt: 'static {
     fn subtitle(&self) -> Option<glib::GString>;
 
     #[doc(alias = "adw_expander_row_remove")]
-    fn remove<P: IsA<gtk::Widget>>(&self, child: &P);
+    fn remove(&self, child: &impl IsA<gtk::Widget>);
 
     #[doc(alias = "adw_expander_row_set_enable_expansion")]
     fn set_enable_expansion(&self, enable_expansion: bool);
@@ -515,7 +517,7 @@ pub trait ExpanderRowExt: 'static {
 }
 
 impl<O: IsA<ExpanderRow>> ExpanderRowExt for O {
-    fn add_action<P: IsA<gtk::Widget>>(&self, widget: &P) {
+    fn add_action(&self, widget: &impl IsA<gtk::Widget>) {
         unsafe {
             ffi::adw_expander_row_add_action(
                 self.as_ref().to_glib_none().0,
@@ -524,7 +526,7 @@ impl<O: IsA<ExpanderRow>> ExpanderRowExt for O {
         }
     }
 
-    fn add_prefix<P: IsA<gtk::Widget>>(&self, widget: &P) {
+    fn add_prefix(&self, widget: &impl IsA<gtk::Widget>) {
         unsafe {
             ffi::adw_expander_row_add_prefix(
                 self.as_ref().to_glib_none().0,
@@ -533,7 +535,7 @@ impl<O: IsA<ExpanderRow>> ExpanderRowExt for O {
         }
     }
 
-    fn add_row<P: IsA<gtk::Widget>>(&self, child: &P) {
+    fn add_row(&self, child: &impl IsA<gtk::Widget>) {
         unsafe {
             ffi::adw_expander_row_add_row(
                 self.as_ref().to_glib_none().0,
@@ -582,7 +584,7 @@ impl<O: IsA<ExpanderRow>> ExpanderRowExt for O {
         }
     }
 
-    fn remove<P: IsA<gtk::Widget>>(&self, child: &P) {
+    fn remove(&self, child: &impl IsA<gtk::Widget>) {
         unsafe {
             ffi::adw_expander_row_remove(
                 self.as_ref().to_glib_none().0,

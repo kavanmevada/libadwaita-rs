@@ -45,7 +45,7 @@ impl Leaflet {
     }
 
     #[doc(alias = "adw_leaflet_append")]
-    pub fn append<P: IsA<gtk::Widget>>(&self, child: &P) -> Option<LeafletPage> {
+    pub fn append(&self, child: &impl IsA<gtk::Widget>) -> Option<LeafletPage> {
         unsafe {
             from_glib_none(ffi::adw_leaflet_append(
                 self.to_glib_none().0,
@@ -144,7 +144,7 @@ impl Leaflet {
 
     #[doc(alias = "adw_leaflet_get_page")]
     #[doc(alias = "get_page")]
-    pub fn page<P: IsA<gtk::Widget>>(&self, child: &P) -> Option<LeafletPage> {
+    pub fn page(&self, child: &impl IsA<gtk::Widget>) -> Option<LeafletPage> {
         unsafe {
             from_glib_none(ffi::adw_leaflet_get_page(
                 self.to_glib_none().0,
@@ -182,10 +182,10 @@ impl Leaflet {
     }
 
     #[doc(alias = "adw_leaflet_insert_child_after")]
-    pub fn insert_child_after<P: IsA<gtk::Widget>, Q: IsA<gtk::Widget>>(
+    pub fn insert_child_after(
         &self,
-        child: &P,
-        sibling: Option<&Q>,
+        child: &impl IsA<gtk::Widget>,
+        sibling: Option<&impl IsA<gtk::Widget>>,
     ) -> Option<LeafletPage> {
         unsafe {
             from_glib_none(ffi::adw_leaflet_insert_child_after(
@@ -207,7 +207,7 @@ impl Leaflet {
     }
 
     #[doc(alias = "adw_leaflet_prepend")]
-    pub fn prepend<P: IsA<gtk::Widget>>(&self, child: &P) -> Option<LeafletPage> {
+    pub fn prepend(&self, child: &impl IsA<gtk::Widget>) -> Option<LeafletPage> {
         unsafe {
             from_glib_none(ffi::adw_leaflet_prepend(
                 self.to_glib_none().0,
@@ -217,17 +217,17 @@ impl Leaflet {
     }
 
     #[doc(alias = "adw_leaflet_remove")]
-    pub fn remove<P: IsA<gtk::Widget>>(&self, child: &P) {
+    pub fn remove(&self, child: &impl IsA<gtk::Widget>) {
         unsafe {
             ffi::adw_leaflet_remove(self.to_glib_none().0, child.as_ref().to_glib_none().0);
         }
     }
 
     #[doc(alias = "adw_leaflet_reorder_child_after")]
-    pub fn reorder_child_after<P: IsA<gtk::Widget>, Q: IsA<gtk::Widget>>(
+    pub fn reorder_child_after(
         &self,
-        child: &P,
-        sibling: Option<&Q>,
+        child: &impl IsA<gtk::Widget>,
+        sibling: Option<&impl IsA<gtk::Widget>>,
     ) {
         unsafe {
             ffi::adw_leaflet_reorder_child_after(
@@ -298,7 +298,7 @@ impl Leaflet {
     }
 
     #[doc(alias = "adw_leaflet_set_visible_child")]
-    pub fn set_visible_child<P: IsA<gtk::Widget>>(&self, visible_child: &P) {
+    pub fn set_visible_child(&self, visible_child: &impl IsA<gtk::Widget>) {
         unsafe {
             ffi::adw_leaflet_set_visible_child(
                 self.to_glib_none().0,
@@ -870,7 +870,7 @@ impl LeafletBuilder {
         self
     }
 
-    pub fn visible_child<P: IsA<gtk::Widget>>(mut self, visible_child: &P) -> Self {
+    pub fn visible_child(mut self, visible_child: &impl IsA<gtk::Widget>) -> Self {
         self.visible_child = Some(visible_child.clone().upcast());
         self
     }
@@ -940,7 +940,7 @@ impl LeafletBuilder {
         self
     }
 
-    pub fn layout_manager<P: IsA<gtk::LayoutManager>>(mut self, layout_manager: &P) -> Self {
+    pub fn layout_manager(mut self, layout_manager: &impl IsA<gtk::LayoutManager>) -> Self {
         self.layout_manager = Some(layout_manager.clone().upcast());
         self
     }

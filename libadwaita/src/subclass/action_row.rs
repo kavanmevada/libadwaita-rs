@@ -2,11 +2,10 @@ use glib::subclass::prelude::*;
 use glib::translate::*;
 use glib::Cast;
 
+use crate::subclass::prelude::PreferencesRowImpl;
 use crate::ActionRow;
-use gtk::subclass::list_box_row::ListBoxRowImpl;
-use gtk::ListBoxRow;
 
-pub trait ActionRowImpl: ActionRowImplExt + ListBoxRowImpl {
+pub trait ActionRowImpl: PreferencesRowImpl {
     fn activate(&self, row: &Self::Type) {
         ActionRowImplExt::parent_activate(self, row)
     }
@@ -30,14 +29,10 @@ impl<T: ActionRowImpl> ActionRowImplExt for T {
 
 unsafe impl<T: ActionRowImpl> IsSubclassable<T> for ActionRow {
     fn class_init(class: &mut glib::Class<Self>) {
-        <ListBoxRow as IsSubclassable<T>>::class_init(class);
+        Self::parent_class_init::<T>(class);
 
         let klass = class.as_mut();
         klass.activate = Some(row_activate::<T>);
-    }
-
-    fn instance_init(instance: &mut glib::subclass::InitializingObject<T>) {
-        <ListBoxRow as IsSubclassable<T>>::instance_init(instance);
     }
 }
 

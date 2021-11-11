@@ -118,6 +118,13 @@ impl WindowTitle {
     }
 }
 
+impl Default for WindowTitle {
+    fn default() -> Self {
+        glib::object::Object::new::<Self>(&[])
+            .expect("Can't construct WindowTitle object with default parameters")
+    }
+}
+
 #[derive(Clone, Default)]
 // rustdoc-stripper-ignore-next
 /// A [builder-pattern] type to construct [`WindowTitle`] objects.
@@ -339,7 +346,7 @@ impl WindowTitleBuilder {
         self
     }
 
-    pub fn layout_manager<P: IsA<gtk::LayoutManager>>(mut self, layout_manager: &P) -> Self {
+    pub fn layout_manager(mut self, layout_manager: &impl IsA<gtk::LayoutManager>) -> Self {
         self.layout_manager = Some(layout_manager.clone().upcast());
         self
     }

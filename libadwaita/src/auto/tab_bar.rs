@@ -104,7 +104,7 @@ impl TabBar {
     }
 
     #[doc(alias = "adw_tab_bar_set_end_action_widget")]
-    pub fn set_end_action_widget<P: IsA<gtk::Widget>>(&self, widget: Option<&P>) {
+    pub fn set_end_action_widget(&self, widget: Option<&impl IsA<gtk::Widget>>) {
         unsafe {
             ffi::adw_tab_bar_set_end_action_widget(
                 self.to_glib_none().0,
@@ -128,7 +128,7 @@ impl TabBar {
     }
 
     #[doc(alias = "adw_tab_bar_set_start_action_widget")]
-    pub fn set_start_action_widget<P: IsA<gtk::Widget>>(&self, widget: Option<&P>) {
+    pub fn set_start_action_widget(&self, widget: Option<&impl IsA<gtk::Widget>>) {
         unsafe {
             ffi::adw_tab_bar_set_start_action_widget(
                 self.to_glib_none().0,
@@ -512,7 +512,7 @@ impl TabBarBuilder {
         self
     }
 
-    pub fn end_action_widget<P: IsA<gtk::Widget>>(mut self, end_action_widget: &P) -> Self {
+    pub fn end_action_widget(mut self, end_action_widget: &impl IsA<gtk::Widget>) -> Self {
         self.end_action_widget = Some(end_action_widget.clone().upcast());
         self
     }
@@ -527,7 +527,7 @@ impl TabBarBuilder {
         self
     }
 
-    pub fn start_action_widget<P: IsA<gtk::Widget>>(mut self, start_action_widget: &P) -> Self {
+    pub fn start_action_widget(mut self, start_action_widget: &impl IsA<gtk::Widget>) -> Self {
         self.start_action_widget = Some(start_action_widget.clone().upcast());
         self
     }
@@ -597,7 +597,7 @@ impl TabBarBuilder {
         self
     }
 
-    pub fn layout_manager<P: IsA<gtk::LayoutManager>>(mut self, layout_manager: &P) -> Self {
+    pub fn layout_manager(mut self, layout_manager: &impl IsA<gtk::LayoutManager>) -> Self {
         self.layout_manager = Some(layout_manager.clone().upcast());
         self
     }

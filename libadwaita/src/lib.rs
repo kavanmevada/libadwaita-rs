@@ -1,3 +1,4 @@
+#![cfg_attr(feature = "dox", feature(doc_cfg))]
 #![allow(clippy::needless_doctest_main)]
 //! # Rust Adwaita bindings
 //!

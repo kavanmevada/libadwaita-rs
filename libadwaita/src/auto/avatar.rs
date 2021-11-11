@@ -87,7 +87,7 @@ impl Avatar {
     }
 
     #[doc(alias = "adw_avatar_set_custom_image")]
-    pub fn set_custom_image<P: IsA<gdk::Paintable>>(&self, custom_image: Option<&P>) {
+    pub fn set_custom_image(&self, custom_image: Option<&impl IsA<gdk::Paintable>>) {
         unsafe {
             ffi::adw_avatar_set_custom_image(
                 self.to_glib_none().0,
@@ -237,6 +237,13 @@ impl Avatar {
                 Box_::into_raw(f),
             )
         }
+    }
+}
+
+impl Default for Avatar {
+    fn default() -> Self {
+        glib::object::Object::new::<Self>(&[])
+            .expect("Can't construct Avatar object with default parameters")
     }
 }
 
@@ -402,7 +409,7 @@ impl AvatarBuilder {
         glib::Object::new::<Avatar>(&properties).expect("Failed to create an instance of Avatar")
     }
 
-    pub fn custom_image<P: IsA<gdk::Paintable>>(mut self, custom_image: &P) -> Self {
+    pub fn custom_image(mut self, custom_image: &impl IsA<gdk::Paintable>) -> Self {
         self.custom_image = Some(custom_image.clone().upcast());
         self
     }
@@ -487,7 +494,7 @@ impl AvatarBuilder {
         self
     }
 
-    pub fn layout_manager<P: IsA<gtk::LayoutManager>>(mut self, layout_manager: &P) -> Self {
+    pub fn layout_manager(mut self, layout_manager: &impl IsA<gtk::LayoutManager>) -> Self {
         self.layout_manager = Some(layout_manager.clone().upcast());
         self
     }

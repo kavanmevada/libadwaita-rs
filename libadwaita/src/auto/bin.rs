@@ -191,7 +191,7 @@ impl BinBuilder {
         glib::Object::new::<Bin>(&properties).expect("Failed to create an instance of Bin")
     }
 
-    pub fn child<P: IsA<gtk::Widget>>(mut self, child: &P) -> Self {
+    pub fn child(mut self, child: &impl IsA<gtk::Widget>) -> Self {
         self.child = Some(child.clone().upcast());
         self
     }
@@ -256,7 +256,7 @@ impl BinBuilder {
         self
     }
 
-    pub fn layout_manager<P: IsA<gtk::LayoutManager>>(mut self, layout_manager: &P) -> Self {
+    pub fn layout_manager(mut self, layout_manager: &impl IsA<gtk::LayoutManager>) -> Self {
         self.layout_manager = Some(layout_manager.clone().upcast());
         self
     }
@@ -347,7 +347,9 @@ impl BinBuilder {
     }
 }
 
-pub const NONE_BIN: Option<&Bin> = None;
+impl Bin {
+    pub const NONE: Option<&'static Bin> = None;
+}
 
 pub trait BinExt: 'static {
     #[doc(alias = "adw_bin_get_child")]
@@ -355,7 +357,7 @@ pub trait BinExt: 'static {
     fn child(&self) -> Option<gtk::Widget>;
 
     #[doc(alias = "adw_bin_set_child")]
-    fn set_child<P: IsA<gtk::Widget>>(&self, child: Option<&P>);
+    fn set_child(&self, child: Option<&impl IsA<gtk::Widget>>);
 
     #[doc(alias = "child")]
     fn connect_child_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
@@ -366,7 +368,7 @@ impl<O: IsA<Bin>> BinExt for O {
         unsafe { from_glib_none(ffi::adw_bin_get_child(self.as_ref().to_glib_none().0)) }
     }
 
-    fn set_child<P: IsA<gtk::Widget>>(&self, child: Option<&P>) {
+    fn set_child(&self, child: Option<&impl IsA<gtk::Widget>>) {
         unsafe {
             ffi::adw_bin_set_child(
                 self.as_ref().to_glib_none().0,

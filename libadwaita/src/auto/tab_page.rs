@@ -93,7 +93,7 @@ impl TabPage {
     }
 
     #[doc(alias = "adw_tab_page_set_icon")]
-    pub fn set_icon<P: IsA<gio::Icon>>(&self, icon: Option<&P>) {
+    pub fn set_icon(&self, icon: Option<&impl IsA<gio::Icon>>) {
         unsafe {
             ffi::adw_tab_page_set_icon(
                 self.to_glib_none().0,
@@ -113,7 +113,7 @@ impl TabPage {
     }
 
     #[doc(alias = "adw_tab_page_set_indicator_icon")]
-    pub fn set_indicator_icon<P: IsA<gio::Icon>>(&self, indicator_icon: Option<&P>) {
+    pub fn set_indicator_icon(&self, indicator_icon: Option<&impl IsA<gio::Icon>>) {
         unsafe {
             ffi::adw_tab_page_set_indicator_icon(
                 self.to_glib_none().0,

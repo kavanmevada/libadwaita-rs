@@ -281,7 +281,7 @@ impl PreferencesPageBuilder {
         self
     }
 
-    pub fn layout_manager<P: IsA<gtk::LayoutManager>>(mut self, layout_manager: &P) -> Self {
+    pub fn layout_manager(mut self, layout_manager: &impl IsA<gtk::LayoutManager>) -> Self {
         self.layout_manager = Some(layout_manager.clone().upcast());
         self
     }
@@ -367,11 +367,13 @@ impl PreferencesPageBuilder {
     }
 }
 
-pub const NONE_PREFERENCES_PAGE: Option<&PreferencesPage> = None;
+impl PreferencesPage {
+    pub const NONE: Option<&'static PreferencesPage> = None;
+}
 
 pub trait PreferencesPageExt: 'static {
     #[doc(alias = "adw_preferences_page_add")]
-    fn add<P: IsA<PreferencesGroup>>(&self, group: &P);
+    fn add(&self, group: &impl IsA<PreferencesGroup>);
 
     #[doc(alias = "adw_preferences_page_get_icon_name")]
     #[doc(alias = "get_icon_name")]
@@ -390,7 +392,7 @@ pub trait PreferencesPageExt: 'static {
     fn uses_underline(&self) -> bool;
 
     #[doc(alias = "adw_preferences_page_remove")]
-    fn remove<P: IsA<PreferencesGroup>>(&self, group: &P);
+    fn remove(&self, group: &impl IsA<PreferencesGroup>);
 
     #[doc(alias = "adw_preferences_page_set_icon_name")]
     fn set_icon_name(&self, icon_name: Option<&str>);
@@ -418,7 +420,7 @@ pub trait PreferencesPageExt: 'static {
 }
 
 impl<O: IsA<PreferencesPage>> PreferencesPageExt for O {
-    fn add<P: IsA<PreferencesGroup>>(&self, group: &P) {
+    fn add(&self, group: &impl IsA<PreferencesGroup>) {
         unsafe {
             ffi::adw_preferences_page_add(
                 self.as_ref().to_glib_none().0,
@@ -459,7 +461,7 @@ impl<O: IsA<PreferencesPage>> PreferencesPageExt for O {
         }
     }
 
-    fn remove<P: IsA<PreferencesGroup>>(&self, group: &P) {
+    fn remove(&self, group: &impl IsA<PreferencesGroup>) {
         unsafe {
             ffi::adw_preferences_page_remove(
                 self.as_ref().to_glib_none().0,

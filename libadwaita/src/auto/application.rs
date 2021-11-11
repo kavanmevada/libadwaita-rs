@@ -89,7 +89,7 @@ impl ApplicationBuilder {
         ret
     }
 
-    pub fn menubar<P: IsA<gio::MenuModel>>(mut self, menubar: &P) -> Self {
+    pub fn menubar(mut self, menubar: &impl IsA<gio::MenuModel>) -> Self {
         self.menubar = Some(menubar.clone().upcast());
         self
     }
@@ -99,7 +99,7 @@ impl ApplicationBuilder {
         self
     }
 
-    pub fn action_group<P: IsA<gio::ActionGroup>>(mut self, action_group: &P) -> Self {
+    pub fn action_group(mut self, action_group: &impl IsA<gio::ActionGroup>) -> Self {
         self.action_group = Some(action_group.clone().upcast());
         self
     }
@@ -125,7 +125,9 @@ impl ApplicationBuilder {
     }
 }
 
-pub const NONE_APPLICATION: Option<&Application> = None;
+impl Application {
+    pub const NONE: Option<&'static Application> = None;
+}
 
 pub trait AdwApplicationExt: 'static {
     #[doc(alias = "adw_application_get_style_manager")]

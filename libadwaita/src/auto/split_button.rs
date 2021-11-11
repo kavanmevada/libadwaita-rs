@@ -101,7 +101,7 @@ impl SplitButton {
     }
 
     #[doc(alias = "adw_split_button_set_child")]
-    pub fn set_child<P: IsA<gtk::Widget>>(&self, child: Option<&P>) {
+    pub fn set_child(&self, child: Option<&impl IsA<gtk::Widget>>) {
         unsafe {
             ffi::adw_split_button_set_child(
                 self.to_glib_none().0,
@@ -132,7 +132,7 @@ impl SplitButton {
     }
 
     #[doc(alias = "adw_split_button_set_menu_model")]
-    pub fn set_menu_model<P: IsA<gio::MenuModel>>(&self, menu_model: Option<&P>) {
+    pub fn set_menu_model(&self, menu_model: Option<&impl IsA<gio::MenuModel>>) {
         unsafe {
             ffi::adw_split_button_set_menu_model(
                 self.to_glib_none().0,
@@ -142,7 +142,7 @@ impl SplitButton {
     }
 
     #[doc(alias = "adw_split_button_set_popover")]
-    pub fn set_popover<P: IsA<gtk::Popover>>(&self, popover: Option<&P>) {
+    pub fn set_popover(&self, popover: Option<&impl IsA<gtk::Popover>>) {
         unsafe {
             ffi::adw_split_button_set_popover(
                 self.to_glib_none().0,
@@ -184,11 +184,7 @@ impl SplitButton {
     }
 
     pub fn emit_activate(&self) {
-        let _ = unsafe {
-            glib::Object::from_glib_borrow(self.as_ptr() as *mut glib::gobject_ffi::GObject)
-                .emit_by_name("activate", &[])
-                .unwrap()
-        };
+        let _ = self.emit_by_name("activate", &[]);
     }
 
     #[doc(alias = "clicked")]
@@ -214,11 +210,7 @@ impl SplitButton {
     }
 
     pub fn emit_clicked(&self) {
-        let _ = unsafe {
-            glib::Object::from_glib_borrow(self.as_ptr() as *mut glib::gobject_ffi::GObject)
-                .emit_by_name("clicked", &[])
-                .unwrap()
-        };
+        let _ = self.emit_by_name("clicked", &[]);
     }
 
     #[doc(alias = "child")]
@@ -568,7 +560,7 @@ impl SplitButtonBuilder {
             .expect("Failed to create an instance of SplitButton")
     }
 
-    pub fn child<P: IsA<gtk::Widget>>(mut self, child: &P) -> Self {
+    pub fn child(mut self, child: &impl IsA<gtk::Widget>) -> Self {
         self.child = Some(child.clone().upcast());
         self
     }
@@ -588,12 +580,12 @@ impl SplitButtonBuilder {
         self
     }
 
-    pub fn menu_model<P: IsA<gio::MenuModel>>(mut self, menu_model: &P) -> Self {
+    pub fn menu_model(mut self, menu_model: &impl IsA<gio::MenuModel>) -> Self {
         self.menu_model = Some(menu_model.clone().upcast());
         self
     }
 
-    pub fn popover<P: IsA<gtk::Popover>>(mut self, popover: &P) -> Self {
+    pub fn popover(mut self, popover: &impl IsA<gtk::Popover>) -> Self {
         self.popover = Some(popover.clone().upcast());
         self
     }
@@ -663,7 +655,7 @@ impl SplitButtonBuilder {
         self
     }
 
-    pub fn layout_manager<P: IsA<gtk::LayoutManager>>(mut self, layout_manager: &P) -> Self {
+    pub fn layout_manager(mut self, layout_manager: &impl IsA<gtk::LayoutManager>) -> Self {
         self.layout_manager = Some(layout_manager.clone().upcast());
         self
     }

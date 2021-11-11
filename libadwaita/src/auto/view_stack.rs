@@ -41,7 +41,7 @@ impl ViewStack {
     }
 
     #[doc(alias = "adw_view_stack_add")]
-    pub fn add<P: IsA<gtk::Widget>>(&self, child: &P) -> Option<ViewStackPage> {
+    pub fn add(&self, child: &impl IsA<gtk::Widget>) -> Option<ViewStackPage> {
         unsafe {
             from_glib_none(ffi::adw_view_stack_add(
                 self.to_glib_none().0,
@@ -51,9 +51,9 @@ impl ViewStack {
     }
 
     #[doc(alias = "adw_view_stack_add_named")]
-    pub fn add_named<P: IsA<gtk::Widget>>(
+    pub fn add_named(
         &self,
-        child: &P,
+        child: &impl IsA<gtk::Widget>,
         name: Option<&str>,
     ) -> Option<ViewStackPage> {
         unsafe {
@@ -66,9 +66,9 @@ impl ViewStack {
     }
 
     #[doc(alias = "adw_view_stack_add_titled")]
-    pub fn add_titled<P: IsA<gtk::Widget>>(
+    pub fn add_titled(
         &self,
-        child: &P,
+        child: &impl IsA<gtk::Widget>,
         name: Option<&str>,
         title: &str,
     ) -> Option<ViewStackPage> {
@@ -111,7 +111,7 @@ impl ViewStack {
 
     #[doc(alias = "adw_view_stack_get_page")]
     #[doc(alias = "get_page")]
-    pub fn page<P: IsA<gtk::Widget>>(&self, child: &P) -> Option<ViewStackPage> {
+    pub fn page(&self, child: &impl IsA<gtk::Widget>) -> Option<ViewStackPage> {
         unsafe {
             from_glib_none(ffi::adw_view_stack_get_page(
                 self.to_glib_none().0,
@@ -159,7 +159,7 @@ impl ViewStack {
     }
 
     #[doc(alias = "adw_view_stack_remove")]
-    pub fn remove<P: IsA<gtk::Widget>>(&self, child: &P) {
+    pub fn remove(&self, child: &impl IsA<gtk::Widget>) {
         unsafe {
             ffi::adw_view_stack_remove(self.to_glib_none().0, child.as_ref().to_glib_none().0);
         }
@@ -190,7 +190,7 @@ impl ViewStack {
     }
 
     #[doc(alias = "adw_view_stack_set_visible_child")]
-    pub fn set_visible_child<P: IsA<gtk::Widget>>(&self, child: &P) {
+    pub fn set_visible_child(&self, child: &impl IsA<gtk::Widget>) {
         unsafe {
             ffi::adw_view_stack_set_visible_child(
                 self.to_glib_none().0,
@@ -561,7 +561,7 @@ impl ViewStackBuilder {
         self
     }
 
-    pub fn visible_child<P: IsA<gtk::Widget>>(mut self, visible_child: &P) -> Self {
+    pub fn visible_child(mut self, visible_child: &impl IsA<gtk::Widget>) -> Self {
         self.visible_child = Some(visible_child.clone().upcast());
         self
     }
@@ -631,7 +631,7 @@ impl ViewStackBuilder {
         self
     }
 
-    pub fn layout_manager<P: IsA<gtk::LayoutManager>>(mut self, layout_manager: &P) -> Self {
+    pub fn layout_manager(mut self, layout_manager: &impl IsA<gtk::LayoutManager>) -> Self {
         self.layout_manager = Some(layout_manager.clone().upcast());
         self
     }

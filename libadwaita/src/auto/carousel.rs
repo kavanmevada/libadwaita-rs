@@ -41,7 +41,7 @@ impl Carousel {
     }
 
     #[doc(alias = "adw_carousel_append")]
-    pub fn append<P: IsA<gtk::Widget>>(&self, child: &P) {
+    pub fn append(&self, child: &impl IsA<gtk::Widget>) {
         unsafe {
             ffi::adw_carousel_append(self.to_glib_none().0, child.as_ref().to_glib_none().0);
         }
@@ -120,7 +120,7 @@ impl Carousel {
     }
 
     #[doc(alias = "adw_carousel_insert")]
-    pub fn insert<P: IsA<gtk::Widget>>(&self, child: &P, position: i32) {
+    pub fn insert(&self, child: &impl IsA<gtk::Widget>, position: i32) {
         unsafe {
             ffi::adw_carousel_insert(
                 self.to_glib_none().0,
@@ -131,21 +131,21 @@ impl Carousel {
     }
 
     #[doc(alias = "adw_carousel_prepend")]
-    pub fn prepend<P: IsA<gtk::Widget>>(&self, child: &P) {
+    pub fn prepend(&self, child: &impl IsA<gtk::Widget>) {
         unsafe {
             ffi::adw_carousel_prepend(self.to_glib_none().0, child.as_ref().to_glib_none().0);
         }
     }
 
     #[doc(alias = "adw_carousel_remove")]
-    pub fn remove<P: IsA<gtk::Widget>>(&self, child: &P) {
+    pub fn remove(&self, child: &impl IsA<gtk::Widget>) {
         unsafe {
             ffi::adw_carousel_remove(self.to_glib_none().0, child.as_ref().to_glib_none().0);
         }
     }
 
     #[doc(alias = "adw_carousel_reorder")]
-    pub fn reorder<P: IsA<gtk::Widget>>(&self, child: &P, position: i32) {
+    pub fn reorder(&self, child: &impl IsA<gtk::Widget>, position: i32) {
         unsafe {
             ffi::adw_carousel_reorder(
                 self.to_glib_none().0,
@@ -156,14 +156,14 @@ impl Carousel {
     }
 
     #[doc(alias = "adw_carousel_scroll_to")]
-    pub fn scroll_to<P: IsA<gtk::Widget>>(&self, widget: &P) {
+    pub fn scroll_to(&self, widget: &impl IsA<gtk::Widget>) {
         unsafe {
             ffi::adw_carousel_scroll_to(self.to_glib_none().0, widget.as_ref().to_glib_none().0);
         }
     }
 
     #[doc(alias = "adw_carousel_scroll_to_full")]
-    pub fn scroll_to_full<P: IsA<gtk::Widget>>(&self, widget: &P, duration: i64) {
+    pub fn scroll_to_full(&self, widget: &impl IsA<gtk::Widget>, duration: i64) {
         unsafe {
             ffi::adw_carousel_scroll_to_full(
                 self.to_glib_none().0,
@@ -747,7 +747,7 @@ impl CarouselBuilder {
         self
     }
 
-    pub fn layout_manager<P: IsA<gtk::LayoutManager>>(mut self, layout_manager: &P) -> Self {
+    pub fn layout_manager(mut self, layout_manager: &impl IsA<gtk::LayoutManager>) -> Self {
         self.layout_manager = Some(layout_manager.clone().upcast());
         self
     }

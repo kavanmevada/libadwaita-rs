@@ -266,7 +266,7 @@ impl PreferencesGroupBuilder {
         self
     }
 
-    pub fn layout_manager<P: IsA<gtk::LayoutManager>>(mut self, layout_manager: &P) -> Self {
+    pub fn layout_manager(mut self, layout_manager: &impl IsA<gtk::LayoutManager>) -> Self {
         self.layout_manager = Some(layout_manager.clone().upcast());
         self
     }
@@ -357,11 +357,13 @@ impl PreferencesGroupBuilder {
     }
 }
 
-pub const NONE_PREFERENCES_GROUP: Option<&PreferencesGroup> = None;
+impl PreferencesGroup {
+    pub const NONE: Option<&'static PreferencesGroup> = None;
+}
 
 pub trait PreferencesGroupExt: 'static {
     #[doc(alias = "adw_preferences_group_add")]
-    fn add<P: IsA<gtk::Widget>>(&self, child: &P);
+    fn add(&self, child: &impl IsA<gtk::Widget>);
 
     #[doc(alias = "adw_preferences_group_get_description")]
     #[doc(alias = "get_description")]
@@ -372,7 +374,7 @@ pub trait PreferencesGroupExt: 'static {
     fn title(&self) -> Option<glib::GString>;
 
     #[doc(alias = "adw_preferences_group_remove")]
-    fn remove<P: IsA<gtk::Widget>>(&self, child: &P);
+    fn remove(&self, child: &impl IsA<gtk::Widget>);
 
     #[doc(alias = "adw_preferences_group_set_description")]
     fn set_description(&self, description: Option<&str>);
@@ -388,7 +390,7 @@ pub trait PreferencesGroupExt: 'static {
 }
 
 impl<O: IsA<PreferencesGroup>> PreferencesGroupExt for O {
-    fn add<P: IsA<gtk::Widget>>(&self, child: &P) {
+    fn add(&self, child: &impl IsA<gtk::Widget>) {
         unsafe {
             ffi::adw_preferences_group_add(
                 self.as_ref().to_glib_none().0,
@@ -413,7 +415,7 @@ impl<O: IsA<PreferencesGroup>> PreferencesGroupExt for O {
         }
     }
 
-    fn remove<P: IsA<gtk::Widget>>(&self, child: &P) {
+    fn remove(&self, child: &impl IsA<gtk::Widget>) {
         unsafe {
             ffi::adw_preferences_group_remove(
                 self.as_ref().to_glib_none().0,

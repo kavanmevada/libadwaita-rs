@@ -43,7 +43,7 @@ impl Squeezer {
     }
 
     #[doc(alias = "adw_squeezer_add")]
-    pub fn add<P: IsA<gtk::Widget>>(&self, child: &P) -> Option<SqueezerPage> {
+    pub fn add(&self, child: &impl IsA<gtk::Widget>) -> Option<SqueezerPage> {
         unsafe {
             from_glib_none(ffi::adw_squeezer_add(
                 self.to_glib_none().0,
@@ -76,7 +76,7 @@ impl Squeezer {
 
     #[doc(alias = "adw_squeezer_get_page")]
     #[doc(alias = "get_page")]
-    pub fn page<P: IsA<gtk::Widget>>(&self, child: &P) -> Option<SqueezerPage> {
+    pub fn page(&self, child: &impl IsA<gtk::Widget>) -> Option<SqueezerPage> {
         unsafe {
             from_glib_none(ffi::adw_squeezer_get_page(
                 self.to_glib_none().0,
@@ -142,7 +142,7 @@ impl Squeezer {
     }
 
     #[doc(alias = "adw_squeezer_remove")]
-    pub fn remove<P: IsA<gtk::Widget>>(&self, child: &P) {
+    pub fn remove(&self, child: &impl IsA<gtk::Widget>) {
         unsafe {
             ffi::adw_squeezer_remove(self.to_glib_none().0, child.as_ref().to_glib_none().0);
         }
@@ -760,7 +760,7 @@ impl SqueezerBuilder {
         self
     }
 
-    pub fn layout_manager<P: IsA<gtk::LayoutManager>>(mut self, layout_manager: &P) -> Self {
+    pub fn layout_manager(mut self, layout_manager: &impl IsA<gtk::LayoutManager>) -> Self {
         self.layout_manager = Some(layout_manager.clone().upcast());
         self
     }

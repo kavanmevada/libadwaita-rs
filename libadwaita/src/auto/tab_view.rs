@@ -41,9 +41,9 @@ impl TabView {
     }
 
     #[doc(alias = "adw_tab_view_add_page")]
-    pub fn add_page<P: IsA<gtk::Widget>>(
+    pub fn add_page(
         &self,
-        child: &P,
+        child: &impl IsA<gtk::Widget>,
         parent: Option<&TabPage>,
     ) -> Option<TabPage> {
         unsafe {
@@ -56,7 +56,7 @@ impl TabView {
     }
 
     #[doc(alias = "adw_tab_view_append")]
-    pub fn append<P: IsA<gtk::Widget>>(&self, child: &P) -> Option<TabPage> {
+    pub fn append(&self, child: &impl IsA<gtk::Widget>) -> Option<TabPage> {
         unsafe {
             from_glib_none(ffi::adw_tab_view_append(
                 self.to_glib_none().0,
@@ -66,7 +66,7 @@ impl TabView {
     }
 
     #[doc(alias = "adw_tab_view_append_pinned")]
-    pub fn append_pinned<P: IsA<gtk::Widget>>(&self, child: &P) -> Option<TabPage> {
+    pub fn append_pinned(&self, child: &impl IsA<gtk::Widget>) -> Option<TabPage> {
         unsafe {
             from_glib_none(ffi::adw_tab_view_append_pinned(
                 self.to_glib_none().0,
@@ -161,7 +161,7 @@ impl TabView {
 
     #[doc(alias = "adw_tab_view_get_page")]
     #[doc(alias = "get_page")]
-    pub fn page<P: IsA<gtk::Widget>>(&self, child: &P) -> Option<TabPage> {
+    pub fn page(&self, child: &impl IsA<gtk::Widget>) -> Option<TabPage> {
         unsafe {
             from_glib_none(ffi::adw_tab_view_get_page(
                 self.to_glib_none().0,
@@ -195,7 +195,7 @@ impl TabView {
     }
 
     #[doc(alias = "adw_tab_view_insert")]
-    pub fn insert<P: IsA<gtk::Widget>>(&self, child: &P, position: i32) -> Option<TabPage> {
+    pub fn insert(&self, child: &impl IsA<gtk::Widget>, position: i32) -> Option<TabPage> {
         unsafe {
             from_glib_none(ffi::adw_tab_view_insert(
                 self.to_glib_none().0,
@@ -206,7 +206,7 @@ impl TabView {
     }
 
     #[doc(alias = "adw_tab_view_insert_pinned")]
-    pub fn insert_pinned<P: IsA<gtk::Widget>>(&self, child: &P, position: i32) -> Option<TabPage> {
+    pub fn insert_pinned(&self, child: &impl IsA<gtk::Widget>, position: i32) -> Option<TabPage> {
         unsafe {
             from_glib_none(ffi::adw_tab_view_insert_pinned(
                 self.to_glib_none().0,
@@ -217,7 +217,7 @@ impl TabView {
     }
 
     #[doc(alias = "adw_tab_view_prepend")]
-    pub fn prepend<P: IsA<gtk::Widget>>(&self, child: &P) -> Option<TabPage> {
+    pub fn prepend(&self, child: &impl IsA<gtk::Widget>) -> Option<TabPage> {
         unsafe {
             from_glib_none(ffi::adw_tab_view_prepend(
                 self.to_glib_none().0,
@@ -227,7 +227,7 @@ impl TabView {
     }
 
     #[doc(alias = "adw_tab_view_prepend_pinned")]
-    pub fn prepend_pinned<P: IsA<gtk::Widget>>(&self, child: &P) -> Option<TabPage> {
+    pub fn prepend_pinned(&self, child: &impl IsA<gtk::Widget>) -> Option<TabPage> {
         unsafe {
             from_glib_none(ffi::adw_tab_view_prepend_pinned(
                 self.to_glib_none().0,
@@ -302,7 +302,7 @@ impl TabView {
     }
 
     #[doc(alias = "adw_tab_view_set_default_icon")]
-    pub fn set_default_icon<P: IsA<gio::Icon>>(&self, default_icon: &P) {
+    pub fn set_default_icon(&self, default_icon: &impl IsA<gio::Icon>) {
         unsafe {
             ffi::adw_tab_view_set_default_icon(
                 self.to_glib_none().0,
@@ -312,7 +312,7 @@ impl TabView {
     }
 
     #[doc(alias = "adw_tab_view_set_menu_model")]
-    pub fn set_menu_model<P: IsA<gio::MenuModel>>(&self, menu_model: Option<&P>) {
+    pub fn set_menu_model(&self, menu_model: Option<&impl IsA<gio::MenuModel>>) {
         unsafe {
             ffi::adw_tab_view_set_menu_model(
                 self.to_glib_none().0,
@@ -343,7 +343,7 @@ impl TabView {
     }
 
     #[doc(alias = "adw_tab_view_set_shortcut_widget")]
-    pub fn set_shortcut_widget<P: IsA<gtk::Widget>>(&self, widget: Option<&P>) {
+    pub fn set_shortcut_widget(&self, widget: Option<&impl IsA<gtk::Widget>>) {
         unsafe {
             ffi::adw_tab_view_set_shortcut_widget(
                 self.to_glib_none().0,
@@ -907,12 +907,12 @@ impl TabViewBuilder {
         glib::Object::new::<TabView>(&properties).expect("Failed to create an instance of TabView")
     }
 
-    pub fn default_icon<P: IsA<gio::Icon>>(mut self, default_icon: &P) -> Self {
+    pub fn default_icon(mut self, default_icon: &impl IsA<gio::Icon>) -> Self {
         self.default_icon = Some(default_icon.clone().upcast());
         self
     }
 
-    pub fn menu_model<P: IsA<gio::MenuModel>>(mut self, menu_model: &P) -> Self {
+    pub fn menu_model(mut self, menu_model: &impl IsA<gio::MenuModel>) -> Self {
         self.menu_model = Some(menu_model.clone().upcast());
         self
     }
@@ -922,7 +922,7 @@ impl TabViewBuilder {
         self
     }
 
-    pub fn shortcut_widget<P: IsA<gtk::Widget>>(mut self, shortcut_widget: &P) -> Self {
+    pub fn shortcut_widget(mut self, shortcut_widget: &impl IsA<gtk::Widget>) -> Self {
         self.shortcut_widget = Some(shortcut_widget.clone().upcast());
         self
     }
@@ -987,7 +987,7 @@ impl TabViewBuilder {
         self
     }
 
-    pub fn layout_manager<P: IsA<gtk::LayoutManager>>(mut self, layout_manager: &P) -> Self {
+    pub fn layout_manager(mut self, layout_manager: &impl IsA<gtk::LayoutManager>) -> Self {
         self.layout_manager = Some(layout_manager.clone().upcast());
         self
     }
