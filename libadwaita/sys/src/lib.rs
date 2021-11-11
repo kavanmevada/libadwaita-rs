@@ -66,6 +66,10 @@ pub type AdwSqueezerTransitionType = c_int;
 pub const ADW_SQUEEZER_TRANSITION_TYPE_NONE: AdwSqueezerTransitionType = 0;
 pub const ADW_SQUEEZER_TRANSITION_TYPE_CROSSFADE: AdwSqueezerTransitionType = 1;
 
+pub type AdwToastPriority = c_int;
+pub const ADW_TOAST_PRIORITY_NORMAL: AdwToastPriority = 0;
+pub const ADW_TOAST_PRIORITY_HIGH: AdwToastPriority = 1;
+
 pub type AdwViewSwitcherPolicy = c_int;
 pub const ADW_VIEW_SWITCHER_POLICY_NARROW: AdwViewSwitcherPolicy = 0;
 pub const ADW_VIEW_SWITCHER_POLICY_WIDE: AdwViewSwitcherPolicy = 1;
@@ -581,6 +585,34 @@ impl ::std::fmt::Debug for AdwTabViewClass {
 
 #[repr(C)]
 #[derive(Copy, Clone)]
+pub struct AdwToastClass {
+    pub parent_class: gobject::GObjectClass,
+}
+
+impl ::std::fmt::Debug for AdwToastClass {
+    fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+        f.debug_struct(&format!("AdwToastClass @ {:p}", self))
+            .field("parent_class", &self.parent_class)
+            .finish()
+    }
+}
+
+#[repr(C)]
+#[derive(Copy, Clone)]
+pub struct AdwToastOverlayClass {
+    pub parent_class: gtk::GtkWidgetClass,
+}
+
+impl ::std::fmt::Debug for AdwToastOverlayClass {
+    fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+        f.debug_struct(&format!("AdwToastOverlayClass @ {:p}", self))
+            .field("parent_class", &self.parent_class)
+            .finish()
+    }
+}
+
+#[repr(C)]
+#[derive(Copy, Clone)]
 pub struct AdwViewStackClass {
     pub parent_class: gtk::GtkWidgetClass,
 }
@@ -1043,6 +1075,25 @@ impl ::std::fmt::Debug for AdwTabView {
 }
 
 #[repr(C)]
+pub struct AdwToast(c_void);
+
+impl ::std::fmt::Debug for AdwToast {
+    fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+        f.debug_struct(&format!("AdwToast @ {:p}", self)).finish()
+    }
+}
+
+#[repr(C)]
+pub struct AdwToastOverlay(c_void);
+
+impl ::std::fmt::Debug for AdwToastOverlay {
+    fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+        f.debug_struct(&format!("AdwToastOverlay @ {:p}", self))
+            .finish()
+    }
+}
+
+#[repr(C)]
 pub struct AdwViewStack(c_void);
 
 impl ::std::fmt::Debug for AdwViewStack {
@@ -1168,6 +1219,11 @@ extern "C" {
     // AdwSqueezerTransitionType
     //=========================================================================
     pub fn adw_squeezer_transition_type_get_type() -> GType;
+
+    //=========================================================================
+    // AdwToastPriority
+    //=========================================================================
+    pub fn adw_toast_priority_get_type() -> GType;
 
     //=========================================================================
     // AdwViewSwitcherPolicy
@@ -1973,6 +2029,40 @@ extern "C" {
         other_view: *mut AdwTabView,
         position: c_int,
     );
+
+    //=========================================================================
+    // AdwToast
+    //=========================================================================
+    pub fn adw_toast_get_type() -> GType;
+    pub fn adw_toast_new(title: *const c_char) -> *mut AdwToast;
+    pub fn adw_toast_dismiss(self_: *mut AdwToast);
+    pub fn adw_toast_get_action_name(self_: *mut AdwToast) -> *const c_char;
+    pub fn adw_toast_get_action_target_value(self_: *mut AdwToast) -> *mut glib::GVariant;
+    pub fn adw_toast_get_button_label(self_: *mut AdwToast) -> *const c_char;
+    pub fn adw_toast_get_priority(self_: *mut AdwToast) -> AdwToastPriority;
+    pub fn adw_toast_get_title(self_: *mut AdwToast) -> *const c_char;
+    pub fn adw_toast_set_action_name(self_: *mut AdwToast, action_name: *const c_char);
+    pub fn adw_toast_set_action_target(self_: *mut AdwToast, format_string: *const c_char, ...);
+    pub fn adw_toast_set_action_target_value(
+        self_: *mut AdwToast,
+        action_target: *mut glib::GVariant,
+    );
+    pub fn adw_toast_set_button_label(self_: *mut AdwToast, button_label: *const c_char);
+    pub fn adw_toast_set_detailed_action_name(
+        self_: *mut AdwToast,
+        detailed_action_name: *const c_char,
+    );
+    pub fn adw_toast_set_priority(self_: *mut AdwToast, priority: AdwToastPriority);
+    pub fn adw_toast_set_title(self_: *mut AdwToast, title: *const c_char);
+
+    //=========================================================================
+    // AdwToastOverlay
+    //=========================================================================
+    pub fn adw_toast_overlay_get_type() -> GType;
+    pub fn adw_toast_overlay_new() -> *mut gtk::GtkWidget;
+    pub fn adw_toast_overlay_add_toast(self_: *mut AdwToastOverlay, toast: *mut AdwToast);
+    pub fn adw_toast_overlay_get_child(self_: *mut AdwToastOverlay) -> *mut gtk::GtkWidget;
+    pub fn adw_toast_overlay_set_child(self_: *mut AdwToastOverlay, child: *mut gtk::GtkWidget);
 
     //=========================================================================
     // AdwViewStack

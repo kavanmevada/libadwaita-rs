@@ -60,6 +60,9 @@ int main() {
     printf("%s;%zu;%zu\n", "AdwTabBarClass", sizeof(AdwTabBarClass), alignof(AdwTabBarClass));
     printf("%s;%zu;%zu\n", "AdwTabPageClass", sizeof(AdwTabPageClass), alignof(AdwTabPageClass));
     printf("%s;%zu;%zu\n", "AdwTabViewClass", sizeof(AdwTabViewClass), alignof(AdwTabViewClass));
+    printf("%s;%zu;%zu\n", "AdwToastClass", sizeof(AdwToastClass), alignof(AdwToastClass));
+    printf("%s;%zu;%zu\n", "AdwToastOverlayClass", sizeof(AdwToastOverlayClass), alignof(AdwToastOverlayClass));
+    printf("%s;%zu;%zu\n", "AdwToastPriority", sizeof(AdwToastPriority), alignof(AdwToastPriority));
     printf("%s;%zu;%zu\n", "AdwViewStackClass", sizeof(AdwViewStackClass), alignof(AdwViewStackClass));
     printf("%s;%zu;%zu\n", "AdwViewStackPageClass", sizeof(AdwViewStackPageClass), alignof(AdwViewStackPageClass));
     printf("%s;%zu;%zu\n", "AdwViewSwitcherBarClass", sizeof(AdwViewSwitcherBarClass), alignof(AdwViewSwitcherBarClass));

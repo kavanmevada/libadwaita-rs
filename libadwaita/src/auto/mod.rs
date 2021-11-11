@@ -131,6 +131,13 @@ mod tab_view;
 pub use self::tab_view::TabView;
 pub use self::tab_view::TabViewBuilder;
 
+mod toast;
+pub use self::toast::Toast;
+pub use self::toast::ToastBuilder;
+
+mod toast_overlay;
+pub use self::toast_overlay::ToastOverlay;
+
 mod view_stack;
 pub use self::view_stack::ViewStack;
 pub use self::view_stack::ViewStackBuilder;
@@ -167,6 +174,7 @@ pub use self::enums::FoldThresholdPolicy;
 pub use self::enums::LeafletTransitionType;
 pub use self::enums::NavigationDirection;
 pub use self::enums::SqueezerTransitionType;
+pub use self::enums::ToastPriority;
 pub use self::enums::ViewSwitcherPolicy;
 
 pub mod functions;
