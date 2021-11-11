@@ -71,10 +71,6 @@ pub const ADW_VIEW_SWITCHER_POLICY_NARROW: AdwViewSwitcherPolicy = 0;
 pub const ADW_VIEW_SWITCHER_POLICY_WIDE: AdwViewSwitcherPolicy = 1;
 
 // Constants
-pub const ADW_MAJOR_VERSION: c_int = 1;
-pub const ADW_MICRO_VERSION: c_int = 0;
-pub const ADW_MINOR_VERSION: c_int = 0;
-pub const ADW_VERSION_S: *const c_char = b"1.0.0.alpha.3\0" as *const u8 as *const c_char;
 
 // Records
 #[repr(C)]

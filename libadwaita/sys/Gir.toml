@@ -11,3 +11,10 @@ external_libraries = [
    "Gio",
    "Gtk",
 ]
+
+ignore = [
+   "Adw.VERSION_S", 
+   "Adw.MAJOR_VERSION", 
+   "Adw.MICRO_VERSION", 
+   "Adw.MINOR_VERSION"
+]

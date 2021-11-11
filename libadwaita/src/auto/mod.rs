@@ -171,9 +171,6 @@ pub use self::enums::ViewSwitcherPolicy;
 
 pub mod functions;
 
-mod constants;
-pub use self::constants::VERSION_S;
-
 #[doc(hidden)]
 pub mod traits {
     pub use super::action_row::ActionRowExt;

@@ -130,6 +130,9 @@ trait_name = "GtkWindowExt"
 [[object]]
 name = "Adw.*"
 status = "generate"
+    [[object.constant]]
+    name = "VERSION_S"
+    ignore = true
     [[object.function]]
     name = "get_enable_animations"
     rename = "is_animations_enabled"
