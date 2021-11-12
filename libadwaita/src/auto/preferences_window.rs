@@ -4,6 +4,7 @@
 // DO NOT EDIT
 
 use crate::PreferencesPage;
+use crate::Toast;
 use crate::Window;
 use glib::object::Cast;
 use glib::object::IsA;
@@ -602,6 +603,9 @@ pub trait PreferencesWindowExt: 'static {
     #[doc(alias = "adw_preferences_window_add")]
     fn add(&self, page: &impl IsA<PreferencesPage>);
 
+    #[doc(alias = "adw_preferences_window_add_toast")]
+    fn add_toast(&self, toast: &Toast);
+
     #[doc(alias = "adw_preferences_window_close_subpage")]
     fn close_subpage(&self);
 
@@ -658,6 +662,15 @@ impl<O: IsA<PreferencesWindow>> PreferencesWindowExt for O {
             ffi::adw_preferences_window_add(
                 self.as_ref().to_glib_none().0,
                 page.as_ref().to_glib_none().0,
+            );
+        }
+    }
+
+    fn add_toast(&self, toast: &Toast) {
+        unsafe {
+            ffi::adw_preferences_window_add_toast(
+                self.as_ref().to_glib_none().0,
+                toast.to_glib_full(),
             );
         }
     }

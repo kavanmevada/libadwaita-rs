@@ -125,19 +125,13 @@ impl SwipeTracker {
     }
 
     #[doc(alias = "begin-swipe")]
-    pub fn connect_begin_swipe<F: Fn(&Self, NavigationDirection) + 'static>(
-        &self,
-        f: F,
-    ) -> SignalHandlerId {
-        unsafe extern "C" fn begin_swipe_trampoline<
-            F: Fn(&SwipeTracker, NavigationDirection) + 'static,
-        >(
+    pub fn connect_begin_swipe<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
+        unsafe extern "C" fn begin_swipe_trampoline<F: Fn(&SwipeTracker) + 'static>(
             this: *mut ffi::AdwSwipeTracker,
-            direction: ffi::AdwNavigationDirection,
             f: glib::ffi::gpointer,
         ) {
             let f: &F = &*(f as *const F);
-            f(&from_glib_borrow(this), from_glib(direction))
+            f(&from_glib_borrow(this))
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
@@ -170,6 +164,34 @@ impl SwipeTracker {
                 b"end-swipe\0".as_ptr() as *const _,
                 Some(transmute::<_, unsafe extern "C" fn()>(
                     end_swipe_trampoline::<F> as *const (),
+                )),
+                Box_::into_raw(f),
+            )
+        }
+    }
+
+    #[doc(alias = "prepare")]
+    pub fn connect_prepare<F: Fn(&Self, NavigationDirection) + 'static>(
+        &self,
+        f: F,
+    ) -> SignalHandlerId {
+        unsafe extern "C" fn prepare_trampoline<
+            F: Fn(&SwipeTracker, NavigationDirection) + 'static,
+        >(
+            this: *mut ffi::AdwSwipeTracker,
+            direction: ffi::AdwNavigationDirection,
+            f: glib::ffi::gpointer,
+        ) {
+            let f: &F = &*(f as *const F);
+            f(&from_glib_borrow(this), from_glib(direction))
+        }
+        unsafe {
+            let f: Box_<F> = Box_::new(f);
+            connect_raw(
+                self.as_ptr() as *mut _,
+                b"prepare\0".as_ptr() as *const _,
+                Some(transmute::<_, unsafe extern "C" fn()>(
+                    prepare_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
             )
