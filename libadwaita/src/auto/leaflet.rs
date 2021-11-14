@@ -65,17 +65,21 @@ impl Leaflet {
         }
     }
 
-    #[doc(alias = "adw_leaflet_get_can_swipe_back")]
-    #[doc(alias = "get_can_swipe_back")]
-    pub fn can_swipe_back(&self) -> bool {
-        unsafe { from_glib(ffi::adw_leaflet_get_can_swipe_back(self.to_glib_none().0)) }
+    #[doc(alias = "adw_leaflet_get_can_navigate_back")]
+    #[doc(alias = "get_can_navigate_back")]
+    pub fn can_navigate_back(&self) -> bool {
+        unsafe {
+            from_glib(ffi::adw_leaflet_get_can_navigate_back(
+                self.to_glib_none().0,
+            ))
+        }
     }
 
-    #[doc(alias = "adw_leaflet_get_can_swipe_forward")]
-    #[doc(alias = "get_can_swipe_forward")]
-    pub fn can_swipe_forward(&self) -> bool {
+    #[doc(alias = "adw_leaflet_get_can_navigate_forward")]
+    #[doc(alias = "get_can_navigate_forward")]
+    pub fn can_navigate_forward(&self) -> bool {
         unsafe {
-            from_glib(ffi::adw_leaflet_get_can_swipe_forward(
+            from_glib(ffi::adw_leaflet_get_can_navigate_forward(
                 self.to_glib_none().0,
             ))
         }
@@ -238,19 +242,22 @@ impl Leaflet {
         }
     }
 
-    #[doc(alias = "adw_leaflet_set_can_swipe_back")]
-    pub fn set_can_swipe_back(&self, can_swipe_back: bool) {
+    #[doc(alias = "adw_leaflet_set_can_navigate_back")]
+    pub fn set_can_navigate_back(&self, can_navigate_back: bool) {
         unsafe {
-            ffi::adw_leaflet_set_can_swipe_back(self.to_glib_none().0, can_swipe_back.into_glib());
+            ffi::adw_leaflet_set_can_navigate_back(
+                self.to_glib_none().0,
+                can_navigate_back.into_glib(),
+            );
         }
     }
 
-    #[doc(alias = "adw_leaflet_set_can_swipe_forward")]
-    pub fn set_can_swipe_forward(&self, can_swipe_forward: bool) {
+    #[doc(alias = "adw_leaflet_set_can_navigate_forward")]
+    pub fn set_can_navigate_forward(&self, can_navigate_forward: bool) {
         unsafe {
-            ffi::adw_leaflet_set_can_swipe_forward(
+            ffi::adw_leaflet_set_can_navigate_forward(
                 self.to_glib_none().0,
-                can_swipe_forward.into_glib(),
+                can_navigate_forward.into_glib(),
             );
         }
     }
@@ -314,9 +321,12 @@ impl Leaflet {
         }
     }
 
-    #[doc(alias = "can-swipe-back")]
-    pub fn connect_can_swipe_back_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
-        unsafe extern "C" fn notify_can_swipe_back_trampoline<F: Fn(&Leaflet) + 'static>(
+    #[doc(alias = "can-navigate-back")]
+    pub fn connect_can_navigate_back_notify<F: Fn(&Self) + 'static>(
+        &self,
+        f: F,
+    ) -> SignalHandlerId {
+        unsafe extern "C" fn notify_can_navigate_back_trampoline<F: Fn(&Leaflet) + 'static>(
             this: *mut ffi::AdwLeaflet,
             _param_spec: glib::ffi::gpointer,
             f: glib::ffi::gpointer,
@@ -328,21 +338,21 @@ impl Leaflet {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
-                b"notify::can-swipe-back\0".as_ptr() as *const _,
+                b"notify::can-navigate-back\0".as_ptr() as *const _,
                 Some(transmute::<_, unsafe extern "C" fn()>(
-                    notify_can_swipe_back_trampoline::<F> as *const (),
+                    notify_can_navigate_back_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
             )
         }
     }
 
-    #[doc(alias = "can-swipe-forward")]
-    pub fn connect_can_swipe_forward_notify<F: Fn(&Self) + 'static>(
+    #[doc(alias = "can-navigate-forward")]
+    pub fn connect_can_navigate_forward_notify<F: Fn(&Self) + 'static>(
         &self,
         f: F,
     ) -> SignalHandlerId {
-        unsafe extern "C" fn notify_can_swipe_forward_trampoline<F: Fn(&Leaflet) + 'static>(
+        unsafe extern "C" fn notify_can_navigate_forward_trampoline<F: Fn(&Leaflet) + 'static>(
             this: *mut ffi::AdwLeaflet,
             _param_spec: glib::ffi::gpointer,
             f: glib::ffi::gpointer,
@@ -354,9 +364,9 @@ impl Leaflet {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
-                b"notify::can-swipe-forward\0".as_ptr() as *const _,
+                b"notify::can-navigate-forward\0".as_ptr() as *const _,
                 Some(transmute::<_, unsafe extern "C" fn()>(
-                    notify_can_swipe_forward_trampoline::<F> as *const (),
+                    notify_can_navigate_forward_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
             )
@@ -650,8 +660,8 @@ impl Default for Leaflet {
 ///
 /// [builder-pattern]: https://doc.rust-lang.org/1.0.0/style/ownership/builders.html
 pub struct LeafletBuilder {
-    can_swipe_back: Option<bool>,
-    can_swipe_forward: Option<bool>,
+    can_navigate_back: Option<bool>,
+    can_navigate_forward: Option<bool>,
     can_unfold: Option<bool>,
     child_transition_duration: Option<u32>,
     fold_threshold_policy: Option<FoldThresholdPolicy>,
@@ -704,11 +714,11 @@ impl LeafletBuilder {
     /// Build the [`Leaflet`].
     pub fn build(self) -> Leaflet {
         let mut properties: Vec<(&str, &dyn ToValue)> = vec![];
-        if let Some(ref can_swipe_back) = self.can_swipe_back {
-            properties.push(("can-swipe-back", can_swipe_back));
+        if let Some(ref can_navigate_back) = self.can_navigate_back {
+            properties.push(("can-navigate-back", can_navigate_back));
         }
-        if let Some(ref can_swipe_forward) = self.can_swipe_forward {
-            properties.push(("can-swipe-forward", can_swipe_forward));
+        if let Some(ref can_navigate_forward) = self.can_navigate_forward {
+            properties.push(("can-navigate-forward", can_navigate_forward));
         }
         if let Some(ref can_unfold) = self.can_unfold {
             properties.push(("can-unfold", can_unfold));
@@ -830,13 +840,13 @@ impl LeafletBuilder {
         glib::Object::new::<Leaflet>(&properties).expect("Failed to create an instance of Leaflet")
     }
 
-    pub fn can_swipe_back(mut self, can_swipe_back: bool) -> Self {
-        self.can_swipe_back = Some(can_swipe_back);
+    pub fn can_navigate_back(mut self, can_navigate_back: bool) -> Self {
+        self.can_navigate_back = Some(can_navigate_back);
         self
     }
 
-    pub fn can_swipe_forward(mut self, can_swipe_forward: bool) -> Self {
-        self.can_swipe_forward = Some(can_swipe_forward);
+    pub fn can_navigate_forward(mut self, can_navigate_forward: bool) -> Self {
+        self.can_navigate_forward = Some(can_navigate_forward);
         self
     }
 

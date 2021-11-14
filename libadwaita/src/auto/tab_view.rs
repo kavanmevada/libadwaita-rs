@@ -188,12 +188,6 @@ impl TabView {
         unsafe { from_glib_none(ffi::adw_tab_view_get_selected_page(self.to_glib_none().0)) }
     }
 
-    #[doc(alias = "adw_tab_view_get_shortcut_widget")]
-    #[doc(alias = "get_shortcut_widget")]
-    pub fn shortcut_widget(&self) -> Option<gtk::Widget> {
-        unsafe { from_glib_none(ffi::adw_tab_view_get_shortcut_widget(self.to_glib_none().0)) }
-    }
-
     #[doc(alias = "adw_tab_view_insert")]
     pub fn insert(&self, child: &impl IsA<gtk::Widget>, position: i32) -> Option<TabPage> {
         unsafe {
@@ -338,16 +332,6 @@ impl TabView {
             ffi::adw_tab_view_set_selected_page(
                 self.to_glib_none().0,
                 selected_page.to_glib_none().0,
-            );
-        }
-    }
-
-    #[doc(alias = "adw_tab_view_set_shortcut_widget")]
-    pub fn set_shortcut_widget(&self, widget: Option<&impl IsA<gtk::Widget>>) {
-        unsafe {
-            ffi::adw_tab_view_set_shortcut_widget(
-                self.to_glib_none().0,
-                widget.map(|p| p.as_ref()).to_glib_none().0,
             );
         }
     }
@@ -718,29 +702,6 @@ impl TabView {
             )
         }
     }
-
-    #[doc(alias = "shortcut-widget")]
-    pub fn connect_shortcut_widget_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
-        unsafe extern "C" fn notify_shortcut_widget_trampoline<F: Fn(&TabView) + 'static>(
-            this: *mut ffi::AdwTabView,
-            _param_spec: glib::ffi::gpointer,
-            f: glib::ffi::gpointer,
-        ) {
-            let f: &F = &*(f as *const F);
-            f(&from_glib_borrow(this))
-        }
-        unsafe {
-            let f: Box_<F> = Box_::new(f);
-            connect_raw(
-                self.as_ptr() as *mut _,
-                b"notify::shortcut-widget\0".as_ptr() as *const _,
-                Some(transmute::<_, unsafe extern "C" fn()>(
-                    notify_shortcut_widget_trampoline::<F> as *const (),
-                )),
-                Box_::into_raw(f),
-            )
-        }
-    }
 }
 
 impl Default for TabView {
@@ -758,7 +719,6 @@ pub struct TabViewBuilder {
     default_icon: Option<gio::Icon>,
     menu_model: Option<gio::MenuModel>,
     selected_page: Option<TabPage>,
-    shortcut_widget: Option<gtk::Widget>,
     can_focus: Option<bool>,
     can_target: Option<bool>,
     css_classes: Option<Vec<String>>,
@@ -810,9 +770,6 @@ impl TabViewBuilder {
         }
         if let Some(ref selected_page) = self.selected_page {
             properties.push(("selected-page", selected_page));
-        }
-        if let Some(ref shortcut_widget) = self.shortcut_widget {
-            properties.push(("shortcut-widget", shortcut_widget));
         }
         if let Some(ref can_focus) = self.can_focus {
             properties.push(("can-focus", can_focus));
@@ -919,11 +876,6 @@ impl TabViewBuilder {
 
     pub fn selected_page(mut self, selected_page: &TabPage) -> Self {
         self.selected_page = Some(selected_page.clone());
-        self
-    }
-
-    pub fn shortcut_widget(mut self, shortcut_widget: &impl IsA<gtk::Widget>) -> Self {
-        self.shortcut_widget = Some(shortcut_widget.clone().upcast());
         self
     }
 

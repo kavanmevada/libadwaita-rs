@@ -54,7 +54,7 @@ impl Default for PreferencesWindow {
 ///
 /// [builder-pattern]: https://doc.rust-lang.org/1.0.0/style/ownership/builders.html
 pub struct PreferencesWindowBuilder {
-    can_swipe_back: Option<bool>,
+    can_navigate_back: Option<bool>,
     search_enabled: Option<bool>,
     visible_page: Option<gtk::Widget>,
     visible_page_name: Option<String>,
@@ -128,8 +128,8 @@ impl PreferencesWindowBuilder {
     /// Build the [`PreferencesWindow`].
     pub fn build(self) -> PreferencesWindow {
         let mut properties: Vec<(&str, &dyn ToValue)> = vec![];
-        if let Some(ref can_swipe_back) = self.can_swipe_back {
-            properties.push(("can-swipe-back", can_swipe_back));
+        if let Some(ref can_navigate_back) = self.can_navigate_back {
+            properties.push(("can-navigate-back", can_navigate_back));
         }
         if let Some(ref search_enabled) = self.search_enabled {
             properties.push(("search-enabled", search_enabled));
@@ -305,8 +305,8 @@ impl PreferencesWindowBuilder {
             .expect("Failed to create an instance of PreferencesWindow")
     }
 
-    pub fn can_swipe_back(mut self, can_swipe_back: bool) -> Self {
-        self.can_swipe_back = Some(can_swipe_back);
+    pub fn can_navigate_back(mut self, can_navigate_back: bool) -> Self {
+        self.can_navigate_back = Some(can_navigate_back);
         self
     }
 
@@ -609,9 +609,9 @@ pub trait PreferencesWindowExt: 'static {
     #[doc(alias = "adw_preferences_window_close_subpage")]
     fn close_subpage(&self);
 
-    #[doc(alias = "adw_preferences_window_get_can_swipe_back")]
-    #[doc(alias = "get_can_swipe_back")]
-    fn can_swipe_back(&self) -> bool;
+    #[doc(alias = "adw_preferences_window_get_can_navigate_back")]
+    #[doc(alias = "get_can_navigate_back")]
+    fn can_navigate_back(&self) -> bool;
 
     #[doc(alias = "adw_preferences_window_get_search_enabled")]
     #[doc(alias = "get_search_enabled")]
@@ -631,8 +631,8 @@ pub trait PreferencesWindowExt: 'static {
     #[doc(alias = "adw_preferences_window_remove")]
     fn remove(&self, page: &impl IsA<PreferencesPage>);
 
-    #[doc(alias = "adw_preferences_window_set_can_swipe_back")]
-    fn set_can_swipe_back(&self, can_swipe_back: bool);
+    #[doc(alias = "adw_preferences_window_set_can_navigate_back")]
+    fn set_can_navigate_back(&self, can_navigate_back: bool);
 
     #[doc(alias = "adw_preferences_window_set_search_enabled")]
     fn set_search_enabled(&self, search_enabled: bool);
@@ -643,8 +643,8 @@ pub trait PreferencesWindowExt: 'static {
     #[doc(alias = "adw_preferences_window_set_visible_page_name")]
     fn set_visible_page_name(&self, name: &str);
 
-    #[doc(alias = "can-swipe-back")]
-    fn connect_can_swipe_back_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
+    #[doc(alias = "can-navigate-back")]
+    fn connect_can_navigate_back_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
 
     #[doc(alias = "search-enabled")]
     fn connect_search_enabled_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
@@ -681,9 +681,9 @@ impl<O: IsA<PreferencesWindow>> PreferencesWindowExt for O {
         }
     }
 
-    fn can_swipe_back(&self) -> bool {
+    fn can_navigate_back(&self) -> bool {
         unsafe {
-            from_glib(ffi::adw_preferences_window_get_can_swipe_back(
+            from_glib(ffi::adw_preferences_window_get_can_navigate_back(
                 self.as_ref().to_glib_none().0,
             ))
         }
@@ -731,11 +731,11 @@ impl<O: IsA<PreferencesWindow>> PreferencesWindowExt for O {
         }
     }
 
-    fn set_can_swipe_back(&self, can_swipe_back: bool) {
+    fn set_can_navigate_back(&self, can_navigate_back: bool) {
         unsafe {
-            ffi::adw_preferences_window_set_can_swipe_back(
+            ffi::adw_preferences_window_set_can_navigate_back(
                 self.as_ref().to_glib_none().0,
-                can_swipe_back.into_glib(),
+                can_navigate_back.into_glib(),
             );
         }
     }
@@ -767,8 +767,8 @@ impl<O: IsA<PreferencesWindow>> PreferencesWindowExt for O {
         }
     }
 
-    fn connect_can_swipe_back_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
-        unsafe extern "C" fn notify_can_swipe_back_trampoline<
+    fn connect_can_navigate_back_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
+        unsafe extern "C" fn notify_can_navigate_back_trampoline<
             P: IsA<PreferencesWindow>,
             F: Fn(&P) + 'static,
         >(
@@ -783,9 +783,9 @@ impl<O: IsA<PreferencesWindow>> PreferencesWindowExt for O {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
-                b"notify::can-swipe-back\0".as_ptr() as *const _,
+                b"notify::can-navigate-back\0".as_ptr() as *const _,
                 Some(transmute::<_, unsafe extern "C" fn()>(
-                    notify_can_swipe_back_trampoline::<Self, F> as *const (),
+                    notify_can_navigate_back_trampoline::<Self, F> as *const (),
                 )),
                 Box_::into_raw(f),
             )

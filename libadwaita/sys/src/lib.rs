@@ -1587,8 +1587,8 @@ extern "C" {
         self_: *mut AdwLeaflet,
         direction: AdwNavigationDirection,
     ) -> *mut gtk::GtkWidget;
-    pub fn adw_leaflet_get_can_swipe_back(self_: *mut AdwLeaflet) -> gboolean;
-    pub fn adw_leaflet_get_can_swipe_forward(self_: *mut AdwLeaflet) -> gboolean;
+    pub fn adw_leaflet_get_can_navigate_back(self_: *mut AdwLeaflet) -> gboolean;
+    pub fn adw_leaflet_get_can_navigate_forward(self_: *mut AdwLeaflet) -> gboolean;
     pub fn adw_leaflet_get_can_unfold(self_: *mut AdwLeaflet) -> gboolean;
     pub fn adw_leaflet_get_child_by_name(
         self_: *mut AdwLeaflet,
@@ -1627,8 +1627,11 @@ extern "C" {
         child: *mut gtk::GtkWidget,
         sibling: *mut gtk::GtkWidget,
     );
-    pub fn adw_leaflet_set_can_swipe_back(self_: *mut AdwLeaflet, can_swipe_back: gboolean);
-    pub fn adw_leaflet_set_can_swipe_forward(self_: *mut AdwLeaflet, can_swipe_forward: gboolean);
+    pub fn adw_leaflet_set_can_navigate_back(self_: *mut AdwLeaflet, can_navigate_back: gboolean);
+    pub fn adw_leaflet_set_can_navigate_forward(
+        self_: *mut AdwLeaflet,
+        can_navigate_forward: gboolean,
+    );
     pub fn adw_leaflet_set_can_unfold(self_: *mut AdwLeaflet, can_unfold: gboolean);
     pub fn adw_leaflet_set_child_transition_duration(self_: *mut AdwLeaflet, duration: c_uint);
     pub fn adw_leaflet_set_fold_threshold_policy(
@@ -1727,7 +1730,9 @@ extern "C" {
     );
     pub fn adw_preferences_window_add_toast(self_: *mut AdwPreferencesWindow, toast: *mut AdwToast);
     pub fn adw_preferences_window_close_subpage(self_: *mut AdwPreferencesWindow);
-    pub fn adw_preferences_window_get_can_swipe_back(self_: *mut AdwPreferencesWindow) -> gboolean;
+    pub fn adw_preferences_window_get_can_navigate_back(
+        self_: *mut AdwPreferencesWindow,
+    ) -> gboolean;
     pub fn adw_preferences_window_get_search_enabled(self_: *mut AdwPreferencesWindow) -> gboolean;
     pub fn adw_preferences_window_get_visible_page(
         self_: *mut AdwPreferencesWindow,
@@ -1743,9 +1748,9 @@ extern "C" {
         self_: *mut AdwPreferencesWindow,
         page: *mut AdwPreferencesPage,
     );
-    pub fn adw_preferences_window_set_can_swipe_back(
+    pub fn adw_preferences_window_set_can_navigate_back(
         self_: *mut AdwPreferencesWindow,
-        can_swipe_back: gboolean,
+        can_navigate_back: gboolean,
     );
     pub fn adw_preferences_window_set_search_enabled(
         self_: *mut AdwPreferencesWindow,
@@ -1984,7 +1989,6 @@ extern "C" {
     pub fn adw_tab_view_get_page_position(self_: *mut AdwTabView, page: *mut AdwTabPage) -> c_int;
     pub fn adw_tab_view_get_pages(self_: *mut AdwTabView) -> *mut gtk::GtkSelectionModel;
     pub fn adw_tab_view_get_selected_page(self_: *mut AdwTabView) -> *mut AdwTabPage;
-    pub fn adw_tab_view_get_shortcut_widget(self_: *mut AdwTabView) -> *mut gtk::GtkWidget;
     pub fn adw_tab_view_insert(
         self_: *mut AdwTabView,
         child: *mut gtk::GtkWidget,
@@ -2023,7 +2027,6 @@ extern "C" {
         pinned: gboolean,
     );
     pub fn adw_tab_view_set_selected_page(self_: *mut AdwTabView, selected_page: *mut AdwTabPage);
-    pub fn adw_tab_view_set_shortcut_widget(self_: *mut AdwTabView, widget: *mut gtk::GtkWidget);
     pub fn adw_tab_view_transfer_page(
         self_: *mut AdwTabView,
         page: *mut AdwTabPage,

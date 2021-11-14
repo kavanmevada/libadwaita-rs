@@ -6747,37 +6747,37 @@ if it hasn't computed its fold yet.</doc>
       <constructor name="new" c:identifier="adw_leaflet_new" version="1.0">
         <doc xml:space="preserve"
              filename="../src/adw-leaflet.c"
-             line="2771">Creates a new `AdwLeaflet`.</doc>
+             line="2909">Creates a new `AdwLeaflet`.</doc>
         <source-position filename="../src/adw-leaflet.h" line="54"/>
         <return-value transfer-ownership="none">
           <doc xml:space="preserve"
                filename="../src/adw-leaflet.c"
-               line="2776">the new created `AdwLeaflet`</doc>
+               line="2914">the new created `AdwLeaflet`</doc>
           <type name="Gtk.Widget" c:type="GtkWidget*"/>
         </return-value>
       </constructor>
       <method name="append" c:identifier="adw_leaflet_append" version="1.0">
         <doc xml:space="preserve"
              filename="../src/adw-leaflet.c"
-             line="2786">Adds a child to @self.</doc>
+             line="2924">Adds a child to @self.</doc>
         <source-position filename="../src/adw-leaflet.h" line="57"/>
         <return-value transfer-ownership="none">
           <doc xml:space="preserve"
                filename="../src/adw-leaflet.c"
-               line="2793">the [class@Adw.LeafletPage] for @child</doc>
+               line="2931">the [class@Adw.LeafletPage] for @child</doc>
           <type name="LeafletPage" c:type="AdwLeafletPage*"/>
         </return-value>
         <parameters>
           <instance-parameter name="self" transfer-ownership="none">
             <doc xml:space="preserve"
                  filename="../src/adw-leaflet.c"
-                 line="2788">a `AdwLeaflet`</doc>
+                 line="2926">a `AdwLeaflet`</doc>
             <type name="Leaflet" c:type="AdwLeaflet*"/>
           </instance-parameter>
           <parameter name="child" transfer-ownership="none">
             <doc xml:space="preserve"
                  filename="../src/adw-leaflet.c"
-                 line="2789">the widget to add</doc>
+                 line="2927">the widget to add</doc>
             <type name="Gtk.Widget" c:type="GtkWidget*"/>
           </parameter>
         </parameters>
@@ -6787,7 +6787,7 @@ if it hasn't computed its fold yet.</doc>
               version="1.0">
         <doc xml:space="preserve"
              filename="../src/adw-leaflet.c"
-             line="3406">Finds the previous or next navigatable child.
+             line="3544">Finds the previous or next navigatable child.
 
 This will be the same child [method@Adw.Leaflet.navigate] or swipe gestures
 will navigate to.
@@ -6799,69 +6799,70 @@ See [property@Adw.LeafletPage:navigatable].</doc>
         <return-value transfer-ownership="none" nullable="1">
           <doc xml:space="preserve"
                filename="../src/adw-leaflet.c"
-               line="3420">the previous or next child</doc>
+               line="3558">the previous or next child</doc>
           <type name="Gtk.Widget" c:type="GtkWidget*"/>
         </return-value>
         <parameters>
           <instance-parameter name="self" transfer-ownership="none">
             <doc xml:space="preserve"
                  filename="../src/adw-leaflet.c"
-                 line="3408">a `AdwLeaflet`</doc>
+                 line="3546">a `AdwLeaflet`</doc>
             <type name="Leaflet" c:type="AdwLeaflet*"/>
           </instance-parameter>
           <parameter name="direction" transfer-ownership="none">
             <doc xml:space="preserve"
                  filename="../src/adw-leaflet.c"
-                 line="3409">the direction</doc>
+                 line="3547">the direction</doc>
             <type name="NavigationDirection" c:type="AdwNavigationDirection"/>
           </parameter>
         </parameters>
       </method>
-      <method name="get_can_swipe_back"
-              c:identifier="adw_leaflet_get_can_swipe_back"
-              glib:get-property="can-swipe-back"
+      <method name="get_can_navigate_back"
+              c:identifier="adw_leaflet_get_can_navigate_back"
+              glib:get-property="can-navigate-back"
               version="1.0">
-        <attribute name="org.gtk.Method.get_property" value="can-swipe-back"/>
+        <attribute name="org.gtk.Method.get_property"
+                   value="can-navigate-back"/>
         <doc xml:space="preserve"
              filename="../src/adw-leaflet.c"
-             line="3344">Gets whether a swipe gesture can be used to navigate to the previous child.</doc>
+             line="3482">Gets whether gestures and shortcuts for navigating backward are enabled.</doc>
         <source-position filename="../src/adw-leaflet.h" line="123"/>
         <return-value transfer-ownership="none">
           <doc xml:space="preserve"
                filename="../src/adw-leaflet.c"
-               line="3350">whether back swipe is enabled.</doc>
+               line="3488">Whether gestures and shortcuts are enabled.</doc>
           <type name="gboolean" c:type="gboolean"/>
         </return-value>
         <parameters>
           <instance-parameter name="self" transfer-ownership="none">
             <doc xml:space="preserve"
                  filename="../src/adw-leaflet.c"
-                 line="3346">a `AdwLeaflet`</doc>
+                 line="3484">a `AdwLeaflet`</doc>
             <type name="Leaflet" c:type="AdwLeaflet*"/>
           </instance-parameter>
         </parameters>
       </method>
-      <method name="get_can_swipe_forward"
-              c:identifier="adw_leaflet_get_can_swipe_forward"
-              glib:get-property="can-swipe-forward"
+      <method name="get_can_navigate_forward"
+              c:identifier="adw_leaflet_get_can_navigate_forward"
+              glib:get-property="can-navigate-forward"
               version="1.0">
         <attribute name="org.gtk.Method.get_property"
-                   value="can-swipe-forward"/>
+                   value="can-navigate-forward"/>
         <doc xml:space="preserve"
              filename="../src/adw-leaflet.c"
-             line="3388">Gets whether a swipe gesture can be used to navigate to the next child.</doc>
+             line="3526">Gets whether gestures and shortcuts for navigating forward are enabled.</doc>
         <source-position filename="../src/adw-leaflet.h" line="129"/>
         <return-value transfer-ownership="none">
           <doc xml:space="preserve"
                filename="../src/adw-leaflet.c"
-               line="3394">Whether forward swipe is enabled.</doc>
+               line="3532">Whether gestures and shortcuts are enabled.</doc>
           <type name="gboolean" c:type="gboolean"/>
         </return-value>
         <parameters>
           <instance-parameter name="self" transfer-ownership="none">
             <doc xml:space="preserve"
                  filename="../src/adw-leaflet.c"
-                 line="3390">a `AdwLeaflet`</doc>
+                 line="3528">a `AdwLeaflet`</doc>
             <type name="Leaflet" c:type="AdwLeaflet*"/>
           </instance-parameter>
         </parameters>
@@ -6873,19 +6874,19 @@ See [property@Adw.LeafletPage:navigatable].</doc>
         <attribute name="org.gtk.Method.get_property" value="can-unfold"/>
         <doc xml:space="preserve"
              filename="../src/adw-leaflet.c"
-             line="3528">Gets whether @self can unfold.</doc>
+             line="3666">Gets whether @self can unfold.</doc>
         <source-position filename="../src/adw-leaflet.h" line="146"/>
         <return-value transfer-ownership="none">
           <doc xml:space="preserve"
                filename="../src/adw-leaflet.c"
-               line="3534">whether @self can unfold</doc>
+               line="3672">whether @self can unfold</doc>
           <type name="gboolean" c:type="gboolean"/>
         </return-value>
         <parameters>
           <instance-parameter name="self" transfer-ownership="none">
             <doc xml:space="preserve"
                  filename="../src/adw-leaflet.c"
-                 line="3530">a `AdwLeaflet`</doc>
+                 line="3668">a `AdwLeaflet`</doc>
             <type name="Leaflet" c:type="AdwLeaflet*"/>
           </instance-parameter>
         </parameters>
@@ -6895,7 +6896,7 @@ See [property@Adw.LeafletPage:navigatable].</doc>
               version="1.0">
         <doc xml:space="preserve"
              filename="../src/adw-leaflet.c"
-             line="3472">Finds the child of @self with @name.
+             line="3610">Finds the child of @self with @name.
 
 Returns `NULL` if there is no child with this name.
 
@@ -6904,20 +6905,20 @@ See [property@Adw.LeafletPage:name].</doc>
         <return-value transfer-ownership="none" nullable="1">
           <doc xml:space="preserve"
                filename="../src/adw-leaflet.c"
-               line="3483">the requested child of @self</doc>
+               line="3621">the requested child of @self</doc>
           <type name="Gtk.Widget" c:type="GtkWidget*"/>
         </return-value>
         <parameters>
           <instance-parameter name="self" transfer-ownership="none">
             <doc xml:space="preserve"
                  filename="../src/adw-leaflet.c"
-                 line="3474">a `AdwLeaflet`</doc>
+                 line="3612">a `AdwLeaflet`</doc>
             <type name="Leaflet" c:type="AdwLeaflet*"/>
           </instance-parameter>
           <parameter name="name" transfer-ownership="none">
             <doc xml:space="preserve"
                  filename="../src/adw-leaflet.c"
-                 line="3475">the name of the child to find</doc>
+                 line="3613">the name of the child to find</doc>
             <type name="utf8" c:type="const char*"/>
           </parameter>
         </parameters>
@@ -6930,19 +6931,19 @@ See [property@Adw.LeafletPage:name].</doc>
                    value="child-transition-duration"/>
         <doc xml:space="preserve"
              filename="../src/adw-leaflet.c"
-             line="3159">Gets the child transition animation duration for @self.</doc>
+             line="3297">Gets the child transition animation duration for @self.</doc>
         <source-position filename="../src/adw-leaflet.h" line="114"/>
         <return-value transfer-ownership="none">
           <doc xml:space="preserve"
                filename="../src/adw-leaflet.c"
-               line="3165">the child transition duration, in milliseconds</doc>
+               line="3303">the child transition duration, in milliseconds</doc>
           <type name="guint" c:type="guint"/>
         </return-value>
         <parameters>
           <instance-parameter name="self" transfer-ownership="none">
             <doc xml:space="preserve"
                  filename="../src/adw-leaflet.c"
-                 line="3161">a `AdwLeaflet`</doc>
+                 line="3299">a `AdwLeaflet`</doc>
             <type name="Leaflet" c:type="AdwLeaflet*"/>
           </instance-parameter>
         </parameters>
@@ -6955,19 +6956,19 @@ See [property@Adw.LeafletPage:name].</doc>
                    value="child-transition-running"/>
         <doc xml:space="preserve"
              filename="../src/adw-leaflet.c"
-             line="3299">Gets whether a child transition is currently running for @self.</doc>
+             line="3437">Gets whether a child transition is currently running for @self.</doc>
         <source-position filename="../src/adw-leaflet.h" line="120"/>
         <return-value transfer-ownership="none">
           <doc xml:space="preserve"
                filename="../src/adw-leaflet.c"
-               line="3305">whether a transition is currently running</doc>
+               line="3443">whether a transition is currently running</doc>
           <type name="gboolean" c:type="gboolean"/>
         </return-value>
         <parameters>
           <instance-parameter name="self" transfer-ownership="none">
             <doc xml:space="preserve"
                  filename="../src/adw-leaflet.c"
-                 line="3301">a `AdwLeaflet`</doc>
+                 line="3439">a `AdwLeaflet`</doc>
             <type name="Leaflet" c:type="AdwLeaflet*"/>
           </instance-parameter>
         </parameters>
@@ -6980,7 +6981,7 @@ See [property@Adw.LeafletPage:name].</doc>
                    value="fold-threshold-policy"/>
         <doc xml:space="preserve"
              filename="../src/adw-leaflet.c"
-             line="3574">Gets the fold threshold policy for @self.</doc>
+             line="3712">Gets the fold threshold policy for @self.</doc>
         <source-position filename="../src/adw-leaflet.h" line="155"/>
         <return-value transfer-ownership="none">
           <type name="FoldThresholdPolicy" c:type="AdwFoldThresholdPolicy"/>
@@ -6989,7 +6990,7 @@ See [property@Adw.LeafletPage:name].</doc>
           <instance-parameter name="self" transfer-ownership="none">
             <doc xml:space="preserve"
                  filename="../src/adw-leaflet.c"
-                 line="3576">a `AdwLeaflet`</doc>
+                 line="3714">a `AdwLeaflet`</doc>
             <type name="Leaflet" c:type="AdwLeaflet*"/>
           </instance-parameter>
         </parameters>
@@ -7001,19 +7002,19 @@ See [property@Adw.LeafletPage:name].</doc>
         <attribute name="org.gtk.Method.get_property" value="folded"/>
         <doc xml:space="preserve"
              filename="../src/adw-leaflet.c"
-             line="3000">Gets whether @self is folded.</doc>
+             line="3138">Gets whether @self is folded.</doc>
         <source-position filename="../src/adw-leaflet.h" line="81"/>
         <return-value transfer-ownership="none">
           <doc xml:space="preserve"
                filename="../src/adw-leaflet.c"
-               line="3006">whether @self is folded.</doc>
+               line="3144">whether @self is folded.</doc>
           <type name="gboolean" c:type="gboolean"/>
         </return-value>
         <parameters>
           <instance-parameter name="self" transfer-ownership="none">
             <doc xml:space="preserve"
                  filename="../src/adw-leaflet.c"
-                 line="3002">a `AdwLeaflet`</doc>
+                 line="3140">a `AdwLeaflet`</doc>
             <type name="Leaflet" c:type="AdwLeaflet*"/>
           </instance-parameter>
         </parameters>
@@ -7025,7 +7026,7 @@ See [property@Adw.LeafletPage:name].</doc>
         <attribute name="org.gtk.Method.get_property" value="homogeneous"/>
         <doc xml:space="preserve"
              filename="../src/adw-leaflet.c"
-             line="3018">Gets whether @self is homogeneous.</doc>
+             line="3156">Gets whether @self is homogeneous.</doc>
         <source-position filename="../src/adw-leaflet.h" line="84"/>
         <return-value transfer-ownership="none">
           <type name="gboolean" c:type="gboolean"/>
@@ -7034,7 +7035,7 @@ See [property@Adw.LeafletPage:name].</doc>
           <instance-parameter name="self" transfer-ownership="none">
             <doc xml:space="preserve"
                  filename="../src/adw-leaflet.c"
-                 line="3020">a `AdwLeaflet`</doc>
+                 line="3158">a `AdwLeaflet`</doc>
             <type name="Leaflet" c:type="AdwLeaflet*"/>
           </instance-parameter>
         </parameters>
@@ -7047,19 +7048,19 @@ See [property@Adw.LeafletPage:name].</doc>
                    value="mode-transition-duration"/>
         <doc xml:space="preserve"
              filename="../src/adw-leaflet.c"
-             line="3118">Gets the mode transition animation duration for @self.</doc>
+             line="3256">Gets the mode transition animation duration for @self.</doc>
         <source-position filename="../src/adw-leaflet.h" line="108"/>
         <return-value transfer-ownership="none">
           <doc xml:space="preserve"
                filename="../src/adw-leaflet.c"
-               line="3124">the mode transition duration, in milliseconds.</doc>
+               line="3262">the mode transition duration, in milliseconds.</doc>
           <type name="guint" c:type="guint"/>
         </return-value>
         <parameters>
           <instance-parameter name="self" transfer-ownership="none">
             <doc xml:space="preserve"
                  filename="../src/adw-leaflet.c"
-                 line="3120">a `AdwLeaflet`</doc>
+                 line="3258">a `AdwLeaflet`</doc>
             <type name="Leaflet" c:type="AdwLeaflet*"/>
           </instance-parameter>
         </parameters>
@@ -7069,25 +7070,25 @@ See [property@Adw.LeafletPage:name].</doc>
               version="1.0">
         <doc xml:space="preserve"
              filename="../src/adw-leaflet.c"
-             line="2979">Returns the [class@Adw.LeafletPage] object for @child.</doc>
+             line="3117">Returns the [class@Adw.LeafletPage] object for @child.</doc>
         <source-position filename="../src/adw-leaflet.h" line="77"/>
         <return-value transfer-ownership="none">
           <doc xml:space="preserve"
                filename="../src/adw-leaflet.c"
-               line="2986">the page object for @child</doc>
+               line="3124">the page object for @child</doc>
           <type name="LeafletPage" c:type="AdwLeafletPage*"/>
         </return-value>
         <parameters>
           <instance-parameter name="self" transfer-ownership="none">
             <doc xml:space="preserve"
                  filename="../src/adw-leaflet.c"
-                 line="2981">a `AdwLeaflet`</doc>
+                 line="3119">a `AdwLeaflet`</doc>
             <type name="Leaflet" c:type="AdwLeaflet*"/>
           </instance-parameter>
           <parameter name="child" transfer-ownership="none">
             <doc xml:space="preserve"
                  filename="../src/adw-leaflet.c"
-                 line="2982">a child of @self</doc>
+                 line="3120">a child of @self</doc>
             <type name="Gtk.Widget" c:type="GtkWidget*"/>
           </parameter>
         </parameters>
@@ -7099,7 +7100,7 @@ See [property@Adw.LeafletPage:name].</doc>
         <attribute name="org.gtk.Method.get_property" value="pages"/>
         <doc xml:space="preserve"
              filename="../src/adw-leaflet.c"
-             line="3546">Returns a [iface@Gio.ListModel] that contains the pages of the leaflet.
+             line="3684">Returns a [iface@Gio.ListModel] that contains the pages of the leaflet.
 
 This can be used to keep an up-to-date view. The model also implements
 [iface@Gtk.SelectionModel] and can be used to track and change the visible
@@ -7108,14 +7109,14 @@ page.</doc>
         <return-value transfer-ownership="full">
           <doc xml:space="preserve"
                filename="../src/adw-leaflet.c"
-               line="3556">a `GtkSelectionModel` for the leaflet's children</doc>
+               line="3694">a `GtkSelectionModel` for the leaflet's children</doc>
           <type name="Gtk.SelectionModel" c:type="GtkSelectionModel*"/>
         </return-value>
         <parameters>
           <instance-parameter name="self" transfer-ownership="none">
             <doc xml:space="preserve"
                  filename="../src/adw-leaflet.c"
-                 line="3548">a `AdwLeaflet`</doc>
+                 line="3686">a `AdwLeaflet`</doc>
             <type name="Leaflet" c:type="AdwLeaflet*"/>
           </instance-parameter>
         </parameters>
@@ -7127,12 +7128,12 @@ page.</doc>
         <attribute name="org.gtk.Method.get_property" value="transition-type"/>
         <doc xml:space="preserve"
              filename="../src/adw-leaflet.c"
-             line="3064">Gets the type of animation used for transitions between modes and children.</doc>
+             line="3202">Gets the type of animation used for transitions between modes and children.</doc>
         <source-position filename="../src/adw-leaflet.h" line="102"/>
         <return-value transfer-ownership="none">
           <doc xml:space="preserve"
                filename="../src/adw-leaflet.c"
-               line="3070">the current transition type of @self</doc>
+               line="3208">the current transition type of @self</doc>
           <type name="LeafletTransitionType"
                 c:type="AdwLeafletTransitionType"/>
         </return-value>
@@ -7140,7 +7141,7 @@ page.</doc>
           <instance-parameter name="self" transfer-ownership="none">
             <doc xml:space="preserve"
                  filename="../src/adw-leaflet.c"
-                 line="3066">a `AdwLeaflet`</doc>
+                 line="3204">a `AdwLeaflet`</doc>
             <type name="Leaflet" c:type="AdwLeaflet*"/>
           </instance-parameter>
         </parameters>
@@ -7152,19 +7153,19 @@ page.</doc>
         <attribute name="org.gtk.Method.get_property" value="visible-child"/>
         <doc xml:space="preserve"
              filename="../src/adw-leaflet.c"
-             line="3200">Gets the widget currently visible when the leaflet is folded.</doc>
+             line="3338">Gets the widget currently visible when the leaflet is folded.</doc>
         <source-position filename="../src/adw-leaflet.h" line="90"/>
         <return-value transfer-ownership="none" nullable="1">
           <doc xml:space="preserve"
                filename="../src/adw-leaflet.c"
-               line="3206">the visible child</doc>
+               line="3344">the visible child</doc>
           <type name="Gtk.Widget" c:type="GtkWidget*"/>
         </return-value>
         <parameters>
           <instance-parameter name="self" transfer-ownership="none">
             <doc xml:space="preserve"
                  filename="../src/adw-leaflet.c"
-                 line="3202">a `AdwLeaflet`</doc>
+                 line="3340">a `AdwLeaflet`</doc>
             <type name="Leaflet" c:type="AdwLeaflet*"/>
           </instance-parameter>
         </parameters>
@@ -7177,19 +7178,19 @@ page.</doc>
                    value="visible-child-name"/>
         <doc xml:space="preserve"
              filename="../src/adw-leaflet.c"
-             line="3249">Gets the name of the currently visible child widget.</doc>
+             line="3387">Gets the name of the currently visible child widget.</doc>
         <source-position filename="../src/adw-leaflet.h" line="96"/>
         <return-value transfer-ownership="none" nullable="1">
           <doc xml:space="preserve"
                filename="../src/adw-leaflet.c"
-               line="3255">the name of the visible child</doc>
+               line="3393">the name of the visible child</doc>
           <type name="utf8" c:type="const char*"/>
         </return-value>
         <parameters>
           <instance-parameter name="self" transfer-ownership="none">
             <doc xml:space="preserve"
                  filename="../src/adw-leaflet.c"
-                 line="3251">a `AdwLeaflet`</doc>
+                 line="3389">a `AdwLeaflet`</doc>
             <type name="Leaflet" c:type="AdwLeaflet*"/>
           </instance-parameter>
         </parameters>
@@ -7199,27 +7200,27 @@ page.</doc>
               version="1.0">
         <doc xml:space="preserve"
              filename="../src/adw-leaflet.c"
-             line="2837">Inserts @child in the position after @sibling in the list of children.
+             line="2975">Inserts @child in the position after @sibling in the list of children.
 
 If @sibling is `NULL`, inserts @child at the first position.</doc>
         <source-position filename="../src/adw-leaflet.h" line="64"/>
         <return-value transfer-ownership="none">
           <doc xml:space="preserve"
                filename="../src/adw-leaflet.c"
-               line="2847">the [class@Adw.LeafletPage] for @child</doc>
+               line="2985">the [class@Adw.LeafletPage] for @child</doc>
           <type name="LeafletPage" c:type="AdwLeafletPage*"/>
         </return-value>
         <parameters>
           <instance-parameter name="self" transfer-ownership="none">
             <doc xml:space="preserve"
                  filename="../src/adw-leaflet.c"
-                 line="2839">a `AdwLeaflet`</doc>
+                 line="2977">a `AdwLeaflet`</doc>
             <type name="Leaflet" c:type="AdwLeaflet*"/>
           </instance-parameter>
           <parameter name="child" transfer-ownership="none">
             <doc xml:space="preserve"
                  filename="../src/adw-leaflet.c"
-                 line="2840">the widget to insert</doc>
+                 line="2978">the widget to insert</doc>
             <type name="Gtk.Widget" c:type="GtkWidget*"/>
           </parameter>
           <parameter name="sibling"
@@ -7228,7 +7229,7 @@ If @sibling is `NULL`, inserts @child at the first position.</doc>
                      allow-none="1">
             <doc xml:space="preserve"
                  filename="../src/adw-leaflet.c"
-                 line="2841">the sibling after which to insert @child</doc>
+                 line="2979">the sibling after which to insert @child</doc>
             <type name="Gtk.Widget" c:type="GtkWidget*"/>
           </parameter>
         </parameters>
@@ -7238,7 +7239,7 @@ If @sibling is `NULL`, inserts @child at the first position.</doc>
               version="1.0">
         <doc xml:space="preserve"
              filename="../src/adw-leaflet.c"
-             line="3437">Navigates to the previous or next child.
+             line="3575">Navigates to the previous or next child.
 
 The child must have the [property@Adw.LeafletPage:navigatable] property set
 to `TRUE`, otherwise it will be skipped.
@@ -7249,20 +7250,20 @@ This will be the same child as returned by
         <return-value transfer-ownership="none">
           <doc xml:space="preserve"
                filename="../src/adw-leaflet.c"
-               line="3450">whether the visible child was changed</doc>
+               line="3588">whether the visible child was changed</doc>
           <type name="gboolean" c:type="gboolean"/>
         </return-value>
         <parameters>
           <instance-parameter name="self" transfer-ownership="none">
             <doc xml:space="preserve"
                  filename="../src/adw-leaflet.c"
-                 line="3439">a `AdwLeaflet`</doc>
+                 line="3577">a `AdwLeaflet`</doc>
             <type name="Leaflet" c:type="AdwLeaflet*"/>
           </instance-parameter>
           <parameter name="direction" transfer-ownership="none">
             <doc xml:space="preserve"
                  filename="../src/adw-leaflet.c"
-                 line="3440">the direction</doc>
+                 line="3578">the direction</doc>
             <type name="NavigationDirection" c:type="AdwNavigationDirection"/>
           </parameter>
         </parameters>
@@ -7270,25 +7271,25 @@ This will be the same child as returned by
       <method name="prepend" c:identifier="adw_leaflet_prepend" version="1.0">
         <doc xml:space="preserve"
              filename="../src/adw-leaflet.c"
-             line="2815">Inserts @child at the first position in @self.</doc>
+             line="2953">Inserts @child at the first position in @self.</doc>
         <source-position filename="../src/adw-leaflet.h" line="60"/>
         <return-value transfer-ownership="none">
           <doc xml:space="preserve"
                filename="../src/adw-leaflet.c"
-               line="2822">the [class@Adw.LeafletPage] for @child</doc>
+               line="2960">the [class@Adw.LeafletPage] for @child</doc>
           <type name="LeafletPage" c:type="AdwLeafletPage*"/>
         </return-value>
         <parameters>
           <instance-parameter name="self" transfer-ownership="none">
             <doc xml:space="preserve"
                  filename="../src/adw-leaflet.c"
-                 line="2817">a `AdwLeaflet`</doc>
+                 line="2955">a `AdwLeaflet`</doc>
             <type name="Leaflet" c:type="AdwLeaflet*"/>
           </instance-parameter>
           <parameter name="child" transfer-ownership="none">
             <doc xml:space="preserve"
                  filename="../src/adw-leaflet.c"
-                 line="2818">the widget to prepend</doc>
+                 line="2956">the widget to prepend</doc>
             <type name="Gtk.Widget" c:type="GtkWidget*"/>
           </parameter>
         </parameters>
@@ -7296,7 +7297,7 @@ This will be the same child as returned by
       <method name="remove" c:identifier="adw_leaflet_remove" version="1.0">
         <doc xml:space="preserve"
              filename="../src/adw-leaflet.c"
-             line="2946">Removes a child widget from @self.</doc>
+             line="3084">Removes a child widget from @self.</doc>
         <source-position filename="../src/adw-leaflet.h" line="73"/>
         <return-value transfer-ownership="none">
           <type name="none" c:type="void"/>
@@ -7305,13 +7306,13 @@ This will be the same child as returned by
           <instance-parameter name="self" transfer-ownership="none">
             <doc xml:space="preserve"
                  filename="../src/adw-leaflet.c"
-                 line="2948">a `AdwLeaflet`</doc>
+                 line="3086">a `AdwLeaflet`</doc>
             <type name="Leaflet" c:type="AdwLeaflet*"/>
           </instance-parameter>
           <parameter name="child" transfer-ownership="none">
             <doc xml:space="preserve"
                  filename="../src/adw-leaflet.c"
-                 line="2949">the child to remove</doc>
+                 line="3087">the child to remove</doc>
             <type name="Gtk.Widget" c:type="GtkWidget*"/>
           </parameter>
         </parameters>
@@ -7321,7 +7322,7 @@ This will be the same child as returned by
               version="1.0">
         <doc xml:space="preserve"
              filename="../src/adw-leaflet.c"
-             line="2876">Moves @child to the position after @sibling in the list of children.
+             line="3014">Moves @child to the position after @sibling in the list of children.
 
 If @sibling is `NULL`, moves @child to the first position.</doc>
         <source-position filename="../src/adw-leaflet.h" line="68"/>
@@ -7332,13 +7333,13 @@ If @sibling is `NULL`, moves @child to the first position.</doc>
           <instance-parameter name="self" transfer-ownership="none">
             <doc xml:space="preserve"
                  filename="../src/adw-leaflet.c"
-                 line="2878">a `AdwLeaflet`</doc>
+                 line="3016">a `AdwLeaflet`</doc>
             <type name="Leaflet" c:type="AdwLeaflet*"/>
           </instance-parameter>
           <parameter name="child" transfer-ownership="none">
             <doc xml:space="preserve"
                  filename="../src/adw-leaflet.c"
-                 line="2879">the widget to move, must be a child of @self</doc>
+                 line="3017">the widget to move, must be a child of @self</doc>
             <type name="Gtk.Widget" c:type="GtkWidget*"/>
           </parameter>
           <parameter name="sibling"
@@ -7347,19 +7348,20 @@ If @sibling is `NULL`, moves @child to the first position.</doc>
                      allow-none="1">
             <doc xml:space="preserve"
                  filename="../src/adw-leaflet.c"
-                 line="2880">the sibling to move @child after</doc>
+                 line="3018">the sibling to move @child after</doc>
             <type name="Gtk.Widget" c:type="GtkWidget*"/>
           </parameter>
         </parameters>
       </method>
-      <method name="set_can_swipe_back"
-              c:identifier="adw_leaflet_set_can_swipe_back"
-              glib:set-property="can-swipe-back"
+      <method name="set_can_navigate_back"
+              c:identifier="adw_leaflet_set_can_navigate_back"
+              glib:set-property="can-navigate-back"
               version="1.0">
-        <attribute name="org.gtk.Method.set_property" value="can-swipe-back"/>
+        <attribute name="org.gtk.Method.set_property"
+                   value="can-navigate-back"/>
         <doc xml:space="preserve"
              filename="../src/adw-leaflet.c"
-             line="3318">Sets whether a swipe gesture can be used to navigate to the previous child.</doc>
+             line="3456">Sets whether gestures and shortcuts for navigating backward are enabled.</doc>
         <source-position filename="../src/adw-leaflet.h" line="125"/>
         <return-value transfer-ownership="none">
           <type name="none" c:type="void"/>
@@ -7368,26 +7370,26 @@ If @sibling is `NULL`, moves @child to the first position.</doc>
           <instance-parameter name="self" transfer-ownership="none">
             <doc xml:space="preserve"
                  filename="../src/adw-leaflet.c"
-                 line="3320">a `AdwLeaflet`</doc>
+                 line="3458">a `AdwLeaflet`</doc>
             <type name="Leaflet" c:type="AdwLeaflet*"/>
           </instance-parameter>
-          <parameter name="can_swipe_back" transfer-ownership="none">
+          <parameter name="can_navigate_back" transfer-ownership="none">
             <doc xml:space="preserve"
                  filename="../src/adw-leaflet.c"
-                 line="3321">the new value</doc>
+                 line="3459">the new value</doc>
             <type name="gboolean" c:type="gboolean"/>
           </parameter>
         </parameters>
       </method>
-      <method name="set_can_swipe_forward"
-              c:identifier="adw_leaflet_set_can_swipe_forward"
-              glib:set-property="can-swipe-forward"
+      <method name="set_can_navigate_forward"
+              c:identifier="adw_leaflet_set_can_navigate_forward"
+              glib:set-property="can-navigate-forward"
               version="1.0">
         <attribute name="org.gtk.Method.set_property"
-                   value="can-swipe-forward"/>
+                   value="can-navigate-forward"/>
         <doc xml:space="preserve"
              filename="../src/adw-leaflet.c"
-             line="3362">Sets whether a swipe gesture can be used to navigate to the next child.</doc>
+             line="3500">Sets whether gestures and shortcuts for navigating forward are enabled.</doc>
         <source-position filename="../src/adw-leaflet.h" line="131"/>
         <return-value transfer-ownership="none">
           <type name="none" c:type="void"/>
@@ -7396,13 +7398,13 @@ If @sibling is `NULL`, moves @child to the first position.</doc>
           <instance-parameter name="self" transfer-ownership="none">
             <doc xml:space="preserve"
                  filename="../src/adw-leaflet.c"
-                 line="3364">a `AdwLeaflet`</doc>
+                 line="3502">a `AdwLeaflet`</doc>
             <type name="Leaflet" c:type="AdwLeaflet*"/>
           </instance-parameter>
-          <parameter name="can_swipe_forward" transfer-ownership="none">
+          <parameter name="can_navigate_forward" transfer-ownership="none">
             <doc xml:space="preserve"
                  filename="../src/adw-leaflet.c"
-                 line="3365">the new value</doc>
+                 line="3503">the new value</doc>
             <type name="gboolean" c:type="gboolean"/>
           </parameter>
         </parameters>
@@ -7414,7 +7416,7 @@ If @sibling is `NULL`, moves @child to the first position.</doc>
         <attribute name="org.gtk.Method.set_property" value="can-unfold"/>
         <doc xml:space="preserve"
              filename="../src/adw-leaflet.c"
-             line="3501">Sets whether @self can unfold.</doc>
+             line="3639">Sets whether @self can unfold.</doc>
         <source-position filename="../src/adw-leaflet.h" line="148"/>
         <return-value transfer-ownership="none">
           <type name="none" c:type="void"/>
@@ -7423,13 +7425,13 @@ If @sibling is `NULL`, moves @child to the first position.</doc>
           <instance-parameter name="self" transfer-ownership="none">
             <doc xml:space="preserve"
                  filename="../src/adw-leaflet.c"
-                 line="3503">a `AdwLeaflet`</doc>
+                 line="3641">a `AdwLeaflet`</doc>
             <type name="Leaflet" c:type="AdwLeaflet*"/>
           </instance-parameter>
           <parameter name="can_unfold" transfer-ownership="none">
             <doc xml:space="preserve"
                  filename="../src/adw-leaflet.c"
-                 line="3504">whether @self can unfold</doc>
+                 line="3642">whether @self can unfold</doc>
             <type name="gboolean" c:type="gboolean"/>
           </parameter>
         </parameters>
@@ -7442,7 +7444,7 @@ If @sibling is `NULL`, moves @child to the first position.</doc>
                    value="child-transition-duration"/>
         <doc xml:space="preserve"
              filename="../src/adw-leaflet.c"
-             line="3177">Sets the child transition animation duration for @self.</doc>
+             line="3315">Sets the child transition animation duration for @self.</doc>
         <source-position filename="../src/adw-leaflet.h" line="116"/>
         <return-value transfer-ownership="none">
           <type name="none" c:type="void"/>
@@ -7451,13 +7453,13 @@ If @sibling is `NULL`, moves @child to the first position.</doc>
           <instance-parameter name="self" transfer-ownership="none">
             <doc xml:space="preserve"
                  filename="../src/adw-leaflet.c"
-                 line="3179">a `AdwLeaflet`</doc>
+                 line="3317">a `AdwLeaflet`</doc>
             <type name="Leaflet" c:type="AdwLeaflet*"/>
           </instance-parameter>
           <parameter name="duration" transfer-ownership="none">
             <doc xml:space="preserve"
                  filename="../src/adw-leaflet.c"
-                 line="3180">the new duration, in milliseconds</doc>
+                 line="3318">the new duration, in milliseconds</doc>
             <type name="guint" c:type="guint"/>
           </parameter>
         </parameters>
@@ -7470,7 +7472,7 @@ If @sibling is `NULL`, moves @child to the first position.</doc>
                    value="fold-threshold-policy"/>
         <doc xml:space="preserve"
              filename="../src/adw-leaflet.c"
-             line="3591">Sets the fold threshold policy for @self.</doc>
+             line="3729">Sets the fold threshold policy for @self.</doc>
         <source-position filename="../src/adw-leaflet.h" line="157"/>
         <return-value transfer-ownership="none">
           <type name="none" c:type="void"/>
@@ -7479,13 +7481,13 @@ If @sibling is `NULL`, moves @child to the first position.</doc>
           <instance-parameter name="self" transfer-ownership="none">
             <doc xml:space="preserve"
                  filename="../src/adw-leaflet.c"
-                 line="3593">a `AdwLeaflet`</doc>
+                 line="3731">a `AdwLeaflet`</doc>
             <type name="Leaflet" c:type="AdwLeaflet*"/>
           </instance-parameter>
           <parameter name="policy" transfer-ownership="none">
             <doc xml:space="preserve"
                  filename="../src/adw-leaflet.c"
-                 line="3594">the policy to use</doc>
+                 line="3732">the policy to use</doc>
             <type name="FoldThresholdPolicy" c:type="AdwFoldThresholdPolicy"/>
           </parameter>
         </parameters>
@@ -7497,7 +7499,7 @@ If @sibling is `NULL`, moves @child to the first position.</doc>
         <attribute name="org.gtk.Method.set_property" value="homogeneous"/>
         <doc xml:space="preserve"
              filename="../src/adw-leaflet.c"
-             line="3034">Sets @self to be homogeneous or not.
+             line="3172">Sets @self to be homogeneous or not.
 
 If set to `FALSE`, different children can have different size along the
 opposite orientation.</doc>
@@ -7509,13 +7511,13 @@ opposite orientation.</doc>
           <instance-parameter name="self" transfer-ownership="none">
             <doc xml:space="preserve"
                  filename="../src/adw-leaflet.c"
-                 line="3036">a `AdwLeaflet`</doc>
+                 line="3174">a `AdwLeaflet`</doc>
             <type name="Leaflet" c:type="AdwLeaflet*"/>
           </instance-parameter>
           <parameter name="homogeneous" transfer-ownership="none">
             <doc xml:space="preserve"
                  filename="../src/adw-leaflet.c"
-                 line="3037">whether to make @self homogeneous</doc>
+                 line="3175">whether to make @self homogeneous</doc>
             <type name="gboolean" c:type="gboolean"/>
           </parameter>
         </parameters>
@@ -7528,7 +7530,7 @@ opposite orientation.</doc>
                    value="mode-transition-duration"/>
         <doc xml:space="preserve"
              filename="../src/adw-leaflet.c"
-             line="3136">Sets the mode transition animation duration for @self.</doc>
+             line="3274">Sets the mode transition animation duration for @self.</doc>
         <source-position filename="../src/adw-leaflet.h" line="110"/>
         <return-value transfer-ownership="none">
           <type name="none" c:type="void"/>
@@ -7537,13 +7539,13 @@ opposite orientation.</doc>
           <instance-parameter name="self" transfer-ownership="none">
             <doc xml:space="preserve"
                  filename="../src/adw-leaflet.c"
-                 line="3138">a `AdwLeaflet`</doc>
+                 line="3276">a `AdwLeaflet`</doc>
             <type name="Leaflet" c:type="AdwLeaflet*"/>
           </instance-parameter>
           <parameter name="duration" transfer-ownership="none">
             <doc xml:space="preserve"
                  filename="../src/adw-leaflet.c"
-                 line="3139">the new duration, in milliseconds</doc>
+                 line="3277">the new duration, in milliseconds</doc>
             <type name="guint" c:type="guint"/>
           </parameter>
         </parameters>
@@ -7555,7 +7557,7 @@ opposite orientation.</doc>
         <attribute name="org.gtk.Method.set_property" value="transition-type"/>
         <doc xml:space="preserve"
              filename="../src/adw-leaflet.c"
-             line="3082">Sets the type of animation used for transitions between modes and children.</doc>
+             line="3220">Sets the type of animation used for transitions between modes and children.</doc>
         <source-position filename="../src/adw-leaflet.h" line="104"/>
         <return-value transfer-ownership="none">
           <type name="none" c:type="void"/>
@@ -7564,13 +7566,13 @@ opposite orientation.</doc>
           <instance-parameter name="self" transfer-ownership="none">
             <doc xml:space="preserve"
                  filename="../src/adw-leaflet.c"
-                 line="3084">a `AdwLeaflet`</doc>
+                 line="3222">a `AdwLeaflet`</doc>
             <type name="Leaflet" c:type="AdwLeaflet*"/>
           </instance-parameter>
           <parameter name="transition" transfer-ownership="none">
             <doc xml:space="preserve"
                  filename="../src/adw-leaflet.c"
-                 line="3085">the new transition type</doc>
+                 line="3223">the new transition type</doc>
             <type name="LeafletTransitionType"
                   c:type="AdwLeafletTransitionType"/>
           </parameter>
@@ -7583,7 +7585,7 @@ opposite orientation.</doc>
         <attribute name="org.gtk.Method.set_property" value="visible-child"/>
         <doc xml:space="preserve"
              filename="../src/adw-leaflet.c"
-             line="3221">Sets the widget currently visible when the leaflet is folded.</doc>
+             line="3359">Sets the widget currently visible when the leaflet is folded.</doc>
         <source-position filename="../src/adw-leaflet.h" line="92"/>
         <return-value transfer-ownership="none">
           <type name="none" c:type="void"/>
@@ -7592,13 +7594,13 @@ opposite orientation.</doc>
           <instance-parameter name="self" transfer-ownership="none">
             <doc xml:space="preserve"
                  filename="../src/adw-leaflet.c"
-                 line="3223">a `AdwLeaflet`</doc>
+                 line="3361">a `AdwLeaflet`</doc>
             <type name="Leaflet" c:type="AdwLeaflet*"/>
           </instance-parameter>
           <parameter name="visible_child" transfer-ownership="none">
             <doc xml:space="preserve"
                  filename="../src/adw-leaflet.c"
-                 line="3224">the new child</doc>
+                 line="3362">the new child</doc>
             <type name="Gtk.Widget" c:type="GtkWidget*"/>
           </parameter>
         </parameters>
@@ -7611,7 +7613,7 @@ opposite orientation.</doc>
                    value="visible-child-name"/>
         <doc xml:space="preserve"
              filename="../src/adw-leaflet.c"
-             line="3270">Makes the child with the name @name visible.
+             line="3408">Makes the child with the name @name visible.
 
 See adw_leaflet_set_visible_child() for more details.</doc>
         <source-position filename="../src/adw-leaflet.h" line="98"/>
@@ -7622,48 +7624,72 @@ See adw_leaflet_set_visible_child() for more details.</doc>
           <instance-parameter name="self" transfer-ownership="none">
             <doc xml:space="preserve"
                  filename="../src/adw-leaflet.c"
-                 line="3272">a `AdwLeaflet`</doc>
+                 line="3410">a `AdwLeaflet`</doc>
             <type name="Leaflet" c:type="AdwLeaflet*"/>
           </instance-parameter>
           <parameter name="name" transfer-ownership="none">
             <doc xml:space="preserve"
                  filename="../src/adw-leaflet.c"
-                 line="3273">the name of a child</doc>
+                 line="3411">the name of a child</doc>
             <type name="utf8" c:type="const char*"/>
           </parameter>
         </parameters>
       </method>
-      <property name="can-swipe-back"
+      <property name="can-navigate-back"
                 version="1.0"
                 writable="1"
                 transfer-ownership="none"
-                setter="set_can_swipe_back"
-                getter="get_can_swipe_back">
+                setter="set_can_navigate_back"
+                getter="get_can_navigate_back">
         <attribute name="org.gtk.Property.get"
-                   value="adw_leaflet_get_can_swipe_back"/>
+                   value="adw_leaflet_get_can_navigate_back"/>
         <attribute name="org.gtk.Property.set"
-                   value="adw_leaflet_set_can_swipe_back"/>
+                   value="adw_leaflet_set_can_navigate_back"/>
         <doc xml:space="preserve"
              filename="../src/adw-leaflet.c"
-             line="2349">Whether a swipe gesture can be used to navigate to the previous child.
+             line="2433">Whether gestures and shortcuts for navigating backward are enabled.
+
+The supported gestures are:
+- One-finger swipe on touchscreens
+- Horizontal scrolling on touchpads (usually two-finger swipe)
+- Back/forward mouse buttons
+
+The keyboard back/forward keys are also supported, as well as the Alt+←
+shortcut for horizontal orientation, or Alt+↑ for vertical
+orientation.
+
+If the orientation is horizontal, for right-to-left locales, gestures and
+shortcuts are reversed.
 
 Only children that have [property@Adw.LeafletPage:navigatable] set to
 `TRUE` can be navigated to.</doc>
         <type name="gboolean" c:type="gboolean"/>
       </property>
-      <property name="can-swipe-forward"
+      <property name="can-navigate-forward"
                 version="1.0"
                 writable="1"
                 transfer-ownership="none"
-                setter="set_can_swipe_forward"
-                getter="get_can_swipe_forward">
+                setter="set_can_navigate_forward"
+                getter="get_can_navigate_forward">
         <attribute name="org.gtk.Property.get"
-                   value="adw_leaflet_get_can_swipe_forward"/>
+                   value="adw_leaflet_get_can_navigate_forward"/>
         <attribute name="org.gtk.Property.set"
-                   value="adw_leaflet_set_can_swipe_forward"/>
+                   value="adw_leaflet_set_can_navigate_forward"/>
         <doc xml:space="preserve"
              filename="../src/adw-leaflet.c"
-             line="2366">Whether a swipe gesture can be used to navigate to the next child.
+             line="2462">Whether gestures and shortcuts for navigating forward are enabled.
+
+The supported gestures are:
+- One-finger swipe on touchscreens
+- Horizontal scrolling on touchpads (usually two-finger swipe)
+- Back/forward mouse buttons
+
+The keyboard back/forward keys are also supported, as well as the Alt+→
+shortcut for horizontal orientation, or Alt+↓ for vertical
+orientation.
+
+If the orientation is horizontal, for right-to-left locales, gestures and
+shortcuts are reversed.
 
 Only children that have [property@Adw.LeafletPage:navigatable] set to
 `TRUE` can be navigated to.</doc>
@@ -7681,7 +7707,7 @@ Only children that have [property@Adw.LeafletPage:navigatable] set to
                    value="adw_leaflet_set_can_unfold"/>
         <doc xml:space="preserve"
              filename="../src/adw-leaflet.c"
-             line="2383">Whether or not the leaflet can unfold.</doc>
+             line="2491">Whether or not the leaflet can unfold.</doc>
         <type name="gboolean" c:type="gboolean"/>
       </property>
       <property name="child-transition-duration"
@@ -7696,7 +7722,7 @@ Only children that have [property@Adw.LeafletPage:navigatable] set to
                    value="adw_leaflet_set_child_transition_duration"/>
         <doc xml:space="preserve"
              filename="../src/adw-leaflet.c"
-             line="2321">The child transition animation duration, in milliseconds.</doc>
+             line="2405">The child transition animation duration, in milliseconds.</doc>
         <type name="guint" c:type="guint"/>
       </property>
       <property name="child-transition-running"
@@ -7707,7 +7733,7 @@ Only children that have [property@Adw.LeafletPage:navigatable] set to
                    value="adw_leaflet_get_child_transition_running"/>
         <doc xml:space="preserve"
              filename="../src/adw-leaflet.c"
-             line="2335">Whether a child transition is currently running.</doc>
+             line="2419">Whether a child transition is currently running.</doc>
         <type name="gboolean" c:type="gboolean"/>
       </property>
       <property name="fold-threshold-policy"
@@ -7722,7 +7748,7 @@ Only children that have [property@Adw.LeafletPage:navigatable] set to
                    value="adw_leaflet_set_fold_threshold_policy"/>
         <doc xml:space="preserve"
              filename="../src/adw-leaflet.c"
-             line="2215">Determines when the leaflet will fold.
+             line="2299">Determines when the leaflet will fold.
 
 If set to `ADW_FOLD_THRESHOLD_POLICY_MINIMUM`, it will only fold when
 the children cannot fit anymore. With `ADW_FOLD_THRESHOLD_POLICY_NATURAL`,
@@ -7739,7 +7765,7 @@ ellipsize instead of immediately folding.</doc>
         <attribute name="org.gtk.Property.get" value="adw_leaflet_get_folded"/>
         <doc xml:space="preserve"
              filename="../src/adw-leaflet.c"
-             line="2198">Whether the leaflet is folded.
+             line="2282">Whether the leaflet is folded.
 
 The leaflet will be folded if the size allocated to it is smaller than the
 sum of the fold threshold policy, it will be unfolded otherwise.</doc>
@@ -7757,7 +7783,7 @@ sum of the fold threshold policy, it will be unfolded otherwise.</doc>
                    value="adw_leaflet_set_homogeneous"/>
         <doc xml:space="preserve"
              filename="../src/adw-leaflet.c"
-             line="2237">Whether the leaflet allocates the same size for all children when folded.
+             line="2321">Whether the leaflet allocates the same size for all children when folded.
 
 If set to `FALSE`, different children can have different size along the
 opposite orientation.</doc>
@@ -7775,7 +7801,7 @@ opposite orientation.</doc>
                    value="adw_leaflet_set_mode_transition_duration"/>
         <doc xml:space="preserve"
              filename="../src/adw-leaflet.c"
-             line="2307">The mode transition animation duration, in milliseconds.</doc>
+             line="2391">The mode transition animation duration, in milliseconds.</doc>
         <type name="guint" c:type="guint"/>
       </property>
       <property name="pages"
@@ -7785,7 +7811,7 @@ opposite orientation.</doc>
         <attribute name="org.gtk.Property.get" value="adw_leaflet_get_pages"/>
         <doc xml:space="preserve"
              filename="../src/adw-leaflet.c"
-             line="2397">A selection model with the leaflet's pages.
+             line="2505">A selection model with the leaflet's pages.
 
 This can be used to keep an up-to-date view. The model also implements
 [iface@Gtk.SelectionModel] and can be used to track and change the visible
@@ -7804,7 +7830,7 @@ page.</doc>
                    value="adw_leaflet_set_transition_type"/>
         <doc xml:space="preserve"
              filename="../src/adw-leaflet.c"
-             line="2289">The type of animation used for transitions between modes and children.
+             line="2373">The type of animation used for transitions between modes and children.
 
 The transition type can be changed without problems at runtime, so it is
 possible to change the animation based on the mode or child that is about
@@ -7823,7 +7849,7 @@ to become current.</doc>
                    value="adw_leaflet_set_visible_child"/>
         <doc xml:space="preserve"
              filename="../src/adw-leaflet.c"
-             line="2254">The widget currently visible when the leaflet is folded.
+             line="2338">The widget currently visible when the leaflet is folded.
 
 The transition is determined by [property@Adw.Leaflet:transition-type] and
 [Adw.Leaflet:child-transition-duration]. The transition can be cancelled by
@@ -7843,7 +7869,7 @@ visible child.</doc>
                    value="adw_leaflet_set_visible_child_name"/>
         <doc xml:space="preserve"
              filename="../src/adw-leaflet.c"
-             line="2273">The name of the widget currently visible when the leaflet is folded.
+             line="2357">The name of the widget currently visible when the leaflet is folded.
 
 See [property@Adw.Leaflet:visible-child].</doc>
         <type name="utf8" c:type="gchar*"/>
@@ -7876,19 +7902,19 @@ See [property@Adw.Leaflet:visible-child].</doc>
         <attribute name="org.gtk.Method.get_property" value="child"/>
         <doc xml:space="preserve"
              filename="../src/adw-leaflet.c"
-             line="2635">Gets the leaflet child th which @self belongs.</doc>
+             line="2773">Gets the leaflet child th which @self belongs.</doc>
         <source-position filename="../src/adw-leaflet.h" line="28"/>
         <return-value transfer-ownership="none">
           <doc xml:space="preserve"
                filename="../src/adw-leaflet.c"
-               line="2641">the child to which @self belongs</doc>
+               line="2779">the child to which @self belongs</doc>
           <type name="Gtk.Widget" c:type="GtkWidget*"/>
         </return-value>
         <parameters>
           <instance-parameter name="self" transfer-ownership="none">
             <doc xml:space="preserve"
                  filename="../src/adw-leaflet.c"
-                 line="2637">a `AdwLeafletPage`</doc>
+                 line="2775">a `AdwLeafletPage`</doc>
             <type name="LeafletPage" c:type="AdwLeafletPage*"/>
           </instance-parameter>
         </parameters>
@@ -7900,19 +7926,19 @@ See [property@Adw.Leaflet:visible-child].</doc>
         <attribute name="org.gtk.Method.get_property" value="name"/>
         <doc xml:space="preserve"
              filename="../src/adw-leaflet.c"
-             line="2653">Gets the name of @self.</doc>
+             line="2791">Gets the name of @self.</doc>
         <source-position filename="../src/adw-leaflet.h" line="31"/>
         <return-value transfer-ownership="none" nullable="1">
           <doc xml:space="preserve"
                filename="../src/adw-leaflet.c"
-               line="2659">the name of @self.</doc>
+               line="2797">the name of @self.</doc>
           <type name="utf8" c:type="const char*"/>
         </return-value>
         <parameters>
           <instance-parameter name="self" transfer-ownership="none">
             <doc xml:space="preserve"
                  filename="../src/adw-leaflet.c"
-                 line="2655">a `AdwLeafletPage`</doc>
+                 line="2793">a `AdwLeafletPage`</doc>
             <type name="LeafletPage" c:type="AdwLeafletPage*"/>
           </instance-parameter>
         </parameters>
@@ -7924,19 +7950,19 @@ See [property@Adw.Leaflet:visible-child].</doc>
         <attribute name="org.gtk.Method.get_property" value="navigatable"/>
         <doc xml:space="preserve"
              filename="../src/adw-leaflet.c"
-             line="2720">Gets whether the child can be navigated to when folded.</doc>
+             line="2858">Gets whether the child can be navigated to when folded.</doc>
         <source-position filename="../src/adw-leaflet.h" line="37"/>
         <return-value transfer-ownership="none">
           <doc xml:space="preserve"
                filename="../src/adw-leaflet.c"
-               line="2726">whether @self can be navigated to when folded</doc>
+               line="2864">whether @self can be navigated to when folded</doc>
           <type name="gboolean" c:type="gboolean"/>
         </return-value>
         <parameters>
           <instance-parameter name="self" transfer-ownership="none">
             <doc xml:space="preserve"
                  filename="../src/adw-leaflet.c"
-                 line="2722">a `AdwLeafletPage`</doc>
+                 line="2860">a `AdwLeafletPage`</doc>
             <type name="LeafletPage" c:type="AdwLeafletPage*"/>
           </instance-parameter>
         </parameters>
@@ -7948,7 +7974,7 @@ See [property@Adw.Leaflet:visible-child].</doc>
         <attribute name="org.gtk.Method.set_property" value="name"/>
         <doc xml:space="preserve"
              filename="../src/adw-leaflet.c"
-             line="2671">Sets the name of the @self.</doc>
+             line="2809">Sets the name of the @self.</doc>
         <source-position filename="../src/adw-leaflet.h" line="33"/>
         <return-value transfer-ownership="none">
           <type name="none" c:type="void"/>
@@ -7957,7 +7983,7 @@ See [property@Adw.Leaflet:visible-child].</doc>
           <instance-parameter name="self" transfer-ownership="none">
             <doc xml:space="preserve"
                  filename="../src/adw-leaflet.c"
-                 line="2673">a `AdwLeafletPage`</doc>
+                 line="2811">a `AdwLeafletPage`</doc>
             <type name="LeafletPage" c:type="AdwLeafletPage*"/>
           </instance-parameter>
           <parameter name="name"
@@ -7966,7 +7992,7 @@ See [property@Adw.Leaflet:visible-child].</doc>
                      allow-none="1">
             <doc xml:space="preserve"
                  filename="../src/adw-leaflet.c"
-                 line="2674">the new value to set</doc>
+                 line="2812">the new value to set</doc>
             <type name="utf8" c:type="const char*"/>
           </parameter>
         </parameters>
@@ -7978,7 +8004,7 @@ See [property@Adw.Leaflet:visible-child].</doc>
         <attribute name="org.gtk.Method.set_property" value="navigatable"/>
         <doc xml:space="preserve"
              filename="../src/adw-leaflet.c"
-             line="2738">Sets whether @self can be navigated to when folded.</doc>
+             line="2876">Sets whether @self can be navigated to when folded.</doc>
         <source-position filename="../src/adw-leaflet.h" line="39"/>
         <return-value transfer-ownership="none">
           <type name="none" c:type="void"/>
@@ -7987,13 +8013,13 @@ See [property@Adw.Leaflet:visible-child].</doc>
           <instance-parameter name="self" transfer-ownership="none">
             <doc xml:space="preserve"
                  filename="../src/adw-leaflet.c"
-                 line="2740">a `AdwLeafletPage`</doc>
+                 line="2878">a `AdwLeafletPage`</doc>
             <type name="LeafletPage" c:type="AdwLeafletPage*"/>
           </instance-parameter>
           <parameter name="navigatable" transfer-ownership="none">
             <doc xml:space="preserve"
                  filename="../src/adw-leaflet.c"
-                 line="2741">whether @self can be navigated to when folded</doc>
+                 line="2879">whether @self can be navigated to when folded</doc>
             <type name="gboolean" c:type="gboolean"/>
           </parameter>
         </parameters>
@@ -8982,12 +9008,12 @@ style class `.preferences`.</doc>
                    version="1.0">
         <doc xml:space="preserve"
              filename="../src/adw-preferences-window.c"
-             line="665">Creates a new `AdwPreferencesWindow`.</doc>
+             line="674">Creates a new `AdwPreferencesWindow`.</doc>
         <source-position filename="../src/adw-preferences-window.h" line="40"/>
         <return-value transfer-ownership="none">
           <doc xml:space="preserve"
                filename="../src/adw-preferences-window.c"
-               line="670">the newly created `AdwPreferencesWindow`</doc>
+               line="679">the newly created `AdwPreferencesWindow`</doc>
           <type name="Gtk.Widget" c:type="GtkWidget*"/>
         </return-value>
       </constructor>
@@ -8996,7 +9022,7 @@ style class `.preferences`.</doc>
               version="1.0">
         <doc xml:space="preserve"
              filename="../src/adw-preferences-window.c"
-             line="853">Adds a preferences page to @self.</doc>
+             line="862">Adds a preferences page to @self.</doc>
         <source-position filename="../src/adw-preferences-window.h" line="61"/>
         <return-value transfer-ownership="none">
           <type name="none" c:type="void"/>
@@ -9005,13 +9031,13 @@ style class `.preferences`.</doc>
           <instance-parameter name="self" transfer-ownership="none">
             <doc xml:space="preserve"
                  filename="../src/adw-preferences-window.c"
-                 line="855">a `AdwPreferencesWindow`</doc>
+                 line="864">a `AdwPreferencesWindow`</doc>
             <type name="PreferencesWindow" c:type="AdwPreferencesWindow*"/>
           </instance-parameter>
           <parameter name="page" transfer-ownership="none">
             <doc xml:space="preserve"
                  filename="../src/adw-preferences-window.c"
-                 line="856">the page to add</doc>
+                 line="865">the page to add</doc>
             <type name="PreferencesPage" c:type="AdwPreferencesPage*"/>
           </parameter>
         </parameters>
@@ -9021,9 +9047,9 @@ style class `.preferences`.</doc>
               version="1.0">
         <doc xml:space="preserve"
              filename="../src/adw-preferences-window.c"
-             line="997">Displays @toast.
+             line="1006">Displays @toast.
 
-See [method@Adw.ToastOverlay:add_toast].</doc>
+See [method@Adw.ToastOverlay.add_toast].</doc>
         <source-position filename="../src/adw-preferences-window.h" line="80"/>
         <return-value transfer-ownership="none">
           <type name="none" c:type="void"/>
@@ -9032,13 +9058,13 @@ See [method@Adw.ToastOverlay:add_toast].</doc>
           <instance-parameter name="self" transfer-ownership="none">
             <doc xml:space="preserve"
                  filename="../src/adw-preferences-window.c"
-                 line="999">a `AdwPreferencesWindow`</doc>
+                 line="1008">a `AdwPreferencesWindow`</doc>
             <type name="PreferencesWindow" c:type="AdwPreferencesWindow*"/>
           </instance-parameter>
           <parameter name="toast" transfer-ownership="full">
             <doc xml:space="preserve"
                  filename="../src/adw-preferences-window.c"
-                 line="1000">a toast</doc>
+                 line="1009">a toast</doc>
             <type name="Toast" c:type="AdwToast*"/>
           </parameter>
         </parameters>
@@ -9048,7 +9074,7 @@ See [method@Adw.ToastOverlay:add_toast].</doc>
               version="1.0">
         <doc xml:space="preserve"
              filename="../src/adw-preferences-window.c"
-             line="826">Closes the current subpage.
+             line="835">Closes the current subpage.
 
 If there is no presented subpage, this does nothing.
 
@@ -9061,31 +9087,32 @@ See [method@Adw.PreferencesWindow.close_subpage].</doc>
           <instance-parameter name="self" transfer-ownership="none">
             <doc xml:space="preserve"
                  filename="../src/adw-preferences-window.c"
-                 line="828">a `AdwPreferencesWindow`</doc>
+                 line="837">a `AdwPreferencesWindow`</doc>
             <type name="PreferencesWindow" c:type="AdwPreferencesWindow*"/>
           </instance-parameter>
         </parameters>
       </method>
-      <method name="get_can_swipe_back"
-              c:identifier="adw_preferences_window_get_can_swipe_back"
-              glib:get-property="can-swipe-back"
+      <method name="get_can_navigate_back"
+              c:identifier="adw_preferences_window_get_can_navigate_back"
+              glib:get-property="can-navigate-back"
               version="1.0">
-        <attribute name="org.gtk.Method.get_property" value="can-swipe-back"/>
+        <attribute name="org.gtk.Method.get_property"
+                   value="can-navigate-back"/>
         <doc xml:space="preserve"
              filename="../src/adw-preferences-window.c"
-             line="767">Gets whether or not @self allows closing subpages via a swipe gesture.</doc>
+             line="776">Gets whether gestures and shortcuts for closing subpages are enabled.</doc>
         <source-position filename="../src/adw-preferences-window.h" line="49"/>
         <return-value transfer-ownership="none">
           <doc xml:space="preserve"
                filename="../src/adw-preferences-window.c"
-               line="773">whether back swipe is enabled.</doc>
+               line="782">whether gestures and shortcuts are enabled.</doc>
           <type name="gboolean" c:type="gboolean"/>
         </return-value>
         <parameters>
           <instance-parameter name="self" transfer-ownership="none">
             <doc xml:space="preserve"
                  filename="../src/adw-preferences-window.c"
-                 line="769">a `AdwPreferencesWindow`</doc>
+                 line="778">a `AdwPreferencesWindow`</doc>
             <type name="PreferencesWindow" c:type="AdwPreferencesWindow*"/>
           </instance-parameter>
         </parameters>
@@ -9097,19 +9124,19 @@ See [method@Adw.PreferencesWindow.close_subpage].</doc>
         <attribute name="org.gtk.Method.get_property" value="search-enabled"/>
         <doc xml:space="preserve"
              filename="../src/adw-preferences-window.c"
-             line="680">Gets whether search is enabled for @self.</doc>
+             line="689">Gets whether search is enabled for @self.</doc>
         <source-position filename="../src/adw-preferences-window.h" line="43"/>
         <return-value transfer-ownership="none">
           <doc xml:space="preserve"
                filename="../src/adw-preferences-window.c"
-               line="686">whether search is enabled for @self.</doc>
+               line="695">whether search is enabled for @self.</doc>
           <type name="gboolean" c:type="gboolean"/>
         </return-value>
         <parameters>
           <instance-parameter name="self" transfer-ownership="none">
             <doc xml:space="preserve"
                  filename="../src/adw-preferences-window.c"
-                 line="682">a `AdwPreferencesWindow`</doc>
+                 line="691">a `AdwPreferencesWindow`</doc>
             <type name="PreferencesWindow" c:type="AdwPreferencesWindow*"/>
           </instance-parameter>
         </parameters>
@@ -9120,19 +9147,19 @@ See [method@Adw.PreferencesWindow.close_subpage].</doc>
               version="1.0">
         <doc xml:space="preserve"
              filename="../src/adw-preferences-window.c"
-             line="908">Gets the currently visible page of @self.</doc>
+             line="917">Gets the currently visible page of @self.</doc>
         <source-position filename="../src/adw-preferences-window.h" line="68"/>
         <return-value transfer-ownership="none" nullable="1">
           <doc xml:space="preserve"
                filename="../src/adw-preferences-window.c"
-               line="914">the visible page</doc>
+               line="923">the visible page</doc>
           <type name="PreferencesPage" c:type="AdwPreferencesPage*"/>
         </return-value>
         <parameters>
           <instance-parameter name="self" transfer-ownership="none">
             <doc xml:space="preserve"
                  filename="../src/adw-preferences-window.c"
-                 line="910">a `AdwPreferencesWindow`</doc>
+                 line="919">a `AdwPreferencesWindow`</doc>
             <type name="PreferencesWindow" c:type="AdwPreferencesWindow*"/>
           </instance-parameter>
         </parameters>
@@ -9143,19 +9170,19 @@ See [method@Adw.PreferencesWindow.close_subpage].</doc>
               version="1.0">
         <doc xml:space="preserve"
              filename="../src/adw-preferences-window.c"
-             line="953">Gets the name of currently visible page of @self.</doc>
+             line="962">Gets the name of currently visible page of @self.</doc>
         <source-position filename="../src/adw-preferences-window.h" line="74"/>
         <return-value transfer-ownership="none" nullable="1">
           <doc xml:space="preserve"
                filename="../src/adw-preferences-window.c"
-               line="959">the name of the visible page</doc>
+               line="968">the name of the visible page</doc>
           <type name="utf8" c:type="const char*"/>
         </return-value>
         <parameters>
           <instance-parameter name="self" transfer-ownership="none">
             <doc xml:space="preserve"
                  filename="../src/adw-preferences-window.c"
-                 line="955">a `AdwPreferencesWindow`</doc>
+                 line="964">a `AdwPreferencesWindow`</doc>
             <type name="PreferencesWindow" c:type="AdwPreferencesWindow*"/>
           </instance-parameter>
         </parameters>
@@ -9165,7 +9192,7 @@ See [method@Adw.PreferencesWindow.close_subpage].</doc>
               version="1.0">
         <doc xml:space="preserve"
              filename="../src/adw-preferences-window.c"
-             line="789">Sets @subpage as the window's subpage and opens it.
+             line="798">Sets @subpage as the window's subpage and opens it.
 
 The transition can be cancelled by the user, in which case visible child will
 change back to the previously visible child.</doc>
@@ -9177,13 +9204,13 @@ change back to the previously visible child.</doc>
           <instance-parameter name="self" transfer-ownership="none">
             <doc xml:space="preserve"
                  filename="../src/adw-preferences-window.c"
-                 line="791">a `AdwPreferencesWindow`</doc>
+                 line="800">a `AdwPreferencesWindow`</doc>
             <type name="PreferencesWindow" c:type="AdwPreferencesWindow*"/>
           </instance-parameter>
           <parameter name="subpage" transfer-ownership="none">
             <doc xml:space="preserve"
                  filename="../src/adw-preferences-window.c"
-                 line="792">the subpage</doc>
+                 line="801">the subpage</doc>
             <type name="Gtk.Widget" c:type="GtkWidget*"/>
           </parameter>
         </parameters>
@@ -9193,7 +9220,7 @@ change back to the previously visible child.</doc>
               version="1.0">
         <doc xml:space="preserve"
              filename="../src/adw-preferences-window.c"
-             line="882">Removes a page from @self.</doc>
+             line="891">Removes a page from @self.</doc>
         <source-position filename="../src/adw-preferences-window.h" line="64"/>
         <return-value transfer-ownership="none">
           <type name="none" c:type="void"/>
@@ -9202,25 +9229,26 @@ change back to the previously visible child.</doc>
           <instance-parameter name="self" transfer-ownership="none">
             <doc xml:space="preserve"
                  filename="../src/adw-preferences-window.c"
-                 line="884">a `AdwPreferencesWindow`</doc>
+                 line="893">a `AdwPreferencesWindow`</doc>
             <type name="PreferencesWindow" c:type="AdwPreferencesWindow*"/>
           </instance-parameter>
           <parameter name="page" transfer-ownership="none">
             <doc xml:space="preserve"
                  filename="../src/adw-preferences-window.c"
-                 line="885">the page to remove</doc>
+                 line="894">the page to remove</doc>
             <type name="PreferencesPage" c:type="AdwPreferencesPage*"/>
           </parameter>
         </parameters>
       </method>
-      <method name="set_can_swipe_back"
-              c:identifier="adw_preferences_window_set_can_swipe_back"
-              glib:set-property="can-swipe-back"
+      <method name="set_can_navigate_back"
+              c:identifier="adw_preferences_window_set_can_navigate_back"
+              glib:set-property="can-navigate-back"
               version="1.0">
-        <attribute name="org.gtk.Method.set_property" value="can-swipe-back"/>
+        <attribute name="org.gtk.Method.set_property"
+                   value="can-navigate-back"/>
         <doc xml:space="preserve"
              filename="../src/adw-preferences-window.c"
-             line="738">Sets whether or not @self allows closing subpages via a swipe gesture.</doc>
+             line="747">Sets whether gestures and shortcuts for closing subpages are enabled.</doc>
         <source-position filename="../src/adw-preferences-window.h" line="51"/>
         <return-value transfer-ownership="none">
           <type name="none" c:type="void"/>
@@ -9229,13 +9257,13 @@ change back to the previously visible child.</doc>
           <instance-parameter name="self" transfer-ownership="none">
             <doc xml:space="preserve"
                  filename="../src/adw-preferences-window.c"
-                 line="740">a `AdwPreferencesWindow`</doc>
+                 line="749">a `AdwPreferencesWindow`</doc>
             <type name="PreferencesWindow" c:type="AdwPreferencesWindow*"/>
           </instance-parameter>
-          <parameter name="can_swipe_back" transfer-ownership="none">
+          <parameter name="can_navigate_back" transfer-ownership="none">
             <doc xml:space="preserve"
                  filename="../src/adw-preferences-window.c"
-                 line="741">the new value</doc>
+                 line="750">the new value</doc>
             <type name="gboolean" c:type="gboolean"/>
           </parameter>
         </parameters>
@@ -9247,7 +9275,7 @@ change back to the previously visible child.</doc>
         <attribute name="org.gtk.Method.set_property" value="search-enabled"/>
         <doc xml:space="preserve"
              filename="../src/adw-preferences-window.c"
-             line="702">Sets whether search is enabled for @self.</doc>
+             line="711">Sets whether search is enabled for @self.</doc>
         <source-position filename="../src/adw-preferences-window.h" line="45"/>
         <return-value transfer-ownership="none">
           <type name="none" c:type="void"/>
@@ -9256,13 +9284,13 @@ change back to the previously visible child.</doc>
           <instance-parameter name="self" transfer-ownership="none">
             <doc xml:space="preserve"
                  filename="../src/adw-preferences-window.c"
-                 line="704">a `AdwPreferencesWindow`</doc>
+                 line="713">a `AdwPreferencesWindow`</doc>
             <type name="PreferencesWindow" c:type="AdwPreferencesWindow*"/>
           </instance-parameter>
           <parameter name="search_enabled" transfer-ownership="none">
             <doc xml:space="preserve"
                  filename="../src/adw-preferences-window.c"
-                 line="705">whether search is enabled</doc>
+                 line="714">whether search is enabled</doc>
             <type name="gboolean" c:type="gboolean"/>
           </parameter>
         </parameters>
@@ -9273,7 +9301,7 @@ change back to the previously visible child.</doc>
               version="1.0">
         <doc xml:space="preserve"
              filename="../src/adw-preferences-window.c"
-             line="930">Makes @page the visible page of @self.</doc>
+             line="939">Makes @page the visible page of @self.</doc>
         <source-position filename="../src/adw-preferences-window.h" line="70"/>
         <return-value transfer-ownership="none">
           <type name="none" c:type="void"/>
@@ -9282,13 +9310,13 @@ change back to the previously visible child.</doc>
           <instance-parameter name="self" transfer-ownership="none">
             <doc xml:space="preserve"
                  filename="../src/adw-preferences-window.c"
-                 line="932">a `AdwPreferencesWindow`</doc>
+                 line="941">a `AdwPreferencesWindow`</doc>
             <type name="PreferencesWindow" c:type="AdwPreferencesWindow*"/>
           </instance-parameter>
           <parameter name="page" transfer-ownership="none">
             <doc xml:space="preserve"
                  filename="../src/adw-preferences-window.c"
-                 line="933">a page of @self</doc>
+                 line="942">a page of @self</doc>
             <type name="PreferencesPage" c:type="AdwPreferencesPage*"/>
           </parameter>
         </parameters>
@@ -9299,7 +9327,7 @@ change back to the previously visible child.</doc>
               version="1.0">
         <doc xml:space="preserve"
              filename="../src/adw-preferences-window.c"
-             line="975">Makes the page with the given name visible.</doc>
+             line="984">Makes the page with the given name visible.</doc>
         <source-position filename="../src/adw-preferences-window.h" line="76"/>
         <return-value transfer-ownership="none">
           <type name="none" c:type="void"/>
@@ -9308,30 +9336,39 @@ change back to the previously visible child.</doc>
           <instance-parameter name="self" transfer-ownership="none">
             <doc xml:space="preserve"
                  filename="../src/adw-preferences-window.c"
-                 line="977">a `AdwPreferencesWindow`</doc>
+                 line="986">a `AdwPreferencesWindow`</doc>
             <type name="PreferencesWindow" c:type="AdwPreferencesWindow*"/>
           </instance-parameter>
           <parameter name="name" transfer-ownership="none">
             <doc xml:space="preserve"
                  filename="../src/adw-preferences-window.c"
-                 line="978">the name of the page to make visible</doc>
+                 line="987">the name of the page to make visible</doc>
             <type name="utf8" c:type="const char*"/>
           </parameter>
         </parameters>
       </method>
-      <property name="can-swipe-back"
+      <property name="can-navigate-back"
                 version="1.0"
                 writable="1"
                 transfer-ownership="none"
-                setter="set_can_swipe_back"
-                getter="get_can_swipe_back">
+                setter="set_can_navigate_back"
+                getter="get_can_navigate_back">
         <attribute name="org.gtk.Property.get"
-                   value="adw_preferences_window_get_can_swipe_back"/>
+                   value="adw_preferences_window_get_can_navigate_back"/>
         <attribute name="org.gtk.Property.set"
-                   value="adw_preferences_window_set_can_swipe_back"/>
+                   value="adw_preferences_window_set_can_navigate_back"/>
         <doc xml:space="preserve"
              filename="../src/adw-preferences-window.c"
-             line="563">Whether or not the window allows closing subpages via a swipe gesture.</doc>
+             line="563">Whether gestures and shortcuts for closing subpages are enabled.
+
+The supported gestures are:
+- One-finger swipe on touchscreens
+- Horizontal scrolling on touchpads (usually two-finger swipe)
+- Back mouse button
+
+The keyboard back key is also supported, as well as the Alt+← shortcut.
+
+For right-to-left locales, gestures and shortcuts are reversed.</doc>
         <type name="gboolean" c:type="gboolean"/>
       </property>
       <property name="search-enabled"
@@ -13266,7 +13303,7 @@ See [signal@Gtk.DropTarget::drop].</doc>
            glib:type-struct="TabPageClass">
       <doc xml:space="preserve"
            filename="../src/adw-tab-view.c"
-           line="50">An auxiliary class used by [class@Adw.TabView].</doc>
+           line="65">An auxiliary class used by [class@Adw.TabView].</doc>
       <source-position filename="../src/adw-tab-view.h" line="24"/>
       <method name="get_child"
               c:identifier="adw_tab_page_get_child"
@@ -13275,19 +13312,19 @@ See [signal@Gtk.DropTarget::drop].</doc>
         <attribute name="org.gtk.Method.get_property" value="child"/>
         <doc xml:space="preserve"
              filename="../src/adw-tab-view.c"
-             line="1779">Gets the child of @self.</doc>
+             line="1741">Gets the child of @self.</doc>
         <source-position filename="../src/adw-tab-view.h" line="27"/>
         <return-value transfer-ownership="none">
           <doc xml:space="preserve"
                filename="../src/adw-tab-view.c"
-               line="1785">the child of @self</doc>
+               line="1747">the child of @self</doc>
           <type name="Gtk.Widget" c:type="GtkWidget*"/>
         </return-value>
         <parameters>
           <instance-parameter name="self" transfer-ownership="none">
             <doc xml:space="preserve"
                  filename="../src/adw-tab-view.c"
-                 line="1781">a `AdwTabPage`</doc>
+                 line="1743">a `AdwTabPage`</doc>
             <type name="TabPage" c:type="AdwTabPage*"/>
           </instance-parameter>
         </parameters>
@@ -13299,19 +13336,19 @@ See [signal@Gtk.DropTarget::drop].</doc>
         <attribute name="org.gtk.Method.get_property" value="icon"/>
         <doc xml:space="preserve"
              filename="../src/adw-tab-view.c"
-             line="1935">Gets the icon of @self.</doc>
+             line="1897">Gets the icon of @self.</doc>
         <source-position filename="../src/adw-tab-view.h" line="51"/>
         <return-value transfer-ownership="none" nullable="1">
           <doc xml:space="preserve"
                filename="../src/adw-tab-view.c"
-               line="1941">the icon of @self</doc>
+               line="1903">the icon of @self</doc>
           <type name="Gio.Icon" c:type="GIcon*"/>
         </return-value>
         <parameters>
           <instance-parameter name="self" transfer-ownership="none">
             <doc xml:space="preserve"
                  filename="../src/adw-tab-view.c"
-                 line="1937">a `AdwTabPage`</doc>
+                 line="1899">a `AdwTabPage`</doc>
             <type name="TabPage" c:type="AdwTabPage*"/>
           </instance-parameter>
         </parameters>
@@ -13324,19 +13361,19 @@ See [signal@Gtk.DropTarget::drop].</doc>
                    value="indicator-activatable"/>
         <doc xml:space="preserve"
              filename="../src/adw-tab-view.c"
-             line="2062">Gets whether the indicator of @self is activatable.</doc>
+             line="2024">Gets whether the indicator of @self is activatable.</doc>
         <source-position filename="../src/adw-tab-view.h" line="69"/>
         <return-value transfer-ownership="none">
           <doc xml:space="preserve"
                filename="../src/adw-tab-view.c"
-               line="2069">whether the indicator is activatable</doc>
+               line="2031">whether the indicator is activatable</doc>
           <type name="gboolean" c:type="gboolean"/>
         </return-value>
         <parameters>
           <instance-parameter name="self" transfer-ownership="none">
             <doc xml:space="preserve"
                  filename="../src/adw-tab-view.c"
-                 line="2064">a `AdwTabPage`</doc>
+                 line="2026">a `AdwTabPage`</doc>
             <type name="TabPage" c:type="AdwTabPage*"/>
           </instance-parameter>
         </parameters>
@@ -13348,19 +13385,19 @@ See [signal@Gtk.DropTarget::drop].</doc>
         <attribute name="org.gtk.Method.get_property" value="indicator-icon"/>
         <doc xml:space="preserve"
              filename="../src/adw-tab-view.c"
-             line="2020">Gets the indicator icon of @self.</doc>
+             line="1982">Gets the indicator icon of @self.</doc>
         <source-position filename="../src/adw-tab-view.h" line="63"/>
         <return-value transfer-ownership="none" nullable="1">
           <doc xml:space="preserve"
                filename="../src/adw-tab-view.c"
-               line="2026">the indicator icon of @self</doc>
+               line="1988">the indicator icon of @self</doc>
           <type name="Gio.Icon" c:type="GIcon*"/>
         </return-value>
         <parameters>
           <instance-parameter name="self" transfer-ownership="none">
             <doc xml:space="preserve"
                  filename="../src/adw-tab-view.c"
-                 line="2022">a `AdwTabPage`</doc>
+                 line="1984">a `AdwTabPage`</doc>
             <type name="TabPage" c:type="AdwTabPage*"/>
           </instance-parameter>
         </parameters>
@@ -13372,19 +13409,19 @@ See [signal@Gtk.DropTarget::drop].</doc>
         <attribute name="org.gtk.Method.get_property" value="loading"/>
         <doc xml:space="preserve"
              filename="../src/adw-tab-view.c"
-             line="1977">Gets whether @self is loading.</doc>
+             line="1939">Gets whether @self is loading.</doc>
         <source-position filename="../src/adw-tab-view.h" line="57"/>
         <return-value transfer-ownership="none">
           <doc xml:space="preserve"
                filename="../src/adw-tab-view.c"
-               line="1983">whether @self is loading</doc>
+               line="1945">whether @self is loading</doc>
           <type name="gboolean" c:type="gboolean"/>
         </return-value>
         <parameters>
           <instance-parameter name="self" transfer-ownership="none">
             <doc xml:space="preserve"
                  filename="../src/adw-tab-view.c"
-                 line="1979">a `AdwTabPage`</doc>
+                 line="1941">a `AdwTabPage`</doc>
             <type name="TabPage" c:type="AdwTabPage*"/>
           </instance-parameter>
         </parameters>
@@ -13396,19 +13433,19 @@ See [signal@Gtk.DropTarget::drop].</doc>
         <attribute name="org.gtk.Method.get_property" value="needs-attention"/>
         <doc xml:space="preserve"
              filename="../src/adw-tab-view.c"
-             line="2106">Gets whether @self needs attention.</doc>
+             line="2068">Gets whether @self needs attention.</doc>
         <source-position filename="../src/adw-tab-view.h" line="75"/>
         <return-value transfer-ownership="none">
           <doc xml:space="preserve"
                filename="../src/adw-tab-view.c"
-               line="2112">whether @self needs attention</doc>
+               line="2074">whether @self needs attention</doc>
           <type name="gboolean" c:type="gboolean"/>
         </return-value>
         <parameters>
           <instance-parameter name="self" transfer-ownership="none">
             <doc xml:space="preserve"
                  filename="../src/adw-tab-view.c"
-                 line="2108">a `AdwTabPage`</doc>
+                 line="2070">a `AdwTabPage`</doc>
             <type name="TabPage" c:type="AdwTabPage*"/>
           </instance-parameter>
         </parameters>
@@ -13420,19 +13457,19 @@ See [signal@Gtk.DropTarget::drop].</doc>
         <attribute name="org.gtk.Method.get_property" value="parent"/>
         <doc xml:space="preserve"
              filename="../src/adw-tab-view.c"
-             line="1797">Gets the parent page of @self.</doc>
+             line="1759">Gets the parent page of @self.</doc>
         <source-position filename="../src/adw-tab-view.h" line="30"/>
         <return-value transfer-ownership="none" nullable="1">
           <doc xml:space="preserve"
                filename="../src/adw-tab-view.c"
-               line="1803">the parent page</doc>
+               line="1765">the parent page</doc>
           <type name="TabPage" c:type="AdwTabPage*"/>
         </return-value>
         <parameters>
           <instance-parameter name="self" transfer-ownership="none">
             <doc xml:space="preserve"
                  filename="../src/adw-tab-view.c"
-                 line="1799">a `AdwTabPage`</doc>
+                 line="1761">a `AdwTabPage`</doc>
             <type name="TabPage" c:type="AdwTabPage*"/>
           </instance-parameter>
         </parameters>
@@ -13444,19 +13481,19 @@ See [signal@Gtk.DropTarget::drop].</doc>
         <attribute name="org.gtk.Method.get_property" value="pinned"/>
         <doc xml:space="preserve"
              filename="../src/adw-tab-view.c"
-             line="1833">Gets whether @self is pinned.</doc>
+             line="1795">Gets whether @self is pinned.</doc>
         <source-position filename="../src/adw-tab-view.h" line="36"/>
         <return-value transfer-ownership="none">
           <doc xml:space="preserve"
                filename="../src/adw-tab-view.c"
-               line="1839">whether @self is pinned</doc>
+               line="1801">whether @self is pinned</doc>
           <type name="gboolean" c:type="gboolean"/>
         </return-value>
         <parameters>
           <instance-parameter name="self" transfer-ownership="none">
             <doc xml:space="preserve"
                  filename="../src/adw-tab-view.c"
-                 line="1835">a `AdwTabPage`</doc>
+                 line="1797">a `AdwTabPage`</doc>
             <type name="TabPage" c:type="AdwTabPage*"/>
           </instance-parameter>
         </parameters>
@@ -13468,19 +13505,19 @@ See [signal@Gtk.DropTarget::drop].</doc>
         <attribute name="org.gtk.Method.get_property" value="selected"/>
         <doc xml:space="preserve"
              filename="../src/adw-tab-view.c"
-             line="1815">Gets whether @self is selected.</doc>
+             line="1777">Gets whether @self is selected.</doc>
         <source-position filename="../src/adw-tab-view.h" line="33"/>
         <return-value transfer-ownership="none">
           <doc xml:space="preserve"
                filename="../src/adw-tab-view.c"
-               line="1821">whether @self is selected</doc>
+               line="1783">whether @self is selected</doc>
           <type name="gboolean" c:type="gboolean"/>
         </return-value>
         <parameters>
           <instance-parameter name="self" transfer-ownership="none">
             <doc xml:space="preserve"
                  filename="../src/adw-tab-view.c"
-                 line="1817">a `AdwTabPage`</doc>
+                 line="1779">a `AdwTabPage`</doc>
             <type name="TabPage" c:type="AdwTabPage*"/>
           </instance-parameter>
         </parameters>
@@ -13492,19 +13529,19 @@ See [signal@Gtk.DropTarget::drop].</doc>
         <attribute name="org.gtk.Method.get_property" value="title"/>
         <doc xml:space="preserve"
              filename="../src/adw-tab-view.c"
-             line="1851">Gets the title of @self.</doc>
+             line="1813">Gets the title of @self.</doc>
         <source-position filename="../src/adw-tab-view.h" line="39"/>
         <return-value transfer-ownership="none">
           <doc xml:space="preserve"
                filename="../src/adw-tab-view.c"
-               line="1857">the title of @self</doc>
+               line="1819">the title of @self</doc>
           <type name="utf8" c:type="const char*"/>
         </return-value>
         <parameters>
           <instance-parameter name="self" transfer-ownership="none">
             <doc xml:space="preserve"
                  filename="../src/adw-tab-view.c"
-                 line="1853">a `AdwTabPage`</doc>
+                 line="1815">a `AdwTabPage`</doc>
             <type name="TabPage" c:type="AdwTabPage*"/>
           </instance-parameter>
         </parameters>
@@ -13516,19 +13553,19 @@ See [signal@Gtk.DropTarget::drop].</doc>
         <attribute name="org.gtk.Method.get_property" value="tooltip"/>
         <doc xml:space="preserve"
              filename="../src/adw-tab-view.c"
-             line="1893">Gets the tooltip of @self.</doc>
+             line="1855">Gets the tooltip of @self.</doc>
         <source-position filename="../src/adw-tab-view.h" line="45"/>
         <return-value transfer-ownership="none" nullable="1">
           <doc xml:space="preserve"
                filename="../src/adw-tab-view.c"
-               line="1899">the tooltip of @self</doc>
+               line="1861">the tooltip of @self</doc>
           <type name="utf8" c:type="const char*"/>
         </return-value>
         <parameters>
           <instance-parameter name="self" transfer-ownership="none">
             <doc xml:space="preserve"
                  filename="../src/adw-tab-view.c"
-                 line="1895">a `AdwTabPage`</doc>
+                 line="1857">a `AdwTabPage`</doc>
             <type name="TabPage" c:type="AdwTabPage*"/>
           </instance-parameter>
         </parameters>
@@ -13540,7 +13577,7 @@ See [signal@Gtk.DropTarget::drop].</doc>
         <attribute name="org.gtk.Method.set_property" value="icon"/>
         <doc xml:space="preserve"
              filename="../src/adw-tab-view.c"
-             line="1953">Sets the icon of @self.</doc>
+             line="1915">Sets the icon of @self.</doc>
         <source-position filename="../src/adw-tab-view.h" line="53"/>
         <return-value transfer-ownership="none">
           <type name="none" c:type="void"/>
@@ -13549,7 +13586,7 @@ See [signal@Gtk.DropTarget::drop].</doc>
           <instance-parameter name="self" transfer-ownership="none">
             <doc xml:space="preserve"
                  filename="../src/adw-tab-view.c"
-                 line="1955">a `AdwTabPage`</doc>
+                 line="1917">a `AdwTabPage`</doc>
             <type name="TabPage" c:type="AdwTabPage*"/>
           </instance-parameter>
           <parameter name="icon"
@@ -13558,7 +13595,7 @@ See [signal@Gtk.DropTarget::drop].</doc>
                      allow-none="1">
             <doc xml:space="preserve"
                  filename="../src/adw-tab-view.c"
-                 line="1956">the icon of @self</doc>
+                 line="1918">the icon of @self</doc>
             <type name="Gio.Icon" c:type="GIcon*"/>
           </parameter>
         </parameters>
@@ -13571,7 +13608,7 @@ See [signal@Gtk.DropTarget::drop].</doc>
                    value="indicator-activatable"/>
         <doc xml:space="preserve"
              filename="../src/adw-tab-view.c"
-             line="2081">Sets whether the indicator of @self is activatable.</doc>
+             line="2043">Sets whether the indicator of @self is activatable.</doc>
         <source-position filename="../src/adw-tab-view.h" line="71"/>
         <return-value transfer-ownership="none">
           <type name="none" c:type="void"/>
@@ -13580,13 +13617,13 @@ See [signal@Gtk.DropTarget::drop].</doc>
           <instance-parameter name="self" transfer-ownership="none">
             <doc xml:space="preserve"
                  filename="../src/adw-tab-view.c"
-                 line="2083">a `AdwTabPage`</doc>
+                 line="2045">a `AdwTabPage`</doc>
             <type name="TabPage" c:type="AdwTabPage*"/>
           </instance-parameter>
           <parameter name="activatable" transfer-ownership="none">
             <doc xml:space="preserve"
                  filename="../src/adw-tab-view.c"
-                 line="2084">whether the indicator is activatable</doc>
+                 line="2046">whether the indicator is activatable</doc>
             <type name="gboolean" c:type="gboolean"/>
           </parameter>
         </parameters>
@@ -13598,7 +13635,7 @@ See [signal@Gtk.DropTarget::drop].</doc>
         <attribute name="org.gtk.Method.set_property" value="indicator-icon"/>
         <doc xml:space="preserve"
              filename="../src/adw-tab-view.c"
-             line="2038">Sets the indicator icon of @self.</doc>
+             line="2000">Sets the indicator icon of @self.</doc>
         <source-position filename="../src/adw-tab-view.h" line="65"/>
         <return-value transfer-ownership="none">
           <type name="none" c:type="void"/>
@@ -13607,7 +13644,7 @@ See [signal@Gtk.DropTarget::drop].</doc>
           <instance-parameter name="self" transfer-ownership="none">
             <doc xml:space="preserve"
                  filename="../src/adw-tab-view.c"
-                 line="2040">a `AdwTabPage`</doc>
+                 line="2002">a `AdwTabPage`</doc>
             <type name="TabPage" c:type="AdwTabPage*"/>
           </instance-parameter>
           <parameter name="indicator_icon"
@@ -13616,7 +13653,7 @@ See [signal@Gtk.DropTarget::drop].</doc>
                      allow-none="1">
             <doc xml:space="preserve"
                  filename="../src/adw-tab-view.c"
-                 line="2041">the indicator icon of @self</doc>
+                 line="2003">the indicator icon of @self</doc>
             <type name="Gio.Icon" c:type="GIcon*"/>
           </parameter>
         </parameters>
@@ -13628,7 +13665,7 @@ See [signal@Gtk.DropTarget::drop].</doc>
         <attribute name="org.gtk.Method.set_property" value="loading"/>
         <doc xml:space="preserve"
              filename="../src/adw-tab-view.c"
-             line="1995">Sets wether @self is loading.</doc>
+             line="1957">Sets wether @self is loading.</doc>
         <source-position filename="../src/adw-tab-view.h" line="59"/>
         <return-value transfer-ownership="none">
           <type name="none" c:type="void"/>
@@ -13637,13 +13674,13 @@ See [signal@Gtk.DropTarget::drop].</doc>
           <instance-parameter name="self" transfer-ownership="none">
             <doc xml:space="preserve"
                  filename="../src/adw-tab-view.c"
-                 line="1997">a `AdwTabPage`</doc>
+                 line="1959">a `AdwTabPage`</doc>
             <type name="TabPage" c:type="AdwTabPage*"/>
           </instance-parameter>
           <parameter name="loading" transfer-ownership="none">
             <doc xml:space="preserve"
                  filename="../src/adw-tab-view.c"
-                 line="1998">whether @self is loading</doc>
+                 line="1960">whether @self is loading</doc>
             <type name="gboolean" c:type="gboolean"/>
           </parameter>
         </parameters>
@@ -13655,7 +13692,7 @@ See [signal@Gtk.DropTarget::drop].</doc>
         <attribute name="org.gtk.Method.set_property" value="needs-attention"/>
         <doc xml:space="preserve"
              filename="../src/adw-tab-view.c"
-             line="2124">Sets whether @self needs attention.</doc>
+             line="2086">Sets whether @self needs attention.</doc>
         <source-position filename="../src/adw-tab-view.h" line="77"/>
         <return-value transfer-ownership="none">
           <type name="none" c:type="void"/>
@@ -13664,13 +13701,13 @@ See [signal@Gtk.DropTarget::drop].</doc>
           <instance-parameter name="self" transfer-ownership="none">
             <doc xml:space="preserve"
                  filename="../src/adw-tab-view.c"
-                 line="2126">a `AdwTabPage`</doc>
+                 line="2088">a `AdwTabPage`</doc>
             <type name="TabPage" c:type="AdwTabPage*"/>
           </instance-parameter>
           <parameter name="needs_attention" transfer-ownership="none">
             <doc xml:space="preserve"
                  filename="../src/adw-tab-view.c"
-                 line="2127">whether @self needs attention</doc>
+                 line="2089">whether @self needs attention</doc>
             <type name="gboolean" c:type="gboolean"/>
           </parameter>
         </parameters>
@@ -13682,7 +13719,7 @@ See [signal@Gtk.DropTarget::drop].</doc>
         <attribute name="org.gtk.Method.set_property" value="title"/>
         <doc xml:space="preserve"
              filename="../src/adw-tab-view.c"
-             line="1869">Sets the title of @self.</doc>
+             line="1831">Sets the title of @self.</doc>
         <source-position filename="../src/adw-tab-view.h" line="41"/>
         <return-value transfer-ownership="none">
           <type name="none" c:type="void"/>
@@ -13691,13 +13728,13 @@ See [signal@Gtk.DropTarget::drop].</doc>
           <instance-parameter name="self" transfer-ownership="none">
             <doc xml:space="preserve"
                  filename="../src/adw-tab-view.c"
-                 line="1871">a `AdwTabPage`</doc>
+                 line="1833">a `AdwTabPage`</doc>
             <type name="TabPage" c:type="AdwTabPage*"/>
           </instance-parameter>
           <parameter name="title" transfer-ownership="none">
             <doc xml:space="preserve"
                  filename="../src/adw-tab-view.c"
-                 line="1872">the title of @self</doc>
+                 line="1834">the title of @self</doc>
             <type name="utf8" c:type="const char*"/>
           </parameter>
         </parameters>
@@ -13709,7 +13746,7 @@ See [signal@Gtk.DropTarget::drop].</doc>
         <attribute name="org.gtk.Method.set_property" value="tooltip"/>
         <doc xml:space="preserve"
              filename="../src/adw-tab-view.c"
-             line="1911">Sets the tooltip of @self.</doc>
+             line="1873">Sets the tooltip of @self.</doc>
         <source-position filename="../src/adw-tab-view.h" line="47"/>
         <return-value transfer-ownership="none">
           <type name="none" c:type="void"/>
@@ -13718,13 +13755,13 @@ See [signal@Gtk.DropTarget::drop].</doc>
           <instance-parameter name="self" transfer-ownership="none">
             <doc xml:space="preserve"
                  filename="../src/adw-tab-view.c"
-                 line="1913">a `AdwTabPage`</doc>
+                 line="1875">a `AdwTabPage`</doc>
             <type name="TabPage" c:type="AdwTabPage*"/>
           </instance-parameter>
           <parameter name="tooltip" transfer-ownership="none">
             <doc xml:space="preserve"
                  filename="../src/adw-tab-view.c"
-                 line="1914">the tooltip of @self</doc>
+                 line="1876">the tooltip of @self</doc>
             <type name="utf8" c:type="const char*"/>
           </parameter>
         </parameters>
@@ -13738,7 +13775,7 @@ See [signal@Gtk.DropTarget::drop].</doc>
         <attribute name="org.gtk.Property.get" value="adw_tab_page_get_child"/>
         <doc xml:space="preserve"
              filename="../src/adw-tab-view.c"
-             line="361">The child of the page.</doc>
+             line="372">The child of the page.</doc>
         <type name="Gtk.Widget"/>
       </property>
       <property name="icon"
@@ -13751,7 +13788,7 @@ See [signal@Gtk.DropTarget::drop].</doc>
         <attribute name="org.gtk.Property.set" value="adw_tab_page_set_icon"/>
         <doc xml:space="preserve"
              filename="../src/adw-tab-view.c"
-             line="458">The icon of the page.
+             line="469">The icon of the page.
 
 [class@Adw.TabBar] displays the icon next to the title.
 
@@ -13772,7 +13809,7 @@ is set.</doc>
                    value="adw_tab_page_set_indicator_activatable"/>
         <doc xml:space="preserve"
              filename="../src/adw-tab-view.c"
-             line="523">Whether the indicator icon is activatable.
+             line="534">Whether the indicator icon is activatable.
 
 If set to `TRUE`, [signal@Adw.TabView::indicator-activated] will be emitted
 when the indicator icon is clicked.
@@ -13792,7 +13829,7 @@ If [property@Adw.TabPage:indicator-icon] is not set, does nothing.</doc>
                    value="adw_tab_page_set_indicator_icon"/>
         <doc xml:space="preserve"
              filename="../src/adw-tab-view.c"
-             line="498">An indicator icon for the page.
+             line="509">An indicator icon for the page.
 
 A common use case is an audio or camera indicator in a web browser.
 
@@ -13818,7 +13855,7 @@ indicator icon can act as a button.</doc>
                    value="adw_tab_page_set_loading"/>
         <doc xml:space="preserve"
              filename="../src/adw-tab-view.c"
-             line="478">Whether the page is loading.
+             line="489">Whether the page is loading.
 
 If set to `TRUE`, [class@Adw.TabBar] will display a spinner in place of
 icon.
@@ -13839,7 +13876,7 @@ loading status will not be visible.</doc>
                    value="adw_tab_page_set_needs_attention"/>
         <doc xml:space="preserve"
              filename="../src/adw-tab-view.c"
-             line="542">Whether the page needs attention.
+             line="553">Whether the page needs attention.
 
 [class@Adw.TabBar] will display a glow under the tab representing the page
 if set to `TRUE`. If the tab is not visible, the corresponding edge of the
@@ -13856,7 +13893,7 @@ tab bar will be highlighted.</doc>
                    value="adw_tab_page_get_parent"/>
         <doc xml:space="preserve"
              filename="../src/adw-tab-view.c"
-             line="375">The parent page of the page.
+             line="386">The parent page of the page.
 
 See [method@Adw.TabView.add_page] and [method@Adw.TabView.close_page].</doc>
         <type name="TabPage"/>
@@ -13869,7 +13906,7 @@ See [method@Adw.TabView.add_page] and [method@Adw.TabView.close_page].</doc>
                    value="adw_tab_page_get_pinned"/>
         <doc xml:space="preserve"
              filename="../src/adw-tab-view.c"
-             line="405">Whether the page is pinned.
+             line="416">Whether the page is pinned.
 
 See [method@Adw.TabView.set_page_pinned].</doc>
         <type name="gboolean" c:type="gboolean"/>
@@ -13882,7 +13919,7 @@ See [method@Adw.TabView.set_page_pinned].</doc>
                    value="adw_tab_page_get_selected"/>
         <doc xml:space="preserve"
              filename="../src/adw-tab-view.c"
-             line="391">Whether the page is selected.</doc>
+             line="402">Whether the page is selected.</doc>
         <type name="gboolean" c:type="gboolean"/>
       </property>
       <property name="title"
@@ -13895,7 +13932,7 @@ See [method@Adw.TabView.set_page_pinned].</doc>
         <attribute name="org.gtk.Property.set" value="adw_tab_page_set_title"/>
         <doc xml:space="preserve"
              filename="../src/adw-tab-view.c"
-             line="421">The title of the page.
+             line="432">The title of the page.
 
 [class@Adw.TabBar] will display it in the center of the tab unless it's
 pinned, and will use it as a tooltip unless [property@Adw.TabPage:tooltip]
@@ -13914,7 +13951,7 @@ is set.</doc>
                    value="adw_tab_page_set_tooltip"/>
         <doc xml:space="preserve"
              filename="../src/adw-tab-view.c"
-             line="439">The tooltip of the page.
+             line="450">The tooltip of the page.
 
 The tooltip can be marked up with the Pango text markup language.
 
@@ -13962,6 +13999,21 @@ cases such as tabbed dialogs.
 As such, it does not support disabling page reordering or detaching, or
 adding children via [class@Gtk.Builder].
 
+`AdwTabView` adds the following shortcuts in the managed scope:
+
+* Ctrl+Page Up - switch to the previous page
+* Ctrl+Page Down - switch to the next page
+* Ctrl+Home - switch to the first page
+* Ctrl+End - switch to the last page
+* Ctrl+Shift+Page Up - move the current page backward
+* Ctrl+Shift+Page Down - move the current page forward
+* Ctrl+Shift+Home - move the current page at the start
+* Ctrl+Shift+End - move the current page at the end
+* Ctrl+Tab - switch to the next page, with looping
+* Ctrl+Shift+Tab - switch to the previous page, with looping
+* Alt+1-9 - switch to pages 1-9
+* Alt+0 - switch to page 10
+
 ## CSS nodes
 
 `AdwTabView` has a main CSS node with the name `tabview`.</doc>
@@ -13972,12 +14024,12 @@ adding children via [class@Gtk.Builder].
       <constructor name="new" c:identifier="adw_tab_view_new" version="1.0">
         <doc xml:space="preserve"
              filename="../src/adw-tab-view.c"
-             line="2149">Creates a new `AdwTabView`.</doc>
+             line="2111">Creates a new `AdwTabView`.</doc>
         <source-position filename="../src/adw-tab-view.h" line="86"/>
         <return-value transfer-ownership="none">
           <doc xml:space="preserve"
                filename="../src/adw-tab-view.c"
-               line="2154">the newly created `AdwTabView`</doc>
+               line="2116">the newly created `AdwTabView`</doc>
           <type name="TabView" c:type="AdwTabView*"/>
         </return-value>
       </constructor>
@@ -13986,7 +14038,7 @@ adding children via [class@Gtk.Builder].
               version="1.0">
         <doc xml:space="preserve"
              filename="../src/adw-tab-view.c"
-             line="2700">Adds @child to @self with @parent as the parent.
+             line="2599">Adds @child to @self with @parent as the parent.
 
 This function can be used to automatically position new pages, and to select
 the correct page when this page is closed while being selected (see
@@ -13994,24 +14046,24 @@ the correct page when this page is closed while being selected (see
 
 If @parent is `NULL`, this function is equivalent to
 [method@Adw.TabView.append].</doc>
-        <source-position filename="../src/adw-tab-view.h" line="143"/>
+        <source-position filename="../src/adw-tab-view.h" line="137"/>
         <return-value transfer-ownership="none">
           <doc xml:space="preserve"
                filename="../src/adw-tab-view.c"
-               line="2715">the page object representing @child</doc>
+               line="2614">the page object representing @child</doc>
           <type name="TabPage" c:type="AdwTabPage*"/>
         </return-value>
         <parameters>
           <instance-parameter name="self" transfer-ownership="none">
             <doc xml:space="preserve"
                  filename="../src/adw-tab-view.c"
-                 line="2702">a `AdwTabView`</doc>
+                 line="2601">a `AdwTabView`</doc>
             <type name="TabView" c:type="AdwTabView*"/>
           </instance-parameter>
           <parameter name="child" transfer-ownership="none">
             <doc xml:space="preserve"
                  filename="../src/adw-tab-view.c"
-                 line="2703">a widget to add</doc>
+                 line="2602">a widget to add</doc>
             <type name="Gtk.Widget" c:type="GtkWidget*"/>
           </parameter>
           <parameter name="parent"
@@ -14020,7 +14072,7 @@ If @parent is `NULL`, this function is equivalent to
                      allow-none="1">
             <doc xml:space="preserve"
                  filename="../src/adw-tab-view.c"
-                 line="2704">a parent page for @child</doc>
+                 line="2603">a parent page for @child</doc>
             <type name="TabPage" c:type="AdwTabPage*"/>
           </parameter>
         </parameters>
@@ -14028,25 +14080,25 @@ If @parent is `NULL`, this function is equivalent to
       <method name="append" c:identifier="adw_tab_view_append" version="1.0">
         <doc xml:space="preserve"
              filename="../src/adw-tab-view.c"
-             line="2804">Inserts @child as the last non-pinned page.</doc>
-        <source-position filename="../src/adw-tab-view.h" line="155"/>
+             line="2703">Inserts @child as the last non-pinned page.</doc>
+        <source-position filename="../src/adw-tab-view.h" line="149"/>
         <return-value transfer-ownership="none">
           <doc xml:space="preserve"
                filename="../src/adw-tab-view.c"
-               line="2811">the page object representing @child</doc>
+               line="2710">the page object representing @child</doc>
           <type name="TabPage" c:type="AdwTabPage*"/>
         </return-value>
         <parameters>
           <instance-parameter name="self" transfer-ownership="none">
             <doc xml:space="preserve"
                  filename="../src/adw-tab-view.c"
-                 line="2806">a `AdwTabView`</doc>
+                 line="2705">a `AdwTabView`</doc>
             <type name="TabView" c:type="AdwTabView*"/>
           </instance-parameter>
           <parameter name="child" transfer-ownership="none">
             <doc xml:space="preserve"
                  filename="../src/adw-tab-view.c"
-                 line="2807">a widget to add</doc>
+                 line="2706">a widget to add</doc>
             <type name="Gtk.Widget" c:type="GtkWidget*"/>
           </parameter>
         </parameters>
@@ -14056,25 +14108,25 @@ If @parent is `NULL`, this function is equivalent to
               version="1.0">
         <doc xml:space="preserve"
              filename="../src/adw-tab-view.c"
-             line="2874">Inserts @child as the last pinned page.</doc>
-        <source-position filename="../src/adw-tab-view.h" line="166"/>
+             line="2773">Inserts @child as the last pinned page.</doc>
+        <source-position filename="../src/adw-tab-view.h" line="160"/>
         <return-value transfer-ownership="none">
           <doc xml:space="preserve"
                filename="../src/adw-tab-view.c"
-               line="2881">the page object representing @child</doc>
+               line="2780">the page object representing @child</doc>
           <type name="TabPage" c:type="AdwTabPage*"/>
         </return-value>
         <parameters>
           <instance-parameter name="self" transfer-ownership="none">
             <doc xml:space="preserve"
                  filename="../src/adw-tab-view.c"
-                 line="2876">a `AdwTabView`</doc>
+                 line="2775">a `AdwTabView`</doc>
             <type name="TabView" c:type="AdwTabView*"/>
           </instance-parameter>
           <parameter name="child" transfer-ownership="none">
             <doc xml:space="preserve"
                  filename="../src/adw-tab-view.c"
-                 line="2877">a widget to add</doc>
+                 line="2776">a widget to add</doc>
             <type name="Gtk.Widget" c:type="GtkWidget*"/>
           </parameter>
         </parameters>
@@ -14084,8 +14136,8 @@ If @parent is `NULL`, this function is equivalent to
               version="1.0">
         <doc xml:space="preserve"
              filename="../src/adw-tab-view.c"
-             line="2975">Requests to close all pages other than @page.</doc>
-        <source-position filename="../src/adw-tab-view.h" line="178"/>
+             line="2874">Requests to close all pages other than @page.</doc>
+        <source-position filename="../src/adw-tab-view.h" line="172"/>
         <return-value transfer-ownership="none">
           <type name="none" c:type="void"/>
         </return-value>
@@ -14093,13 +14145,13 @@ If @parent is `NULL`, this function is equivalent to
           <instance-parameter name="self" transfer-ownership="none">
             <doc xml:space="preserve"
                  filename="../src/adw-tab-view.c"
-                 line="2977">a `AdwTabView`</doc>
+                 line="2876">a `AdwTabView`</doc>
             <type name="TabView" c:type="AdwTabView*"/>
           </instance-parameter>
           <parameter name="page" transfer-ownership="none">
             <doc xml:space="preserve"
                  filename="../src/adw-tab-view.c"
-                 line="2978">a page of @self</doc>
+                 line="2877">a page of @self</doc>
             <type name="TabPage" c:type="AdwTabPage*"/>
           </parameter>
         </parameters>
@@ -14109,7 +14161,7 @@ If @parent is `NULL`, this function is equivalent to
               version="1.0">
         <doc xml:space="preserve"
              filename="../src/adw-tab-view.c"
-             line="2895">Requests to close @page.
+             line="2794">Requests to close @page.
 
 Calling this function will result in the [signal@Adw.TabView::close-page]
 signal being emitted for @page. Closing the page can then be confirmed or
@@ -14131,7 +14183,7 @@ will be selected instead.
 If it's not `NULL`, the previous page will be selected if it's a descendant
 (possibly indirect) of the parent. If both the previous page and the parent
 are pinned, the parent will be selected instead.</doc>
-        <source-position filename="../src/adw-tab-view.h" line="170"/>
+        <source-position filename="../src/adw-tab-view.h" line="164"/>
         <return-value transfer-ownership="none">
           <type name="none" c:type="void"/>
         </return-value>
@@ -14139,13 +14191,13 @@ are pinned, the parent will be selected instead.</doc>
           <instance-parameter name="self" transfer-ownership="none">
             <doc xml:space="preserve"
                  filename="../src/adw-tab-view.c"
-                 line="2897">a `AdwTabView`</doc>
+                 line="2796">a `AdwTabView`</doc>
             <type name="TabView" c:type="AdwTabView*"/>
           </instance-parameter>
           <parameter name="page" transfer-ownership="none">
             <doc xml:space="preserve"
                  filename="../src/adw-tab-view.c"
-                 line="2898">a page of @self</doc>
+                 line="2797">a page of @self</doc>
             <type name="TabPage" c:type="AdwTabPage*"/>
           </parameter>
         </parameters>
@@ -14155,7 +14207,7 @@ are pinned, the parent will be selected instead.</doc>
               version="1.0">
         <doc xml:space="preserve"
              filename="../src/adw-tab-view.c"
-             line="2942">Completes a [method@Adw.TabView.close_page] call for @page.
+             line="2841">Completes a [method@Adw.TabView.close_page] call for @page.
 
 If @confirm is `TRUE`, @page will be closed. If it's `FALSE`, it will be
 reverted to its previous state and [method@Adw.TabView.close_page] can be
@@ -14163,7 +14215,7 @@ called for it again.
 
 This function should not be called unless a custom handler for
 [signal@Adw.TabView::close-page] is used.</doc>
-        <source-position filename="../src/adw-tab-view.h" line="173"/>
+        <source-position filename="../src/adw-tab-view.h" line="167"/>
         <return-value transfer-ownership="none">
           <type name="none" c:type="void"/>
         </return-value>
@@ -14171,19 +14223,19 @@ This function should not be called unless a custom handler for
           <instance-parameter name="self" transfer-ownership="none">
             <doc xml:space="preserve"
                  filename="../src/adw-tab-view.c"
-                 line="2944">a `AdwTabView`</doc>
+                 line="2843">a `AdwTabView`</doc>
             <type name="TabView" c:type="AdwTabView*"/>
           </instance-parameter>
           <parameter name="page" transfer-ownership="none">
             <doc xml:space="preserve"
                  filename="../src/adw-tab-view.c"
-                 line="2945">a page of @self</doc>
+                 line="2844">a page of @self</doc>
             <type name="TabPage" c:type="AdwTabPage*"/>
           </parameter>
           <parameter name="confirm" transfer-ownership="none">
             <doc xml:space="preserve"
                  filename="../src/adw-tab-view.c"
-                 line="2946">whether to confirm or deny closing @page</doc>
+                 line="2845">whether to confirm or deny closing @page</doc>
             <type name="gboolean" c:type="gboolean"/>
           </parameter>
         </parameters>
@@ -14193,8 +14245,8 @@ This function should not be called unless a custom handler for
               version="1.0">
         <doc xml:space="preserve"
              filename="../src/adw-tab-view.c"
-             line="3032">Requests to close all pages after @page.</doc>
-        <source-position filename="../src/adw-tab-view.h" line="184"/>
+             line="2931">Requests to close all pages after @page.</doc>
+        <source-position filename="../src/adw-tab-view.h" line="178"/>
         <return-value transfer-ownership="none">
           <type name="none" c:type="void"/>
         </return-value>
@@ -14202,13 +14254,13 @@ This function should not be called unless a custom handler for
           <instance-parameter name="self" transfer-ownership="none">
             <doc xml:space="preserve"
                  filename="../src/adw-tab-view.c"
-                 line="3034">a `AdwTabView`</doc>
+                 line="2933">a `AdwTabView`</doc>
             <type name="TabView" c:type="AdwTabView*"/>
           </instance-parameter>
           <parameter name="page" transfer-ownership="none">
             <doc xml:space="preserve"
                  filename="../src/adw-tab-view.c"
-                 line="3035">a page of @self</doc>
+                 line="2934">a page of @self</doc>
             <type name="TabPage" c:type="AdwTabPage*"/>
           </parameter>
         </parameters>
@@ -14218,8 +14270,8 @@ This function should not be called unless a custom handler for
               version="1.0">
         <doc xml:space="preserve"
              filename="../src/adw-tab-view.c"
-             line="3004">Requests to close all pages before @page.</doc>
-        <source-position filename="../src/adw-tab-view.h" line="181"/>
+             line="2903">Requests to close all pages before @page.</doc>
+        <source-position filename="../src/adw-tab-view.h" line="175"/>
         <return-value transfer-ownership="none">
           <type name="none" c:type="void"/>
         </return-value>
@@ -14227,13 +14279,13 @@ This function should not be called unless a custom handler for
           <instance-parameter name="self" transfer-ownership="none">
             <doc xml:space="preserve"
                  filename="../src/adw-tab-view.c"
-                 line="3006">a `AdwTabView`</doc>
+                 line="2905">a `AdwTabView`</doc>
             <type name="TabView" c:type="AdwTabView*"/>
           </instance-parameter>
           <parameter name="page" transfer-ownership="none">
             <doc xml:space="preserve"
                  filename="../src/adw-tab-view.c"
-                 line="3007">a page of @self</doc>
+                 line="2906">a page of @self</doc>
             <type name="TabPage" c:type="AdwTabPage*"/>
           </parameter>
         </parameters>
@@ -14245,19 +14297,19 @@ This function should not be called unless a custom handler for
         <attribute name="org.gtk.Method.get_property" value="default-icon"/>
         <doc xml:space="preserve"
              filename="../src/adw-tab-view.c"
-             line="2389">Gets the default icon of @self.</doc>
+             line="2351">Gets the default icon of @self.</doc>
         <source-position filename="../src/adw-tab-view.h" line="108"/>
         <return-value transfer-ownership="none">
           <doc xml:space="preserve"
                filename="../src/adw-tab-view.c"
-               line="2395">the default icon of @self.</doc>
+               line="2357">the default icon of @self.</doc>
           <type name="Gio.Icon" c:type="GIcon*"/>
         </return-value>
         <parameters>
           <instance-parameter name="self" transfer-ownership="none">
             <doc xml:space="preserve"
                  filename="../src/adw-tab-view.c"
-                 line="2391">a `AdwTabView`</doc>
+                 line="2353">a `AdwTabView`</doc>
             <type name="TabView" c:type="AdwTabView*"/>
           </instance-parameter>
         </parameters>
@@ -14270,19 +14322,19 @@ This function should not be called unless a custom handler for
                    value="is-transferring-page"/>
         <doc xml:space="preserve"
              filename="../src/adw-tab-view.c"
-             line="2200">Whether a page is being transferred.</doc>
+             line="2162">Whether a page is being transferred.</doc>
         <source-position filename="../src/adw-tab-view.h" line="94"/>
         <return-value transfer-ownership="none">
           <doc xml:space="preserve"
                filename="../src/adw-tab-view.c"
-               line="2206">whether a page is being transferred</doc>
+               line="2168">whether a page is being transferred</doc>
           <type name="gboolean" c:type="gboolean"/>
         </return-value>
         <parameters>
           <instance-parameter name="self" transfer-ownership="none">
             <doc xml:space="preserve"
                  filename="../src/adw-tab-view.c"
-                 line="2202">a `AdwTabView`</doc>
+                 line="2164">a `AdwTabView`</doc>
             <type name="TabView" c:type="AdwTabView*"/>
           </instance-parameter>
         </parameters>
@@ -14294,19 +14346,19 @@ This function should not be called unless a custom handler for
         <attribute name="org.gtk.Method.get_property" value="menu-model"/>
         <doc xml:space="preserve"
              filename="../src/adw-tab-view.c"
-             line="2431">Gets the tab context menu model for @self.</doc>
+             line="2393">Gets the tab context menu model for @self.</doc>
         <source-position filename="../src/adw-tab-view.h" line="114"/>
         <return-value transfer-ownership="none" nullable="1">
           <doc xml:space="preserve"
                filename="../src/adw-tab-view.c"
-               line="2437">the tab context menu model for @self</doc>
+               line="2399">the tab context menu model for @self</doc>
           <type name="Gio.MenuModel" c:type="GMenuModel*"/>
         </return-value>
         <parameters>
           <instance-parameter name="self" transfer-ownership="none">
             <doc xml:space="preserve"
                  filename="../src/adw-tab-view.c"
-                 line="2433">a `AdwTabView`</doc>
+                 line="2395">a `AdwTabView`</doc>
             <type name="TabView" c:type="AdwTabView*"/>
           </instance-parameter>
         </parameters>
@@ -14318,19 +14370,19 @@ This function should not be called unless a custom handler for
         <attribute name="org.gtk.Method.get_property" value="n-pages"/>
         <doc xml:space="preserve"
              filename="../src/adw-tab-view.c"
-             line="2164">Gets the number of pages in @self.</doc>
+             line="2126">Gets the number of pages in @self.</doc>
         <source-position filename="../src/adw-tab-view.h" line="89"/>
         <return-value transfer-ownership="none">
           <doc xml:space="preserve"
                filename="../src/adw-tab-view.c"
-               line="2170">the number of pages in @self</doc>
+               line="2132">the number of pages in @self</doc>
           <type name="gint" c:type="int"/>
         </return-value>
         <parameters>
           <instance-parameter name="self" transfer-ownership="none">
             <doc xml:space="preserve"
                  filename="../src/adw-tab-view.c"
-                 line="2166">a `AdwTabView`</doc>
+                 line="2128">a `AdwTabView`</doc>
             <type name="TabView" c:type="AdwTabView*"/>
           </instance-parameter>
         </parameters>
@@ -14342,19 +14394,19 @@ This function should not be called unless a custom handler for
         <attribute name="org.gtk.Method.get_property" value="n-pinned-pages"/>
         <doc xml:space="preserve"
              filename="../src/adw-tab-view.c"
-             line="2182">Gets the number of pinned pages in @self.</doc>
+             line="2144">Gets the number of pinned pages in @self.</doc>
         <source-position filename="../src/adw-tab-view.h" line="91"/>
         <return-value transfer-ownership="none">
           <doc xml:space="preserve"
                filename="../src/adw-tab-view.c"
-               line="2188">the number of pinned pages in @self</doc>
+               line="2150">the number of pinned pages in @self</doc>
           <type name="gint" c:type="int"/>
         </return-value>
         <parameters>
           <instance-parameter name="self" transfer-ownership="none">
             <doc xml:space="preserve"
                  filename="../src/adw-tab-view.c"
-                 line="2184">a `AdwTabView`</doc>
+                 line="2146">a `AdwTabView`</doc>
             <type name="TabView" c:type="AdwTabView*"/>
           </instance-parameter>
         </parameters>
@@ -14364,25 +14416,25 @@ This function should not be called unless a custom handler for
               version="1.0">
         <doc xml:space="preserve"
              filename="../src/adw-tab-view.c"
-             line="2643">Gets the [class@Adw.TabPage] representing the child at @position.</doc>
-        <source-position filename="../src/adw-tab-view.h" line="135"/>
+             line="2542">Gets the [class@Adw.TabPage] representing the child at @position.</doc>
+        <source-position filename="../src/adw-tab-view.h" line="129"/>
         <return-value transfer-ownership="none">
           <doc xml:space="preserve"
                filename="../src/adw-tab-view.c"
-               line="2650">the page object at @position</doc>
+               line="2549">the page object at @position</doc>
           <type name="TabPage" c:type="AdwTabPage*"/>
         </return-value>
         <parameters>
           <instance-parameter name="self" transfer-ownership="none">
             <doc xml:space="preserve"
                  filename="../src/adw-tab-view.c"
-                 line="2645">a `AdwTabView`</doc>
+                 line="2544">a `AdwTabView`</doc>
             <type name="TabView" c:type="AdwTabView*"/>
           </instance-parameter>
           <parameter name="position" transfer-ownership="none">
             <doc xml:space="preserve"
                  filename="../src/adw-tab-view.c"
-                 line="2646">the index of the page in @self, starting from 0</doc>
+                 line="2545">the index of the page in @self, starting from 0</doc>
             <type name="gint" c:type="int"/>
           </parameter>
         </parameters>
@@ -14392,25 +14444,25 @@ This function should not be called unless a custom handler for
               version="1.0">
         <doc xml:space="preserve"
              filename="../src/adw-tab-view.c"
-             line="2612">Gets the [class@Adw.TabPage] object representing @child.</doc>
-        <source-position filename="../src/adw-tab-view.h" line="131"/>
+             line="2511">Gets the [class@Adw.TabPage] object representing @child.</doc>
+        <source-position filename="../src/adw-tab-view.h" line="125"/>
         <return-value transfer-ownership="none">
           <doc xml:space="preserve"
                filename="../src/adw-tab-view.c"
-               line="2619">the page object for @child</doc>
+               line="2518">the page object for @child</doc>
           <type name="TabPage" c:type="AdwTabPage*"/>
         </return-value>
         <parameters>
           <instance-parameter name="self" transfer-ownership="none">
             <doc xml:space="preserve"
                  filename="../src/adw-tab-view.c"
-                 line="2614">a `AdwTabView`</doc>
+                 line="2513">a `AdwTabView`</doc>
             <type name="TabView" c:type="AdwTabView*"/>
           </instance-parameter>
           <parameter name="child" transfer-ownership="none">
             <doc xml:space="preserve"
                  filename="../src/adw-tab-view.c"
-                 line="2615">a child in @self</doc>
+                 line="2514">a child in @self</doc>
             <type name="Gtk.Widget" c:type="GtkWidget*"/>
           </parameter>
         </parameters>
@@ -14420,25 +14472,25 @@ This function should not be called unless a custom handler for
               version="1.0">
         <doc xml:space="preserve"
              filename="../src/adw-tab-view.c"
-             line="2669">Finds the position of @page in @self, starting from 0.</doc>
-        <source-position filename="../src/adw-tab-view.h" line="139"/>
+             line="2568">Finds the position of @page in @self, starting from 0.</doc>
+        <source-position filename="../src/adw-tab-view.h" line="133"/>
         <return-value transfer-ownership="none">
           <doc xml:space="preserve"
                filename="../src/adw-tab-view.c"
-               line="2676">the position of @page in @self</doc>
+               line="2575">the position of @page in @self</doc>
           <type name="gint" c:type="int"/>
         </return-value>
         <parameters>
           <instance-parameter name="self" transfer-ownership="none">
             <doc xml:space="preserve"
                  filename="../src/adw-tab-view.c"
-                 line="2671">a `AdwTabView`</doc>
+                 line="2570">a `AdwTabView`</doc>
             <type name="TabView" c:type="AdwTabView*"/>
           </instance-parameter>
           <parameter name="page" transfer-ownership="none">
             <doc xml:space="preserve"
                  filename="../src/adw-tab-view.c"
-                 line="2672">a page of @self</doc>
+                 line="2571">a page of @self</doc>
             <type name="TabPage" c:type="AdwTabPage*"/>
           </parameter>
         </parameters>
@@ -14450,23 +14502,23 @@ This function should not be called unless a custom handler for
         <attribute name="org.gtk.Method.get_property" value="pages"/>
         <doc xml:space="preserve"
              filename="../src/adw-tab-view.c"
-             line="3318">Returns a [iface@Gio.ListModel] that contains the pages of @self.
+             line="3217">Returns a [iface@Gio.ListModel] that contains the pages of @self.
 
 This can be used to keep an up-to-date view. The model also implements
 [iface@Gtk.SelectionModel] and can be used to track and change the selected
 page.</doc>
-        <source-position filename="../src/adw-tab-view.h" line="211"/>
+        <source-position filename="../src/adw-tab-view.h" line="205"/>
         <return-value transfer-ownership="full">
           <doc xml:space="preserve"
                filename="../src/adw-tab-view.c"
-               line="3328">a `GtkSelectionModel` for the pages of @self</doc>
+               line="3227">a `GtkSelectionModel` for the pages of @self</doc>
           <type name="Gtk.SelectionModel" c:type="GtkSelectionModel*"/>
         </return-value>
         <parameters>
           <instance-parameter name="self" transfer-ownership="none">
             <doc xml:space="preserve"
                  filename="../src/adw-tab-view.c"
-                 line="3320">a `AdwTabView`</doc>
+                 line="3219">a `AdwTabView`</doc>
             <type name="TabView" c:type="AdwTabView*"/>
           </instance-parameter>
         </parameters>
@@ -14478,43 +14530,19 @@ page.</doc>
         <attribute name="org.gtk.Method.get_property" value="selected-page"/>
         <doc xml:space="preserve"
              filename="../src/adw-tab-view.c"
-             line="2218">Gets the currently selected page in @self.</doc>
+             line="2180">Gets the currently selected page in @self.</doc>
         <source-position filename="../src/adw-tab-view.h" line="97"/>
         <return-value transfer-ownership="none" nullable="1">
           <doc xml:space="preserve"
                filename="../src/adw-tab-view.c"
-               line="2224">the selected page</doc>
+               line="2186">the selected page</doc>
           <type name="TabPage" c:type="AdwTabPage*"/>
         </return-value>
         <parameters>
           <instance-parameter name="self" transfer-ownership="none">
             <doc xml:space="preserve"
                  filename="../src/adw-tab-view.c"
-                 line="2220">a `AdwTabView`</doc>
-            <type name="TabView" c:type="AdwTabView*"/>
-          </instance-parameter>
-        </parameters>
-      </method>
-      <method name="get_shortcut_widget"
-              c:identifier="adw_tab_view_get_shortcut_widget"
-              glib:get-property="shortcut-widget"
-              version="1.0">
-        <attribute name="org.gtk.Method.get_property" value="shortcut-widget"/>
-        <doc xml:space="preserve"
-             filename="../src/adw-tab-view.c"
-             line="2473">Gets the shortcut widget for @self.</doc>
-        <source-position filename="../src/adw-tab-view.h" line="120"/>
-        <return-value transfer-ownership="none" nullable="1">
-          <doc xml:space="preserve"
-               filename="../src/adw-tab-view.c"
-               line="2479">the shortcut widget for @self</doc>
-          <type name="Gtk.Widget" c:type="GtkWidget*"/>
-        </return-value>
-        <parameters>
-          <instance-parameter name="self" transfer-ownership="none">
-            <doc xml:space="preserve"
-                 filename="../src/adw-tab-view.c"
-                 line="2475">a `AdwTabView`</doc>
+                 line="2182">a `AdwTabView`</doc>
             <type name="TabView" c:type="AdwTabView*"/>
           </instance-parameter>
         </parameters>
@@ -14522,34 +14550,34 @@ page.</doc>
       <method name="insert" c:identifier="adw_tab_view_insert" version="1.0">
         <doc xml:space="preserve"
              filename="../src/adw-tab-view.c"
-             line="2755">Inserts a non-pinned page at @position.
+             line="2654">Inserts a non-pinned page at @position.
 
 It's an error to try to insert a page before a pinned page, in that case
 [method@Adw.TabView.insert_pinned] should be used instead.</doc>
-        <source-position filename="../src/adw-tab-view.h" line="148"/>
+        <source-position filename="../src/adw-tab-view.h" line="142"/>
         <return-value transfer-ownership="none">
           <doc xml:space="preserve"
                filename="../src/adw-tab-view.c"
-               line="2766">the page object representing @child</doc>
+               line="2665">the page object representing @child</doc>
           <type name="TabPage" c:type="AdwTabPage*"/>
         </return-value>
         <parameters>
           <instance-parameter name="self" transfer-ownership="none">
             <doc xml:space="preserve"
                  filename="../src/adw-tab-view.c"
-                 line="2757">a `AdwTabView`</doc>
+                 line="2656">a `AdwTabView`</doc>
             <type name="TabView" c:type="AdwTabView*"/>
           </instance-parameter>
           <parameter name="child" transfer-ownership="none">
             <doc xml:space="preserve"
                  filename="../src/adw-tab-view.c"
-                 line="2758">a widget to add</doc>
+                 line="2657">a widget to add</doc>
             <type name="Gtk.Widget" c:type="GtkWidget*"/>
           </parameter>
           <parameter name="position" transfer-ownership="none">
             <doc xml:space="preserve"
                  filename="../src/adw-tab-view.c"
-                 line="2759">the position to add @child at, starting from 0</doc>
+                 line="2658">the position to add @child at, starting from 0</doc>
             <type name="gint" c:type="int"/>
           </parameter>
         </parameters>
@@ -14559,34 +14587,34 @@ It's an error to try to insert a page before a pinned page, in that case
               version="1.0">
         <doc xml:space="preserve"
              filename="../src/adw-tab-view.c"
-             line="2825">Inserts a pinned page at @position.
+             line="2724">Inserts a pinned page at @position.
 
 It's an error to try to insert a pinned page after a non-pinned page, in
 that case [method@Adw.TabView.insert] should be used instead.</doc>
-        <source-position filename="../src/adw-tab-view.h" line="159"/>
+        <source-position filename="../src/adw-tab-view.h" line="153"/>
         <return-value transfer-ownership="none">
           <doc xml:space="preserve"
                filename="../src/adw-tab-view.c"
-               line="2836">the page object representing @child</doc>
+               line="2735">the page object representing @child</doc>
           <type name="TabPage" c:type="AdwTabPage*"/>
         </return-value>
         <parameters>
           <instance-parameter name="self" transfer-ownership="none">
             <doc xml:space="preserve"
                  filename="../src/adw-tab-view.c"
-                 line="2827">a `AdwTabView`</doc>
+                 line="2726">a `AdwTabView`</doc>
             <type name="TabView" c:type="AdwTabView*"/>
           </instance-parameter>
           <parameter name="child" transfer-ownership="none">
             <doc xml:space="preserve"
                  filename="../src/adw-tab-view.c"
-                 line="2828">a widget to add</doc>
+                 line="2727">a widget to add</doc>
             <type name="Gtk.Widget" c:type="GtkWidget*"/>
           </parameter>
           <parameter name="position" transfer-ownership="none">
             <doc xml:space="preserve"
                  filename="../src/adw-tab-view.c"
-                 line="2829">the position to add @child at, starting from 0</doc>
+                 line="2728">the position to add @child at, starting from 0</doc>
             <type name="gint" c:type="int"/>
           </parameter>
         </parameters>
@@ -14594,25 +14622,25 @@ that case [method@Adw.TabView.insert] should be used instead.</doc>
       <method name="prepend" c:identifier="adw_tab_view_prepend" version="1.0">
         <doc xml:space="preserve"
              filename="../src/adw-tab-view.c"
-             line="2783">Inserts @child as the first non-pinned page.</doc>
-        <source-position filename="../src/adw-tab-view.h" line="152"/>
+             line="2682">Inserts @child as the first non-pinned page.</doc>
+        <source-position filename="../src/adw-tab-view.h" line="146"/>
         <return-value transfer-ownership="none">
           <doc xml:space="preserve"
                filename="../src/adw-tab-view.c"
-               line="2790">the page object representing @child</doc>
+               line="2689">the page object representing @child</doc>
           <type name="TabPage" c:type="AdwTabPage*"/>
         </return-value>
         <parameters>
           <instance-parameter name="self" transfer-ownership="none">
             <doc xml:space="preserve"
                  filename="../src/adw-tab-view.c"
-                 line="2785">a `AdwTabView`</doc>
+                 line="2684">a `AdwTabView`</doc>
             <type name="TabView" c:type="AdwTabView*"/>
           </instance-parameter>
           <parameter name="child" transfer-ownership="none">
             <doc xml:space="preserve"
                  filename="../src/adw-tab-view.c"
-                 line="2786">a widget to add</doc>
+                 line="2685">a widget to add</doc>
             <type name="Gtk.Widget" c:type="GtkWidget*"/>
           </parameter>
         </parameters>
@@ -14622,25 +14650,25 @@ that case [method@Adw.TabView.insert] should be used instead.</doc>
               version="1.0">
         <doc xml:space="preserve"
              filename="../src/adw-tab-view.c"
-             line="2853">Inserts @child as the first pinned page.</doc>
-        <source-position filename="../src/adw-tab-view.h" line="163"/>
+             line="2752">Inserts @child as the first pinned page.</doc>
+        <source-position filename="../src/adw-tab-view.h" line="157"/>
         <return-value transfer-ownership="none">
           <doc xml:space="preserve"
                filename="../src/adw-tab-view.c"
-               line="2860">the page object representing @child</doc>
+               line="2759">the page object representing @child</doc>
           <type name="TabPage" c:type="AdwTabPage*"/>
         </return-value>
         <parameters>
           <instance-parameter name="self" transfer-ownership="none">
             <doc xml:space="preserve"
                  filename="../src/adw-tab-view.c"
-                 line="2855">a `AdwTabView`</doc>
+                 line="2754">a `AdwTabView`</doc>
             <type name="TabView" c:type="AdwTabView*"/>
           </instance-parameter>
           <parameter name="child" transfer-ownership="none">
             <doc xml:space="preserve"
                  filename="../src/adw-tab-view.c"
-                 line="2856">a widget to add</doc>
+                 line="2755">a widget to add</doc>
             <type name="Gtk.Widget" c:type="GtkWidget*"/>
           </parameter>
         </parameters>
@@ -14650,25 +14678,25 @@ that case [method@Adw.TabView.insert] should be used instead.</doc>
               version="1.0">
         <doc xml:space="preserve"
              filename="../src/adw-tab-view.c"
-             line="3118">Reorders @page to before its previous page if possible.</doc>
-        <source-position filename="../src/adw-tab-view.h" line="192"/>
+             line="3017">Reorders @page to before its previous page if possible.</doc>
+        <source-position filename="../src/adw-tab-view.h" line="186"/>
         <return-value transfer-ownership="none">
           <doc xml:space="preserve"
                filename="../src/adw-tab-view.c"
-               line="3125">whether @page was moved</doc>
+               line="3024">whether @page was moved</doc>
           <type name="gboolean" c:type="gboolean"/>
         </return-value>
         <parameters>
           <instance-parameter name="self" transfer-ownership="none">
             <doc xml:space="preserve"
                  filename="../src/adw-tab-view.c"
-                 line="3120">a `AdwTabView`</doc>
+                 line="3019">a `AdwTabView`</doc>
             <type name="TabView" c:type="AdwTabView*"/>
           </instance-parameter>
           <parameter name="page" transfer-ownership="none">
             <doc xml:space="preserve"
                  filename="../src/adw-tab-view.c"
-                 line="3121">a page of @self</doc>
+                 line="3020">a page of @self</doc>
             <type name="TabPage" c:type="AdwTabPage*"/>
           </parameter>
         </parameters>
@@ -14678,25 +14706,25 @@ that case [method@Adw.TabView.insert] should be used instead.</doc>
               version="1.0">
         <doc xml:space="preserve"
              filename="../src/adw-tab-view.c"
-             line="3184">Reorders @page to the first possible position.</doc>
-        <source-position filename="../src/adw-tab-view.h" line="198"/>
+             line="3083">Reorders @page to the first possible position.</doc>
+        <source-position filename="../src/adw-tab-view.h" line="192"/>
         <return-value transfer-ownership="none">
           <doc xml:space="preserve"
                filename="../src/adw-tab-view.c"
-               line="3191">whether @page was moved</doc>
+               line="3090">whether @page was moved</doc>
           <type name="gboolean" c:type="gboolean"/>
         </return-value>
         <parameters>
           <instance-parameter name="self" transfer-ownership="none">
             <doc xml:space="preserve"
                  filename="../src/adw-tab-view.c"
-                 line="3186">a `AdwTabView`</doc>
+                 line="3085">a `AdwTabView`</doc>
             <type name="TabView" c:type="AdwTabView*"/>
           </instance-parameter>
           <parameter name="page" transfer-ownership="none">
             <doc xml:space="preserve"
                  filename="../src/adw-tab-view.c"
-                 line="3187">a page of @self</doc>
+                 line="3086">a page of @self</doc>
             <type name="TabPage" c:type="AdwTabPage*"/>
           </parameter>
         </parameters>
@@ -14706,25 +14734,25 @@ that case [method@Adw.TabView.insert] should be used instead.</doc>
               version="1.0">
         <doc xml:space="preserve"
              filename="../src/adw-tab-view.c"
-             line="3151">Reorders @page to after its next page if possible.</doc>
-        <source-position filename="../src/adw-tab-view.h" line="195"/>
+             line="3050">Reorders @page to after its next page if possible.</doc>
+        <source-position filename="../src/adw-tab-view.h" line="189"/>
         <return-value transfer-ownership="none">
           <doc xml:space="preserve"
                filename="../src/adw-tab-view.c"
-               line="3158">whether @page was moved</doc>
+               line="3057">whether @page was moved</doc>
           <type name="gboolean" c:type="gboolean"/>
         </return-value>
         <parameters>
           <instance-parameter name="self" transfer-ownership="none">
             <doc xml:space="preserve"
                  filename="../src/adw-tab-view.c"
-                 line="3153">a `AdwTabView`</doc>
+                 line="3052">a `AdwTabView`</doc>
             <type name="TabView" c:type="AdwTabView*"/>
           </instance-parameter>
           <parameter name="page" transfer-ownership="none">
             <doc xml:space="preserve"
                  filename="../src/adw-tab-view.c"
-                 line="3154">a page of @self</doc>
+                 line="3053">a page of @self</doc>
             <type name="TabPage" c:type="AdwTabPage*"/>
           </parameter>
         </parameters>
@@ -14734,25 +14762,25 @@ that case [method@Adw.TabView.insert] should be used instead.</doc>
               version="1.0">
         <doc xml:space="preserve"
              filename="../src/adw-tab-view.c"
-             line="3212">Reorders @page to the last possible position.</doc>
-        <source-position filename="../src/adw-tab-view.h" line="201"/>
+             line="3111">Reorders @page to the last possible position.</doc>
+        <source-position filename="../src/adw-tab-view.h" line="195"/>
         <return-value transfer-ownership="none">
           <doc xml:space="preserve"
                filename="../src/adw-tab-view.c"
-               line="3219">whether @page was moved</doc>
+               line="3118">whether @page was moved</doc>
           <type name="gboolean" c:type="gboolean"/>
         </return-value>
         <parameters>
           <instance-parameter name="self" transfer-ownership="none">
             <doc xml:space="preserve"
                  filename="../src/adw-tab-view.c"
-                 line="3214">a `AdwTabView`</doc>
+                 line="3113">a `AdwTabView`</doc>
             <type name="TabView" c:type="AdwTabView*"/>
           </instance-parameter>
           <parameter name="page" transfer-ownership="none">
             <doc xml:space="preserve"
                  filename="../src/adw-tab-view.c"
-                 line="3215">a page of @self</doc>
+                 line="3114">a page of @self</doc>
             <type name="TabPage" c:type="AdwTabPage*"/>
           </parameter>
         </parameters>
@@ -14762,34 +14790,34 @@ that case [method@Adw.TabView.insert] should be used instead.</doc>
               version="1.0">
         <doc xml:space="preserve"
              filename="../src/adw-tab-view.c"
-             line="3060">Reorders @page to @position.
+             line="2959">Reorders @page to @position.
 
 It's a programmer error to try to reorder a pinned page after a non-pinned
 one, or a non-pinned page before a pinned one.</doc>
-        <source-position filename="../src/adw-tab-view.h" line="188"/>
+        <source-position filename="../src/adw-tab-view.h" line="182"/>
         <return-value transfer-ownership="none">
           <doc xml:space="preserve"
                filename="../src/adw-tab-view.c"
-               line="3071">whether @page was moved</doc>
+               line="2970">whether @page was moved</doc>
           <type name="gboolean" c:type="gboolean"/>
         </return-value>
         <parameters>
           <instance-parameter name="self" transfer-ownership="none">
             <doc xml:space="preserve"
                  filename="../src/adw-tab-view.c"
-                 line="3062">a `AdwTabView`</doc>
+                 line="2961">a `AdwTabView`</doc>
             <type name="TabView" c:type="AdwTabView*"/>
           </instance-parameter>
           <parameter name="page" transfer-ownership="none">
             <doc xml:space="preserve"
                  filename="../src/adw-tab-view.c"
-                 line="3063">a page of @self</doc>
+                 line="2962">a page of @self</doc>
             <type name="TabPage" c:type="AdwTabPage*"/>
           </parameter>
           <parameter name="position" transfer-ownership="none">
             <doc xml:space="preserve"
                  filename="../src/adw-tab-view.c"
-                 line="3064">the position to insert the page at, starting at 0</doc>
+                 line="2963">the position to insert the page at, starting at 0</doc>
             <type name="gint" c:type="int"/>
           </parameter>
         </parameters>
@@ -14799,21 +14827,21 @@ one, or a non-pinned page before a pinned one.</doc>
               version="1.0">
         <doc xml:space="preserve"
              filename="../src/adw-tab-view.c"
-             line="2296">Selects the page after the currently selected page.
+             line="2258">Selects the page after the currently selected page.
 
 If the last page was already selected, this function does nothing.</doc>
         <source-position filename="../src/adw-tab-view.h" line="105"/>
         <return-value transfer-ownership="none">
           <doc xml:space="preserve"
                filename="../src/adw-tab-view.c"
-               line="2304">whether the selected page was changed</doc>
+               line="2266">whether the selected page was changed</doc>
           <type name="gboolean" c:type="gboolean"/>
         </return-value>
         <parameters>
           <instance-parameter name="self" transfer-ownership="none">
             <doc xml:space="preserve"
                  filename="../src/adw-tab-view.c"
-                 line="2298">a `AdwTabView`</doc>
+                 line="2260">a `AdwTabView`</doc>
             <type name="TabView" c:type="AdwTabView*"/>
           </instance-parameter>
         </parameters>
@@ -14823,21 +14851,21 @@ If the last page was already selected, this function does nothing.</doc>
               version="1.0">
         <doc xml:space="preserve"
              filename="../src/adw-tab-view.c"
-             line="2261">Selects the page before the currently selected page.
+             line="2223">Selects the page before the currently selected page.
 
 If the first page was already selected, this function does nothing.</doc>
         <source-position filename="../src/adw-tab-view.h" line="103"/>
         <return-value transfer-ownership="none">
           <doc xml:space="preserve"
                filename="../src/adw-tab-view.c"
-               line="2269">whether the selected page was changed</doc>
+               line="2231">whether the selected page was changed</doc>
           <type name="gboolean" c:type="gboolean"/>
         </return-value>
         <parameters>
           <instance-parameter name="self" transfer-ownership="none">
             <doc xml:space="preserve"
                  filename="../src/adw-tab-view.c"
-                 line="2263">a `AdwTabView`</doc>
+                 line="2225">a `AdwTabView`</doc>
             <type name="TabView" c:type="AdwTabView*"/>
           </instance-parameter>
         </parameters>
@@ -14849,7 +14877,7 @@ If the first page was already selected, this function does nothing.</doc>
         <attribute name="org.gtk.Method.set_property" value="default-icon"/>
         <doc xml:space="preserve"
              filename="../src/adw-tab-view.c"
-             line="2407">Sets the default page icon for @self.</doc>
+             line="2369">Sets the default page icon for @self.</doc>
         <source-position filename="../src/adw-tab-view.h" line="110"/>
         <return-value transfer-ownership="none">
           <type name="none" c:type="void"/>
@@ -14858,13 +14886,13 @@ If the first page was already selected, this function does nothing.</doc>
           <instance-parameter name="self" transfer-ownership="none">
             <doc xml:space="preserve"
                  filename="../src/adw-tab-view.c"
-                 line="2409">a `AdwTabView`</doc>
+                 line="2371">a `AdwTabView`</doc>
             <type name="TabView" c:type="AdwTabView*"/>
           </instance-parameter>
           <parameter name="default_icon" transfer-ownership="none">
             <doc xml:space="preserve"
                  filename="../src/adw-tab-view.c"
-                 line="2410">the default icon</doc>
+                 line="2372">the default icon</doc>
             <type name="Gio.Icon" c:type="GIcon*"/>
           </parameter>
         </parameters>
@@ -14876,7 +14904,7 @@ If the first page was already selected, this function does nothing.</doc>
         <attribute name="org.gtk.Method.set_property" value="menu-model"/>
         <doc xml:space="preserve"
              filename="../src/adw-tab-view.c"
-             line="2449">Sets the tab context menu model for @self.</doc>
+             line="2411">Sets the tab context menu model for @self.</doc>
         <source-position filename="../src/adw-tab-view.h" line="116"/>
         <return-value transfer-ownership="none">
           <type name="none" c:type="void"/>
@@ -14885,7 +14913,7 @@ If the first page was already selected, this function does nothing.</doc>
           <instance-parameter name="self" transfer-ownership="none">
             <doc xml:space="preserve"
                  filename="../src/adw-tab-view.c"
-                 line="2451">a `AdwTabView`</doc>
+                 line="2413">a `AdwTabView`</doc>
             <type name="TabView" c:type="AdwTabView*"/>
           </instance-parameter>
           <parameter name="menu_model"
@@ -14894,7 +14922,7 @@ If the first page was already selected, this function does nothing.</doc>
                      allow-none="1">
             <doc xml:space="preserve"
                  filename="../src/adw-tab-view.c"
-                 line="2452">a menu model</doc>
+                 line="2414">a menu model</doc>
             <type name="Gio.MenuModel" c:type="GMenuModel*"/>
           </parameter>
         </parameters>
@@ -14904,7 +14932,7 @@ If the first page was already selected, this function does nothing.</doc>
               version="1.0">
         <doc xml:space="preserve"
              filename="../src/adw-tab-view.c"
-             line="2536">Pins or unpins @page.
+             line="2435">Pins or unpins @page.
 
 Pinned pages are guaranteed to be placed before all non-pinned pages; at any
 given moment the first [property@Adw.TabView:n-pinned-pages] pages in @self
@@ -14929,7 +14957,7 @@ Pinned pages cannot be closed by default, see
 [signal@Adw.TabView::close-page] for how to override that behavior.
 
 Changes the value of the [property@Adw.TabPage:pinned] property.</doc>
-        <source-position filename="../src/adw-tab-view.h" line="126"/>
+        <source-position filename="../src/adw-tab-view.h" line="120"/>
         <return-value transfer-ownership="none">
           <type name="none" c:type="void"/>
         </return-value>
@@ -14937,19 +14965,19 @@ Changes the value of the [property@Adw.TabPage:pinned] property.</doc>
           <instance-parameter name="self" transfer-ownership="none">
             <doc xml:space="preserve"
                  filename="../src/adw-tab-view.c"
-                 line="2538">a `AdwTabView`</doc>
+                 line="2437">a `AdwTabView`</doc>
             <type name="TabView" c:type="AdwTabView*"/>
           </instance-parameter>
           <parameter name="page" transfer-ownership="none">
             <doc xml:space="preserve"
                  filename="../src/adw-tab-view.c"
-                 line="2539">a page of @self</doc>
+                 line="2438">a page of @self</doc>
             <type name="TabPage" c:type="AdwTabPage*"/>
           </parameter>
           <parameter name="pinned" transfer-ownership="none">
             <doc xml:space="preserve"
                  filename="../src/adw-tab-view.c"
-                 line="2540">whether @page should be pinned</doc>
+                 line="2439">whether @page should be pinned</doc>
             <type name="gboolean" c:type="gboolean"/>
           </parameter>
         </parameters>
@@ -14961,7 +14989,7 @@ Changes the value of the [property@Adw.TabPage:pinned] property.</doc>
         <attribute name="org.gtk.Method.set_property" value="selected-page"/>
         <doc xml:space="preserve"
              filename="../src/adw-tab-view.c"
-             line="2236">Sets the currently selected page in @self.</doc>
+             line="2198">Sets the currently selected page in @self.</doc>
         <source-position filename="../src/adw-tab-view.h" line="99"/>
         <return-value transfer-ownership="none">
           <type name="none" c:type="void"/>
@@ -14970,44 +14998,14 @@ Changes the value of the [property@Adw.TabPage:pinned] property.</doc>
           <instance-parameter name="self" transfer-ownership="none">
             <doc xml:space="preserve"
                  filename="../src/adw-tab-view.c"
-                 line="2238">a `AdwTabView`</doc>
+                 line="2200">a `AdwTabView`</doc>
             <type name="TabView" c:type="AdwTabView*"/>
           </instance-parameter>
           <parameter name="selected_page" transfer-ownership="none">
             <doc xml:space="preserve"
                  filename="../src/adw-tab-view.c"
-                 line="2239">a page in @self</doc>
+                 line="2201">a page in @self</doc>
             <type name="TabPage" c:type="AdwTabPage*"/>
-          </parameter>
-        </parameters>
-      </method>
-      <method name="set_shortcut_widget"
-              c:identifier="adw_tab_view_set_shortcut_widget"
-              glib:set-property="shortcut-widget"
-              version="1.0">
-        <attribute name="org.gtk.Method.set_property" value="shortcut-widget"/>
-        <doc xml:space="preserve"
-             filename="../src/adw-tab-view.c"
-             line="2491">Sets the shortcut widget for @self.</doc>
-        <source-position filename="../src/adw-tab-view.h" line="122"/>
-        <return-value transfer-ownership="none">
-          <type name="none" c:type="void"/>
-        </return-value>
-        <parameters>
-          <instance-parameter name="self" transfer-ownership="none">
-            <doc xml:space="preserve"
-                 filename="../src/adw-tab-view.c"
-                 line="2493">a `AdwTabView`</doc>
-            <type name="TabView" c:type="AdwTabView*"/>
-          </instance-parameter>
-          <parameter name="widget"
-                     transfer-ownership="none"
-                     nullable="1"
-                     allow-none="1">
-            <doc xml:space="preserve"
-                 filename="../src/adw-tab-view.c"
-                 line="2494">a shortcut widget</doc>
-            <type name="Gtk.Widget" c:type="GtkWidget*"/>
           </parameter>
         </parameters>
       </method>
@@ -15016,13 +15014,13 @@ Changes the value of the [property@Adw.TabPage:pinned] property.</doc>
               version="1.0">
         <doc xml:space="preserve"
              filename="../src/adw-tab-view.c"
-             line="3278">Transfers @page from @self to @other_view.
+             line="3177">Transfers @page from @self to @other_view.
 
 The @page object will be reused.
 
 It's a programmer error to try to insert a pinned page after a non-pinned
 one, or a non-pinned page before a pinned one.</doc>
-        <source-position filename="../src/adw-tab-view.h" line="205"/>
+        <source-position filename="../src/adw-tab-view.h" line="199"/>
         <return-value transfer-ownership="none">
           <type name="none" c:type="void"/>
         </return-value>
@@ -15030,25 +15028,25 @@ one, or a non-pinned page before a pinned one.</doc>
           <instance-parameter name="self" transfer-ownership="none">
             <doc xml:space="preserve"
                  filename="../src/adw-tab-view.c"
-                 line="3280">a `AdwTabView`</doc>
+                 line="3179">a `AdwTabView`</doc>
             <type name="TabView" c:type="AdwTabView*"/>
           </instance-parameter>
           <parameter name="page" transfer-ownership="none">
             <doc xml:space="preserve"
                  filename="../src/adw-tab-view.c"
-                 line="3281">a page of @self</doc>
+                 line="3180">a page of @self</doc>
             <type name="TabPage" c:type="AdwTabPage*"/>
           </parameter>
           <parameter name="other_view" transfer-ownership="none">
             <doc xml:space="preserve"
                  filename="../src/adw-tab-view.c"
-                 line="3282">the tab view to transfer the page to</doc>
+                 line="3181">the tab view to transfer the page to</doc>
             <type name="TabView" c:type="AdwTabView*"/>
           </parameter>
           <parameter name="position" transfer-ownership="none">
             <doc xml:space="preserve"
                  filename="../src/adw-tab-view.c"
-                 line="3283">the position to insert the page at, starting at 0</doc>
+                 line="3182">the position to insert the page at, starting at 0</doc>
             <type name="gint" c:type="int"/>
           </parameter>
         </parameters>
@@ -15065,7 +15063,7 @@ one, or a non-pinned page before a pinned one.</doc>
                    value="adw_tab_view_set_default_icon"/>
         <doc xml:space="preserve"
              filename="../src/adw-tab-view.c"
-             line="1465">Default page icon.
+             line="1456">Default page icon.
 
 If a page doesn't provide its own icon via [property@Adw.TabPage:icon],
 a default icon may be used instead for contexts where having an icon is
@@ -15086,7 +15084,7 @@ By default, the `adw-tab-icon-missing-symbolic` icon is used.</doc>
                    value="adw_tab_view_get_is_transferring_page"/>
         <doc xml:space="preserve"
              filename="../src/adw-tab-view.c"
-             line="1431">Whether a page is being transferred.
+             line="1422">Whether a page is being transferred.
 
 This property will be set to `TRUE` when a drag-n-drop tab transfer starts
 on any `AdwTabView`, and to `FALSE` after it ends.
@@ -15107,7 +15105,7 @@ be safely dropped on the tab view.</doc>
                    value="adw_tab_view_set_menu_model"/>
         <doc xml:space="preserve"
              filename="../src/adw-tab-view.c"
-             line="1489">Tab context menu model.
+             line="1480">Tab context menu model.
 
 When a context menu is shown for a tab, it will be constructed from the
 provided menu model. Use the [signal@Adw.TabView::setup-menu] signal to set
@@ -15122,7 +15120,7 @@ up the menu actions for the particular tab.</doc>
                    value="adw_tab_view_get_n_pages"/>
         <doc xml:space="preserve"
              filename="../src/adw-tab-view.c"
-             line="1401">The number of pages in the tab view.</doc>
+             line="1392">The number of pages in the tab view.</doc>
         <type name="gint" c:type="gint"/>
       </property>
       <property name="n-pinned-pages"
@@ -15133,7 +15131,7 @@ up the menu actions for the particular tab.</doc>
                    value="adw_tab_view_get_n_pinned_pages"/>
         <doc xml:space="preserve"
              filename="../src/adw-tab-view.c"
-             line="1415">The number of pinned pages in the tab view.
+             line="1406">The number of pinned pages in the tab view.
 
 See [method@Adw.TabView.set_page_pinned].</doc>
         <type name="gint" c:type="gint"/>
@@ -15145,7 +15143,7 @@ See [method@Adw.TabView.set_page_pinned].</doc>
         <attribute name="org.gtk.Property.get" value="adw_tab_view_get_pages"/>
         <doc xml:space="preserve"
              filename="../src/adw-tab-view.c"
-             line="1538">A selection model with the tab view's pages.
+             line="1498">A selection model with the tab view's pages.
 
 This can be used to keep an up-to-date view. The model also implements
 [iface@Gtk.SelectionModel] and can be used to track and change the selected
@@ -15164,45 +15162,13 @@ page.</doc>
                    value="adw_tab_view_set_selected_page"/>
         <doc xml:space="preserve"
              filename="../src/adw-tab-view.c"
-             line="1451">The currently selected page.</doc>
+             line="1442">The currently selected page.</doc>
         <type name="TabPage"/>
-      </property>
-      <property name="shortcut-widget"
-                version="1.0"
-                writable="1"
-                transfer-ownership="none"
-                setter="set_shortcut_widget"
-                getter="get_shortcut_widget">
-        <attribute name="org.gtk.Property.get"
-                   value="adw_tab_view_get_shortcut_widget"/>
-        <attribute name="org.gtk.Property.set"
-                   value="adw_tab_view_set_shortcut_widget"/>
-        <doc xml:space="preserve"
-             filename="../src/adw-tab-view.c"
-             line="1507">The shortcut widget.
-
-It has the following shortcuts:
-* Ctrl+Page Up - switch to the previous page
-* Ctrl+Page Down - switch to the next page
-* Ctrl+Home - switch to the first page
-* Ctrl+End - switch to the last page
-* Ctrl+Shift+Page Up - move the current page backward
-* Ctrl+Shift+Page Down - move the current page forward
-* Ctrl+Shift+Home - move the current page at the start
-* Ctrl+Shift+End - move the current page at the end
-* Ctrl+Tab - switch to the next page, with looping
-* Ctrl+Shift+Tab - switch to the previous page, with looping
-* Alt+1-9 - switch to pages 1-9
-* Alt+0 - switch to page 10
-
-These shortcuts are always available on the tab view itself, this property
-is useful if they should be available globally.</doc>
-        <type name="Gtk.Widget"/>
       </property>
       <glib:signal name="close-page" when="last" version="1.0">
         <doc xml:space="preserve"
              filename="../src/adw-tab-view.c"
-             line="1629">Emitted after [method@Adw.TabView.close_page] has been called for
+             line="1589">Emitted after [method@Adw.TabView.close_page] has been called for
 @page.
 
 The handler is expected to call [method@Adw.TabView.close_page_finish] to
@@ -15236,7 +15202,7 @@ for closing a tab.</doc>
           <parameter name="page" transfer-ownership="none">
             <doc xml:space="preserve"
                  filename="../src/adw-tab-view.c"
-                 line="1632">a page of @self</doc>
+                 line="1592">a page of @self</doc>
             <type name="TabPage"/>
           </parameter>
         </parameters>
@@ -15244,7 +15210,7 @@ for closing a tab.</doc>
       <glib:signal name="create-window" when="last" version="1.0">
         <doc xml:space="preserve"
              filename="../src/adw-tab-view.c"
-             line="1699">Emitted when a tab should be transferred into a new window.
+             line="1659">Emitted when a tab should be transferred into a new window.
 
 This can happen after a tab has been dropped on desktop.
 
@@ -15253,14 +15219,14 @@ needed and return its `AdwTabView` that the page will be transferred into.</doc>
         <return-value transfer-ownership="none" nullable="1">
           <doc xml:space="preserve"
                filename="../src/adw-tab-view.c"
-               line="1710">the `AdwTabView` from the new window</doc>
+               line="1670">the `AdwTabView` from the new window</doc>
           <type name="TabView"/>
         </return-value>
       </glib:signal>
       <glib:signal name="indicator-activated" when="last" version="1.0">
         <doc xml:space="preserve"
              filename="../src/adw-tab-view.c"
-             line="1724">Emitted after the indicator icon on @page has been activated.
+             line="1684">Emitted after the indicator icon on @page has been activated.
 
 See [property@Adw.TabPage:indicator-icon] and
 [property@Adw.TabPage:indicator-activatable].</doc>
@@ -15271,7 +15237,7 @@ See [property@Adw.TabPage:indicator-icon] and
           <parameter name="page" transfer-ownership="none">
             <doc xml:space="preserve"
                  filename="../src/adw-tab-view.c"
-                 line="1727">a page of @self</doc>
+                 line="1687">a page of @self</doc>
             <type name="TabPage"/>
           </parameter>
         </parameters>
@@ -15279,7 +15245,7 @@ See [property@Adw.TabPage:indicator-icon] and
       <glib:signal name="page-attached" when="last" version="1.0">
         <doc xml:space="preserve"
              filename="../src/adw-tab-view.c"
-             line="1558">Emitted when a page has been created or transferred to @self.
+             line="1518">Emitted when a page has been created or transferred to @self.
 
 A typical reason to connect to this signal would be to connect to page
 signals for things such as updating window title.</doc>
@@ -15290,13 +15256,13 @@ signals for things such as updating window title.</doc>
           <parameter name="page" transfer-ownership="none">
             <doc xml:space="preserve"
                  filename="../src/adw-tab-view.c"
-                 line="1561">a page of @self</doc>
+                 line="1521">a page of @self</doc>
             <type name="TabPage"/>
           </parameter>
           <parameter name="position" transfer-ownership="none">
             <doc xml:space="preserve"
                  filename="../src/adw-tab-view.c"
-                 line="1562">the position of the page, starting from 0</doc>
+                 line="1522">the position of the page, starting from 0</doc>
             <type name="gint" c:type="gint"/>
           </parameter>
         </parameters>
@@ -15304,7 +15270,7 @@ signals for things such as updating window title.</doc>
       <glib:signal name="page-detached" when="last" version="1.0">
         <doc xml:space="preserve"
              filename="../src/adw-tab-view.c"
-             line="1581">Emitted when a page has been removed or transferred to another view.
+             line="1541">Emitted when a page has been removed or transferred to another view.
 
 A typical reason to connect to this signal would be to disconnect signal
 handlers connected in the [signal@Adw.TabView::page-attached] handler.
@@ -15320,13 +15286,13 @@ child dispose handler for that or do it in sync with your
           <parameter name="page" transfer-ownership="none">
             <doc xml:space="preserve"
                  filename="../src/adw-tab-view.c"
-                 line="1584">a page of @self</doc>
+                 line="1544">a page of @self</doc>
             <type name="TabPage"/>
           </parameter>
           <parameter name="position" transfer-ownership="none">
             <doc xml:space="preserve"
                  filename="../src/adw-tab-view.c"
-                 line="1585">the position of the removed page, starting from 0</doc>
+                 line="1545">the position of the removed page, starting from 0</doc>
             <type name="gint" c:type="gint"/>
           </parameter>
         </parameters>
@@ -15334,7 +15300,7 @@ child dispose handler for that or do it in sync with your
       <glib:signal name="page-reordered" when="last" version="1.0">
         <doc xml:space="preserve"
              filename="../src/adw-tab-view.c"
-             line="1609">Emitted after @page has been reordered to @position.</doc>
+             line="1569">Emitted after @page has been reordered to @position.</doc>
         <return-value transfer-ownership="none">
           <type name="none" c:type="void"/>
         </return-value>
@@ -15342,13 +15308,13 @@ child dispose handler for that or do it in sync with your
           <parameter name="page" transfer-ownership="none">
             <doc xml:space="preserve"
                  filename="../src/adw-tab-view.c"
-                 line="1612">a page of @self</doc>
+                 line="1572">a page of @self</doc>
             <type name="TabPage"/>
           </parameter>
           <parameter name="position" transfer-ownership="none">
             <doc xml:space="preserve"
                  filename="../src/adw-tab-view.c"
-                 line="1613">the position @page was moved to, starting at 0</doc>
+                 line="1573">the position @page was moved to, starting at 0</doc>
             <type name="gint" c:type="gint"/>
           </parameter>
         </parameters>
@@ -15356,7 +15322,7 @@ child dispose handler for that or do it in sync with your
       <glib:signal name="setup-menu" when="last" version="1.0">
         <doc xml:space="preserve"
              filename="../src/adw-tab-view.c"
-             line="1675">Emitted when a context menu is opened or closed for @page.
+             line="1635">Emitted when a context menu is opened or closed for @page.
 
 If the menu has been closed, @page will be set to `NULL`.
 
@@ -15372,7 +15338,7 @@ disable actions not applicable to @page.</doc>
                      allow-none="1">
             <doc xml:space="preserve"
                  filename="../src/adw-tab-view.c"
-                 line="1678">a page of @self</doc>
+                 line="1638">a page of @self</doc>
             <type name="TabPage"/>
           </parameter>
         </parameters>
