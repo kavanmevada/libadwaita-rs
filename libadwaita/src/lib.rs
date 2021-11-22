@@ -115,11 +115,10 @@ mod auto;
 mod application;
 mod combo_row;
 mod tab_bar;
-pub use combo_row::ComboRowBuilder;
 
 pub use auto::functions::*;
 pub use auto::*;
 
-pub mod subclass;
-
+pub mod builders;
 pub mod prelude;
+pub mod subclass;
