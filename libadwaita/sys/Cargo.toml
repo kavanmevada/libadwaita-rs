@@ -24,20 +24,23 @@ name = "libadwaita_sys"
 [dependencies]
 libc = "0.2"
 
-[dependencies.gio-sys]
+[dependencies.gio]
+package = "gio-sys"
 git = "https://github.com/gtk-rs/gtk-rs-core"
 
-[dependencies.glib-sys]
+[dependencies.glib]
+package = "glib-sys"
 git = "https://github.com/gtk-rs/gtk-rs-core"
 
-[dependencies.gobject-sys]
+[dependencies.gobject]
+package = "gobject-sys"
 git = "https://github.com/gtk-rs/gtk-rs-core"
 
-[dependencies.gtk-sys]
+[dependencies.gtk]
 package = "gtk4-sys"
 git = "https://github.com/gtk-rs/gtk4-rs"
 
-[dependencies.gdk-sys]
+[dependencies.gdk]
 package = "gdk4-sys"
 git = "https://github.com/gtk-rs/gtk4-rs"
 
