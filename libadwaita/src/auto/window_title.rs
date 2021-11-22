@@ -40,7 +40,7 @@ impl WindowTitle {
     // rustdoc-stripper-ignore-next
     /// Creates a new builder-pattern struct instance to construct [`WindowTitle`] objects.
     ///
-    /// This method returns an instance of [`WindowTitleBuilder`] which can be used to create [`WindowTitle`] objects.
+    /// This method returns an instance of [`WindowTitleBuilder`](crate::builders::WindowTitleBuilder) which can be used to create [`WindowTitle`] objects.
     pub fn builder() -> WindowTitleBuilder {
         WindowTitleBuilder::default()
     }
@@ -174,6 +174,7 @@ impl WindowTitleBuilder {
 
     // rustdoc-stripper-ignore-next
     /// Build the [`WindowTitle`].
+    #[must_use = "The builder must be built to be used"]
     pub fn build(self) -> WindowTitle {
         let mut properties: Vec<(&str, &dyn ToValue)> = vec![];
         if let Some(ref subtitle) = self.subtitle {

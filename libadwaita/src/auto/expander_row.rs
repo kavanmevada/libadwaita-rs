@@ -25,6 +25,8 @@ glib::wrapper! {
 }
 
 impl ExpanderRow {
+    pub const NONE: Option<&'static ExpanderRow> = None;
+
     #[doc(alias = "adw_expander_row_new")]
     pub fn new() -> ExpanderRow {
         assert_initialized_main_thread!();
@@ -34,7 +36,7 @@ impl ExpanderRow {
     // rustdoc-stripper-ignore-next
     /// Creates a new builder-pattern struct instance to construct [`ExpanderRow`] objects.
     ///
-    /// This method returns an instance of [`ExpanderRowBuilder`] which can be used to create [`ExpanderRow`] objects.
+    /// This method returns an instance of [`ExpanderRowBuilder`](crate::builders::ExpanderRowBuilder) which can be used to create [`ExpanderRow`] objects.
     pub fn builder() -> ExpanderRowBuilder {
         ExpanderRowBuilder::default()
     }
@@ -105,6 +107,7 @@ impl ExpanderRowBuilder {
 
     // rustdoc-stripper-ignore-next
     /// Build the [`ExpanderRow`].
+    #[must_use = "The builder must be built to be used"]
     pub fn build(self) -> ExpanderRow {
         let mut properties: Vec<(&str, &dyn ToValue)> = vec![];
         if let Some(ref enable_expansion) = self.enable_expansion {
@@ -446,10 +449,6 @@ impl ExpanderRowBuilder {
         self.action_target = Some(action_target.clone());
         self
     }
-}
-
-impl ExpanderRow {
-    pub const NONE: Option<&'static ExpanderRow> = None;
 }
 
 pub trait ExpanderRowExt: 'static {

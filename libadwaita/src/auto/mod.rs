@@ -5,51 +5,39 @@
 
 mod action_row;
 pub use self::action_row::ActionRow;
-pub use self::action_row::ActionRowBuilder;
 
 mod application;
 pub use self::application::Application;
-pub use self::application::ApplicationBuilder;
 
 mod application_window;
 pub use self::application_window::ApplicationWindow;
-pub use self::application_window::ApplicationWindowBuilder;
 
 mod avatar;
 pub use self::avatar::Avatar;
-pub use self::avatar::AvatarBuilder;
 
 mod bin;
 pub use self::bin::Bin;
-pub use self::bin::BinBuilder;
 
 mod button_content;
 pub use self::button_content::ButtonContent;
-pub use self::button_content::ButtonContentBuilder;
 
 mod carousel;
 pub use self::carousel::Carousel;
-pub use self::carousel::CarouselBuilder;
 
 mod carousel_indicator_dots;
 pub use self::carousel_indicator_dots::CarouselIndicatorDots;
-pub use self::carousel_indicator_dots::CarouselIndicatorDotsBuilder;
 
 mod carousel_indicator_lines;
 pub use self::carousel_indicator_lines::CarouselIndicatorLines;
-pub use self::carousel_indicator_lines::CarouselIndicatorLinesBuilder;
 
 mod clamp;
 pub use self::clamp::Clamp;
-pub use self::clamp::ClampBuilder;
 
 mod clamp_layout;
 pub use self::clamp_layout::ClampLayout;
-pub use self::clamp_layout::ClampLayoutBuilder;
 
 mod clamp_scrollable;
 pub use self::clamp_scrollable::ClampScrollable;
-pub use self::clamp_scrollable::ClampScrollableBuilder;
 
 mod combo_row;
 pub use self::combo_row::ComboRow;
@@ -62,108 +50,87 @@ pub use self::enum_list_model::EnumListModel;
 
 mod expander_row;
 pub use self::expander_row::ExpanderRow;
-pub use self::expander_row::ExpanderRowBuilder;
 
 mod flap;
 pub use self::flap::Flap;
-pub use self::flap::FlapBuilder;
 
 mod header_bar;
 pub use self::header_bar::HeaderBar;
-pub use self::header_bar::HeaderBarBuilder;
 
 mod leaflet;
 pub use self::leaflet::Leaflet;
-pub use self::leaflet::LeafletBuilder;
 
 mod leaflet_page;
 pub use self::leaflet_page::LeafletPage;
 
 mod preferences_group;
 pub use self::preferences_group::PreferencesGroup;
-pub use self::preferences_group::PreferencesGroupBuilder;
 
 mod preferences_page;
 pub use self::preferences_page::PreferencesPage;
-pub use self::preferences_page::PreferencesPageBuilder;
 
 mod preferences_row;
 pub use self::preferences_row::PreferencesRow;
-pub use self::preferences_row::PreferencesRowBuilder;
 
 mod preferences_window;
 pub use self::preferences_window::PreferencesWindow;
-pub use self::preferences_window::PreferencesWindowBuilder;
 
 mod split_button;
 pub use self::split_button::SplitButton;
-pub use self::split_button::SplitButtonBuilder;
 
 mod squeezer;
 pub use self::squeezer::Squeezer;
-pub use self::squeezer::SqueezerBuilder;
 
 mod squeezer_page;
 pub use self::squeezer_page::SqueezerPage;
 
 mod status_page;
 pub use self::status_page::StatusPage;
-pub use self::status_page::StatusPageBuilder;
 
 mod style_manager;
 pub use self::style_manager::StyleManager;
 
 mod swipe_tracker;
 pub use self::swipe_tracker::SwipeTracker;
-pub use self::swipe_tracker::SwipeTrackerBuilder;
 
 mod swipeable;
 pub use self::swipeable::Swipeable;
 
 mod tab_bar;
 pub use self::tab_bar::TabBar;
-pub use self::tab_bar::TabBarBuilder;
 
 mod tab_page;
 pub use self::tab_page::TabPage;
 
 mod tab_view;
 pub use self::tab_view::TabView;
-pub use self::tab_view::TabViewBuilder;
 
 mod toast;
 pub use self::toast::Toast;
-pub use self::toast::ToastBuilder;
 
 mod toast_overlay;
 pub use self::toast_overlay::ToastOverlay;
 
 mod view_stack;
 pub use self::view_stack::ViewStack;
-pub use self::view_stack::ViewStackBuilder;
 
 mod view_stack_page;
 pub use self::view_stack_page::ViewStackPage;
 
 mod view_switcher;
 pub use self::view_switcher::ViewSwitcher;
-pub use self::view_switcher::ViewSwitcherBuilder;
 
 mod view_switcher_bar;
 pub use self::view_switcher_bar::ViewSwitcherBar;
-pub use self::view_switcher_bar::ViewSwitcherBarBuilder;
 
 mod view_switcher_title;
 pub use self::view_switcher_title::ViewSwitcherTitle;
-pub use self::view_switcher_title::ViewSwitcherTitleBuilder;
 
 mod window;
 pub use self::window::Window;
-pub use self::window::WindowBuilder;
 
 mod window_title;
 pub use self::window_title::WindowTitle;
-pub use self::window_title::WindowTitleBuilder;
 
 mod enums;
 pub use self::enums::CenteringPolicy;
@@ -193,4 +160,40 @@ pub mod traits {
     pub use super::preferences_window::PreferencesWindowExt;
     pub use super::swipeable::SwipeableExt;
     pub use super::window::WindowExt;
+}
+#[doc(hidden)]
+pub mod builders {
+    pub use super::action_row::ActionRowBuilder;
+    pub use super::application::ApplicationBuilder;
+    pub use super::application_window::ApplicationWindowBuilder;
+    pub use super::avatar::AvatarBuilder;
+    pub use super::bin::BinBuilder;
+    pub use super::button_content::ButtonContentBuilder;
+    pub use super::carousel::CarouselBuilder;
+    pub use super::carousel_indicator_dots::CarouselIndicatorDotsBuilder;
+    pub use super::carousel_indicator_lines::CarouselIndicatorLinesBuilder;
+    pub use super::clamp::ClampBuilder;
+    pub use super::clamp_layout::ClampLayoutBuilder;
+    pub use super::clamp_scrollable::ClampScrollableBuilder;
+    pub use super::expander_row::ExpanderRowBuilder;
+    pub use super::flap::FlapBuilder;
+    pub use super::header_bar::HeaderBarBuilder;
+    pub use super::leaflet::LeafletBuilder;
+    pub use super::preferences_group::PreferencesGroupBuilder;
+    pub use super::preferences_page::PreferencesPageBuilder;
+    pub use super::preferences_row::PreferencesRowBuilder;
+    pub use super::preferences_window::PreferencesWindowBuilder;
+    pub use super::split_button::SplitButtonBuilder;
+    pub use super::squeezer::SqueezerBuilder;
+    pub use super::status_page::StatusPageBuilder;
+    pub use super::swipe_tracker::SwipeTrackerBuilder;
+    pub use super::tab_bar::TabBarBuilder;
+    pub use super::tab_view::TabViewBuilder;
+    pub use super::toast::ToastBuilder;
+    pub use super::view_stack::ViewStackBuilder;
+    pub use super::view_switcher::ViewSwitcherBuilder;
+    pub use super::view_switcher_bar::ViewSwitcherBarBuilder;
+    pub use super::view_switcher_title::ViewSwitcherTitleBuilder;
+    pub use super::window::WindowBuilder;
+    pub use super::window_title::WindowTitleBuilder;
 }

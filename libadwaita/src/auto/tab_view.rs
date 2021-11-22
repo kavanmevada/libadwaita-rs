@@ -35,7 +35,7 @@ impl TabView {
     // rustdoc-stripper-ignore-next
     /// Creates a new builder-pattern struct instance to construct [`TabView`] objects.
     ///
-    /// This method returns an instance of [`TabViewBuilder`] which can be used to create [`TabView`] objects.
+    /// This method returns an instance of [`TabViewBuilder`](crate::builders::TabViewBuilder) which can be used to create [`TabView`] objects.
     pub fn builder() -> TabViewBuilder {
         TabViewBuilder::default()
     }
@@ -760,6 +760,7 @@ impl TabViewBuilder {
 
     // rustdoc-stripper-ignore-next
     /// Build the [`TabView`].
+    #[must_use = "The builder must be built to be used"]
     pub fn build(self) -> TabView {
         let mut properties: Vec<(&str, &dyn ToValue)> = vec![];
         if let Some(ref default_icon) = self.default_icon {

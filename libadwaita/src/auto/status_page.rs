@@ -34,7 +34,7 @@ impl StatusPage {
     // rustdoc-stripper-ignore-next
     /// Creates a new builder-pattern struct instance to construct [`StatusPage`] objects.
     ///
-    /// This method returns an instance of [`StatusPageBuilder`] which can be used to create [`StatusPage`] objects.
+    /// This method returns an instance of [`StatusPageBuilder`](crate::builders::StatusPageBuilder) which can be used to create [`StatusPage`] objects.
     pub fn builder() -> StatusPageBuilder {
         StatusPageBuilder::default()
     }
@@ -287,6 +287,7 @@ impl StatusPageBuilder {
 
     // rustdoc-stripper-ignore-next
     /// Build the [`StatusPage`].
+    #[must_use = "The builder must be built to be used"]
     pub fn build(self) -> StatusPage {
         let mut properties: Vec<(&str, &dyn ToValue)> = vec![];
         if let Some(ref child) = self.child {

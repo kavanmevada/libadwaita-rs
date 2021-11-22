@@ -35,7 +35,7 @@ impl SplitButton {
     // rustdoc-stripper-ignore-next
     /// Creates a new builder-pattern struct instance to construct [`SplitButton`] objects.
     ///
-    /// This method returns an instance of [`SplitButtonBuilder`] which can be used to create [`SplitButton`] objects.
+    /// This method returns an instance of [`SplitButtonBuilder`](crate::builders::SplitButtonBuilder) which can be used to create [`SplitButton`] objects.
     pub fn builder() -> SplitButtonBuilder {
         SplitButtonBuilder::default()
     }
@@ -184,7 +184,7 @@ impl SplitButton {
     }
 
     pub fn emit_activate(&self) {
-        let _ = self.emit_by_name("activate", &[]);
+        self.emit_by_name::<()>("activate", &[]);
     }
 
     #[doc(alias = "clicked")]
@@ -210,7 +210,7 @@ impl SplitButton {
     }
 
     pub fn emit_clicked(&self) {
-        let _ = self.emit_by_name("clicked", &[]);
+        self.emit_by_name::<()>("clicked", &[]);
     }
 
     #[doc(alias = "child")]
@@ -437,6 +437,7 @@ impl SplitButtonBuilder {
 
     // rustdoc-stripper-ignore-next
     /// Build the [`SplitButton`].
+    #[must_use = "The builder must be built to be used"]
     pub fn build(self) -> SplitButton {
         let mut properties: Vec<(&str, &dyn ToValue)> = vec![];
         if let Some(ref child) = self.child {

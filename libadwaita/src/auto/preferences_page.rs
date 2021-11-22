@@ -25,6 +25,8 @@ glib::wrapper! {
 }
 
 impl PreferencesPage {
+    pub const NONE: Option<&'static PreferencesPage> = None;
+
     #[doc(alias = "adw_preferences_page_new")]
     pub fn new() -> PreferencesPage {
         assert_initialized_main_thread!();
@@ -34,7 +36,7 @@ impl PreferencesPage {
     // rustdoc-stripper-ignore-next
     /// Creates a new builder-pattern struct instance to construct [`PreferencesPage`] objects.
     ///
-    /// This method returns an instance of [`PreferencesPageBuilder`] which can be used to create [`PreferencesPage`] objects.
+    /// This method returns an instance of [`PreferencesPageBuilder`](crate::builders::PreferencesPageBuilder) which can be used to create [`PreferencesPage`] objects.
     pub fn builder() -> PreferencesPageBuilder {
         PreferencesPageBuilder::default()
     }
@@ -96,6 +98,7 @@ impl PreferencesPageBuilder {
 
     // rustdoc-stripper-ignore-next
     /// Build the [`PreferencesPage`].
+    #[must_use = "The builder must be built to be used"]
     pub fn build(self) -> PreferencesPage {
         let mut properties: Vec<(&str, &dyn ToValue)> = vec![];
         if let Some(ref icon_name) = self.icon_name {
@@ -365,10 +368,6 @@ impl PreferencesPageBuilder {
         self.accessible_role = Some(accessible_role);
         self
     }
-}
-
-impl PreferencesPage {
-    pub const NONE: Option<&'static PreferencesPage> = None;
 }
 
 pub trait PreferencesPageExt: 'static {

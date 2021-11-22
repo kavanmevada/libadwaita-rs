@@ -24,6 +24,8 @@ glib::wrapper! {
 }
 
 impl ComboRow {
+    pub const NONE: Option<&'static ComboRow> = None;
+
     #[doc(alias = "adw_combo_row_new")]
     pub fn new() -> ComboRow {
         assert_initialized_main_thread!();
@@ -35,10 +37,6 @@ impl Default for ComboRow {
     fn default() -> Self {
         Self::new()
     }
-}
-
-impl ComboRow {
-    pub const NONE: Option<&'static ComboRow> = None;
 }
 
 pub trait ComboRowExt: 'static {

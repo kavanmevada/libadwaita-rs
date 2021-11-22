@@ -34,7 +34,7 @@ impl ButtonContent {
     // rustdoc-stripper-ignore-next
     /// Creates a new builder-pattern struct instance to construct [`ButtonContent`] objects.
     ///
-    /// This method returns an instance of [`ButtonContentBuilder`] which can be used to create [`ButtonContent`] objects.
+    /// This method returns an instance of [`ButtonContentBuilder`](crate::builders::ButtonContentBuilder) which can be used to create [`ButtonContent`] objects.
     pub fn builder() -> ButtonContentBuilder {
         ButtonContentBuilder::default()
     }
@@ -214,6 +214,7 @@ impl ButtonContentBuilder {
 
     // rustdoc-stripper-ignore-next
     /// Build the [`ButtonContent`].
+    #[must_use = "The builder must be built to be used"]
     pub fn build(self) -> ButtonContent {
         let mut properties: Vec<(&str, &dyn ToValue)> = vec![];
         if let Some(ref icon_name) = self.icon_name {

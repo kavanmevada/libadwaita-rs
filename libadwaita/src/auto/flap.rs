@@ -38,7 +38,7 @@ impl Flap {
     // rustdoc-stripper-ignore-next
     /// Creates a new builder-pattern struct instance to construct [`Flap`] objects.
     ///
-    /// This method returns an instance of [`FlapBuilder`] which can be used to create [`Flap`] objects.
+    /// This method returns an instance of [`FlapBuilder`](crate::builders::FlapBuilder) which can be used to create [`Flap`] objects.
     pub fn builder() -> FlapBuilder {
         FlapBuilder::default()
     }
@@ -690,6 +690,7 @@ impl FlapBuilder {
 
     // rustdoc-stripper-ignore-next
     /// Build the [`Flap`].
+    #[must_use = "The builder must be built to be used"]
     pub fn build(self) -> Flap {
         let mut properties: Vec<(&str, &dyn ToValue)> = vec![];
         if let Some(ref content) = self.content {

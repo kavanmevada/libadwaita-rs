@@ -33,7 +33,7 @@ impl ClampLayout {
     // rustdoc-stripper-ignore-next
     /// Creates a new builder-pattern struct instance to construct [`ClampLayout`] objects.
     ///
-    /// This method returns an instance of [`ClampLayoutBuilder`] which can be used to create [`ClampLayout`] objects.
+    /// This method returns an instance of [`ClampLayoutBuilder`](crate::builders::ClampLayoutBuilder) which can be used to create [`ClampLayout`] objects.
     pub fn builder() -> ClampLayoutBuilder {
         ClampLayoutBuilder::default()
     }
@@ -145,6 +145,7 @@ impl ClampLayoutBuilder {
 
     // rustdoc-stripper-ignore-next
     /// Build the [`ClampLayout`].
+    #[must_use = "The builder must be built to be used"]
     pub fn build(self) -> ClampLayout {
         let mut properties: Vec<(&str, &dyn ToValue)> = vec![];
         if let Some(ref maximum_size) = self.maximum_size {

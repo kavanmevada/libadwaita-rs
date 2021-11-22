@@ -35,7 +35,7 @@ impl ViewStack {
     // rustdoc-stripper-ignore-next
     /// Creates a new builder-pattern struct instance to construct [`ViewStack`] objects.
     ///
-    /// This method returns an instance of [`ViewStackBuilder`] which can be used to create [`ViewStack`] objects.
+    /// This method returns an instance of [`ViewStackBuilder`](crate::builders::ViewStackBuilder) which can be used to create [`ViewStack`] objects.
     pub fn builder() -> ViewStackBuilder {
         ViewStackBuilder::default()
     }
@@ -435,6 +435,7 @@ impl ViewStackBuilder {
 
     // rustdoc-stripper-ignore-next
     /// Build the [`ViewStack`].
+    #[must_use = "The builder must be built to be used"]
     pub fn build(self) -> ViewStack {
         let mut properties: Vec<(&str, &dyn ToValue)> = vec![];
         if let Some(ref hhomogeneous) = self.hhomogeneous {

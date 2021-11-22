@@ -35,7 +35,7 @@ impl ViewSwitcherBar {
     // rustdoc-stripper-ignore-next
     /// Creates a new builder-pattern struct instance to construct [`ViewSwitcherBar`] objects.
     ///
-    /// This method returns an instance of [`ViewSwitcherBarBuilder`] which can be used to create [`ViewSwitcherBar`] objects.
+    /// This method returns an instance of [`ViewSwitcherBarBuilder`](crate::builders::ViewSwitcherBarBuilder) which can be used to create [`ViewSwitcherBar`] objects.
     pub fn builder() -> ViewSwitcherBarBuilder {
         ViewSwitcherBarBuilder::default()
     }
@@ -168,6 +168,7 @@ impl ViewSwitcherBarBuilder {
 
     // rustdoc-stripper-ignore-next
     /// Build the [`ViewSwitcherBar`].
+    #[must_use = "The builder must be built to be used"]
     pub fn build(self) -> ViewSwitcherBar {
         let mut properties: Vec<(&str, &dyn ToValue)> = vec![];
         if let Some(ref reveal) = self.reveal {

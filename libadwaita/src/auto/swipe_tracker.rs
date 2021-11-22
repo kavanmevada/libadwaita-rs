@@ -40,7 +40,7 @@ impl SwipeTracker {
     // rustdoc-stripper-ignore-next
     /// Creates a new builder-pattern struct instance to construct [`SwipeTracker`] objects.
     ///
-    /// This method returns an instance of [`SwipeTrackerBuilder`] which can be used to create [`SwipeTracker`] objects.
+    /// This method returns an instance of [`SwipeTrackerBuilder`](crate::builders::SwipeTrackerBuilder) which can be used to create [`SwipeTracker`] objects.
     pub fn builder() -> SwipeTrackerBuilder {
         SwipeTrackerBuilder::default()
     }
@@ -347,6 +347,7 @@ impl SwipeTrackerBuilder {
 
     // rustdoc-stripper-ignore-next
     /// Build the [`SwipeTracker`].
+    #[must_use = "The builder must be built to be used"]
     pub fn build(self) -> SwipeTracker {
         let mut properties: Vec<(&str, &dyn ToValue)> = vec![];
         if let Some(ref allow_long_swipes) = self.allow_long_swipes {

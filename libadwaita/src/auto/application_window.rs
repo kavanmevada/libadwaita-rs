@@ -24,6 +24,8 @@ glib::wrapper! {
 }
 
 impl ApplicationWindow {
+    pub const NONE: Option<&'static ApplicationWindow> = None;
+
     #[doc(alias = "adw_application_window_new")]
     pub fn new(app: &impl IsA<gtk::Application>) -> ApplicationWindow {
         assert_initialized_main_thread!();
@@ -38,7 +40,7 @@ impl ApplicationWindow {
     // rustdoc-stripper-ignore-next
     /// Creates a new builder-pattern struct instance to construct [`ApplicationWindow`] objects.
     ///
-    /// This method returns an instance of [`ApplicationWindowBuilder`] which can be used to create [`ApplicationWindow`] objects.
+    /// This method returns an instance of [`ApplicationWindowBuilder`](crate::builders::ApplicationWindowBuilder) which can be used to create [`ApplicationWindow`] objects.
     pub fn builder() -> ApplicationWindowBuilder {
         ApplicationWindowBuilder::default()
     }
@@ -126,6 +128,7 @@ impl ApplicationWindowBuilder {
 
     // rustdoc-stripper-ignore-next
     /// Build the [`ApplicationWindow`].
+    #[must_use = "The builder must be built to be used"]
     pub fn build(self) -> ApplicationWindow {
         let mut properties: Vec<(&str, &dyn ToValue)> = vec![];
         if let Some(ref content) = self.content {
@@ -569,10 +572,6 @@ impl ApplicationWindowBuilder {
         self.accessible_role = Some(accessible_role);
         self
     }
-}
-
-impl ApplicationWindow {
-    pub const NONE: Option<&'static ApplicationWindow> = None;
 }
 
 pub trait ApplicationWindowExt: 'static {

@@ -24,6 +24,8 @@ glib::wrapper! {
 }
 
 impl PreferencesGroup {
+    pub const NONE: Option<&'static PreferencesGroup> = None;
+
     #[doc(alias = "adw_preferences_group_new")]
     pub fn new() -> PreferencesGroup {
         assert_initialized_main_thread!();
@@ -33,7 +35,7 @@ impl PreferencesGroup {
     // rustdoc-stripper-ignore-next
     /// Creates a new builder-pattern struct instance to construct [`PreferencesGroup`] objects.
     ///
-    /// This method returns an instance of [`PreferencesGroupBuilder`] which can be used to create [`PreferencesGroup`] objects.
+    /// This method returns an instance of [`PreferencesGroupBuilder`](crate::builders::PreferencesGroupBuilder) which can be used to create [`PreferencesGroup`] objects.
     pub fn builder() -> PreferencesGroupBuilder {
         PreferencesGroupBuilder::default()
     }
@@ -94,6 +96,7 @@ impl PreferencesGroupBuilder {
 
     // rustdoc-stripper-ignore-next
     /// Build the [`PreferencesGroup`].
+    #[must_use = "The builder must be built to be used"]
     pub fn build(self) -> PreferencesGroup {
         let mut properties: Vec<(&str, &dyn ToValue)> = vec![];
         if let Some(ref description) = self.description {
@@ -355,10 +358,6 @@ impl PreferencesGroupBuilder {
         self.accessible_role = Some(accessible_role);
         self
     }
-}
-
-impl PreferencesGroup {
-    pub const NONE: Option<&'static PreferencesGroup> = None;
 }
 
 pub trait PreferencesGroupExt: 'static {

@@ -39,7 +39,7 @@ impl Leaflet {
     // rustdoc-stripper-ignore-next
     /// Creates a new builder-pattern struct instance to construct [`Leaflet`] objects.
     ///
-    /// This method returns an instance of [`LeafletBuilder`] which can be used to create [`Leaflet`] objects.
+    /// This method returns an instance of [`LeafletBuilder`](crate::builders::LeafletBuilder) which can be used to create [`Leaflet`] objects.
     pub fn builder() -> LeafletBuilder {
         LeafletBuilder::default()
     }
@@ -712,6 +712,7 @@ impl LeafletBuilder {
 
     // rustdoc-stripper-ignore-next
     /// Build the [`Leaflet`].
+    #[must_use = "The builder must be built to be used"]
     pub fn build(self) -> Leaflet {
         let mut properties: Vec<(&str, &dyn ToValue)> = vec![];
         if let Some(ref can_navigate_back) = self.can_navigate_back {

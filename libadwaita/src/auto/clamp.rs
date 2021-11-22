@@ -34,7 +34,7 @@ impl Clamp {
     // rustdoc-stripper-ignore-next
     /// Creates a new builder-pattern struct instance to construct [`Clamp`] objects.
     ///
-    /// This method returns an instance of [`ClampBuilder`] which can be used to create [`Clamp`] objects.
+    /// This method returns an instance of [`ClampBuilder`](crate::builders::ClampBuilder) which can be used to create [`Clamp`] objects.
     pub fn builder() -> ClampBuilder {
         ClampBuilder::default()
     }
@@ -211,6 +211,7 @@ impl ClampBuilder {
 
     // rustdoc-stripper-ignore-next
     /// Build the [`Clamp`].
+    #[must_use = "The builder must be built to be used"]
     pub fn build(self) -> Clamp {
         let mut properties: Vec<(&str, &dyn ToValue)> = vec![];
         if let Some(ref child) = self.child {

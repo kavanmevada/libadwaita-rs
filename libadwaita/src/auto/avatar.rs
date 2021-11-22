@@ -41,7 +41,7 @@ impl Avatar {
     // rustdoc-stripper-ignore-next
     /// Creates a new builder-pattern struct instance to construct [`Avatar`] objects.
     ///
-    /// This method returns an instance of [`AvatarBuilder`] which can be used to create [`Avatar`] objects.
+    /// This method returns an instance of [`AvatarBuilder`](crate::builders::AvatarBuilder) which can be used to create [`Avatar`] objects.
     pub fn builder() -> AvatarBuilder {
         AvatarBuilder::default()
     }
@@ -299,6 +299,7 @@ impl AvatarBuilder {
 
     // rustdoc-stripper-ignore-next
     /// Build the [`Avatar`].
+    #[must_use = "The builder must be built to be used"]
     pub fn build(self) -> Avatar {
         let mut properties: Vec<(&str, &dyn ToValue)> = vec![];
         if let Some(ref custom_image) = self.custom_image {

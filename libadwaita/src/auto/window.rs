@@ -24,6 +24,8 @@ glib::wrapper! {
 }
 
 impl Window {
+    pub const NONE: Option<&'static Window> = None;
+
     #[doc(alias = "adw_window_new")]
     pub fn new() -> Window {
         assert_initialized_main_thread!();
@@ -33,7 +35,7 @@ impl Window {
     // rustdoc-stripper-ignore-next
     /// Creates a new builder-pattern struct instance to construct [`Window`] objects.
     ///
-    /// This method returns an instance of [`WindowBuilder`] which can be used to create [`Window`] objects.
+    /// This method returns an instance of [`WindowBuilder`](crate::builders::WindowBuilder) which can be used to create [`Window`] objects.
     pub fn builder() -> WindowBuilder {
         WindowBuilder::default()
     }
@@ -119,6 +121,7 @@ impl WindowBuilder {
 
     // rustdoc-stripper-ignore-next
     /// Build the [`Window`].
+    #[must_use = "The builder must be built to be used"]
     pub fn build(self) -> Window {
         let mut properties: Vec<(&str, &dyn ToValue)> = vec![];
         if let Some(ref content) = self.content {
@@ -553,10 +556,6 @@ impl WindowBuilder {
         self.accessible_role = Some(accessible_role);
         self
     }
-}
-
-impl Window {
-    pub const NONE: Option<&'static Window> = None;
 }
 
 pub trait WindowExt: 'static {

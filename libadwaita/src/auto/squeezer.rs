@@ -37,7 +37,7 @@ impl Squeezer {
     // rustdoc-stripper-ignore-next
     /// Creates a new builder-pattern struct instance to construct [`Squeezer`] objects.
     ///
-    /// This method returns an instance of [`SqueezerBuilder`] which can be used to create [`Squeezer`] objects.
+    /// This method returns an instance of [`SqueezerBuilder`](crate::builders::SqueezerBuilder) which can be used to create [`Squeezer`] objects.
     pub fn builder() -> SqueezerBuilder {
         SqueezerBuilder::default()
     }
@@ -537,6 +537,7 @@ impl SqueezerBuilder {
 
     // rustdoc-stripper-ignore-next
     /// Build the [`Squeezer`].
+    #[must_use = "The builder must be built to be used"]
     pub fn build(self) -> Squeezer {
         let mut properties: Vec<(&str, &dyn ToValue)> = vec![];
         if let Some(ref allow_none) = self.allow_none {

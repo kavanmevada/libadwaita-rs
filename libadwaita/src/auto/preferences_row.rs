@@ -24,6 +24,8 @@ glib::wrapper! {
 }
 
 impl PreferencesRow {
+    pub const NONE: Option<&'static PreferencesRow> = None;
+
     #[doc(alias = "adw_preferences_row_new")]
     pub fn new() -> PreferencesRow {
         assert_initialized_main_thread!();
@@ -33,7 +35,7 @@ impl PreferencesRow {
     // rustdoc-stripper-ignore-next
     /// Creates a new builder-pattern struct instance to construct [`PreferencesRow`] objects.
     ///
-    /// This method returns an instance of [`PreferencesRowBuilder`] which can be used to create [`PreferencesRow`] objects.
+    /// This method returns an instance of [`PreferencesRowBuilder`](crate::builders::PreferencesRowBuilder) which can be used to create [`PreferencesRow`] objects.
     pub fn builder() -> PreferencesRowBuilder {
         PreferencesRowBuilder::default()
     }
@@ -99,6 +101,7 @@ impl PreferencesRowBuilder {
 
     // rustdoc-stripper-ignore-next
     /// Build the [`PreferencesRow`].
+    #[must_use = "The builder must be built to be used"]
     pub fn build(self) -> PreferencesRow {
         let mut properties: Vec<(&str, &dyn ToValue)> = vec![];
         if let Some(ref title) = self.title {
@@ -400,10 +403,6 @@ impl PreferencesRowBuilder {
         self.action_target = Some(action_target.clone());
         self
     }
-}
-
-impl PreferencesRow {
-    pub const NONE: Option<&'static PreferencesRow> = None;
 }
 
 pub trait PreferencesRowExt: 'static {

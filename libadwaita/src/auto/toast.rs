@@ -34,7 +34,7 @@ impl Toast {
     // rustdoc-stripper-ignore-next
     /// Creates a new builder-pattern struct instance to construct [`Toast`] objects.
     ///
-    /// This method returns an instance of [`ToastBuilder`] which can be used to create [`Toast`] objects.
+    /// This method returns an instance of [`ToastBuilder`](crate::builders::ToastBuilder) which can be used to create [`Toast`] objects.
     pub fn builder() -> ToastBuilder {
         ToastBuilder::default()
     }
@@ -305,6 +305,7 @@ impl ToastBuilder {
 
     // rustdoc-stripper-ignore-next
     /// Build the [`Toast`].
+    #[must_use = "The builder must be built to be used"]
     pub fn build(self) -> Toast {
         let mut properties: Vec<(&str, &dyn ToValue)> = vec![];
         if let Some(ref action_name) = self.action_name {

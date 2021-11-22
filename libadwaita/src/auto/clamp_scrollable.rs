@@ -34,7 +34,7 @@ impl ClampScrollable {
     // rustdoc-stripper-ignore-next
     /// Creates a new builder-pattern struct instance to construct [`ClampScrollable`] objects.
     ///
-    /// This method returns an instance of [`ClampScrollableBuilder`] which can be used to create [`ClampScrollable`] objects.
+    /// This method returns an instance of [`ClampScrollableBuilder`](crate::builders::ClampScrollableBuilder) which can be used to create [`ClampScrollable`] objects.
     pub fn builder() -> ClampScrollableBuilder {
         ClampScrollableBuilder::default()
     }
@@ -220,6 +220,7 @@ impl ClampScrollableBuilder {
 
     // rustdoc-stripper-ignore-next
     /// Build the [`ClampScrollable`].
+    #[must_use = "The builder must be built to be used"]
     pub fn build(self) -> ClampScrollable {
         let mut properties: Vec<(&str, &dyn ToValue)> = vec![];
         if let Some(ref child) = self.child {

@@ -24,6 +24,8 @@ glib::wrapper! {
 }
 
 impl Bin {
+    pub const NONE: Option<&'static Bin> = None;
+
     #[doc(alias = "adw_bin_new")]
     pub fn new() -> Bin {
         assert_initialized_main_thread!();
@@ -33,7 +35,7 @@ impl Bin {
     // rustdoc-stripper-ignore-next
     /// Creates a new builder-pattern struct instance to construct [`Bin`] objects.
     ///
-    /// This method returns an instance of [`BinBuilder`] which can be used to create [`Bin`] objects.
+    /// This method returns an instance of [`BinBuilder`](crate::builders::BinBuilder) which can be used to create [`Bin`] objects.
     pub fn builder() -> BinBuilder {
         BinBuilder::default()
     }
@@ -93,6 +95,7 @@ impl BinBuilder {
 
     // rustdoc-stripper-ignore-next
     /// Build the [`Bin`].
+    #[must_use = "The builder must be built to be used"]
     pub fn build(self) -> Bin {
         let mut properties: Vec<(&str, &dyn ToValue)> = vec![];
         if let Some(ref child) = self.child {
@@ -345,10 +348,6 @@ impl BinBuilder {
         self.accessible_role = Some(accessible_role);
         self
     }
-}
-
-impl Bin {
-    pub const NONE: Option<&'static Bin> = None;
 }
 
 pub trait BinExt: 'static {

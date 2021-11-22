@@ -35,7 +35,7 @@ impl CarouselIndicatorDots {
     // rustdoc-stripper-ignore-next
     /// Creates a new builder-pattern struct instance to construct [`CarouselIndicatorDots`] objects.
     ///
-    /// This method returns an instance of [`CarouselIndicatorDotsBuilder`] which can be used to create [`CarouselIndicatorDots`] objects.
+    /// This method returns an instance of [`CarouselIndicatorDotsBuilder`](crate::builders::CarouselIndicatorDotsBuilder) which can be used to create [`CarouselIndicatorDots`] objects.
     pub fn builder() -> CarouselIndicatorDotsBuilder {
         CarouselIndicatorDotsBuilder::default()
     }
@@ -139,6 +139,7 @@ impl CarouselIndicatorDotsBuilder {
 
     // rustdoc-stripper-ignore-next
     /// Build the [`CarouselIndicatorDots`].
+    #[must_use = "The builder must be built to be used"]
     pub fn build(self) -> CarouselIndicatorDots {
         let mut properties: Vec<(&str, &dyn ToValue)> = vec![];
         if let Some(ref carousel) = self.carousel {

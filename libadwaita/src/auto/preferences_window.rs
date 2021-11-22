@@ -27,6 +27,8 @@ glib::wrapper! {
 }
 
 impl PreferencesWindow {
+    pub const NONE: Option<&'static PreferencesWindow> = None;
+
     #[doc(alias = "adw_preferences_window_new")]
     pub fn new() -> PreferencesWindow {
         assert_initialized_main_thread!();
@@ -36,7 +38,7 @@ impl PreferencesWindow {
     // rustdoc-stripper-ignore-next
     /// Creates a new builder-pattern struct instance to construct [`PreferencesWindow`] objects.
     ///
-    /// This method returns an instance of [`PreferencesWindowBuilder`] which can be used to create [`PreferencesWindow`] objects.
+    /// This method returns an instance of [`PreferencesWindowBuilder`](crate::builders::PreferencesWindowBuilder) which can be used to create [`PreferencesWindow`] objects.
     pub fn builder() -> PreferencesWindowBuilder {
         PreferencesWindowBuilder::default()
     }
@@ -126,6 +128,7 @@ impl PreferencesWindowBuilder {
 
     // rustdoc-stripper-ignore-next
     /// Build the [`PreferencesWindow`].
+    #[must_use = "The builder must be built to be used"]
     pub fn build(self) -> PreferencesWindow {
         let mut properties: Vec<(&str, &dyn ToValue)> = vec![];
         if let Some(ref can_navigate_back) = self.can_navigate_back {
@@ -593,10 +596,6 @@ impl PreferencesWindowBuilder {
         self.accessible_role = Some(accessible_role);
         self
     }
-}
-
-impl PreferencesWindow {
-    pub const NONE: Option<&'static PreferencesWindow> = None;
 }
 
 pub trait PreferencesWindowExt: 'static {

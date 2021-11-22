@@ -35,7 +35,7 @@ impl Carousel {
     // rustdoc-stripper-ignore-next
     /// Creates a new builder-pattern struct instance to construct [`Carousel`] objects.
     ///
-    /// This method returns an instance of [`CarouselBuilder`] which can be used to create [`Carousel`] objects.
+    /// This method returns an instance of [`CarouselBuilder`](crate::builders::CarouselBuilder) which can be used to create [`Carousel`] objects.
     pub fn builder() -> CarouselBuilder {
         CarouselBuilder::default()
     }
@@ -532,6 +532,7 @@ impl CarouselBuilder {
 
     // rustdoc-stripper-ignore-next
     /// Build the [`Carousel`].
+    #[must_use = "The builder must be built to be used"]
     pub fn build(self) -> Carousel {
         let mut properties: Vec<(&str, &dyn ToValue)> = vec![];
         if let Some(ref allow_long_swipes) = self.allow_long_swipes {

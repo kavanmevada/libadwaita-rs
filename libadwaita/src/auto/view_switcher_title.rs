@@ -35,7 +35,7 @@ impl ViewSwitcherTitle {
     // rustdoc-stripper-ignore-next
     /// Creates a new builder-pattern struct instance to construct [`ViewSwitcherTitle`] objects.
     ///
-    /// This method returns an instance of [`ViewSwitcherTitleBuilder`] which can be used to create [`ViewSwitcherTitle`] objects.
+    /// This method returns an instance of [`ViewSwitcherTitleBuilder`](crate::builders::ViewSwitcherTitleBuilder) which can be used to create [`ViewSwitcherTitle`] objects.
     pub fn builder() -> ViewSwitcherTitleBuilder {
         ViewSwitcherTitleBuilder::default()
     }
@@ -304,6 +304,7 @@ impl ViewSwitcherTitleBuilder {
 
     // rustdoc-stripper-ignore-next
     /// Build the [`ViewSwitcherTitle`].
+    #[must_use = "The builder must be built to be used"]
     pub fn build(self) -> ViewSwitcherTitle {
         let mut properties: Vec<(&str, &dyn ToValue)> = vec![];
         if let Some(ref stack) = self.stack {

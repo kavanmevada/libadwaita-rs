@@ -35,7 +35,7 @@ impl TabBar {
     // rustdoc-stripper-ignore-next
     /// Creates a new builder-pattern struct instance to construct [`TabBar`] objects.
     ///
-    /// This method returns an instance of [`TabBarBuilder`] which can be used to create [`TabBar`] objects.
+    /// This method returns an instance of [`TabBarBuilder`](crate::builders::TabBarBuilder) which can be used to create [`TabBar`] objects.
     pub fn builder() -> TabBarBuilder {
         TabBarBuilder::default()
     }
@@ -394,6 +394,7 @@ impl TabBarBuilder {
 
     // rustdoc-stripper-ignore-next
     /// Build the [`TabBar`].
+    #[must_use = "The builder must be built to be used"]
     pub fn build(self) -> TabBar {
         let mut properties: Vec<(&str, &dyn ToValue)> = vec![];
         if let Some(ref autohide) = self.autohide {

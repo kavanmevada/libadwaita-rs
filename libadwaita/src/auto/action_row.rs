@@ -25,6 +25,8 @@ glib::wrapper! {
 }
 
 impl ActionRow {
+    pub const NONE: Option<&'static ActionRow> = None;
+
     #[doc(alias = "adw_action_row_new")]
     pub fn new() -> ActionRow {
         assert_initialized_main_thread!();
@@ -34,7 +36,7 @@ impl ActionRow {
     // rustdoc-stripper-ignore-next
     /// Creates a new builder-pattern struct instance to construct [`ActionRow`] objects.
     ///
-    /// This method returns an instance of [`ActionRowBuilder`] which can be used to create [`ActionRow`] objects.
+    /// This method returns an instance of [`ActionRowBuilder`](crate::builders::ActionRowBuilder) which can be used to create [`ActionRow`] objects.
     pub fn builder() -> ActionRowBuilder {
         ActionRowBuilder::default()
     }
@@ -105,6 +107,7 @@ impl ActionRowBuilder {
 
     // rustdoc-stripper-ignore-next
     /// Build the [`ActionRow`].
+    #[must_use = "The builder must be built to be used"]
     pub fn build(self) -> ActionRow {
         let mut properties: Vec<(&str, &dyn ToValue)> = vec![];
         if let Some(ref activatable_widget) = self.activatable_widget {
@@ -446,10 +449,6 @@ impl ActionRowBuilder {
         self.action_target = Some(action_target.clone());
         self
     }
-}
-
-impl ActionRow {
-    pub const NONE: Option<&'static ActionRow> = None;
 }
 
 pub trait ActionRowExt: 'static {

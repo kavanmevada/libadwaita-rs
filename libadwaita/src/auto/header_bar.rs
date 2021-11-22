@@ -35,7 +35,7 @@ impl HeaderBar {
     // rustdoc-stripper-ignore-next
     /// Creates a new builder-pattern struct instance to construct [`HeaderBar`] objects.
     ///
-    /// This method returns an instance of [`HeaderBarBuilder`] which can be used to create [`HeaderBar`] objects.
+    /// This method returns an instance of [`HeaderBarBuilder`](crate::builders::HeaderBarBuilder) which can be used to create [`HeaderBar`] objects.
     pub fn builder() -> HeaderBarBuilder {
         HeaderBarBuilder::default()
     }
@@ -344,6 +344,7 @@ impl HeaderBarBuilder {
 
     // rustdoc-stripper-ignore-next
     /// Build the [`HeaderBar`].
+    #[must_use = "The builder must be built to be used"]
     pub fn build(self) -> HeaderBar {
         let mut properties: Vec<(&str, &dyn ToValue)> = vec![];
         if let Some(ref centering_policy) = self.centering_policy {
