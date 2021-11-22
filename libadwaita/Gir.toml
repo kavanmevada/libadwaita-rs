@@ -6,6 +6,7 @@ library = "Adw"
 version = "1"
 min_cfg_version = "1"
 target_path = "."
+use_gi_docgen = true
 work_mode = "normal"
 generate_safety_asserts = true
 deprecate_by_min_version = true
