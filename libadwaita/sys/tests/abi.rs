@@ -226,6 +226,20 @@ const RUST_LAYOUTS: &[(&str, Layout)] = &[
         },
     ),
     (
+        "AdwAnimation",
+        Layout {
+            size: size_of::<AdwAnimation>(),
+            alignment: align_of::<AdwAnimation>(),
+        },
+    ),
+    (
+        "AdwAnimationState",
+        Layout {
+            size: size_of::<AdwAnimationState>(),
+            alignment: align_of::<AdwAnimationState>(),
+        },
+    ),
+    (
         "AdwApplication",
         Layout {
             size: size_of::<AdwApplication>(),
@@ -349,6 +363,13 @@ const RUST_LAYOUTS: &[(&str, Layout)] = &[
         Layout {
             size: size_of::<AdwComboRowClass>(),
             alignment: align_of::<AdwComboRowClass>(),
+        },
+    ),
+    (
+        "AdwEasing",
+        Layout {
+            size: size_of::<AdwEasing>(),
+            alignment: align_of::<AdwEasing>(),
         },
     ),
     (
@@ -662,6 +683,10 @@ const RUST_LAYOUTS: &[(&str, Layout)] = &[
 ];
 
 const RUST_CONSTANTS: &[(&str, &str)] = &[
+    ("(gint) ADW_ANIMATION_FINISHED", "3"),
+    ("(gint) ADW_ANIMATION_IDLE", "0"),
+    ("(gint) ADW_ANIMATION_PAUSED", "1"),
+    ("(gint) ADW_ANIMATION_PLAYING", "2"),
     ("(gint) ADW_CENTERING_POLICY_LOOSE", "0"),
     ("(gint) ADW_CENTERING_POLICY_STRICT", "1"),
     ("(gint) ADW_COLOR_SCHEME_DEFAULT", "0"),
@@ -669,6 +694,36 @@ const RUST_CONSTANTS: &[(&str, &str)] = &[
     ("(gint) ADW_COLOR_SCHEME_FORCE_LIGHT", "1"),
     ("(gint) ADW_COLOR_SCHEME_PREFER_DARK", "3"),
     ("(gint) ADW_COLOR_SCHEME_PREFER_LIGHT", "2"),
+    ("(gint) ADW_EASE_IN_BACK", "25"),
+    ("(gint) ADW_EASE_IN_BOUNCE", "28"),
+    ("(gint) ADW_EASE_IN_CIRC", "19"),
+    ("(gint) ADW_EASE_IN_CUBIC", "4"),
+    ("(gint) ADW_EASE_IN_ELASTIC", "22"),
+    ("(gint) ADW_EASE_IN_EXPO", "16"),
+    ("(gint) ADW_EASE_IN_OUT_BACK", "27"),
+    ("(gint) ADW_EASE_IN_OUT_BOUNCE", "30"),
+    ("(gint) ADW_EASE_IN_OUT_CIRC", "21"),
+    ("(gint) ADW_EASE_IN_OUT_CUBIC", "6"),
+    ("(gint) ADW_EASE_IN_OUT_ELASTIC", "24"),
+    ("(gint) ADW_EASE_IN_OUT_EXPO", "18"),
+    ("(gint) ADW_EASE_IN_OUT_QUAD", "3"),
+    ("(gint) ADW_EASE_IN_OUT_QUART", "9"),
+    ("(gint) ADW_EASE_IN_OUT_QUINT", "12"),
+    ("(gint) ADW_EASE_IN_OUT_SINE", "15"),
+    ("(gint) ADW_EASE_IN_QUAD", "1"),
+    ("(gint) ADW_EASE_IN_QUART", "7"),
+    ("(gint) ADW_EASE_IN_QUINT", "10"),
+    ("(gint) ADW_EASE_IN_SINE", "13"),
+    ("(gint) ADW_EASE_OUT_BACK", "26"),
+    ("(gint) ADW_EASE_OUT_BOUNCE", "29"),
+    ("(gint) ADW_EASE_OUT_CIRC", "20"),
+    ("(gint) ADW_EASE_OUT_CUBIC", "5"),
+    ("(gint) ADW_EASE_OUT_ELASTIC", "23"),
+    ("(gint) ADW_EASE_OUT_EXPO", "17"),
+    ("(gint) ADW_EASE_OUT_QUAD", "2"),
+    ("(gint) ADW_EASE_OUT_QUART", "8"),
+    ("(gint) ADW_EASE_OUT_QUINT", "11"),
+    ("(gint) ADW_EASE_OUT_SINE", "14"),
     ("(gint) ADW_FLAP_FOLD_POLICY_ALWAYS", "1"),
     ("(gint) ADW_FLAP_FOLD_POLICY_AUTO", "2"),
     ("(gint) ADW_FLAP_FOLD_POLICY_NEVER", "0"),
@@ -680,6 +735,7 @@ const RUST_CONSTANTS: &[(&str, &str)] = &[
     ("(gint) ADW_LEAFLET_TRANSITION_TYPE_OVER", "0"),
     ("(gint) ADW_LEAFLET_TRANSITION_TYPE_SLIDE", "2"),
     ("(gint) ADW_LEAFLET_TRANSITION_TYPE_UNDER", "1"),
+    ("(gint) ADW_LINEAR", "0"),
     ("(gint) ADW_NAVIGATION_DIRECTION_BACK", "0"),
     ("(gint) ADW_NAVIGATION_DIRECTION_FORWARD", "1"),
     ("(gint) ADW_SQUEEZER_TRANSITION_TYPE_CROSSFADE", "1"),

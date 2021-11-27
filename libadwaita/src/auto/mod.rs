@@ -6,6 +6,12 @@
 mod action_row;
 pub use self::action_row::ActionRow;
 
+mod animation;
+pub use self::animation::Animation;
+
+mod animation_target;
+pub use self::animation_target::AnimationTarget;
+
 mod application;
 pub use self::application::Application;
 
@@ -20,6 +26,9 @@ pub use self::bin::Bin;
 
 mod button_content;
 pub use self::button_content::ButtonContent;
+
+mod callback_animation_target;
+pub use self::callback_animation_target::CallbackAnimationTarget;
 
 mod carousel;
 pub use self::carousel::Carousel;
@@ -105,6 +114,9 @@ pub use self::tab_page::TabPage;
 mod tab_view;
 pub use self::tab_view::TabView;
 
+mod timed_animation;
+pub use self::timed_animation::TimedAnimation;
+
 mod toast;
 pub use self::toast::Toast;
 
@@ -149,6 +161,7 @@ pub mod functions;
 #[doc(hidden)]
 pub mod traits {
     pub use super::action_row::ActionRowExt;
+    pub use super::animation::AnimationExt;
     pub use super::application::AdwApplicationExt;
     pub use super::application_window::ApplicationWindowExt;
     pub use super::bin::BinExt;
@@ -164,6 +177,7 @@ pub mod traits {
 #[doc(hidden)]
 pub mod builders {
     pub use super::action_row::ActionRowBuilder;
+    pub use super::animation::AnimationBuilder;
     pub use super::application::ApplicationBuilder;
     pub use super::application_window::ApplicationWindowBuilder;
     pub use super::avatar::AvatarBuilder;
@@ -189,6 +203,7 @@ pub mod builders {
     pub use super::swipe_tracker::SwipeTrackerBuilder;
     pub use super::tab_bar::TabBarBuilder;
     pub use super::tab_view::TabViewBuilder;
+    pub use super::timed_animation::TimedAnimationBuilder;
     pub use super::toast::ToastBuilder;
     pub use super::view_stack::ViewStackBuilder;
     pub use super::view_switcher::ViewSwitcherBuilder;

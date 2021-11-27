@@ -25,6 +25,8 @@ external_libraries = [
 
 generate = [
     "Adw.ActionRow",
+    "Adw.Animation",
+    "Adw.AnimationTarget",
     "Adw.ApplicationWindow",
     "Adw.Avatar",
     "Adw.Bin",
@@ -58,6 +60,7 @@ generate = [
     "Adw.SwipeTracker",
     "Adw.Swipeable",
     "Adw.TabView",
+    "Adw.TimedAnimation",
     "Adw.ToastPriority",
     "Adw.ViewStack",
     "Adw.ViewSwitcher",
@@ -152,6 +155,15 @@ trait_name = "AdwApplicationExt"
     name = "get_style_manager"
         [object.function.return]
         nullable = false
+
+[[object]]
+name = "Adw.CallbackAnimationTarget"
+status = "generate"
+generate_builder = false
+    [[object.function]]
+    # FIXME Actually implement it manually
+    name = "new"
+    manual = true
 
 [[object]]
 name = "Adw.ComboRow"

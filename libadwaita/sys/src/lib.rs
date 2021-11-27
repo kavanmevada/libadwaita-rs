@@ -22,6 +22,12 @@ use libc::{
 use glib::{gboolean, gconstpointer, gpointer, GType};
 
 // Enums
+pub type AdwAnimationState = c_int;
+pub const ADW_ANIMATION_IDLE: AdwAnimationState = 0;
+pub const ADW_ANIMATION_PAUSED: AdwAnimationState = 1;
+pub const ADW_ANIMATION_PLAYING: AdwAnimationState = 2;
+pub const ADW_ANIMATION_FINISHED: AdwAnimationState = 3;
+
 pub type AdwCenteringPolicy = c_int;
 pub const ADW_CENTERING_POLICY_LOOSE: AdwCenteringPolicy = 0;
 pub const ADW_CENTERING_POLICY_STRICT: AdwCenteringPolicy = 1;
@@ -32,6 +38,39 @@ pub const ADW_COLOR_SCHEME_FORCE_LIGHT: AdwColorScheme = 1;
 pub const ADW_COLOR_SCHEME_PREFER_LIGHT: AdwColorScheme = 2;
 pub const ADW_COLOR_SCHEME_PREFER_DARK: AdwColorScheme = 3;
 pub const ADW_COLOR_SCHEME_FORCE_DARK: AdwColorScheme = 4;
+
+pub type AdwEasing = c_int;
+pub const ADW_LINEAR: AdwEasing = 0;
+pub const ADW_EASE_IN_QUAD: AdwEasing = 1;
+pub const ADW_EASE_OUT_QUAD: AdwEasing = 2;
+pub const ADW_EASE_IN_OUT_QUAD: AdwEasing = 3;
+pub const ADW_EASE_IN_CUBIC: AdwEasing = 4;
+pub const ADW_EASE_OUT_CUBIC: AdwEasing = 5;
+pub const ADW_EASE_IN_OUT_CUBIC: AdwEasing = 6;
+pub const ADW_EASE_IN_QUART: AdwEasing = 7;
+pub const ADW_EASE_OUT_QUART: AdwEasing = 8;
+pub const ADW_EASE_IN_OUT_QUART: AdwEasing = 9;
+pub const ADW_EASE_IN_QUINT: AdwEasing = 10;
+pub const ADW_EASE_OUT_QUINT: AdwEasing = 11;
+pub const ADW_EASE_IN_OUT_QUINT: AdwEasing = 12;
+pub const ADW_EASE_IN_SINE: AdwEasing = 13;
+pub const ADW_EASE_OUT_SINE: AdwEasing = 14;
+pub const ADW_EASE_IN_OUT_SINE: AdwEasing = 15;
+pub const ADW_EASE_IN_EXPO: AdwEasing = 16;
+pub const ADW_EASE_OUT_EXPO: AdwEasing = 17;
+pub const ADW_EASE_IN_OUT_EXPO: AdwEasing = 18;
+pub const ADW_EASE_IN_CIRC: AdwEasing = 19;
+pub const ADW_EASE_OUT_CIRC: AdwEasing = 20;
+pub const ADW_EASE_IN_OUT_CIRC: AdwEasing = 21;
+pub const ADW_EASE_IN_ELASTIC: AdwEasing = 22;
+pub const ADW_EASE_OUT_ELASTIC: AdwEasing = 23;
+pub const ADW_EASE_IN_OUT_ELASTIC: AdwEasing = 24;
+pub const ADW_EASE_IN_BACK: AdwEasing = 25;
+pub const ADW_EASE_OUT_BACK: AdwEasing = 26;
+pub const ADW_EASE_IN_OUT_BACK: AdwEasing = 27;
+pub const ADW_EASE_IN_BOUNCE: AdwEasing = 28;
+pub const ADW_EASE_OUT_BOUNCE: AdwEasing = 29;
+pub const ADW_EASE_IN_OUT_BOUNCE: AdwEasing = 30;
 
 pub type AdwFlapFoldPolicy = c_int;
 pub const ADW_FLAP_FOLD_POLICY_NEVER: AdwFlapFoldPolicy = 0;
@@ -70,6 +109,9 @@ pub const ADW_VIEW_SWITCHER_POLICY_WIDE: AdwViewSwitcherPolicy = 1;
 
 // Constants
 
+// Callbacks
+pub type AdwAnimationTargetFunc = Option<unsafe extern "C" fn(gpointer, c_double)>;
+
 // Records
 #[derive(Copy, Clone)]
 #[repr(C)]
@@ -87,6 +129,22 @@ impl ::std::fmt::Debug for AdwActionRowClass {
             .finish()
     }
 }
+
+#[repr(C)]
+pub struct _AdwAnimationClass {
+    _data: [u8; 0],
+    _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
+}
+
+pub type AdwAnimationClass = *mut _AdwAnimationClass;
+
+#[repr(C)]
+pub struct _AdwAnimationTargetClass {
+    _data: [u8; 0],
+    _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
+}
+
+pub type AdwAnimationTargetClass = *mut _AdwAnimationTargetClass;
 
 #[derive(Copy, Clone)]
 #[repr(C)]
@@ -159,6 +217,14 @@ impl ::std::fmt::Debug for AdwButtonContentClass {
             .finish()
     }
 }
+
+#[repr(C)]
+pub struct _AdwCallbackAnimationTargetClass {
+    _data: [u8; 0],
+    _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
+}
+
+pub type AdwCallbackAnimationTargetClass = *mut _AdwCallbackAnimationTargetClass;
 
 #[derive(Copy, Clone)]
 #[repr(C)]
@@ -577,6 +643,14 @@ impl ::std::fmt::Debug for AdwTabViewClass {
     }
 }
 
+#[repr(C)]
+pub struct _AdwTimedAnimationClass {
+    _data: [u8; 0],
+    _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
+}
+
+pub type AdwTimedAnimationClass = *mut _AdwTimedAnimationClass;
+
 #[derive(Copy, Clone)]
 #[repr(C)]
 pub struct AdwToastClass {
@@ -721,6 +795,33 @@ impl ::std::fmt::Debug for AdwActionRow {
 
 #[derive(Copy, Clone)]
 #[repr(C)]
+pub struct AdwAnimation {
+    pub parent_instance: gobject::GObject,
+}
+
+impl ::std::fmt::Debug for AdwAnimation {
+    fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+        f.debug_struct(&format!("AdwAnimation @ {:p}", self))
+            .field("parent_instance", &self.parent_instance)
+            .finish()
+    }
+}
+
+#[repr(C)]
+pub struct AdwAnimationTarget {
+    _data: [u8; 0],
+    _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
+}
+
+impl ::std::fmt::Debug for AdwAnimationTarget {
+    fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+        f.debug_struct(&format!("AdwAnimationTarget @ {:p}", self))
+            .finish()
+    }
+}
+
+#[derive(Copy, Clone)]
+#[repr(C)]
 pub struct AdwApplication {
     pub parent_instance: gtk::GtkApplication,
 }
@@ -782,6 +883,19 @@ pub struct AdwButtonContent {
 impl ::std::fmt::Debug for AdwButtonContent {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
         f.debug_struct(&format!("AdwButtonContent @ {:p}", self))
+            .finish()
+    }
+}
+
+#[repr(C)]
+pub struct AdwCallbackAnimationTarget {
+    _data: [u8; 0],
+    _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
+}
+
+impl ::std::fmt::Debug for AdwCallbackAnimationTarget {
+    fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+        f.debug_struct(&format!("AdwCallbackAnimationTarget @ {:p}", self))
             .finish()
     }
 }
@@ -1138,6 +1252,19 @@ impl ::std::fmt::Debug for AdwTabView {
 }
 
 #[repr(C)]
+pub struct AdwTimedAnimation {
+    _data: [u8; 0],
+    _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
+}
+
+impl ::std::fmt::Debug for AdwTimedAnimation {
+    fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+        f.debug_struct(&format!("AdwTimedAnimation @ {:p}", self))
+            .finish()
+    }
+}
+
+#[repr(C)]
 pub struct AdwToast {
     _data: [u8; 0],
     _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
@@ -1271,6 +1398,11 @@ impl ::std::fmt::Debug for AdwSwipeable {
 extern "C" {
 
     //=========================================================================
+    // AdwAnimationState
+    //=========================================================================
+    pub fn adw_animation_state_get_type() -> GType;
+
+    //=========================================================================
     // AdwCenteringPolicy
     //=========================================================================
     pub fn adw_centering_policy_get_type() -> GType;
@@ -1279,6 +1411,12 @@ extern "C" {
     // AdwColorScheme
     //=========================================================================
     pub fn adw_color_scheme_get_type() -> GType;
+
+    //=========================================================================
+    // AdwEasing
+    //=========================================================================
+    pub fn adw_easing_get_type() -> GType;
+    pub fn adw_easing_ease(self_: AdwEasing, value: c_double) -> c_double;
 
     //=========================================================================
     // AdwFlapFoldPolicy
@@ -1342,6 +1480,25 @@ extern "C" {
     pub fn adw_action_row_set_subtitle(self_: *mut AdwActionRow, subtitle: *const c_char);
     pub fn adw_action_row_set_subtitle_lines(self_: *mut AdwActionRow, subtitle_lines: c_int);
     pub fn adw_action_row_set_title_lines(self_: *mut AdwActionRow, title_lines: c_int);
+
+    //=========================================================================
+    // AdwAnimation
+    //=========================================================================
+    pub fn adw_animation_get_type() -> GType;
+    pub fn adw_animation_get_state(self_: *mut AdwAnimation) -> AdwAnimationState;
+    pub fn adw_animation_get_target(self_: *mut AdwAnimation) -> *mut AdwAnimationTarget;
+    pub fn adw_animation_get_value(self_: *mut AdwAnimation) -> c_double;
+    pub fn adw_animation_get_widget(self_: *mut AdwAnimation) -> *mut gtk::GtkWidget;
+    pub fn adw_animation_pause(self_: *mut AdwAnimation);
+    pub fn adw_animation_play(self_: *mut AdwAnimation);
+    pub fn adw_animation_reset(self_: *mut AdwAnimation);
+    pub fn adw_animation_resume(self_: *mut AdwAnimation);
+    pub fn adw_animation_skip(self_: *mut AdwAnimation);
+
+    //=========================================================================
+    // AdwAnimationTarget
+    //=========================================================================
+    pub fn adw_animation_target_get_type() -> GType;
 
     //=========================================================================
     // AdwApplication
@@ -1414,6 +1571,16 @@ extern "C" {
     );
 
     //=========================================================================
+    // AdwCallbackAnimationTarget
+    //=========================================================================
+    pub fn adw_callback_animation_target_get_type() -> GType;
+    pub fn adw_callback_animation_target_new(
+        callback: AdwAnimationTargetFunc,
+        user_data: gpointer,
+        destroy: glib::GDestroyNotify,
+    ) -> *mut AdwAnimationTarget;
+
+    //=========================================================================
     // AdwCarousel
     //=========================================================================
     pub fn adw_carousel_get_type() -> GType;
@@ -1445,7 +1612,7 @@ extern "C" {
     pub fn adw_carousel_scroll_to_full(
         self_: *mut AdwCarousel,
         widget: *mut gtk::GtkWidget,
-        duration: i64,
+        duration: c_uint,
     );
     pub fn adw_carousel_set_allow_long_swipes(self_: *mut AdwCarousel, allow_long_swipes: gboolean);
     pub fn adw_carousel_set_allow_mouse_drag(self_: *mut AdwCarousel, allow_mouse_drag: gboolean);
@@ -2125,6 +2292,35 @@ extern "C" {
     );
 
     //=========================================================================
+    // AdwTimedAnimation
+    //=========================================================================
+    pub fn adw_timed_animation_get_type() -> GType;
+    pub fn adw_timed_animation_new(
+        widget: *mut gtk::GtkWidget,
+        from: c_double,
+        to: c_double,
+        duration: c_uint,
+        target: *mut AdwAnimationTarget,
+    ) -> *mut AdwAnimation;
+    pub fn adw_timed_animation_get_alternate(self_: *mut AdwTimedAnimation) -> gboolean;
+    pub fn adw_timed_animation_get_duration(self_: *mut AdwTimedAnimation) -> c_uint;
+    pub fn adw_timed_animation_get_easing(self_: *mut AdwTimedAnimation) -> AdwEasing;
+    pub fn adw_timed_animation_get_repeat_count(self_: *mut AdwTimedAnimation) -> c_uint;
+    pub fn adw_timed_animation_get_reverse(self_: *mut AdwTimedAnimation) -> gboolean;
+    pub fn adw_timed_animation_get_value_from(self_: *mut AdwTimedAnimation) -> c_double;
+    pub fn adw_timed_animation_get_value_to(self_: *mut AdwTimedAnimation) -> c_double;
+    pub fn adw_timed_animation_set_alternate(self_: *mut AdwTimedAnimation, alternate: gboolean);
+    pub fn adw_timed_animation_set_duration(self_: *mut AdwTimedAnimation, duration: c_uint);
+    pub fn adw_timed_animation_set_easing(self_: *mut AdwTimedAnimation, easing: AdwEasing);
+    pub fn adw_timed_animation_set_repeat_count(
+        self_: *mut AdwTimedAnimation,
+        repeat_count: c_uint,
+    );
+    pub fn adw_timed_animation_set_reverse(self_: *mut AdwTimedAnimation, reverse: gboolean);
+    pub fn adw_timed_animation_set_value_from(self_: *mut AdwTimedAnimation, value: c_double);
+    pub fn adw_timed_animation_set_value_to(self_: *mut AdwTimedAnimation, value: c_double);
+
+    //=========================================================================
     // AdwToast
     //=========================================================================
     pub fn adw_toast_get_type() -> GType;
@@ -2134,6 +2330,7 @@ extern "C" {
     pub fn adw_toast_get_action_target_value(self_: *mut AdwToast) -> *mut glib::GVariant;
     pub fn adw_toast_get_button_label(self_: *mut AdwToast) -> *const c_char;
     pub fn adw_toast_get_priority(self_: *mut AdwToast) -> AdwToastPriority;
+    pub fn adw_toast_get_timeout(self_: *mut AdwToast) -> c_uint;
     pub fn adw_toast_get_title(self_: *mut AdwToast) -> *const c_char;
     pub fn adw_toast_set_action_name(self_: *mut AdwToast, action_name: *const c_char);
     pub fn adw_toast_set_action_target(self_: *mut AdwToast, format_string: *const c_char, ...);
@@ -2147,6 +2344,7 @@ extern "C" {
         detailed_action_name: *const c_char,
     );
     pub fn adw_toast_set_priority(self_: *mut AdwToast, priority: AdwToastPriority);
+    pub fn adw_toast_set_timeout(self_: *mut AdwToast, timeout: c_uint);
     pub fn adw_toast_set_title(self_: *mut AdwToast, title: *const c_char);
 
     //=========================================================================
@@ -2183,22 +2381,16 @@ extern "C" {
         name: *const c_char,
     ) -> *mut gtk::GtkWidget;
     pub fn adw_view_stack_get_hhomogeneous(self_: *mut AdwViewStack) -> gboolean;
-    pub fn adw_view_stack_get_interpolate_size(self_: *mut AdwViewStack) -> gboolean;
     pub fn adw_view_stack_get_page(
         self_: *mut AdwViewStack,
         child: *mut gtk::GtkWidget,
     ) -> *mut AdwViewStackPage;
     pub fn adw_view_stack_get_pages(self_: *mut AdwViewStack) -> *mut gtk::GtkSelectionModel;
-    pub fn adw_view_stack_get_transition_running(self_: *mut AdwViewStack) -> gboolean;
     pub fn adw_view_stack_get_vhomogeneous(self_: *mut AdwViewStack) -> gboolean;
     pub fn adw_view_stack_get_visible_child(self_: *mut AdwViewStack) -> *mut gtk::GtkWidget;
     pub fn adw_view_stack_get_visible_child_name(self_: *mut AdwViewStack) -> *const c_char;
     pub fn adw_view_stack_remove(self_: *mut AdwViewStack, child: *mut gtk::GtkWidget);
     pub fn adw_view_stack_set_hhomogeneous(self_: *mut AdwViewStack, hhomogeneous: gboolean);
-    pub fn adw_view_stack_set_interpolate_size(
-        self_: *mut AdwViewStack,
-        interpolate_size: gboolean,
-    );
     pub fn adw_view_stack_set_vhomogeneous(self_: *mut AdwViewStack, vhomogeneous: gboolean);
     pub fn adw_view_stack_set_visible_child(self_: *mut AdwViewStack, child: *mut gtk::GtkWidget);
     pub fn adw_view_stack_set_visible_child_name(self_: *mut AdwViewStack, name: *const c_char);
@@ -2327,12 +2519,12 @@ extern "C" {
     //=========================================================================
     // Other functions
     //=========================================================================
-    pub fn adw_ease_out_cubic(t: c_double) -> c_double;
     pub fn adw_get_enable_animations(widget: *mut gtk::GtkWidget) -> gboolean;
     pub fn adw_get_major_version() -> c_uint;
     pub fn adw_get_micro_version() -> c_uint;
     pub fn adw_get_minor_version() -> c_uint;
     pub fn adw_init();
     pub fn adw_is_initialized() -> gboolean;
+    pub fn adw_lerp(a: c_double, b: c_double, t: c_double) -> c_double;
 
 }

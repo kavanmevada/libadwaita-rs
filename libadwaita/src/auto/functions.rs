@@ -6,12 +6,6 @@
 use glib::object::IsA;
 use glib::translate::*;
 
-#[doc(alias = "adw_ease_out_cubic")]
-pub fn ease_out_cubic(t: f64) -> f64 {
-    assert_initialized_main_thread!();
-    unsafe { ffi::adw_ease_out_cubic(t) }
-}
-
 #[doc(alias = "adw_get_enable_animations")]
 #[doc(alias = "get_enable_animations")]
 pub fn is_animations_enabled(widget: &impl IsA<gtk::Widget>) -> bool {
@@ -56,4 +50,10 @@ pub fn init() {
 pub fn is_initialized() -> bool {
     assert_initialized_main_thread!();
     unsafe { from_glib(ffi::adw_is_initialized()) }
+}
+
+#[doc(alias = "adw_lerp")]
+pub fn lerp(a: f64, b: f64, t: f64) -> f64 {
+    assert_initialized_main_thread!();
+    unsafe { ffi::adw_lerp(a, b, t) }
 }

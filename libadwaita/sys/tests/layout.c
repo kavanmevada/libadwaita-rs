@@ -10,6 +10,8 @@
 int main() {
     printf("%s;%zu;%zu\n", "AdwActionRow", sizeof(AdwActionRow), alignof(AdwActionRow));
     printf("%s;%zu;%zu\n", "AdwActionRowClass", sizeof(AdwActionRowClass), alignof(AdwActionRowClass));
+    printf("%s;%zu;%zu\n", "AdwAnimation", sizeof(AdwAnimation), alignof(AdwAnimation));
+    printf("%s;%zu;%zu\n", "AdwAnimationState", sizeof(AdwAnimationState), alignof(AdwAnimationState));
     printf("%s;%zu;%zu\n", "AdwApplication", sizeof(AdwApplication), alignof(AdwApplication));
     printf("%s;%zu;%zu\n", "AdwApplicationClass", sizeof(AdwApplicationClass), alignof(AdwApplicationClass));
     printf("%s;%zu;%zu\n", "AdwApplicationWindow", sizeof(AdwApplicationWindow), alignof(AdwApplicationWindow));
@@ -28,6 +30,7 @@ int main() {
     printf("%s;%zu;%zu\n", "AdwColorScheme", sizeof(AdwColorScheme), alignof(AdwColorScheme));
     printf("%s;%zu;%zu\n", "AdwComboRow", sizeof(AdwComboRow), alignof(AdwComboRow));
     printf("%s;%zu;%zu\n", "AdwComboRowClass", sizeof(AdwComboRowClass), alignof(AdwComboRowClass));
+    printf("%s;%zu;%zu\n", "AdwEasing", sizeof(AdwEasing), alignof(AdwEasing));
     printf("%s;%zu;%zu\n", "AdwEnumListItemClass", sizeof(AdwEnumListItemClass), alignof(AdwEnumListItemClass));
     printf("%s;%zu;%zu\n", "AdwEnumListModelClass", sizeof(AdwEnumListModelClass), alignof(AdwEnumListModelClass));
     printf("%s;%zu;%zu\n", "AdwExpanderRow", sizeof(AdwExpanderRow), alignof(AdwExpanderRow));

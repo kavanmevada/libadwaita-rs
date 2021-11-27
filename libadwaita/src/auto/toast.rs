@@ -74,6 +74,12 @@ impl Toast {
         unsafe { from_glib(ffi::adw_toast_get_priority(self.to_glib_none().0)) }
     }
 
+    #[doc(alias = "adw_toast_get_timeout")]
+    #[doc(alias = "get_timeout")]
+    pub fn timeout(&self) -> u32 {
+        unsafe { ffi::adw_toast_get_timeout(self.to_glib_none().0) }
+    }
+
     #[doc(alias = "adw_toast_get_title")]
     #[doc(alias = "get_title")]
     pub fn title(&self) -> Option<glib::GString> {
@@ -118,6 +124,13 @@ impl Toast {
     pub fn set_priority(&self, priority: ToastPriority) {
         unsafe {
             ffi::adw_toast_set_priority(self.to_glib_none().0, priority.into_glib());
+        }
+    }
+
+    #[doc(alias = "adw_toast_set_timeout")]
+    pub fn set_timeout(&self, timeout: u32) {
+        unsafe {
+            ffi::adw_toast_set_timeout(self.to_glib_none().0, timeout);
         }
     }
 
@@ -252,6 +265,29 @@ impl Toast {
         }
     }
 
+    #[doc(alias = "timeout")]
+    pub fn connect_timeout_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
+        unsafe extern "C" fn notify_timeout_trampoline<F: Fn(&Toast) + 'static>(
+            this: *mut ffi::AdwToast,
+            _param_spec: glib::ffi::gpointer,
+            f: glib::ffi::gpointer,
+        ) {
+            let f: &F = &*(f as *const F);
+            f(&from_glib_borrow(this))
+        }
+        unsafe {
+            let f: Box_<F> = Box_::new(f);
+            connect_raw(
+                self.as_ptr() as *mut _,
+                b"notify::timeout\0".as_ptr() as *const _,
+                Some(transmute::<_, unsafe extern "C" fn()>(
+                    notify_timeout_trampoline::<F> as *const (),
+                )),
+                Box_::into_raw(f),
+            )
+        }
+    }
+
     #[doc(alias = "title")]
     pub fn connect_title_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_title_trampoline<F: Fn(&Toast) + 'static>(
@@ -293,6 +329,7 @@ pub struct ToastBuilder {
     action_target: Option<glib::Variant>,
     button_label: Option<String>,
     priority: Option<ToastPriority>,
+    timeout: Option<u32>,
     title: Option<String>,
 }
 
@@ -320,6 +357,9 @@ impl ToastBuilder {
         if let Some(ref priority) = self.priority {
             properties.push(("priority", priority));
         }
+        if let Some(ref timeout) = self.timeout {
+            properties.push(("timeout", timeout));
+        }
         if let Some(ref title) = self.title {
             properties.push(("title", title));
         }
@@ -343,6 +383,11 @@ impl ToastBuilder {
 
     pub fn priority(mut self, priority: ToastPriority) -> Self {
         self.priority = Some(priority);
+        self
+    }
+
+    pub fn timeout(mut self, timeout: u32) -> Self {
+        self.timeout = Some(timeout);
         self
     }
 

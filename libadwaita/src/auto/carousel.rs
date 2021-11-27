@@ -163,7 +163,7 @@ impl Carousel {
     }
 
     #[doc(alias = "adw_carousel_scroll_to_full")]
-    pub fn scroll_to_full(&self, widget: &impl IsA<gtk::Widget>, duration: i64) {
+    pub fn scroll_to_full(&self, widget: &impl IsA<gtk::Widget>, duration: u32) {
         unsafe {
             ffi::adw_carousel_scroll_to_full(
                 self.to_glib_none().0,

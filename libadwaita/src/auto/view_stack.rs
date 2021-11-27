@@ -99,16 +99,6 @@ impl ViewStack {
         unsafe { from_glib(ffi::adw_view_stack_get_hhomogeneous(self.to_glib_none().0)) }
     }
 
-    #[doc(alias = "adw_view_stack_get_interpolate_size")]
-    #[doc(alias = "get_interpolate_size")]
-    pub fn is_interpolate_size(&self) -> bool {
-        unsafe {
-            from_glib(ffi::adw_view_stack_get_interpolate_size(
-                self.to_glib_none().0,
-            ))
-        }
-    }
-
     #[doc(alias = "adw_view_stack_get_page")]
     #[doc(alias = "get_page")]
     pub fn page(&self, child: &impl IsA<gtk::Widget>) -> Option<ViewStackPage> {
@@ -124,16 +114,6 @@ impl ViewStack {
     #[doc(alias = "get_pages")]
     pub fn pages(&self) -> Option<gtk::SelectionModel> {
         unsafe { from_glib_full(ffi::adw_view_stack_get_pages(self.to_glib_none().0)) }
-    }
-
-    #[doc(alias = "adw_view_stack_get_transition_running")]
-    #[doc(alias = "get_transition_running")]
-    pub fn is_transition_running(&self) -> bool {
-        unsafe {
-            from_glib(ffi::adw_view_stack_get_transition_running(
-                self.to_glib_none().0,
-            ))
-        }
     }
 
     #[doc(alias = "adw_view_stack_get_vhomogeneous")]
@@ -169,16 +149,6 @@ impl ViewStack {
     pub fn set_hhomogeneous(&self, hhomogeneous: bool) {
         unsafe {
             ffi::adw_view_stack_set_hhomogeneous(self.to_glib_none().0, hhomogeneous.into_glib());
-        }
-    }
-
-    #[doc(alias = "adw_view_stack_set_interpolate_size")]
-    pub fn set_interpolate_size(&self, interpolate_size: bool) {
-        unsafe {
-            ffi::adw_view_stack_set_interpolate_size(
-                self.to_glib_none().0,
-                interpolate_size.into_glib(),
-            );
         }
     }
 
@@ -232,29 +202,6 @@ impl ViewStack {
         }
     }
 
-    #[doc(alias = "interpolate-size")]
-    pub fn connect_interpolate_size_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
-        unsafe extern "C" fn notify_interpolate_size_trampoline<F: Fn(&ViewStack) + 'static>(
-            this: *mut ffi::AdwViewStack,
-            _param_spec: glib::ffi::gpointer,
-            f: glib::ffi::gpointer,
-        ) {
-            let f: &F = &*(f as *const F);
-            f(&from_glib_borrow(this))
-        }
-        unsafe {
-            let f: Box_<F> = Box_::new(f);
-            connect_raw(
-                self.as_ptr() as *mut _,
-                b"notify::interpolate-size\0".as_ptr() as *const _,
-                Some(transmute::<_, unsafe extern "C" fn()>(
-                    notify_interpolate_size_trampoline::<F> as *const (),
-                )),
-                Box_::into_raw(f),
-            )
-        }
-    }
-
     #[doc(alias = "pages")]
     pub fn connect_pages_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_pages_trampoline<F: Fn(&ViewStack) + 'static>(
@@ -272,32 +219,6 @@ impl ViewStack {
                 b"notify::pages\0".as_ptr() as *const _,
                 Some(transmute::<_, unsafe extern "C" fn()>(
                     notify_pages_trampoline::<F> as *const (),
-                )),
-                Box_::into_raw(f),
-            )
-        }
-    }
-
-    #[doc(alias = "transition-running")]
-    pub fn connect_transition_running_notify<F: Fn(&Self) + 'static>(
-        &self,
-        f: F,
-    ) -> SignalHandlerId {
-        unsafe extern "C" fn notify_transition_running_trampoline<F: Fn(&ViewStack) + 'static>(
-            this: *mut ffi::AdwViewStack,
-            _param_spec: glib::ffi::gpointer,
-            f: glib::ffi::gpointer,
-        ) {
-            let f: &F = &*(f as *const F);
-            f(&from_glib_borrow(this))
-        }
-        unsafe {
-            let f: Box_<F> = Box_::new(f);
-            connect_raw(
-                self.as_ptr() as *mut _,
-                b"notify::transition-running\0".as_ptr() as *const _,
-                Some(transmute::<_, unsafe extern "C" fn()>(
-                    notify_transition_running_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
             )
@@ -390,7 +311,6 @@ impl Default for ViewStack {
 /// [builder-pattern]: https://doc.rust-lang.org/1.0.0/style/ownership/builders.html
 pub struct ViewStackBuilder {
     hhomogeneous: Option<bool>,
-    interpolate_size: Option<bool>,
     vhomogeneous: Option<bool>,
     visible_child: Option<gtk::Widget>,
     visible_child_name: Option<String>,
@@ -440,9 +360,6 @@ impl ViewStackBuilder {
         let mut properties: Vec<(&str, &dyn ToValue)> = vec![];
         if let Some(ref hhomogeneous) = self.hhomogeneous {
             properties.push(("hhomogeneous", hhomogeneous));
-        }
-        if let Some(ref interpolate_size) = self.interpolate_size {
-            properties.push(("interpolate-size", interpolate_size));
         }
         if let Some(ref vhomogeneous) = self.vhomogeneous {
             properties.push(("vhomogeneous", vhomogeneous));
@@ -549,11 +466,6 @@ impl ViewStackBuilder {
 
     pub fn hhomogeneous(mut self, hhomogeneous: bool) -> Self {
         self.hhomogeneous = Some(hhomogeneous);
-        self
-    }
-
-    pub fn interpolate_size(mut self, interpolate_size: bool) -> Self {
-        self.interpolate_size = Some(interpolate_size);
         self
     }
 
