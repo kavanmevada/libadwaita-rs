@@ -163,8 +163,7 @@ name = "Adw.CallbackAnimationTarget"
 status = "generate"
 generate_builder = false
     [[object.function]]
-    # FIXME Actually implement it manually
-    name = "new"
+    name = "new" # can't be generated manually
     manual = true
 
 [[object]]
