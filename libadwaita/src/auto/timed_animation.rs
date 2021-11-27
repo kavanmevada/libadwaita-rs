@@ -5,6 +5,7 @@
 
 use crate::Animation;
 use crate::AnimationTarget;
+use crate::Easing;
 use glib::object::Cast;
 use glib::object::IsA;
 use glib::object::ObjectType as ObjectType_;
@@ -72,11 +73,11 @@ impl TimedAnimation {
         unsafe { ffi::adw_timed_animation_get_duration(self.to_glib_none().0) }
     }
 
-    //#[doc(alias = "adw_timed_animation_get_easing")]
-    //#[doc(alias = "get_easing")]
-    //pub fn easing(&self) -> /*Ignored*/Easing {
-    //    unsafe { TODO: call ffi:adw_timed_animation_get_easing() }
-    //}
+    #[doc(alias = "adw_timed_animation_get_easing")]
+    #[doc(alias = "get_easing")]
+    pub fn easing(&self) -> Easing {
+        unsafe { from_glib(ffi::adw_timed_animation_get_easing(self.to_glib_none().0)) }
+    }
 
     #[doc(alias = "adw_timed_animation_get_repeat_count")]
     #[doc(alias = "get_repeat_count")]
@@ -116,10 +117,12 @@ impl TimedAnimation {
         }
     }
 
-    //#[doc(alias = "adw_timed_animation_set_easing")]
-    //pub fn set_easing(&self, easing: /*Ignored*/Easing) {
-    //    unsafe { TODO: call ffi:adw_timed_animation_set_easing() }
-    //}
+    #[doc(alias = "adw_timed_animation_set_easing")]
+    pub fn set_easing(&self, easing: Easing) {
+        unsafe {
+            ffi::adw_timed_animation_set_easing(self.to_glib_none().0, easing.into_glib());
+        }
+    }
 
     #[doc(alias = "adw_timed_animation_set_repeat_count")]
     pub fn set_repeat_count(&self, repeat_count: u32) {
@@ -326,7 +329,7 @@ impl Default for TimedAnimation {
 pub struct TimedAnimationBuilder {
     alternate: Option<bool>,
     duration: Option<u32>,
-    //easing: /*Unknown type*/,
+    easing: Option<Easing>,
     repeat_count: Option<u32>,
     reverse: Option<bool>,
     value_from: Option<f64>,
@@ -352,6 +355,9 @@ impl TimedAnimationBuilder {
         }
         if let Some(ref duration) = self.duration {
             properties.push(("duration", duration));
+        }
+        if let Some(ref easing) = self.easing {
+            properties.push(("easing", easing));
         }
         if let Some(ref repeat_count) = self.repeat_count {
             properties.push(("repeat-count", repeat_count));
@@ -382,6 +388,11 @@ impl TimedAnimationBuilder {
 
     pub fn duration(mut self, duration: u32) -> Self {
         self.duration = Some(duration);
+        self
+    }
+
+    pub fn easing(mut self, easing: Easing) -> Self {
+        self.easing = Some(easing);
         self
     }
 

@@ -145,8 +145,10 @@ mod window_title;
 pub use self::window_title::WindowTitle;
 
 mod enums;
+pub use self::enums::AnimationState;
 pub use self::enums::CenteringPolicy;
 pub use self::enums::ColorScheme;
+pub use self::enums::Easing;
 pub use self::enums::FlapFoldPolicy;
 pub use self::enums::FlapTransitionType;
 pub use self::enums::FoldThresholdPolicy;

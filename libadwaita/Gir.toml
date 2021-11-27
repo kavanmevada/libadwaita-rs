@@ -26,6 +26,7 @@ external_libraries = [
 generate = [
     "Adw.ActionRow",
     "Adw.Animation",
+    "Adw.AnimationState",
     "Adw.AnimationTarget",
     "Adw.ApplicationWindow",
     "Adw.Avatar",
@@ -39,6 +40,7 @@ generate = [
     "Adw.ClampLayout",
     "Adw.ClampScrollable",
     "Adw.ColorScheme",
+    "Adw.Easing",
     "Adw.ExpanderRow",
     "Adw.FoldThresholdPolicy",
     "Adw.Flap",

@@ -12,6 +12,100 @@ use std::fmt;
 
 #[derive(Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Clone, Copy)]
 #[non_exhaustive]
+#[doc(alias = "AdwAnimationState")]
+pub enum AnimationState {
+    #[doc(alias = "ADW_ANIMATION_IDLE")]
+    Idle,
+    #[doc(alias = "ADW_ANIMATION_PAUSED")]
+    Paused,
+    #[doc(alias = "ADW_ANIMATION_PLAYING")]
+    Playing,
+    #[doc(alias = "ADW_ANIMATION_FINISHED")]
+    Finished,
+    #[doc(hidden)]
+    __Unknown(i32),
+}
+
+impl fmt::Display for AnimationState {
+    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
+        write!(
+            f,
+            "AnimationState::{}",
+            match *self {
+                Self::Idle => "Idle",
+                Self::Paused => "Paused",
+                Self::Playing => "Playing",
+                Self::Finished => "Finished",
+                _ => "Unknown",
+            }
+        )
+    }
+}
+
+#[doc(hidden)]
+impl IntoGlib for AnimationState {
+    type GlibType = ffi::AdwAnimationState;
+
+    fn into_glib(self) -> ffi::AdwAnimationState {
+        match self {
+            Self::Idle => ffi::ADW_ANIMATION_IDLE,
+            Self::Paused => ffi::ADW_ANIMATION_PAUSED,
+            Self::Playing => ffi::ADW_ANIMATION_PLAYING,
+            Self::Finished => ffi::ADW_ANIMATION_FINISHED,
+            Self::__Unknown(value) => value,
+        }
+    }
+}
+
+#[doc(hidden)]
+impl FromGlib<ffi::AdwAnimationState> for AnimationState {
+    unsafe fn from_glib(value: ffi::AdwAnimationState) -> Self {
+        skip_assert_initialized!();
+        match value {
+            ffi::ADW_ANIMATION_IDLE => Self::Idle,
+            ffi::ADW_ANIMATION_PAUSED => Self::Paused,
+            ffi::ADW_ANIMATION_PLAYING => Self::Playing,
+            ffi::ADW_ANIMATION_FINISHED => Self::Finished,
+            value => Self::__Unknown(value),
+        }
+    }
+}
+
+impl StaticType for AnimationState {
+    fn static_type() -> Type {
+        unsafe { from_glib(ffi::adw_animation_state_get_type()) }
+    }
+}
+
+impl glib::value::ValueType for AnimationState {
+    type Type = Self;
+}
+
+unsafe impl<'a> FromValue<'a> for AnimationState {
+    type Checker = glib::value::GenericValueTypeChecker<Self>;
+
+    unsafe fn from_value(value: &'a glib::Value) -> Self {
+        skip_assert_initialized!();
+        from_glib(glib::gobject_ffi::g_value_get_enum(value.to_glib_none().0))
+    }
+}
+
+impl ToValue for AnimationState {
+    fn to_value(&self) -> glib::Value {
+        let mut value = glib::Value::for_value_type::<Self>();
+        unsafe {
+            glib::gobject_ffi::g_value_set_enum(value.to_glib_none_mut().0, self.into_glib());
+        }
+        value
+    }
+
+    fn value_type(&self) -> glib::Type {
+        Self::static_type()
+    }
+}
+
+#[derive(Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Clone, Copy)]
+#[non_exhaustive]
 #[doc(alias = "AdwCenteringPolicy")]
 pub enum CenteringPolicy {
     #[doc(alias = "ADW_CENTERING_POLICY_LOOSE")]
@@ -180,6 +274,243 @@ unsafe impl<'a> FromValue<'a> for ColorScheme {
 }
 
 impl ToValue for ColorScheme {
+    fn to_value(&self) -> glib::Value {
+        let mut value = glib::Value::for_value_type::<Self>();
+        unsafe {
+            glib::gobject_ffi::g_value_set_enum(value.to_glib_none_mut().0, self.into_glib());
+        }
+        value
+    }
+
+    fn value_type(&self) -> glib::Type {
+        Self::static_type()
+    }
+}
+
+#[derive(Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Clone, Copy)]
+#[non_exhaustive]
+#[doc(alias = "AdwEasing")]
+pub enum Easing {
+    #[doc(alias = "ADW_LINEAR")]
+    Linear,
+    #[doc(alias = "ADW_EASE_IN_QUAD")]
+    EaseInQuad,
+    #[doc(alias = "ADW_EASE_OUT_QUAD")]
+    EaseOutQuad,
+    #[doc(alias = "ADW_EASE_IN_OUT_QUAD")]
+    EaseInOutQuad,
+    #[doc(alias = "ADW_EASE_IN_CUBIC")]
+    EaseInCubic,
+    #[doc(alias = "ADW_EASE_OUT_CUBIC")]
+    EaseOutCubic,
+    #[doc(alias = "ADW_EASE_IN_OUT_CUBIC")]
+    EaseInOutCubic,
+    #[doc(alias = "ADW_EASE_IN_QUART")]
+    EaseInQuart,
+    #[doc(alias = "ADW_EASE_OUT_QUART")]
+    EaseOutQuart,
+    #[doc(alias = "ADW_EASE_IN_OUT_QUART")]
+    EaseInOutQuart,
+    #[doc(alias = "ADW_EASE_IN_QUINT")]
+    EaseInQuint,
+    #[doc(alias = "ADW_EASE_OUT_QUINT")]
+    EaseOutQuint,
+    #[doc(alias = "ADW_EASE_IN_OUT_QUINT")]
+    EaseInOutQuint,
+    #[doc(alias = "ADW_EASE_IN_SINE")]
+    EaseInSine,
+    #[doc(alias = "ADW_EASE_OUT_SINE")]
+    EaseOutSine,
+    #[doc(alias = "ADW_EASE_IN_OUT_SINE")]
+    EaseInOutSine,
+    #[doc(alias = "ADW_EASE_IN_EXPO")]
+    EaseInExpo,
+    #[doc(alias = "ADW_EASE_OUT_EXPO")]
+    EaseOutExpo,
+    #[doc(alias = "ADW_EASE_IN_OUT_EXPO")]
+    EaseInOutExpo,
+    #[doc(alias = "ADW_EASE_IN_CIRC")]
+    EaseInCirc,
+    #[doc(alias = "ADW_EASE_OUT_CIRC")]
+    EaseOutCirc,
+    #[doc(alias = "ADW_EASE_IN_OUT_CIRC")]
+    EaseInOutCirc,
+    #[doc(alias = "ADW_EASE_IN_ELASTIC")]
+    EaseInElastic,
+    #[doc(alias = "ADW_EASE_OUT_ELASTIC")]
+    EaseOutElastic,
+    #[doc(alias = "ADW_EASE_IN_OUT_ELASTIC")]
+    EaseInOutElastic,
+    #[doc(alias = "ADW_EASE_IN_BACK")]
+    EaseInBack,
+    #[doc(alias = "ADW_EASE_OUT_BACK")]
+    EaseOutBack,
+    #[doc(alias = "ADW_EASE_IN_OUT_BACK")]
+    EaseInOutBack,
+    #[doc(alias = "ADW_EASE_IN_BOUNCE")]
+    EaseInBounce,
+    #[doc(alias = "ADW_EASE_OUT_BOUNCE")]
+    EaseOutBounce,
+    #[doc(alias = "ADW_EASE_IN_OUT_BOUNCE")]
+    EaseInOutBounce,
+    #[doc(hidden)]
+    __Unknown(i32),
+}
+
+impl Easing {
+    #[doc(alias = "adw_easing_ease")]
+    pub fn ease(self, value: f64) -> f64 {
+        assert_initialized_main_thread!();
+        unsafe { ffi::adw_easing_ease(self.into_glib(), value) }
+    }
+}
+
+impl fmt::Display for Easing {
+    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
+        write!(
+            f,
+            "Easing::{}",
+            match *self {
+                Self::Linear => "Linear",
+                Self::EaseInQuad => "EaseInQuad",
+                Self::EaseOutQuad => "EaseOutQuad",
+                Self::EaseInOutQuad => "EaseInOutQuad",
+                Self::EaseInCubic => "EaseInCubic",
+                Self::EaseOutCubic => "EaseOutCubic",
+                Self::EaseInOutCubic => "EaseInOutCubic",
+                Self::EaseInQuart => "EaseInQuart",
+                Self::EaseOutQuart => "EaseOutQuart",
+                Self::EaseInOutQuart => "EaseInOutQuart",
+                Self::EaseInQuint => "EaseInQuint",
+                Self::EaseOutQuint => "EaseOutQuint",
+                Self::EaseInOutQuint => "EaseInOutQuint",
+                Self::EaseInSine => "EaseInSine",
+                Self::EaseOutSine => "EaseOutSine",
+                Self::EaseInOutSine => "EaseInOutSine",
+                Self::EaseInExpo => "EaseInExpo",
+                Self::EaseOutExpo => "EaseOutExpo",
+                Self::EaseInOutExpo => "EaseInOutExpo",
+                Self::EaseInCirc => "EaseInCirc",
+                Self::EaseOutCirc => "EaseOutCirc",
+                Self::EaseInOutCirc => "EaseInOutCirc",
+                Self::EaseInElastic => "EaseInElastic",
+                Self::EaseOutElastic => "EaseOutElastic",
+                Self::EaseInOutElastic => "EaseInOutElastic",
+                Self::EaseInBack => "EaseInBack",
+                Self::EaseOutBack => "EaseOutBack",
+                Self::EaseInOutBack => "EaseInOutBack",
+                Self::EaseInBounce => "EaseInBounce",
+                Self::EaseOutBounce => "EaseOutBounce",
+                Self::EaseInOutBounce => "EaseInOutBounce",
+                _ => "Unknown",
+            }
+        )
+    }
+}
+
+#[doc(hidden)]
+impl IntoGlib for Easing {
+    type GlibType = ffi::AdwEasing;
+
+    fn into_glib(self) -> ffi::AdwEasing {
+        match self {
+            Self::Linear => ffi::ADW_LINEAR,
+            Self::EaseInQuad => ffi::ADW_EASE_IN_QUAD,
+            Self::EaseOutQuad => ffi::ADW_EASE_OUT_QUAD,
+            Self::EaseInOutQuad => ffi::ADW_EASE_IN_OUT_QUAD,
+            Self::EaseInCubic => ffi::ADW_EASE_IN_CUBIC,
+            Self::EaseOutCubic => ffi::ADW_EASE_OUT_CUBIC,
+            Self::EaseInOutCubic => ffi::ADW_EASE_IN_OUT_CUBIC,
+            Self::EaseInQuart => ffi::ADW_EASE_IN_QUART,
+            Self::EaseOutQuart => ffi::ADW_EASE_OUT_QUART,
+            Self::EaseInOutQuart => ffi::ADW_EASE_IN_OUT_QUART,
+            Self::EaseInQuint => ffi::ADW_EASE_IN_QUINT,
+            Self::EaseOutQuint => ffi::ADW_EASE_OUT_QUINT,
+            Self::EaseInOutQuint => ffi::ADW_EASE_IN_OUT_QUINT,
+            Self::EaseInSine => ffi::ADW_EASE_IN_SINE,
+            Self::EaseOutSine => ffi::ADW_EASE_OUT_SINE,
+            Self::EaseInOutSine => ffi::ADW_EASE_IN_OUT_SINE,
+            Self::EaseInExpo => ffi::ADW_EASE_IN_EXPO,
+            Self::EaseOutExpo => ffi::ADW_EASE_OUT_EXPO,
+            Self::EaseInOutExpo => ffi::ADW_EASE_IN_OUT_EXPO,
+            Self::EaseInCirc => ffi::ADW_EASE_IN_CIRC,
+            Self::EaseOutCirc => ffi::ADW_EASE_OUT_CIRC,
+            Self::EaseInOutCirc => ffi::ADW_EASE_IN_OUT_CIRC,
+            Self::EaseInElastic => ffi::ADW_EASE_IN_ELASTIC,
+            Self::EaseOutElastic => ffi::ADW_EASE_OUT_ELASTIC,
+            Self::EaseInOutElastic => ffi::ADW_EASE_IN_OUT_ELASTIC,
+            Self::EaseInBack => ffi::ADW_EASE_IN_BACK,
+            Self::EaseOutBack => ffi::ADW_EASE_OUT_BACK,
+            Self::EaseInOutBack => ffi::ADW_EASE_IN_OUT_BACK,
+            Self::EaseInBounce => ffi::ADW_EASE_IN_BOUNCE,
+            Self::EaseOutBounce => ffi::ADW_EASE_OUT_BOUNCE,
+            Self::EaseInOutBounce => ffi::ADW_EASE_IN_OUT_BOUNCE,
+            Self::__Unknown(value) => value,
+        }
+    }
+}
+
+#[doc(hidden)]
+impl FromGlib<ffi::AdwEasing> for Easing {
+    unsafe fn from_glib(value: ffi::AdwEasing) -> Self {
+        skip_assert_initialized!();
+        match value {
+            ffi::ADW_LINEAR => Self::Linear,
+            ffi::ADW_EASE_IN_QUAD => Self::EaseInQuad,
+            ffi::ADW_EASE_OUT_QUAD => Self::EaseOutQuad,
+            ffi::ADW_EASE_IN_OUT_QUAD => Self::EaseInOutQuad,
+            ffi::ADW_EASE_IN_CUBIC => Self::EaseInCubic,
+            ffi::ADW_EASE_OUT_CUBIC => Self::EaseOutCubic,
+            ffi::ADW_EASE_IN_OUT_CUBIC => Self::EaseInOutCubic,
+            ffi::ADW_EASE_IN_QUART => Self::EaseInQuart,
+            ffi::ADW_EASE_OUT_QUART => Self::EaseOutQuart,
+            ffi::ADW_EASE_IN_OUT_QUART => Self::EaseInOutQuart,
+            ffi::ADW_EASE_IN_QUINT => Self::EaseInQuint,
+            ffi::ADW_EASE_OUT_QUINT => Self::EaseOutQuint,
+            ffi::ADW_EASE_IN_OUT_QUINT => Self::EaseInOutQuint,
+            ffi::ADW_EASE_IN_SINE => Self::EaseInSine,
+            ffi::ADW_EASE_OUT_SINE => Self::EaseOutSine,
+            ffi::ADW_EASE_IN_OUT_SINE => Self::EaseInOutSine,
+            ffi::ADW_EASE_IN_EXPO => Self::EaseInExpo,
+            ffi::ADW_EASE_OUT_EXPO => Self::EaseOutExpo,
+            ffi::ADW_EASE_IN_OUT_EXPO => Self::EaseInOutExpo,
+            ffi::ADW_EASE_IN_CIRC => Self::EaseInCirc,
+            ffi::ADW_EASE_OUT_CIRC => Self::EaseOutCirc,
+            ffi::ADW_EASE_IN_OUT_CIRC => Self::EaseInOutCirc,
+            ffi::ADW_EASE_IN_ELASTIC => Self::EaseInElastic,
+            ffi::ADW_EASE_OUT_ELASTIC => Self::EaseOutElastic,
+            ffi::ADW_EASE_IN_OUT_ELASTIC => Self::EaseInOutElastic,
+            ffi::ADW_EASE_IN_BACK => Self::EaseInBack,
+            ffi::ADW_EASE_OUT_BACK => Self::EaseOutBack,
+            ffi::ADW_EASE_IN_OUT_BACK => Self::EaseInOutBack,
+            ffi::ADW_EASE_IN_BOUNCE => Self::EaseInBounce,
+            ffi::ADW_EASE_OUT_BOUNCE => Self::EaseOutBounce,
+            ffi::ADW_EASE_IN_OUT_BOUNCE => Self::EaseInOutBounce,
+            value => Self::__Unknown(value),
+        }
+    }
+}
+
+impl StaticType for Easing {
+    fn static_type() -> Type {
+        unsafe { from_glib(ffi::adw_easing_get_type()) }
+    }
+}
+
+impl glib::value::ValueType for Easing {
+    type Type = Self;
+}
+
+unsafe impl<'a> FromValue<'a> for Easing {
+    type Checker = glib::value::GenericValueTypeChecker<Self>;
+
+    unsafe fn from_value(value: &'a glib::Value) -> Self {
+        skip_assert_initialized!();
+        from_glib(glib::gobject_ffi::g_value_get_enum(value.to_glib_none().0))
+    }
+}
+
+impl ToValue for Easing {
     fn to_value(&self) -> glib::Value {
         let mut value = glib::Value::for_value_type::<Self>();
         unsafe {

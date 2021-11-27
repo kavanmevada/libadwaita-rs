@@ -3,6 +3,7 @@
 // from gir-files (https://github.com/gtk-rs/gir-files.git)
 // DO NOT EDIT
 
+use crate::AnimationState;
 use crate::AnimationTarget;
 use glib::object::Cast;
 use glib::object::IsA;
@@ -80,9 +81,9 @@ impl AnimationBuilder {
 }
 
 pub trait AnimationExt: 'static {
-    //#[doc(alias = "adw_animation_get_state")]
-    //#[doc(alias = "get_state")]
-    //fn state(&self) -> /*Ignored*/AnimationState;
+    #[doc(alias = "adw_animation_get_state")]
+    #[doc(alias = "get_state")]
+    fn state(&self) -> AnimationState;
 
     #[doc(alias = "adw_animation_get_target")]
     #[doc(alias = "get_target")]
@@ -127,9 +128,9 @@ pub trait AnimationExt: 'static {
 }
 
 impl<O: IsA<Animation>> AnimationExt for O {
-    //fn state(&self) -> /*Ignored*/AnimationState {
-    //    unsafe { TODO: call ffi:adw_animation_get_state() }
-    //}
+    fn state(&self) -> AnimationState {
+        unsafe { from_glib(ffi::adw_animation_get_state(self.as_ref().to_glib_none().0)) }
+    }
 
     fn target(&self) -> Option<AnimationTarget> {
         unsafe {
