@@ -147,10 +147,10 @@ impl SwipeTracker {
     }
 
     #[doc(alias = "end-swipe")]
-    pub fn connect_end_swipe<F: Fn(&Self, i64, f64) + 'static>(&self, f: F) -> SignalHandlerId {
-        unsafe extern "C" fn end_swipe_trampoline<F: Fn(&SwipeTracker, i64, f64) + 'static>(
+    pub fn connect_end_swipe<F: Fn(&Self, u32, f64) + 'static>(&self, f: F) -> SignalHandlerId {
+        unsafe extern "C" fn end_swipe_trampoline<F: Fn(&SwipeTracker, u32, f64) + 'static>(
             this: *mut ffi::AdwSwipeTracker,
-            duration: i64,
+            duration: libc::c_uint,
             to: libc::c_double,
             f: glib::ffi::gpointer,
         ) {
