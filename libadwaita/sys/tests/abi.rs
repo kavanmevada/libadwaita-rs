@@ -694,6 +694,7 @@ const RUST_CONSTANTS: &[(&str, &str)] = &[
     ("(gint) ADW_COLOR_SCHEME_FORCE_LIGHT", "1"),
     ("(gint) ADW_COLOR_SCHEME_PREFER_DARK", "3"),
     ("(gint) ADW_COLOR_SCHEME_PREFER_LIGHT", "2"),
+    ("ADW_DURATION_INFINITE", "4294967295"),
     ("(gint) ADW_EASE_IN_BACK", "25"),
     ("(gint) ADW_EASE_IN_BOUNCE", "28"),
     ("(gint) ADW_EASE_IN_CIRC", "19"),

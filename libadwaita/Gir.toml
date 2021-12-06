@@ -27,7 +27,6 @@ generate = [
     "Adw.ActionRow",
     "Adw.Animation",
     "Adw.AnimationState",
-    "Adw.AnimationTarget",
     "Adw.ApplicationWindow",
     "Adw.Avatar",
     "Adw.Bin",
@@ -55,7 +54,9 @@ generate = [
     "Adw.PreferencesPage",
     "Adw.PreferencesRow",
     "Adw.PreferencesWindow",
-    "Adw.SplitButton", 
+    "Adw.SplitButton",
+    "Adw.SpringAnimation",
+    "Adw.SpringParams",
     "Adw.Squeezer",
     "Adw.SqueezerTransitionType",
     "Adw.StatusPage",
@@ -142,6 +143,11 @@ status = "generate"
     [[object.function]]
     name = "get_enable_animations"
     rename = "is_animations_enabled"
+
+[[object]]
+name = "Adw.AnimationTarget"
+status = "generate"
+generate_builder = false
 
 [[object]]
 name = "Adw.Application"
