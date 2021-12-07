@@ -7,6 +7,7 @@ use crate::FoldThresholdPolicy;
 use crate::LeafletPage;
 use crate::LeafletTransitionType;
 use crate::NavigationDirection;
+use crate::SpringParams;
 use crate::Swipeable;
 use glib::object::Cast;
 use glib::object::IsA;
@@ -102,10 +103,14 @@ impl Leaflet {
         }
     }
 
-    #[doc(alias = "adw_leaflet_get_child_transition_duration")]
-    #[doc(alias = "get_child_transition_duration")]
-    pub fn child_transition_duration(&self) -> u32 {
-        unsafe { ffi::adw_leaflet_get_child_transition_duration(self.to_glib_none().0) }
+    #[doc(alias = "adw_leaflet_get_child_transition_params")]
+    #[doc(alias = "get_child_transition_params")]
+    pub fn child_transition_params(&self) -> Option<SpringParams> {
+        unsafe {
+            from_glib_full(ffi::adw_leaflet_get_child_transition_params(
+                self.to_glib_none().0,
+            ))
+        }
     }
 
     #[doc(alias = "adw_leaflet_get_child_transition_running")]
@@ -269,10 +274,13 @@ impl Leaflet {
         }
     }
 
-    #[doc(alias = "adw_leaflet_set_child_transition_duration")]
-    pub fn set_child_transition_duration(&self, duration: u32) {
+    #[doc(alias = "adw_leaflet_set_child_transition_params")]
+    pub fn set_child_transition_params(&self, params: &SpringParams) {
         unsafe {
-            ffi::adw_leaflet_set_child_transition_duration(self.to_glib_none().0, duration);
+            ffi::adw_leaflet_set_child_transition_params(
+                self.to_glib_none().0,
+                params.to_glib_none().0,
+            );
         }
     }
 
@@ -396,12 +404,12 @@ impl Leaflet {
         }
     }
 
-    #[doc(alias = "child-transition-duration")]
-    pub fn connect_child_transition_duration_notify<F: Fn(&Self) + 'static>(
+    #[doc(alias = "child-transition-params")]
+    pub fn connect_child_transition_params_notify<F: Fn(&Self) + 'static>(
         &self,
         f: F,
     ) -> SignalHandlerId {
-        unsafe extern "C" fn notify_child_transition_duration_trampoline<
+        unsafe extern "C" fn notify_child_transition_params_trampoline<
             F: Fn(&Leaflet) + 'static,
         >(
             this: *mut ffi::AdwLeaflet,
@@ -415,9 +423,9 @@ impl Leaflet {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
-                b"notify::child-transition-duration\0".as_ptr() as *const _,
+                b"notify::child-transition-params\0".as_ptr() as *const _,
                 Some(transmute::<_, unsafe extern "C" fn()>(
-                    notify_child_transition_duration_trampoline::<F> as *const (),
+                    notify_child_transition_params_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
             )
@@ -663,7 +671,7 @@ pub struct LeafletBuilder {
     can_navigate_back: Option<bool>,
     can_navigate_forward: Option<bool>,
     can_unfold: Option<bool>,
-    child_transition_duration: Option<u32>,
+    child_transition_params: Option<SpringParams>,
     fold_threshold_policy: Option<FoldThresholdPolicy>,
     homogeneous: Option<bool>,
     mode_transition_duration: Option<u32>,
@@ -724,8 +732,8 @@ impl LeafletBuilder {
         if let Some(ref can_unfold) = self.can_unfold {
             properties.push(("can-unfold", can_unfold));
         }
-        if let Some(ref child_transition_duration) = self.child_transition_duration {
-            properties.push(("child-transition-duration", child_transition_duration));
+        if let Some(ref child_transition_params) = self.child_transition_params {
+            properties.push(("child-transition-params", child_transition_params));
         }
         if let Some(ref fold_threshold_policy) = self.fold_threshold_policy {
             properties.push(("fold-threshold-policy", fold_threshold_policy));
@@ -856,8 +864,8 @@ impl LeafletBuilder {
         self
     }
 
-    pub fn child_transition_duration(mut self, child_transition_duration: u32) -> Self {
-        self.child_transition_duration = Some(child_transition_duration);
+    pub fn child_transition_params(mut self, child_transition_params: &SpringParams) -> Self {
+        self.child_transition_params = Some(child_transition_params.clone());
         self
     }
 

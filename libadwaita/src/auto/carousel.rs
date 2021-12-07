@@ -3,6 +3,7 @@
 // from gir-files (https://github.com/gtk-rs/gir-files.git)
 // DO NOT EDIT
 
+use crate::SpringParams;
 use crate::Swipeable;
 use glib::object::Cast;
 use glib::object::IsA;
@@ -77,12 +78,6 @@ impl Carousel {
         }
     }
 
-    #[doc(alias = "adw_carousel_get_animation_duration")]
-    #[doc(alias = "get_animation_duration")]
-    pub fn animation_duration(&self) -> u32 {
-        unsafe { ffi::adw_carousel_get_animation_duration(self.to_glib_none().0) }
-    }
-
     #[doc(alias = "adw_carousel_get_interactive")]
     #[doc(alias = "get_interactive")]
     pub fn is_interactive(&self) -> bool {
@@ -111,6 +106,12 @@ impl Carousel {
     #[doc(alias = "get_reveal_duration")]
     pub fn reveal_duration(&self) -> u32 {
         unsafe { ffi::adw_carousel_get_reveal_duration(self.to_glib_none().0) }
+    }
+
+    #[doc(alias = "adw_carousel_get_scroll_params")]
+    #[doc(alias = "get_scroll_params")]
+    pub fn scroll_params(&self) -> Option<SpringParams> {
+        unsafe { from_glib_full(ffi::adw_carousel_get_scroll_params(self.to_glib_none().0)) }
     }
 
     #[doc(alias = "adw_carousel_get_spacing")]
@@ -156,19 +157,12 @@ impl Carousel {
     }
 
     #[doc(alias = "adw_carousel_scroll_to")]
-    pub fn scroll_to(&self, widget: &impl IsA<gtk::Widget>) {
+    pub fn scroll_to(&self, widget: &impl IsA<gtk::Widget>, animate: bool) {
         unsafe {
-            ffi::adw_carousel_scroll_to(self.to_glib_none().0, widget.as_ref().to_glib_none().0);
-        }
-    }
-
-    #[doc(alias = "adw_carousel_scroll_to_full")]
-    pub fn scroll_to_full(&self, widget: &impl IsA<gtk::Widget>, duration: u32) {
-        unsafe {
-            ffi::adw_carousel_scroll_to_full(
+            ffi::adw_carousel_scroll_to(
                 self.to_glib_none().0,
                 widget.as_ref().to_glib_none().0,
-                duration,
+                animate.into_glib(),
             );
         }
     }
@@ -203,13 +197,6 @@ impl Carousel {
         }
     }
 
-    #[doc(alias = "adw_carousel_set_animation_duration")]
-    pub fn set_animation_duration(&self, duration: u32) {
-        unsafe {
-            ffi::adw_carousel_set_animation_duration(self.to_glib_none().0, duration);
-        }
-    }
-
     #[doc(alias = "adw_carousel_set_interactive")]
     pub fn set_interactive(&self, interactive: bool) {
         unsafe {
@@ -221,6 +208,13 @@ impl Carousel {
     pub fn set_reveal_duration(&self, reveal_duration: u32) {
         unsafe {
             ffi::adw_carousel_set_reveal_duration(self.to_glib_none().0, reveal_duration);
+        }
+    }
+
+    #[doc(alias = "adw_carousel_set_scroll_params")]
+    pub fn set_scroll_params(&self, params: &SpringParams) {
+        unsafe {
+            ffi::adw_carousel_set_scroll_params(self.to_glib_none().0, params.to_glib_none().0);
         }
     }
 
@@ -329,32 +323,6 @@ impl Carousel {
         }
     }
 
-    #[doc(alias = "animation-duration")]
-    pub fn connect_animation_duration_notify<F: Fn(&Self) + 'static>(
-        &self,
-        f: F,
-    ) -> SignalHandlerId {
-        unsafe extern "C" fn notify_animation_duration_trampoline<F: Fn(&Carousel) + 'static>(
-            this: *mut ffi::AdwCarousel,
-            _param_spec: glib::ffi::gpointer,
-            f: glib::ffi::gpointer,
-        ) {
-            let f: &F = &*(f as *const F);
-            f(&from_glib_borrow(this))
-        }
-        unsafe {
-            let f: Box_<F> = Box_::new(f);
-            connect_raw(
-                self.as_ptr() as *mut _,
-                b"notify::animation-duration\0".as_ptr() as *const _,
-                Some(transmute::<_, unsafe extern "C" fn()>(
-                    notify_animation_duration_trampoline::<F> as *const (),
-                )),
-                Box_::into_raw(f),
-            )
-        }
-    }
-
     #[doc(alias = "interactive")]
     pub fn connect_interactive_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_interactive_trampoline<F: Fn(&Carousel) + 'static>(
@@ -447,6 +415,29 @@ impl Carousel {
         }
     }
 
+    #[doc(alias = "scroll-params")]
+    pub fn connect_scroll_params_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
+        unsafe extern "C" fn notify_scroll_params_trampoline<F: Fn(&Carousel) + 'static>(
+            this: *mut ffi::AdwCarousel,
+            _param_spec: glib::ffi::gpointer,
+            f: glib::ffi::gpointer,
+        ) {
+            let f: &F = &*(f as *const F);
+            f(&from_glib_borrow(this))
+        }
+        unsafe {
+            let f: Box_<F> = Box_::new(f);
+            connect_raw(
+                self.as_ptr() as *mut _,
+                b"notify::scroll-params\0".as_ptr() as *const _,
+                Some(transmute::<_, unsafe extern "C" fn()>(
+                    notify_scroll_params_trampoline::<F> as *const (),
+                )),
+                Box_::into_raw(f),
+            )
+        }
+    }
+
     #[doc(alias = "spacing")]
     pub fn connect_spacing_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_spacing_trampoline<F: Fn(&Carousel) + 'static>(
@@ -486,9 +477,9 @@ pub struct CarouselBuilder {
     allow_long_swipes: Option<bool>,
     allow_mouse_drag: Option<bool>,
     allow_scroll_wheel: Option<bool>,
-    animation_duration: Option<u32>,
     interactive: Option<bool>,
     reveal_duration: Option<u32>,
+    scroll_params: Option<SpringParams>,
     spacing: Option<u32>,
     can_focus: Option<bool>,
     can_target: Option<bool>,
@@ -544,14 +535,14 @@ impl CarouselBuilder {
         if let Some(ref allow_scroll_wheel) = self.allow_scroll_wheel {
             properties.push(("allow-scroll-wheel", allow_scroll_wheel));
         }
-        if let Some(ref animation_duration) = self.animation_duration {
-            properties.push(("animation-duration", animation_duration));
-        }
         if let Some(ref interactive) = self.interactive {
             properties.push(("interactive", interactive));
         }
         if let Some(ref reveal_duration) = self.reveal_duration {
             properties.push(("reveal-duration", reveal_duration));
+        }
+        if let Some(ref scroll_params) = self.scroll_params {
+            properties.push(("scroll-params", scroll_params));
         }
         if let Some(ref spacing) = self.spacing {
             properties.push(("spacing", spacing));
@@ -668,11 +659,6 @@ impl CarouselBuilder {
         self
     }
 
-    pub fn animation_duration(mut self, animation_duration: u32) -> Self {
-        self.animation_duration = Some(animation_duration);
-        self
-    }
-
     pub fn interactive(mut self, interactive: bool) -> Self {
         self.interactive = Some(interactive);
         self
@@ -680,6 +666,11 @@ impl CarouselBuilder {
 
     pub fn reveal_duration(mut self, reveal_duration: u32) -> Self {
         self.reveal_duration = Some(reveal_duration);
+        self
+    }
+
+    pub fn scroll_params(mut self, scroll_params: &SpringParams) -> Self {
+        self.scroll_params = Some(scroll_params.clone());
         self
     }
 

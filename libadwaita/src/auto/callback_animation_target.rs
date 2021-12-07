@@ -4,6 +4,9 @@
 // DO NOT EDIT
 
 use crate::AnimationTarget;
+use glib::object::Cast;
+use glib::translate::*;
+use std::boxed::Box as Box_;
 use std::fmt;
 
 glib::wrapper! {
@@ -12,6 +15,41 @@ glib::wrapper! {
 
     match fn {
         type_ => || ffi::adw_callback_animation_target_get_type(),
+    }
+}
+
+impl CallbackAnimationTarget {
+    #[doc(alias = "adw_callback_animation_target_new")]
+    pub fn new(callback: Option<Box_<dyn Fn(f64) + 'static>>) -> CallbackAnimationTarget {
+        assert_initialized_main_thread!();
+        let callback_data: Box_<Option<Box_<dyn Fn(f64) + 'static>>> = Box_::new(callback);
+        unsafe extern "C" fn callback_func(value: libc::c_double, user_data: glib::ffi::gpointer) {
+            let callback: &Option<Box_<dyn Fn(f64) + 'static>> = &*(user_data as *mut _);
+            if let Some(ref callback) = *callback {
+                callback(value)
+            } else {
+                panic!("cannot get closure...")
+            };
+        }
+        let callback = if callback_data.is_some() {
+            Some(callback_func as _)
+        } else {
+            None
+        };
+        unsafe extern "C" fn destroy_func(data: glib::ffi::gpointer) {
+            let _callback: Box_<Option<Box_<dyn Fn(f64) + 'static>>> =
+                Box_::from_raw(data as *mut _);
+        }
+        let destroy_call2 = Some(destroy_func as _);
+        let super_callback0: Box_<Option<Box_<dyn Fn(f64) + 'static>>> = callback_data;
+        unsafe {
+            AnimationTarget::from_glib_full(ffi::adw_callback_animation_target_new(
+                callback,
+                Box_::into_raw(super_callback0) as *mut _,
+                destroy_call2,
+            ))
+            .unsafe_cast()
+        }
     }
 }
 

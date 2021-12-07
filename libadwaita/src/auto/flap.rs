@@ -6,6 +6,7 @@
 use crate::FlapFoldPolicy;
 use crate::FlapTransitionType;
 use crate::FoldThresholdPolicy;
+use crate::SpringParams;
 use crate::Swipeable;
 use glib::object::Cast;
 use glib::object::IsA;
@@ -101,16 +102,16 @@ impl Flap {
         unsafe { from_glib(ffi::adw_flap_get_modal(self.to_glib_none().0)) }
     }
 
-    #[doc(alias = "adw_flap_get_reveal_duration")]
-    #[doc(alias = "get_reveal_duration")]
-    pub fn reveal_duration(&self) -> u32 {
-        unsafe { ffi::adw_flap_get_reveal_duration(self.to_glib_none().0) }
-    }
-
     #[doc(alias = "adw_flap_get_reveal_flap")]
     #[doc(alias = "get_reveal_flap")]
     pub fn reveals_flap(&self) -> bool {
         unsafe { from_glib(ffi::adw_flap_get_reveal_flap(self.to_glib_none().0)) }
+    }
+
+    #[doc(alias = "adw_flap_get_reveal_params")]
+    #[doc(alias = "get_reveal_params")]
+    pub fn reveal_params(&self) -> Option<SpringParams> {
+        unsafe { from_glib_full(ffi::adw_flap_get_reveal_params(self.to_glib_none().0)) }
     }
 
     #[doc(alias = "adw_flap_get_reveal_progress")]
@@ -205,17 +206,17 @@ impl Flap {
         }
     }
 
-    #[doc(alias = "adw_flap_set_reveal_duration")]
-    pub fn set_reveal_duration(&self, duration: u32) {
-        unsafe {
-            ffi::adw_flap_set_reveal_duration(self.to_glib_none().0, duration);
-        }
-    }
-
     #[doc(alias = "adw_flap_set_reveal_flap")]
     pub fn set_reveal_flap(&self, reveal_flap: bool) {
         unsafe {
             ffi::adw_flap_set_reveal_flap(self.to_glib_none().0, reveal_flap.into_glib());
+        }
+    }
+
+    #[doc(alias = "adw_flap_set_reveal_params")]
+    pub fn set_reveal_params(&self, params: &SpringParams) {
+        unsafe {
+            ffi::adw_flap_set_reveal_params(self.to_glib_none().0, params.to_glib_none().0);
         }
     }
 
@@ -460,29 +461,6 @@ impl Flap {
         }
     }
 
-    #[doc(alias = "reveal-duration")]
-    pub fn connect_reveal_duration_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
-        unsafe extern "C" fn notify_reveal_duration_trampoline<F: Fn(&Flap) + 'static>(
-            this: *mut ffi::AdwFlap,
-            _param_spec: glib::ffi::gpointer,
-            f: glib::ffi::gpointer,
-        ) {
-            let f: &F = &*(f as *const F);
-            f(&from_glib_borrow(this))
-        }
-        unsafe {
-            let f: Box_<F> = Box_::new(f);
-            connect_raw(
-                self.as_ptr() as *mut _,
-                b"notify::reveal-duration\0".as_ptr() as *const _,
-                Some(transmute::<_, unsafe extern "C" fn()>(
-                    notify_reveal_duration_trampoline::<F> as *const (),
-                )),
-                Box_::into_raw(f),
-            )
-        }
-    }
-
     #[doc(alias = "reveal-flap")]
     pub fn connect_reveal_flap_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_reveal_flap_trampoline<F: Fn(&Flap) + 'static>(
@@ -500,6 +478,29 @@ impl Flap {
                 b"notify::reveal-flap\0".as_ptr() as *const _,
                 Some(transmute::<_, unsafe extern "C" fn()>(
                     notify_reveal_flap_trampoline::<F> as *const (),
+                )),
+                Box_::into_raw(f),
+            )
+        }
+    }
+
+    #[doc(alias = "reveal-params")]
+    pub fn connect_reveal_params_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
+        unsafe extern "C" fn notify_reveal_params_trampoline<F: Fn(&Flap) + 'static>(
+            this: *mut ffi::AdwFlap,
+            _param_spec: glib::ffi::gpointer,
+            f: glib::ffi::gpointer,
+        ) {
+            let f: &F = &*(f as *const F);
+            f(&from_glib_borrow(this))
+        }
+        unsafe {
+            let f: Box_<F> = Box_::new(f);
+            connect_raw(
+                self.as_ptr() as *mut _,
+                b"notify::reveal-params\0".as_ptr() as *const _,
+                Some(transmute::<_, unsafe extern "C" fn()>(
+                    notify_reveal_params_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
             )
@@ -642,8 +643,8 @@ pub struct FlapBuilder {
     fold_threshold_policy: Option<FoldThresholdPolicy>,
     locked: Option<bool>,
     modal: Option<bool>,
-    reveal_duration: Option<u32>,
     reveal_flap: Option<bool>,
+    reveal_params: Option<SpringParams>,
     separator: Option<gtk::Widget>,
     swipe_to_close: Option<bool>,
     swipe_to_open: Option<bool>,
@@ -717,11 +718,11 @@ impl FlapBuilder {
         if let Some(ref modal) = self.modal {
             properties.push(("modal", modal));
         }
-        if let Some(ref reveal_duration) = self.reveal_duration {
-            properties.push(("reveal-duration", reveal_duration));
-        }
         if let Some(ref reveal_flap) = self.reveal_flap {
             properties.push(("reveal-flap", reveal_flap));
+        }
+        if let Some(ref reveal_params) = self.reveal_params {
+            properties.push(("reveal-params", reveal_params));
         }
         if let Some(ref separator) = self.separator {
             properties.push(("separator", separator));
@@ -871,13 +872,13 @@ impl FlapBuilder {
         self
     }
 
-    pub fn reveal_duration(mut self, reveal_duration: u32) -> Self {
-        self.reveal_duration = Some(reveal_duration);
+    pub fn reveal_flap(mut self, reveal_flap: bool) -> Self {
+        self.reveal_flap = Some(reveal_flap);
         self
     }
 
-    pub fn reveal_flap(mut self, reveal_flap: bool) -> Self {
-        self.reveal_flap = Some(reveal_flap);
+    pub fn reveal_params(mut self, reveal_params: &SpringParams) -> Self {
+        self.reveal_params = Some(reveal_params.clone());
         self
     }
 

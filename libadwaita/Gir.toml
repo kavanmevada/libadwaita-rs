@@ -27,7 +27,6 @@ generate = [
     "Adw.ActionRow",
     "Adw.Animation",
     "Adw.AnimationState",
-    "Adw.AnimationTarget",
     "Adw.ApplicationWindow",
     "Adw.Avatar",
     "Adw.Bin",
@@ -55,7 +54,9 @@ generate = [
     "Adw.PreferencesPage",
     "Adw.PreferencesRow",
     "Adw.PreferencesWindow",
-    "Adw.SplitButton", 
+    "Adw.SplitButton",
+    "Adw.SpringAnimation",
+    "Adw.SpringParams",
     "Adw.Squeezer",
     "Adw.SqueezerTransitionType",
     "Adw.StatusPage",
@@ -144,6 +145,11 @@ status = "generate"
     rename = "is_animations_enabled"
 
 [[object]]
+name = "Adw.AnimationTarget"
+status = "generate"
+generate_builder = false
+
+[[object]]
 name = "Adw.Application"
 status = "generate"
 builder_postprocess = "Application::register_startup_hook(&ret);"
@@ -162,9 +168,6 @@ trait_name = "AdwApplicationExt"
 name = "Adw.CallbackAnimationTarget"
 status = "generate"
 generate_builder = false
-    [[object.function]]
-    name = "new" # can't be generated manually
-    manual = true
 
 [[object]]
 name = "Adw.ComboRow"

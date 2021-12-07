@@ -87,6 +87,9 @@ pub use self::preferences_window::PreferencesWindow;
 mod split_button;
 pub use self::split_button::SplitButton;
 
+mod spring_animation;
+pub use self::spring_animation::SpringAnimation;
+
 mod squeezer;
 pub use self::squeezer::Squeezer;
 
@@ -144,6 +147,9 @@ pub use self::window::Window;
 mod window_title;
 pub use self::window_title::WindowTitle;
 
+mod spring_params;
+pub use self::spring_params::SpringParams;
+
 mod enums;
 pub use self::enums::AnimationState;
 pub use self::enums::CenteringPolicy;
@@ -200,6 +206,7 @@ pub mod builders {
     pub use super::preferences_row::PreferencesRowBuilder;
     pub use super::preferences_window::PreferencesWindowBuilder;
     pub use super::split_button::SplitButtonBuilder;
+    pub use super::spring_animation::SpringAnimationBuilder;
     pub use super::squeezer::SqueezerBuilder;
     pub use super::status_page::StatusPageBuilder;
     pub use super::swipe_tracker::SwipeTrackerBuilder;

@@ -113,7 +113,6 @@ macro_rules! skip_assert_initialized {
 mod auto;
 
 mod application;
-mod callback_animation_target;
 mod combo_row;
 mod tab_bar;
 

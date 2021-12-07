@@ -108,9 +108,10 @@ pub const ADW_VIEW_SWITCHER_POLICY_NARROW: AdwViewSwitcherPolicy = 0;
 pub const ADW_VIEW_SWITCHER_POLICY_WIDE: AdwViewSwitcherPolicy = 1;
 
 // Constants
+pub const ADW_DURATION_INFINITE: c_uint = 4294967295;
 
 // Callbacks
-pub type AdwAnimationTargetFunc = Option<unsafe extern "C" fn(gpointer, c_double)>;
+pub type AdwAnimationTargetFunc = Option<unsafe extern "C" fn(c_double, gpointer)>;
 
 // Records
 #[derive(Copy, Clone)]
@@ -494,6 +495,27 @@ impl ::std::fmt::Debug for AdwSplitButtonClass {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
         f.debug_struct(&format!("AdwSplitButtonClass @ {:p}", self))
             .field("parent_class", &self.parent_class)
+            .finish()
+    }
+}
+
+#[repr(C)]
+pub struct _AdwSpringAnimationClass {
+    _data: [u8; 0],
+    _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
+}
+
+pub type AdwSpringAnimationClass = *mut _AdwSpringAnimationClass;
+
+#[repr(C)]
+pub struct AdwSpringParams {
+    _data: [u8; 0],
+    _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
+}
+
+impl ::std::fmt::Debug for AdwSpringParams {
+    fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+        f.debug_struct(&format!("AdwSpringParams @ {:p}", self))
             .finish()
     }
 }
@@ -1151,6 +1173,19 @@ impl ::std::fmt::Debug for AdwSplitButton {
 }
 
 #[repr(C)]
+pub struct AdwSpringAnimation {
+    _data: [u8; 0],
+    _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
+}
+
+impl ::std::fmt::Debug for AdwSpringAnimation {
+    fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+        f.debug_struct(&format!("AdwSpringAnimation @ {:p}", self))
+            .finish()
+    }
+}
+
+#[repr(C)]
 pub struct AdwSqueezer {
     _data: [u8; 0],
     _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
@@ -1459,6 +1494,27 @@ extern "C" {
     pub fn adw_view_switcher_policy_get_type() -> GType;
 
     //=========================================================================
+    // AdwSpringParams
+    //=========================================================================
+    pub fn adw_spring_params_get_type() -> GType;
+    pub fn adw_spring_params_new(
+        damping_ratio: c_double,
+        mass: c_double,
+        stiffness: c_double,
+    ) -> *mut AdwSpringParams;
+    pub fn adw_spring_params_new_full(
+        damping: c_double,
+        mass: c_double,
+        stiffness: c_double,
+    ) -> *mut AdwSpringParams;
+    pub fn adw_spring_params_get_damping(self_: *mut AdwSpringParams) -> c_double;
+    pub fn adw_spring_params_get_damping_ratio(self_: *mut AdwSpringParams) -> c_double;
+    pub fn adw_spring_params_get_mass(self_: *mut AdwSpringParams) -> c_double;
+    pub fn adw_spring_params_get_stiffness(self_: *mut AdwSpringParams) -> c_double;
+    pub fn adw_spring_params_ref(self_: *mut AdwSpringParams) -> *mut AdwSpringParams;
+    pub fn adw_spring_params_unref(self_: *mut AdwSpringParams);
+
+    //=========================================================================
     // AdwActionRow
     //=========================================================================
     pub fn adw_action_row_get_type() -> GType;
@@ -1589,12 +1645,12 @@ extern "C" {
     pub fn adw_carousel_get_allow_long_swipes(self_: *mut AdwCarousel) -> gboolean;
     pub fn adw_carousel_get_allow_mouse_drag(self_: *mut AdwCarousel) -> gboolean;
     pub fn adw_carousel_get_allow_scroll_wheel(self_: *mut AdwCarousel) -> gboolean;
-    pub fn adw_carousel_get_animation_duration(self_: *mut AdwCarousel) -> c_uint;
     pub fn adw_carousel_get_interactive(self_: *mut AdwCarousel) -> gboolean;
     pub fn adw_carousel_get_n_pages(self_: *mut AdwCarousel) -> c_uint;
     pub fn adw_carousel_get_nth_page(self_: *mut AdwCarousel, n: c_uint) -> *mut gtk::GtkWidget;
     pub fn adw_carousel_get_position(self_: *mut AdwCarousel) -> c_double;
     pub fn adw_carousel_get_reveal_duration(self_: *mut AdwCarousel) -> c_uint;
+    pub fn adw_carousel_get_scroll_params(self_: *mut AdwCarousel) -> *mut AdwSpringParams;
     pub fn adw_carousel_get_spacing(self_: *mut AdwCarousel) -> c_uint;
     pub fn adw_carousel_insert(
         self_: *mut AdwCarousel,
@@ -1608,11 +1664,10 @@ extern "C" {
         child: *mut gtk::GtkWidget,
         position: c_int,
     );
-    pub fn adw_carousel_scroll_to(self_: *mut AdwCarousel, widget: *mut gtk::GtkWidget);
-    pub fn adw_carousel_scroll_to_full(
+    pub fn adw_carousel_scroll_to(
         self_: *mut AdwCarousel,
         widget: *mut gtk::GtkWidget,
-        duration: c_uint,
+        animate: gboolean,
     );
     pub fn adw_carousel_set_allow_long_swipes(self_: *mut AdwCarousel, allow_long_swipes: gboolean);
     pub fn adw_carousel_set_allow_mouse_drag(self_: *mut AdwCarousel, allow_mouse_drag: gboolean);
@@ -1620,9 +1675,9 @@ extern "C" {
         self_: *mut AdwCarousel,
         allow_scroll_wheel: gboolean,
     );
-    pub fn adw_carousel_set_animation_duration(self_: *mut AdwCarousel, duration: c_uint);
     pub fn adw_carousel_set_interactive(self_: *mut AdwCarousel, interactive: gboolean);
     pub fn adw_carousel_set_reveal_duration(self_: *mut AdwCarousel, reveal_duration: c_uint);
+    pub fn adw_carousel_set_scroll_params(self_: *mut AdwCarousel, params: *mut AdwSpringParams);
     pub fn adw_carousel_set_spacing(self_: *mut AdwCarousel, spacing: c_uint);
 
     //=========================================================================
@@ -1781,8 +1836,8 @@ extern "C" {
     pub fn adw_flap_get_folded(self_: *mut AdwFlap) -> gboolean;
     pub fn adw_flap_get_locked(self_: *mut AdwFlap) -> gboolean;
     pub fn adw_flap_get_modal(self_: *mut AdwFlap) -> gboolean;
-    pub fn adw_flap_get_reveal_duration(self_: *mut AdwFlap) -> c_uint;
     pub fn adw_flap_get_reveal_flap(self_: *mut AdwFlap) -> gboolean;
+    pub fn adw_flap_get_reveal_params(self_: *mut AdwFlap) -> *mut AdwSpringParams;
     pub fn adw_flap_get_reveal_progress(self_: *mut AdwFlap) -> c_double;
     pub fn adw_flap_get_separator(self_: *mut AdwFlap) -> *mut gtk::GtkWidget;
     pub fn adw_flap_get_swipe_to_close(self_: *mut AdwFlap) -> gboolean;
@@ -1796,8 +1851,8 @@ extern "C" {
     pub fn adw_flap_set_fold_threshold_policy(self_: *mut AdwFlap, policy: AdwFoldThresholdPolicy);
     pub fn adw_flap_set_locked(self_: *mut AdwFlap, locked: gboolean);
     pub fn adw_flap_set_modal(self_: *mut AdwFlap, modal: gboolean);
-    pub fn adw_flap_set_reveal_duration(self_: *mut AdwFlap, duration: c_uint);
     pub fn adw_flap_set_reveal_flap(self_: *mut AdwFlap, reveal_flap: gboolean);
+    pub fn adw_flap_set_reveal_params(self_: *mut AdwFlap, params: *mut AdwSpringParams);
     pub fn adw_flap_set_separator(self_: *mut AdwFlap, separator: *mut gtk::GtkWidget);
     pub fn adw_flap_set_swipe_to_close(self_: *mut AdwFlap, swipe_to_close: gboolean);
     pub fn adw_flap_set_swipe_to_open(self_: *mut AdwFlap, swipe_to_open: gboolean);
@@ -1851,7 +1906,7 @@ extern "C" {
         self_: *mut AdwLeaflet,
         name: *const c_char,
     ) -> *mut gtk::GtkWidget;
-    pub fn adw_leaflet_get_child_transition_duration(self_: *mut AdwLeaflet) -> c_uint;
+    pub fn adw_leaflet_get_child_transition_params(self_: *mut AdwLeaflet) -> *mut AdwSpringParams;
     pub fn adw_leaflet_get_child_transition_running(self_: *mut AdwLeaflet) -> gboolean;
     pub fn adw_leaflet_get_fold_threshold_policy(self_: *mut AdwLeaflet) -> AdwFoldThresholdPolicy;
     pub fn adw_leaflet_get_folded(self_: *mut AdwLeaflet) -> gboolean;
@@ -1890,7 +1945,10 @@ extern "C" {
         can_navigate_forward: gboolean,
     );
     pub fn adw_leaflet_set_can_unfold(self_: *mut AdwLeaflet, can_unfold: gboolean);
-    pub fn adw_leaflet_set_child_transition_duration(self_: *mut AdwLeaflet, duration: c_uint);
+    pub fn adw_leaflet_set_child_transition_params(
+        self_: *mut AdwLeaflet,
+        params: *mut AdwSpringParams,
+    );
     pub fn adw_leaflet_set_fold_threshold_policy(
         self_: *mut AdwLeaflet,
         policy: AdwFoldThresholdPolicy,
@@ -2046,6 +2104,40 @@ extern "C" {
     );
     pub fn adw_split_button_set_popover(self_: *mut AdwSplitButton, popover: *mut gtk::GtkPopover);
     pub fn adw_split_button_set_use_underline(self_: *mut AdwSplitButton, use_underline: gboolean);
+
+    //=========================================================================
+    // AdwSpringAnimation
+    //=========================================================================
+    pub fn adw_spring_animation_get_type() -> GType;
+    pub fn adw_spring_animation_new(
+        widget: *mut gtk::GtkWidget,
+        from: c_double,
+        to: c_double,
+        spring_params: *mut AdwSpringParams,
+        target: *mut AdwAnimationTarget,
+    ) -> *mut AdwAnimation;
+    pub fn adw_spring_animation_get_clamp(self_: *mut AdwSpringAnimation) -> gboolean;
+    pub fn adw_spring_animation_get_epsilon(self_: *mut AdwSpringAnimation) -> c_double;
+    pub fn adw_spring_animation_get_estimated_duration(self_: *mut AdwSpringAnimation) -> c_uint;
+    pub fn adw_spring_animation_get_initial_velocity(self_: *mut AdwSpringAnimation) -> c_double;
+    pub fn adw_spring_animation_get_spring_params(
+        self_: *mut AdwSpringAnimation,
+    ) -> *mut AdwSpringParams;
+    pub fn adw_spring_animation_get_value_from(self_: *mut AdwSpringAnimation) -> c_double;
+    pub fn adw_spring_animation_get_value_to(self_: *mut AdwSpringAnimation) -> c_double;
+    pub fn adw_spring_animation_get_velocity(self_: *mut AdwSpringAnimation) -> c_double;
+    pub fn adw_spring_animation_set_clamp(self_: *mut AdwSpringAnimation, clamp: gboolean);
+    pub fn adw_spring_animation_set_epsilon(self_: *mut AdwSpringAnimation, epsilon: c_double);
+    pub fn adw_spring_animation_set_initial_velocity(
+        self_: *mut AdwSpringAnimation,
+        velocity: c_double,
+    );
+    pub fn adw_spring_animation_set_spring_params(
+        self_: *mut AdwSpringAnimation,
+        spring_params: *mut AdwSpringParams,
+    );
+    pub fn adw_spring_animation_set_value_from(self_: *mut AdwSpringAnimation, value: c_double);
+    pub fn adw_spring_animation_set_value_to(self_: *mut AdwSpringAnimation, value: c_double);
 
     //=========================================================================
     // AdwSqueezer
