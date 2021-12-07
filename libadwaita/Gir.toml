@@ -168,9 +168,6 @@ trait_name = "AdwApplicationExt"
 name = "Adw.CallbackAnimationTarget"
 status = "generate"
 generate_builder = false
-    [[object.function]]
-    name = "new" # can't be generated manually
-    manual = true
 
 [[object]]
 name = "Adw.ComboRow"
