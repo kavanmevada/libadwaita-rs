@@ -558,7 +558,7 @@ impl WindowBuilder {
     }
 }
 
-pub trait WindowExt: 'static {
+pub trait AdwWindowExt: 'static {
     #[doc(alias = "adw_window_get_content")]
     #[doc(alias = "get_content")]
     fn content(&self) -> Option<gtk::Widget>;
@@ -570,7 +570,7 @@ pub trait WindowExt: 'static {
     fn connect_content_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
 }
 
-impl<O: IsA<Window>> WindowExt for O {
+impl<O: IsA<Window>> AdwWindowExt for O {
     fn content(&self) -> Option<gtk::Widget> {
         unsafe { from_glib_none(ffi::adw_window_get_content(self.as_ref().to_glib_none().0)) }
     }

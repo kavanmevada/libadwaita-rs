@@ -27,7 +27,6 @@ generate = [
     "Adw.ActionRow",
     "Adw.Animation",
     "Adw.AnimationState",
-    "Adw.ApplicationWindow",
     "Adw.Avatar",
     "Adw.Bin",
     "Adw.ButtonContent",
@@ -70,7 +69,6 @@ generate = [
     "Adw.ViewSwitcherBar",
     "Adw.ViewSwitcherPolicy",
     "Adw.ViewSwitcherTitle",
-    "Adw.Window",
     "Adw.WindowTitle",
 ]
 
@@ -165,6 +163,11 @@ trait_name = "AdwApplicationExt"
         nullable = false
 
 [[object]]
+name = "Adw.ApplicationWindow"
+status = "generate"
+trait_name = "AdwApplicationWindowExt"
+
+[[object]]
 name = "Adw.CallbackAnimationTarget"
 status = "generate"
 generate_builder = false
@@ -233,3 +236,8 @@ generate_builder = false
 name = "Adw.ViewStackPage"
 status = "generate"
 generate_builder = false
+
+[[object]]
+name = "Adw.Window"
+status = "generate"
+trait_name = "AdwWindowExt"
