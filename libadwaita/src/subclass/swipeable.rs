@@ -16,7 +16,7 @@ pub trait SwipeableImpl: WidgetImpl {
         self.parent_progress(swipeable)
     }
 
-    fn snap_points(&self, swipeable: &Self::Type) -> Vec<f64> {
+    fn snap_points(&self, swipeable: &Self::Type) -> &[f64] {
         self.parent_snap_points(swipeable)
     }
 
@@ -34,7 +34,7 @@ pub trait SwipeableImplExt: ObjectSubclass {
     fn parent_cancel_progress(&self, swipeable: &Self::Type) -> f64;
     fn parent_distance(&self, swipeable: &Self::Type) -> f64;
     fn parent_progress(&self, swipeable: &Self::Type) -> f64;
-    fn parent_snap_points(&self, swipeable: &Self::Type) -> Vec<f64>;
+    fn parent_snap_points(&self, swipeable: &Self::Type) -> &[f64];
     fn parent_swipe_area(
         &self,
         swipeable: &Self::Type,
@@ -86,13 +86,12 @@ impl<T: SwipeableImpl> SwipeableImplExt for T {
         }
     }
 
-    fn parent_snap_points(&self, swipeable: &Self::Type) -> Vec<f64> {
+    fn parent_snap_points(&self, swipeable: &Self::Type) -> &[f64] {
         unsafe {
             let type_data = Self::type_data();
             let parent_iface = type_data.as_ref().parent_interface::<Swipeable>()
                 as *const ffi::AdwSwipeableInterface;
 
-            // gtk::Builder falls back to using ObjectExt::set_property if the method is not implemented
             let func = (*parent_iface)
                 .get_snap_points
                 .expect("no parent \"get_snap_points\" implementation");
@@ -104,7 +103,7 @@ impl<T: SwipeableImpl> SwipeableImplExt for T {
                 n_points.as_mut_ptr(),
             );
 
-            FromGlibContainer::from_glib_none_num(points, n_points.assume_init() as usize)
+            std::slice::from_raw_parts(points, n_points.assume_init() as usize)
         }
     }
 
