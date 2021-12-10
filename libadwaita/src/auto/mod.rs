@@ -171,7 +171,7 @@ pub mod traits {
     pub use super::action_row::ActionRowExt;
     pub use super::animation::AnimationExt;
     pub use super::application::AdwApplicationExt;
-    pub use super::application_window::ApplicationWindowExt;
+    pub use super::application_window::AdwApplicationWindowExt;
     pub use super::bin::BinExt;
     pub use super::combo_row::ComboRowExt;
     pub use super::expander_row::ExpanderRowExt;
@@ -180,7 +180,7 @@ pub mod traits {
     pub use super::preferences_row::PreferencesRowExt;
     pub use super::preferences_window::PreferencesWindowExt;
     pub use super::swipeable::SwipeableExt;
-    pub use super::window::WindowExt;
+    pub use super::window::AdwWindowExt;
 }
 #[doc(hidden)]
 pub mod builders {
