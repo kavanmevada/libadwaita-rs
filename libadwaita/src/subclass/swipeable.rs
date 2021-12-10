@@ -150,7 +150,7 @@ unsafe impl<T: SwipeableImpl> IsImplementable<T> for Swipeable {
 
 unsafe extern "C" fn swipeable_get_cancel_progress<T: SwipeableImpl>(
     swipeable: *mut ffi::AdwSwipeable,
-) -> libc::c_double {
+) -> f64 {
     let instance = &*(swipeable as *mut T::Instance);
     let imp = instance.impl_();
 
@@ -159,7 +159,7 @@ unsafe extern "C" fn swipeable_get_cancel_progress<T: SwipeableImpl>(
 
 unsafe extern "C" fn swipeable_get_distance<T: SwipeableImpl>(
     swipeable: *mut ffi::AdwSwipeable,
-) -> libc::c_double {
+) -> f64 {
     let instance = &*(swipeable as *mut T::Instance);
     let imp = instance.impl_();
 
@@ -168,7 +168,7 @@ unsafe extern "C" fn swipeable_get_distance<T: SwipeableImpl>(
 
 unsafe extern "C" fn swipeable_get_progress<T: SwipeableImpl>(
     swipeable: *mut ffi::AdwSwipeable,
-) -> libc::c_double {
+) -> f64 {
     let instance = &*(swipeable as *mut T::Instance);
     let imp = instance.impl_();
 
@@ -178,7 +178,7 @@ unsafe extern "C" fn swipeable_get_progress<T: SwipeableImpl>(
 unsafe extern "C" fn swipeable_get_snap_points<T: SwipeableImpl>(
     swipeable: *mut ffi::AdwSwipeable,
     n_pointsptr: *mut libc::c_int,
-) -> *mut libc::c_double {
+) -> *mut f64 {
     let instance = &*(swipeable as *mut T::Instance);
     let imp = instance.impl_();
 
@@ -203,5 +203,5 @@ unsafe extern "C" fn swipeable_get_swipe_area<T: SwipeableImpl>(
         from_glib(is_drag),
     );
 
-    *area = *swipe_area.to_glib_none().0;
+    *area = *swipe_area.to_glib_full();
 }
