@@ -8,6 +8,7 @@ pub mod preferences_group;
 pub mod preferences_page;
 pub mod preferences_row;
 pub mod preferences_window;
+pub mod swipeable;
 pub mod window;
 
 pub mod prelude {
@@ -21,6 +22,7 @@ pub mod prelude {
     pub use super::preferences_page::PreferencesPageImpl;
     pub use super::preferences_row::PreferencesRowImpl;
     pub use super::preferences_window::PreferencesWindowImpl;
+    pub use super::swipeable::SwipeableImpl;
     pub use super::window::AdwWindowImpl;
     pub use gio::subclass::prelude::*;
     pub use glib::subclass::prelude::*;
