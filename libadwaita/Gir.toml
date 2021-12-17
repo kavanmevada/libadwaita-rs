@@ -25,7 +25,6 @@ external_libraries = [
 
 generate = [
     "Adw.ActionRow",
-    "Adw.Animation",
     "Adw.AnimationState",
     "Adw.Avatar",
     "Adw.Bin",
@@ -141,6 +140,11 @@ status = "generate"
     [[object.function]]
     name = "get_enable_animations"
     rename = "is_animations_enabled"
+
+[[object]]
+name = "Adw.Animation"
+status = "generate"
+generate_builder = false
 
 [[object]]
 name = "Adw.AnimationTarget"

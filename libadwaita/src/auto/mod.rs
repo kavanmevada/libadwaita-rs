@@ -185,7 +185,6 @@ pub mod traits {
 #[doc(hidden)]
 pub mod builders {
     pub use super::action_row::ActionRowBuilder;
-    pub use super::animation::AnimationBuilder;
     pub use super::application::ApplicationBuilder;
     pub use super::application_window::ApplicationWindowBuilder;
     pub use super::avatar::AvatarBuilder;
