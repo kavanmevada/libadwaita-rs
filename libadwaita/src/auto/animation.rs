@@ -10,7 +10,6 @@ use glib::object::IsA;
 use glib::signal::connect_raw;
 use glib::signal::SignalHandlerId;
 use glib::translate::*;
-use glib::StaticType;
 use glib::ToValue;
 use std::boxed::Box as Box_;
 use std::fmt;
@@ -27,57 +26,6 @@ glib::wrapper! {
 
 impl Animation {
     pub const NONE: Option<&'static Animation> = None;
-
-    // rustdoc-stripper-ignore-next
-    /// Creates a new builder-pattern struct instance to construct [`Animation`] objects.
-    ///
-    /// This method returns an instance of [`AnimationBuilder`](crate::builders::AnimationBuilder) which can be used to create [`Animation`] objects.
-    pub fn builder() -> AnimationBuilder {
-        AnimationBuilder::default()
-    }
-}
-
-#[derive(Clone, Default)]
-// rustdoc-stripper-ignore-next
-/// A [builder-pattern] type to construct [`Animation`] objects.
-///
-/// [builder-pattern]: https://doc.rust-lang.org/1.0.0/style/ownership/builders.html
-pub struct AnimationBuilder {
-    target: Option<AnimationTarget>,
-    widget: Option<gtk::Widget>,
-}
-
-impl AnimationBuilder {
-    // rustdoc-stripper-ignore-next
-    /// Create a new [`AnimationBuilder`].
-    pub fn new() -> Self {
-        Self::default()
-    }
-
-    // rustdoc-stripper-ignore-next
-    /// Build the [`Animation`].
-    #[must_use = "The builder must be built to be used"]
-    pub fn build(self) -> Animation {
-        let mut properties: Vec<(&str, &dyn ToValue)> = vec![];
-        if let Some(ref target) = self.target {
-            properties.push(("target", target));
-        }
-        if let Some(ref widget) = self.widget {
-            properties.push(("widget", widget));
-        }
-        glib::Object::new::<Animation>(&properties)
-            .expect("Failed to create an instance of Animation")
-    }
-
-    pub fn target(mut self, target: &impl IsA<AnimationTarget>) -> Self {
-        self.target = Some(target.clone().upcast());
-        self
-    }
-
-    pub fn widget(mut self, widget: &impl IsA<gtk::Widget>) -> Self {
-        self.widget = Some(widget.clone().upcast());
-        self
-    }
 }
 
 pub trait AnimationExt: 'static {
