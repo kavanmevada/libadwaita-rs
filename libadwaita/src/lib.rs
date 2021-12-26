@@ -1,5 +1,9 @@
 #![cfg_attr(feature = "dox", feature(doc_cfg))]
 #![allow(clippy::needless_doctest_main)]
+#![doc(
+    html_logo_url = "https://gitlab.gnome.org/GNOME/libadwaita/-/raw/main/doc/libadwaita.svg",
+    html_favicon_url = "https://gitlab.gnome.org/GNOME/libadwaita/-/raw/main/demo/data/org.gnome.Adwaita1.Demo-symbolic.svg"
+)]
 //! # Rust Adwaita bindings
 //!
 //! This library contains safe Rust bindings for [Adwaita](https://gitlab.gnome.org/GNOME/libadwaita), a library that offers
