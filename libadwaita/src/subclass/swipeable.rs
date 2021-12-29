@@ -151,7 +151,7 @@ unsafe extern "C" fn swipeable_get_cancel_progress<T: SwipeableImpl>(
     swipeable: *mut ffi::AdwSwipeable,
 ) -> f64 {
     let instance = &*(swipeable as *mut T::Instance);
-    let imp = instance.impl_();
+    let imp = instance.imp();
 
     imp.cancel_progress(from_glib_borrow::<_, Swipeable>(swipeable).unsafe_cast_ref())
 }
@@ -160,7 +160,7 @@ unsafe extern "C" fn swipeable_get_distance<T: SwipeableImpl>(
     swipeable: *mut ffi::AdwSwipeable,
 ) -> f64 {
     let instance = &*(swipeable as *mut T::Instance);
-    let imp = instance.impl_();
+    let imp = instance.imp();
 
     imp.distance(from_glib_borrow::<_, Swipeable>(swipeable).unsafe_cast_ref())
 }
@@ -169,7 +169,7 @@ unsafe extern "C" fn swipeable_get_progress<T: SwipeableImpl>(
     swipeable: *mut ffi::AdwSwipeable,
 ) -> f64 {
     let instance = &*(swipeable as *mut T::Instance);
-    let imp = instance.impl_();
+    let imp = instance.imp();
 
     imp.progress(from_glib_borrow::<_, Swipeable>(swipeable).unsafe_cast_ref())
 }
@@ -179,7 +179,7 @@ unsafe extern "C" fn swipeable_get_snap_points<T: SwipeableImpl>(
     n_pointsptr: *mut libc::c_int,
 ) -> *mut f64 {
     let instance = &*(swipeable as *mut T::Instance);
-    let imp = instance.impl_();
+    let imp = instance.imp();
 
     let points = imp.snap_points(from_glib_borrow::<_, Swipeable>(swipeable).unsafe_cast_ref());
 
@@ -194,7 +194,7 @@ unsafe extern "C" fn swipeable_get_swipe_area<T: SwipeableImpl>(
     area: *mut gdk::ffi::GdkRectangle,
 ) {
     let instance = &*(swipeable as *mut T::Instance);
-    let imp = instance.impl_();
+    let imp = instance.imp();
 
     let swipe_area = imp.swipe_area(
         from_glib_borrow::<_, Swipeable>(swipeable).unsafe_cast_ref(),
