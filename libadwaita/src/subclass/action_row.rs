@@ -38,7 +38,7 @@ unsafe impl<T: ActionRowImpl> IsSubclassable<T> for ActionRow {
 
 unsafe extern "C" fn row_activate<T: ActionRowImpl>(ptr: *mut ffi::AdwActionRow) {
     let instance = &*(ptr as *mut T::Instance);
-    let imp = instance.impl_();
+    let imp = instance.imp();
     let wrap: Borrowed<ActionRow> = from_glib_borrow(ptr);
 
     ActionRowImpl::activate(imp, wrap.unsafe_cast_ref())
