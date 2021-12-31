@@ -667,6 +667,7 @@ impl Default for Leaflet {
 /// A [builder-pattern] type to construct [`Leaflet`] objects.
 ///
 /// [builder-pattern]: https://doc.rust-lang.org/1.0.0/style/ownership/builders.html
+#[must_use = "The builder must be built to be used"]
 pub struct LeafletBuilder {
     can_navigate_back: Option<bool>,
     can_navigate_forward: Option<bool>,
@@ -720,7 +721,7 @@ impl LeafletBuilder {
 
     // rustdoc-stripper-ignore-next
     /// Build the [`Leaflet`].
-    #[must_use = "The builder must be built to be used"]
+    #[must_use = "Building the object from the builder is usually expensive and is not expected to have side effects"]
     pub fn build(self) -> Leaflet {
         let mut properties: Vec<(&str, &dyn ToValue)> = vec![];
         if let Some(ref can_navigate_back) = self.can_navigate_back {

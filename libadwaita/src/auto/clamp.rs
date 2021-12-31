@@ -165,6 +165,7 @@ impl Default for Clamp {
 /// A [builder-pattern] type to construct [`Clamp`] objects.
 ///
 /// [builder-pattern]: https://doc.rust-lang.org/1.0.0/style/ownership/builders.html
+#[must_use = "The builder must be built to be used"]
 pub struct ClampBuilder {
     child: Option<gtk::Widget>,
     maximum_size: Option<i32>,
@@ -211,7 +212,7 @@ impl ClampBuilder {
 
     // rustdoc-stripper-ignore-next
     /// Build the [`Clamp`].
-    #[must_use = "The builder must be built to be used"]
+    #[must_use = "Building the object from the builder is usually expensive and is not expected to have side effects"]
     pub fn build(self) -> Clamp {
         let mut properties: Vec<(&str, &dyn ToValue)> = vec![];
         if let Some(ref child) = self.child {

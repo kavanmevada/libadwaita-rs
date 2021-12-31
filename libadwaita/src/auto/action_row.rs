@@ -53,6 +53,7 @@ impl Default for ActionRow {
 /// A [builder-pattern] type to construct [`ActionRow`] objects.
 ///
 /// [builder-pattern]: https://doc.rust-lang.org/1.0.0/style/ownership/builders.html
+#[must_use = "The builder must be built to be used"]
 pub struct ActionRowBuilder {
     activatable_widget: Option<gtk::Widget>,
     icon_name: Option<String>,
@@ -107,7 +108,7 @@ impl ActionRowBuilder {
 
     // rustdoc-stripper-ignore-next
     /// Build the [`ActionRow`].
-    #[must_use = "The builder must be built to be used"]
+    #[must_use = "Building the object from the builder is usually expensive and is not expected to have side effects"]
     pub fn build(self) -> ActionRow {
         let mut properties: Vec<(&str, &dyn ToValue)> = vec![];
         if let Some(ref activatable_widget) = self.activatable_widget {
