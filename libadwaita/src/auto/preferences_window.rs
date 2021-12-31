@@ -55,6 +55,7 @@ impl Default for PreferencesWindow {
 /// A [builder-pattern] type to construct [`PreferencesWindow`] objects.
 ///
 /// [builder-pattern]: https://doc.rust-lang.org/1.0.0/style/ownership/builders.html
+#[must_use = "The builder must be built to be used"]
 pub struct PreferencesWindowBuilder {
     can_navigate_back: Option<bool>,
     search_enabled: Option<bool>,
@@ -128,7 +129,7 @@ impl PreferencesWindowBuilder {
 
     // rustdoc-stripper-ignore-next
     /// Build the [`PreferencesWindow`].
-    #[must_use = "The builder must be built to be used"]
+    #[must_use = "Building the object from the builder is usually expensive and is not expected to have side effects"]
     pub fn build(self) -> PreferencesWindow {
         let mut properties: Vec<(&str, &dyn ToValue)> = vec![];
         if let Some(ref can_navigate_back) = self.can_navigate_back {
