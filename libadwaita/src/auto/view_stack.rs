@@ -41,7 +41,7 @@ impl ViewStack {
     }
 
     #[doc(alias = "adw_view_stack_add")]
-    pub fn add(&self, child: &impl IsA<gtk::Widget>) -> Option<ViewStackPage> {
+    pub fn add(&self, child: &impl IsA<gtk::Widget>) -> ViewStackPage {
         unsafe {
             from_glib_none(ffi::adw_view_stack_add(
                 self.to_glib_none().0,
@@ -51,11 +51,7 @@ impl ViewStack {
     }
 
     #[doc(alias = "adw_view_stack_add_named")]
-    pub fn add_named(
-        &self,
-        child: &impl IsA<gtk::Widget>,
-        name: Option<&str>,
-    ) -> Option<ViewStackPage> {
+    pub fn add_named(&self, child: &impl IsA<gtk::Widget>, name: Option<&str>) -> ViewStackPage {
         unsafe {
             from_glib_none(ffi::adw_view_stack_add_named(
                 self.to_glib_none().0,
@@ -71,7 +67,7 @@ impl ViewStack {
         child: &impl IsA<gtk::Widget>,
         name: Option<&str>,
         title: &str,
-    ) -> Option<ViewStackPage> {
+    ) -> ViewStackPage {
         unsafe {
             from_glib_none(ffi::adw_view_stack_add_titled(
                 self.to_glib_none().0,
@@ -101,7 +97,7 @@ impl ViewStack {
 
     #[doc(alias = "adw_view_stack_get_page")]
     #[doc(alias = "get_page")]
-    pub fn page(&self, child: &impl IsA<gtk::Widget>) -> Option<ViewStackPage> {
+    pub fn page(&self, child: &impl IsA<gtk::Widget>) -> ViewStackPage {
         unsafe {
             from_glib_none(ffi::adw_view_stack_get_page(
                 self.to_glib_none().0,
@@ -112,7 +108,7 @@ impl ViewStack {
 
     #[doc(alias = "adw_view_stack_get_pages")]
     #[doc(alias = "get_pages")]
-    pub fn pages(&self) -> Option<gtk::SelectionModel> {
+    pub fn pages(&self) -> gtk::SelectionModel {
         unsafe { from_glib_full(ffi::adw_view_stack_get_pages(self.to_glib_none().0)) }
     }
 

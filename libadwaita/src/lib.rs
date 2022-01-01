@@ -117,7 +117,9 @@ macro_rules! skip_assert_initialized {
 mod auto;
 
 mod application;
+mod carousel;
 mod tab_bar;
+mod tab_view;
 
 pub use auto::functions::*;
 pub use auto::*;

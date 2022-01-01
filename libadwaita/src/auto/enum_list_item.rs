@@ -23,13 +23,13 @@ glib::wrapper! {
 impl EnumListItem {
     #[doc(alias = "adw_enum_list_item_get_name")]
     #[doc(alias = "get_name")]
-    pub fn name(&self) -> Option<glib::GString> {
+    pub fn name(&self) -> glib::GString {
         unsafe { from_glib_none(ffi::adw_enum_list_item_get_name(self.to_glib_none().0)) }
     }
 
     #[doc(alias = "adw_enum_list_item_get_nick")]
     #[doc(alias = "get_nick")]
-    pub fn nick(&self) -> Option<glib::GString> {
+    pub fn nick(&self) -> glib::GString {
         unsafe { from_glib_none(ffi::adw_enum_list_item_get_nick(self.to_glib_none().0)) }
     }
 
@@ -110,7 +110,8 @@ impl EnumListItem {
 }
 
 impl fmt::Display for EnumListItem {
+    #[inline]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        f.write_str("EnumListItem")
+        f.write_str(&self.name())
     }
 }

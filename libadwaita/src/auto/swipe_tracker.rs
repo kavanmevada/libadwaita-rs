@@ -79,7 +79,7 @@ impl SwipeTracker {
 
     #[doc(alias = "adw_swipe_tracker_get_swipeable")]
     #[doc(alias = "get_swipeable")]
-    pub fn swipeable(&self) -> Option<Swipeable> {
+    pub fn swipeable(&self) -> Swipeable {
         unsafe { from_glib_none(ffi::adw_swipe_tracker_get_swipeable(self.to_glib_none().0)) }
     }
 

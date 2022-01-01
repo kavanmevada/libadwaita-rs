@@ -480,7 +480,7 @@ pub trait ExpanderRowExt: 'static {
 
     #[doc(alias = "adw_expander_row_get_subtitle")]
     #[doc(alias = "get_subtitle")]
-    fn subtitle(&self) -> Option<glib::GString>;
+    fn subtitle(&self) -> glib::GString;
 
     #[doc(alias = "adw_expander_row_remove")]
     fn remove(&self, child: &impl IsA<gtk::Widget>);
@@ -576,7 +576,7 @@ impl<O: IsA<ExpanderRow>> ExpanderRowExt for O {
         }
     }
 
-    fn subtitle(&self) -> Option<glib::GString> {
+    fn subtitle(&self) -> glib::GString {
         unsafe {
             from_glib_none(ffi::adw_expander_row_get_subtitle(
                 self.as_ref().to_glib_none().0,

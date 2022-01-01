@@ -41,11 +41,7 @@ impl TabView {
     }
 
     #[doc(alias = "adw_tab_view_add_page")]
-    pub fn add_page(
-        &self,
-        child: &impl IsA<gtk::Widget>,
-        parent: Option<&TabPage>,
-    ) -> Option<TabPage> {
+    pub fn add_page(&self, child: &impl IsA<gtk::Widget>, parent: Option<&TabPage>) -> TabPage {
         unsafe {
             from_glib_none(ffi::adw_tab_view_add_page(
                 self.to_glib_none().0,
@@ -56,7 +52,7 @@ impl TabView {
     }
 
     #[doc(alias = "adw_tab_view_append")]
-    pub fn append(&self, child: &impl IsA<gtk::Widget>) -> Option<TabPage> {
+    pub fn append(&self, child: &impl IsA<gtk::Widget>) -> TabPage {
         unsafe {
             from_glib_none(ffi::adw_tab_view_append(
                 self.to_glib_none().0,
@@ -66,7 +62,7 @@ impl TabView {
     }
 
     #[doc(alias = "adw_tab_view_append_pinned")]
-    pub fn append_pinned(&self, child: &impl IsA<gtk::Widget>) -> Option<TabPage> {
+    pub fn append_pinned(&self, child: &impl IsA<gtk::Widget>) -> TabPage {
         unsafe {
             from_glib_none(ffi::adw_tab_view_append_pinned(
                 self.to_glib_none().0,
@@ -116,7 +112,7 @@ impl TabView {
 
     #[doc(alias = "adw_tab_view_get_default_icon")]
     #[doc(alias = "get_default_icon")]
-    pub fn default_icon(&self) -> Option<gio::Icon> {
+    pub fn default_icon(&self) -> gio::Icon {
         unsafe { from_glib_none(ffi::adw_tab_view_get_default_icon(self.to_glib_none().0)) }
     }
 
@@ -148,20 +144,9 @@ impl TabView {
         unsafe { ffi::adw_tab_view_get_n_pinned_pages(self.to_glib_none().0) }
     }
 
-    #[doc(alias = "adw_tab_view_get_nth_page")]
-    #[doc(alias = "get_nth_page")]
-    pub fn nth_page(&self, position: i32) -> Option<TabPage> {
-        unsafe {
-            from_glib_none(ffi::adw_tab_view_get_nth_page(
-                self.to_glib_none().0,
-                position,
-            ))
-        }
-    }
-
     #[doc(alias = "adw_tab_view_get_page")]
     #[doc(alias = "get_page")]
-    pub fn page(&self, child: &impl IsA<gtk::Widget>) -> Option<TabPage> {
+    pub fn page(&self, child: &impl IsA<gtk::Widget>) -> TabPage {
         unsafe {
             from_glib_none(ffi::adw_tab_view_get_page(
                 self.to_glib_none().0,
@@ -178,7 +163,7 @@ impl TabView {
 
     #[doc(alias = "adw_tab_view_get_pages")]
     #[doc(alias = "get_pages")]
-    pub fn pages(&self) -> Option<gtk::SelectionModel> {
+    pub fn pages(&self) -> gtk::SelectionModel {
         unsafe { from_glib_full(ffi::adw_tab_view_get_pages(self.to_glib_none().0)) }
     }
 
@@ -189,7 +174,7 @@ impl TabView {
     }
 
     #[doc(alias = "adw_tab_view_insert")]
-    pub fn insert(&self, child: &impl IsA<gtk::Widget>, position: i32) -> Option<TabPage> {
+    pub fn insert(&self, child: &impl IsA<gtk::Widget>, position: i32) -> TabPage {
         unsafe {
             from_glib_none(ffi::adw_tab_view_insert(
                 self.to_glib_none().0,
@@ -200,7 +185,7 @@ impl TabView {
     }
 
     #[doc(alias = "adw_tab_view_insert_pinned")]
-    pub fn insert_pinned(&self, child: &impl IsA<gtk::Widget>, position: i32) -> Option<TabPage> {
+    pub fn insert_pinned(&self, child: &impl IsA<gtk::Widget>, position: i32) -> TabPage {
         unsafe {
             from_glib_none(ffi::adw_tab_view_insert_pinned(
                 self.to_glib_none().0,
@@ -211,7 +196,7 @@ impl TabView {
     }
 
     #[doc(alias = "adw_tab_view_prepend")]
-    pub fn prepend(&self, child: &impl IsA<gtk::Widget>) -> Option<TabPage> {
+    pub fn prepend(&self, child: &impl IsA<gtk::Widget>) -> TabPage {
         unsafe {
             from_glib_none(ffi::adw_tab_view_prepend(
                 self.to_glib_none().0,
@@ -221,7 +206,7 @@ impl TabView {
     }
 
     #[doc(alias = "adw_tab_view_prepend_pinned")]
-    pub fn prepend_pinned(&self, child: &impl IsA<gtk::Widget>) -> Option<TabPage> {
+    pub fn prepend_pinned(&self, child: &impl IsA<gtk::Widget>) -> TabPage {
         unsafe {
             from_glib_none(ffi::adw_tab_view_prepend_pinned(
                 self.to_glib_none().0,

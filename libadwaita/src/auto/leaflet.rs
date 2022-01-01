@@ -46,7 +46,7 @@ impl Leaflet {
     }
 
     #[doc(alias = "adw_leaflet_append")]
-    pub fn append(&self, child: &impl IsA<gtk::Widget>) -> Option<LeafletPage> {
+    pub fn append(&self, child: &impl IsA<gtk::Widget>) -> LeafletPage {
         unsafe {
             from_glib_none(ffi::adw_leaflet_append(
                 self.to_glib_none().0,
@@ -105,7 +105,7 @@ impl Leaflet {
 
     #[doc(alias = "adw_leaflet_get_child_transition_params")]
     #[doc(alias = "get_child_transition_params")]
-    pub fn child_transition_params(&self) -> Option<SpringParams> {
+    pub fn child_transition_params(&self) -> SpringParams {
         unsafe {
             from_glib_full(ffi::adw_leaflet_get_child_transition_params(
                 self.to_glib_none().0,
@@ -153,7 +153,7 @@ impl Leaflet {
 
     #[doc(alias = "adw_leaflet_get_page")]
     #[doc(alias = "get_page")]
-    pub fn page(&self, child: &impl IsA<gtk::Widget>) -> Option<LeafletPage> {
+    pub fn page(&self, child: &impl IsA<gtk::Widget>) -> LeafletPage {
         unsafe {
             from_glib_none(ffi::adw_leaflet_get_page(
                 self.to_glib_none().0,
@@ -164,7 +164,7 @@ impl Leaflet {
 
     #[doc(alias = "adw_leaflet_get_pages")]
     #[doc(alias = "get_pages")]
-    pub fn pages(&self) -> Option<gtk::SelectionModel> {
+    pub fn pages(&self) -> gtk::SelectionModel {
         unsafe { from_glib_full(ffi::adw_leaflet_get_pages(self.to_glib_none().0)) }
     }
 
@@ -195,7 +195,7 @@ impl Leaflet {
         &self,
         child: &impl IsA<gtk::Widget>,
         sibling: Option<&impl IsA<gtk::Widget>>,
-    ) -> Option<LeafletPage> {
+    ) -> LeafletPage {
         unsafe {
             from_glib_none(ffi::adw_leaflet_insert_child_after(
                 self.to_glib_none().0,
@@ -216,7 +216,7 @@ impl Leaflet {
     }
 
     #[doc(alias = "adw_leaflet_prepend")]
-    pub fn prepend(&self, child: &impl IsA<gtk::Widget>) -> Option<LeafletPage> {
+    pub fn prepend(&self, child: &impl IsA<gtk::Widget>) -> LeafletPage {
         unsafe {
             from_glib_none(ffi::adw_leaflet_prepend(
                 self.to_glib_none().0,

@@ -83,7 +83,7 @@ impl SpringAnimation {
 
     #[doc(alias = "adw_spring_animation_get_spring_params")]
     #[doc(alias = "get_spring_params")]
-    pub fn spring_params(&self) -> Option<SpringParams> {
+    pub fn spring_params(&self) -> SpringParams {
         unsafe {
             from_glib_none(ffi::adw_spring_animation_get_spring_params(
                 self.to_glib_none().0,

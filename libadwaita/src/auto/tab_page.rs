@@ -24,7 +24,7 @@ glib::wrapper! {
 impl TabPage {
     #[doc(alias = "adw_tab_page_get_child")]
     #[doc(alias = "get_child")]
-    pub fn child(&self) -> Option<gtk::Widget> {
+    pub fn child(&self) -> gtk::Widget {
         unsafe { from_glib_none(ffi::adw_tab_page_get_child(self.to_glib_none().0)) }
     }
 
@@ -82,7 +82,7 @@ impl TabPage {
 
     #[doc(alias = "adw_tab_page_get_title")]
     #[doc(alias = "get_title")]
-    pub fn title(&self) -> Option<glib::GString> {
+    pub fn title(&self) -> glib::GString {
         unsafe { from_glib_none(ffi::adw_tab_page_get_title(self.to_glib_none().0)) }
     }
 

@@ -47,7 +47,7 @@ impl Avatar {
     }
 
     #[doc(alias = "adw_avatar_draw_to_texture")]
-    pub fn draw_to_texture(&self, scale_factor: i32) -> Option<gdk::Texture> {
+    pub fn draw_to_texture(&self, scale_factor: i32) -> gdk::Texture {
         unsafe {
             from_glib_full(ffi::adw_avatar_draw_to_texture(
                 self.to_glib_none().0,
