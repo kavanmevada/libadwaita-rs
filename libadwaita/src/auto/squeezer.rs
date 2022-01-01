@@ -43,7 +43,7 @@ impl Squeezer {
     }
 
     #[doc(alias = "adw_squeezer_add")]
-    pub fn add(&self, child: &impl IsA<gtk::Widget>) -> Option<SqueezerPage> {
+    pub fn add(&self, child: &impl IsA<gtk::Widget>) -> SqueezerPage {
         unsafe {
             from_glib_none(ffi::adw_squeezer_add(
                 self.to_glib_none().0,
@@ -76,7 +76,7 @@ impl Squeezer {
 
     #[doc(alias = "adw_squeezer_get_page")]
     #[doc(alias = "get_page")]
-    pub fn page(&self, child: &impl IsA<gtk::Widget>) -> Option<SqueezerPage> {
+    pub fn page(&self, child: &impl IsA<gtk::Widget>) -> SqueezerPage {
         unsafe {
             from_glib_none(ffi::adw_squeezer_get_page(
                 self.to_glib_none().0,
@@ -87,7 +87,7 @@ impl Squeezer {
 
     #[doc(alias = "adw_squeezer_get_pages")]
     #[doc(alias = "get_pages")]
-    pub fn pages(&self) -> Option<gtk::SelectionModel> {
+    pub fn pages(&self) -> gtk::SelectionModel {
         unsafe { from_glib_full(ffi::adw_squeezer_get_pages(self.to_glib_none().0)) }
     }
 

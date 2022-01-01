@@ -13,6 +13,7 @@ deprecate_by_min_version = true
 # with this option enabled, versions for gir and gir-files saved only to one file to minimize noise
 single_version_file = true
 generate_builder = true
+trust_return_value_nullability = true
 
 external_libraries = [
    "GLib",

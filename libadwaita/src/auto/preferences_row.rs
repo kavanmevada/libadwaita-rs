@@ -409,7 +409,7 @@ impl PreferencesRowBuilder {
 pub trait PreferencesRowExt: 'static {
     #[doc(alias = "adw_preferences_row_get_title")]
     #[doc(alias = "get_title")]
-    fn title(&self) -> Option<glib::GString>;
+    fn title(&self) -> glib::GString;
 
     #[doc(alias = "adw_preferences_row_get_use_underline")]
     #[doc(alias = "get_use_underline")]
@@ -429,7 +429,7 @@ pub trait PreferencesRowExt: 'static {
 }
 
 impl<O: IsA<PreferencesRow>> PreferencesRowExt for O {
-    fn title(&self) -> Option<glib::GString> {
+    fn title(&self) -> glib::GString {
         unsafe {
             from_glib_none(ffi::adw_preferences_row_get_title(
                 self.as_ref().to_glib_none().0,

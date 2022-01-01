@@ -40,7 +40,7 @@ impl StyleManager {
 
     #[doc(alias = "adw_style_manager_get_display")]
     #[doc(alias = "get_display")]
-    pub fn display(&self) -> Option<gdk::Display> {
+    pub fn display(&self) -> gdk::Display {
         unsafe { from_glib_none(ffi::adw_style_manager_get_display(self.to_glib_none().0)) }
     }
 
@@ -76,14 +76,14 @@ impl StyleManager {
 
     #[doc(alias = "adw_style_manager_get_default")]
     #[doc(alias = "get_default")]
-    pub fn default() -> Option<StyleManager> {
+    pub fn default() -> StyleManager {
         assert_initialized_main_thread!();
         unsafe { from_glib_none(ffi::adw_style_manager_get_default()) }
     }
 
     #[doc(alias = "adw_style_manager_get_for_display")]
     #[doc(alias = "get_for_display")]
-    pub fn for_display(display: &gdk::Display) -> Option<StyleManager> {
+    pub fn for_display(display: &gdk::Display) -> StyleManager {
         assert_initialized_main_thread!();
         unsafe {
             from_glib_none(ffi::adw_style_manager_get_for_display(

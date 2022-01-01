@@ -92,7 +92,7 @@ impl Carousel {
 
     #[doc(alias = "adw_carousel_get_nth_page")]
     #[doc(alias = "get_nth_page")]
-    pub fn nth_page(&self, n: u32) -> Option<gtk::Widget> {
+    pub fn nth_page(&self, n: u32) -> gtk::Widget {
         unsafe { from_glib_none(ffi::adw_carousel_get_nth_page(self.to_glib_none().0, n)) }
     }
 
@@ -110,7 +110,7 @@ impl Carousel {
 
     #[doc(alias = "adw_carousel_get_scroll_params")]
     #[doc(alias = "get_scroll_params")]
-    pub fn scroll_params(&self) -> Option<SpringParams> {
+    pub fn scroll_params(&self) -> SpringParams {
         unsafe { from_glib_full(ffi::adw_carousel_get_scroll_params(self.to_glib_none().0)) }
     }
 

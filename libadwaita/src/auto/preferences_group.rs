@@ -371,7 +371,7 @@ pub trait PreferencesGroupExt: 'static {
 
     #[doc(alias = "adw_preferences_group_get_title")]
     #[doc(alias = "get_title")]
-    fn title(&self) -> Option<glib::GString>;
+    fn title(&self) -> glib::GString;
 
     #[doc(alias = "adw_preferences_group_remove")]
     fn remove(&self, child: &impl IsA<gtk::Widget>);
@@ -407,7 +407,7 @@ impl<O: IsA<PreferencesGroup>> PreferencesGroupExt for O {
         }
     }
 
-    fn title(&self) -> Option<glib::GString> {
+    fn title(&self) -> glib::GString {
         unsafe {
             from_glib_none(ffi::adw_preferences_group_get_title(
                 self.as_ref().to_glib_none().0,

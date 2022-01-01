@@ -35,7 +35,7 @@ pub trait AnimationExt: 'static {
 
     #[doc(alias = "adw_animation_get_target")]
     #[doc(alias = "get_target")]
-    fn target(&self) -> Option<AnimationTarget>;
+    fn target(&self) -> AnimationTarget;
 
     #[doc(alias = "adw_animation_get_value")]
     #[doc(alias = "get_value")]
@@ -43,7 +43,7 @@ pub trait AnimationExt: 'static {
 
     #[doc(alias = "adw_animation_get_widget")]
     #[doc(alias = "get_widget")]
-    fn widget(&self) -> Option<gtk::Widget>;
+    fn widget(&self) -> gtk::Widget;
 
     #[doc(alias = "adw_animation_pause")]
     fn pause(&self);
@@ -80,7 +80,7 @@ impl<O: IsA<Animation>> AnimationExt for O {
         unsafe { from_glib(ffi::adw_animation_get_state(self.as_ref().to_glib_none().0)) }
     }
 
-    fn target(&self) -> Option<AnimationTarget> {
+    fn target(&self) -> AnimationTarget {
         unsafe {
             from_glib_none(ffi::adw_animation_get_target(
                 self.as_ref().to_glib_none().0,
@@ -92,7 +92,7 @@ impl<O: IsA<Animation>> AnimationExt for O {
         unsafe { ffi::adw_animation_get_value(self.as_ref().to_glib_none().0) }
     }
 
-    fn widget(&self) -> Option<gtk::Widget> {
+    fn widget(&self) -> gtk::Widget {
         unsafe {
             from_glib_none(ffi::adw_animation_get_widget(
                 self.as_ref().to_glib_none().0,

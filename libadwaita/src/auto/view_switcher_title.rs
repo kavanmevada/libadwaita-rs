@@ -52,7 +52,7 @@ impl ViewSwitcherTitle {
 
     #[doc(alias = "adw_view_switcher_title_get_subtitle")]
     #[doc(alias = "get_subtitle")]
-    pub fn subtitle(&self) -> Option<glib::GString> {
+    pub fn subtitle(&self) -> glib::GString {
         unsafe {
             from_glib_none(ffi::adw_view_switcher_title_get_subtitle(
                 self.to_glib_none().0,
@@ -62,7 +62,7 @@ impl ViewSwitcherTitle {
 
     #[doc(alias = "adw_view_switcher_title_get_title")]
     #[doc(alias = "get_title")]
-    pub fn title(&self) -> Option<glib::GString> {
+    pub fn title(&self) -> glib::GString {
         unsafe {
             from_glib_none(ffi::adw_view_switcher_title_get_title(
                 self.to_glib_none().0,

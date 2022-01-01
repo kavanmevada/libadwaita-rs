@@ -41,13 +41,13 @@ impl ButtonContent {
 
     #[doc(alias = "adw_button_content_get_icon_name")]
     #[doc(alias = "get_icon_name")]
-    pub fn icon_name(&self) -> Option<glib::GString> {
+    pub fn icon_name(&self) -> glib::GString {
         unsafe { from_glib_none(ffi::adw_button_content_get_icon_name(self.to_glib_none().0)) }
     }
 
     #[doc(alias = "adw_button_content_get_label")]
     #[doc(alias = "get_label")]
-    pub fn label(&self) -> Option<glib::GString> {
+    pub fn label(&self) -> glib::GString {
         unsafe { from_glib_none(ffi::adw_button_content_get_label(self.to_glib_none().0)) }
     }
 

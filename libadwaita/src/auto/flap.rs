@@ -110,7 +110,7 @@ impl Flap {
 
     #[doc(alias = "adw_flap_get_reveal_params")]
     #[doc(alias = "get_reveal_params")]
-    pub fn reveal_params(&self) -> Option<SpringParams> {
+    pub fn reveal_params(&self) -> SpringParams {
         unsafe { from_glib_full(ffi::adw_flap_get_reveal_params(self.to_glib_none().0)) }
     }
 

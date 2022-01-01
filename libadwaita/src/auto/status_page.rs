@@ -65,7 +65,7 @@ impl StatusPage {
 
     #[doc(alias = "adw_status_page_get_title")]
     #[doc(alias = "get_title")]
-    pub fn title(&self) -> Option<glib::GString> {
+    pub fn title(&self) -> glib::GString {
         unsafe { from_glib_none(ffi::adw_status_page_get_title(self.to_glib_none().0)) }
     }
 

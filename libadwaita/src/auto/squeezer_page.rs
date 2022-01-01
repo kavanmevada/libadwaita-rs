@@ -23,7 +23,7 @@ glib::wrapper! {
 impl SqueezerPage {
     #[doc(alias = "adw_squeezer_page_get_child")]
     #[doc(alias = "get_child")]
-    pub fn child(&self) -> Option<gtk::Widget> {
+    pub fn child(&self) -> gtk::Widget {
         unsafe { from_glib_none(ffi::adw_squeezer_page_get_child(self.to_glib_none().0)) }
     }
 
