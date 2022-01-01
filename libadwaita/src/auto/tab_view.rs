@@ -144,17 +144,6 @@ impl TabView {
         unsafe { ffi::adw_tab_view_get_n_pinned_pages(self.to_glib_none().0) }
     }
 
-    #[doc(alias = "adw_tab_view_get_nth_page")]
-    #[doc(alias = "get_nth_page")]
-    pub fn nth_page(&self, position: i32) -> TabPage {
-        unsafe {
-            from_glib_none(ffi::adw_tab_view_get_nth_page(
-                self.to_glib_none().0,
-                position,
-            ))
-        }
-    }
-
     #[doc(alias = "adw_tab_view_get_page")]
     #[doc(alias = "get_page")]
     pub fn page(&self, child: &impl IsA<gtk::Widget>) -> TabPage {

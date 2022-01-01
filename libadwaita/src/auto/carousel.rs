@@ -90,12 +90,6 @@ impl Carousel {
         unsafe { ffi::adw_carousel_get_n_pages(self.to_glib_none().0) }
     }
 
-    #[doc(alias = "adw_carousel_get_nth_page")]
-    #[doc(alias = "get_nth_page")]
-    pub fn nth_page(&self, n: u32) -> gtk::Widget {
-        unsafe { from_glib_none(ffi::adw_carousel_get_nth_page(self.to_glib_none().0, n)) }
-    }
-
     #[doc(alias = "adw_carousel_get_position")]
     #[doc(alias = "get_position")]
     pub fn position(&self) -> f64 {

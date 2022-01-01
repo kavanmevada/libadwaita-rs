@@ -30,7 +30,6 @@ generate = [
     "Adw.Avatar",
     "Adw.Bin",
     "Adw.ButtonContent",
-    "Adw.Carousel",
     "Adw.CarouselIndicatorDots",
     "Adw.CarouselIndicatorLines",
     "Adw.CenteringPolicy",
@@ -62,7 +61,6 @@ generate = [
     "Adw.StatusPage",
     "Adw.SwipeTracker",
     "Adw.Swipeable",
-    "Adw.TabView",
     "Adw.TimedAnimation",
     "Adw.ToastPriority",
     "Adw.ViewStack",
@@ -179,6 +177,13 @@ status = "generate"
 generate_builder = false
 
 [[object]]
+name = "Adw.Carousel"
+status = "generate"
+    [[object.function]]
+    name = "get_nth_page"
+    manual = true # assert n < n_pages
+
+[[object]]
 name = "Adw.EnumListModel"
 status = "generate"
 generate_builder = false
@@ -210,6 +215,13 @@ status = "generate"
     [[object.signal]]
     name = "extra-drag-drop"
     ignore = true # manual: *mut gobject_ffi::GValue doesn't implement glib::from_glib_borrow
+
+[[object]]
+name = "Adw.TabView"
+status = "generate"
+    [[object.function]]
+    name = "get_nth_page"
+    manual = true # assert n < n_pages
 
 [[object]]
 name = "Adw.Toast"
