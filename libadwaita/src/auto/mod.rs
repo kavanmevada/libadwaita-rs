@@ -196,6 +196,7 @@ pub mod builders {
     pub use super::clamp::ClampBuilder;
     pub use super::clamp_layout::ClampLayoutBuilder;
     pub use super::clamp_scrollable::ClampScrollableBuilder;
+    pub use super::combo_row::ComboRowBuilder;
     pub use super::expander_row::ExpanderRowBuilder;
     pub use super::flap::FlapBuilder;
     pub use super::header_bar::HeaderBarBuilder;

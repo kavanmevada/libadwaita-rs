@@ -37,6 +37,7 @@ generate = [
     "Adw.ClampLayout",
     "Adw.ClampScrollable",
     "Adw.ColorScheme",
+    "Adw.ComboRow",
     "Adw.Easing",
     "Adw.ExpanderRow",
     "Adw.FoldThresholdPolicy",
@@ -175,16 +176,6 @@ trait_name = "AdwApplicationWindowExt"
 name = "Adw.CallbackAnimationTarget"
 status = "generate"
 generate_builder = false
-
-[[object]]
-name = "Adw.ComboRow"
-status = "generate"
-generate_builder = false # manual, to use AsRef<Expression>
-manual_traits = ["ComboRowExtManual"]
-    [[object.function]]
-    name = "set_expression"
-    manual = true # use AsRef<Expression> instead of IsA<Expression>
-    doc_trait_name = "ComboRowExtManual"
 
 [[object]]
 name = "Adw.EnumListModel"
