@@ -120,6 +120,7 @@ mod application;
 mod carousel;
 mod tab_bar;
 mod tab_view;
+mod toast;
 
 pub use auto::functions::*;
 pub use auto::*;

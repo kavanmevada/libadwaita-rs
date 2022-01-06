@@ -228,7 +228,10 @@ name = "Adw.Toast"
 status = "generate"
     [[object.function]]
     name = "set_action_target"
-    ignore = true
+    manual = true
+    [[object.property]]
+    name = "action-target"
+    generate = ["notify"]
 
 [[object]]
 name = "Adw.ToastOverlay"

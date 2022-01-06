@@ -141,16 +141,6 @@ impl Toast {
         }
     }
 
-    #[doc(alias = "action-target")]
-    pub fn action_target(&self) -> Option<glib::Variant> {
-        glib::ObjectExt::property(self, "action-target")
-    }
-
-    #[doc(alias = "action-target")]
-    pub fn set_action_target(&self, action_target: Option<&glib::Variant>) {
-        glib::ObjectExt::set_property(self, "action-target", &action_target)
-    }
-
     #[doc(alias = "dismissed")]
     pub fn connect_dismissed<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn dismissed_trampoline<F: Fn(&Toast) + 'static>(
