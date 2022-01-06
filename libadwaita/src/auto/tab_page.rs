@@ -64,6 +64,7 @@ impl TabPage {
 
     #[doc(alias = "adw_tab_page_get_parent")]
     #[doc(alias = "get_parent")]
+    #[must_use]
     pub fn parent(&self) -> Option<TabPage> {
         unsafe { from_glib_none(ffi::adw_tab_page_get_parent(self.to_glib_none().0)) }
     }
