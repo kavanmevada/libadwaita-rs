@@ -91,7 +91,9 @@
 
 // Re-export the -sys bindings
 pub use ffi;
-#[doc(hidden)]
+pub use gdk;
+pub use gio;
+pub use glib;
 pub use gtk;
 
 /// Asserts that this is the main thread and `gtk::init` has been called.
