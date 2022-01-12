@@ -46,7 +46,7 @@ docs:
     - git sparse-checkout init --cone
     - git sparse-checkout set doc/images
     - git checkout main
-    - mv ./doc/images/*.png ../target/doc/libadwaita
+    - mv ./doc/images/*.png ../docs/libadwaita
   artifacts:
     paths:
       - docs
