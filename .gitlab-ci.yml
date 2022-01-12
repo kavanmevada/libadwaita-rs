@@ -41,12 +41,17 @@ docs:
     - eval $(./gir-rustdoc.py pre-docs)
     - cargo doc --features dox --no-deps
     - mv target/doc/ docs
+    # Fetch the libadwaita images
     - git clone --depth=1 https://gitlab.gnome.org/GNOME/libadwaita --no-checkout ./adw-src
     - cd ./adw-src
     - git sparse-checkout init --cone
     - git sparse-checkout set doc/images
     - git checkout main
     - mv ./doc/images/*.png ../docs/libadwaita
+    - cd ../
+    # Fix broken urls
+    - sed -i 's|style-classes.html|https://gnome.pages.gitlab.gnome.org/libadwaita/doc/1-latest/style-classes.html|g' docs/libadwaita/struct.Flap.html
+    - sed -i 's|style-classes.html|https://gnome.pages.gitlab.gnome.org/libadwaita/doc/1-latest/style-classes.html|g' docs/libadwaita/struct.StatusPage.html
   artifacts:
     paths:
       - docs
