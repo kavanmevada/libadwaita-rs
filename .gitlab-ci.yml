@@ -41,6 +41,12 @@ docs:
     - eval $(./gir-rustdoc.py pre-docs)
     - cargo doc --features dox --no-deps
     - mv target/doc/ docs
+    - git clone --depth=1 https://gitlab.gnome.org/GNOME/libadwaita --no-checkout ./adw-src
+    - cd ./adw-src
+    - git sparse-checkout init --cone
+    - git sparse-checkout set doc/images
+    - git checkout main
+    - mv ./doc/images/*.png ../target/doc/libadwaita
   artifacts:
     paths:
       - docs
