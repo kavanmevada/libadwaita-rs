@@ -184,7 +184,7 @@ unsafe extern "C" fn swipeable_get_snap_points<T: SwipeableImpl>(
     let points = imp.snap_points(from_glib_borrow::<_, Swipeable>(swipeable).unsafe_cast_ref());
 
     n_pointsptr.write(points.len() as libc::c_int);
-    ToGlibContainerFromSlice::to_glib_full_from_slice(&points)
+    ToGlibContainerFromSlice::to_glib_full_from_slice(points)
 }
 
 unsafe extern "C" fn swipeable_get_swipe_area<T: SwipeableImpl>(
