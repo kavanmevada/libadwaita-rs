@@ -2,7 +2,7 @@
 
 The Rust bindings of [libadwaita](https://gitlab.gnome.org/GNOME/libadwaita)
 
-Website: <https://gitlab.gnome.org/World/Rust/libadwaita-rs>
+Website: <https://world.pages.gitlab.gnome.org/Rust/libshumate-rs>
 
 ## Documentation
 
