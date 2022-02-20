@@ -17,8 +17,10 @@
 //!
 //! # Example
 //!
-//! Adwaita needs to be initialized before use by calling [`fn@init`] on
-//! [`startup`](fn@gio::prelude::ApplicationExt::connect_startup).
+//! Adwaita needs to be initialized before use.
+//! This can be done by either:
+//! - using [`adw::Application`](struct@Application) instead of [`gtk::Application`](struct@gtk::Application), or by
+//! - calling [`fn@init`] on [`startup`](fn@gio::prelude::ApplicationExt::connect_startup).
 //!
 //! The [`libadwaita`](mod@crate) crate is usually renamed to `adw`. You can
 //! do this globally in your `Cargo.toml` file:
