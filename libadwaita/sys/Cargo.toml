@@ -2,7 +2,7 @@
 name = "libadwaita-sys"
 version = "0.2.0"
 authors = ["Bilal Elmoussaoui <bil.elmoussaoui@gmail.com>"]
-edition = "2018"
+edition = "2021"
 build = "build.rs"
 links = "libadwaita-1"
 categories = ["api-bindings", "gui"]
