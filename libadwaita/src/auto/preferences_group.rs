@@ -55,6 +55,9 @@ impl Default for PreferencesGroup {
 #[must_use = "The builder must be built to be used"]
 pub struct PreferencesGroupBuilder {
     description: Option<String>,
+    #[cfg(any(feature = "v1_1", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v1_1")))]
+    header_suffix: Option<gtk::Widget>,
     title: Option<String>,
     can_focus: Option<bool>,
     can_target: Option<bool>,
@@ -102,6 +105,10 @@ impl PreferencesGroupBuilder {
         let mut properties: Vec<(&str, &dyn ToValue)> = vec![];
         if let Some(ref description) = self.description {
             properties.push(("description", description));
+        }
+        #[cfg(any(feature = "v1_1", feature = "dox"))]
+        if let Some(ref header_suffix) = self.header_suffix {
+            properties.push(("header-suffix", header_suffix));
         }
         if let Some(ref title) = self.title {
             properties.push(("title", title));
@@ -202,6 +209,13 @@ impl PreferencesGroupBuilder {
 
     pub fn description(mut self, description: &str) -> Self {
         self.description = Some(description.to_string());
+        self
+    }
+
+    #[cfg(any(feature = "v1_1", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v1_1")))]
+    pub fn header_suffix(mut self, header_suffix: &impl IsA<gtk::Widget>) -> Self {
+        self.header_suffix = Some(header_suffix.clone().upcast());
         self
     }
 
@@ -369,6 +383,12 @@ pub trait PreferencesGroupExt: 'static {
     #[doc(alias = "get_description")]
     fn description(&self) -> Option<glib::GString>;
 
+    #[cfg(any(feature = "v1_1", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v1_1")))]
+    #[doc(alias = "adw_preferences_group_get_header_suffix")]
+    #[doc(alias = "get_header_suffix")]
+    fn header_suffix(&self) -> Option<gtk::Widget>;
+
     #[doc(alias = "adw_preferences_group_get_title")]
     #[doc(alias = "get_title")]
     fn title(&self) -> glib::GString;
@@ -379,11 +399,21 @@ pub trait PreferencesGroupExt: 'static {
     #[doc(alias = "adw_preferences_group_set_description")]
     fn set_description(&self, description: Option<&str>);
 
+    #[cfg(any(feature = "v1_1", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v1_1")))]
+    #[doc(alias = "adw_preferences_group_set_header_suffix")]
+    fn set_header_suffix(&self, child: Option<&impl IsA<gtk::Widget>>);
+
     #[doc(alias = "adw_preferences_group_set_title")]
     fn set_title(&self, title: &str);
 
     #[doc(alias = "description")]
     fn connect_description_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
+
+    #[cfg(any(feature = "v1_1", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v1_1")))]
+    #[doc(alias = "header-suffix")]
+    fn connect_header_suffix_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
 
     #[doc(alias = "title")]
     fn connect_title_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
@@ -402,6 +432,16 @@ impl<O: IsA<PreferencesGroup>> PreferencesGroupExt for O {
     fn description(&self) -> Option<glib::GString> {
         unsafe {
             from_glib_none(ffi::adw_preferences_group_get_description(
+                self.as_ref().to_glib_none().0,
+            ))
+        }
+    }
+
+    #[cfg(any(feature = "v1_1", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v1_1")))]
+    fn header_suffix(&self) -> Option<gtk::Widget> {
+        unsafe {
+            from_glib_none(ffi::adw_preferences_group_get_header_suffix(
                 self.as_ref().to_glib_none().0,
             ))
         }
@@ -429,6 +469,17 @@ impl<O: IsA<PreferencesGroup>> PreferencesGroupExt for O {
             ffi::adw_preferences_group_set_description(
                 self.as_ref().to_glib_none().0,
                 description.to_glib_none().0,
+            );
+        }
+    }
+
+    #[cfg(any(feature = "v1_1", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v1_1")))]
+    fn set_header_suffix(&self, child: Option<&impl IsA<gtk::Widget>>) {
+        unsafe {
+            ffi::adw_preferences_group_set_header_suffix(
+                self.as_ref().to_glib_none().0,
+                child.map(|p| p.as_ref()).to_glib_none().0,
             );
         }
     }
@@ -461,6 +512,33 @@ impl<O: IsA<PreferencesGroup>> PreferencesGroupExt for O {
                 b"notify::description\0".as_ptr() as *const _,
                 Some(transmute::<_, unsafe extern "C" fn()>(
                     notify_description_trampoline::<Self, F> as *const (),
+                )),
+                Box_::into_raw(f),
+            )
+        }
+    }
+
+    #[cfg(any(feature = "v1_1", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v1_1")))]
+    fn connect_header_suffix_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
+        unsafe extern "C" fn notify_header_suffix_trampoline<
+            P: IsA<PreferencesGroup>,
+            F: Fn(&P) + 'static,
+        >(
+            this: *mut ffi::AdwPreferencesGroup,
+            _param_spec: glib::ffi::gpointer,
+            f: glib::ffi::gpointer,
+        ) {
+            let f: &F = &*(f as *const F);
+            f(PreferencesGroup::from_glib_borrow(this).unsafe_cast_ref())
+        }
+        unsafe {
+            let f: Box_<F> = Box_::new(f);
+            connect_raw(
+                self.as_ptr() as *mut _,
+                b"notify::header-suffix\0".as_ptr() as *const _,
+                Some(transmute::<_, unsafe extern "C" fn()>(
+                    notify_header_suffix_trampoline::<Self, F> as *const (),
                 )),
                 Box_::into_raw(f),
             )

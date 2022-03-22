@@ -61,6 +61,9 @@ pub struct ExpanderRowBuilder {
     show_enable_switch: Option<bool>,
     subtitle: Option<String>,
     title: Option<String>,
+    #[cfg(any(feature = "v1_1", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v1_1")))]
+    title_selectable: Option<bool>,
     use_underline: Option<bool>,
     activatable: Option<bool>,
     child: Option<gtk::Widget>,
@@ -128,6 +131,10 @@ impl ExpanderRowBuilder {
         }
         if let Some(ref title) = self.title {
             properties.push(("title", title));
+        }
+        #[cfg(any(feature = "v1_1", feature = "dox"))]
+        if let Some(ref title_selectable) = self.title_selectable {
+            properties.push(("title-selectable", title_selectable));
         }
         if let Some(ref use_underline) = self.use_underline {
             properties.push(("use-underline", use_underline));
@@ -268,6 +275,13 @@ impl ExpanderRowBuilder {
 
     pub fn title(mut self, title: &str) -> Self {
         self.title = Some(title.to_string());
+        self
+    }
+
+    #[cfg(any(feature = "v1_1", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v1_1")))]
+    pub fn title_selectable(mut self, title_selectable: bool) -> Self {
+        self.title_selectable = Some(title_selectable);
         self
     }
 

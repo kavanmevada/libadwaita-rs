@@ -18,3 +18,14 @@ ignore = [
    "Adw.MICRO_VERSION", 
    "Adw.MINOR_VERSION"
 ]
+
+# TODO: Remove after https://gitlab.gnome.org/GNOME/libadwaita/-/merge_requests/508
+[[object]]
+name = "Adw.PreferencesRow"
+status = "generate"
+    [[object.function]]
+    name = "get_title_selectable"
+    version = "1.1"
+    [[object.function]]
+    name = "set_title_selectable"
+    version = "1.1"

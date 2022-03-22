@@ -55,6 +55,9 @@ impl Default for PreferencesRow {
 #[must_use = "The builder must be built to be used"]
 pub struct PreferencesRowBuilder {
     title: Option<String>,
+    #[cfg(any(feature = "v1_1", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v1_1")))]
+    title_selectable: Option<bool>,
     use_underline: Option<bool>,
     activatable: Option<bool>,
     child: Option<gtk::Widget>,
@@ -107,6 +110,10 @@ impl PreferencesRowBuilder {
         let mut properties: Vec<(&str, &dyn ToValue)> = vec![];
         if let Some(ref title) = self.title {
             properties.push(("title", title));
+        }
+        #[cfg(any(feature = "v1_1", feature = "dox"))]
+        if let Some(ref title_selectable) = self.title_selectable {
+            properties.push(("title-selectable", title_selectable));
         }
         if let Some(ref use_underline) = self.use_underline {
             properties.push(("use-underline", use_underline));
@@ -222,6 +229,13 @@ impl PreferencesRowBuilder {
 
     pub fn title(mut self, title: &str) -> Self {
         self.title = Some(title.to_string());
+        self
+    }
+
+    #[cfg(any(feature = "v1_1", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v1_1")))]
+    pub fn title_selectable(mut self, title_selectable: bool) -> Self {
+        self.title_selectable = Some(title_selectable);
         self
     }
 
@@ -411,6 +425,12 @@ pub trait PreferencesRowExt: 'static {
     #[doc(alias = "get_title")]
     fn title(&self) -> glib::GString;
 
+    #[cfg(any(feature = "v1_1", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v1_1")))]
+    #[doc(alias = "adw_preferences_row_get_title_selectable")]
+    #[doc(alias = "get_title_selectable")]
+    fn is_title_selectable(&self) -> bool;
+
     #[doc(alias = "adw_preferences_row_get_use_underline")]
     #[doc(alias = "get_use_underline")]
     fn uses_underline(&self) -> bool;
@@ -418,11 +438,21 @@ pub trait PreferencesRowExt: 'static {
     #[doc(alias = "adw_preferences_row_set_title")]
     fn set_title(&self, title: &str);
 
+    #[cfg(any(feature = "v1_1", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v1_1")))]
+    #[doc(alias = "adw_preferences_row_set_title_selectable")]
+    fn set_title_selectable(&self, title_selectable: bool);
+
     #[doc(alias = "adw_preferences_row_set_use_underline")]
     fn set_use_underline(&self, use_underline: bool);
 
     #[doc(alias = "title")]
     fn connect_title_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
+
+    #[cfg(any(feature = "v1_1", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v1_1")))]
+    #[doc(alias = "title-selectable")]
+    fn connect_title_selectable_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
 
     #[doc(alias = "use-underline")]
     fn connect_use_underline_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
@@ -432,6 +462,16 @@ impl<O: IsA<PreferencesRow>> PreferencesRowExt for O {
     fn title(&self) -> glib::GString {
         unsafe {
             from_glib_none(ffi::adw_preferences_row_get_title(
+                self.as_ref().to_glib_none().0,
+            ))
+        }
+    }
+
+    #[cfg(any(feature = "v1_1", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v1_1")))]
+    fn is_title_selectable(&self) -> bool {
+        unsafe {
+            from_glib(ffi::adw_preferences_row_get_title_selectable(
                 self.as_ref().to_glib_none().0,
             ))
         }
@@ -450,6 +490,17 @@ impl<O: IsA<PreferencesRow>> PreferencesRowExt for O {
             ffi::adw_preferences_row_set_title(
                 self.as_ref().to_glib_none().0,
                 title.to_glib_none().0,
+            );
+        }
+    }
+
+    #[cfg(any(feature = "v1_1", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v1_1")))]
+    fn set_title_selectable(&self, title_selectable: bool) {
+        unsafe {
+            ffi::adw_preferences_row_set_title_selectable(
+                self.as_ref().to_glib_none().0,
+                title_selectable.into_glib(),
             );
         }
     }
@@ -482,6 +533,33 @@ impl<O: IsA<PreferencesRow>> PreferencesRowExt for O {
                 b"notify::title\0".as_ptr() as *const _,
                 Some(transmute::<_, unsafe extern "C" fn()>(
                     notify_title_trampoline::<Self, F> as *const (),
+                )),
+                Box_::into_raw(f),
+            )
+        }
+    }
+
+    #[cfg(any(feature = "v1_1", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v1_1")))]
+    fn connect_title_selectable_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
+        unsafe extern "C" fn notify_title_selectable_trampoline<
+            P: IsA<PreferencesRow>,
+            F: Fn(&P) + 'static,
+        >(
+            this: *mut ffi::AdwPreferencesRow,
+            _param_spec: glib::ffi::gpointer,
+            f: glib::ffi::gpointer,
+        ) {
+            let f: &F = &*(f as *const F);
+            f(PreferencesRow::from_glib_borrow(this).unsafe_cast_ref())
+        }
+        unsafe {
+            let f: Box_<F> = Box_::new(f);
+            connect_raw(
+                self.as_ptr() as *mut _,
+                b"notify::title-selectable\0".as_ptr() as *const _,
+                Some(transmute::<_, unsafe extern "C" fn()>(
+                    notify_title_selectable_trampoline::<Self, F> as *const (),
                 )),
                 Box_::into_raw(f),
             )
