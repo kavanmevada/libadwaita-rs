@@ -20,6 +20,7 @@ dox = []
 gtk_v4_2 = []
 gtk_v4_4 = ["gtk_v4_2"]
 gtk_v4_6 = ["gtk_v4_4"]
+v1_1 = [ "ffi/v1_1" ]
 
 [package.metadata.docs.rs]
 features = ["dox"]

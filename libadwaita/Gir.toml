@@ -49,9 +49,7 @@ generate = [
     "Adw.Leaflet",
     "Adw.LeafletTransitionType",
     "Adw.NavigationDirection",
-    "Adw.PreferencesGroup",
     "Adw.PreferencesPage",
-    "Adw.PreferencesRow",
     "Adw.PreferencesWindow",
     "Adw.SplitButton",
     "Adw.SpringAnimation",
@@ -192,6 +190,30 @@ generate_builder = false
 name = "Adw.LeafletPage"
 status = "generate"
 generate_builder = false
+
+# TODO: Remove after https://gitlab.gnome.org/GNOME/libadwaita/-/merge_requests/508
+[[object]]
+name = "Adw.PreferencesGroup"
+status = "generate"
+    [[object.function]]
+    name = "set_header_suffix"
+        [[object.function.parameter]]
+        name = "child"
+        nullable = true
+
+# TODO: Remove after https://gitlab.gnome.org/GNOME/libadwaita/-/merge_requests/508
+[[object]]
+name = "Adw.PreferencesRow"
+status = "generate"
+    [[object.property]]
+    name = "title-selectable"
+    version = "1.1"
+    [[object.function]]
+    name = "get_title_selectable"
+    version = "1.1"
+    [[object.function]]
+    name = "set_title_selectable"
+    version = "1.1"
 
 [[object]]
 name = "Adw.StyleManager"
