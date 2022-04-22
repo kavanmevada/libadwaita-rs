@@ -51,7 +51,9 @@ generate = [
     "Adw.LeafletTransitionType",
     "Adw.NavigationDirection",
     "Adw.PasswordEntryRow",
+    "Adw.PreferencesGroup",
     "Adw.PreferencesPage",
+    "Adw.PreferencesRow",
     "Adw.PreferencesWindow",
     "Adw.SplitButton",
     "Adw.SpringAnimation",
@@ -159,12 +161,6 @@ trait_name = "AdwApplicationExt"
     [[object.function]]
     name = "new"
     manual = true
-    # FIXME Remove once
-    # https://gitlab.gnome.org/World/Rust/libadwaita-rs/-/merge_requests/8 is in
-    [[object.function]]
-    name = "get_style_manager"
-        [object.function.return]
-        nullable = false
 
 [[object]]
 name = "Adw.ApplicationWindow"
@@ -192,30 +188,6 @@ generate_builder = false
 name = "Adw.LeafletPage"
 status = "generate"
 generate_builder = false
-
-# TODO: Remove after https://gitlab.gnome.org/GNOME/libadwaita/-/merge_requests/508
-[[object]]
-name = "Adw.PreferencesGroup"
-status = "generate"
-    [[object.function]]
-    name = "set_header_suffix"
-        [[object.function.parameter]]
-        name = "child"
-        nullable = true
-
-# TODO: Remove after https://gitlab.gnome.org/GNOME/libadwaita/-/merge_requests/508
-[[object]]
-name = "Adw.PreferencesRow"
-status = "generate"
-    [[object.property]]
-    name = "title-selectable"
-    version = "1.1"
-    [[object.function]]
-    name = "get_title_selectable"
-    version = "1.1"
-    [[object.function]]
-    name = "set_title_selectable"
-    version = "1.1"
 
 [[object]]
 name = "Adw.StyleManager"
