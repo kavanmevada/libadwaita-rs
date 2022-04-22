@@ -328,6 +328,20 @@ impl ::std::fmt::Debug for AdwComboRowClass {
 
 #[derive(Copy, Clone)]
 #[repr(C)]
+pub struct AdwEntryRowClass {
+    pub parent_class: AdwPreferencesRowClass,
+}
+
+impl ::std::fmt::Debug for AdwEntryRowClass {
+    fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+        f.debug_struct(&format!("AdwEntryRowClass @ {:p}", self))
+            .field("parent_class", &self.parent_class)
+            .finish()
+    }
+}
+
+#[derive(Copy, Clone)]
+#[repr(C)]
 pub struct AdwEnumListItemClass {
     pub parent_class: gobject::GObjectClass,
 }
@@ -420,6 +434,20 @@ pub struct AdwLeafletPageClass {
 impl ::std::fmt::Debug for AdwLeafletPageClass {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
         f.debug_struct(&format!("AdwLeafletPageClass @ {:p}", self))
+            .field("parent_class", &self.parent_class)
+            .finish()
+    }
+}
+
+#[derive(Copy, Clone)]
+#[repr(C)]
+pub struct AdwPasswordEntryRowClass {
+    pub parent_class: AdwEntryRowClass,
+}
+
+impl ::std::fmt::Debug for AdwPasswordEntryRowClass {
+    fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+        f.debug_struct(&format!("AdwPasswordEntryRowClass @ {:p}", self))
             .field("parent_class", &self.parent_class)
             .finish()
     }
@@ -1013,6 +1041,20 @@ impl ::std::fmt::Debug for AdwComboRow {
     }
 }
 
+#[derive(Copy, Clone)]
+#[repr(C)]
+pub struct AdwEntryRow {
+    pub parent_instance: AdwPreferencesRow,
+}
+
+impl ::std::fmt::Debug for AdwEntryRow {
+    fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+        f.debug_struct(&format!("AdwEntryRow @ {:p}", self))
+            .field("parent_instance", &self.parent_instance)
+            .finish()
+    }
+}
+
 #[repr(C)]
 pub struct AdwEnumListItem {
     _data: [u8; 0],
@@ -1099,6 +1141,19 @@ pub struct AdwLeafletPage {
 impl ::std::fmt::Debug for AdwLeafletPage {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
         f.debug_struct(&format!("AdwLeafletPage @ {:p}", self))
+            .finish()
+    }
+}
+
+#[repr(C)]
+pub struct AdwPasswordEntryRow {
+    _data: [u8; 0],
+    _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
+}
+
+impl ::std::fmt::Debug for AdwPasswordEntryRow {
+    fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+        f.debug_struct(&format!("AdwPasswordEntryRow @ {:p}", self))
             .finish()
     }
 }
@@ -1781,6 +1836,34 @@ extern "C" {
     pub fn adw_combo_row_set_use_subtitle(self_: *mut AdwComboRow, use_subtitle: gboolean);
 
     //=========================================================================
+    // AdwEntryRow
+    //=========================================================================
+    #[cfg(any(feature = "v1_2", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v1_2")))]
+    pub fn adw_entry_row_get_type() -> GType;
+    #[cfg(any(feature = "v1_2", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v1_2")))]
+    pub fn adw_entry_row_new() -> *mut gtk::GtkWidget;
+    #[cfg(any(feature = "v1_2", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v1_2")))]
+    pub fn adw_entry_row_add_prefix(self_: *mut AdwEntryRow, widget: *mut gtk::GtkWidget);
+    #[cfg(any(feature = "v1_2", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v1_2")))]
+    pub fn adw_entry_row_add_suffix(self_: *mut AdwEntryRow, widget: *mut gtk::GtkWidget);
+    #[cfg(any(feature = "v1_2", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v1_2")))]
+    pub fn adw_entry_row_get_show_apply_button(self_: *mut AdwEntryRow) -> gboolean;
+    #[cfg(any(feature = "v1_2", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v1_2")))]
+    pub fn adw_entry_row_remove(self_: *mut AdwEntryRow, widget: *mut gtk::GtkWidget);
+    #[cfg(any(feature = "v1_2", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v1_2")))]
+    pub fn adw_entry_row_set_show_apply_button(
+        self_: *mut AdwEntryRow,
+        show_apply_button: gboolean,
+    );
+
+    //=========================================================================
     // AdwEnumListItem
     //=========================================================================
     pub fn adw_enum_list_item_get_type() -> GType;
@@ -1976,6 +2059,16 @@ extern "C" {
     pub fn adw_leaflet_page_set_navigatable(self_: *mut AdwLeafletPage, navigatable: gboolean);
 
     //=========================================================================
+    // AdwPasswordEntryRow
+    //=========================================================================
+    #[cfg(any(feature = "v1_2", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v1_2")))]
+    pub fn adw_password_entry_row_get_type() -> GType;
+    #[cfg(any(feature = "v1_2", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v1_2")))]
+    pub fn adw_password_entry_row_new() -> *mut gtk::GtkWidget;
+
+    //=========================================================================
     // AdwPreferencesGroup
     //=========================================================================
     pub fn adw_preferences_group_get_type() -> GType;
@@ -2000,7 +2093,7 @@ extern "C" {
     #[cfg_attr(feature = "dox", doc(cfg(feature = "v1_1")))]
     pub fn adw_preferences_group_set_header_suffix(
         self_: *mut AdwPreferencesGroup,
-        child: *mut gtk::GtkWidget,
+        suffix: *mut gtk::GtkWidget,
     );
     pub fn adw_preferences_group_set_title(self_: *mut AdwPreferencesGroup, title: *const c_char);
 
@@ -2041,6 +2134,9 @@ extern "C" {
     #[cfg(any(feature = "v1_1", feature = "dox"))]
     #[cfg_attr(feature = "dox", doc(cfg(feature = "v1_1")))]
     pub fn adw_preferences_row_get_title_selectable(self_: *mut AdwPreferencesRow) -> gboolean;
+    #[cfg(any(feature = "v1_2", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v1_2")))]
+    pub fn adw_preferences_row_get_use_markup(self_: *mut AdwPreferencesRow) -> gboolean;
     pub fn adw_preferences_row_get_use_underline(self_: *mut AdwPreferencesRow) -> gboolean;
     pub fn adw_preferences_row_set_title(self_: *mut AdwPreferencesRow, title: *const c_char);
     #[cfg(any(feature = "v1_1", feature = "dox"))]
@@ -2049,6 +2145,9 @@ extern "C" {
         self_: *mut AdwPreferencesRow,
         title_selectable: gboolean,
     );
+    #[cfg(any(feature = "v1_2", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v1_2")))]
+    pub fn adw_preferences_row_set_use_markup(self_: *mut AdwPreferencesRow, use_markup: gboolean);
     pub fn adw_preferences_row_set_use_underline(
         self_: *mut AdwPreferencesRow,
         use_underline: gboolean,
@@ -2437,10 +2536,16 @@ extern "C" {
     //=========================================================================
     pub fn adw_toast_get_type() -> GType;
     pub fn adw_toast_new(title: *const c_char) -> *mut AdwToast;
+    #[cfg(any(feature = "v1_2", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v1_2")))]
+    pub fn adw_toast_new_format(format: *const c_char, ...) -> *mut AdwToast;
     pub fn adw_toast_dismiss(self_: *mut AdwToast);
     pub fn adw_toast_get_action_name(self_: *mut AdwToast) -> *const c_char;
     pub fn adw_toast_get_action_target_value(self_: *mut AdwToast) -> *mut glib::GVariant;
     pub fn adw_toast_get_button_label(self_: *mut AdwToast) -> *const c_char;
+    #[cfg(any(feature = "v1_2", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v1_2")))]
+    pub fn adw_toast_get_custom_title(self_: *mut AdwToast) -> *mut gtk::GtkWidget;
     pub fn adw_toast_get_priority(self_: *mut AdwToast) -> AdwToastPriority;
     pub fn adw_toast_get_timeout(self_: *mut AdwToast) -> c_uint;
     pub fn adw_toast_get_title(self_: *mut AdwToast) -> *const c_char;
@@ -2451,6 +2556,9 @@ extern "C" {
         action_target: *mut glib::GVariant,
     );
     pub fn adw_toast_set_button_label(self_: *mut AdwToast, button_label: *const c_char);
+    #[cfg(any(feature = "v1_2", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v1_2")))]
+    pub fn adw_toast_set_custom_title(self_: *mut AdwToast, widget: *mut gtk::GtkWidget);
     pub fn adw_toast_set_detailed_action_name(
         self_: *mut AdwToast,
         detailed_action_name: *const c_char,

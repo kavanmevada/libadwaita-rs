@@ -5,6 +5,9 @@
 
 use crate::ToastPriority;
 use glib::object::Cast;
+#[cfg(any(feature = "v1_2", feature = "dox"))]
+#[cfg_attr(feature = "dox", doc(cfg(feature = "v1_2")))]
+use glib::object::IsA;
 use glib::object::ObjectType as ObjectType_;
 use glib::signal::connect_raw;
 use glib::signal::SignalHandlerId;
@@ -68,6 +71,14 @@ impl Toast {
         unsafe { from_glib_none(ffi::adw_toast_get_button_label(self.to_glib_none().0)) }
     }
 
+    #[cfg(any(feature = "v1_2", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v1_2")))]
+    #[doc(alias = "adw_toast_get_custom_title")]
+    #[doc(alias = "get_custom_title")]
+    pub fn custom_title(&self) -> Option<gtk::Widget> {
+        unsafe { from_glib_none(ffi::adw_toast_get_custom_title(self.to_glib_none().0)) }
+    }
+
     #[doc(alias = "adw_toast_get_priority")]
     #[doc(alias = "get_priority")]
     pub fn priority(&self) -> ToastPriority {
@@ -82,7 +93,7 @@ impl Toast {
 
     #[doc(alias = "adw_toast_get_title")]
     #[doc(alias = "get_title")]
-    pub fn title(&self) -> glib::GString {
+    pub fn title(&self) -> Option<glib::GString> {
         unsafe { from_glib_none(ffi::adw_toast_get_title(self.to_glib_none().0)) }
     }
 
@@ -107,6 +118,18 @@ impl Toast {
     pub fn set_button_label(&self, button_label: Option<&str>) {
         unsafe {
             ffi::adw_toast_set_button_label(self.to_glib_none().0, button_label.to_glib_none().0);
+        }
+    }
+
+    #[cfg(any(feature = "v1_2", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v1_2")))]
+    #[doc(alias = "adw_toast_set_custom_title")]
+    pub fn set_custom_title(&self, widget: Option<&impl IsA<gtk::Widget>>) {
+        unsafe {
+            ffi::adw_toast_set_custom_title(
+                self.to_glib_none().0,
+                widget.map(|p| p.as_ref()).to_glib_none().0,
+            );
         }
     }
 
@@ -232,6 +255,31 @@ impl Toast {
         }
     }
 
+    #[cfg(any(feature = "v1_2", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v1_2")))]
+    #[doc(alias = "custom-title")]
+    pub fn connect_custom_title_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
+        unsafe extern "C" fn notify_custom_title_trampoline<F: Fn(&Toast) + 'static>(
+            this: *mut ffi::AdwToast,
+            _param_spec: glib::ffi::gpointer,
+            f: glib::ffi::gpointer,
+        ) {
+            let f: &F = &*(f as *const F);
+            f(&from_glib_borrow(this))
+        }
+        unsafe {
+            let f: Box_<F> = Box_::new(f);
+            connect_raw(
+                self.as_ptr() as *mut _,
+                b"notify::custom-title\0".as_ptr() as *const _,
+                Some(transmute::<_, unsafe extern "C" fn()>(
+                    notify_custom_title_trampoline::<F> as *const (),
+                )),
+                Box_::into_raw(f),
+            )
+        }
+    }
+
     #[doc(alias = "priority")]
     pub fn connect_priority_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_priority_trampoline<F: Fn(&Toast) + 'static>(
@@ -319,6 +367,9 @@ pub struct ToastBuilder {
     action_name: Option<String>,
     action_target: Option<glib::Variant>,
     button_label: Option<String>,
+    #[cfg(any(feature = "v1_2", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v1_2")))]
+    custom_title: Option<gtk::Widget>,
     priority: Option<ToastPriority>,
     timeout: Option<u32>,
     title: Option<String>,
@@ -345,6 +396,10 @@ impl ToastBuilder {
         if let Some(ref button_label) = self.button_label {
             properties.push(("button-label", button_label));
         }
+        #[cfg(any(feature = "v1_2", feature = "dox"))]
+        if let Some(ref custom_title) = self.custom_title {
+            properties.push(("custom-title", custom_title));
+        }
         if let Some(ref priority) = self.priority {
             properties.push(("priority", priority));
         }
@@ -369,6 +424,13 @@ impl ToastBuilder {
 
     pub fn button_label(mut self, button_label: &str) -> Self {
         self.button_label = Some(button_label.to_string());
+        self
+    }
+
+    #[cfg(any(feature = "v1_2", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v1_2")))]
+    pub fn custom_title(mut self, custom_title: &impl IsA<gtk::Widget>) -> Self {
+        self.custom_title = Some(custom_title.clone().upcast());
         self
     }
 

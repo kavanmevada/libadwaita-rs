@@ -3,45 +3,43 @@
 // from gir-files (https://github.com/gtk-rs/gir-files.git)
 // DO NOT EDIT
 
+use crate::EntryRow;
+use crate::PreferencesRow;
 use glib::object::Cast;
 use glib::object::IsA;
-use glib::signal::connect_raw;
-use glib::signal::SignalHandlerId;
 use glib::translate::*;
 use glib::StaticType;
 use glib::ToValue;
-use std::boxed::Box as Box_;
 use std::fmt;
-use std::mem::transmute;
 
 glib::wrapper! {
-    #[doc(alias = "AdwPreferencesGroup")]
-    pub struct PreferencesGroup(Object<ffi::AdwPreferencesGroup, ffi::AdwPreferencesGroupClass>) @extends gtk::Widget, @implements gtk::Accessible, gtk::Buildable, gtk::ConstraintTarget;
+    #[doc(alias = "AdwPasswordEntryRow")]
+    pub struct PasswordEntryRow(Object<ffi::AdwPasswordEntryRow, ffi::AdwPasswordEntryRowClass>) @extends EntryRow, PreferencesRow, gtk::ListBoxRow, gtk::Widget, @implements gtk::Accessible, gtk::Buildable, gtk::ConstraintTarget, gtk::Actionable;
 
     match fn {
-        type_ => || ffi::adw_preferences_group_get_type(),
+        type_ => || ffi::adw_password_entry_row_get_type(),
     }
 }
 
-impl PreferencesGroup {
-    pub const NONE: Option<&'static PreferencesGroup> = None;
-
-    #[doc(alias = "adw_preferences_group_new")]
-    pub fn new() -> PreferencesGroup {
+impl PasswordEntryRow {
+    #[doc(alias = "adw_password_entry_row_new")]
+    pub fn new() -> PasswordEntryRow {
         assert_initialized_main_thread!();
-        unsafe { gtk::Widget::from_glib_none(ffi::adw_preferences_group_new()).unsafe_cast() }
+        unsafe { gtk::Widget::from_glib_none(ffi::adw_password_entry_row_new()).unsafe_cast() }
     }
 
     // rustdoc-stripper-ignore-next
-    /// Creates a new builder-pattern struct instance to construct [`PreferencesGroup`] objects.
+    /// Creates a new builder-pattern struct instance to construct [`PasswordEntryRow`] objects.
     ///
-    /// This method returns an instance of [`PreferencesGroupBuilder`](crate::builders::PreferencesGroupBuilder) which can be used to create [`PreferencesGroup`] objects.
-    pub fn builder() -> PreferencesGroupBuilder {
-        PreferencesGroupBuilder::default()
+    /// This method returns an instance of [`PasswordEntryRowBuilder`](crate::builders::PasswordEntryRowBuilder) which can be used to create [`PasswordEntryRow`] objects.
+    pub fn builder() -> PasswordEntryRowBuilder {
+        PasswordEntryRowBuilder::default()
     }
 }
 
-impl Default for PreferencesGroup {
+#[cfg(any(feature = "v1_2", feature = "dox"))]
+#[cfg_attr(feature = "dox", doc(cfg(feature = "v1_2")))]
+impl Default for PasswordEntryRow {
     fn default() -> Self {
         Self::new()
     }
@@ -49,16 +47,25 @@ impl Default for PreferencesGroup {
 
 #[derive(Clone, Default)]
 // rustdoc-stripper-ignore-next
-/// A [builder-pattern] type to construct [`PreferencesGroup`] objects.
+/// A [builder-pattern] type to construct [`PasswordEntryRow`] objects.
 ///
 /// [builder-pattern]: https://doc.rust-lang.org/1.0.0/style/ownership/builders.html
 #[must_use = "The builder must be built to be used"]
-pub struct PreferencesGroupBuilder {
-    description: Option<String>,
+pub struct PasswordEntryRowBuilder {
+    #[cfg(any(feature = "v1_2", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v1_2")))]
+    show_apply_button: Option<bool>,
+    title: Option<String>,
     #[cfg(any(feature = "v1_1", feature = "dox"))]
     #[cfg_attr(feature = "dox", doc(cfg(feature = "v1_1")))]
-    header_suffix: Option<gtk::Widget>,
-    title: Option<String>,
+    title_selectable: Option<bool>,
+    #[cfg(any(feature = "v1_2", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v1_2")))]
+    use_markup: Option<bool>,
+    use_underline: Option<bool>,
+    activatable: Option<bool>,
+    child: Option<gtk::Widget>,
+    selectable: Option<bool>,
     can_focus: Option<bool>,
     can_target: Option<bool>,
     css_classes: Option<Vec<String>>,
@@ -89,29 +96,48 @@ pub struct PreferencesGroupBuilder {
     visible: Option<bool>,
     width_request: Option<i32>,
     accessible_role: Option<gtk::AccessibleRole>,
+    action_name: Option<String>,
+    action_target: Option<glib::Variant>,
 }
 
-impl PreferencesGroupBuilder {
+impl PasswordEntryRowBuilder {
     // rustdoc-stripper-ignore-next
-    /// Create a new [`PreferencesGroupBuilder`].
+    /// Create a new [`PasswordEntryRowBuilder`].
     pub fn new() -> Self {
         Self::default()
     }
 
     // rustdoc-stripper-ignore-next
-    /// Build the [`PreferencesGroup`].
+    /// Build the [`PasswordEntryRow`].
     #[must_use = "Building the object from the builder is usually expensive and is not expected to have side effects"]
-    pub fn build(self) -> PreferencesGroup {
+    pub fn build(self) -> PasswordEntryRow {
         let mut properties: Vec<(&str, &dyn ToValue)> = vec![];
-        if let Some(ref description) = self.description {
-            properties.push(("description", description));
-        }
-        #[cfg(any(feature = "v1_1", feature = "dox"))]
-        if let Some(ref header_suffix) = self.header_suffix {
-            properties.push(("header-suffix", header_suffix));
+        #[cfg(any(feature = "v1_2", feature = "dox"))]
+        if let Some(ref show_apply_button) = self.show_apply_button {
+            properties.push(("show-apply-button", show_apply_button));
         }
         if let Some(ref title) = self.title {
             properties.push(("title", title));
+        }
+        #[cfg(any(feature = "v1_1", feature = "dox"))]
+        if let Some(ref title_selectable) = self.title_selectable {
+            properties.push(("title-selectable", title_selectable));
+        }
+        #[cfg(any(feature = "v1_2", feature = "dox"))]
+        if let Some(ref use_markup) = self.use_markup {
+            properties.push(("use-markup", use_markup));
+        }
+        if let Some(ref use_underline) = self.use_underline {
+            properties.push(("use-underline", use_underline));
+        }
+        if let Some(ref activatable) = self.activatable {
+            properties.push(("activatable", activatable));
+        }
+        if let Some(ref child) = self.child {
+            properties.push(("child", child));
+        }
+        if let Some(ref selectable) = self.selectable {
+            properties.push(("selectable", selectable));
         }
         if let Some(ref can_focus) = self.can_focus {
             properties.push(("can-focus", can_focus));
@@ -203,24 +229,59 @@ impl PreferencesGroupBuilder {
         if let Some(ref accessible_role) = self.accessible_role {
             properties.push(("accessible-role", accessible_role));
         }
-        glib::Object::new::<PreferencesGroup>(&properties)
-            .expect("Failed to create an instance of PreferencesGroup")
+        if let Some(ref action_name) = self.action_name {
+            properties.push(("action-name", action_name));
+        }
+        if let Some(ref action_target) = self.action_target {
+            properties.push(("action-target", action_target));
+        }
+        glib::Object::new::<PasswordEntryRow>(&properties)
+            .expect("Failed to create an instance of PasswordEntryRow")
     }
 
-    pub fn description(mut self, description: &str) -> Self {
-        self.description = Some(description.to_string());
-        self
-    }
-
-    #[cfg(any(feature = "v1_1", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v1_1")))]
-    pub fn header_suffix(mut self, header_suffix: &impl IsA<gtk::Widget>) -> Self {
-        self.header_suffix = Some(header_suffix.clone().upcast());
+    #[cfg(any(feature = "v1_2", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v1_2")))]
+    pub fn show_apply_button(mut self, show_apply_button: bool) -> Self {
+        self.show_apply_button = Some(show_apply_button);
         self
     }
 
     pub fn title(mut self, title: &str) -> Self {
         self.title = Some(title.to_string());
+        self
+    }
+
+    #[cfg(any(feature = "v1_1", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v1_1")))]
+    pub fn title_selectable(mut self, title_selectable: bool) -> Self {
+        self.title_selectable = Some(title_selectable);
+        self
+    }
+
+    #[cfg(any(feature = "v1_2", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v1_2")))]
+    pub fn use_markup(mut self, use_markup: bool) -> Self {
+        self.use_markup = Some(use_markup);
+        self
+    }
+
+    pub fn use_underline(mut self, use_underline: bool) -> Self {
+        self.use_underline = Some(use_underline);
+        self
+    }
+
+    pub fn activatable(mut self, activatable: bool) -> Self {
+        self.activatable = Some(activatable);
+        self
+    }
+
+    pub fn child(mut self, child: &impl IsA<gtk::Widget>) -> Self {
+        self.child = Some(child.clone().upcast());
+        self
+    }
+
+    pub fn selectable(mut self, selectable: bool) -> Self {
+        self.selectable = Some(selectable);
         self
     }
 
@@ -373,206 +434,20 @@ impl PreferencesGroupBuilder {
         self.accessible_role = Some(accessible_role);
         self
     }
-}
 
-pub trait PreferencesGroupExt: 'static {
-    #[doc(alias = "adw_preferences_group_add")]
-    fn add(&self, child: &impl IsA<gtk::Widget>);
-
-    #[doc(alias = "adw_preferences_group_get_description")]
-    #[doc(alias = "get_description")]
-    fn description(&self) -> Option<glib::GString>;
-
-    #[cfg(any(feature = "v1_1", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v1_1")))]
-    #[doc(alias = "adw_preferences_group_get_header_suffix")]
-    #[doc(alias = "get_header_suffix")]
-    fn header_suffix(&self) -> Option<gtk::Widget>;
-
-    #[doc(alias = "adw_preferences_group_get_title")]
-    #[doc(alias = "get_title")]
-    fn title(&self) -> glib::GString;
-
-    #[doc(alias = "adw_preferences_group_remove")]
-    fn remove(&self, child: &impl IsA<gtk::Widget>);
-
-    #[doc(alias = "adw_preferences_group_set_description")]
-    fn set_description(&self, description: Option<&str>);
-
-    #[cfg(any(feature = "v1_1", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v1_1")))]
-    #[doc(alias = "adw_preferences_group_set_header_suffix")]
-    fn set_header_suffix(&self, suffix: Option<&impl IsA<gtk::Widget>>);
-
-    #[doc(alias = "adw_preferences_group_set_title")]
-    fn set_title(&self, title: &str);
-
-    #[doc(alias = "description")]
-    fn connect_description_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
-
-    #[cfg(any(feature = "v1_1", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v1_1")))]
-    #[doc(alias = "header-suffix")]
-    fn connect_header_suffix_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
-
-    #[doc(alias = "title")]
-    fn connect_title_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
-}
-
-impl<O: IsA<PreferencesGroup>> PreferencesGroupExt for O {
-    fn add(&self, child: &impl IsA<gtk::Widget>) {
-        unsafe {
-            ffi::adw_preferences_group_add(
-                self.as_ref().to_glib_none().0,
-                child.as_ref().to_glib_none().0,
-            );
-        }
+    pub fn action_name(mut self, action_name: &str) -> Self {
+        self.action_name = Some(action_name.to_string());
+        self
     }
 
-    fn description(&self) -> Option<glib::GString> {
-        unsafe {
-            from_glib_none(ffi::adw_preferences_group_get_description(
-                self.as_ref().to_glib_none().0,
-            ))
-        }
-    }
-
-    #[cfg(any(feature = "v1_1", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v1_1")))]
-    fn header_suffix(&self) -> Option<gtk::Widget> {
-        unsafe {
-            from_glib_none(ffi::adw_preferences_group_get_header_suffix(
-                self.as_ref().to_glib_none().0,
-            ))
-        }
-    }
-
-    fn title(&self) -> glib::GString {
-        unsafe {
-            from_glib_none(ffi::adw_preferences_group_get_title(
-                self.as_ref().to_glib_none().0,
-            ))
-        }
-    }
-
-    fn remove(&self, child: &impl IsA<gtk::Widget>) {
-        unsafe {
-            ffi::adw_preferences_group_remove(
-                self.as_ref().to_glib_none().0,
-                child.as_ref().to_glib_none().0,
-            );
-        }
-    }
-
-    fn set_description(&self, description: Option<&str>) {
-        unsafe {
-            ffi::adw_preferences_group_set_description(
-                self.as_ref().to_glib_none().0,
-                description.to_glib_none().0,
-            );
-        }
-    }
-
-    #[cfg(any(feature = "v1_1", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v1_1")))]
-    fn set_header_suffix(&self, suffix: Option<&impl IsA<gtk::Widget>>) {
-        unsafe {
-            ffi::adw_preferences_group_set_header_suffix(
-                self.as_ref().to_glib_none().0,
-                suffix.map(|p| p.as_ref()).to_glib_none().0,
-            );
-        }
-    }
-
-    fn set_title(&self, title: &str) {
-        unsafe {
-            ffi::adw_preferences_group_set_title(
-                self.as_ref().to_glib_none().0,
-                title.to_glib_none().0,
-            );
-        }
-    }
-
-    fn connect_description_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
-        unsafe extern "C" fn notify_description_trampoline<
-            P: IsA<PreferencesGroup>,
-            F: Fn(&P) + 'static,
-        >(
-            this: *mut ffi::AdwPreferencesGroup,
-            _param_spec: glib::ffi::gpointer,
-            f: glib::ffi::gpointer,
-        ) {
-            let f: &F = &*(f as *const F);
-            f(PreferencesGroup::from_glib_borrow(this).unsafe_cast_ref())
-        }
-        unsafe {
-            let f: Box_<F> = Box_::new(f);
-            connect_raw(
-                self.as_ptr() as *mut _,
-                b"notify::description\0".as_ptr() as *const _,
-                Some(transmute::<_, unsafe extern "C" fn()>(
-                    notify_description_trampoline::<Self, F> as *const (),
-                )),
-                Box_::into_raw(f),
-            )
-        }
-    }
-
-    #[cfg(any(feature = "v1_1", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v1_1")))]
-    fn connect_header_suffix_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
-        unsafe extern "C" fn notify_header_suffix_trampoline<
-            P: IsA<PreferencesGroup>,
-            F: Fn(&P) + 'static,
-        >(
-            this: *mut ffi::AdwPreferencesGroup,
-            _param_spec: glib::ffi::gpointer,
-            f: glib::ffi::gpointer,
-        ) {
-            let f: &F = &*(f as *const F);
-            f(PreferencesGroup::from_glib_borrow(this).unsafe_cast_ref())
-        }
-        unsafe {
-            let f: Box_<F> = Box_::new(f);
-            connect_raw(
-                self.as_ptr() as *mut _,
-                b"notify::header-suffix\0".as_ptr() as *const _,
-                Some(transmute::<_, unsafe extern "C" fn()>(
-                    notify_header_suffix_trampoline::<Self, F> as *const (),
-                )),
-                Box_::into_raw(f),
-            )
-        }
-    }
-
-    fn connect_title_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
-        unsafe extern "C" fn notify_title_trampoline<
-            P: IsA<PreferencesGroup>,
-            F: Fn(&P) + 'static,
-        >(
-            this: *mut ffi::AdwPreferencesGroup,
-            _param_spec: glib::ffi::gpointer,
-            f: glib::ffi::gpointer,
-        ) {
-            let f: &F = &*(f as *const F);
-            f(PreferencesGroup::from_glib_borrow(this).unsafe_cast_ref())
-        }
-        unsafe {
-            let f: Box_<F> = Box_::new(f);
-            connect_raw(
-                self.as_ptr() as *mut _,
-                b"notify::title\0".as_ptr() as *const _,
-                Some(transmute::<_, unsafe extern "C" fn()>(
-                    notify_title_trampoline::<Self, F> as *const (),
-                )),
-                Box_::into_raw(f),
-            )
-        }
+    pub fn action_target(mut self, action_target: &glib::Variant) -> Self {
+        self.action_target = Some(action_target.clone());
+        self
     }
 }
 
-impl fmt::Display for PreferencesGroup {
+impl fmt::Display for PasswordEntryRow {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        f.write_str("PreferencesGroup")
+        f.write_str("PasswordEntryRow")
     }
 }

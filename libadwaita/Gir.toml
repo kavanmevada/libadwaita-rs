@@ -39,6 +39,7 @@ generate = [
     "Adw.ColorScheme",
     "Adw.ComboRow",
     "Adw.Easing",
+    "Adw.EntryRow",
     "Adw.ExpanderRow",
     "Adw.FoldThresholdPolicy",
     "Adw.Flap",
@@ -49,6 +50,7 @@ generate = [
     "Adw.Leaflet",
     "Adw.LeafletTransitionType",
     "Adw.NavigationDirection",
+    "Adw.PasswordEntryRow",
     "Adw.PreferencesPage",
     "Adw.PreferencesWindow",
     "Adw.SplitButton",
@@ -248,6 +250,9 @@ status = "generate"
 [[object]]
 name = "Adw.Toast"
 status = "generate"
+    [[object.function]]
+    name = "new_format"
+    ignore = true # C only function
     [[object.function]]
     name = "set_action_target"
     manual = true

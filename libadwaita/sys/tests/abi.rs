@@ -375,6 +375,20 @@ const RUST_LAYOUTS: &[(&str, Layout)] = &[
         },
     ),
     (
+        "AdwEntryRow",
+        Layout {
+            size: size_of::<AdwEntryRow>(),
+            alignment: align_of::<AdwEntryRow>(),
+        },
+    ),
+    (
+        "AdwEntryRowClass",
+        Layout {
+            size: size_of::<AdwEntryRowClass>(),
+            alignment: align_of::<AdwEntryRowClass>(),
+        },
+    ),
+    (
         "AdwEnumListItemClass",
         Layout {
             size: size_of::<AdwEnumListItemClass>(),
@@ -463,6 +477,13 @@ const RUST_LAYOUTS: &[(&str, Layout)] = &[
         Layout {
             size: size_of::<AdwNavigationDirection>(),
             alignment: align_of::<AdwNavigationDirection>(),
+        },
+    ),
+    (
+        "AdwPasswordEntryRowClass",
+        Layout {
+            size: size_of::<AdwPasswordEntryRowClass>(),
+            alignment: align_of::<AdwPasswordEntryRowClass>(),
         },
     ),
     (
