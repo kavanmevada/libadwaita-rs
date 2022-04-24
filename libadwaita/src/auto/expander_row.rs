@@ -64,6 +64,9 @@ pub struct ExpanderRowBuilder {
     #[cfg(any(feature = "v1_1", feature = "dox"))]
     #[cfg_attr(feature = "dox", doc(cfg(feature = "v1_1")))]
     title_selectable: Option<bool>,
+    #[cfg(any(feature = "v1_2", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v1_2")))]
+    use_markup: Option<bool>,
     use_underline: Option<bool>,
     activatable: Option<bool>,
     child: Option<gtk::Widget>,
@@ -135,6 +138,10 @@ impl ExpanderRowBuilder {
         #[cfg(any(feature = "v1_1", feature = "dox"))]
         if let Some(ref title_selectable) = self.title_selectable {
             properties.push(("title-selectable", title_selectable));
+        }
+        #[cfg(any(feature = "v1_2", feature = "dox"))]
+        if let Some(ref use_markup) = self.use_markup {
+            properties.push(("use-markup", use_markup));
         }
         if let Some(ref use_underline) = self.use_underline {
             properties.push(("use-underline", use_underline));
@@ -282,6 +289,13 @@ impl ExpanderRowBuilder {
     #[cfg_attr(feature = "dox", doc(cfg(feature = "v1_1")))]
     pub fn title_selectable(mut self, title_selectable: bool) -> Self {
         self.title_selectable = Some(title_selectable);
+        self
+    }
+
+    #[cfg(any(feature = "v1_2", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v1_2")))]
+    pub fn use_markup(mut self, use_markup: bool) -> Self {
+        self.use_markup = Some(use_markup);
         self
     }
 

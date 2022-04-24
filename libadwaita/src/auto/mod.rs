@@ -51,6 +51,13 @@ pub use self::clamp_scrollable::ClampScrollable;
 mod combo_row;
 pub use self::combo_row::ComboRow;
 
+#[cfg(any(feature = "v1_2", feature = "dox"))]
+#[cfg_attr(feature = "dox", doc(cfg(feature = "v1_2")))]
+mod entry_row;
+#[cfg(any(feature = "v1_2", feature = "dox"))]
+#[cfg_attr(feature = "dox", doc(cfg(feature = "v1_2")))]
+pub use self::entry_row::EntryRow;
+
 mod enum_list_item;
 pub use self::enum_list_item::EnumListItem;
 
@@ -71,6 +78,13 @@ pub use self::leaflet::Leaflet;
 
 mod leaflet_page;
 pub use self::leaflet_page::LeafletPage;
+
+#[cfg(any(feature = "v1_2", feature = "dox"))]
+#[cfg_attr(feature = "dox", doc(cfg(feature = "v1_2")))]
+mod password_entry_row;
+#[cfg(any(feature = "v1_2", feature = "dox"))]
+#[cfg_attr(feature = "dox", doc(cfg(feature = "v1_2")))]
+pub use self::password_entry_row::PasswordEntryRow;
 
 mod preferences_group;
 pub use self::preferences_group::PreferencesGroup;
@@ -174,6 +188,9 @@ pub mod traits {
     pub use super::application_window::AdwApplicationWindowExt;
     pub use super::bin::BinExt;
     pub use super::combo_row::ComboRowExt;
+    #[cfg(any(feature = "v1_2", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v1_2")))]
+    pub use super::entry_row::EntryRowExt;
     pub use super::expander_row::ExpanderRowExt;
     pub use super::preferences_group::PreferencesGroupExt;
     pub use super::preferences_page::PreferencesPageExt;
@@ -197,10 +214,16 @@ pub mod builders {
     pub use super::clamp_layout::ClampLayoutBuilder;
     pub use super::clamp_scrollable::ClampScrollableBuilder;
     pub use super::combo_row::ComboRowBuilder;
+    #[cfg(any(feature = "v1_2", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v1_2")))]
+    pub use super::entry_row::EntryRowBuilder;
     pub use super::expander_row::ExpanderRowBuilder;
     pub use super::flap::FlapBuilder;
     pub use super::header_bar::HeaderBarBuilder;
     pub use super::leaflet::LeafletBuilder;
+    #[cfg(any(feature = "v1_2", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v1_2")))]
+    pub use super::password_entry_row::PasswordEntryRowBuilder;
     pub use super::preferences_group::PreferencesGroupBuilder;
     pub use super::preferences_page::PreferencesPageBuilder;
     pub use super::preferences_row::PreferencesRowBuilder;

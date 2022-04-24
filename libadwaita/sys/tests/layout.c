@@ -31,6 +31,8 @@ int main() {
     printf("%s;%zu;%zu\n", "AdwComboRow", sizeof(AdwComboRow), alignof(AdwComboRow));
     printf("%s;%zu;%zu\n", "AdwComboRowClass", sizeof(AdwComboRowClass), alignof(AdwComboRowClass));
     printf("%s;%zu;%zu\n", "AdwEasing", sizeof(AdwEasing), alignof(AdwEasing));
+    printf("%s;%zu;%zu\n", "AdwEntryRow", sizeof(AdwEntryRow), alignof(AdwEntryRow));
+    printf("%s;%zu;%zu\n", "AdwEntryRowClass", sizeof(AdwEntryRowClass), alignof(AdwEntryRowClass));
     printf("%s;%zu;%zu\n", "AdwEnumListItemClass", sizeof(AdwEnumListItemClass), alignof(AdwEnumListItemClass));
     printf("%s;%zu;%zu\n", "AdwEnumListModelClass", sizeof(AdwEnumListModelClass), alignof(AdwEnumListModelClass));
     printf("%s;%zu;%zu\n", "AdwExpanderRow", sizeof(AdwExpanderRow), alignof(AdwExpanderRow));
@@ -44,6 +46,7 @@ int main() {
     printf("%s;%zu;%zu\n", "AdwLeafletPageClass", sizeof(AdwLeafletPageClass), alignof(AdwLeafletPageClass));
     printf("%s;%zu;%zu\n", "AdwLeafletTransitionType", sizeof(AdwLeafletTransitionType), alignof(AdwLeafletTransitionType));
     printf("%s;%zu;%zu\n", "AdwNavigationDirection", sizeof(AdwNavigationDirection), alignof(AdwNavigationDirection));
+    printf("%s;%zu;%zu\n", "AdwPasswordEntryRowClass", sizeof(AdwPasswordEntryRowClass), alignof(AdwPasswordEntryRowClass));
     printf("%s;%zu;%zu\n", "AdwPreferencesGroup", sizeof(AdwPreferencesGroup), alignof(AdwPreferencesGroup));
     printf("%s;%zu;%zu\n", "AdwPreferencesGroupClass", sizeof(AdwPreferencesGroupClass), alignof(AdwPreferencesGroupClass));
     printf("%s;%zu;%zu\n", "AdwPreferencesPage", sizeof(AdwPreferencesPage), alignof(AdwPreferencesPage));

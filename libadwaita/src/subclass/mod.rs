@@ -3,6 +3,9 @@ pub mod application;
 pub mod application_window;
 pub mod bin;
 pub mod combo_row;
+#[cfg(any(feature = "v1_2", feature = "dox"))]
+#[cfg_attr(feature = "dox", doc(cfg(feature = "v1_2")))]
+pub mod entry_row;
 pub mod expander_row;
 pub mod preferences_group;
 pub mod preferences_page;
@@ -17,6 +20,9 @@ pub mod prelude {
     pub use super::application_window::AdwApplicationWindowImpl;
     pub use super::bin::BinImpl;
     pub use super::combo_row::ComboRowImpl;
+    #[cfg(any(feature = "v1_2", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v1_2")))]
+    pub use super::entry_row::EntryRowImpl;
     pub use super::expander_row::ExpanderRowImpl;
     pub use super::preferences_group::PreferencesGroupImpl;
     pub use super::preferences_page::PreferencesPageImpl;
