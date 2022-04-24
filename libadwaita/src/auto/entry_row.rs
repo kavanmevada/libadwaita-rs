@@ -17,7 +17,7 @@ use std::mem::transmute;
 
 glib::wrapper! {
     #[doc(alias = "AdwEntryRow")]
-    pub struct EntryRow(Object<ffi::AdwEntryRow, ffi::AdwEntryRowClass>) @extends PreferencesRow, gtk::ListBoxRow, gtk::Widget, @implements gtk::Accessible, gtk::Buildable, gtk::ConstraintTarget, gtk::Actionable;
+    pub struct EntryRow(Object<ffi::AdwEntryRow, ffi::AdwEntryRowClass>) @extends PreferencesRow, gtk::ListBoxRow, gtk::Widget, @implements gtk::Accessible, gtk::Buildable, gtk::ConstraintTarget, gtk::Actionable, gtk::Editable;
 
     match fn {
         type_ => || ffi::adw_entry_row_get_type(),
@@ -103,6 +103,12 @@ pub struct EntryRowBuilder {
     accessible_role: Option<gtk::AccessibleRole>,
     action_name: Option<String>,
     action_target: Option<glib::Variant>,
+    editable: Option<bool>,
+    enable_undo: Option<bool>,
+    max_width_chars: Option<i32>,
+    text: Option<String>,
+    width_chars: Option<i32>,
+    xalign: Option<f32>,
 }
 
 impl EntryRowBuilder {
@@ -239,6 +245,24 @@ impl EntryRowBuilder {
         }
         if let Some(ref action_target) = self.action_target {
             properties.push(("action-target", action_target));
+        }
+        if let Some(ref editable) = self.editable {
+            properties.push(("editable", editable));
+        }
+        if let Some(ref enable_undo) = self.enable_undo {
+            properties.push(("enable-undo", enable_undo));
+        }
+        if let Some(ref max_width_chars) = self.max_width_chars {
+            properties.push(("max-width-chars", max_width_chars));
+        }
+        if let Some(ref text) = self.text {
+            properties.push(("text", text));
+        }
+        if let Some(ref width_chars) = self.width_chars {
+            properties.push(("width-chars", width_chars));
+        }
+        if let Some(ref xalign) = self.xalign {
+            properties.push(("xalign", xalign));
         }
         glib::Object::new::<EntryRow>(&properties)
             .expect("Failed to create an instance of EntryRow")
@@ -447,6 +471,36 @@ impl EntryRowBuilder {
 
     pub fn action_target(mut self, action_target: &glib::Variant) -> Self {
         self.action_target = Some(action_target.clone());
+        self
+    }
+
+    pub fn editable(mut self, editable: bool) -> Self {
+        self.editable = Some(editable);
+        self
+    }
+
+    pub fn enable_undo(mut self, enable_undo: bool) -> Self {
+        self.enable_undo = Some(enable_undo);
+        self
+    }
+
+    pub fn max_width_chars(mut self, max_width_chars: i32) -> Self {
+        self.max_width_chars = Some(max_width_chars);
+        self
+    }
+
+    pub fn text(mut self, text: &str) -> Self {
+        self.text = Some(text.to_string());
+        self
+    }
+
+    pub fn width_chars(mut self, width_chars: i32) -> Self {
+        self.width_chars = Some(width_chars);
+        self
+    }
+
+    pub fn xalign(mut self, xalign: f32) -> Self {
+        self.xalign = Some(xalign);
         self
     }
 }
