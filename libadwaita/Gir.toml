@@ -100,6 +100,7 @@ manual = [
     "Gtk.ArrowType",
     "Gtk.Buildable",
     "Gtk.ConstraintTarget",
+    "Gtk.Editable",
     "Gtk.Entry",
     "Gtk.Expression",
     "Gtk.HeaderBar",
