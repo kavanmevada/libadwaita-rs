@@ -98,6 +98,13 @@ pub use self::preferences_row::PreferencesRow;
 mod preferences_window;
 pub use self::preferences_window::PreferencesWindow;
 
+#[cfg(any(feature = "v1_2", feature = "dox"))]
+#[cfg_attr(feature = "dox", doc(cfg(feature = "v1_2")))]
+mod property_animation_target;
+#[cfg(any(feature = "v1_2", feature = "dox"))]
+#[cfg_attr(feature = "dox", doc(cfg(feature = "v1_2")))]
+pub use self::property_animation_target::PropertyAnimationTarget;
+
 mod split_button;
 pub use self::split_button::SplitButton;
 
