@@ -76,6 +76,7 @@ generate = [
 manual = [
     "GLib.Variant",
     "GObject.Object",
+    "GObject.ParamSpec",
     "GObject.Value",
     "Gdk.Cursor",
     "Gdk.Display",
@@ -187,6 +188,11 @@ generate_builder = false
 
 [[object]]
 name = "Adw.LeafletPage"
+status = "generate"
+generate_builder = false
+
+[[object]]
+name = "Adw.PropertyAnimationTarget"
 status = "generate"
 generate_builder = false
 

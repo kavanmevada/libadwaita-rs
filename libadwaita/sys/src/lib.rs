@@ -513,6 +513,14 @@ impl ::std::fmt::Debug for AdwPreferencesWindowClass {
     }
 }
 
+#[repr(C)]
+pub struct _AdwPropertyAnimationTargetClass {
+    _data: [u8; 0],
+    _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
+}
+
+pub type AdwPropertyAnimationTargetClass = *mut _AdwPropertyAnimationTargetClass;
+
 #[derive(Copy, Clone)]
 #[repr(C)]
 pub struct AdwSplitButtonClass {
@@ -1210,6 +1218,19 @@ impl ::std::fmt::Debug for AdwPreferencesWindow {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
         f.debug_struct(&format!("AdwPreferencesWindow @ {:p}", self))
             .field("parent_instance", &self.parent_instance)
+            .finish()
+    }
+}
+
+#[repr(C)]
+pub struct AdwPropertyAnimationTarget {
+    _data: [u8; 0],
+    _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
+}
+
+impl ::std::fmt::Debug for AdwPropertyAnimationTarget {
+    fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+        f.debug_struct(&format!("AdwPropertyAnimationTarget @ {:p}", self))
             .finish()
     }
 }
@@ -2198,6 +2219,40 @@ extern "C" {
         self_: *mut AdwPreferencesWindow,
         name: *const c_char,
     );
+
+    //=========================================================================
+    // AdwPropertyAnimationTarget
+    //=========================================================================
+    #[cfg(any(feature = "v1_2", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v1_2")))]
+    pub fn adw_property_animation_target_get_type() -> GType;
+    #[cfg(any(feature = "v1_2", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v1_2")))]
+    pub fn adw_property_animation_target_new(
+        object: *mut gobject::GObject,
+        property_name: *const c_char,
+    ) -> *mut AdwAnimationTarget;
+    #[cfg(any(feature = "v1_2", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v1_2")))]
+    pub fn adw_property_animation_target_new_for_pspec(
+        object: *mut gobject::GObject,
+        pspec: *mut gobject::GParamSpec,
+    ) -> *mut AdwAnimationTarget;
+    #[cfg(any(feature = "v1_2", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v1_2")))]
+    pub fn adw_property_animation_target_get_object(
+        self_: *mut AdwPropertyAnimationTarget,
+    ) -> *mut gobject::GObject;
+    #[cfg(any(feature = "v1_2", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v1_2")))]
+    pub fn adw_property_animation_target_get_property_name(
+        self_: *mut AdwPropertyAnimationTarget,
+    ) -> *const c_char;
+    #[cfg(any(feature = "v1_2", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v1_2")))]
+    pub fn adw_property_animation_target_get_pspec(
+        self_: *mut AdwPropertyAnimationTarget,
+    ) -> *mut gobject::GParamSpec;
 
     //=========================================================================
     // AdwSplitButton
