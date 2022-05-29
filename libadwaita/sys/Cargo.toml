@@ -1,6 +1,6 @@
 [package]
 name = "libadwaita-sys"
-version = "0.2.0"
+version = "0.2.0-alpha.1"
 authors = ["Bilal Elmoussaoui <bil.elmoussaoui@gmail.com>"]
 edition = "2021"
 build = "build.rs"
@@ -32,28 +32,23 @@ libc = "0.2"
 
 [dependencies.gio]
 package = "gio-sys"
-git = "https://github.com/gtk-rs/gtk-rs-core"
-version = "0.16"
+version = "0.15"
 
 [dependencies.glib]
 package = "glib-sys"
-git = "https://github.com/gtk-rs/gtk-rs-core"
-version = "0.16"
+version = "0.15"
 
 [dependencies.gobject]
 package = "gobject-sys"
-git = "https://github.com/gtk-rs/gtk-rs-core"
-version = "0.16"
+version = "0.15"
 
 [dependencies.gtk]
 package = "gtk4-sys"
-git = "https://github.com/gtk-rs/gtk4-rs"
-version = "0.5"
+version = "0.4"
 
 [dependencies.gdk]
 package = "gdk4-sys"
-git = "https://github.com/gtk-rs/gtk4-rs"
-version = "0.5"
+version = "0.4"
 
 [build-dependencies]
 system-deps = "6"
