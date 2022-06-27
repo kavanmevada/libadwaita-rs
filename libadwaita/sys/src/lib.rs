@@ -95,6 +95,11 @@ pub type AdwNavigationDirection = c_int;
 pub const ADW_NAVIGATION_DIRECTION_BACK: AdwNavigationDirection = 0;
 pub const ADW_NAVIGATION_DIRECTION_FORWARD: AdwNavigationDirection = 1;
 
+pub type AdwResponseAppearance = c_int;
+pub const ADW_RESPONSE_DEFAULT: AdwResponseAppearance = 0;
+pub const ADW_RESPONSE_SUGGESTED: AdwResponseAppearance = 1;
+pub const ADW_RESPONSE_DESTRUCTIVE: AdwResponseAppearance = 2;
+
 pub type AdwSqueezerTransitionType = c_int;
 pub const ADW_SQUEEZER_TRANSITION_TYPE_NONE: AdwSqueezerTransitionType = 0;
 pub const ADW_SQUEEZER_TRANSITION_TYPE_CROSSFADE: AdwSqueezerTransitionType = 1;
@@ -435,6 +440,23 @@ impl ::std::fmt::Debug for AdwLeafletPageClass {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
         f.debug_struct(&format!("AdwLeafletPageClass @ {:p}", self))
             .field("parent_class", &self.parent_class)
+            .finish()
+    }
+}
+
+#[derive(Copy, Clone)]
+#[repr(C)]
+pub struct AdwMessageDialogClass {
+    pub parent_class: gtk::GtkWindowClass,
+    pub response: Option<unsafe extern "C" fn(*mut AdwMessageDialog, *const c_char)>,
+    pub padding: [gpointer; 4],
+}
+
+impl ::std::fmt::Debug for AdwMessageDialogClass {
+    fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+        f.debug_struct(&format!("AdwMessageDialogClass @ {:p}", self))
+            .field("parent_class", &self.parent_class)
+            .field("response", &self.response)
             .finish()
     }
 }
@@ -1153,6 +1175,20 @@ impl ::std::fmt::Debug for AdwLeafletPage {
     }
 }
 
+#[derive(Copy, Clone)]
+#[repr(C)]
+pub struct AdwMessageDialog {
+    pub parent_instance: gtk::GtkWindow,
+}
+
+impl ::std::fmt::Debug for AdwMessageDialog {
+    fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+        f.debug_struct(&format!("AdwMessageDialog @ {:p}", self))
+            .field("parent_instance", &self.parent_instance)
+            .finish()
+    }
+}
+
 #[repr(C)]
 pub struct AdwPasswordEntryRow {
     _data: [u8; 0],
@@ -1555,6 +1591,13 @@ extern "C" {
     pub fn adw_navigation_direction_get_type() -> GType;
 
     //=========================================================================
+    // AdwResponseAppearance
+    //=========================================================================
+    #[cfg(any(feature = "v1_2", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v1_2")))]
+    pub fn adw_response_appearance_get_type() -> GType;
+
+    //=========================================================================
     // AdwSqueezerTransitionType
     //=========================================================================
     pub fn adw_squeezer_transition_type_get_type() -> GType;
@@ -1625,6 +1668,7 @@ extern "C" {
     pub fn adw_animation_play(self_: *mut AdwAnimation);
     pub fn adw_animation_reset(self_: *mut AdwAnimation);
     pub fn adw_animation_resume(self_: *mut AdwAnimation);
+    pub fn adw_animation_set_target(self_: *mut AdwAnimation, target: *mut AdwAnimationTarget);
     pub fn adw_animation_skip(self_: *mut AdwAnimation);
 
     //=========================================================================
@@ -2078,6 +2122,163 @@ extern "C" {
     pub fn adw_leaflet_page_get_navigatable(self_: *mut AdwLeafletPage) -> gboolean;
     pub fn adw_leaflet_page_set_name(self_: *mut AdwLeafletPage, name: *const c_char);
     pub fn adw_leaflet_page_set_navigatable(self_: *mut AdwLeafletPage, navigatable: gboolean);
+
+    //=========================================================================
+    // AdwMessageDialog
+    //=========================================================================
+    #[cfg(any(feature = "v1_2", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v1_2")))]
+    pub fn adw_message_dialog_get_type() -> GType;
+    #[cfg(any(feature = "v1_2", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v1_2")))]
+    pub fn adw_message_dialog_new(
+        parent: *mut gtk::GtkWindow,
+        heading: *const c_char,
+        body: *const c_char,
+    ) -> *mut gtk::GtkWidget;
+    #[cfg(any(feature = "v1_2", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v1_2")))]
+    pub fn adw_message_dialog_add_response(
+        self_: *mut AdwMessageDialog,
+        id: *const c_char,
+        label: *const c_char,
+    );
+    #[cfg(any(feature = "v1_2", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v1_2")))]
+    pub fn adw_message_dialog_add_responses(
+        self_: *mut AdwMessageDialog,
+        first_id: *const c_char,
+        ...
+    );
+    #[cfg(any(feature = "v1_2", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v1_2")))]
+    pub fn adw_message_dialog_format_body(self_: *mut AdwMessageDialog, format: *const c_char, ...);
+    #[cfg(any(feature = "v1_2", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v1_2")))]
+    pub fn adw_message_dialog_format_body_markup(
+        self_: *mut AdwMessageDialog,
+        format: *const c_char,
+        ...
+    );
+    #[cfg(any(feature = "v1_2", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v1_2")))]
+    pub fn adw_message_dialog_format_heading(
+        self_: *mut AdwMessageDialog,
+        format: *const c_char,
+        ...
+    );
+    #[cfg(any(feature = "v1_2", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v1_2")))]
+    pub fn adw_message_dialog_format_heading_markup(
+        self_: *mut AdwMessageDialog,
+        format: *const c_char,
+        ...
+    );
+    #[cfg(any(feature = "v1_2", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v1_2")))]
+    pub fn adw_message_dialog_get_body(self_: *mut AdwMessageDialog) -> *const c_char;
+    #[cfg(any(feature = "v1_2", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v1_2")))]
+    pub fn adw_message_dialog_get_body_use_markup(self_: *mut AdwMessageDialog) -> gboolean;
+    #[cfg(any(feature = "v1_2", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v1_2")))]
+    pub fn adw_message_dialog_get_close_response(self_: *mut AdwMessageDialog) -> *const c_char;
+    #[cfg(any(feature = "v1_2", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v1_2")))]
+    pub fn adw_message_dialog_get_default_response(self_: *mut AdwMessageDialog) -> *const c_char;
+    #[cfg(any(feature = "v1_2", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v1_2")))]
+    pub fn adw_message_dialog_get_extra_child(self_: *mut AdwMessageDialog) -> *mut gtk::GtkWidget;
+    #[cfg(any(feature = "v1_2", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v1_2")))]
+    pub fn adw_message_dialog_get_heading(self_: *mut AdwMessageDialog) -> *const c_char;
+    #[cfg(any(feature = "v1_2", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v1_2")))]
+    pub fn adw_message_dialog_get_heading_use_markup(self_: *mut AdwMessageDialog) -> gboolean;
+    #[cfg(any(feature = "v1_2", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v1_2")))]
+    pub fn adw_message_dialog_get_response_appearance(
+        self_: *mut AdwMessageDialog,
+        response: *const c_char,
+    ) -> AdwResponseAppearance;
+    #[cfg(any(feature = "v1_2", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v1_2")))]
+    pub fn adw_message_dialog_get_response_enabled(
+        self_: *mut AdwMessageDialog,
+        response: *const c_char,
+    ) -> gboolean;
+    #[cfg(any(feature = "v1_2", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v1_2")))]
+    pub fn adw_message_dialog_get_response_label(
+        self_: *mut AdwMessageDialog,
+        response: *const c_char,
+    ) -> *const c_char;
+    #[cfg(any(feature = "v1_2", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v1_2")))]
+    pub fn adw_message_dialog_has_response(
+        self_: *mut AdwMessageDialog,
+        response: *const c_char,
+    ) -> gboolean;
+    #[cfg(any(feature = "v1_2", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v1_2")))]
+    pub fn adw_message_dialog_response(self_: *mut AdwMessageDialog, response: *const c_char);
+    #[cfg(any(feature = "v1_2", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v1_2")))]
+    pub fn adw_message_dialog_set_body(self_: *mut AdwMessageDialog, body: *const c_char);
+    #[cfg(any(feature = "v1_2", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v1_2")))]
+    pub fn adw_message_dialog_set_body_use_markup(
+        self_: *mut AdwMessageDialog,
+        use_markup: gboolean,
+    );
+    #[cfg(any(feature = "v1_2", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v1_2")))]
+    pub fn adw_message_dialog_set_close_response(
+        self_: *mut AdwMessageDialog,
+        response: *const c_char,
+    );
+    #[cfg(any(feature = "v1_2", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v1_2")))]
+    pub fn adw_message_dialog_set_default_response(
+        self_: *mut AdwMessageDialog,
+        response: *const c_char,
+    );
+    #[cfg(any(feature = "v1_2", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v1_2")))]
+    pub fn adw_message_dialog_set_extra_child(
+        self_: *mut AdwMessageDialog,
+        child: *mut gtk::GtkWidget,
+    );
+    #[cfg(any(feature = "v1_2", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v1_2")))]
+    pub fn adw_message_dialog_set_heading(self_: *mut AdwMessageDialog, heading: *const c_char);
+    #[cfg(any(feature = "v1_2", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v1_2")))]
+    pub fn adw_message_dialog_set_heading_use_markup(
+        self_: *mut AdwMessageDialog,
+        use_markup: gboolean,
+    );
+    #[cfg(any(feature = "v1_2", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v1_2")))]
+    pub fn adw_message_dialog_set_response_appearance(
+        self_: *mut AdwMessageDialog,
+        response: *const c_char,
+        appearance: AdwResponseAppearance,
+    );
+    #[cfg(any(feature = "v1_2", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v1_2")))]
+    pub fn adw_message_dialog_set_response_enabled(
+        self_: *mut AdwMessageDialog,
+        response: *const c_char,
+        enabled: gboolean,
+    );
+    #[cfg(any(feature = "v1_2", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v1_2")))]
+    pub fn adw_message_dialog_set_response_label(
+        self_: *mut AdwMessageDialog,
+        response: *const c_char,
+        label: *const c_char,
+    );
 
     //=========================================================================
     // AdwPasswordEntryRow

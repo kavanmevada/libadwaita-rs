@@ -45,6 +45,8 @@ int main() {
     printf("%s;%zu;%zu\n", "AdwLeafletClass", sizeof(AdwLeafletClass), alignof(AdwLeafletClass));
     printf("%s;%zu;%zu\n", "AdwLeafletPageClass", sizeof(AdwLeafletPageClass), alignof(AdwLeafletPageClass));
     printf("%s;%zu;%zu\n", "AdwLeafletTransitionType", sizeof(AdwLeafletTransitionType), alignof(AdwLeafletTransitionType));
+    printf("%s;%zu;%zu\n", "AdwMessageDialog", sizeof(AdwMessageDialog), alignof(AdwMessageDialog));
+    printf("%s;%zu;%zu\n", "AdwMessageDialogClass", sizeof(AdwMessageDialogClass), alignof(AdwMessageDialogClass));
     printf("%s;%zu;%zu\n", "AdwNavigationDirection", sizeof(AdwNavigationDirection), alignof(AdwNavigationDirection));
     printf("%s;%zu;%zu\n", "AdwPasswordEntryRowClass", sizeof(AdwPasswordEntryRowClass), alignof(AdwPasswordEntryRowClass));
     printf("%s;%zu;%zu\n", "AdwPreferencesGroup", sizeof(AdwPreferencesGroup), alignof(AdwPreferencesGroup));
@@ -55,6 +57,7 @@ int main() {
     printf("%s;%zu;%zu\n", "AdwPreferencesRowClass", sizeof(AdwPreferencesRowClass), alignof(AdwPreferencesRowClass));
     printf("%s;%zu;%zu\n", "AdwPreferencesWindow", sizeof(AdwPreferencesWindow), alignof(AdwPreferencesWindow));
     printf("%s;%zu;%zu\n", "AdwPreferencesWindowClass", sizeof(AdwPreferencesWindowClass), alignof(AdwPreferencesWindowClass));
+    printf("%s;%zu;%zu\n", "AdwResponseAppearance", sizeof(AdwResponseAppearance), alignof(AdwResponseAppearance));
     printf("%s;%zu;%zu\n", "AdwSplitButtonClass", sizeof(AdwSplitButtonClass), alignof(AdwSplitButtonClass));
     printf("%s;%zu;%zu\n", "AdwSqueezerClass", sizeof(AdwSqueezerClass), alignof(AdwSqueezerClass));
     printf("%s;%zu;%zu\n", "AdwSqueezerPageClass", sizeof(AdwSqueezerPageClass), alignof(AdwSqueezerPageClass));

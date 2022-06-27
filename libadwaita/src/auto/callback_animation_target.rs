@@ -20,28 +20,22 @@ glib::wrapper! {
 
 impl CallbackAnimationTarget {
     #[doc(alias = "adw_callback_animation_target_new")]
-    pub fn new(callback: Option<Box_<dyn Fn(f64) + 'static>>) -> CallbackAnimationTarget {
+    pub fn new<P: Fn(f64) + 'static>(callback: P) -> CallbackAnimationTarget {
         assert_initialized_main_thread!();
-        let callback_data: Box_<Option<Box_<dyn Fn(f64) + 'static>>> = Box_::new(callback);
-        unsafe extern "C" fn callback_func(value: libc::c_double, user_data: glib::ffi::gpointer) {
-            let callback: &Option<Box_<dyn Fn(f64) + 'static>> = &*(user_data as *mut _);
-            if let Some(ref callback) = *callback {
-                callback(value)
-            } else {
-                panic!("cannot get closure...")
-            };
+        let callback_data: Box_<P> = Box_::new(callback);
+        unsafe extern "C" fn callback_func<P: Fn(f64) + 'static>(
+            value: libc::c_double,
+            user_data: glib::ffi::gpointer,
+        ) {
+            let callback: &P = &*(user_data as *mut _);
+            (*callback)(value);
         }
-        let callback = if callback_data.is_some() {
-            Some(callback_func as _)
-        } else {
-            None
-        };
-        unsafe extern "C" fn destroy_func(data: glib::ffi::gpointer) {
-            let _callback: Box_<Option<Box_<dyn Fn(f64) + 'static>>> =
-                Box_::from_raw(data as *mut _);
+        let callback = Some(callback_func::<P> as _);
+        unsafe extern "C" fn destroy_func<P: Fn(f64) + 'static>(data: glib::ffi::gpointer) {
+            let _callback: Box_<P> = Box_::from_raw(data as *mut _);
         }
-        let destroy_call2 = Some(destroy_func as _);
-        let super_callback0: Box_<Option<Box_<dyn Fn(f64) + 'static>>> = callback_data;
+        let destroy_call2 = Some(destroy_func::<P> as _);
+        let super_callback0: Box_<P> = callback_data;
         unsafe {
             AnimationTarget::from_glib_full(ffi::adw_callback_animation_target_new(
                 callback,

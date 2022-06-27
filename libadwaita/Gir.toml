@@ -55,6 +55,7 @@ generate = [
     "Adw.PreferencesPage",
     "Adw.PreferencesRow",
     "Adw.PreferencesWindow",
+    "Adw.ResponseAppearance",
     "Adw.SplitButton",
     "Adw.SpringAnimation",
     "Adw.SpringParams",
@@ -258,3 +259,13 @@ generate_builder = false
 name = "Adw.Window"
 status = "generate"
 trait_name = "AdwWindowExt"
+
+[[object]]
+name = "Adw.MessageDialog"
+status = "generate"
+    [[object.function]]
+    name = "add_responses"
+    ignore = true # C only function
+    [[object.function]]
+    pattern = "(format_body|format_body_markup|format_heading|format_heading_markup)"
+    ignore = true # C only function

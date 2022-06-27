@@ -473,6 +473,20 @@ const RUST_LAYOUTS: &[(&str, Layout)] = &[
         },
     ),
     (
+        "AdwMessageDialog",
+        Layout {
+            size: size_of::<AdwMessageDialog>(),
+            alignment: align_of::<AdwMessageDialog>(),
+        },
+    ),
+    (
+        "AdwMessageDialogClass",
+        Layout {
+            size: size_of::<AdwMessageDialogClass>(),
+            alignment: align_of::<AdwMessageDialogClass>(),
+        },
+    ),
+    (
         "AdwNavigationDirection",
         Layout {
             size: size_of::<AdwNavigationDirection>(),
@@ -540,6 +554,13 @@ const RUST_LAYOUTS: &[(&str, Layout)] = &[
         Layout {
             size: size_of::<AdwPreferencesWindowClass>(),
             alignment: align_of::<AdwPreferencesWindowClass>(),
+        },
+    ),
+    (
+        "AdwResponseAppearance",
+        Layout {
+            size: size_of::<AdwResponseAppearance>(),
+            alignment: align_of::<AdwResponseAppearance>(),
         },
     ),
     (
@@ -762,6 +783,9 @@ const RUST_CONSTANTS: &[(&str, &str)] = &[
     ("(gint) ADW_LINEAR", "0"),
     ("(gint) ADW_NAVIGATION_DIRECTION_BACK", "0"),
     ("(gint) ADW_NAVIGATION_DIRECTION_FORWARD", "1"),
+    ("(gint) ADW_RESPONSE_DEFAULT", "0"),
+    ("(gint) ADW_RESPONSE_DESTRUCTIVE", "2"),
+    ("(gint) ADW_RESPONSE_SUGGESTED", "1"),
     ("(gint) ADW_SQUEEZER_TRANSITION_TYPE_CROSSFADE", "1"),
     ("(gint) ADW_SQUEEZER_TRANSITION_TYPE_NONE", "0"),
     ("(gint) ADW_TOAST_PRIORITY_HIGH", "1"),

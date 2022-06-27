@@ -959,6 +959,111 @@ impl ToValue for NavigationDirection {
     }
 }
 
+#[cfg(any(feature = "v1_2", feature = "dox"))]
+#[cfg_attr(feature = "dox", doc(cfg(feature = "v1_2")))]
+#[derive(Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Clone, Copy)]
+#[non_exhaustive]
+#[doc(alias = "AdwResponseAppearance")]
+pub enum ResponseAppearance {
+    #[doc(alias = "ADW_RESPONSE_DEFAULT")]
+    Default,
+    #[doc(alias = "ADW_RESPONSE_SUGGESTED")]
+    Suggested,
+    #[doc(alias = "ADW_RESPONSE_DESTRUCTIVE")]
+    Destructive,
+    #[doc(hidden)]
+    __Unknown(i32),
+}
+
+#[cfg(any(feature = "v1_2", feature = "dox"))]
+#[cfg_attr(feature = "dox", doc(cfg(feature = "v1_2")))]
+impl fmt::Display for ResponseAppearance {
+    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
+        write!(
+            f,
+            "ResponseAppearance::{}",
+            match *self {
+                Self::Default => "Default",
+                Self::Suggested => "Suggested",
+                Self::Destructive => "Destructive",
+                _ => "Unknown",
+            }
+        )
+    }
+}
+
+#[cfg(any(feature = "v1_2", feature = "dox"))]
+#[cfg_attr(feature = "dox", doc(cfg(feature = "v1_2")))]
+#[doc(hidden)]
+impl IntoGlib for ResponseAppearance {
+    type GlibType = ffi::AdwResponseAppearance;
+
+    fn into_glib(self) -> ffi::AdwResponseAppearance {
+        match self {
+            Self::Default => ffi::ADW_RESPONSE_DEFAULT,
+            Self::Suggested => ffi::ADW_RESPONSE_SUGGESTED,
+            Self::Destructive => ffi::ADW_RESPONSE_DESTRUCTIVE,
+            Self::__Unknown(value) => value,
+        }
+    }
+}
+
+#[cfg(any(feature = "v1_2", feature = "dox"))]
+#[cfg_attr(feature = "dox", doc(cfg(feature = "v1_2")))]
+#[doc(hidden)]
+impl FromGlib<ffi::AdwResponseAppearance> for ResponseAppearance {
+    unsafe fn from_glib(value: ffi::AdwResponseAppearance) -> Self {
+        skip_assert_initialized!();
+        match value {
+            ffi::ADW_RESPONSE_DEFAULT => Self::Default,
+            ffi::ADW_RESPONSE_SUGGESTED => Self::Suggested,
+            ffi::ADW_RESPONSE_DESTRUCTIVE => Self::Destructive,
+            value => Self::__Unknown(value),
+        }
+    }
+}
+
+#[cfg(any(feature = "v1_2", feature = "dox"))]
+#[cfg_attr(feature = "dox", doc(cfg(feature = "v1_2")))]
+impl StaticType for ResponseAppearance {
+    fn static_type() -> Type {
+        unsafe { from_glib(ffi::adw_response_appearance_get_type()) }
+    }
+}
+
+#[cfg(any(feature = "v1_2", feature = "dox"))]
+#[cfg_attr(feature = "dox", doc(cfg(feature = "v1_2")))]
+impl glib::value::ValueType for ResponseAppearance {
+    type Type = Self;
+}
+
+#[cfg(any(feature = "v1_2", feature = "dox"))]
+#[cfg_attr(feature = "dox", doc(cfg(feature = "v1_2")))]
+unsafe impl<'a> FromValue<'a> for ResponseAppearance {
+    type Checker = glib::value::GenericValueTypeChecker<Self>;
+
+    unsafe fn from_value(value: &'a glib::Value) -> Self {
+        skip_assert_initialized!();
+        from_glib(glib::gobject_ffi::g_value_get_enum(value.to_glib_none().0))
+    }
+}
+
+#[cfg(any(feature = "v1_2", feature = "dox"))]
+#[cfg_attr(feature = "dox", doc(cfg(feature = "v1_2")))]
+impl ToValue for ResponseAppearance {
+    fn to_value(&self) -> glib::Value {
+        let mut value = glib::Value::for_value_type::<Self>();
+        unsafe {
+            glib::gobject_ffi::g_value_set_enum(value.to_glib_none_mut().0, self.into_glib());
+        }
+        value
+    }
+
+    fn value_type(&self) -> glib::Type {
+        Self::static_type()
+    }
+}
+
 #[derive(Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Clone, Copy)]
 #[non_exhaustive]
 #[doc(alias = "AdwSqueezerTransitionType")]
