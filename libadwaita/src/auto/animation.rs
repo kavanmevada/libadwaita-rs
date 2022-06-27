@@ -10,7 +10,6 @@ use glib::object::IsA;
 use glib::signal::connect_raw;
 use glib::signal::SignalHandlerId;
 use glib::translate::*;
-use glib::ToValue;
 use std::boxed::Box as Box_;
 use std::fmt;
 use std::mem::transmute;
@@ -57,10 +56,11 @@ pub trait AnimationExt: 'static {
     #[doc(alias = "adw_animation_resume")]
     fn resume(&self);
 
+    #[doc(alias = "adw_animation_set_target")]
+    fn set_target(&self, target: &impl IsA<AnimationTarget>);
+
     #[doc(alias = "adw_animation_skip")]
     fn skip(&self);
-
-    fn set_target<P: IsA<AnimationTarget>>(&self, target: Option<&P>);
 
     #[doc(alias = "done")]
     fn connect_done<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
@@ -124,14 +124,19 @@ impl<O: IsA<Animation>> AnimationExt for O {
         }
     }
 
+    fn set_target(&self, target: &impl IsA<AnimationTarget>) {
+        unsafe {
+            ffi::adw_animation_set_target(
+                self.as_ref().to_glib_none().0,
+                target.as_ref().to_glib_none().0,
+            );
+        }
+    }
+
     fn skip(&self) {
         unsafe {
             ffi::adw_animation_skip(self.as_ref().to_glib_none().0);
         }
-    }
-
-    fn set_target<P: IsA<AnimationTarget>>(&self, target: Option<&P>) {
-        glib::ObjectExt::set_property(self.as_ref(), "target", &target)
     }
 
     fn connect_done<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
