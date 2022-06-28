@@ -704,10 +704,6 @@ pub trait MessageDialogExt: 'static {
     #[doc(alias = "get_response_enabled")]
     fn is_response_enabled(&self, response: &str) -> bool;
 
-    #[doc(alias = "adw_message_dialog_get_response_label")]
-    #[doc(alias = "get_response_label")]
-    fn response_label(&self, response: &str) -> glib::GString;
-
     #[doc(alias = "adw_message_dialog_has_response")]
     fn has_response(&self, response: &str) -> bool;
 
@@ -868,15 +864,6 @@ impl<O: IsA<MessageDialog>> MessageDialogExt for O {
     fn is_response_enabled(&self, response: &str) -> bool {
         unsafe {
             from_glib(ffi::adw_message_dialog_get_response_enabled(
-                self.as_ref().to_glib_none().0,
-                response.to_glib_none().0,
-            ))
-        }
-    }
-
-    fn response_label(&self, response: &str) -> glib::GString {
-        unsafe {
-            from_glib_none(ffi::adw_message_dialog_get_response_label(
                 self.as_ref().to_glib_none().0,
                 response.to_glib_none().0,
             ))
