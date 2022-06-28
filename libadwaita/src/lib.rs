@@ -115,6 +115,9 @@ mod auto;
 
 mod application;
 mod carousel;
+#[cfg(any(feature = "v1_2", feature = "dox"))]
+#[cfg_attr(feature = "dox", doc(cfg(feature = "v1_2")))]
+mod message_dialog;
 mod tab_bar;
 mod tab_view;
 mod toast;
