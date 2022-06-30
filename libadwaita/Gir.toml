@@ -198,7 +198,7 @@ status = "generate"
 manual_traits = ["MessageDialogExtManual"]
     [[object.function]]
     name = "add_responses"
-    ignore = true # C only function
+    manual = true
     [[object.function]]
     pattern = "(format_body|format_body_markup|format_heading|format_heading_markup)"
     ignore = true # C only function
