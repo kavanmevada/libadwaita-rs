@@ -8,6 +8,9 @@ pub trait MessageDialogExtManual: 'static {
     #[doc(alias = "adw_message_dialog_get_response_label")]
     #[doc(alias = "get_response_label")]
     fn response_label(&self, response: &str) -> glib::GString;
+
+    #[doc(alias = "adw_message_dialog_add_responses")]
+    fn add_responses(&self, ids_and_labels: &[(&str, &str)]);
 }
 
 impl<O: IsA<MessageDialog>> MessageDialogExtManual for O {
@@ -22,5 +25,12 @@ impl<O: IsA<MessageDialog>> MessageDialogExtManual for O {
                 response.to_glib_none().0,
             ))
         }
+    }
+
+    #[doc(alias = "adw_message_dialog_add_responses")]
+    fn add_responses(&self, ids_and_labels: &[(&str, &str)]) {
+        ids_and_labels.iter().for_each(|(id, label)| {
+            self.add_response(id, label);
+        });
     }
 }
