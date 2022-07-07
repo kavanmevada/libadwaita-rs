@@ -8,6 +8,7 @@
 #include <stdio.h>
 
 int main() {
+    printf("%s;%zu;%zu\n", "AdwAboutWindowClass", sizeof(AdwAboutWindowClass), alignof(AdwAboutWindowClass));
     printf("%s;%zu;%zu\n", "AdwActionRow", sizeof(AdwActionRow), alignof(AdwActionRow));
     printf("%s;%zu;%zu\n", "AdwActionRowClass", sizeof(AdwActionRowClass), alignof(AdwActionRowClass));
     printf("%s;%zu;%zu\n", "AdwAnimation", sizeof(AdwAnimation), alignof(AdwAnimation));

@@ -15,6 +15,2209 @@ and/or use gtk-doc annotations.  -->
              shared-library="libadwaita-1.so.0"
              c:identifier-prefixes="Adw"
              c:symbol-prefixes="adw">
+    <class name="AboutWindow"
+           c:symbol-prefix="about_window"
+           c:type="AdwAboutWindow"
+           version="1.2"
+           parent="Window"
+           glib:type-name="AdwAboutWindow"
+           glib:get-type="adw_about_window_get_type"
+           glib:type-struct="AboutWindowClass">
+      <doc xml:space="preserve"
+           filename="../src/adw-about-window.c"
+           line="21">A window showing information about the application.
+
+&lt;picture&gt;
+  &lt;source srcset="about-window-dark.png" media="(prefers-color-scheme: dark)"&gt;
+  &lt;img src="about-window.png" alt="about-window"&gt;
+&lt;/picture&gt;
+
+An about window is typically opened when the user activates the `About …`
+item in the application's primary menu. All parts of the window are optional.
+
+## Main page
+
+`AdwAboutWindow` prominently displays the application's icon, name, developer
+name and version. They can be set with the [property@AboutWindow:application-icon],
+[property@AboutWindow:application-name],
+[property@AboutWindow:developer-name] and [property@AboutWindow:version]
+respectively.
+
+## What's New
+
+`AdwAboutWindow` provides a way for applications to display their release
+notes, set with the [property@AboutWindow:release-notes] property.
+
+Release notes are formatted the same way as
+[AppStream descriptions](https://freedesktop.org/software/appstream/docs/chap-Metadata.html#tag-description).
+
+The supported formatting options are:
+
+* Paragraph (`&lt;p&gt;`)
+* Ordered list (`&lt;ol&gt;`), with list items (`&lt;li&gt;`)
+* Unordered list (`&lt;ul&gt;`), with list items (`&lt;li&gt;`)
+
+Within paragraphs and list items, emphasis (`&lt;em&gt;`) and inline code
+(`&lt;code&gt;`) text styles are supported. The emphasis is rendered in italic,
+while inline code is shown in a monospaced font.
+
+Any text outside paragraphs or list items is ignored.
+
+Nested lists are not supported.
+
+Only one version can be shown at a time. By default, the displayed version
+number matches [property@AboutWindow:version]. Use
+[property@AboutWindow:release-notes-version] to override it.
+
+## Details
+
+The Details page displays the application comments and links.
+
+The comments can be set with the [property@AboutWindow:comments] property.
+Unlike [property@Gtk.AboutDialog:comments], this string can be long and
+detailed. It can also contain links and Pango markup.
+
+To set the application website, use [property@AboutWindow:website].
+To add extra links below the website, use [method@AboutWindow.add_link].
+
+If the Details page doesn't have any other content besides website, the
+website will be displayed on the main page instead.
+
+## Troubleshooting
+
+`AdwAboutWindow` displays the following two links on the main page:
+
+* Support Questions, set with the [property@AboutWindow:support-url] property,
+* Report an Issue, set with the [property@AboutWindow:issue-url] property.
+
+Additionally, applications can provide debugging information. It will be
+shown separately on the Troubleshooting page. Use the
+[property@AboutWindow:debug-info] property to specify it.
+
+It's intended to be attached to issue reports when reporting issues against
+the application. As such, it cannot contain markup or links.
+
+`AdwAboutWindow` provides a quick way to save debug information to a file.
+When saving, [property@AboutWindow:debug-info-filename] would be used as
+the suggested filename.
+
+## Credits and Acknowledgements
+
+The Credits page has the following default sections:
+
+* Developers, set with the [property@AboutWindow:developers] property,
+* Designers, set with the [property@AboutWindow:designers] property,
+* Artists, set with the [property@AboutWindow:artists] property,
+* Documenters, set with the [property@AboutWindow:documenters] property,
+* Translators, set with the [property@AboutWindow:translator-credits] property.
+
+When setting translator credits, use the strings `"translator-credits"` or
+`"translator_credits"` and mark them as translatable.
+
+The default sections that don't contain any names won't be displayed.
+
+The Credits page can also contain an arbitrary number of extra sections below
+the default ones. Use [method@AboutWindow.add_credit_section] to add them.
+
+The Acknowledgements page can be used to acknowledge additional people and
+organizations for their non-development contributions. Use
+[method@AboutWindow.add_acknowledgement_section] to add sections to it. For
+example, it can be used to list backers in a crowdfunded project or to give
+special thanks.
+
+Each of the people or organizations can have an email address or a website
+specified. To add a email address, use a string like
+`Edgar Allan Poe &lt;edgar@poe.com&gt;`. To specify a website with a title, use a
+string like `The GNOME Project https://www.gnome.org`:
+
+&lt;picture&gt;
+  &lt;source srcset="about-window-credits-dark.png" media="(prefers-color-scheme: dark)"&gt;
+  &lt;img src="about-window-credits.png" alt="about-window-credits"&gt;
+&lt;/picture&gt;
+
+## Legal
+
+The Legal page displays the copyright and licensing information for the
+application and other modules.
+
+The copyright string is set with the [property@AboutWindow:copyright]
+property and should be a short string of one or two lines, for example:
+`© 2022 Example`.
+
+Licensing information can be quickly set from a list of known licenses with
+the [property@AboutWindow:license-type] property. If the application's
+license is not in the list, [property@AboutWindow:license] can be used
+instead.
+
+To add information about other modules, such as application dependencies or
+data, use [method@AboutWindow.add_legal_section].
+
+## Constructing
+
+To make constructing an `AdwAboutWindow` as convenient as possible, you can
+use the function [func@show_about_window] which constructs and shows a
+window.
+
+```c
+static void
+show_about (GtkApplication *app)
+{
+  const char *developers[] = {
+    "Angela Avery",
+    NULL
+  };
+
+  const char *designers[] = {
+    "GNOME Design Team",
+    NULL
+  };
+
+  adw_show_about_window (gtk_application_get_active_window (app),
+                         "application-name", _("Example"),
+                         "application-icon", "org.example.App",
+                         "version", "1.2.3",
+                         "copyright", "© 2022 Angela Avery",
+                         "issue-url", "https://gitlab.gnome.org/example/example/-/issues/new",
+                         "license-type", GTK_LICENSE_GPL_3_0,
+                         "developers", developers,
+                         "designers", designers,
+                         "translator-credits", _("translator-credits"),
+                         NULL);
+}
+```
+
+## CSS nodes
+
+`AdwAboutWindow` has a main CSS node with the name `window` and the
+style class `.about`.</doc>
+      <source-position filename="../src/adw-about-window.h" line="23"/>
+      <implements name="Gtk.Accessible"/>
+      <implements name="Gtk.Buildable"/>
+      <implements name="Gtk.ConstraintTarget"/>
+      <implements name="Gtk.Native"/>
+      <implements name="Gtk.Root"/>
+      <implements name="Gtk.ShortcutManager"/>
+      <constructor name="new"
+                   c:identifier="adw_about_window_new"
+                   version="1.2">
+        <doc xml:space="preserve"
+             filename="../src/adw-about-window.c"
+             line="1892">Creates a new `AdwAboutWindow`.</doc>
+        <source-position filename="../src/adw-about-window.h" line="26"/>
+        <return-value transfer-ownership="none">
+          <doc xml:space="preserve"
+               filename="../src/adw-about-window.c"
+               line="1897">the newly created `AdwAboutWindow`</doc>
+          <type name="Gtk.Widget" c:type="GtkWidget*"/>
+        </return-value>
+      </constructor>
+      <method name="add_acknowledgement_section"
+              c:identifier="adw_about_window_add_acknowledgement_section"
+              version="1.2">
+        <doc xml:space="preserve"
+             filename="../src/adw-about-window.c"
+             line="2895">Adds a section to the Acknowledgements page.
+
+This can be used to acknowledge additional people and organizations for their
+non-development contributions - for example, backers in a crowdfunded
+project.
+
+Each name may contain email addresses and URLs, see the introduction for more
+details.
+
+See also:
+
+* [property@AboutWindow:developers]
+* [property@AboutWindow:designers]
+* [property@AboutWindow:artists]
+* [property@AboutWindow:documenters]
+* [property@AboutWindow:translator-credits]
+* [method@AboutWindow.add_credit_section]</doc>
+        <source-position filename="../src/adw-about-window.h" line="141"/>
+        <return-value transfer-ownership="none">
+          <type name="none" c:type="void"/>
+        </return-value>
+        <parameters>
+          <instance-parameter name="self" transfer-ownership="none">
+            <doc xml:space="preserve"
+                 filename="../src/adw-about-window.c"
+                 line="2897">an about window</doc>
+            <type name="AboutWindow" c:type="AdwAboutWindow*"/>
+          </instance-parameter>
+          <parameter name="name"
+                     transfer-ownership="none"
+                     nullable="1"
+                     allow-none="1">
+            <doc xml:space="preserve"
+                 filename="../src/adw-about-window.c"
+                 line="2898">the section name</doc>
+            <type name="utf8" c:type="const char*"/>
+          </parameter>
+          <parameter name="people" transfer-ownership="none">
+            <doc xml:space="preserve"
+                 filename="../src/adw-about-window.c"
+                 line="2899">the list of names</doc>
+            <array c:type="const char**">
+              <type name="utf8" c:type="char*"/>
+            </array>
+          </parameter>
+        </parameters>
+      </method>
+      <method name="add_credit_section"
+              c:identifier="adw_about_window_add_credit_section"
+              version="1.2">
+        <doc xml:space="preserve"
+             filename="../src/adw-about-window.c"
+             line="2852">Adds an extra section to the Credits page.
+
+Extra sections are displayed below the standard categories.
+
+Each name may contain email addresses and URLs, see the introduction for more
+details.
+
+See also:
+
+* [property@AboutWindow:developers]
+* [property@AboutWindow:designers]
+* [property@AboutWindow:artists]
+* [property@AboutWindow:documenters]
+* [property@AboutWindow:translator-credits]
+* [method@AboutWindow.add_acknowledgement_section]</doc>
+        <source-position filename="../src/adw-about-window.h" line="136"/>
+        <return-value transfer-ownership="none">
+          <type name="none" c:type="void"/>
+        </return-value>
+        <parameters>
+          <instance-parameter name="self" transfer-ownership="none">
+            <doc xml:space="preserve"
+                 filename="../src/adw-about-window.c"
+                 line="2854">an about window</doc>
+            <type name="AboutWindow" c:type="AdwAboutWindow*"/>
+          </instance-parameter>
+          <parameter name="name"
+                     transfer-ownership="none"
+                     nullable="1"
+                     allow-none="1">
+            <doc xml:space="preserve"
+                 filename="../src/adw-about-window.c"
+                 line="2855">the section name</doc>
+            <type name="utf8" c:type="const char*"/>
+          </parameter>
+          <parameter name="people" transfer-ownership="none">
+            <doc xml:space="preserve"
+                 filename="../src/adw-about-window.c"
+                 line="2856">the list of names</doc>
+            <array c:type="const char**">
+              <type name="utf8" c:type="char*"/>
+            </array>
+          </parameter>
+        </parameters>
+      </method>
+      <method name="add_legal_section"
+              c:identifier="adw_about_window_add_legal_section"
+              version="1.2">
+        <doc xml:space="preserve"
+             filename="../src/adw-about-window.c"
+             line="3119">Adds an extra section to the Legal page.
+
+Extra sections will be displayed below the application's own information.
+
+The parameters @copyright, @license_type and @license will be used to present
+the it the same way as [property@AboutWindow:copyright],
+[property@AboutWindow:license-type] and [property@AboutWindow:license] are
+for the application's own information.
+
+See those properties for more details.
+
+This can be useful to attribute the application dependencies or data.
+
+Examples:
+
+```c
+adw_about_window_add_legal_section (ADW_ABOUT_WINDOW (about),
+                                    _("Copyright and a known license"),
+                                    "© 2022 Example",
+                                    GTK_LICENSE_LGPL_2_1,
+                                    NULL);
+
+adw_about_window_add_legal_section (ADW_ABOUT_WINDOW (about),
+                                    _("Copyright and custom license"),
+                                    "© 2022 Example",
+                                    GTK_LICENSE_CUSTOM,
+                                    "Custom license text");
+
+adw_about_window_add_legal_section (ADW_ABOUT_WINDOW (about),
+                                    _("Copyright only"),
+                                    "© 2022 Example",
+                                    GTK_LICENSE_UNKNOWN,
+                                    NULL);
+
+adw_about_window_add_legal_section (ADW_ABOUT_WINDOW (about),
+                                    _("Custom license only"),
+                                    NULL,
+                                    GTK_LICENSE_CUSTOM,
+                                    "Something completely custom here.");
+```</doc>
+        <source-position filename="../src/adw-about-window.h" line="164"/>
+        <return-value transfer-ownership="none">
+          <type name="none" c:type="void"/>
+        </return-value>
+        <parameters>
+          <instance-parameter name="self" transfer-ownership="none">
+            <doc xml:space="preserve"
+                 filename="../src/adw-about-window.c"
+                 line="3121">an about window</doc>
+            <type name="AboutWindow" c:type="AdwAboutWindow*"/>
+          </instance-parameter>
+          <parameter name="title" transfer-ownership="none">
+            <doc xml:space="preserve"
+                 filename="../src/adw-about-window.c"
+                 line="3122">the name of the section</doc>
+            <type name="utf8" c:type="const char*"/>
+          </parameter>
+          <parameter name="copyright"
+                     transfer-ownership="none"
+                     nullable="1"
+                     allow-none="1">
+            <doc xml:space="preserve"
+                 filename="../src/adw-about-window.c"
+                 line="3123">a copyright string</doc>
+            <type name="utf8" c:type="const char*"/>
+          </parameter>
+          <parameter name="license_type" transfer-ownership="none">
+            <doc xml:space="preserve"
+                 filename="../src/adw-about-window.c"
+                 line="3124">the type of license</doc>
+            <type name="Gtk.License" c:type="GtkLicense"/>
+          </parameter>
+          <parameter name="license"
+                     transfer-ownership="none"
+                     nullable="1"
+                     allow-none="1">
+            <doc xml:space="preserve"
+                 filename="../src/adw-about-window.c"
+                 line="3125">custom license information</doc>
+            <type name="utf8" c:type="const char*"/>
+          </parameter>
+        </parameters>
+      </method>
+      <method name="add_link"
+              c:identifier="adw_about_window_add_link"
+              version="1.2">
+        <doc xml:space="preserve"
+             filename="../src/adw-about-window.c"
+             line="2409">Adds an extra link to the Details page.
+
+Extra links are displayed under the comment and website.
+
+Underlines in @title will be interpreted as indicating a mnemonic.
+
+See [property@AboutWindow:website].</doc>
+        <source-position filename="../src/adw-about-window.h" line="89"/>
+        <return-value transfer-ownership="none">
+          <type name="none" c:type="void"/>
+        </return-value>
+        <parameters>
+          <instance-parameter name="self" transfer-ownership="none">
+            <doc xml:space="preserve"
+                 filename="../src/adw-about-window.c"
+                 line="2411">an about window</doc>
+            <type name="AboutWindow" c:type="AdwAboutWindow*"/>
+          </instance-parameter>
+          <parameter name="title" transfer-ownership="none">
+            <doc xml:space="preserve"
+                 filename="../src/adw-about-window.c"
+                 line="2412">the link title</doc>
+            <type name="utf8" c:type="const char*"/>
+          </parameter>
+          <parameter name="url" transfer-ownership="none">
+            <doc xml:space="preserve"
+                 filename="../src/adw-about-window.c"
+                 line="2413">the link URL</doc>
+            <type name="utf8" c:type="const char*"/>
+          </parameter>
+        </parameters>
+      </method>
+      <method name="get_application_icon"
+              c:identifier="adw_about_window_get_application_icon"
+              glib:get-property="application-icon"
+              version="1.2">
+        <attribute name="org.gtk.Method.get_property"
+                   value="application-icon"/>
+        <doc xml:space="preserve"
+             filename="../src/adw-about-window.c"
+             line="1907">Gets the name of the application icon for @self.</doc>
+        <source-position filename="../src/adw-about-window.h" line="35"/>
+        <return-value transfer-ownership="none">
+          <doc xml:space="preserve"
+               filename="../src/adw-about-window.c"
+               line="1913">the application icon name</doc>
+          <type name="utf8" c:type="const char*"/>
+        </return-value>
+        <parameters>
+          <instance-parameter name="self" transfer-ownership="none">
+            <doc xml:space="preserve"
+                 filename="../src/adw-about-window.c"
+                 line="1909">an about window</doc>
+            <type name="AboutWindow" c:type="AdwAboutWindow*"/>
+          </instance-parameter>
+        </parameters>
+      </method>
+      <method name="get_application_name"
+              c:identifier="adw_about_window_get_application_name"
+              glib:get-property="application-name"
+              version="1.2">
+        <attribute name="org.gtk.Method.get_property"
+                   value="application-name"/>
+        <doc xml:space="preserve"
+             filename="../src/adw-about-window.c"
+             line="1952">Gets the application name for @self.</doc>
+        <source-position filename="../src/adw-about-window.h" line="29"/>
+        <return-value transfer-ownership="none">
+          <doc xml:space="preserve"
+               filename="../src/adw-about-window.c"
+               line="1958">the application name</doc>
+          <type name="utf8" c:type="const char*"/>
+        </return-value>
+        <parameters>
+          <instance-parameter name="self" transfer-ownership="none">
+            <doc xml:space="preserve"
+                 filename="../src/adw-about-window.c"
+                 line="1954">an about window</doc>
+            <type name="AboutWindow" c:type="AdwAboutWindow*"/>
+          </instance-parameter>
+        </parameters>
+      </method>
+      <method name="get_artists"
+              c:identifier="adw_about_window_get_artists"
+              glib:get-property="artists"
+              version="1.2">
+        <attribute name="org.gtk.Method.get_property" value="artists"/>
+        <doc xml:space="preserve"
+             filename="../src/adw-about-window.c"
+             line="2674">Gets the list of artists of the application.</doc>
+        <source-position filename="../src/adw-about-window.h" line="118"/>
+        <return-value transfer-ownership="none" nullable="1">
+          <doc xml:space="preserve"
+               filename="../src/adw-about-window.c"
+               line="2680">The list of artists</doc>
+          <array c:type="const char* const*">
+            <type name="utf8"/>
+          </array>
+        </return-value>
+        <parameters>
+          <instance-parameter name="self" transfer-ownership="none">
+            <doc xml:space="preserve"
+                 filename="../src/adw-about-window.c"
+                 line="2676">an about window</doc>
+            <type name="AboutWindow" c:type="AdwAboutWindow*"/>
+          </instance-parameter>
+        </parameters>
+      </method>
+      <method name="get_comments"
+              c:identifier="adw_about_window_get_comments"
+              glib:get-property="comments"
+              version="1.2">
+        <attribute name="org.gtk.Method.get_property" value="comments"/>
+        <doc xml:space="preserve"
+             filename="../src/adw-about-window.c"
+             line="2219">Gets the comments about the application.</doc>
+        <source-position filename="../src/adw-about-window.h" line="65"/>
+        <return-value transfer-ownership="none">
+          <doc xml:space="preserve"
+               filename="../src/adw-about-window.c"
+               line="2225">the comments</doc>
+          <type name="utf8" c:type="const char*"/>
+        </return-value>
+        <parameters>
+          <instance-parameter name="self" transfer-ownership="none">
+            <doc xml:space="preserve"
+                 filename="../src/adw-about-window.c"
+                 line="2221">an about window</doc>
+            <type name="AboutWindow" c:type="AdwAboutWindow*"/>
+          </instance-parameter>
+        </parameters>
+      </method>
+      <method name="get_copyright"
+              c:identifier="adw_about_window_get_copyright"
+              glib:get-property="copyright"
+              version="1.2">
+        <attribute name="org.gtk.Method.get_property" value="copyright"/>
+        <doc xml:space="preserve"
+             filename="../src/adw-about-window.c"
+             line="2934">Gets the copyright information for @self.</doc>
+        <source-position filename="../src/adw-about-window.h" line="146"/>
+        <return-value transfer-ownership="none">
+          <doc xml:space="preserve"
+               filename="../src/adw-about-window.c"
+               line="2940">the copyright information</doc>
+          <type name="utf8" c:type="const char*"/>
+        </return-value>
+        <parameters>
+          <instance-parameter name="self" transfer-ownership="none">
+            <doc xml:space="preserve"
+                 filename="../src/adw-about-window.c"
+                 line="2936">an about window</doc>
+            <type name="AboutWindow" c:type="AdwAboutWindow*"/>
+          </instance-parameter>
+        </parameters>
+      </method>
+      <method name="get_debug_info"
+              c:identifier="adw_about_window_get_debug_info"
+              glib:get-property="debug-info"
+              version="1.2">
+        <attribute name="org.gtk.Method.get_property" value="debug-info"/>
+        <doc xml:space="preserve"
+             filename="../src/adw-about-window.c"
+             line="2457">Gets the debug information for @self.</doc>
+        <source-position filename="../src/adw-about-window.h" line="94"/>
+        <return-value transfer-ownership="none">
+          <doc xml:space="preserve"
+               filename="../src/adw-about-window.c"
+               line="2463">the debug information</doc>
+          <type name="utf8" c:type="const char*"/>
+        </return-value>
+        <parameters>
+          <instance-parameter name="self" transfer-ownership="none">
+            <doc xml:space="preserve"
+                 filename="../src/adw-about-window.c"
+                 line="2459">an about window</doc>
+            <type name="AboutWindow" c:type="AdwAboutWindow*"/>
+          </instance-parameter>
+        </parameters>
+      </method>
+      <method name="get_debug_info_filename"
+              c:identifier="adw_about_window_get_debug_info_filename"
+              glib:get-property="debug-info-filename"
+              version="1.2">
+        <attribute name="org.gtk.Method.get_property"
+                   value="debug-info-filename"/>
+        <doc xml:space="preserve"
+             filename="../src/adw-about-window.c"
+             line="2510">Gets the debug information filename for @self.</doc>
+        <source-position filename="../src/adw-about-window.h" line="100"/>
+        <return-value transfer-ownership="none">
+          <doc xml:space="preserve"
+               filename="../src/adw-about-window.c"
+               line="2516">the debug information filename</doc>
+          <type name="utf8" c:type="const char*"/>
+        </return-value>
+        <parameters>
+          <instance-parameter name="self" transfer-ownership="none">
+            <doc xml:space="preserve"
+                 filename="../src/adw-about-window.c"
+                 line="2512">an about window</doc>
+            <type name="AboutWindow" c:type="AdwAboutWindow*"/>
+          </instance-parameter>
+        </parameters>
+      </method>
+      <method name="get_designers"
+              c:identifier="adw_about_window_get_designers"
+              glib:get-property="designers"
+              version="1.2">
+        <attribute name="org.gtk.Method.get_property" value="designers"/>
+        <doc xml:space="preserve"
+             filename="../src/adw-about-window.c"
+             line="2616">Gets the list of designers of the application.</doc>
+        <source-position filename="../src/adw-about-window.h" line="112"/>
+        <return-value transfer-ownership="none" nullable="1">
+          <doc xml:space="preserve"
+               filename="../src/adw-about-window.c"
+               line="2622">The list of designers</doc>
+          <array c:type="const char* const*">
+            <type name="utf8"/>
+          </array>
+        </return-value>
+        <parameters>
+          <instance-parameter name="self" transfer-ownership="none">
+            <doc xml:space="preserve"
+                 filename="../src/adw-about-window.c"
+                 line="2618">an about window</doc>
+            <type name="AboutWindow" c:type="AdwAboutWindow*"/>
+          </instance-parameter>
+        </parameters>
+      </method>
+      <method name="get_developer_name"
+              c:identifier="adw_about_window_get_developer_name"
+              glib:get-property="developer-name"
+              version="1.2">
+        <attribute name="org.gtk.Method.get_property" value="developer-name"/>
+        <doc xml:space="preserve"
+             filename="../src/adw-about-window.c"
+             line="1997">Gets the developer name for @self.</doc>
+        <source-position filename="../src/adw-about-window.h" line="41"/>
+        <return-value transfer-ownership="none">
+          <doc xml:space="preserve"
+               filename="../src/adw-about-window.c"
+               line="2003">the developer_name</doc>
+          <type name="utf8" c:type="const char*"/>
+        </return-value>
+        <parameters>
+          <instance-parameter name="self" transfer-ownership="none">
+            <doc xml:space="preserve"
+                 filename="../src/adw-about-window.c"
+                 line="1999">an about window</doc>
+            <type name="AboutWindow" c:type="AdwAboutWindow*"/>
+          </instance-parameter>
+        </parameters>
+      </method>
+      <method name="get_developers"
+              c:identifier="adw_about_window_get_developers"
+              glib:get-property="developers"
+              version="1.2">
+        <attribute name="org.gtk.Method.get_property" value="developers"/>
+        <doc xml:space="preserve"
+             filename="../src/adw-about-window.c"
+             line="2558">Gets the list of developers of the application.</doc>
+        <source-position filename="../src/adw-about-window.h" line="106"/>
+        <return-value transfer-ownership="none" nullable="1">
+          <doc xml:space="preserve"
+               filename="../src/adw-about-window.c"
+               line="2564">The list of developers</doc>
+          <array c:type="const char* const*">
+            <type name="utf8"/>
+          </array>
+        </return-value>
+        <parameters>
+          <instance-parameter name="self" transfer-ownership="none">
+            <doc xml:space="preserve"
+                 filename="../src/adw-about-window.c"
+                 line="2560">an about window</doc>
+            <type name="AboutWindow" c:type="AdwAboutWindow*"/>
+          </instance-parameter>
+        </parameters>
+      </method>
+      <method name="get_documenters"
+              c:identifier="adw_about_window_get_documenters"
+              glib:get-property="documenters"
+              version="1.2">
+        <attribute name="org.gtk.Method.get_property" value="documenters"/>
+        <doc xml:space="preserve"
+             filename="../src/adw-about-window.c"
+             line="2732">Gets the list of documenters of the application.</doc>
+        <source-position filename="../src/adw-about-window.h" line="124"/>
+        <return-value transfer-ownership="none" nullable="1">
+          <doc xml:space="preserve"
+               filename="../src/adw-about-window.c"
+               line="2738">The list of documenters</doc>
+          <array c:type="const char* const*">
+            <type name="utf8"/>
+          </array>
+        </return-value>
+        <parameters>
+          <instance-parameter name="self" transfer-ownership="none">
+            <doc xml:space="preserve"
+                 filename="../src/adw-about-window.c"
+                 line="2734">an about window</doc>
+            <type name="AboutWindow" c:type="AdwAboutWindow*"/>
+          </instance-parameter>
+        </parameters>
+      </method>
+      <method name="get_issue_url"
+              c:identifier="adw_about_window_get_issue_url"
+              glib:get-property="issue-url"
+              version="1.2">
+        <attribute name="org.gtk.Method.get_property" value="issue-url"/>
+        <doc xml:space="preserve"
+             filename="../src/adw-about-window.c"
+             line="2364">Gets the issue tracker URL for @self.</doc>
+        <source-position filename="../src/adw-about-window.h" line="83"/>
+        <return-value transfer-ownership="none">
+          <doc xml:space="preserve"
+               filename="../src/adw-about-window.c"
+               line="2370">the issue tracker URL</doc>
+          <type name="utf8" c:type="const char*"/>
+        </return-value>
+        <parameters>
+          <instance-parameter name="self" transfer-ownership="none">
+            <doc xml:space="preserve"
+                 filename="../src/adw-about-window.c"
+                 line="2366">an about window</doc>
+            <type name="AboutWindow" c:type="AdwAboutWindow*"/>
+          </instance-parameter>
+        </parameters>
+      </method>
+      <method name="get_license"
+              c:identifier="adw_about_window_get_license"
+              glib:get-property="license"
+              version="1.2">
+        <attribute name="org.gtk.Method.get_property" value="license"/>
+        <doc xml:space="preserve"
+             filename="../src/adw-about-window.c"
+             line="3054">Gets the license for @self.</doc>
+        <source-position filename="../src/adw-about-window.h" line="158"/>
+        <return-value transfer-ownership="none">
+          <doc xml:space="preserve"
+               filename="../src/adw-about-window.c"
+               line="3060">the license</doc>
+          <type name="utf8" c:type="const char*"/>
+        </return-value>
+        <parameters>
+          <instance-parameter name="self" transfer-ownership="none">
+            <doc xml:space="preserve"
+                 filename="../src/adw-about-window.c"
+                 line="3056">an about window</doc>
+            <type name="AboutWindow" c:type="AdwAboutWindow*"/>
+          </instance-parameter>
+        </parameters>
+      </method>
+      <method name="get_license_type"
+              c:identifier="adw_about_window_get_license_type"
+              glib:get-property="license-type"
+              version="1.2">
+        <attribute name="org.gtk.Method.get_property" value="license-type"/>
+        <doc xml:space="preserve"
+             filename="../src/adw-about-window.c"
+             line="2988">Gets the license type for @self.</doc>
+        <source-position filename="../src/adw-about-window.h" line="152"/>
+        <return-value transfer-ownership="none">
+          <doc xml:space="preserve"
+               filename="../src/adw-about-window.c"
+               line="2994">the license type</doc>
+          <type name="Gtk.License" c:type="GtkLicense"/>
+        </return-value>
+        <parameters>
+          <instance-parameter name="self" transfer-ownership="none">
+            <doc xml:space="preserve"
+                 filename="../src/adw-about-window.c"
+                 line="2990">an about window</doc>
+            <type name="AboutWindow" c:type="AdwAboutWindow*"/>
+          </instance-parameter>
+        </parameters>
+      </method>
+      <method name="get_release_notes"
+              c:identifier="adw_about_window_get_release_notes"
+              glib:get-property="release-notes"
+              version="1.2">
+        <attribute name="org.gtk.Method.get_property" value="release-notes"/>
+        <doc xml:space="preserve"
+             filename="../src/adw-about-window.c"
+             line="2151">Gets the release notes for @self.</doc>
+        <source-position filename="../src/adw-about-window.h" line="59"/>
+        <return-value transfer-ownership="none">
+          <doc xml:space="preserve"
+               filename="../src/adw-about-window.c"
+               line="2157">the release notes</doc>
+          <type name="utf8" c:type="const char*"/>
+        </return-value>
+        <parameters>
+          <instance-parameter name="self" transfer-ownership="none">
+            <doc xml:space="preserve"
+                 filename="../src/adw-about-window.c"
+                 line="2153">an about window</doc>
+            <type name="AboutWindow" c:type="AdwAboutWindow*"/>
+          </instance-parameter>
+        </parameters>
+      </method>
+      <method name="get_release_notes_version"
+              c:identifier="adw_about_window_get_release_notes_version"
+              glib:get-property="release-notes-version"
+              version="1.2">
+        <attribute name="org.gtk.Method.get_property"
+                   value="release-notes-version"/>
+        <doc xml:space="preserve"
+             filename="../src/adw-about-window.c"
+             line="2095">Gets the version described by the application's release notes.</doc>
+        <source-position filename="../src/adw-about-window.h" line="53"/>
+        <return-value transfer-ownership="none">
+          <doc xml:space="preserve"
+               filename="../src/adw-about-window.c"
+               line="2101">the release notes version</doc>
+          <type name="utf8" c:type="const char*"/>
+        </return-value>
+        <parameters>
+          <instance-parameter name="self" transfer-ownership="none">
+            <doc xml:space="preserve"
+                 filename="../src/adw-about-window.c"
+                 line="2097">an about window</doc>
+            <type name="AboutWindow" c:type="AdwAboutWindow*"/>
+          </instance-parameter>
+        </parameters>
+      </method>
+      <method name="get_support_url"
+              c:identifier="adw_about_window_get_support_url"
+              glib:get-property="support-url"
+              version="1.2">
+        <attribute name="org.gtk.Method.get_property" value="support-url"/>
+        <doc xml:space="preserve"
+             filename="../src/adw-about-window.c"
+             line="2319">Gets the URL of the support page for @self.</doc>
+        <source-position filename="../src/adw-about-window.h" line="77"/>
+        <return-value transfer-ownership="none">
+          <doc xml:space="preserve"
+               filename="../src/adw-about-window.c"
+               line="2325">the support page URL</doc>
+          <type name="utf8" c:type="const char*"/>
+        </return-value>
+        <parameters>
+          <instance-parameter name="self" transfer-ownership="none">
+            <doc xml:space="preserve"
+                 filename="../src/adw-about-window.c"
+                 line="2321">an about window</doc>
+            <type name="AboutWindow" c:type="AdwAboutWindow*"/>
+          </instance-parameter>
+        </parameters>
+      </method>
+      <method name="get_translator_credits"
+              c:identifier="adw_about_window_get_translator_credits"
+              glib:get-property="translator-credits"
+              version="1.2">
+        <attribute name="org.gtk.Method.get_property"
+                   value="translator-credits"/>
+        <doc xml:space="preserve"
+             filename="../src/adw-about-window.c"
+             line="2790">Gets the translator credits string.</doc>
+        <source-position filename="../src/adw-about-window.h" line="130"/>
+        <return-value transfer-ownership="none">
+          <doc xml:space="preserve"
+               filename="../src/adw-about-window.c"
+               line="2796">The translator credits string</doc>
+          <type name="utf8" c:type="const char*"/>
+        </return-value>
+        <parameters>
+          <instance-parameter name="self" transfer-ownership="none">
+            <doc xml:space="preserve"
+                 filename="../src/adw-about-window.c"
+                 line="2792">an about window</doc>
+            <type name="AboutWindow" c:type="AdwAboutWindow*"/>
+          </instance-parameter>
+        </parameters>
+      </method>
+      <method name="get_version"
+              c:identifier="adw_about_window_get_version"
+              glib:get-property="version"
+              version="1.2">
+        <attribute name="org.gtk.Method.get_property" value="version"/>
+        <doc xml:space="preserve"
+             filename="../src/adw-about-window.c"
+             line="2047">Gets the version for @self.</doc>
+        <source-position filename="../src/adw-about-window.h" line="47"/>
+        <return-value transfer-ownership="none">
+          <doc xml:space="preserve"
+               filename="../src/adw-about-window.c"
+               line="2053">the version</doc>
+          <type name="utf8" c:type="const char*"/>
+        </return-value>
+        <parameters>
+          <instance-parameter name="self" transfer-ownership="none">
+            <doc xml:space="preserve"
+                 filename="../src/adw-about-window.c"
+                 line="2049">an about window</doc>
+            <type name="AboutWindow" c:type="AdwAboutWindow*"/>
+          </instance-parameter>
+        </parameters>
+      </method>
+      <method name="get_website"
+              c:identifier="adw_about_window_get_website"
+              glib:get-property="website"
+              version="1.2">
+        <attribute name="org.gtk.Method.get_property" value="website"/>
+        <doc xml:space="preserve"
+             filename="../src/adw-about-window.c"
+             line="2269">Gets the application website URL for @self.</doc>
+        <source-position filename="../src/adw-about-window.h" line="71"/>
+        <return-value transfer-ownership="none">
+          <doc xml:space="preserve"
+               filename="../src/adw-about-window.c"
+               line="2275">the website URL</doc>
+          <type name="utf8" c:type="const char*"/>
+        </return-value>
+        <parameters>
+          <instance-parameter name="self" transfer-ownership="none">
+            <doc xml:space="preserve"
+                 filename="../src/adw-about-window.c"
+                 line="2271">an about window</doc>
+            <type name="AboutWindow" c:type="AdwAboutWindow*"/>
+          </instance-parameter>
+        </parameters>
+      </method>
+      <method name="set_application_icon"
+              c:identifier="adw_about_window_set_application_icon"
+              glib:set-property="application-icon"
+              version="1.2">
+        <attribute name="org.gtk.Method.set_property"
+                   value="application-icon"/>
+        <doc xml:space="preserve"
+             filename="../src/adw-about-window.c"
+             line="1925">Sets the name of the application icon for @self.
+
+The icon is displayed at the top of the main page.</doc>
+        <source-position filename="../src/adw-about-window.h" line="37"/>
+        <return-value transfer-ownership="none">
+          <type name="none" c:type="void"/>
+        </return-value>
+        <parameters>
+          <instance-parameter name="self" transfer-ownership="none">
+            <doc xml:space="preserve"
+                 filename="../src/adw-about-window.c"
+                 line="1927">an about window</doc>
+            <type name="AboutWindow" c:type="AdwAboutWindow*"/>
+          </instance-parameter>
+          <parameter name="application_icon" transfer-ownership="none">
+            <doc xml:space="preserve"
+                 filename="../src/adw-about-window.c"
+                 line="1928">the application icon name</doc>
+            <type name="utf8" c:type="const char*"/>
+          </parameter>
+        </parameters>
+      </method>
+      <method name="set_application_name"
+              c:identifier="adw_about_window_set_application_name"
+              glib:set-property="application-name"
+              version="1.2">
+        <attribute name="org.gtk.Method.set_property"
+                   value="application-name"/>
+        <doc xml:space="preserve"
+             filename="../src/adw-about-window.c"
+             line="1970">Sets the application name for @self.
+
+The name is displayed at the top of the main page.</doc>
+        <source-position filename="../src/adw-about-window.h" line="31"/>
+        <return-value transfer-ownership="none">
+          <type name="none" c:type="void"/>
+        </return-value>
+        <parameters>
+          <instance-parameter name="self" transfer-ownership="none">
+            <doc xml:space="preserve"
+                 filename="../src/adw-about-window.c"
+                 line="1972">an about window</doc>
+            <type name="AboutWindow" c:type="AdwAboutWindow*"/>
+          </instance-parameter>
+          <parameter name="application_name" transfer-ownership="none">
+            <doc xml:space="preserve"
+                 filename="../src/adw-about-window.c"
+                 line="1973">the application name</doc>
+            <type name="utf8" c:type="const char*"/>
+          </parameter>
+        </parameters>
+      </method>
+      <method name="set_artists"
+              c:identifier="adw_about_window_set_artists"
+              glib:set-property="artists"
+              version="1.2">
+        <attribute name="org.gtk.Method.set_property" value="artists"/>
+        <doc xml:space="preserve"
+             filename="../src/adw-about-window.c"
+             line="2692">Sets the list of artists of the application.
+
+It will be displayed on the Credits page.
+
+Each name may contain email addresses and URLs, see the introduction for more
+details.
+
+See also:
+
+* [property@AboutWindow:developers]
+* [property@AboutWindow:designers]
+* [property@AboutWindow:documenters]
+* [property@AboutWindow:translator-credits]
+* [method@AboutWindow.add_credit_section]
+* [method@AboutWindow.add_acknowledgement_section]</doc>
+        <source-position filename="../src/adw-about-window.h" line="120"/>
+        <return-value transfer-ownership="none">
+          <type name="none" c:type="void"/>
+        </return-value>
+        <parameters>
+          <instance-parameter name="self" transfer-ownership="none">
+            <doc xml:space="preserve"
+                 filename="../src/adw-about-window.c"
+                 line="2694">an about window</doc>
+            <type name="AboutWindow" c:type="AdwAboutWindow*"/>
+          </instance-parameter>
+          <parameter name="artists"
+                     transfer-ownership="none"
+                     nullable="1"
+                     allow-none="1">
+            <doc xml:space="preserve"
+                 filename="../src/adw-about-window.c"
+                 line="2695">the list of artists</doc>
+            <array c:type="const char**">
+              <type name="utf8" c:type="char*"/>
+            </array>
+          </parameter>
+        </parameters>
+      </method>
+      <method name="set_comments"
+              c:identifier="adw_about_window_set_comments"
+              glib:set-property="comments"
+              version="1.2">
+        <attribute name="org.gtk.Method.set_property" value="comments"/>
+        <doc xml:space="preserve"
+             filename="../src/adw-about-window.c"
+             line="2237">Sets the comments about the application.
+
+Comments will be shown on the Details page, above links.
+
+Unlike [property@Gtk.AboutDialog:comments], this string can be long and
+detailed. It can also contain links and Pango markup.</doc>
+        <source-position filename="../src/adw-about-window.h" line="67"/>
+        <return-value transfer-ownership="none">
+          <type name="none" c:type="void"/>
+        </return-value>
+        <parameters>
+          <instance-parameter name="self" transfer-ownership="none">
+            <doc xml:space="preserve"
+                 filename="../src/adw-about-window.c"
+                 line="2239">an about window</doc>
+            <type name="AboutWindow" c:type="AdwAboutWindow*"/>
+          </instance-parameter>
+          <parameter name="comments" transfer-ownership="none">
+            <doc xml:space="preserve"
+                 filename="../src/adw-about-window.c"
+                 line="2240">the comments</doc>
+            <type name="utf8" c:type="const char*"/>
+          </parameter>
+        </parameters>
+      </method>
+      <method name="set_copyright"
+              c:identifier="adw_about_window_set_copyright"
+              glib:set-property="copyright"
+              version="1.2">
+        <attribute name="org.gtk.Method.set_property" value="copyright"/>
+        <doc xml:space="preserve"
+             filename="../src/adw-about-window.c"
+             line="2952">Sets the copyright information for @self.
+
+This should be a short string of one or two lines, for example:
+`© 2022 Example`.
+
+The copyright information will be displayed on the Legal page, before the
+application license.
+
+[method@AboutWindow.add_legal_section] can be used to add copyright
+information for the application dependencies or other components.</doc>
+        <source-position filename="../src/adw-about-window.h" line="148"/>
+        <return-value transfer-ownership="none">
+          <type name="none" c:type="void"/>
+        </return-value>
+        <parameters>
+          <instance-parameter name="self" transfer-ownership="none">
+            <doc xml:space="preserve"
+                 filename="../src/adw-about-window.c"
+                 line="2954">an about window</doc>
+            <type name="AboutWindow" c:type="AdwAboutWindow*"/>
+          </instance-parameter>
+          <parameter name="copyright" transfer-ownership="none">
+            <doc xml:space="preserve"
+                 filename="../src/adw-about-window.c"
+                 line="2955">the copyright information</doc>
+            <type name="utf8" c:type="const char*"/>
+          </parameter>
+        </parameters>
+      </method>
+      <method name="set_debug_info"
+              c:identifier="adw_about_window_set_debug_info"
+              glib:set-property="debug-info"
+              version="1.2">
+        <attribute name="org.gtk.Method.set_property" value="debug-info"/>
+        <doc xml:space="preserve"
+             filename="../src/adw-about-window.c"
+             line="2475">Sets the debug information for @self.
+
+Debug information will be shown on the Troubleshooting page. It's intended
+to be attached to issue reports when reporting issues against the
+application.
+
+`AdwAboutWindow` provides a quick way to save debug information to a file.
+When saving, [property@AboutWindow:debug-info-filename] would be used as
+the suggested filename.
+
+Debug information cannot contain markup or links.</doc>
+        <source-position filename="../src/adw-about-window.h" line="96"/>
+        <return-value transfer-ownership="none">
+          <type name="none" c:type="void"/>
+        </return-value>
+        <parameters>
+          <instance-parameter name="self" transfer-ownership="none">
+            <doc xml:space="preserve"
+                 filename="../src/adw-about-window.c"
+                 line="2477">an about window</doc>
+            <type name="AboutWindow" c:type="AdwAboutWindow*"/>
+          </instance-parameter>
+          <parameter name="debug_info" transfer-ownership="none">
+            <doc xml:space="preserve"
+                 filename="../src/adw-about-window.c"
+                 line="2478">the debug information</doc>
+            <type name="utf8" c:type="const char*"/>
+          </parameter>
+        </parameters>
+      </method>
+      <method name="set_debug_info_filename"
+              c:identifier="adw_about_window_set_debug_info_filename"
+              glib:set-property="debug-info-filename"
+              version="1.2">
+        <attribute name="org.gtk.Method.set_property" value="debug-info"/>
+        <doc xml:space="preserve"
+             filename="../src/adw-about-window.c"
+             line="2528">Sets the debug information filename for @self.
+
+It will be used as the suggested filename when saving debug information to a
+file.
+
+See [property@AboutWindow:debug-info].</doc>
+        <source-position filename="../src/adw-about-window.h" line="102"/>
+        <return-value transfer-ownership="none">
+          <type name="none" c:type="void"/>
+        </return-value>
+        <parameters>
+          <instance-parameter name="self" transfer-ownership="none">
+            <doc xml:space="preserve"
+                 filename="../src/adw-about-window.c"
+                 line="2530">an about window</doc>
+            <type name="AboutWindow" c:type="AdwAboutWindow*"/>
+          </instance-parameter>
+          <parameter name="filename" transfer-ownership="none">
+            <doc xml:space="preserve"
+                 filename="../src/adw-about-window.c"
+                 line="2531">the debug info filename</doc>
+            <type name="utf8" c:type="const char*"/>
+          </parameter>
+        </parameters>
+      </method>
+      <method name="set_designers"
+              c:identifier="adw_about_window_set_designers"
+              glib:set-property="designers"
+              version="1.2">
+        <attribute name="org.gtk.Method.set_property" value="designers"/>
+        <doc xml:space="preserve"
+             filename="../src/adw-about-window.c"
+             line="2634">Sets the list of designers of the application.
+
+It will be displayed on the Credits page.
+
+Each name may contain email addresses and URLs, see the introduction for more
+details.
+
+See also:
+
+* [property@AboutWindow:developers]
+* [property@AboutWindow:artists]
+* [property@AboutWindow:documenters]
+* [property@AboutWindow:translator-credits]
+* [method@AboutWindow.add_credit_section]
+* [method@AboutWindow.add_acknowledgement_section]</doc>
+        <source-position filename="../src/adw-about-window.h" line="114"/>
+        <return-value transfer-ownership="none">
+          <type name="none" c:type="void"/>
+        </return-value>
+        <parameters>
+          <instance-parameter name="self" transfer-ownership="none">
+            <doc xml:space="preserve"
+                 filename="../src/adw-about-window.c"
+                 line="2636">an about window</doc>
+            <type name="AboutWindow" c:type="AdwAboutWindow*"/>
+          </instance-parameter>
+          <parameter name="designers"
+                     transfer-ownership="none"
+                     nullable="1"
+                     allow-none="1">
+            <doc xml:space="preserve"
+                 filename="../src/adw-about-window.c"
+                 line="2637">the list of designers</doc>
+            <array c:type="const char**">
+              <type name="utf8" c:type="char*"/>
+            </array>
+          </parameter>
+        </parameters>
+      </method>
+      <method name="set_developer_name"
+              c:identifier="adw_about_window_set_developer_name"
+              glib:set-property="developer-name"
+              version="1.2">
+        <attribute name="org.gtk.Method.set_property" value="developer-name"/>
+        <doc xml:space="preserve"
+             filename="../src/adw-about-window.c"
+             line="2015">Sets the developer name for @self.
+
+The developer name is displayed on the main page, under the application name.
+
+If the application is developed by multiple people, the developer name can be
+set to values like "AppName team", "AppName developers" or
+"The AppName project", and the individual contributors can be listed on the
+Credits page, with [property@AboutWindow:developers] and related properties.</doc>
+        <source-position filename="../src/adw-about-window.h" line="43"/>
+        <return-value transfer-ownership="none">
+          <type name="none" c:type="void"/>
+        </return-value>
+        <parameters>
+          <instance-parameter name="self" transfer-ownership="none">
+            <doc xml:space="preserve"
+                 filename="../src/adw-about-window.c"
+                 line="2017">an about window</doc>
+            <type name="AboutWindow" c:type="AdwAboutWindow*"/>
+          </instance-parameter>
+          <parameter name="developer_name" transfer-ownership="none">
+            <doc xml:space="preserve"
+                 filename="../src/adw-about-window.c"
+                 line="2018">the developer name</doc>
+            <type name="utf8" c:type="const char*"/>
+          </parameter>
+        </parameters>
+      </method>
+      <method name="set_developers"
+              c:identifier="adw_about_window_set_developers"
+              glib:set-property="developers"
+              version="1.2">
+        <attribute name="org.gtk.Method.set_property" value="developers"/>
+        <doc xml:space="preserve"
+             filename="../src/adw-about-window.c"
+             line="2576">Sets the list of developers of the application.
+
+It will be displayed on the Credits page.
+
+Each name may contain email addresses and URLs, see the introduction for more
+details.
+
+See also:
+
+* [property@AboutWindow:designers]
+* [property@AboutWindow:artists]
+* [property@AboutWindow:documenters]
+* [property@AboutWindow:translator-credits]
+* [method@AboutWindow.add_credit_section]
+* [method@AboutWindow.add_acknowledgement_section]</doc>
+        <source-position filename="../src/adw-about-window.h" line="108"/>
+        <return-value transfer-ownership="none">
+          <type name="none" c:type="void"/>
+        </return-value>
+        <parameters>
+          <instance-parameter name="self" transfer-ownership="none">
+            <doc xml:space="preserve"
+                 filename="../src/adw-about-window.c"
+                 line="2578">an about window</doc>
+            <type name="AboutWindow" c:type="AdwAboutWindow*"/>
+          </instance-parameter>
+          <parameter name="developers"
+                     transfer-ownership="none"
+                     nullable="1"
+                     allow-none="1">
+            <doc xml:space="preserve"
+                 filename="../src/adw-about-window.c"
+                 line="2579">the list of developers</doc>
+            <array c:type="const char**">
+              <type name="utf8" c:type="char*"/>
+            </array>
+          </parameter>
+        </parameters>
+      </method>
+      <method name="set_documenters"
+              c:identifier="adw_about_window_set_documenters"
+              glib:set-property="documenters"
+              version="1.2">
+        <attribute name="org.gtk.Method.set_property" value="documenters"/>
+        <doc xml:space="preserve"
+             filename="../src/adw-about-window.c"
+             line="2750">Sets the list of documenters of the application.
+
+It will be displayed on the Credits page.
+
+Each name may contain email addresses and URLs, see the introduction for more
+details.
+
+See also:
+
+* [property@AboutWindow:developers]
+* [property@AboutWindow:designers]
+* [property@AboutWindow:artists]
+* [property@AboutWindow:translator-credits]
+* [method@AboutWindow.add_credit_section]
+* [method@AboutWindow.add_acknowledgement_section]</doc>
+        <source-position filename="../src/adw-about-window.h" line="126"/>
+        <return-value transfer-ownership="none">
+          <type name="none" c:type="void"/>
+        </return-value>
+        <parameters>
+          <instance-parameter name="self" transfer-ownership="none">
+            <doc xml:space="preserve"
+                 filename="../src/adw-about-window.c"
+                 line="2752">an about window</doc>
+            <type name="AboutWindow" c:type="AdwAboutWindow*"/>
+          </instance-parameter>
+          <parameter name="documenters"
+                     transfer-ownership="none"
+                     nullable="1"
+                     allow-none="1">
+            <doc xml:space="preserve"
+                 filename="../src/adw-about-window.c"
+                 line="2753">the list of documenters</doc>
+            <array c:type="const char**">
+              <type name="utf8" c:type="char*"/>
+            </array>
+          </parameter>
+        </parameters>
+      </method>
+      <method name="set_issue_url"
+              c:identifier="adw_about_window_set_issue_url"
+              glib:set-property="issue-url"
+              version="1.2">
+        <attribute name="org.gtk.Method.set_property" value="issue-url"/>
+        <doc xml:space="preserve"
+             filename="../src/adw-about-window.c"
+             line="2382">Sets the issue tracker URL for @self.
+
+The issue tracker link is displayed on the main page.</doc>
+        <source-position filename="../src/adw-about-window.h" line="85"/>
+        <return-value transfer-ownership="none">
+          <type name="none" c:type="void"/>
+        </return-value>
+        <parameters>
+          <instance-parameter name="self" transfer-ownership="none">
+            <doc xml:space="preserve"
+                 filename="../src/adw-about-window.c"
+                 line="2384">an about window</doc>
+            <type name="AboutWindow" c:type="AdwAboutWindow*"/>
+          </instance-parameter>
+          <parameter name="issue_url" transfer-ownership="none">
+            <doc xml:space="preserve"
+                 filename="../src/adw-about-window.c"
+                 line="2385">the issue tracker URL</doc>
+            <type name="utf8" c:type="const char*"/>
+          </parameter>
+        </parameters>
+      </method>
+      <method name="set_license"
+              c:identifier="adw_about_window_set_license"
+              glib:set-property="license"
+              version="1.2">
+        <attribute name="org.gtk.Method.set_property" value="license"/>
+        <doc xml:space="preserve"
+             filename="../src/adw-about-window.c"
+             line="3072">Sets the license for @self.
+
+This can be used to set a custom text for the license if it can't be set via
+[property@AboutWindow:license-type].
+
+When set, [property@AboutWindow:license-type] will be set to
+`GTK_LICENSE_CUSTOM`.
+
+The license text will be displayed on the Legal page, below the copyright
+information.
+
+License text can contain Pango markup and links.
+
+[method@AboutWindow.add_legal_section] can be used to add license information
+for the application dependencies or other components.</doc>
+        <source-position filename="../src/adw-about-window.h" line="160"/>
+        <return-value transfer-ownership="none">
+          <type name="none" c:type="void"/>
+        </return-value>
+        <parameters>
+          <instance-parameter name="self" transfer-ownership="none">
+            <doc xml:space="preserve"
+                 filename="../src/adw-about-window.c"
+                 line="3074">an about window</doc>
+            <type name="AboutWindow" c:type="AdwAboutWindow*"/>
+          </instance-parameter>
+          <parameter name="license" transfer-ownership="none">
+            <doc xml:space="preserve"
+                 filename="../src/adw-about-window.c"
+                 line="3075">the license</doc>
+            <type name="utf8" c:type="const char*"/>
+          </parameter>
+        </parameters>
+      </method>
+      <method name="set_license_type"
+              c:identifier="adw_about_window_set_license_type"
+              glib:set-property="license-type"
+              version="1.2">
+        <attribute name="org.gtk.Method.set_property" value="license-type"/>
+        <doc xml:space="preserve"
+             filename="../src/adw-about-window.c"
+             line="3006">Sets the license for @self from a list of known licenses.
+
+If the application's license is not in the list,
+[property@AboutWindow:license] can be used instead. The license type will be
+automatically set to `GTK_LICENSE_CUSTOM` in that case.
+
+If @license_type is `GTK_LICENSE_UNKNOWN`, no information will be displayed.
+
+If @license_type is different from `GTK_LICENSE_CUSTOM`.
+[property@AboutWindow:license] will be cleared out.
+
+The license description will be displayed on the Legal page, below the
+copyright information.
+
+[method@AboutWindow.add_legal_section] can be used to add license information
+for the application dependencies or other components.</doc>
+        <source-position filename="../src/adw-about-window.h" line="154"/>
+        <return-value transfer-ownership="none">
+          <type name="none" c:type="void"/>
+        </return-value>
+        <parameters>
+          <instance-parameter name="self" transfer-ownership="none">
+            <doc xml:space="preserve"
+                 filename="../src/adw-about-window.c"
+                 line="3008">an about window</doc>
+            <type name="AboutWindow" c:type="AdwAboutWindow*"/>
+          </instance-parameter>
+          <parameter name="license_type" transfer-ownership="none">
+            <doc xml:space="preserve"
+                 filename="../src/adw-about-window.c"
+                 line="3009">the license type</doc>
+            <type name="Gtk.License" c:type="GtkLicense"/>
+          </parameter>
+        </parameters>
+      </method>
+      <method name="set_release_notes"
+              c:identifier="adw_about_window_set_release_notes"
+              glib:set-property="release-notes"
+              version="1.2">
+        <attribute name="org.gtk.Method.set_property" value="release-notes"/>
+        <doc xml:space="preserve"
+             filename="../src/adw-about-window.c"
+             line="2169">Sets the release notes for @self.
+
+Release notes are displayed on the the What's New page.
+
+Release notes are formatted the same way as
+[AppStream descriptions](https://freedesktop.org/software/appstream/docs/chap-Metadata.html#tag-description).
+
+The supported formatting options are:
+
+* Paragraph (`&lt;p&gt;`)
+* Ordered list (`&lt;ol&gt;`), with list items (`&lt;li&gt;`)
+* Unordered list (`&lt;ul&gt;`), with list items (`&lt;li&gt;`)
+
+Within paragraphs and list items, emphasis (`&lt;em&gt;`) and inline code
+(`&lt;code&gt;`) text styles are supported. The emphasis is rendered in italic,
+while inline code is shown in a monospaced font.
+
+Any text outside paragraphs or list items is ignored.
+
+Nested lists are not supported.
+
+`AdwAboutWindow` displays the version above the release notes. If set, the
+[property@AboutWindow:release-notes-version] of the property will be used
+as the version; otherwise, [property@AboutWindow:version] is used.</doc>
+        <source-position filename="../src/adw-about-window.h" line="61"/>
+        <return-value transfer-ownership="none">
+          <type name="none" c:type="void"/>
+        </return-value>
+        <parameters>
+          <instance-parameter name="self" transfer-ownership="none">
+            <doc xml:space="preserve"
+                 filename="../src/adw-about-window.c"
+                 line="2171">an about window</doc>
+            <type name="AboutWindow" c:type="AdwAboutWindow*"/>
+          </instance-parameter>
+          <parameter name="release_notes" transfer-ownership="none">
+            <doc xml:space="preserve"
+                 filename="../src/adw-about-window.c"
+                 line="2172">the release notes</doc>
+            <type name="utf8" c:type="const char*"/>
+          </parameter>
+        </parameters>
+      </method>
+      <method name="set_release_notes_version"
+              c:identifier="adw_about_window_set_release_notes_version"
+              glib:set-property="release-notes-version"
+              version="1.2">
+        <attribute name="org.gtk.Method.set_property"
+                   value="release-notes-version"/>
+        <doc xml:space="preserve"
+             filename="../src/adw-about-window.c"
+             line="2113">Sets the version described by the application's release notes.
+
+The release notes version is displayed on the What's New page, above the
+release notes.
+
+If not set, [property@AboutWindow:version] will be used instead.
+
+For example, an application with the current version 2.0.2 might want to
+keep the release notes from 2.0.0, and set the release notes version
+accordingly.
+
+See [property@AboutWindow:release-notes].</doc>
+        <source-position filename="../src/adw-about-window.h" line="55"/>
+        <return-value transfer-ownership="none">
+          <type name="none" c:type="void"/>
+        </return-value>
+        <parameters>
+          <instance-parameter name="self" transfer-ownership="none">
+            <doc xml:space="preserve"
+                 filename="../src/adw-about-window.c"
+                 line="2115">an about window</doc>
+            <type name="AboutWindow" c:type="AdwAboutWindow*"/>
+          </instance-parameter>
+          <parameter name="version" transfer-ownership="none">
+            <doc xml:space="preserve"
+                 filename="../src/adw-about-window.c"
+                 line="2116">the release notes version</doc>
+            <type name="utf8" c:type="const char*"/>
+          </parameter>
+        </parameters>
+      </method>
+      <method name="set_support_url"
+              c:identifier="adw_about_window_set_support_url"
+              glib:set-property="support-url"
+              version="1.2">
+        <attribute name="org.gtk.Method.set_property" value="support-url"/>
+        <doc xml:space="preserve"
+             filename="../src/adw-about-window.c"
+             line="2337">Sets the URL of the support page for @self.
+
+The support page link is displayed on the main page.</doc>
+        <source-position filename="../src/adw-about-window.h" line="79"/>
+        <return-value transfer-ownership="none">
+          <type name="none" c:type="void"/>
+        </return-value>
+        <parameters>
+          <instance-parameter name="self" transfer-ownership="none">
+            <doc xml:space="preserve"
+                 filename="../src/adw-about-window.c"
+                 line="2339">an about window</doc>
+            <type name="AboutWindow" c:type="AdwAboutWindow*"/>
+          </instance-parameter>
+          <parameter name="support_url" transfer-ownership="none">
+            <doc xml:space="preserve"
+                 filename="../src/adw-about-window.c"
+                 line="2340">the support page URL</doc>
+            <type name="utf8" c:type="const char*"/>
+          </parameter>
+        </parameters>
+      </method>
+      <method name="set_translator_credits"
+              c:identifier="adw_about_window_set_translator_credits"
+              glib:set-property="translator-credits"
+              version="1.2">
+        <attribute name="org.gtk.Method.set_property"
+                   value="translator-credits"/>
+        <doc xml:space="preserve"
+             filename="../src/adw-about-window.c"
+             line="2808">Sets the translator credits string.
+
+It will be displayed on the Credits page.
+
+This string should be `"translator-credits"` or `"translator_credits"` and
+should be marked as translatable.
+
+The string may contain email addresses and URLs, see the introduction for
+more details.
+
+See also:
+
+* [property@AboutWindow:developers]
+* [property@AboutWindow:designers]
+* [property@AboutWindow:artists]
+* [property@AboutWindow:documenters]
+* [method@AboutWindow.add_credit_section]
+* [method@AboutWindow.add_acknowledgement_section]</doc>
+        <source-position filename="../src/adw-about-window.h" line="132"/>
+        <return-value transfer-ownership="none">
+          <type name="none" c:type="void"/>
+        </return-value>
+        <parameters>
+          <instance-parameter name="self" transfer-ownership="none">
+            <doc xml:space="preserve"
+                 filename="../src/adw-about-window.c"
+                 line="2810">an about window</doc>
+            <type name="AboutWindow" c:type="AdwAboutWindow*"/>
+          </instance-parameter>
+          <parameter name="translator_credits" transfer-ownership="none">
+            <doc xml:space="preserve"
+                 filename="../src/adw-about-window.c"
+                 line="2811">the translator credits</doc>
+            <type name="utf8" c:type="const char*"/>
+          </parameter>
+        </parameters>
+      </method>
+      <method name="set_version"
+              c:identifier="adw_about_window_set_version"
+              glib:set-property="version"
+              version="1.2">
+        <attribute name="org.gtk.Method.set_property" value="version"/>
+        <doc xml:space="preserve"
+             filename="../src/adw-about-window.c"
+             line="2065">Sets the version for @self.
+
+The version is displayed on the main page.
+
+If [property@AboutWindow:release-notes-version] is not set, the version will
+also be displayed above the release notes on the What's New page.</doc>
+        <source-position filename="../src/adw-about-window.h" line="49"/>
+        <return-value transfer-ownership="none">
+          <type name="none" c:type="void"/>
+        </return-value>
+        <parameters>
+          <instance-parameter name="self" transfer-ownership="none">
+            <doc xml:space="preserve"
+                 filename="../src/adw-about-window.c"
+                 line="2067">an about window</doc>
+            <type name="AboutWindow" c:type="AdwAboutWindow*"/>
+          </instance-parameter>
+          <parameter name="version" transfer-ownership="none">
+            <doc xml:space="preserve"
+                 filename="../src/adw-about-window.c"
+                 line="2068">the version</doc>
+            <type name="utf8" c:type="const char*"/>
+          </parameter>
+        </parameters>
+      </method>
+      <method name="set_website"
+              c:identifier="adw_about_window_set_website"
+              glib:set-property="website"
+              version="1.2">
+        <attribute name="org.gtk.Method.set_property" value="website"/>
+        <doc xml:space="preserve"
+             filename="../src/adw-about-window.c"
+             line="2287">Sets the application website URL for @self.
+
+Website is displayed on the Details page, below comments, or on the main page
+if the Details page doesn't have any other content.
+
+Applications can add other links below, see [method@AboutWindow.add_link].</doc>
+        <source-position filename="../src/adw-about-window.h" line="73"/>
+        <return-value transfer-ownership="none">
+          <type name="none" c:type="void"/>
+        </return-value>
+        <parameters>
+          <instance-parameter name="self" transfer-ownership="none">
+            <doc xml:space="preserve"
+                 filename="../src/adw-about-window.c"
+                 line="2289">an about window</doc>
+            <type name="AboutWindow" c:type="AdwAboutWindow*"/>
+          </instance-parameter>
+          <parameter name="website" transfer-ownership="none">
+            <doc xml:space="preserve"
+                 filename="../src/adw-about-window.c"
+                 line="2290">the website URL</doc>
+            <type name="utf8" c:type="const char*"/>
+          </parameter>
+        </parameters>
+      </method>
+      <property name="application-icon"
+                version="1.2"
+                writable="1"
+                transfer-ownership="none"
+                setter="set_application_icon"
+                getter="get_application_icon">
+        <attribute name="org.gtk.Property.get"
+                   value="adw_about_window_get_application_icon"/>
+        <attribute name="org.gtk.Property.set"
+                   value="adw_about_window_set_application_icon"/>
+        <doc xml:space="preserve"
+             filename="../src/adw-about-window.c"
+             line="1348">The name of the application icon.
+
+The icon is displayed at the top of the main page.</doc>
+        <type name="utf8" c:type="gchar*"/>
+      </property>
+      <property name="application-name"
+                version="1.2"
+                writable="1"
+                transfer-ownership="none"
+                setter="set_application_name"
+                getter="get_application_name">
+        <attribute name="org.gtk.Property.get"
+                   value="adw_about_window_get_application_name"/>
+        <attribute name="org.gtk.Property.set"
+                   value="adw_about_window_set_application_name"/>
+        <doc xml:space="preserve"
+             filename="../src/adw-about-window.c"
+             line="1362">The name of the application.
+
+The name is displayed at the top of the main page.</doc>
+        <type name="utf8" c:type="gchar*"/>
+      </property>
+      <property name="artists"
+                version="1.2"
+                writable="1"
+                transfer-ownership="none"
+                setter="set_artists"
+                getter="get_artists">
+        <attribute name="org.gtk.Property.get"
+                   value="adw_about_window_get_artists"/>
+        <attribute name="org.gtk.Property.set"
+                   value="adw_about_window_set_artists"/>
+        <doc xml:space="preserve"
+             filename="../src/adw-about-window.c"
+             line="1625">The list of artists of the application.
+
+It will be displayed on the Credits page.
+
+Each name may contain email addresses and URLs, see the introduction for
+more details.
+
+See also:
+
+* [property@AboutWindow:developers]
+* [property@AboutWindow:designers]
+* [property@AboutWindow:documenters]
+* [property@AboutWindow:translator-credits]
+* [method@AboutWindow.add_credit_section]
+* [method@AboutWindow.add_acknowledgement_section]</doc>
+        <array>
+          <type name="utf8"/>
+        </array>
+      </property>
+      <property name="comments"
+                version="1.2"
+                writable="1"
+                transfer-ownership="none"
+                setter="set_comments"
+                getter="get_comments">
+        <attribute name="org.gtk.Property.get"
+                   value="adw_about_window_get_comments"/>
+        <attribute name="org.gtk.Property.set"
+                   value="adw_about_window_set_comments"/>
+        <doc xml:space="preserve"
+             filename="../src/adw-about-window.c"
+             line="1472">The comments about the application.
+
+Comments will be shown on the Details page, above links.
+
+Unlike [property@Gtk.AboutDialog:comments], this string can be long and
+detailed. It can also contain links and Pango markup.</doc>
+        <type name="utf8" c:type="gchar*"/>
+      </property>
+      <property name="copyright"
+                version="1.2"
+                writable="1"
+                transfer-ownership="none"
+                setter="set_copyright"
+                getter="get_copyright">
+        <attribute name="org.gtk.Property.get"
+                   value="adw_about_window_get_copyright"/>
+        <attribute name="org.gtk.Property.set"
+                   value="adw_about_window_set_copyright"/>
+        <doc xml:space="preserve"
+             filename="../src/adw-about-window.c"
+             line="1706">The copyright information.
+
+This should be a short string of one or two lines, for example:
+`© 2022 Example`.
+
+The copyright information will be displayed on the Legal page, above the
+application license.
+
+[method@AboutWindow.add_legal_section] can be used to add copyright
+information for the application dependencies or other components.</doc>
+        <type name="utf8" c:type="gchar*"/>
+      </property>
+      <property name="debug-info"
+                version="1.2"
+                writable="1"
+                transfer-ownership="none"
+                setter="set_debug_info"
+                getter="get_debug_info">
+        <attribute name="org.gtk.Property.get"
+                   value="adw_about_window_get_debug_info"/>
+        <attribute name="org.gtk.Property.set"
+                   value="adw_about_window_set_debug_info"/>
+        <doc xml:space="preserve"
+             filename="../src/adw-about-window.c"
+             line="1534">The debug information.
+
+Debug information will be shown on the Troubleshooting page. It's intended
+to be attached to issue reports when reporting issues against the
+application.
+
+`AdwAboutWindow` provides a quick way to save debug information to a file.
+When saving, [property@AboutWindow:debug-info-filename] would be used as
+the suggested filename.
+
+Debug information cannot contain markup or links.</doc>
+        <type name="utf8" c:type="gchar*"/>
+      </property>
+      <property name="debug-info-filename"
+                version="1.2"
+                writable="1"
+                transfer-ownership="none"
+                setter="set_debug_info_filename"
+                getter="get_debug_info_filename">
+        <attribute name="org.gtk.Property.get"
+                   value="adw_about_window_get_debug_info_filename"/>
+        <attribute name="org.gtk.Property.set"
+                   value="adw_about_window_set_debug_info_filename"/>
+        <doc xml:space="preserve"
+             filename="../src/adw-about-window.c"
+             line="1556">The debug information filename.
+
+It will be used as the suggested filename when saving debug information to
+a file.
+
+See [property@AboutWindow:debug-info].</doc>
+        <type name="utf8" c:type="gchar*"/>
+      </property>
+      <property name="designers"
+                version="1.2"
+                writable="1"
+                transfer-ownership="none"
+                setter="set_designers"
+                getter="get_designers">
+        <attribute name="org.gtk.Property.get"
+                   value="adw_about_window_get_designers"/>
+        <attribute name="org.gtk.Property.set"
+                   value="adw_about_window_set_designers"/>
+        <doc xml:space="preserve"
+             filename="../src/adw-about-window.c"
+             line="1599">The list of designers of the application.
+
+It will be displayed on the Credits page.
+
+Each name may contain email addresses and URLs, see the introduction for
+more details.
+
+See also:
+
+* [property@AboutWindow:developers]
+* [property@AboutWindow:artists]
+* [property@AboutWindow:documenters]
+* [property@AboutWindow:translator-credits]
+* [method@AboutWindow.add_credit_section]
+* [method@AboutWindow.add_acknowledgement_section]</doc>
+        <array>
+          <type name="utf8"/>
+        </array>
+      </property>
+      <property name="developer-name"
+                version="1.2"
+                writable="1"
+                transfer-ownership="none"
+                setter="set_developer_name"
+                getter="get_developer_name">
+        <attribute name="org.gtk.Property.get"
+                   value="adw_about_window_get_developer_name"/>
+        <attribute name="org.gtk.Property.set"
+                   value="adw_about_window_set_developer_name"/>
+        <doc xml:space="preserve"
+             filename="../src/adw-about-window.c"
+             line="1376">The developer name.
+
+The developer name is displayed on the main page, under the application
+name.
+
+If the application is developed by multiple people, the developer name can
+be set to values like "AppName team", "AppName developers" or
+"The AppName project", and the individual contributors can be listed on the
+Credits page, with [property@AboutWindow:developers] and related
+properties.</doc>
+        <type name="utf8" c:type="gchar*"/>
+      </property>
+      <property name="developers"
+                version="1.2"
+                writable="1"
+                transfer-ownership="none"
+                setter="set_developers"
+                getter="get_developers">
+        <attribute name="org.gtk.Property.get"
+                   value="adw_about_window_get_developers"/>
+        <attribute name="org.gtk.Property.set"
+                   value="adw_about_window_set_developers"/>
+        <doc xml:space="preserve"
+             filename="../src/adw-about-window.c"
+             line="1573">The list of developers of the application.
+
+It will be displayed on the Credits page.
+
+Each name may contain email addresses and URLs, see the introduction for
+more details.
+
+See also:
+
+* [property@AboutWindow:designers]
+* [property@AboutWindow:artists]
+* [property@AboutWindow:documenters]
+* [property@AboutWindow:translator-credits]
+* [method@AboutWindow.add_credit_section]
+* [method@AboutWindow.add_acknowledgement_section]</doc>
+        <array>
+          <type name="utf8"/>
+        </array>
+      </property>
+      <property name="documenters"
+                version="1.2"
+                writable="1"
+                transfer-ownership="none"
+                setter="set_documenters"
+                getter="get_documenters">
+        <attribute name="org.gtk.Property.get"
+                   value="adw_about_window_get_documenters"/>
+        <attribute name="org.gtk.Property.set"
+                   value="adw_about_window_set_documenters"/>
+        <doc xml:space="preserve"
+             filename="../src/adw-about-window.c"
+             line="1651">The list of documenters of the application.
+
+It will be displayed on the Credits page.
+
+Each name may contain email addresses and URLs, see the introduction for
+more details.
+
+See also:
+
+* [property@AboutWindow:developers]
+* [property@AboutWindow:designers]
+* [property@AboutWindow:artists]
+* [property@AboutWindow:translator-credits]
+* [method@AboutWindow.add_credit_section]
+* [method@AboutWindow.add_acknowledgement_section]</doc>
+        <array>
+          <type name="utf8"/>
+        </array>
+      </property>
+      <property name="issue-url"
+                version="1.2"
+                writable="1"
+                transfer-ownership="none"
+                setter="set_issue_url"
+                getter="get_issue_url">
+        <attribute name="org.gtk.Property.get"
+                   value="adw_about_window_get_issue_url"/>
+        <attribute name="org.gtk.Property.set"
+                   value="adw_about_window_set_issue_url"/>
+        <doc xml:space="preserve"
+             filename="../src/adw-about-window.c"
+             line="1520">The URL for the application's issue tracker.
+
+The issue tracker link is displayed on the main page.</doc>
+        <type name="utf8" c:type="gchar*"/>
+      </property>
+      <property name="license"
+                version="1.2"
+                writable="1"
+                transfer-ownership="none"
+                setter="set_license"
+                getter="get_license">
+        <attribute name="org.gtk.Property.get"
+                   value="adw_about_window_get_license"/>
+        <attribute name="org.gtk.Property.set"
+                   value="adw_about_window_set_license"/>
+        <doc xml:space="preserve"
+             filename="../src/adw-about-window.c"
+             line="1757">The license text.
+
+This can be used to set a custom text for the license if it can't be set
+via [property@AboutWindow:license-type].
+
+When set, [property@AboutWindow:license-type] will be set to
+`GTK_LICENSE_CUSTOM`.
+
+The license text will be displayed on the Legal page, below the copyright
+information.
+
+License text can contain Pango markup and links.
+
+[method@AboutWindow.add_legal_section] can be used to add license
+information for the application dependencies or other components.</doc>
+        <type name="utf8" c:type="gchar*"/>
+      </property>
+      <property name="license-type"
+                version="1.2"
+                writable="1"
+                transfer-ownership="none"
+                setter="set_license_type"
+                getter="get_license_type">
+        <attribute name="org.gtk.Property.get"
+                   value="adw_about_window_get_license_type"/>
+        <attribute name="org.gtk.Property.set"
+                   value="adw_about_window_set_license_type"/>
+        <doc xml:space="preserve"
+             filename="../src/adw-about-window.c"
+             line="1727">The license type.
+
+Allows to set the application's license froma list of known licenses.
+
+If the application's license is not in the list,
+[property@AboutWindow:license] can be used instead. The license type will
+be automatically set to `GTK_LICENSE_CUSTOM` in that case.
+
+If set to `GTK_LICENSE_UNKNOWN`, no information will be displayed.
+
+If the license type is different from `GTK_LICENSE_CUSTOM`.
+[property@AboutWindow:license] will be cleared out.
+
+The license description will be displayed on the Legal page, below the
+copyright information.
+
+[method@AboutWindow.add_legal_section] can be used to add license
+information for the application dependencies or other components.</doc>
+        <type name="Gtk.License"/>
+      </property>
+      <property name="release-notes"
+                version="1.2"
+                writable="1"
+                transfer-ownership="none"
+                setter="set_release_notes"
+                getter="get_release_notes">
+        <attribute name="org.gtk.Property.get"
+                   value="adw_about_window_get_release_notes"/>
+        <attribute name="org.gtk.Property.set"
+                   value="adw_about_window_set_release_notes"/>
+        <doc xml:space="preserve"
+             filename="../src/adw-about-window.c"
+             line="1437">The release notes of the application.
+
+Release notes are displayed on the the What's New page.
+
+Release notes are formatted the same way as
+[AppStream descriptions](https://freedesktop.org/software/appstream/docs/chap-Metadata.html#tag-description).
+
+The supported formatting options are:
+
+* Paragraph (`&lt;p&gt;`)
+* Ordered list (`&lt;ol&gt;`), with list items (`&lt;li&gt;`)
+* Unordered list (`&lt;ul&gt;`), with list items (`&lt;li&gt;`)
+
+Within paragraphs and list items, emphasis (`&lt;em&gt;`) and inline code
+(`&lt;code&gt;`) text styles are supported. The emphasis is rendered in italic,
+while inline code is shown in a monospaced font.
+
+Any text outside paragraphs or list items is ignored.
+
+Nested lists are not supported.
+
+`AdwAboutWindow` displays the version above the release notes. If set, the
+[property@AboutWindow:release-notes-version] of the property will be used
+as the version; otherwise, [property@AboutWindow:version] is used.</doc>
+        <type name="utf8" c:type="gchar*"/>
+      </property>
+      <property name="release-notes-version"
+                version="1.2"
+                writable="1"
+                transfer-ownership="none"
+                setter="set_release_notes_version"
+                getter="get_release_notes_version">
+        <attribute name="org.gtk.Property.get"
+                   value="adw_about_window_get_release_notes_version"/>
+        <attribute name="org.gtk.Property.set"
+                   value="adw_about_window_set_release_notes_version"/>
+        <doc xml:space="preserve"
+             filename="../src/adw-about-window.c"
+             line="1414">The version described by the application's release notes.
+
+The release notes version is displayed on the What's New page, above the
+release notes.
+
+If not set, [property@AboutWindow:version] will be used instead.
+
+For example, an application with the current version 2.0.2 might want to
+keep the release notes from 2.0.0, and set the release notes version
+accordingly.
+
+See [property@AboutWindow:release-notes].</doc>
+        <type name="utf8" c:type="gchar*"/>
+      </property>
+      <property name="support-url"
+                version="1.2"
+                writable="1"
+                transfer-ownership="none"
+                setter="set_support_url"
+                getter="get_support_url">
+        <attribute name="org.gtk.Property.get"
+                   value="adw_about_window_get_support_url"/>
+        <attribute name="org.gtk.Property.set"
+                   value="adw_about_window_set_support_url"/>
+        <doc xml:space="preserve"
+             filename="../src/adw-about-window.c"
+             line="1506">The URL of the application's support page.
+
+The support page link is displayed on the main page.</doc>
+        <type name="utf8" c:type="gchar*"/>
+      </property>
+      <property name="translator-credits"
+                version="1.2"
+                writable="1"
+                transfer-ownership="none"
+                setter="set_translator_credits"
+                getter="get_translator_credits">
+        <attribute name="org.gtk.Property.get"
+                   value="adw_about_window_get_translator_credits"/>
+        <attribute name="org.gtk.Property.set"
+                   value="adw_about_window_set_translator_credits"/>
+        <doc xml:space="preserve"
+             filename="../src/adw-about-window.c"
+             line="1677">The translator credits string.
+
+It will be displayed on the Credits page.
+
+This string should be `"translator-credits"` or `"translator_credits"` and
+should be marked as translatable.
+
+The string may contain email addresses and URLs, see the introduction for
+more details.
+
+See also:
+
+* [property@AboutWindow:developers]
+* [property@AboutWindow:designers]
+* [property@AboutWindow:artists]
+* [property@AboutWindow:documenters]
+* [method@AboutWindow.add_credit_section]
+* [method@AboutWindow.add_acknowledgement_section]</doc>
+        <type name="utf8" c:type="gchar*"/>
+      </property>
+      <property name="version"
+                version="1.2"
+                writable="1"
+                transfer-ownership="none"
+                setter="set_version"
+                getter="get_version">
+        <attribute name="org.gtk.Property.get"
+                   value="adw_about_window_get_version"/>
+        <attribute name="org.gtk.Property.set"
+                   value="adw_about_window_set_version"/>
+        <doc xml:space="preserve"
+             filename="../src/adw-about-window.c"
+             line="1397">The version of the application.
+
+The version is displayed on the main page.
+
+If [property@AboutWindow:release-notes-version] is not set, the version
+will also be displayed above the release notes on the What's New page.</doc>
+        <type name="utf8" c:type="gchar*"/>
+      </property>
+      <property name="website"
+                version="1.2"
+                writable="1"
+                transfer-ownership="none"
+                setter="set_website"
+                getter="get_website">
+        <attribute name="org.gtk.Property.get"
+                   value="adw_about_window_get_website"/>
+        <attribute name="org.gtk.Property.set"
+                   value="adw_about_window_set_website"/>
+        <doc xml:space="preserve"
+             filename="../src/adw-about-window.c"
+             line="1489">The URL of the application's website.
+
+Website is displayed on the Details page, below comments, or on the main
+page if the Details page doesn't have any other content.
+
+Applications can add other links below, see [method@AboutWindow.add_link].</doc>
+        <type name="utf8" c:type="gchar*"/>
+      </property>
+      <glib:signal name="activate-link" when="last" version="1.0">
+        <doc xml:space="preserve"
+             filename="../src/adw-about-window.c"
+             line="1785">Emitted when a URL is activated.
+
+Applications may connect to it to override the default behavior, which is
+to call [func@Gtk.show_uri].</doc>
+        <return-value transfer-ownership="none">
+          <doc xml:space="preserve"
+               filename="../src/adw-about-window.c"
+               line="1795">`TRUE` if the link has been activated</doc>
+          <type name="gboolean" c:type="gboolean"/>
+        </return-value>
+        <parameters>
+          <parameter name="uri" transfer-ownership="none">
+            <doc xml:space="preserve"
+                 filename="../src/adw-about-window.c"
+                 line="1788">the URI to activate</doc>
+            <type name="utf8" c:type="gchar*"/>
+          </parameter>
+        </parameters>
+      </glib:signal>
+    </class>
+    <record name="AboutWindowClass"
+            c:type="AdwAboutWindowClass"
+            glib:is-gtype-struct-for="AboutWindow">
+      <source-position filename="../src/adw-about-window.h" line="23"/>
+      <field name="parent_class">
+        <type name="WindowClass" c:type="AdwWindowClass"/>
+      </field>
+    </record>
     <class name="ActionRow"
            c:symbol-prefix="action_row"
            c:type="AdwActionRow"
@@ -4252,6 +6455,26 @@ The `AdwComboRow` widget allows the user to choose from a list of valid
 choices. The row displays the selected choice. When activated, the row
 displays a popover which allows the user to make a new choice.
 
+Example of an `AdwComboRow` UI definition:
+```xml
+&lt;object class="AdwComboRow"&gt;
+  &lt;property name="title" translatable="yes"&gt;Combo Row&lt;/property&gt;
+  &lt;property name="model"&gt;
+    &lt;object class="GtkStringList"&gt;
+      &lt;items&gt;
+        &lt;item translatable="yes"&gt;Foo&lt;/item&gt;
+        &lt;item translatable="yes"&gt;Bar&lt;/item&gt;
+        &lt;item translatable="yes"&gt;Baz&lt;/item&gt;
+      &lt;/items&gt;
+    &lt;/object&gt;
+  &lt;/property&gt;
+&lt;/object&gt;
+```
+
+The [property@ComboRow:selected] and [property@ComboRow:selected-item]
+properties can be used to keep track of the selected item and react to their
+changes.
+
 `AdwComboRow` mirrors [class@Gtk.DropDown], see that widget for details.
 
 `AdwComboRow` is [property@Gtk.ListBoxRow:activatable] if a model is set.
@@ -4276,12 +6499,12 @@ contains a [class@Gtk.ScrolledWindow], which in turn contains a
       <constructor name="new" c:identifier="adw_combo_row_new" version="1.0">
         <doc xml:space="preserve"
              filename="../src/adw-combo-row.c"
-             line="548">Creates a new `AdwComboRow`.</doc>
+             line="568">Creates a new `AdwComboRow`.</doc>
         <source-position filename="../src/adw-combo-row.h" line="38"/>
         <return-value transfer-ownership="none">
           <doc xml:space="preserve"
                filename="../src/adw-combo-row.c"
-               line="553">the newly created `AdwComboRow`</doc>
+               line="573">the newly created `AdwComboRow`</doc>
           <type name="Gtk.Widget" c:type="GtkWidget*"/>
         </return-value>
       </constructor>
@@ -4292,19 +6515,19 @@ contains a [class@Gtk.ScrolledWindow], which in turn contains a
         <attribute name="org.gtk.Method.get_property" value="expression"/>
         <doc xml:space="preserve"
              filename="../src/adw-combo-row.c"
-             line="835">Gets the expression used to obtain strings from items.</doc>
+             line="855">Gets the expression used to obtain strings from items.</doc>
         <source-position filename="../src/adw-combo-row.h" line="68"/>
         <return-value transfer-ownership="none" nullable="1">
           <doc xml:space="preserve"
                filename="../src/adw-combo-row.c"
-               line="841">the expression used to obtain strings from items</doc>
+               line="861">the expression used to obtain strings from items</doc>
           <type name="Gtk.Expression" c:type="GtkExpression*"/>
         </return-value>
         <parameters>
           <instance-parameter name="self" transfer-ownership="none">
             <doc xml:space="preserve"
                  filename="../src/adw-combo-row.c"
-                 line="837">a combo row</doc>
+                 line="857">a combo row</doc>
             <type name="ComboRow" c:type="AdwComboRow*"/>
           </instance-parameter>
         </parameters>
@@ -4316,19 +6539,19 @@ contains a [class@Gtk.ScrolledWindow], which in turn contains a
         <attribute name="org.gtk.Method.get_property" value="factory"/>
         <doc xml:space="preserve"
              filename="../src/adw-combo-row.c"
-             line="729">Gets the factory that's currently used to populate list items.</doc>
+             line="749">Gets the factory that's currently used to populate list items.</doc>
         <source-position filename="../src/adw-combo-row.h" line="56"/>
         <return-value transfer-ownership="none" nullable="1">
           <doc xml:space="preserve"
                filename="../src/adw-combo-row.c"
-               line="735">the factory in use</doc>
+               line="755">the factory in use</doc>
           <type name="Gtk.ListItemFactory" c:type="GtkListItemFactory*"/>
         </return-value>
         <parameters>
           <instance-parameter name="self" transfer-ownership="none">
             <doc xml:space="preserve"
                  filename="../src/adw-combo-row.c"
-                 line="731">a combo row</doc>
+                 line="751">a combo row</doc>
             <type name="ComboRow" c:type="AdwComboRow*"/>
           </instance-parameter>
         </parameters>
@@ -4340,19 +6563,19 @@ contains a [class@Gtk.ScrolledWindow], which in turn contains a
         <attribute name="org.gtk.Method.get_property" value="list-factory"/>
         <doc xml:space="preserve"
              filename="../src/adw-combo-row.c"
-             line="782">Gets the factory that's currently used to populate list items in the popup.</doc>
+             line="802">Gets the factory that's currently used to populate list items in the popup.</doc>
         <source-position filename="../src/adw-combo-row.h" line="62"/>
         <return-value transfer-ownership="none" nullable="1">
           <doc xml:space="preserve"
                filename="../src/adw-combo-row.c"
-               line="788">the factory in use</doc>
+               line="808">the factory in use</doc>
           <type name="Gtk.ListItemFactory" c:type="GtkListItemFactory*"/>
         </return-value>
         <parameters>
           <instance-parameter name="self" transfer-ownership="none">
             <doc xml:space="preserve"
                  filename="../src/adw-combo-row.c"
-                 line="784">a combo row</doc>
+                 line="804">a combo row</doc>
             <type name="ComboRow" c:type="AdwComboRow*"/>
           </instance-parameter>
         </parameters>
@@ -4364,19 +6587,19 @@ contains a [class@Gtk.ScrolledWindow], which in turn contains a
         <attribute name="org.gtk.Method.get_property" value="model"/>
         <doc xml:space="preserve"
              filename="../src/adw-combo-row.c"
-             line="643">Gets the model that provides the displayed items.</doc>
+             line="663">Gets the model that provides the displayed items.</doc>
         <source-position filename="../src/adw-combo-row.h" line="41"/>
         <return-value transfer-ownership="none" nullable="1">
           <doc xml:space="preserve"
                filename="../src/adw-combo-row.c"
-               line="649">The model in use</doc>
+               line="669">The model in use</doc>
           <type name="Gio.ListModel" c:type="GListModel*"/>
         </return-value>
         <parameters>
           <instance-parameter name="self" transfer-ownership="none">
             <doc xml:space="preserve"
                  filename="../src/adw-combo-row.c"
-                 line="645">a combo row</doc>
+                 line="665">a combo row</doc>
             <type name="ComboRow" c:type="AdwComboRow*"/>
           </instance-parameter>
         </parameters>
@@ -4388,12 +6611,12 @@ contains a [class@Gtk.ScrolledWindow], which in turn contains a
         <attribute name="org.gtk.Method.get_property" value="selected"/>
         <doc xml:space="preserve"
              filename="../src/adw-combo-row.c"
-             line="592">Gets the position of the selected item.</doc>
+             line="612">Gets the position of the selected item.</doc>
         <source-position filename="../src/adw-combo-row.h" line="47"/>
         <return-value transfer-ownership="none">
           <doc xml:space="preserve"
                filename="../src/adw-combo-row.c"
-               line="598">the position of the selected item, or
+               line="618">the position of the selected item, or
   [const@Gtk.INVALID_LIST_POSITION] if no item is selected</doc>
           <type name="guint" c:type="guint"/>
         </return-value>
@@ -4401,7 +6624,7 @@ contains a [class@Gtk.ScrolledWindow], which in turn contains a
           <instance-parameter name="self" transfer-ownership="none">
             <doc xml:space="preserve"
                  filename="../src/adw-combo-row.c"
-                 line="594">a combo row</doc>
+                 line="614">a combo row</doc>
             <type name="ComboRow" c:type="AdwComboRow*"/>
           </instance-parameter>
         </parameters>
@@ -4413,19 +6636,19 @@ contains a [class@Gtk.ScrolledWindow], which in turn contains a
         <attribute name="org.gtk.Method.get_property" value="selected-item"/>
         <doc xml:space="preserve"
              filename="../src/adw-combo-row.c"
-             line="618">Gets the selected item.</doc>
+             line="638">Gets the selected item.</doc>
         <source-position filename="../src/adw-combo-row.h" line="53"/>
         <return-value transfer-ownership="none" nullable="1">
           <doc xml:space="preserve"
                filename="../src/adw-combo-row.c"
-               line="624">the selected item</doc>
+               line="644">the selected item</doc>
           <type name="GObject.Object" c:type="gpointer"/>
         </return-value>
         <parameters>
           <instance-parameter name="self" transfer-ownership="none">
             <doc xml:space="preserve"
                  filename="../src/adw-combo-row.c"
-                 line="620">a combo row</doc>
+                 line="640">a combo row</doc>
             <type name="ComboRow" c:type="AdwComboRow*"/>
           </instance-parameter>
         </parameters>
@@ -4437,19 +6660,19 @@ contains a [class@Gtk.ScrolledWindow], which in turn contains a
         <attribute name="org.gtk.Method.get_property" value="use-subtitle"/>
         <doc xml:space="preserve"
              filename="../src/adw-combo-row.c"
-             line="894">Gets whether to use the current value as the subtitle.</doc>
+             line="914">Gets whether to use the current value as the subtitle.</doc>
         <source-position filename="../src/adw-combo-row.h" line="74"/>
         <return-value transfer-ownership="none">
           <doc xml:space="preserve"
                filename="../src/adw-combo-row.c"
-               line="900">whether to use the current value as the subtitle</doc>
+               line="920">whether to use the current value as the subtitle</doc>
           <type name="gboolean" c:type="gboolean"/>
         </return-value>
         <parameters>
           <instance-parameter name="self" transfer-ownership="none">
             <doc xml:space="preserve"
                  filename="../src/adw-combo-row.c"
-                 line="896">a combo row</doc>
+                 line="916">a combo row</doc>
             <type name="ComboRow" c:type="AdwComboRow*"/>
           </instance-parameter>
         </parameters>
@@ -4461,7 +6684,7 @@ contains a [class@Gtk.ScrolledWindow], which in turn contains a
         <attribute name="org.gtk.Method.set_property" value="expression"/>
         <doc xml:space="preserve"
              filename="../src/adw-combo-row.c"
-             line="857">Sets the expression used to obtain strings from items.
+             line="877">Sets the expression used to obtain strings from items.
 
 The expression must have a value type of `G_TYPE_STRING`.</doc>
         <source-position filename="../src/adw-combo-row.h" line="70"/>
@@ -4472,7 +6695,7 @@ The expression must have a value type of `G_TYPE_STRING`.</doc>
           <instance-parameter name="self" transfer-ownership="none">
             <doc xml:space="preserve"
                  filename="../src/adw-combo-row.c"
-                 line="859">a combo row</doc>
+                 line="879">a combo row</doc>
             <type name="ComboRow" c:type="AdwComboRow*"/>
           </instance-parameter>
           <parameter name="expression"
@@ -4481,7 +6704,7 @@ The expression must have a value type of `G_TYPE_STRING`.</doc>
                      allow-none="1">
             <doc xml:space="preserve"
                  filename="../src/adw-combo-row.c"
-                 line="860">an expression</doc>
+                 line="880">an expression</doc>
             <type name="Gtk.Expression" c:type="GtkExpression*"/>
           </parameter>
         </parameters>
@@ -4493,7 +6716,7 @@ The expression must have a value type of `G_TYPE_STRING`.</doc>
         <attribute name="org.gtk.Method.set_property" value="factory"/>
         <doc xml:space="preserve"
              filename="../src/adw-combo-row.c"
-             line="751">Sets the `GtkListItemFactory` to use for populating list items.</doc>
+             line="771">Sets the `GtkListItemFactory` to use for populating list items.</doc>
         <source-position filename="../src/adw-combo-row.h" line="58"/>
         <return-value transfer-ownership="none">
           <type name="none" c:type="void"/>
@@ -4502,7 +6725,7 @@ The expression must have a value type of `G_TYPE_STRING`.</doc>
           <instance-parameter name="self" transfer-ownership="none">
             <doc xml:space="preserve"
                  filename="../src/adw-combo-row.c"
-                 line="753">a combo row</doc>
+                 line="773">a combo row</doc>
             <type name="ComboRow" c:type="AdwComboRow*"/>
           </instance-parameter>
           <parameter name="factory"
@@ -4511,7 +6734,7 @@ The expression must have a value type of `G_TYPE_STRING`.</doc>
                      allow-none="1">
             <doc xml:space="preserve"
                  filename="../src/adw-combo-row.c"
-                 line="754">the factory to use</doc>
+                 line="774">the factory to use</doc>
             <type name="Gtk.ListItemFactory" c:type="GtkListItemFactory*"/>
           </parameter>
         </parameters>
@@ -4523,7 +6746,7 @@ The expression must have a value type of `G_TYPE_STRING`.</doc>
         <attribute name="org.gtk.Method.set_property" value="list-factory"/>
         <doc xml:space="preserve"
              filename="../src/adw-combo-row.c"
-             line="804">Sets the `GtkListItemFactory` to use for populating list items in the popup.</doc>
+             line="824">Sets the `GtkListItemFactory` to use for populating list items in the popup.</doc>
         <source-position filename="../src/adw-combo-row.h" line="64"/>
         <return-value transfer-ownership="none">
           <type name="none" c:type="void"/>
@@ -4532,7 +6755,7 @@ The expression must have a value type of `G_TYPE_STRING`.</doc>
           <instance-parameter name="self" transfer-ownership="none">
             <doc xml:space="preserve"
                  filename="../src/adw-combo-row.c"
-                 line="806">a combo row</doc>
+                 line="826">a combo row</doc>
             <type name="ComboRow" c:type="AdwComboRow*"/>
           </instance-parameter>
           <parameter name="factory"
@@ -4541,7 +6764,7 @@ The expression must have a value type of `G_TYPE_STRING`.</doc>
                      allow-none="1">
             <doc xml:space="preserve"
                  filename="../src/adw-combo-row.c"
-                 line="807">the factory to use</doc>
+                 line="827">the factory to use</doc>
             <type name="Gtk.ListItemFactory" c:type="GtkListItemFactory*"/>
           </parameter>
         </parameters>
@@ -4553,7 +6776,7 @@ The expression must have a value type of `G_TYPE_STRING`.</doc>
         <attribute name="org.gtk.Method.set_property" value="model"/>
         <doc xml:space="preserve"
              filename="../src/adw-combo-row.c"
-             line="665">Sets the [iface@Gio.ListModel] to use.</doc>
+             line="685">Sets the [iface@Gio.ListModel] to use.</doc>
         <source-position filename="../src/adw-combo-row.h" line="43"/>
         <return-value transfer-ownership="none">
           <type name="none" c:type="void"/>
@@ -4562,7 +6785,7 @@ The expression must have a value type of `G_TYPE_STRING`.</doc>
           <instance-parameter name="self" transfer-ownership="none">
             <doc xml:space="preserve"
                  filename="../src/adw-combo-row.c"
-                 line="667">a combo row</doc>
+                 line="687">a combo row</doc>
             <type name="ComboRow" c:type="AdwComboRow*"/>
           </instance-parameter>
           <parameter name="model"
@@ -4571,7 +6794,7 @@ The expression must have a value type of `G_TYPE_STRING`.</doc>
                      allow-none="1">
             <doc xml:space="preserve"
                  filename="../src/adw-combo-row.c"
-                 line="668">the model to use</doc>
+                 line="688">the model to use</doc>
             <type name="Gio.ListModel" c:type="GListModel*"/>
           </parameter>
         </parameters>
@@ -4583,7 +6806,7 @@ The expression must have a value type of `G_TYPE_STRING`.</doc>
         <attribute name="org.gtk.Method.set_property" value="selected"/>
         <doc xml:space="preserve"
              filename="../src/adw-combo-row.c"
-             line="563">Selects the item at the given position.</doc>
+             line="583">Selects the item at the given position.</doc>
         <source-position filename="../src/adw-combo-row.h" line="49"/>
         <return-value transfer-ownership="none">
           <type name="none" c:type="void"/>
@@ -4592,13 +6815,13 @@ The expression must have a value type of `G_TYPE_STRING`.</doc>
           <instance-parameter name="self" transfer-ownership="none">
             <doc xml:space="preserve"
                  filename="../src/adw-combo-row.c"
-                 line="565">a combo row</doc>
+                 line="585">a combo row</doc>
             <type name="ComboRow" c:type="AdwComboRow*"/>
           </instance-parameter>
           <parameter name="position" transfer-ownership="none">
             <doc xml:space="preserve"
                  filename="../src/adw-combo-row.c"
-                 line="566">the position of the item to select, or
+                 line="586">the position of the item to select, or
   [const@Gtk.INVALID_LIST_POSITION]</doc>
             <type name="guint" c:type="guint"/>
           </parameter>
@@ -4611,7 +6834,7 @@ The expression must have a value type of `G_TYPE_STRING`.</doc>
         <attribute name="org.gtk.Method.set_property" value="use-subtitle"/>
         <doc xml:space="preserve"
              filename="../src/adw-combo-row.c"
-             line="916">Sets whether to use the current value as the subtitle.</doc>
+             line="936">Sets whether to use the current value as the subtitle.</doc>
         <source-position filename="../src/adw-combo-row.h" line="76"/>
         <return-value transfer-ownership="none">
           <type name="none" c:type="void"/>
@@ -4620,13 +6843,13 @@ The expression must have a value type of `G_TYPE_STRING`.</doc>
           <instance-parameter name="self" transfer-ownership="none">
             <doc xml:space="preserve"
                  filename="../src/adw-combo-row.c"
-                 line="918">a combo row</doc>
+                 line="938">a combo row</doc>
             <type name="ComboRow" c:type="AdwComboRow*"/>
           </instance-parameter>
           <parameter name="use_subtitle" transfer-ownership="none">
             <doc xml:space="preserve"
                  filename="../src/adw-combo-row.c"
-                 line="919">whether to use the current value as the subtitle</doc>
+                 line="939">whether to use the current value as the subtitle</doc>
             <type name="gboolean" c:type="gboolean"/>
           </parameter>
         </parameters>
@@ -4643,7 +6866,7 @@ The expression must have a value type of `G_TYPE_STRING`.</doc>
                    value="adw_combo_row_set_expression"/>
         <doc xml:space="preserve"
              filename="../src/adw-combo-row.c"
-             line="486">An expression used to obtain strings from items.
+             line="506">An expression used to obtain strings from items.
 
 It's used to bind strings to labels produced by the default factory.
 
@@ -4663,7 +6886,7 @@ bind strings to labels produced by a default factory.</doc>
                    value="adw_combo_row_set_factory"/>
         <doc xml:space="preserve"
              filename="../src/adw-combo-row.c"
-             line="457">Factory for populating list items.
+             line="477">Factory for populating list items.
 
 This factory is always used for the item in the row. It is also used for
 items in the popup unless [property@ComboRow:list-factory] is set.</doc>
@@ -4681,7 +6904,7 @@ items in the popup unless [property@ComboRow:list-factory] is set.</doc>
                    value="adw_combo_row_set_list_factory"/>
         <doc xml:space="preserve"
              filename="../src/adw-combo-row.c"
-             line="472">The factory for populating list items in the popup.
+             line="492">The factory for populating list items in the popup.
 
 If this is not set, [property@ComboRow:factory] is used.</doc>
         <type name="Gtk.ListItemFactory"/>
@@ -4698,7 +6921,7 @@ If this is not set, [property@ComboRow:factory] is used.</doc>
                    value="adw_combo_row_set_model"/>
         <doc xml:space="preserve"
              filename="../src/adw-combo-row.c"
-             line="418">Model for the displayed items.</doc>
+             line="438">Model for the displayed items.</doc>
         <type name="Gio.ListModel"/>
       </property>
       <property name="selected"
@@ -4713,7 +6936,7 @@ If this is not set, [property@ComboRow:factory] is used.</doc>
                    value="adw_combo_row_set_selected"/>
         <doc xml:space="preserve"
              filename="../src/adw-combo-row.c"
-             line="430">The position of the selected item.
+             line="450">The position of the selected item.
 
 If no item is selected, the property has the value
 [const@Gtk.INVALID_LIST_POSITION]</doc>
@@ -4727,7 +6950,7 @@ If no item is selected, the property has the value
                    value="adw_combo_row_get_selected_item"/>
         <doc xml:space="preserve"
              filename="../src/adw-combo-row.c"
-             line="445">The selected item.</doc>
+             line="465">The selected item.</doc>
         <type name="GObject.Object"/>
       </property>
       <property name="use-subtitle"
@@ -4742,7 +6965,7 @@ If no item is selected, the property has the value
                    value="adw_combo_row_set_use_subtitle"/>
         <doc xml:space="preserve"
              filename="../src/adw-combo-row.c"
-             line="504">Whether to use the current value as the subtitle.
+             line="524">Whether to use the current value as the subtitle.
 
 If you use a custom list item factory, you will need to give the row a
 name conversion expression with [property@ComboRow:expression].
@@ -5220,12 +7443,12 @@ class.</doc>
       <constructor name="new" c:identifier="adw_entry_row_new" version="1.2">
         <doc xml:space="preserve"
              filename="../src/adw-entry-row.c"
-             line="548">Creates a new `AdwEntryRow`.</doc>
+             line="616">Creates a new `AdwEntryRow`.</doc>
         <source-position filename="../src/adw-entry-row.h" line="35"/>
         <return-value transfer-ownership="none">
           <doc xml:space="preserve"
                filename="../src/adw-entry-row.c"
-               line="553">the newly created `AdwEntryRow`</doc>
+               line="621">the newly created `AdwEntryRow`</doc>
           <type name="Gtk.Widget" c:type="GtkWidget*"/>
         </return-value>
       </constructor>
@@ -5234,7 +7457,7 @@ class.</doc>
               version="1.2">
         <doc xml:space="preserve"
              filename="../src/adw-entry-row.c"
-             line="563">Adds a prefix widget to @self.</doc>
+             line="631">Adds a prefix widget to @self.</doc>
         <source-position filename="../src/adw-entry-row.h" line="38"/>
         <return-value transfer-ownership="none">
           <type name="none" c:type="void"/>
@@ -5243,13 +7466,13 @@ class.</doc>
           <instance-parameter name="self" transfer-ownership="none">
             <doc xml:space="preserve"
                  filename="../src/adw-entry-row.c"
-                 line="565">an entry row</doc>
+                 line="633">an entry row</doc>
             <type name="EntryRow" c:type="AdwEntryRow*"/>
           </instance-parameter>
           <parameter name="widget" transfer-ownership="none">
             <doc xml:space="preserve"
                  filename="../src/adw-entry-row.c"
-                 line="566">a widget</doc>
+                 line="634">a widget</doc>
             <type name="Gtk.Widget" c:type="GtkWidget*"/>
           </parameter>
         </parameters>
@@ -5259,7 +7482,7 @@ class.</doc>
               version="1.2">
         <doc xml:space="preserve"
              filename="../src/adw-entry-row.c"
-             line="587">Adds a suffix widget to @self.</doc>
+             line="655">Adds a suffix widget to @self.</doc>
         <source-position filename="../src/adw-entry-row.h" line="41"/>
         <return-value transfer-ownership="none">
           <type name="none" c:type="void"/>
@@ -5268,15 +7491,91 @@ class.</doc>
           <instance-parameter name="self" transfer-ownership="none">
             <doc xml:space="preserve"
                  filename="../src/adw-entry-row.c"
-                 line="589">an entry row</doc>
+                 line="657">an entry row</doc>
             <type name="EntryRow" c:type="AdwEntryRow*"/>
           </instance-parameter>
           <parameter name="widget" transfer-ownership="none">
             <doc xml:space="preserve"
                  filename="../src/adw-entry-row.c"
-                 line="590">a widget</doc>
+                 line="658">a widget</doc>
             <type name="Gtk.Widget" c:type="GtkWidget*"/>
           </parameter>
+        </parameters>
+      </method>
+      <method name="get_enable_emoji_completion"
+              c:identifier="adw_entry_row_get_enable_emoji_completion"
+              glib:get-property="enable-emoji-completion"
+              version="1.2">
+        <attribute name="org.gtk.Method.get_property"
+                   value="enable-emoji-completion"/>
+        <doc xml:space="preserve"
+             filename="../src/adw-entry-row.c"
+             line="864">Gets whether to suggest emoji replacements on @self.
+
+Emoji replacement is done with :-delimited names,
+like `:heart:`.</doc>
+        <source-position filename="../src/adw-entry-row.h" line="66"/>
+        <return-value transfer-ownership="none">
+          <doc xml:space="preserve"
+               filename="../src/adw-entry-row.c"
+               line="873">whether or not emoji completion is enabled</doc>
+          <type name="gboolean" c:type="gboolean"/>
+        </return-value>
+        <parameters>
+          <instance-parameter name="self" transfer-ownership="none">
+            <doc xml:space="preserve"
+                 filename="../src/adw-entry-row.c"
+                 line="866">an entry row</doc>
+            <type name="EntryRow" c:type="AdwEntryRow*"/>
+          </instance-parameter>
+        </parameters>
+      </method>
+      <method name="get_input_hints"
+              c:identifier="adw_entry_row_get_input_hints"
+              glib:get-property="input-hints"
+              version="1.2">
+        <attribute name="org.gtk.Method.get_property" value="input-hints"/>
+        <doc xml:space="preserve"
+             filename="../src/adw-entry-row.c"
+             line="766">Gets the additional input hints of @self.</doc>
+        <source-position filename="../src/adw-entry-row.h" line="54"/>
+        <return-value transfer-ownership="none">
+          <doc xml:space="preserve"
+               filename="../src/adw-entry-row.c"
+               line="772">The input hints</doc>
+          <type name="Gtk.InputHints" c:type="GtkInputHints"/>
+        </return-value>
+        <parameters>
+          <instance-parameter name="self" transfer-ownership="none">
+            <doc xml:space="preserve"
+                 filename="../src/adw-entry-row.c"
+                 line="768">an entry row</doc>
+            <type name="EntryRow" c:type="AdwEntryRow*"/>
+          </instance-parameter>
+        </parameters>
+      </method>
+      <method name="get_input_purpose"
+              c:identifier="adw_entry_row_get_input_purpose"
+              glib:get-property="input-purpose"
+              version="1.2">
+        <attribute name="org.gtk.Method.get_property" value="input-purpose"/>
+        <doc xml:space="preserve"
+             filename="../src/adw-entry-row.c"
+             line="816">Gets the input purpose of @self.</doc>
+        <source-position filename="../src/adw-entry-row.h" line="60"/>
+        <return-value transfer-ownership="none">
+          <doc xml:space="preserve"
+               filename="../src/adw-entry-row.c"
+               line="822">the input purpose</doc>
+          <type name="Gtk.InputPurpose" c:type="GtkInputPurpose"/>
+        </return-value>
+        <parameters>
+          <instance-parameter name="self" transfer-ownership="none">
+            <doc xml:space="preserve"
+                 filename="../src/adw-entry-row.c"
+                 line="818">an entry row</doc>
+            <type name="EntryRow" c:type="AdwEntryRow*"/>
+          </instance-parameter>
         </parameters>
       </method>
       <method name="get_show_apply_button"
@@ -5287,19 +7586,19 @@ class.</doc>
                    value="show-apply-button"/>
         <doc xml:space="preserve"
              filename="../src/adw-entry-row.c"
-             line="642">Gets whether @self can show the apply button.</doc>
+             line="710">Gets whether @self can show the apply button.</doc>
         <source-position filename="../src/adw-entry-row.h" line="48"/>
         <return-value transfer-ownership="none">
           <doc xml:space="preserve"
                filename="../src/adw-entry-row.c"
-               line="648">whether to show the apply button</doc>
+               line="716">whether to show the apply button</doc>
           <type name="gboolean" c:type="gboolean"/>
         </return-value>
         <parameters>
           <instance-parameter name="self" transfer-ownership="none">
             <doc xml:space="preserve"
                  filename="../src/adw-entry-row.c"
-                 line="644">an entry row</doc>
+                 line="712">an entry row</doc>
             <type name="EntryRow" c:type="AdwEntryRow*"/>
           </instance-parameter>
         </parameters>
@@ -5307,7 +7606,7 @@ class.</doc>
       <method name="remove" c:identifier="adw_entry_row_remove" version="1.2">
         <doc xml:space="preserve"
              filename="../src/adw-entry-row.c"
-             line="611">Removes a child from @self.</doc>
+             line="679">Removes a child from @self.</doc>
         <source-position filename="../src/adw-entry-row.h" line="44"/>
         <return-value transfer-ownership="none">
           <type name="none" c:type="void"/>
@@ -5316,14 +7615,105 @@ class.</doc>
           <instance-parameter name="self" transfer-ownership="none">
             <doc xml:space="preserve"
                  filename="../src/adw-entry-row.c"
-                 line="613">an entry row</doc>
+                 line="681">an entry row</doc>
             <type name="EntryRow" c:type="AdwEntryRow*"/>
           </instance-parameter>
           <parameter name="widget" transfer-ownership="none">
             <doc xml:space="preserve"
                  filename="../src/adw-entry-row.c"
-                 line="614">the child to be removed</doc>
+                 line="682">the child to be removed</doc>
             <type name="Gtk.Widget" c:type="GtkWidget*"/>
+          </parameter>
+        </parameters>
+      </method>
+      <method name="set_enable_emoji_completion"
+              c:identifier="adw_entry_row_set_enable_emoji_completion"
+              glib:set-property="enable-emoji-completion"
+              version="1.2">
+        <attribute name="org.gtk.Method.get_property"
+                   value="enable-emoji-completion"/>
+        <doc xml:space="preserve"
+             filename="../src/adw-entry-row.c"
+             line="889">Sets whether to suggest emoji replacements on @self.
+
+Emoji replacement is done with :-delimited names,
+like `:heart:`.</doc>
+        <source-position filename="../src/adw-entry-row.h" line="68"/>
+        <return-value transfer-ownership="none">
+          <type name="none" c:type="void"/>
+        </return-value>
+        <parameters>
+          <instance-parameter name="self" transfer-ownership="none">
+            <doc xml:space="preserve"
+                 filename="../src/adw-entry-row.c"
+                 line="891">an entry row</doc>
+            <type name="EntryRow" c:type="AdwEntryRow*"/>
+          </instance-parameter>
+          <parameter name="enable_emoji_completion" transfer-ownership="none">
+            <doc xml:space="preserve"
+                 filename="../src/adw-entry-row.c"
+                 line="892">Whether emoji completion should be enabled or not</doc>
+            <type name="gboolean" c:type="gboolean"/>
+          </parameter>
+        </parameters>
+      </method>
+      <method name="set_input_hints"
+              c:identifier="adw_entry_row_set_input_hints"
+              glib:set-property="input-hints"
+              version="1.2">
+        <attribute name="org.gtk.Method.set_property" value="input-hints"/>
+        <doc xml:space="preserve"
+             filename="../src/adw-entry-row.c"
+             line="788">Set additional input hints for @self.
+
+Input hints allow input methods to fine-tune their behavior.
+
+See also: [property@AdwEntryRow:input-purpose]</doc>
+        <source-position filename="../src/adw-entry-row.h" line="56"/>
+        <return-value transfer-ownership="none">
+          <type name="none" c:type="void"/>
+        </return-value>
+        <parameters>
+          <instance-parameter name="self" transfer-ownership="none">
+            <doc xml:space="preserve"
+                 filename="../src/adw-entry-row.c"
+                 line="790">an entry row</doc>
+            <type name="EntryRow" c:type="AdwEntryRow*"/>
+          </instance-parameter>
+          <parameter name="hints" transfer-ownership="none">
+            <doc xml:space="preserve"
+                 filename="../src/adw-entry-row.c"
+                 line="791">the hints</doc>
+            <type name="Gtk.InputHints" c:type="GtkInputHints"/>
+          </parameter>
+        </parameters>
+      </method>
+      <method name="set_input_purpose"
+              c:identifier="adw_entry_row_set_input_purpose"
+              glib:set-property="input-purpose"
+              version="1.2">
+        <attribute name="org.gtk.Method.set_property" value="input-purpose"/>
+        <doc xml:space="preserve"
+             filename="../src/adw-entry-row.c"
+             line="838">Sets the input purpose of @self.
+
+The input purpose can be used by input methods to adjust their behavior.</doc>
+        <source-position filename="../src/adw-entry-row.h" line="62"/>
+        <return-value transfer-ownership="none">
+          <type name="none" c:type="void"/>
+        </return-value>
+        <parameters>
+          <instance-parameter name="self" transfer-ownership="none">
+            <doc xml:space="preserve"
+                 filename="../src/adw-entry-row.c"
+                 line="840">an entry row</doc>
+            <type name="EntryRow" c:type="AdwEntryRow*"/>
+          </instance-parameter>
+          <parameter name="purpose" transfer-ownership="none">
+            <doc xml:space="preserve"
+                 filename="../src/adw-entry-row.c"
+                 line="841">the purpose</doc>
+            <type name="Gtk.InputPurpose" c:type="GtkInputPurpose"/>
           </parameter>
         </parameters>
       </method>
@@ -5335,7 +7725,7 @@ class.</doc>
                    value="show-apply-button"/>
         <doc xml:space="preserve"
              filename="../src/adw-entry-row.c"
-             line="664">Sets whether @self can show the apply button.</doc>
+             line="732">Sets whether @self can show the apply button.</doc>
         <source-position filename="../src/adw-entry-row.h" line="50"/>
         <return-value transfer-ownership="none">
           <type name="none" c:type="void"/>
@@ -5344,17 +7734,71 @@ class.</doc>
           <instance-parameter name="self" transfer-ownership="none">
             <doc xml:space="preserve"
                  filename="../src/adw-entry-row.c"
-                 line="666">an entry row</doc>
+                 line="734">an entry row</doc>
             <type name="EntryRow" c:type="AdwEntryRow*"/>
           </instance-parameter>
           <parameter name="show_apply_button" transfer-ownership="none">
             <doc xml:space="preserve"
                  filename="../src/adw-entry-row.c"
-                 line="667">whether to show the apply button</doc>
+                 line="735">whether to show the apply button</doc>
             <type name="gboolean" c:type="gboolean"/>
           </parameter>
         </parameters>
       </method>
+      <property name="enable-emoji-completion"
+                version="1.2"
+                writable="1"
+                transfer-ownership="none"
+                setter="set_enable_emoji_completion"
+                getter="get_enable_emoji_completion">
+        <attribute name="org.gtk.Property.get"
+                   value="adw_entry_row_get_enable_emoji_completion"/>
+        <attribute name="org.gtk.Property.set"
+                   value="adw_entry_row_set_enable_emoji_completion"/>
+        <doc xml:space="preserve"
+             filename="../src/adw-entry-row.c"
+             line="483">Whether to suggest emoji replacements on the entry row.
+
+Emoji replacement is done with :-delimited names,
+like `:heart:`.</doc>
+        <type name="gboolean" c:type="gboolean"/>
+      </property>
+      <property name="input-hints"
+                version="1.2"
+                writable="1"
+                transfer-ownership="none"
+                setter="set_input_hints"
+                getter="get_input_hints">
+        <attribute name="org.gtk.Property.get"
+                   value="adw_entry_row_get_input_hints"/>
+        <attribute name="org.gtk.Property.set"
+                   value="adw_entry_row_set_input_hints"/>
+        <doc xml:space="preserve"
+             filename="../src/adw-entry-row.c"
+             line="451">Additional input hints for the entry row.
+
+Input hints allow input methods to fine-tune their behavior.
+
+See also: [property@Adw.EntryRow:input-purpose]</doc>
+        <type name="Gtk.InputHints"/>
+      </property>
+      <property name="input-purpose"
+                version="1.2"
+                writable="1"
+                transfer-ownership="none"
+                setter="set_input_purpose"
+                getter="get_input_purpose">
+        <attribute name="org.gtk.Property.get"
+                   value="adw_entry_row_get_input_purpose"/>
+        <attribute name="org.gtk.Property.set"
+                   value="adw_entry_row_set_input_purpose"/>
+        <doc xml:space="preserve"
+             filename="../src/adw-entry-row.c"
+             line="468">The input purpose of the entry row.
+
+The input purpose can be used by input methods to adjust their behavior.</doc>
+        <type name="Gtk.InputPurpose"/>
+      </property>
       <property name="show-apply-button"
                 version="1.2"
                 writable="1"
@@ -5367,7 +7811,7 @@ class.</doc>
                    value="adw_entry_row_set_show_apply_button"/>
         <doc xml:space="preserve"
              filename="../src/adw-entry-row.c"
-             line="410">Whether to show the apply button.
+             line="431">Whether to show the apply button.
 
 When set to `TRUE`, typing text in the entry will reveal an apply button.
 Clicking it or pressing the &lt;kbd&gt;Enter&lt;/kbd&gt; key will hide the button and
@@ -5384,7 +7828,7 @@ character.</doc>
       <glib:signal name="apply" when="last" version="1.2">
         <doc xml:space="preserve"
              filename="../src/adw-entry-row.c"
-             line="434">Emitted when the apply button is pressed.
+             line="502">Emitted when the apply button is pressed.
 
 See [property@EntryRow:show-apply-button].</doc>
         <return-value transfer-ownership="none">
@@ -9654,7 +12098,7 @@ responses further.</doc>
              filename="../src/adw-message-dialog.c"
              line="1640">Adds multiple responses to @self.
 
-This is the same as calling [[method@MessageDialog.add_response] repeatedly.
+This is the same as calling [method@MessageDialog.add_response] repeatedly.
 The variable argument list should be `NULL`-terminated list of response IDs
 and labels.
 
@@ -10748,12 +13192,12 @@ It offer a way to reveal the contents in clear text.
                    version="1.2">
         <doc xml:space="preserve"
              filename="../src/adw-password-entry-row.c"
-             line="189">Creates a new `AdwPasswordEntryRow`.</doc>
+             line="190">Creates a new `AdwPasswordEntryRow`.</doc>
         <source-position filename="../src/adw-password-entry-row.h" line="27"/>
         <return-value transfer-ownership="none">
           <doc xml:space="preserve"
                filename="../src/adw-password-entry-row.c"
-               line="194">the newly created `AdwPasswordEntryRow`</doc>
+               line="195">the newly created `AdwPasswordEntryRow`</doc>
           <type name="Gtk.Widget" c:type="GtkWidget*"/>
         </return-value>
       </constructor>
@@ -12282,26 +14726,26 @@ For right-to-left locales, gestures and shortcuts are reversed.</doc>
                    version="1.2">
         <doc xml:space="preserve"
              filename="../src/adw-animation-target.c"
-             line="452">Creates a new `AdwPropertyAnimationTarget` for the @property_name property on
+             line="357">Creates a new `AdwPropertyAnimationTarget` for the @property_name property on
 @object.</doc>
         <source-position filename="../src/adw-animation-target.h" line="53"/>
         <return-value transfer-ownership="full">
           <doc xml:space="preserve"
                filename="../src/adw-animation-target.c"
-               line="460">the newly created `AdwPropertyAnimationTarget`</doc>
+               line="365">the newly created `AdwPropertyAnimationTarget`</doc>
           <type name="AnimationTarget" c:type="AdwAnimationTarget*"/>
         </return-value>
         <parameters>
           <parameter name="object" transfer-ownership="none">
             <doc xml:space="preserve"
                  filename="../src/adw-animation-target.c"
-                 line="454">an object to be animated</doc>
+                 line="359">an object to be animated</doc>
             <type name="GObject.Object" c:type="GObject*"/>
           </parameter>
           <parameter name="property_name" transfer-ownership="none">
             <doc xml:space="preserve"
                  filename="../src/adw-animation-target.c"
-                 line="455">the name of the property on @object to animate</doc>
+                 line="360">the name of the property on @object to animate</doc>
             <type name="utf8" c:type="const char*"/>
           </parameter>
         </parameters>
@@ -12311,26 +14755,26 @@ For right-to-left locales, gestures and shortcuts are reversed.</doc>
                    version="1.2">
         <doc xml:space="preserve"
              filename="../src/adw-animation-target.c"
-             line="477">Creates a new `AdwPropertyAnimationTarget` for the @pspec property on
+             line="387">Creates a new `AdwPropertyAnimationTarget` for the @pspec property on
 @object.</doc>
         <source-position filename="../src/adw-animation-target.h" line="56"/>
         <return-value transfer-ownership="full">
           <doc xml:space="preserve"
                filename="../src/adw-animation-target.c"
-               line="485">new newly created `AdwPropertyAnimationTarget`</doc>
+               line="395">new newly created `AdwPropertyAnimationTarget`</doc>
           <type name="AnimationTarget" c:type="AdwAnimationTarget*"/>
         </return-value>
         <parameters>
           <parameter name="object" transfer-ownership="none">
             <doc xml:space="preserve"
                  filename="../src/adw-animation-target.c"
-                 line="479">an object to be animated</doc>
+                 line="389">an object to be animated</doc>
             <type name="GObject.Object" c:type="GObject*"/>
           </parameter>
           <parameter name="pspec" transfer-ownership="none">
             <doc xml:space="preserve"
                  filename="../src/adw-animation-target.c"
-                 line="480">the param spec of the property on @object to animate</doc>
+                 line="390">the param spec of the property on @object to animate</doc>
             <type name="GObject.ParamSpec" c:type="GParamSpec*"/>
           </parameter>
         </parameters>
@@ -12342,44 +14786,19 @@ For right-to-left locales, gestures and shortcuts are reversed.</doc>
         <attribute name="org.gtk.Method.get_property" value="object"/>
         <doc xml:space="preserve"
              filename="../src/adw-animation-target.c"
-             line="502">Gets the object animated by @self.</doc>
+             line="412">Gets the object animated by @self.</doc>
         <source-position filename="../src/adw-animation-target.h" line="60"/>
         <return-value transfer-ownership="none">
           <doc xml:space="preserve"
                filename="../src/adw-animation-target.c"
-               line="508">the animated object</doc>
+               line="418">the animated object</doc>
           <type name="GObject.Object" c:type="GObject*"/>
         </return-value>
         <parameters>
           <instance-parameter name="self" transfer-ownership="none">
             <doc xml:space="preserve"
                  filename="../src/adw-animation-target.c"
-                 line="504">a property animation target</doc>
-            <type name="PropertyAnimationTarget"
-                  c:type="AdwPropertyAnimationTarget*"/>
-          </instance-parameter>
-        </parameters>
-      </method>
-      <method name="get_property_name"
-              c:identifier="adw_property_animation_target_get_property_name"
-              glib:get-property="property-name"
-              version="1.2">
-        <attribute name="org.gtk.Method.get_property" value="property-name"/>
-        <doc xml:space="preserve"
-             filename="../src/adw-animation-target.c"
-             line="520">Gets the name of the property animated by @self.</doc>
-        <source-position filename="../src/adw-animation-target.h" line="62"/>
-        <return-value transfer-ownership="none">
-          <doc xml:space="preserve"
-               filename="../src/adw-animation-target.c"
-               line="526">the animated property name</doc>
-          <type name="utf8" c:type="const char*"/>
-        </return-value>
-        <parameters>
-          <instance-parameter name="self" transfer-ownership="none">
-            <doc xml:space="preserve"
-                 filename="../src/adw-animation-target.c"
-                 line="522">a property animation target</doc>
+                 line="414">a property animation target</doc>
             <type name="PropertyAnimationTarget"
                   c:type="AdwPropertyAnimationTarget*"/>
           </instance-parameter>
@@ -12392,19 +14811,19 @@ For right-to-left locales, gestures and shortcuts are reversed.</doc>
         <attribute name="org.gtk.Method.get_property" value="pspec"/>
         <doc xml:space="preserve"
              filename="../src/adw-animation-target.c"
-             line="541">Gets the `GParamSpec` of the property animated by @self.</doc>
-        <source-position filename="../src/adw-animation-target.h" line="64"/>
+             line="430">Gets the `GParamSpec` of the property animated by @self.</doc>
+        <source-position filename="../src/adw-animation-target.h" line="62"/>
         <return-value transfer-ownership="none">
           <doc xml:space="preserve"
                filename="../src/adw-animation-target.c"
-               line="547">the animated property's `GParamSpec`</doc>
+               line="436">the animated property's `GParamSpec`</doc>
           <type name="GObject.ParamSpec" c:type="GParamSpec*"/>
         </return-value>
         <parameters>
           <instance-parameter name="self" transfer-ownership="none">
             <doc xml:space="preserve"
                  filename="../src/adw-animation-target.c"
-                 line="543">a property animation target</doc>
+                 line="432">a property animation target</doc>
             <type name="PropertyAnimationTarget"
                   c:type="AdwPropertyAnimationTarget*"/>
           </instance-parameter>
@@ -12420,28 +14839,12 @@ For right-to-left locales, gestures and shortcuts are reversed.</doc>
                    value="adw_property_animation_target_get_object"/>
         <doc xml:space="preserve"
              filename="../src/adw-animation-target.c"
-             line="396">The object whose property will be animated.
+             line="319">The object whose property will be animated.
 
 The `AdwPropertyAnimationTarget` instance does not hold a strong reference
 on the object; make sure the object is kept alive throughout the target's
 lifetime.</doc>
         <type name="GObject.Object"/>
-      </property>
-      <property name="property-name"
-                version="1.2"
-                writable="1"
-                construct-only="1"
-                transfer-ownership="none"
-                getter="get_property_name">
-        <attribute name="org.gtk.Property.get"
-                   value="adw_property_animation_target_get_property_name"/>
-        <doc xml:space="preserve"
-             filename="../src/adw-animation-target.c"
-             line="412">The name of the property to be animated.
-
-Only one of `property-name` or [property@PropertyAnimationTarget:pspec]
-should be set.</doc>
-        <type name="utf8" c:type="gchar*"/>
       </property>
       <property name="pspec"
                 version="1.2"
@@ -12453,10 +14856,7 @@ should be set.</doc>
                    value="adw_property_animation_target_get_pspec"/>
         <doc xml:space="preserve"
              filename="../src/adw-animation-target.c"
-             line="427">The `GParamSpec` of the property to be animated.
-
-Only one of `pspec` or [property@PropertyAnimationTarget:property-name]
-should be set.</doc>
+             line="335">The `GParamSpec` of the property to be animated.</doc>
         <type name="GObject.ParamSpec"/>
       </property>
     </class>
@@ -23486,6 +25886,41 @@ library are set up properly.</doc>
                filename="../src/adw-animation-util.c"
                line="16">the interpolation rate</doc>
           <type name="gdouble" c:type="double"/>
+        </parameter>
+      </parameters>
+    </function>
+    <function name="show_about_window"
+              c:identifier="adw_show_about_window"
+              introspectable="0">
+      <doc xml:space="preserve"
+           filename="../src/adw-about-window.c"
+           line="3195">A convenience function for showing an application’s about window.</doc>
+      <source-position filename="../src/adw-about-window.h" line="171"/>
+      <return-value transfer-ownership="none">
+        <type name="none" c:type="void"/>
+      </return-value>
+      <parameters>
+        <parameter name="parent"
+                   transfer-ownership="none"
+                   nullable="1"
+                   allow-none="1">
+          <doc xml:space="preserve"
+               filename="../src/adw-about-window.c"
+               line="3197">the parent top-level window</doc>
+          <type name="Gtk.Window" c:type="GtkWindow*"/>
+        </parameter>
+        <parameter name="first_property_name" transfer-ownership="none">
+          <doc xml:space="preserve"
+               filename="../src/adw-about-window.c"
+               line="3198">the name of the first property</doc>
+          <type name="utf8" c:type="const char*"/>
+        </parameter>
+        <parameter name="..." transfer-ownership="none">
+          <doc xml:space="preserve"
+               filename="../src/adw-about-window.c"
+               line="3199">value of first property, followed by more pairs of property name and
+  value, `NULL`-terminated</doc>
+          <varargs/>
         </parameter>
       </parameters>
     </function>

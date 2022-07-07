@@ -214,6 +214,13 @@ fn get_c_output(name: &str) -> Result<String, Box<dyn Error>> {
 
 const RUST_LAYOUTS: &[(&str, Layout)] = &[
     (
+        "AdwAboutWindowClass",
+        Layout {
+            size: size_of::<AdwAboutWindowClass>(),
+            alignment: align_of::<AdwAboutWindowClass>(),
+        },
+    ),
+    (
         "AdwActionRow",
         Layout {
             size: size_of::<AdwActionRow>(),
