@@ -433,6 +433,8 @@ impl AboutWindow {
         }
     }
 
+    #[cfg(any(feature = "v1_2", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v1_2")))]
     #[doc(alias = "activate-link")]
     pub fn connect_activate_link<F: Fn(&Self, &str) -> bool + 'static>(
         &self,

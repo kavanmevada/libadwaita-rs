@@ -2187,7 +2187,7 @@ page if the Details page doesn't have any other content.
 Applications can add other links below, see [method@AboutWindow.add_link].</doc>
         <type name="utf8" c:type="gchar*"/>
       </property>
-      <glib:signal name="activate-link" when="last" version="1.0">
+      <glib:signal name="activate-link" when="last" version="1.2">
         <doc xml:space="preserve"
              filename="../src/adw-about-window.c"
              line="1785">Emitted when a URL is activated.
