@@ -54,6 +54,15 @@ impl Default for PasswordEntryRow {
 pub struct PasswordEntryRowBuilder {
     #[cfg(any(feature = "v1_2", feature = "dox"))]
     #[cfg_attr(feature = "dox", doc(cfg(feature = "v1_2")))]
+    enable_emoji_completion: Option<bool>,
+    #[cfg(any(feature = "v1_2", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v1_2")))]
+    input_hints: Option<gtk::InputHints>,
+    #[cfg(any(feature = "v1_2", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v1_2")))]
+    input_purpose: Option<gtk::InputPurpose>,
+    #[cfg(any(feature = "v1_2", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v1_2")))]
     show_apply_button: Option<bool>,
     title: Option<String>,
     #[cfg(any(feature = "v1_1", feature = "dox"))]
@@ -118,6 +127,18 @@ impl PasswordEntryRowBuilder {
     #[must_use = "Building the object from the builder is usually expensive and is not expected to have side effects"]
     pub fn build(self) -> PasswordEntryRow {
         let mut properties: Vec<(&str, &dyn ToValue)> = vec![];
+        #[cfg(any(feature = "v1_2", feature = "dox"))]
+        if let Some(ref enable_emoji_completion) = self.enable_emoji_completion {
+            properties.push(("enable-emoji-completion", enable_emoji_completion));
+        }
+        #[cfg(any(feature = "v1_2", feature = "dox"))]
+        if let Some(ref input_hints) = self.input_hints {
+            properties.push(("input-hints", input_hints));
+        }
+        #[cfg(any(feature = "v1_2", feature = "dox"))]
+        if let Some(ref input_purpose) = self.input_purpose {
+            properties.push(("input-purpose", input_purpose));
+        }
         #[cfg(any(feature = "v1_2", feature = "dox"))]
         if let Some(ref show_apply_button) = self.show_apply_button {
             properties.push(("show-apply-button", show_apply_button));
@@ -261,6 +282,27 @@ impl PasswordEntryRowBuilder {
         }
         glib::Object::new::<PasswordEntryRow>(&properties)
             .expect("Failed to create an instance of PasswordEntryRow")
+    }
+
+    #[cfg(any(feature = "v1_2", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v1_2")))]
+    pub fn enable_emoji_completion(mut self, enable_emoji_completion: bool) -> Self {
+        self.enable_emoji_completion = Some(enable_emoji_completion);
+        self
+    }
+
+    #[cfg(any(feature = "v1_2", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v1_2")))]
+    pub fn input_hints(mut self, input_hints: gtk::InputHints) -> Self {
+        self.input_hints = Some(input_hints);
+        self
+    }
+
+    #[cfg(any(feature = "v1_2", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v1_2")))]
+    pub fn input_purpose(mut self, input_purpose: gtk::InputPurpose) -> Self {
+        self.input_purpose = Some(input_purpose);
+        self
     }
 
     #[cfg(any(feature = "v1_2", feature = "dox"))]

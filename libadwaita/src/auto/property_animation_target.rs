@@ -57,16 +57,6 @@ impl PropertyAnimationTarget {
         }
     }
 
-    #[doc(alias = "adw_property_animation_target_get_property_name")]
-    #[doc(alias = "get_property_name")]
-    pub fn property_name(&self) -> glib::GString {
-        unsafe {
-            from_glib_none(ffi::adw_property_animation_target_get_property_name(
-                self.to_glib_none().0,
-            ))
-        }
-    }
-
     #[doc(alias = "adw_property_animation_target_get_pspec")]
     #[doc(alias = "get_pspec")]
     pub fn pspec(&self) -> glib::ParamSpec {

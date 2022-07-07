@@ -25,6 +25,7 @@ external_libraries = [
 ]
 
 generate = [
+    "Adw.AboutWindow",
     "Adw.ActionRow",
     "Adw.AnimationState",
     "Adw.Avatar",
@@ -106,7 +107,10 @@ manual = [
     "Gtk.Entry",
     "Gtk.Expression",
     "Gtk.HeaderBar",
+    "Gtk.InputHints",
+    "Gtk.InputPurpose",
     "Gtk.LayoutManager",
+    "Gtk.License",
     "Gtk.ListBoxRow",
     "Gtk.ListItemFactory",
     "Gtk.ListView",
@@ -145,6 +149,9 @@ status = "generate"
     [[object.function]]
     name = "get_enable_animations"
     rename = "is_animations_enabled"
+    [[object.function]]
+    name = "show_about_window"
+    ignore = true # C only function, replaced by AboutWindow::builder
 
 [[object]]
 name = "Adw.Animation"

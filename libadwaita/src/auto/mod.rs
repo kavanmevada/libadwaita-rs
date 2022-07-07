@@ -3,6 +3,13 @@
 // from gir-files (https://github.com/gtk-rs/gir-files.git)
 // DO NOT EDIT
 
+#[cfg(any(feature = "v1_2", feature = "dox"))]
+#[cfg_attr(feature = "dox", doc(cfg(feature = "v1_2")))]
+mod about_window;
+#[cfg(any(feature = "v1_2", feature = "dox"))]
+#[cfg_attr(feature = "dox", doc(cfg(feature = "v1_2")))]
+pub use self::about_window::AboutWindow;
+
 mod action_row;
 pub use self::action_row::ActionRow;
 
@@ -221,6 +228,9 @@ pub mod traits {
 }
 #[doc(hidden)]
 pub mod builders {
+    #[cfg(any(feature = "v1_2", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v1_2")))]
+    pub use super::about_window::AboutWindowBuilder;
     pub use super::action_row::ActionRowBuilder;
     pub use super::application::ApplicationBuilder;
     pub use super::application_window::ApplicationWindowBuilder;
