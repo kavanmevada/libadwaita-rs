@@ -32,4 +32,5 @@ pub mod prelude {
     pub use super::window::AdwWindowImpl;
     pub use gio::subclass::prelude::*;
     pub use glib::subclass::prelude::*;
+    pub use gtk::subclass::prelude::*;
 }
