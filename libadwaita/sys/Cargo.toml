@@ -1,6 +1,6 @@
 [package]
 name = "libadwaita-sys"
-version = "0.2.0-alpha.1"
+version = "0.2.0-alpha.2"
 authors = ["Bilal Elmoussaoui <bil.elmoussaoui@gmail.com>"]
 edition = "2021"
 build = "build.rs"
