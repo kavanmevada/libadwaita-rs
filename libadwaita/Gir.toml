@@ -25,6 +25,7 @@ external_libraries = [
 ]
 
 generate = [
+    "Adw.AboutWindow",
     "Adw.ActionRow",
     "Adw.AnimationState",
     "Adw.Avatar",
@@ -55,6 +56,7 @@ generate = [
     "Adw.PreferencesPage",
     "Adw.PreferencesRow",
     "Adw.PreferencesWindow",
+    "Adw.ResponseAppearance",
     "Adw.SplitButton",
     "Adw.SpringAnimation",
     "Adw.SpringParams",
@@ -105,7 +107,10 @@ manual = [
     "Gtk.Entry",
     "Gtk.Expression",
     "Gtk.HeaderBar",
+    "Gtk.InputHints",
+    "Gtk.InputPurpose",
     "Gtk.LayoutManager",
+    "Gtk.License",
     "Gtk.ListBoxRow",
     "Gtk.ListItemFactory",
     "Gtk.ListView",
@@ -144,6 +149,9 @@ status = "generate"
     [[object.function]]
     name = "get_enable_animations"
     rename = "is_animations_enabled"
+    [[object.function]]
+    name = "show_about_window"
+    ignore = true # C only function, replaced by AboutWindow::builder
 
 [[object]]
 name = "Adw.Animation"
@@ -190,6 +198,20 @@ generate_builder = false
 name = "Adw.LeafletPage"
 status = "generate"
 generate_builder = false
+
+[[object]]
+name = "Adw.MessageDialog"
+status = "generate"
+manual_traits = ["MessageDialogExtManual"]
+    [[object.function]]
+    name = "add_responses"
+    manual = true
+    [[object.function]]
+    pattern = "(format_body|format_body_markup|format_heading|format_heading_markup)"
+    ignore = true # C only function
+    [[object.function]]
+    name = "get_response_label"
+    manual = true # assert has_response
 
 [[object]]
 name = "Adw.PropertyAnimationTarget"

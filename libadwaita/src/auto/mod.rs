@@ -3,6 +3,13 @@
 // from gir-files (https://github.com/gtk-rs/gir-files.git)
 // DO NOT EDIT
 
+#[cfg(any(feature = "v1_2", feature = "dox"))]
+#[cfg_attr(feature = "dox", doc(cfg(feature = "v1_2")))]
+mod about_window;
+#[cfg(any(feature = "v1_2", feature = "dox"))]
+#[cfg_attr(feature = "dox", doc(cfg(feature = "v1_2")))]
+pub use self::about_window::AboutWindow;
+
 mod action_row;
 pub use self::action_row::ActionRow;
 
@@ -78,6 +85,13 @@ pub use self::leaflet::Leaflet;
 
 mod leaflet_page;
 pub use self::leaflet_page::LeafletPage;
+
+#[cfg(any(feature = "v1_2", feature = "dox"))]
+#[cfg_attr(feature = "dox", doc(cfg(feature = "v1_2")))]
+mod message_dialog;
+#[cfg(any(feature = "v1_2", feature = "dox"))]
+#[cfg_attr(feature = "dox", doc(cfg(feature = "v1_2")))]
+pub use self::message_dialog::MessageDialog;
 
 #[cfg(any(feature = "v1_2", feature = "dox"))]
 #[cfg_attr(feature = "dox", doc(cfg(feature = "v1_2")))]
@@ -181,6 +195,9 @@ pub use self::enums::FlapTransitionType;
 pub use self::enums::FoldThresholdPolicy;
 pub use self::enums::LeafletTransitionType;
 pub use self::enums::NavigationDirection;
+#[cfg(any(feature = "v1_2", feature = "dox"))]
+#[cfg_attr(feature = "dox", doc(cfg(feature = "v1_2")))]
+pub use self::enums::ResponseAppearance;
 pub use self::enums::SqueezerTransitionType;
 pub use self::enums::ToastPriority;
 pub use self::enums::ViewSwitcherPolicy;
@@ -199,6 +216,9 @@ pub mod traits {
     #[cfg_attr(feature = "dox", doc(cfg(feature = "v1_2")))]
     pub use super::entry_row::EntryRowExt;
     pub use super::expander_row::ExpanderRowExt;
+    #[cfg(any(feature = "v1_2", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v1_2")))]
+    pub use super::message_dialog::MessageDialogExt;
     pub use super::preferences_group::PreferencesGroupExt;
     pub use super::preferences_page::PreferencesPageExt;
     pub use super::preferences_row::PreferencesRowExt;
@@ -208,6 +228,9 @@ pub mod traits {
 }
 #[doc(hidden)]
 pub mod builders {
+    #[cfg(any(feature = "v1_2", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v1_2")))]
+    pub use super::about_window::AboutWindowBuilder;
     pub use super::action_row::ActionRowBuilder;
     pub use super::application::ApplicationBuilder;
     pub use super::application_window::ApplicationWindowBuilder;
@@ -228,6 +251,9 @@ pub mod builders {
     pub use super::flap::FlapBuilder;
     pub use super::header_bar::HeaderBarBuilder;
     pub use super::leaflet::LeafletBuilder;
+    #[cfg(any(feature = "v1_2", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v1_2")))]
+    pub use super::message_dialog::MessageDialogBuilder;
     #[cfg(any(feature = "v1_2", feature = "dox"))]
     #[cfg_attr(feature = "dox", doc(cfg(feature = "v1_2")))]
     pub use super::password_entry_row::PasswordEntryRowBuilder;

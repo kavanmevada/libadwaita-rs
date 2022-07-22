@@ -59,6 +59,15 @@ impl Default for EntryRow {
 pub struct EntryRowBuilder {
     #[cfg(any(feature = "v1_2", feature = "dox"))]
     #[cfg_attr(feature = "dox", doc(cfg(feature = "v1_2")))]
+    enable_emoji_completion: Option<bool>,
+    #[cfg(any(feature = "v1_2", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v1_2")))]
+    input_hints: Option<gtk::InputHints>,
+    #[cfg(any(feature = "v1_2", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v1_2")))]
+    input_purpose: Option<gtk::InputPurpose>,
+    #[cfg(any(feature = "v1_2", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v1_2")))]
     show_apply_button: Option<bool>,
     title: Option<String>,
     #[cfg(any(feature = "v1_1", feature = "dox"))]
@@ -123,6 +132,18 @@ impl EntryRowBuilder {
     #[must_use = "Building the object from the builder is usually expensive and is not expected to have side effects"]
     pub fn build(self) -> EntryRow {
         let mut properties: Vec<(&str, &dyn ToValue)> = vec![];
+        #[cfg(any(feature = "v1_2", feature = "dox"))]
+        if let Some(ref enable_emoji_completion) = self.enable_emoji_completion {
+            properties.push(("enable-emoji-completion", enable_emoji_completion));
+        }
+        #[cfg(any(feature = "v1_2", feature = "dox"))]
+        if let Some(ref input_hints) = self.input_hints {
+            properties.push(("input-hints", input_hints));
+        }
+        #[cfg(any(feature = "v1_2", feature = "dox"))]
+        if let Some(ref input_purpose) = self.input_purpose {
+            properties.push(("input-purpose", input_purpose));
+        }
         #[cfg(any(feature = "v1_2", feature = "dox"))]
         if let Some(ref show_apply_button) = self.show_apply_button {
             properties.push(("show-apply-button", show_apply_button));
@@ -266,6 +287,27 @@ impl EntryRowBuilder {
         }
         glib::Object::new::<EntryRow>(&properties)
             .expect("Failed to create an instance of EntryRow")
+    }
+
+    #[cfg(any(feature = "v1_2", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v1_2")))]
+    pub fn enable_emoji_completion(mut self, enable_emoji_completion: bool) -> Self {
+        self.enable_emoji_completion = Some(enable_emoji_completion);
+        self
+    }
+
+    #[cfg(any(feature = "v1_2", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v1_2")))]
+    pub fn input_hints(mut self, input_hints: gtk::InputHints) -> Self {
+        self.input_hints = Some(input_hints);
+        self
+    }
+
+    #[cfg(any(feature = "v1_2", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v1_2")))]
+    pub fn input_purpose(mut self, input_purpose: gtk::InputPurpose) -> Self {
+        self.input_purpose = Some(input_purpose);
+        self
     }
 
     #[cfg(any(feature = "v1_2", feature = "dox"))]
@@ -512,12 +554,33 @@ pub trait EntryRowExt: 'static {
     #[doc(alias = "adw_entry_row_add_suffix")]
     fn add_suffix(&self, widget: &impl IsA<gtk::Widget>);
 
+    #[doc(alias = "adw_entry_row_get_enable_emoji_completion")]
+    #[doc(alias = "get_enable_emoji_completion")]
+    fn enables_emoji_completion(&self) -> bool;
+
+    #[doc(alias = "adw_entry_row_get_input_hints")]
+    #[doc(alias = "get_input_hints")]
+    fn input_hints(&self) -> gtk::InputHints;
+
+    #[doc(alias = "adw_entry_row_get_input_purpose")]
+    #[doc(alias = "get_input_purpose")]
+    fn input_purpose(&self) -> gtk::InputPurpose;
+
     #[doc(alias = "adw_entry_row_get_show_apply_button")]
     #[doc(alias = "get_show_apply_button")]
     fn shows_apply_button(&self) -> bool;
 
     #[doc(alias = "adw_entry_row_remove")]
     fn remove(&self, widget: &impl IsA<gtk::Widget>);
+
+    #[doc(alias = "adw_entry_row_set_enable_emoji_completion")]
+    fn set_enable_emoji_completion(&self, enable_emoji_completion: bool);
+
+    #[doc(alias = "adw_entry_row_set_input_hints")]
+    fn set_input_hints(&self, hints: gtk::InputHints);
+
+    #[doc(alias = "adw_entry_row_set_input_purpose")]
+    fn set_input_purpose(&self, purpose: gtk::InputPurpose);
 
     #[doc(alias = "adw_entry_row_set_show_apply_button")]
     fn set_show_apply_button(&self, show_apply_button: bool);
@@ -526,6 +589,24 @@ pub trait EntryRowExt: 'static {
     #[cfg_attr(feature = "dox", doc(cfg(feature = "v1_2")))]
     #[doc(alias = "apply")]
     fn connect_apply<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
+
+    #[cfg(any(feature = "v1_2", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v1_2")))]
+    #[doc(alias = "enable-emoji-completion")]
+    fn connect_enable_emoji_completion_notify<F: Fn(&Self) + 'static>(
+        &self,
+        f: F,
+    ) -> SignalHandlerId;
+
+    #[cfg(any(feature = "v1_2", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v1_2")))]
+    #[doc(alias = "input-hints")]
+    fn connect_input_hints_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
+
+    #[cfg(any(feature = "v1_2", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v1_2")))]
+    #[doc(alias = "input-purpose")]
+    fn connect_input_purpose_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
 
     #[cfg(any(feature = "v1_2", feature = "dox"))]
     #[cfg_attr(feature = "dox", doc(cfg(feature = "v1_2")))]
@@ -552,6 +633,30 @@ impl<O: IsA<EntryRow>> EntryRowExt for O {
         }
     }
 
+    fn enables_emoji_completion(&self) -> bool {
+        unsafe {
+            from_glib(ffi::adw_entry_row_get_enable_emoji_completion(
+                self.as_ref().to_glib_none().0,
+            ))
+        }
+    }
+
+    fn input_hints(&self) -> gtk::InputHints {
+        unsafe {
+            from_glib(ffi::adw_entry_row_get_input_hints(
+                self.as_ref().to_glib_none().0,
+            ))
+        }
+    }
+
+    fn input_purpose(&self) -> gtk::InputPurpose {
+        unsafe {
+            from_glib(ffi::adw_entry_row_get_input_purpose(
+                self.as_ref().to_glib_none().0,
+            ))
+        }
+    }
+
     fn shows_apply_button(&self) -> bool {
         unsafe {
             from_glib(ffi::adw_entry_row_get_show_apply_button(
@@ -565,6 +670,30 @@ impl<O: IsA<EntryRow>> EntryRowExt for O {
             ffi::adw_entry_row_remove(
                 self.as_ref().to_glib_none().0,
                 widget.as_ref().to_glib_none().0,
+            );
+        }
+    }
+
+    fn set_enable_emoji_completion(&self, enable_emoji_completion: bool) {
+        unsafe {
+            ffi::adw_entry_row_set_enable_emoji_completion(
+                self.as_ref().to_glib_none().0,
+                enable_emoji_completion.into_glib(),
+            );
+        }
+    }
+
+    fn set_input_hints(&self, hints: gtk::InputHints) {
+        unsafe {
+            ffi::adw_entry_row_set_input_hints(self.as_ref().to_glib_none().0, hints.into_glib());
+        }
+    }
+
+    fn set_input_purpose(&self, purpose: gtk::InputPurpose) {
+        unsafe {
+            ffi::adw_entry_row_set_input_purpose(
+                self.as_ref().to_glib_none().0,
+                purpose.into_glib(),
             );
         }
     }
@@ -595,6 +724,90 @@ impl<O: IsA<EntryRow>> EntryRowExt for O {
                 b"apply\0".as_ptr() as *const _,
                 Some(transmute::<_, unsafe extern "C" fn()>(
                     apply_trampoline::<Self, F> as *const (),
+                )),
+                Box_::into_raw(f),
+            )
+        }
+    }
+
+    #[cfg(any(feature = "v1_2", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v1_2")))]
+    fn connect_enable_emoji_completion_notify<F: Fn(&Self) + 'static>(
+        &self,
+        f: F,
+    ) -> SignalHandlerId {
+        unsafe extern "C" fn notify_enable_emoji_completion_trampoline<
+            P: IsA<EntryRow>,
+            F: Fn(&P) + 'static,
+        >(
+            this: *mut ffi::AdwEntryRow,
+            _param_spec: glib::ffi::gpointer,
+            f: glib::ffi::gpointer,
+        ) {
+            let f: &F = &*(f as *const F);
+            f(EntryRow::from_glib_borrow(this).unsafe_cast_ref())
+        }
+        unsafe {
+            let f: Box_<F> = Box_::new(f);
+            connect_raw(
+                self.as_ptr() as *mut _,
+                b"notify::enable-emoji-completion\0".as_ptr() as *const _,
+                Some(transmute::<_, unsafe extern "C" fn()>(
+                    notify_enable_emoji_completion_trampoline::<Self, F> as *const (),
+                )),
+                Box_::into_raw(f),
+            )
+        }
+    }
+
+    #[cfg(any(feature = "v1_2", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v1_2")))]
+    fn connect_input_hints_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
+        unsafe extern "C" fn notify_input_hints_trampoline<
+            P: IsA<EntryRow>,
+            F: Fn(&P) + 'static,
+        >(
+            this: *mut ffi::AdwEntryRow,
+            _param_spec: glib::ffi::gpointer,
+            f: glib::ffi::gpointer,
+        ) {
+            let f: &F = &*(f as *const F);
+            f(EntryRow::from_glib_borrow(this).unsafe_cast_ref())
+        }
+        unsafe {
+            let f: Box_<F> = Box_::new(f);
+            connect_raw(
+                self.as_ptr() as *mut _,
+                b"notify::input-hints\0".as_ptr() as *const _,
+                Some(transmute::<_, unsafe extern "C" fn()>(
+                    notify_input_hints_trampoline::<Self, F> as *const (),
+                )),
+                Box_::into_raw(f),
+            )
+        }
+    }
+
+    #[cfg(any(feature = "v1_2", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v1_2")))]
+    fn connect_input_purpose_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
+        unsafe extern "C" fn notify_input_purpose_trampoline<
+            P: IsA<EntryRow>,
+            F: Fn(&P) + 'static,
+        >(
+            this: *mut ffi::AdwEntryRow,
+            _param_spec: glib::ffi::gpointer,
+            f: glib::ffi::gpointer,
+        ) {
+            let f: &F = &*(f as *const F);
+            f(EntryRow::from_glib_borrow(this).unsafe_cast_ref())
+        }
+        unsafe {
+            let f: Box_<F> = Box_::new(f);
+            connect_raw(
+                self.as_ptr() as *mut _,
+                b"notify::input-purpose\0".as_ptr() as *const _,
+                Some(transmute::<_, unsafe extern "C" fn()>(
+                    notify_input_purpose_trampoline::<Self, F> as *const (),
                 )),
                 Box_::into_raw(f),
             )
