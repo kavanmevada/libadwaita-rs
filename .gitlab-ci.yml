@@ -6,6 +6,10 @@ variables:
   RELEASES: |
     v0.2=0.2.0-alpha.2
     v0.1=0.1
+  # we need the gir submodules
+  GIT_SUBMODULE_STRATEGY: recursive
+  # overwrite 'update = none' in .gitmodules
+  GIT_SUBMODULE_UPDATE_FLAGS: --checkout
 
 image: "ghcr.io/gtk-rs/gtk4-rs/gtk4:latest"
 
@@ -15,7 +19,6 @@ before_script:
   - rustup toolchain install nightly --profile minimal --allow-downgrade -c rustfmt
   - meson _build --prefix=/usr -Dlibadwaita:tests=false -Dlibadwaita:introspection=disabled -Dlibadwaita:examples=false -Dlibadwaita:vapi=false
   - ninja -C _build install
-  - git submodule update --init
   - curl --proto '=https' --tlsv1.2 -sSf -o gir-rustdoc.py
     https://gitlab.gnome.org/World/Rust/gir-rustdoc/-/raw/main/gir-rustdoc.py
   - chmod +x gir-rustdoc.py
