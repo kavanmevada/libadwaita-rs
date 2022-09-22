@@ -10,7 +10,7 @@ fn main() {
         .build();
 
     application.connect_startup(|_| {
-        adw::init();
+        adw::init().unwrap();
     });
 
     application.connect_activate(|app| {
