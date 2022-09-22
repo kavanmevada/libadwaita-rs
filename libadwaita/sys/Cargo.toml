@@ -55,6 +55,11 @@ package = "gdk4-sys"
 git = "https://github.com/gtk-rs/gtk4-rs"
 version = "0.5"
 
+[dependencies.pango]
+package = "pango-sys"
+git = "https://github.com/gtk-rs/gtk-rs-core"
+version = "0.16"
+
 [build-dependencies]
 system-deps = "6"
 

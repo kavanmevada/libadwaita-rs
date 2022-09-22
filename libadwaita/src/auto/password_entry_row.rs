@@ -54,6 +54,12 @@ impl Default for PasswordEntryRow {
 pub struct PasswordEntryRowBuilder {
     #[cfg(any(feature = "v1_2", feature = "dox"))]
     #[cfg_attr(feature = "dox", doc(cfg(feature = "v1_2")))]
+    activates_default: Option<bool>,
+    #[cfg(any(feature = "v1_2", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v1_2")))]
+    attributes: Option<pango::AttrList>,
+    #[cfg(any(feature = "v1_2", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v1_2")))]
     enable_emoji_completion: Option<bool>,
     #[cfg(any(feature = "v1_2", feature = "dox"))]
     #[cfg_attr(feature = "dox", doc(cfg(feature = "v1_2")))]
@@ -127,6 +133,14 @@ impl PasswordEntryRowBuilder {
     #[must_use = "Building the object from the builder is usually expensive and is not expected to have side effects"]
     pub fn build(self) -> PasswordEntryRow {
         let mut properties: Vec<(&str, &dyn ToValue)> = vec![];
+        #[cfg(any(feature = "v1_2", feature = "dox"))]
+        if let Some(ref activates_default) = self.activates_default {
+            properties.push(("activates-default", activates_default));
+        }
+        #[cfg(any(feature = "v1_2", feature = "dox"))]
+        if let Some(ref attributes) = self.attributes {
+            properties.push(("attributes", attributes));
+        }
         #[cfg(any(feature = "v1_2", feature = "dox"))]
         if let Some(ref enable_emoji_completion) = self.enable_emoji_completion {
             properties.push(("enable-emoji-completion", enable_emoji_completion));
@@ -282,6 +296,20 @@ impl PasswordEntryRowBuilder {
         }
         glib::Object::new::<PasswordEntryRow>(&properties)
             .expect("Failed to create an instance of PasswordEntryRow")
+    }
+
+    #[cfg(any(feature = "v1_2", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v1_2")))]
+    pub fn activates_default(mut self, activates_default: bool) -> Self {
+        self.activates_default = Some(activates_default);
+        self
+    }
+
+    #[cfg(any(feature = "v1_2", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v1_2")))]
+    pub fn attributes(mut self, attributes: &pango::AttrList) -> Self {
+        self.attributes = Some(attributes.clone());
+        self
     }
 
     #[cfg(any(feature = "v1_2", feature = "dox"))]

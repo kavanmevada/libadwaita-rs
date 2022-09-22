@@ -65,6 +65,7 @@ generate = [
     "Adw.StatusPage",
     "Adw.SwipeTracker",
     "Adw.Swipeable",
+    "Adw.TabViewShortcuts",
     "Adw.TimedAnimation",
     "Adw.ToastPriority",
     "Adw.ViewStack",
@@ -128,6 +129,7 @@ manual = [
     "Gtk.ShortcutManager",
     "Gtk.Stack",
     "Gtk.Widget",
+    "Pango.AttrList",
     "Pango.EllipsizeMode",
 ]
 
