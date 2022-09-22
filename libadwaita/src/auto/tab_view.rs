@@ -4,6 +4,9 @@
 // DO NOT EDIT
 
 use crate::TabPage;
+#[cfg(any(feature = "v1_2", feature = "dox"))]
+#[cfg_attr(feature = "dox", doc(cfg(feature = "v1_2")))]
+use crate::TabViewShortcuts;
 use glib::object::Cast;
 use glib::object::IsA;
 use glib::object::ObjectType as ObjectType_;
@@ -48,6 +51,15 @@ impl TabView {
                 child.as_ref().to_glib_none().0,
                 parent.to_glib_none().0,
             ))
+        }
+    }
+
+    #[cfg(any(feature = "v1_2", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v1_2")))]
+    #[doc(alias = "adw_tab_view_add_shortcuts")]
+    pub fn add_shortcuts(&self, shortcuts: TabViewShortcuts) {
+        unsafe {
+            ffi::adw_tab_view_add_shortcuts(self.to_glib_none().0, shortcuts.into_glib());
         }
     }
 
@@ -173,6 +185,14 @@ impl TabView {
         unsafe { from_glib_none(ffi::adw_tab_view_get_selected_page(self.to_glib_none().0)) }
     }
 
+    #[cfg(any(feature = "v1_2", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v1_2")))]
+    #[doc(alias = "adw_tab_view_get_shortcuts")]
+    #[doc(alias = "get_shortcuts")]
+    pub fn shortcuts(&self) -> TabViewShortcuts {
+        unsafe { from_glib(ffi::adw_tab_view_get_shortcuts(self.to_glib_none().0)) }
+    }
+
     #[doc(alias = "adw_tab_view_insert")]
     pub fn insert(&self, child: &impl IsA<gtk::Widget>, position: i32) -> TabPage {
         unsafe {
@@ -212,6 +232,15 @@ impl TabView {
                 self.to_glib_none().0,
                 child.as_ref().to_glib_none().0,
             ))
+        }
+    }
+
+    #[cfg(any(feature = "v1_2", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v1_2")))]
+    #[doc(alias = "adw_tab_view_remove_shortcuts")]
+    pub fn remove_shortcuts(&self, shortcuts: TabViewShortcuts) {
+        unsafe {
+            ffi::adw_tab_view_remove_shortcuts(self.to_glib_none().0, shortcuts.into_glib());
         }
     }
 
@@ -318,6 +347,15 @@ impl TabView {
                 self.to_glib_none().0,
                 selected_page.to_glib_none().0,
             );
+        }
+    }
+
+    #[cfg(any(feature = "v1_2", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v1_2")))]
+    #[doc(alias = "adw_tab_view_set_shortcuts")]
+    pub fn set_shortcuts(&self, shortcuts: TabViewShortcuts) {
+        unsafe {
+            ffi::adw_tab_view_set_shortcuts(self.to_glib_none().0, shortcuts.into_glib());
         }
     }
 
@@ -687,6 +725,31 @@ impl TabView {
             )
         }
     }
+
+    #[cfg(any(feature = "v1_2", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v1_2")))]
+    #[doc(alias = "shortcuts")]
+    pub fn connect_shortcuts_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
+        unsafe extern "C" fn notify_shortcuts_trampoline<F: Fn(&TabView) + 'static>(
+            this: *mut ffi::AdwTabView,
+            _param_spec: glib::ffi::gpointer,
+            f: glib::ffi::gpointer,
+        ) {
+            let f: &F = &*(f as *const F);
+            f(&from_glib_borrow(this))
+        }
+        unsafe {
+            let f: Box_<F> = Box_::new(f);
+            connect_raw(
+                self.as_ptr() as *mut _,
+                b"notify::shortcuts\0".as_ptr() as *const _,
+                Some(transmute::<_, unsafe extern "C" fn()>(
+                    notify_shortcuts_trampoline::<F> as *const (),
+                )),
+                Box_::into_raw(f),
+            )
+        }
+    }
 }
 
 impl Default for TabView {
@@ -705,6 +768,9 @@ pub struct TabViewBuilder {
     default_icon: Option<gio::Icon>,
     menu_model: Option<gio::MenuModel>,
     selected_page: Option<TabPage>,
+    #[cfg(any(feature = "v1_2", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v1_2")))]
+    shortcuts: Option<TabViewShortcuts>,
     can_focus: Option<bool>,
     can_target: Option<bool>,
     css_classes: Option<Vec<String>>,
@@ -757,6 +823,10 @@ impl TabViewBuilder {
         }
         if let Some(ref selected_page) = self.selected_page {
             properties.push(("selected-page", selected_page));
+        }
+        #[cfg(any(feature = "v1_2", feature = "dox"))]
+        if let Some(ref shortcuts) = self.shortcuts {
+            properties.push(("shortcuts", shortcuts));
         }
         if let Some(ref can_focus) = self.can_focus {
             properties.push(("can-focus", can_focus));
@@ -863,6 +933,13 @@ impl TabViewBuilder {
 
     pub fn selected_page(mut self, selected_page: &TabPage) -> Self {
         self.selected_page = Some(selected_page.clone());
+        self
+    }
+
+    #[cfg(any(feature = "v1_2", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v1_2")))]
+    pub fn shortcuts(mut self, shortcuts: TabViewShortcuts) -> Self {
+        self.shortcuts = Some(shortcuts);
         self
     }
 

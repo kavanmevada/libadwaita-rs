@@ -59,6 +59,12 @@ impl Default for EntryRow {
 pub struct EntryRowBuilder {
     #[cfg(any(feature = "v1_2", feature = "dox"))]
     #[cfg_attr(feature = "dox", doc(cfg(feature = "v1_2")))]
+    activates_default: Option<bool>,
+    #[cfg(any(feature = "v1_2", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v1_2")))]
+    attributes: Option<pango::AttrList>,
+    #[cfg(any(feature = "v1_2", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v1_2")))]
     enable_emoji_completion: Option<bool>,
     #[cfg(any(feature = "v1_2", feature = "dox"))]
     #[cfg_attr(feature = "dox", doc(cfg(feature = "v1_2")))]
@@ -132,6 +138,14 @@ impl EntryRowBuilder {
     #[must_use = "Building the object from the builder is usually expensive and is not expected to have side effects"]
     pub fn build(self) -> EntryRow {
         let mut properties: Vec<(&str, &dyn ToValue)> = vec![];
+        #[cfg(any(feature = "v1_2", feature = "dox"))]
+        if let Some(ref activates_default) = self.activates_default {
+            properties.push(("activates-default", activates_default));
+        }
+        #[cfg(any(feature = "v1_2", feature = "dox"))]
+        if let Some(ref attributes) = self.attributes {
+            properties.push(("attributes", attributes));
+        }
         #[cfg(any(feature = "v1_2", feature = "dox"))]
         if let Some(ref enable_emoji_completion) = self.enable_emoji_completion {
             properties.push(("enable-emoji-completion", enable_emoji_completion));
@@ -287,6 +301,20 @@ impl EntryRowBuilder {
         }
         glib::Object::new::<EntryRow>(&properties)
             .expect("Failed to create an instance of EntryRow")
+    }
+
+    #[cfg(any(feature = "v1_2", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v1_2")))]
+    pub fn activates_default(mut self, activates_default: bool) -> Self {
+        self.activates_default = Some(activates_default);
+        self
+    }
+
+    #[cfg(any(feature = "v1_2", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v1_2")))]
+    pub fn attributes(mut self, attributes: &pango::AttrList) -> Self {
+        self.attributes = Some(attributes.clone());
+        self
     }
 
     #[cfg(any(feature = "v1_2", feature = "dox"))]
@@ -554,6 +582,14 @@ pub trait EntryRowExt: 'static {
     #[doc(alias = "adw_entry_row_add_suffix")]
     fn add_suffix(&self, widget: &impl IsA<gtk::Widget>);
 
+    #[doc(alias = "adw_entry_row_get_activates_default")]
+    #[doc(alias = "get_activates_default")]
+    fn activates_default(&self) -> bool;
+
+    #[doc(alias = "adw_entry_row_get_attributes")]
+    #[doc(alias = "get_attributes")]
+    fn attributes(&self) -> Option<pango::AttrList>;
+
     #[doc(alias = "adw_entry_row_get_enable_emoji_completion")]
     #[doc(alias = "get_enable_emoji_completion")]
     fn enables_emoji_completion(&self) -> bool;
@@ -573,6 +609,12 @@ pub trait EntryRowExt: 'static {
     #[doc(alias = "adw_entry_row_remove")]
     fn remove(&self, widget: &impl IsA<gtk::Widget>);
 
+    #[doc(alias = "adw_entry_row_set_activates_default")]
+    fn set_activates_default(&self, activates: bool);
+
+    #[doc(alias = "adw_entry_row_set_attributes")]
+    fn set_attributes(&self, attributes: Option<&pango::AttrList>);
+
     #[doc(alias = "adw_entry_row_set_enable_emoji_completion")]
     fn set_enable_emoji_completion(&self, enable_emoji_completion: bool);
 
@@ -589,6 +631,21 @@ pub trait EntryRowExt: 'static {
     #[cfg_attr(feature = "dox", doc(cfg(feature = "v1_2")))]
     #[doc(alias = "apply")]
     fn connect_apply<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
+
+    #[cfg(any(feature = "v1_2", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v1_2")))]
+    #[doc(alias = "entry-activated")]
+    fn connect_entry_activated<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
+
+    #[cfg(any(feature = "v1_2", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v1_2")))]
+    #[doc(alias = "activates-default")]
+    fn connect_activates_default_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
+
+    #[cfg(any(feature = "v1_2", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v1_2")))]
+    #[doc(alias = "attributes")]
+    fn connect_attributes_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
 
     #[cfg(any(feature = "v1_2", feature = "dox"))]
     #[cfg_attr(feature = "dox", doc(cfg(feature = "v1_2")))]
@@ -633,6 +690,22 @@ impl<O: IsA<EntryRow>> EntryRowExt for O {
         }
     }
 
+    fn activates_default(&self) -> bool {
+        unsafe {
+            from_glib(ffi::adw_entry_row_get_activates_default(
+                self.as_ref().to_glib_none().0,
+            ))
+        }
+    }
+
+    fn attributes(&self) -> Option<pango::AttrList> {
+        unsafe {
+            from_glib_full(ffi::adw_entry_row_get_attributes(
+                self.as_ref().to_glib_none().0,
+            ))
+        }
+    }
+
     fn enables_emoji_completion(&self) -> bool {
         unsafe {
             from_glib(ffi::adw_entry_row_get_enable_emoji_completion(
@@ -670,6 +743,24 @@ impl<O: IsA<EntryRow>> EntryRowExt for O {
             ffi::adw_entry_row_remove(
                 self.as_ref().to_glib_none().0,
                 widget.as_ref().to_glib_none().0,
+            );
+        }
+    }
+
+    fn set_activates_default(&self, activates: bool) {
+        unsafe {
+            ffi::adw_entry_row_set_activates_default(
+                self.as_ref().to_glib_none().0,
+                activates.into_glib(),
+            );
+        }
+    }
+
+    fn set_attributes(&self, attributes: Option<&pango::AttrList>) {
+        unsafe {
+            ffi::adw_entry_row_set_attributes(
+                self.as_ref().to_glib_none().0,
+                attributes.to_glib_none().0,
             );
         }
     }
@@ -724,6 +815,80 @@ impl<O: IsA<EntryRow>> EntryRowExt for O {
                 b"apply\0".as_ptr() as *const _,
                 Some(transmute::<_, unsafe extern "C" fn()>(
                     apply_trampoline::<Self, F> as *const (),
+                )),
+                Box_::into_raw(f),
+            )
+        }
+    }
+
+    #[cfg(any(feature = "v1_2", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v1_2")))]
+    fn connect_entry_activated<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
+        unsafe extern "C" fn entry_activated_trampoline<P: IsA<EntryRow>, F: Fn(&P) + 'static>(
+            this: *mut ffi::AdwEntryRow,
+            f: glib::ffi::gpointer,
+        ) {
+            let f: &F = &*(f as *const F);
+            f(EntryRow::from_glib_borrow(this).unsafe_cast_ref())
+        }
+        unsafe {
+            let f: Box_<F> = Box_::new(f);
+            connect_raw(
+                self.as_ptr() as *mut _,
+                b"entry-activated\0".as_ptr() as *const _,
+                Some(transmute::<_, unsafe extern "C" fn()>(
+                    entry_activated_trampoline::<Self, F> as *const (),
+                )),
+                Box_::into_raw(f),
+            )
+        }
+    }
+
+    #[cfg(any(feature = "v1_2", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v1_2")))]
+    fn connect_activates_default_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
+        unsafe extern "C" fn notify_activates_default_trampoline<
+            P: IsA<EntryRow>,
+            F: Fn(&P) + 'static,
+        >(
+            this: *mut ffi::AdwEntryRow,
+            _param_spec: glib::ffi::gpointer,
+            f: glib::ffi::gpointer,
+        ) {
+            let f: &F = &*(f as *const F);
+            f(EntryRow::from_glib_borrow(this).unsafe_cast_ref())
+        }
+        unsafe {
+            let f: Box_<F> = Box_::new(f);
+            connect_raw(
+                self.as_ptr() as *mut _,
+                b"notify::activates-default\0".as_ptr() as *const _,
+                Some(transmute::<_, unsafe extern "C" fn()>(
+                    notify_activates_default_trampoline::<Self, F> as *const (),
+                )),
+                Box_::into_raw(f),
+            )
+        }
+    }
+
+    #[cfg(any(feature = "v1_2", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v1_2")))]
+    fn connect_attributes_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
+        unsafe extern "C" fn notify_attributes_trampoline<P: IsA<EntryRow>, F: Fn(&P) + 'static>(
+            this: *mut ffi::AdwEntryRow,
+            _param_spec: glib::ffi::gpointer,
+            f: glib::ffi::gpointer,
+        ) {
+            let f: &F = &*(f as *const F);
+            f(EntryRow::from_glib_borrow(this).unsafe_cast_ref())
+        }
+        unsafe {
+            let f: Box_<F> = Box_::new(f);
+            connect_raw(
+                self.as_ptr() as *mut _,
+                b"notify::attributes\0".as_ptr() as *const _,
+                Some(transmute::<_, unsafe extern "C" fn()>(
+                    notify_attributes_trampoline::<Self, F> as *const (),
                 )),
                 Box_::into_raw(f),
             )

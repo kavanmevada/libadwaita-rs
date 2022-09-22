@@ -10,6 +10,7 @@ external_libraries = [
    "Gdk",
    "Gio",
    "Gtk",
+   "Pango",
 ]
 
 ignore = [
