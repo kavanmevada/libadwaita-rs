@@ -78,6 +78,27 @@ impl ViewStack {
         }
     }
 
+    #[cfg(any(feature = "v1_2", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v1_2")))]
+    #[doc(alias = "adw_view_stack_add_titled_with_icon")]
+    pub fn add_titled_with_icon(
+        &self,
+        child: &impl IsA<gtk::Widget>,
+        name: Option<&str>,
+        title: &str,
+        icon_name: &str,
+    ) -> ViewStackPage {
+        unsafe {
+            from_glib_none(ffi::adw_view_stack_add_titled_with_icon(
+                self.to_glib_none().0,
+                child.as_ref().to_glib_none().0,
+                name.to_glib_none().0,
+                title.to_glib_none().0,
+                icon_name.to_glib_none().0,
+            ))
+        }
+    }
+
     #[doc(alias = "adw_view_stack_get_child_by_name")]
     #[doc(alias = "get_child_by_name")]
     pub fn child_by_name(&self, name: &str) -> Option<gtk::Widget> {

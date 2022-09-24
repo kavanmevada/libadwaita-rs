@@ -202,6 +202,11 @@ pub use self::enums::SqueezerTransitionType;
 pub use self::enums::ToastPriority;
 pub use self::enums::ViewSwitcherPolicy;
 
+mod flags;
+#[cfg(any(feature = "v1_2", feature = "dox"))]
+#[cfg_attr(feature = "dox", doc(cfg(feature = "v1_2")))]
+pub use self::flags::TabViewShortcuts;
+
 pub mod functions;
 
 #[doc(hidden)]
