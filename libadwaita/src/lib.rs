@@ -115,6 +115,7 @@ mod auto;
 
 mod application;
 mod carousel;
+mod functions;
 #[cfg(any(feature = "v1_2", feature = "dox"))]
 #[cfg_attr(feature = "dox", doc(cfg(feature = "v1_2")))]
 mod message_dialog;
@@ -124,6 +125,7 @@ mod toast;
 
 pub use auto::functions::*;
 pub use auto::*;
+pub use functions::*;
 
 pub mod builders;
 pub mod prelude;

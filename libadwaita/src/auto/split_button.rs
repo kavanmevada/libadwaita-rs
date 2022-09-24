@@ -52,6 +52,18 @@ impl SplitButton {
         unsafe { from_glib(ffi::adw_split_button_get_direction(self.to_glib_none().0)) }
     }
 
+    #[cfg(any(feature = "v1_2", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v1_2")))]
+    #[doc(alias = "adw_split_button_get_dropdown_tooltip")]
+    #[doc(alias = "get_dropdown_tooltip")]
+    pub fn dropdown_tooltip(&self) -> glib::GString {
+        unsafe {
+            from_glib_none(ffi::adw_split_button_get_dropdown_tooltip(
+                self.to_glib_none().0,
+            ))
+        }
+    }
+
     #[doc(alias = "adw_split_button_get_icon_name")]
     #[doc(alias = "get_icon_name")]
     pub fn icon_name(&self) -> Option<glib::GString> {
@@ -114,6 +126,18 @@ impl SplitButton {
     pub fn set_direction(&self, direction: gtk::ArrowType) {
         unsafe {
             ffi::adw_split_button_set_direction(self.to_glib_none().0, direction.into_glib());
+        }
+    }
+
+    #[cfg(any(feature = "v1_2", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v1_2")))]
+    #[doc(alias = "adw_split_button_set_dropdown_tooltip")]
+    pub fn set_dropdown_tooltip(&self, tooltip: &str) {
+        unsafe {
+            ffi::adw_split_button_set_dropdown_tooltip(
+                self.to_glib_none().0,
+                tooltip.to_glib_none().0,
+            );
         }
     }
 
@@ -259,6 +283,31 @@ impl SplitButton {
         }
     }
 
+    #[cfg(any(feature = "v1_2", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v1_2")))]
+    #[doc(alias = "dropdown-tooltip")]
+    pub fn connect_dropdown_tooltip_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
+        unsafe extern "C" fn notify_dropdown_tooltip_trampoline<F: Fn(&SplitButton) + 'static>(
+            this: *mut ffi::AdwSplitButton,
+            _param_spec: glib::ffi::gpointer,
+            f: glib::ffi::gpointer,
+        ) {
+            let f: &F = &*(f as *const F);
+            f(&from_glib_borrow(this))
+        }
+        unsafe {
+            let f: Box_<F> = Box_::new(f);
+            connect_raw(
+                self.as_ptr() as *mut _,
+                b"notify::dropdown-tooltip\0".as_ptr() as *const _,
+                Some(transmute::<_, unsafe extern "C" fn()>(
+                    notify_dropdown_tooltip_trampoline::<F> as *const (),
+                )),
+                Box_::into_raw(f),
+            )
+        }
+    }
+
     #[doc(alias = "icon-name")]
     pub fn connect_icon_name_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_icon_name_trampoline<F: Fn(&SplitButton) + 'static>(
@@ -390,6 +439,9 @@ impl Default for SplitButton {
 pub struct SplitButtonBuilder {
     child: Option<gtk::Widget>,
     direction: Option<gtk::ArrowType>,
+    #[cfg(any(feature = "v1_2", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v1_2")))]
+    dropdown_tooltip: Option<String>,
     icon_name: Option<String>,
     label: Option<String>,
     menu_model: Option<gio::MenuModel>,
@@ -446,6 +498,10 @@ impl SplitButtonBuilder {
         }
         if let Some(ref direction) = self.direction {
             properties.push(("direction", direction));
+        }
+        #[cfg(any(feature = "v1_2", feature = "dox"))]
+        if let Some(ref dropdown_tooltip) = self.dropdown_tooltip {
+            properties.push(("dropdown-tooltip", dropdown_tooltip));
         }
         if let Some(ref icon_name) = self.icon_name {
             properties.push(("icon-name", icon_name));
@@ -569,6 +625,13 @@ impl SplitButtonBuilder {
 
     pub fn direction(mut self, direction: gtk::ArrowType) -> Self {
         self.direction = Some(direction);
+        self
+    }
+
+    #[cfg(any(feature = "v1_2", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v1_2")))]
+    pub fn dropdown_tooltip(mut self, dropdown_tooltip: &str) -> Self {
+        self.dropdown_tooltip = Some(dropdown_tooltip.to_string());
         self
     }
 

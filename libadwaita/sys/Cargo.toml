@@ -20,7 +20,7 @@ version = "1"
 version = "1.1"
 
 [package.metadata.system-deps.libadwaita_1.v1_2]
-version = "1.2.alpha"
+version = "1.2"
 [package.metadata.docs.rs]
 features = ["dox"]
 
@@ -49,6 +49,10 @@ version = "0.4"
 [dependencies.gdk]
 package = "gdk4-sys"
 version = "0.4"
+
+[dependencies.pango]
+package = "pango-sys"
+version = "0.15"
 
 [build-dependencies]
 system-deps = "6"

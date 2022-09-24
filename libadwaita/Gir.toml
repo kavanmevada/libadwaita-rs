@@ -65,6 +65,7 @@ generate = [
     "Adw.StatusPage",
     "Adw.SwipeTracker",
     "Adw.Swipeable",
+    "Adw.TabViewShortcuts",
     "Adw.TimedAnimation",
     "Adw.ToastPriority",
     "Adw.ViewStack",
@@ -128,6 +129,7 @@ manual = [
     "Gtk.ShortcutManager",
     "Gtk.Stack",
     "Gtk.Widget",
+    "Pango.AttrList",
     "Pango.EllipsizeMode",
 ]
 
@@ -149,6 +151,9 @@ status = "generate"
     [[object.function]]
     name = "get_enable_animations"
     rename = "is_animations_enabled"
+    [[object.function]]
+    name = "init"
+    manual = true
     [[object.function]]
     name = "show_about_window"
     ignore = true # C only function, replaced by AboutWindow::builder

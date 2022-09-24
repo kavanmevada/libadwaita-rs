@@ -50,6 +50,18 @@ impl TabPage {
         unsafe { from_glib_none(ffi::adw_tab_page_get_indicator_icon(self.to_glib_none().0)) }
     }
 
+    #[cfg(any(feature = "v1_2", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v1_2")))]
+    #[doc(alias = "adw_tab_page_get_indicator_tooltip")]
+    #[doc(alias = "get_indicator_tooltip")]
+    pub fn indicator_tooltip(&self) -> glib::GString {
+        unsafe {
+            from_glib_none(ffi::adw_tab_page_get_indicator_tooltip(
+                self.to_glib_none().0,
+            ))
+        }
+    }
+
     #[doc(alias = "adw_tab_page_get_loading")]
     #[doc(alias = "get_loading")]
     pub fn is_loading(&self) -> bool {
@@ -119,6 +131,18 @@ impl TabPage {
             ffi::adw_tab_page_set_indicator_icon(
                 self.to_glib_none().0,
                 indicator_icon.map(|p| p.as_ref()).to_glib_none().0,
+            );
+        }
+    }
+
+    #[cfg(any(feature = "v1_2", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v1_2")))]
+    #[doc(alias = "adw_tab_page_set_indicator_tooltip")]
+    pub fn set_indicator_tooltip(&self, tooltip: &str) {
+        unsafe {
+            ffi::adw_tab_page_set_indicator_tooltip(
+                self.to_glib_none().0,
+                tooltip.to_glib_none().0,
             );
         }
     }
@@ -220,6 +244,34 @@ impl TabPage {
                 b"notify::indicator-icon\0".as_ptr() as *const _,
                 Some(transmute::<_, unsafe extern "C" fn()>(
                     notify_indicator_icon_trampoline::<F> as *const (),
+                )),
+                Box_::into_raw(f),
+            )
+        }
+    }
+
+    #[cfg(any(feature = "v1_2", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v1_2")))]
+    #[doc(alias = "indicator-tooltip")]
+    pub fn connect_indicator_tooltip_notify<F: Fn(&Self) + 'static>(
+        &self,
+        f: F,
+    ) -> SignalHandlerId {
+        unsafe extern "C" fn notify_indicator_tooltip_trampoline<F: Fn(&TabPage) + 'static>(
+            this: *mut ffi::AdwTabPage,
+            _param_spec: glib::ffi::gpointer,
+            f: glib::ffi::gpointer,
+        ) {
+            let f: &F = &*(f as *const F);
+            f(&from_glib_borrow(this))
+        }
+        unsafe {
+            let f: Box_<F> = Box_::new(f);
+            connect_raw(
+                self.as_ptr() as *mut _,
+                b"notify::indicator-tooltip\0".as_ptr() as *const _,
+                Some(transmute::<_, unsafe extern "C" fn()>(
+                    notify_indicator_tooltip_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
             )
