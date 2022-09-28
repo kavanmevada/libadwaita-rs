@@ -4,7 +4,7 @@ variables:
   # latest release must be at the top
   # (only relevant on main branch)
   RELEASES: |
-    v0.2=0.2.0-alpha.2
+    v0.2=0.2.0-alpha.3
     v0.1=0.1
   # we need the gir submodules
   GIT_SUBMODULE_STRATEGY: recursive
