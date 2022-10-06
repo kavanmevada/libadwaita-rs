@@ -24,7 +24,7 @@ before_script:
 
 build:
   script:
-    - cargo build --all-features --examples
+    - cargo build --features v1_2 --examples
     - xvfb-run -a -s "-screen 0 1024x768x24" cargo test
 
 docs:
