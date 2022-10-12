@@ -4,47 +4,45 @@ use glib::Cast;
 use gtk::subclass::prelude::*;
 
 pub trait SwipeableImpl: WidgetImpl {
-    fn cancel_progress(&self, swipeable: &Self::Type) -> f64 {
-        self.parent_cancel_progress(swipeable)
+    fn cancel_progress(&self) -> f64 {
+        self.parent_cancel_progress()
     }
 
-    fn distance(&self, swipeable: &Self::Type) -> f64 {
-        self.parent_distance(swipeable)
+    fn distance(&self) -> f64 {
+        self.parent_distance()
     }
 
-    fn progress(&self, swipeable: &Self::Type) -> f64 {
-        self.parent_progress(swipeable)
+    fn progress(&self) -> f64 {
+        self.parent_progress()
     }
 
-    fn snap_points(&self, swipeable: &Self::Type) -> &[f64] {
-        self.parent_snap_points(swipeable)
+    fn snap_points(&self) -> &[f64] {
+        self.parent_snap_points()
     }
 
     fn swipe_area(
         &self,
-        swipeable: &Self::Type,
         navigation_direction: NavigationDirection,
         is_drag: bool,
     ) -> gdk::Rectangle {
-        self.parent_swipe_area(swipeable, navigation_direction, is_drag)
+        self.parent_swipe_area(navigation_direction, is_drag)
     }
 }
 
 pub trait SwipeableImplExt: ObjectSubclass {
-    fn parent_cancel_progress(&self, swipeable: &Self::Type) -> f64;
-    fn parent_distance(&self, swipeable: &Self::Type) -> f64;
-    fn parent_progress(&self, swipeable: &Self::Type) -> f64;
-    fn parent_snap_points(&self, swipeable: &Self::Type) -> &[f64];
+    fn parent_cancel_progress(&self) -> f64;
+    fn parent_distance(&self) -> f64;
+    fn parent_progress(&self) -> f64;
+    fn parent_snap_points(&self) -> &[f64];
     fn parent_swipe_area(
         &self,
-        swipeable: &Self::Type,
         navigation_direction: NavigationDirection,
         is_drag: bool,
     ) -> gdk::Rectangle;
 }
 
 impl<T: SwipeableImpl> SwipeableImplExt for T {
-    fn parent_cancel_progress(&self, swipeable: &Self::Type) -> f64 {
+    fn parent_cancel_progress(&self) -> f64 {
         unsafe {
             let type_data = Self::type_data();
             let parent_iface = type_data.as_ref().parent_interface::<Swipeable>()
@@ -54,11 +52,16 @@ impl<T: SwipeableImpl> SwipeableImplExt for T {
                 .get_cancel_progress
                 .expect("no parent \"get_cancel_progress\" implementation");
 
-            func(swipeable.unsafe_cast_ref::<Swipeable>().to_glib_none().0)
+            func(
+                self.instance()
+                    .unsafe_cast_ref::<Swipeable>()
+                    .to_glib_none()
+                    .0,
+            )
         }
     }
 
-    fn parent_distance(&self, swipeable: &Self::Type) -> f64 {
+    fn parent_distance(&self) -> f64 {
         unsafe {
             let type_data = Self::type_data();
             let parent_iface = type_data.as_ref().parent_interface::<Swipeable>()
@@ -68,11 +71,16 @@ impl<T: SwipeableImpl> SwipeableImplExt for T {
                 .get_distance
                 .expect("no parent \"get_distance\" implementation");
 
-            func(swipeable.unsafe_cast_ref::<Swipeable>().to_glib_none().0)
+            func(
+                self.instance()
+                    .unsafe_cast_ref::<Swipeable>()
+                    .to_glib_none()
+                    .0,
+            )
         }
     }
 
-    fn parent_progress(&self, swipeable: &Self::Type) -> f64 {
+    fn parent_progress(&self) -> f64 {
         unsafe {
             let type_data = Self::type_data();
             let parent_iface = type_data.as_ref().parent_interface::<Swipeable>()
@@ -82,11 +90,16 @@ impl<T: SwipeableImpl> SwipeableImplExt for T {
                 .get_progress
                 .expect("no parent \"get_progress\" implementation");
 
-            func(swipeable.unsafe_cast_ref::<Swipeable>().to_glib_none().0)
+            func(
+                self.instance()
+                    .unsafe_cast_ref::<Swipeable>()
+                    .to_glib_none()
+                    .0,
+            )
         }
     }
 
-    fn parent_snap_points(&self, swipeable: &Self::Type) -> &[f64] {
+    fn parent_snap_points(&self) -> &[f64] {
         unsafe {
             let type_data = Self::type_data();
             let parent_iface = type_data.as_ref().parent_interface::<Swipeable>()
@@ -99,7 +112,10 @@ impl<T: SwipeableImpl> SwipeableImplExt for T {
             let mut n_points = std::mem::MaybeUninit::uninit();
 
             let points = func(
-                swipeable.unsafe_cast_ref::<Swipeable>().to_glib_none().0,
+                self.instance()
+                    .unsafe_cast_ref::<Swipeable>()
+                    .to_glib_none()
+                    .0,
                 n_points.as_mut_ptr(),
             );
 
@@ -109,7 +125,6 @@ impl<T: SwipeableImpl> SwipeableImplExt for T {
 
     fn parent_swipe_area(
         &self,
-        swipeable: &Self::Type,
         navigation_direction: NavigationDirection,
         is_drag: bool,
     ) -> gdk::Rectangle {
@@ -124,7 +139,10 @@ impl<T: SwipeableImpl> SwipeableImplExt for T {
 
             let mut rect = gdk::Rectangle::uninitialized();
             func(
-                swipeable.unsafe_cast_ref::<Swipeable>().to_glib_none().0,
+                self.instance()
+                    .unsafe_cast_ref::<Swipeable>()
+                    .to_glib_none()
+                    .0,
                 navigation_direction.into_glib(),
                 is_drag.into_glib(),
                 rect.to_glib_none_mut().0,
@@ -153,7 +171,7 @@ unsafe extern "C" fn swipeable_get_cancel_progress<T: SwipeableImpl>(
     let instance = &*(swipeable as *mut T::Instance);
     let imp = instance.imp();
 
-    imp.cancel_progress(from_glib_borrow::<_, Swipeable>(swipeable).unsafe_cast_ref())
+    imp.cancel_progress()
 }
 
 unsafe extern "C" fn swipeable_get_distance<T: SwipeableImpl>(
@@ -162,7 +180,7 @@ unsafe extern "C" fn swipeable_get_distance<T: SwipeableImpl>(
     let instance = &*(swipeable as *mut T::Instance);
     let imp = instance.imp();
 
-    imp.distance(from_glib_borrow::<_, Swipeable>(swipeable).unsafe_cast_ref())
+    imp.distance()
 }
 
 unsafe extern "C" fn swipeable_get_progress<T: SwipeableImpl>(
@@ -171,7 +189,7 @@ unsafe extern "C" fn swipeable_get_progress<T: SwipeableImpl>(
     let instance = &*(swipeable as *mut T::Instance);
     let imp = instance.imp();
 
-    imp.progress(from_glib_borrow::<_, Swipeable>(swipeable).unsafe_cast_ref())
+    imp.progress()
 }
 
 unsafe extern "C" fn swipeable_get_snap_points<T: SwipeableImpl>(
@@ -181,7 +199,7 @@ unsafe extern "C" fn swipeable_get_snap_points<T: SwipeableImpl>(
     let instance = &*(swipeable as *mut T::Instance);
     let imp = instance.imp();
 
-    let points = imp.snap_points(from_glib_borrow::<_, Swipeable>(swipeable).unsafe_cast_ref());
+    let points = imp.snap_points();
 
     n_pointsptr.write(points.len() as libc::c_int);
     ToGlibContainerFromSlice::to_glib_full_from_slice(points)
@@ -196,11 +214,7 @@ unsafe extern "C" fn swipeable_get_swipe_area<T: SwipeableImpl>(
     let instance = &*(swipeable as *mut T::Instance);
     let imp = instance.imp();
 
-    let swipe_area = imp.swipe_area(
-        from_glib_borrow::<_, Swipeable>(swipeable).unsafe_cast_ref(),
-        from_glib(navigation_direction),
-        from_glib(is_drag),
-    );
+    let swipe_area = imp.swipe_area(from_glib(navigation_direction), from_glib(is_drag));
 
     *area = *swipe_area.to_glib_full();
 }
