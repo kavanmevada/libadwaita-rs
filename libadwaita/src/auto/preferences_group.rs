@@ -204,7 +204,6 @@ impl PreferencesGroupBuilder {
             properties.push(("accessible-role", accessible_role));
         }
         glib::Object::new::<PreferencesGroup>(&properties)
-            .expect("Failed to create an instance of PreferencesGroup")
     }
 
     pub fn description(mut self, description: &str) -> Self {

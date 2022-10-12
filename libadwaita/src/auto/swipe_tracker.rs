@@ -320,7 +320,6 @@ impl SwipeTracker {
 impl Default for SwipeTracker {
     fn default() -> Self {
         glib::object::Object::new::<Self>(&[])
-            .expect("Can't construct SwipeTracker object with default parameters")
     }
 }
 
@@ -370,7 +369,6 @@ impl SwipeTrackerBuilder {
             properties.push(("orientation", orientation));
         }
         glib::Object::new::<SwipeTracker>(&properties)
-            .expect("Failed to create an instance of SwipeTracker")
     }
 
     pub fn allow_long_swipes(mut self, allow_long_swipes: bool) -> Self {

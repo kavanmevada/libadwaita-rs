@@ -252,7 +252,6 @@ impl ActionRowBuilder {
             properties.push(("action-target", action_target));
         }
         glib::Object::new::<ActionRow>(&properties)
-            .expect("Failed to create an instance of ActionRow")
     }
 
     pub fn activatable_widget(mut self, activatable_widget: &impl IsA<gtk::Widget>) -> Self {

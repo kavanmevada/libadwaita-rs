@@ -377,7 +377,6 @@ impl Toast {
 impl Default for Toast {
     fn default() -> Self {
         glib::object::Object::new::<Self>(&[])
-            .expect("Can't construct Toast object with default parameters")
     }
 }
 
@@ -433,7 +432,7 @@ impl ToastBuilder {
         if let Some(ref title) = self.title {
             properties.push(("title", title));
         }
-        glib::Object::new::<Toast>(&properties).expect("Failed to create an instance of Toast")
+        glib::Object::new::<Toast>(&properties)
     }
 
     pub fn action_name(mut self, action_name: &str) -> Self {

@@ -636,7 +636,6 @@ impl CarouselBuilder {
             properties.push(("orientation", orientation));
         }
         glib::Object::new::<Carousel>(&properties)
-            .expect("Failed to create an instance of Carousel")
     }
 
     pub fn allow_long_swipes(mut self, allow_long_swipes: bool) -> Self {

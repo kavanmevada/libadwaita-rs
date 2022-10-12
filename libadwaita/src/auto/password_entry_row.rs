@@ -295,7 +295,6 @@ impl PasswordEntryRowBuilder {
             properties.push(("xalign", xalign));
         }
         glib::Object::new::<PasswordEntryRow>(&properties)
-            .expect("Failed to create an instance of PasswordEntryRow")
     }
 
     #[cfg(any(feature = "v1_2", feature = "dox"))]

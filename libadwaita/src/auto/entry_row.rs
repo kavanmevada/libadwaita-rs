@@ -300,7 +300,6 @@ impl EntryRowBuilder {
             properties.push(("xalign", xalign));
         }
         glib::Object::new::<EntryRow>(&properties)
-            .expect("Failed to create an instance of EntryRow")
     }
 
     #[cfg(any(feature = "v1_2", feature = "dox"))]

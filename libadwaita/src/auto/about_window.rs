@@ -1369,7 +1369,6 @@ impl AboutWindowBuilder {
             properties.push(("accessible-role", accessible_role));
         }
         glib::Object::new::<AboutWindow>(&properties)
-            .expect("Failed to create an instance of AboutWindow")
     }
 
     #[cfg(any(feature = "v1_2", feature = "dox"))]

@@ -317,7 +317,6 @@ impl TimedAnimation {
 impl Default for TimedAnimation {
     fn default() -> Self {
         glib::object::Object::new::<Self>(&[])
-            .expect("Can't construct TimedAnimation object with default parameters")
     }
 }
 
@@ -379,7 +378,6 @@ impl TimedAnimationBuilder {
             properties.push(("widget", widget));
         }
         glib::Object::new::<TimedAnimation>(&properties)
-            .expect("Failed to create an instance of TimedAnimation")
     }
 
     pub fn alternate(mut self, alternate: bool) -> Self {

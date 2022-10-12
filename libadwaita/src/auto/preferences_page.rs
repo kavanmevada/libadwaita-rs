@@ -202,7 +202,6 @@ impl PreferencesPageBuilder {
             properties.push(("accessible-role", accessible_role));
         }
         glib::Object::new::<PreferencesPage>(&properties)
-            .expect("Failed to create an instance of PreferencesPage")
     }
 
     pub fn icon_name(mut self, icon_name: &str) -> Self {

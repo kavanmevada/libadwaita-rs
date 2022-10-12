@@ -159,7 +159,6 @@ impl ClampLayoutBuilder {
             properties.push(("orientation", orientation));
         }
         glib::Object::new::<ClampLayout>(&properties)
-            .expect("Failed to create an instance of ClampLayout")
     }
 
     pub fn maximum_size(mut self, maximum_size: i32) -> Self {

@@ -231,7 +231,6 @@ impl PreferencesRowBuilder {
             properties.push(("action-target", action_target));
         }
         glib::Object::new::<PreferencesRow>(&properties)
-            .expect("Failed to create an instance of PreferencesRow")
     }
 
     pub fn title(mut self, title: &str) -> Self {

@@ -243,7 +243,6 @@ impl Avatar {
 impl Default for Avatar {
     fn default() -> Self {
         glib::object::Object::new::<Self>(&[])
-            .expect("Can't construct Avatar object with default parameters")
     }
 }
 
@@ -408,7 +407,7 @@ impl AvatarBuilder {
         if let Some(ref accessible_role) = self.accessible_role {
             properties.push(("accessible-role", accessible_role));
         }
-        glib::Object::new::<Avatar>(&properties).expect("Failed to create an instance of Avatar")
+        glib::Object::new::<Avatar>(&properties)
     }
 
     pub fn custom_image(mut self, custom_image: &impl IsA<gdk::Paintable>) -> Self {
