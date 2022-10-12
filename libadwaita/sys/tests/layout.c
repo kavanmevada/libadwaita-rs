@@ -68,6 +68,8 @@ int main() {
     printf("%s;%zu;%zu\n", "AdwSwipeTrackerClass", sizeof(AdwSwipeTrackerClass), alignof(AdwSwipeTrackerClass));
     printf("%s;%zu;%zu\n", "AdwSwipeableInterface", sizeof(AdwSwipeableInterface), alignof(AdwSwipeableInterface));
     printf("%s;%zu;%zu\n", "AdwTabBarClass", sizeof(AdwTabBarClass), alignof(AdwTabBarClass));
+    printf("%s;%zu;%zu\n", "AdwTabButtonClass", sizeof(AdwTabButtonClass), alignof(AdwTabButtonClass));
+    printf("%s;%zu;%zu\n", "AdwTabOverviewClass", sizeof(AdwTabOverviewClass), alignof(AdwTabOverviewClass));
     printf("%s;%zu;%zu\n", "AdwTabPageClass", sizeof(AdwTabPageClass), alignof(AdwTabPageClass));
     printf("%s;%zu;%zu\n", "AdwTabViewClass", sizeof(AdwTabViewClass), alignof(AdwTabViewClass));
     printf("%s;%zu;%zu\n", "AdwTabViewShortcuts", sizeof(AdwTabViewShortcuts), alignof(AdwTabViewShortcuts));

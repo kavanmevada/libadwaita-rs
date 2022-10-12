@@ -728,6 +728,34 @@ impl ::std::fmt::Debug for AdwTabBarClass {
 
 #[derive(Copy, Clone)]
 #[repr(C)]
+pub struct AdwTabButtonClass {
+    pub parent_class: gtk::GtkWidgetClass,
+}
+
+impl ::std::fmt::Debug for AdwTabButtonClass {
+    fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+        f.debug_struct(&format!("AdwTabButtonClass @ {:p}", self))
+            .field("parent_class", &self.parent_class)
+            .finish()
+    }
+}
+
+#[derive(Copy, Clone)]
+#[repr(C)]
+pub struct AdwTabOverviewClass {
+    pub parent_class: gtk::GtkWidgetClass,
+}
+
+impl ::std::fmt::Debug for AdwTabOverviewClass {
+    fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+        f.debug_struct(&format!("AdwTabOverviewClass @ {:p}", self))
+            .field("parent_class", &self.parent_class)
+            .finish()
+    }
+}
+
+#[derive(Copy, Clone)]
+#[repr(C)]
 pub struct AdwTabPageClass {
     pub parent_class: gobject::GObjectClass,
 }
@@ -1415,6 +1443,32 @@ pub struct AdwTabBar {
 impl ::std::fmt::Debug for AdwTabBar {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
         f.debug_struct(&format!("AdwTabBar @ {:p}", self)).finish()
+    }
+}
+
+#[repr(C)]
+pub struct AdwTabButton {
+    _data: [u8; 0],
+    _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
+}
+
+impl ::std::fmt::Debug for AdwTabButton {
+    fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+        f.debug_struct(&format!("AdwTabButton @ {:p}", self))
+            .finish()
+    }
+}
+
+#[repr(C)]
+pub struct AdwTabOverview {
+    _data: [u8; 0],
+    _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
+}
+
+impl ::std::fmt::Debug for AdwTabOverview {
+    fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+        f.debug_struct(&format!("AdwTabOverview @ {:p}", self))
+            .finish()
     }
 }
 
@@ -2237,6 +2291,12 @@ extern "C" {
     pub fn adw_expander_row_get_icon_name(self_: *mut AdwExpanderRow) -> *const c_char;
     pub fn adw_expander_row_get_show_enable_switch(self_: *mut AdwExpanderRow) -> gboolean;
     pub fn adw_expander_row_get_subtitle(self_: *mut AdwExpanderRow) -> *const c_char;
+    #[cfg(any(feature = "v1_3", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v1_3")))]
+    pub fn adw_expander_row_get_subtitle_lines(self_: *mut AdwExpanderRow) -> gboolean;
+    #[cfg(any(feature = "v1_3", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v1_3")))]
+    pub fn adw_expander_row_get_title_lines(self_: *mut AdwExpanderRow) -> gboolean;
     pub fn adw_expander_row_remove(self_: *mut AdwExpanderRow, child: *mut gtk::GtkWidget);
     pub fn adw_expander_row_set_enable_expansion(
         self_: *mut AdwExpanderRow,
@@ -2249,6 +2309,12 @@ extern "C" {
         show_enable_switch: gboolean,
     );
     pub fn adw_expander_row_set_subtitle(self_: *mut AdwExpanderRow, subtitle: *const c_char);
+    #[cfg(any(feature = "v1_3", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v1_3")))]
+    pub fn adw_expander_row_set_subtitle_lines(self_: *mut AdwExpanderRow, subtitle_lines: c_int);
+    #[cfg(any(feature = "v1_3", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v1_3")))]
+    pub fn adw_expander_row_set_title_lines(self_: *mut AdwExpanderRow, title_lines: c_int);
 
     //=========================================================================
     // AdwFlap
@@ -2935,6 +3001,109 @@ extern "C" {
     );
 
     //=========================================================================
+    // AdwTabButton
+    //=========================================================================
+    #[cfg(any(feature = "v1_3", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v1_3")))]
+    pub fn adw_tab_button_get_type() -> GType;
+    #[cfg(any(feature = "v1_3", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v1_3")))]
+    pub fn adw_tab_button_new() -> *mut gtk::GtkWidget;
+    #[cfg(any(feature = "v1_3", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v1_3")))]
+    pub fn adw_tab_button_get_view(self_: *mut AdwTabButton) -> *mut AdwTabView;
+    #[cfg(any(feature = "v1_3", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v1_3")))]
+    pub fn adw_tab_button_set_view(self_: *mut AdwTabButton, view: *mut AdwTabView);
+
+    //=========================================================================
+    // AdwTabOverview
+    //=========================================================================
+    #[cfg(any(feature = "v1_3", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v1_3")))]
+    pub fn adw_tab_overview_get_type() -> GType;
+    #[cfg(any(feature = "v1_3", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v1_3")))]
+    pub fn adw_tab_overview_new() -> *mut gtk::GtkWidget;
+    #[cfg(any(feature = "v1_3", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v1_3")))]
+    pub fn adw_tab_overview_get_child(self_: *mut AdwTabOverview) -> *mut gtk::GtkWidget;
+    #[cfg(any(feature = "v1_3", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v1_3")))]
+    pub fn adw_tab_overview_get_enable_new_tab(self_: *mut AdwTabOverview) -> gboolean;
+    #[cfg(any(feature = "v1_3", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v1_3")))]
+    pub fn adw_tab_overview_get_enable_search(self_: *mut AdwTabOverview) -> gboolean;
+    #[cfg(any(feature = "v1_3", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v1_3")))]
+    pub fn adw_tab_overview_get_inverted(self_: *mut AdwTabOverview) -> gboolean;
+    #[cfg(any(feature = "v1_3", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v1_3")))]
+    pub fn adw_tab_overview_get_open(self_: *mut AdwTabOverview) -> gboolean;
+    #[cfg(any(feature = "v1_3", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v1_3")))]
+    pub fn adw_tab_overview_get_search_active(self_: *mut AdwTabOverview) -> gboolean;
+    #[cfg(any(feature = "v1_3", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v1_3")))]
+    pub fn adw_tab_overview_get_secondary_menu(self_: *mut AdwTabOverview) -> *mut gio::GMenuModel;
+    #[cfg(any(feature = "v1_3", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v1_3")))]
+    pub fn adw_tab_overview_get_show_end_title_buttons(self_: *mut AdwTabOverview) -> gboolean;
+    #[cfg(any(feature = "v1_3", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v1_3")))]
+    pub fn adw_tab_overview_get_show_start_title_buttons(self_: *mut AdwTabOverview) -> gboolean;
+    #[cfg(any(feature = "v1_3", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v1_3")))]
+    pub fn adw_tab_overview_get_view(self_: *mut AdwTabOverview) -> *mut AdwTabView;
+    #[cfg(any(feature = "v1_3", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v1_3")))]
+    pub fn adw_tab_overview_set_child(self_: *mut AdwTabOverview, child: *mut gtk::GtkWidget);
+    #[cfg(any(feature = "v1_3", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v1_3")))]
+    pub fn adw_tab_overview_set_enable_new_tab(
+        self_: *mut AdwTabOverview,
+        enable_new_tab: gboolean,
+    );
+    #[cfg(any(feature = "v1_3", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v1_3")))]
+    pub fn adw_tab_overview_set_enable_search(self_: *mut AdwTabOverview, enable_search: gboolean);
+    #[cfg(any(feature = "v1_3", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v1_3")))]
+    pub fn adw_tab_overview_set_inverted(self_: *mut AdwTabOverview, inverted: gboolean);
+    #[cfg(any(feature = "v1_3", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v1_3")))]
+    pub fn adw_tab_overview_set_open(self_: *mut AdwTabOverview, open: gboolean);
+    #[cfg(any(feature = "v1_3", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v1_3")))]
+    pub fn adw_tab_overview_set_secondary_menu(
+        self_: *mut AdwTabOverview,
+        secondary_menu: *mut gio::GMenuModel,
+    );
+    #[cfg(any(feature = "v1_3", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v1_3")))]
+    pub fn adw_tab_overview_set_show_end_title_buttons(
+        self_: *mut AdwTabOverview,
+        show_end_title_buttons: gboolean,
+    );
+    #[cfg(any(feature = "v1_3", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v1_3")))]
+    pub fn adw_tab_overview_set_show_start_title_buttons(
+        self_: *mut AdwTabOverview,
+        show_start_title_buttons: gboolean,
+    );
+    #[cfg(any(feature = "v1_3", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v1_3")))]
+    pub fn adw_tab_overview_set_view(self_: *mut AdwTabOverview, view: *mut AdwTabView);
+    #[cfg(any(feature = "v1_3", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v1_3")))]
+    pub fn adw_tab_overview_setup_extra_drop_target(
+        self_: *mut AdwTabOverview,
+        actions: gdk::GdkDragAction,
+        types: *mut GType,
+        n_types: size_t,
+    );
+
+    //=========================================================================
     // AdwTabPage
     //=========================================================================
     pub fn adw_tab_page_get_type() -> GType;
@@ -2945,21 +3114,48 @@ extern "C" {
     #[cfg(any(feature = "v1_2", feature = "dox"))]
     #[cfg_attr(feature = "dox", doc(cfg(feature = "v1_2")))]
     pub fn adw_tab_page_get_indicator_tooltip(self_: *mut AdwTabPage) -> *const c_char;
+    #[cfg(any(feature = "v1_3", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v1_3")))]
+    pub fn adw_tab_page_get_keyword(self_: *mut AdwTabPage) -> *const c_char;
+    #[cfg(any(feature = "v1_3", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v1_3")))]
+    pub fn adw_tab_page_get_live_thumbnail(self_: *mut AdwTabPage) -> gboolean;
     pub fn adw_tab_page_get_loading(self_: *mut AdwTabPage) -> gboolean;
     pub fn adw_tab_page_get_needs_attention(self_: *mut AdwTabPage) -> gboolean;
     pub fn adw_tab_page_get_parent(self_: *mut AdwTabPage) -> *mut AdwTabPage;
     pub fn adw_tab_page_get_pinned(self_: *mut AdwTabPage) -> gboolean;
     pub fn adw_tab_page_get_selected(self_: *mut AdwTabPage) -> gboolean;
+    #[cfg(any(feature = "v1_3", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v1_3")))]
+    pub fn adw_tab_page_get_thumbnail_xalign(self_: *mut AdwTabPage) -> c_float;
+    #[cfg(any(feature = "v1_3", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v1_3")))]
+    pub fn adw_tab_page_get_thumbnail_yalign(self_: *mut AdwTabPage) -> c_float;
     pub fn adw_tab_page_get_title(self_: *mut AdwTabPage) -> *const c_char;
     pub fn adw_tab_page_get_tooltip(self_: *mut AdwTabPage) -> *const c_char;
+    #[cfg(any(feature = "v1_3", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v1_3")))]
+    pub fn adw_tab_page_invalidate_thumbnail(self_: *mut AdwTabPage);
     pub fn adw_tab_page_set_icon(self_: *mut AdwTabPage, icon: *mut gio::GIcon);
     pub fn adw_tab_page_set_indicator_activatable(self_: *mut AdwTabPage, activatable: gboolean);
     pub fn adw_tab_page_set_indicator_icon(self_: *mut AdwTabPage, indicator_icon: *mut gio::GIcon);
     #[cfg(any(feature = "v1_2", feature = "dox"))]
     #[cfg_attr(feature = "dox", doc(cfg(feature = "v1_2")))]
     pub fn adw_tab_page_set_indicator_tooltip(self_: *mut AdwTabPage, tooltip: *const c_char);
+    #[cfg(any(feature = "v1_3", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v1_3")))]
+    pub fn adw_tab_page_set_keyword(self_: *mut AdwTabPage, keyword: *const c_char);
+    #[cfg(any(feature = "v1_3", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v1_3")))]
+    pub fn adw_tab_page_set_live_thumbnail(self_: *mut AdwTabPage, live_thumbnail: gboolean);
     pub fn adw_tab_page_set_loading(self_: *mut AdwTabPage, loading: gboolean);
     pub fn adw_tab_page_set_needs_attention(self_: *mut AdwTabPage, needs_attention: gboolean);
+    #[cfg(any(feature = "v1_3", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v1_3")))]
+    pub fn adw_tab_page_set_thumbnail_xalign(self_: *mut AdwTabPage, xalign: c_float);
+    #[cfg(any(feature = "v1_3", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v1_3")))]
+    pub fn adw_tab_page_set_thumbnail_yalign(self_: *mut AdwTabPage, yalign: c_float);
     pub fn adw_tab_page_set_title(self_: *mut AdwTabPage, title: *const c_char);
     pub fn adw_tab_page_set_tooltip(self_: *mut AdwTabPage, tooltip: *const c_char);
 
@@ -3019,6 +3215,9 @@ extern "C" {
         child: *mut gtk::GtkWidget,
         position: c_int,
     ) -> *mut AdwTabPage;
+    #[cfg(any(feature = "v1_3", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v1_3")))]
+    pub fn adw_tab_view_invalidate_thumbnails(self_: *mut AdwTabView);
     pub fn adw_tab_view_prepend(
         self_: *mut AdwTabView,
         child: *mut gtk::GtkWidget,

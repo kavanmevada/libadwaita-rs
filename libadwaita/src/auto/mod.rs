@@ -146,6 +146,20 @@ pub use self::swipeable::Swipeable;
 mod tab_bar;
 pub use self::tab_bar::TabBar;
 
+#[cfg(any(feature = "v1_3", feature = "dox"))]
+#[cfg_attr(feature = "dox", doc(cfg(feature = "v1_3")))]
+mod tab_button;
+#[cfg(any(feature = "v1_3", feature = "dox"))]
+#[cfg_attr(feature = "dox", doc(cfg(feature = "v1_3")))]
+pub use self::tab_button::TabButton;
+
+#[cfg(any(feature = "v1_3", feature = "dox"))]
+#[cfg_attr(feature = "dox", doc(cfg(feature = "v1_3")))]
+mod tab_overview;
+#[cfg(any(feature = "v1_3", feature = "dox"))]
+#[cfg_attr(feature = "dox", doc(cfg(feature = "v1_3")))]
+pub use self::tab_overview::TabOverview;
+
 mod tab_page;
 pub use self::tab_page::TabPage;
 
@@ -272,6 +286,12 @@ pub mod builders {
     pub use super::status_page::StatusPageBuilder;
     pub use super::swipe_tracker::SwipeTrackerBuilder;
     pub use super::tab_bar::TabBarBuilder;
+    #[cfg(any(feature = "v1_3", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v1_3")))]
+    pub use super::tab_button::TabButtonBuilder;
+    #[cfg(any(feature = "v1_3", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v1_3")))]
+    pub use super::tab_overview::TabOverviewBuilder;
     pub use super::tab_view::TabViewBuilder;
     pub use super::timed_animation::TimedAnimationBuilder;
     pub use super::toast::ToastBuilder;

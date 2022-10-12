@@ -215,6 +215,15 @@ impl TabView {
         }
     }
 
+    #[cfg(any(feature = "v1_3", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v1_3")))]
+    #[doc(alias = "adw_tab_view_invalidate_thumbnails")]
+    pub fn invalidate_thumbnails(&self) {
+        unsafe {
+            ffi::adw_tab_view_invalidate_thumbnails(self.to_glib_none().0);
+        }
+    }
+
     #[doc(alias = "adw_tab_view_prepend")]
     pub fn prepend(&self, child: &impl IsA<gtk::Widget>) -> TabPage {
         unsafe {
