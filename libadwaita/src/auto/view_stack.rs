@@ -479,7 +479,6 @@ impl ViewStackBuilder {
             properties.push(("accessible-role", accessible_role));
         }
         glib::Object::new::<ViewStack>(&properties)
-            .expect("Failed to create an instance of ViewStack")
     }
 
     pub fn hhomogeneous(mut self, hhomogeneous: bool) -> Self {

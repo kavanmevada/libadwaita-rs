@@ -411,7 +411,6 @@ impl ViewSwitcherTitleBuilder {
             properties.push(("accessible-role", accessible_role));
         }
         glib::Object::new::<ViewSwitcherTitle>(&properties)
-            .expect("Failed to create an instance of ViewSwitcherTitle")
     }
 
     pub fn stack(mut self, stack: &ViewStack) -> Self {

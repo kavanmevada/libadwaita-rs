@@ -270,7 +270,6 @@ impl ViewSwitcherBuilder {
             properties.push(("accessible-role", accessible_role));
         }
         glib::Object::new::<ViewSwitcher>(&properties)
-            .expect("Failed to create an instance of ViewSwitcher")
     }
 
     pub fn policy(mut self, policy: ViewSwitcherPolicy) -> Self {

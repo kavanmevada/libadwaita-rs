@@ -830,7 +830,7 @@ impl FlapBuilder {
         if let Some(ref orientation) = self.orientation {
             properties.push(("orientation", orientation));
         }
-        glib::Object::new::<Flap>(&properties).expect("Failed to create an instance of Flap")
+        glib::Object::new::<Flap>(&properties)
     }
 
     pub fn content(mut self, content: &impl IsA<gtk::Widget>) -> Self {

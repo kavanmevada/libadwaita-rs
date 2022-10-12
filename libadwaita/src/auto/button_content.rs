@@ -318,7 +318,6 @@ impl ButtonContentBuilder {
             properties.push(("accessible-role", accessible_role));
         }
         glib::Object::new::<ButtonContent>(&properties)
-            .expect("Failed to create an instance of ButtonContent")
     }
 
     pub fn icon_name(mut self, icon_name: &str) -> Self {

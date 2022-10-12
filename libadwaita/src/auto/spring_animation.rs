@@ -349,7 +349,6 @@ impl SpringAnimation {
 impl Default for SpringAnimation {
     fn default() -> Self {
         glib::object::Object::new::<Self>(&[])
-            .expect("Can't construct SpringAnimation object with default parameters")
     }
 }
 
@@ -407,7 +406,6 @@ impl SpringAnimationBuilder {
             properties.push(("widget", widget));
         }
         glib::Object::new::<SpringAnimation>(&properties)
-            .expect("Failed to create an instance of SpringAnimation")
     }
 
     pub fn clamp(mut self, clamp: bool) -> Self {

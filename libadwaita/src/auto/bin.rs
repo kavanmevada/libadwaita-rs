@@ -192,7 +192,7 @@ impl BinBuilder {
         if let Some(ref accessible_role) = self.accessible_role {
             properties.push(("accessible-role", accessible_role));
         }
-        glib::Object::new::<Bin>(&properties).expect("Failed to create an instance of Bin")
+        glib::Object::new::<Bin>(&properties)
     }
 
     pub fn child(mut self, child: &impl IsA<gtk::Widget>) -> Self {

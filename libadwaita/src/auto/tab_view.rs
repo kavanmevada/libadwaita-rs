@@ -918,7 +918,7 @@ impl TabViewBuilder {
         if let Some(ref accessible_role) = self.accessible_role {
             properties.push(("accessible-role", accessible_role));
         }
-        glib::Object::new::<TabView>(&properties).expect("Failed to create an instance of TabView")
+        glib::Object::new::<TabView>(&properties)
     }
 
     pub fn default_icon(mut self, default_icon: &impl IsA<gio::Icon>) -> Self {

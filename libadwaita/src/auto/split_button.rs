@@ -615,7 +615,6 @@ impl SplitButtonBuilder {
             properties.push(("action-target", action_target));
         }
         glib::Object::new::<SplitButton>(&properties)
-            .expect("Failed to create an instance of SplitButton")
     }
 
     pub fn child(mut self, child: &impl IsA<gtk::Widget>) -> Self {

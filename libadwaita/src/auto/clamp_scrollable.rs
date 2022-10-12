@@ -339,7 +339,6 @@ impl ClampScrollableBuilder {
             properties.push(("vscroll-policy", vscroll_policy));
         }
         glib::Object::new::<ClampScrollable>(&properties)
-            .expect("Failed to create an instance of ClampScrollable")
     }
 
     pub fn child(mut self, child: &impl IsA<gtk::Widget>) -> Self {

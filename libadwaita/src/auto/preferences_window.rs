@@ -306,7 +306,6 @@ impl PreferencesWindowBuilder {
             properties.push(("accessible-role", accessible_role));
         }
         glib::Object::new::<PreferencesWindow>(&properties)
-            .expect("Failed to create an instance of PreferencesWindow")
     }
 
     pub fn can_navigate_back(mut self, can_navigate_back: bool) -> Self {

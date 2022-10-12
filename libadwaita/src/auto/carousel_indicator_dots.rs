@@ -240,7 +240,6 @@ impl CarouselIndicatorDotsBuilder {
             properties.push(("orientation", orientation));
         }
         glib::Object::new::<CarouselIndicatorDots>(&properties)
-            .expect("Failed to create an instance of CarouselIndicatorDots")
     }
 
     pub fn carousel(mut self, carousel: &Carousel) -> Self {

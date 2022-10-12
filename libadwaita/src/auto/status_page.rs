@@ -397,7 +397,6 @@ impl StatusPageBuilder {
             properties.push(("accessible-role", accessible_role));
         }
         glib::Object::new::<StatusPage>(&properties)
-            .expect("Failed to create an instance of StatusPage")
     }
 
     pub fn child(mut self, child: &impl IsA<gtk::Widget>) -> Self {

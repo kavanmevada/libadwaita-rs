@@ -659,7 +659,6 @@ impl SqueezerBuilder {
             properties.push(("orientation", orientation));
         }
         glib::Object::new::<Squeezer>(&properties)
-            .expect("Failed to create an instance of Squeezer")
     }
 
     pub fn allow_none(mut self, allow_none: bool) -> Self {

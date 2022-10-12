@@ -847,7 +847,7 @@ impl LeafletBuilder {
         if let Some(ref orientation) = self.orientation {
             properties.push(("orientation", orientation));
         }
-        glib::Object::new::<Leaflet>(&properties).expect("Failed to create an instance of Leaflet")
+        glib::Object::new::<Leaflet>(&properties)
     }
 
     pub fn can_navigate_back(mut self, can_navigate_back: bool) -> Self {

@@ -121,7 +121,6 @@ impl WindowTitle {
 impl Default for WindowTitle {
     fn default() -> Self {
         glib::object::Object::new::<Self>(&[])
-            .expect("Can't construct WindowTitle object with default parameters")
     }
 }
 
@@ -275,7 +274,6 @@ impl WindowTitleBuilder {
             properties.push(("accessible-role", accessible_role));
         }
         glib::Object::new::<WindowTitle>(&properties)
-            .expect("Failed to create an instance of WindowTitle")
     }
 
     pub fn subtitle(mut self, subtitle: &str) -> Self {

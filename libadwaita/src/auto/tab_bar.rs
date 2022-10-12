@@ -506,7 +506,7 @@ impl TabBarBuilder {
         if let Some(ref accessible_role) = self.accessible_role {
             properties.push(("accessible-role", accessible_role));
         }
-        glib::Object::new::<TabBar>(&properties).expect("Failed to create an instance of TabBar")
+        glib::Object::new::<TabBar>(&properties)
     }
 
     pub fn autohide(mut self, autohide: bool) -> Self {

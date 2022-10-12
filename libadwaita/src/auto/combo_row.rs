@@ -277,7 +277,6 @@ impl ComboRowBuilder {
             properties.push(("action-target", action_target));
         }
         glib::Object::new::<ComboRow>(&properties)
-            .expect("Failed to create an instance of ComboRow")
     }
 
     pub fn expression(mut self, expression: impl AsRef<gtk::Expression>) -> Self {

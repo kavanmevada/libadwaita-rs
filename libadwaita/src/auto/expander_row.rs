@@ -252,7 +252,6 @@ impl ExpanderRowBuilder {
             properties.push(("action-target", action_target));
         }
         glib::Object::new::<ExpanderRow>(&properties)
-            .expect("Failed to create an instance of ExpanderRow")
     }
 
     pub fn enable_expansion(mut self, enable_expansion: bool) -> Self {

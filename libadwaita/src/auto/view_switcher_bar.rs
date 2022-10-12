@@ -269,7 +269,6 @@ impl ViewSwitcherBarBuilder {
             properties.push(("accessible-role", accessible_role));
         }
         glib::Object::new::<ViewSwitcherBar>(&properties)
-            .expect("Failed to create an instance of ViewSwitcherBar")
     }
 
     pub fn reveal(mut self, reveal: bool) -> Self {

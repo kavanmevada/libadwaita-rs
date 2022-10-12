@@ -317,7 +317,7 @@ impl ClampBuilder {
         if let Some(ref orientation) = self.orientation {
             properties.push(("orientation", orientation));
         }
-        glib::Object::new::<Clamp>(&properties).expect("Failed to create an instance of Clamp")
+        glib::Object::new::<Clamp>(&properties)
     }
 
     pub fn child(mut self, child: &impl IsA<gtk::Widget>) -> Self {
