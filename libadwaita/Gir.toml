@@ -65,6 +65,8 @@ generate = [
     "Adw.StatusPage",
     "Adw.SwipeTracker",
     "Adw.Swipeable",
+    "Adw.TabButton",
+    "Adw.TabOverview",
     "Adw.TabViewShortcuts",
     "Adw.TimedAnimation",
     "Adw.ToastPriority",

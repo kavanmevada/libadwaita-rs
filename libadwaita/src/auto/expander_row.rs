@@ -60,6 +60,12 @@ pub struct ExpanderRowBuilder {
     icon_name: Option<String>,
     show_enable_switch: Option<bool>,
     subtitle: Option<String>,
+    #[cfg(any(feature = "v1_3", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v1_3")))]
+    subtitle_lines: Option<i32>,
+    #[cfg(any(feature = "v1_3", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v1_3")))]
+    title_lines: Option<i32>,
     title: Option<String>,
     #[cfg(any(feature = "v1_1", feature = "dox"))]
     #[cfg_attr(feature = "dox", doc(cfg(feature = "v1_1")))]
@@ -131,6 +137,14 @@ impl ExpanderRowBuilder {
         }
         if let Some(ref subtitle) = self.subtitle {
             properties.push(("subtitle", subtitle));
+        }
+        #[cfg(any(feature = "v1_3", feature = "dox"))]
+        if let Some(ref subtitle_lines) = self.subtitle_lines {
+            properties.push(("subtitle-lines", subtitle_lines));
+        }
+        #[cfg(any(feature = "v1_3", feature = "dox"))]
+        if let Some(ref title_lines) = self.title_lines {
+            properties.push(("title-lines", title_lines));
         }
         if let Some(ref title) = self.title {
             properties.push(("title", title));
@@ -276,6 +290,20 @@ impl ExpanderRowBuilder {
 
     pub fn subtitle(mut self, subtitle: &str) -> Self {
         self.subtitle = Some(subtitle.to_string());
+        self
+    }
+
+    #[cfg(any(feature = "v1_3", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v1_3")))]
+    pub fn subtitle_lines(mut self, subtitle_lines: i32) -> Self {
+        self.subtitle_lines = Some(subtitle_lines);
+        self
+    }
+
+    #[cfg(any(feature = "v1_3", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v1_3")))]
+    pub fn title_lines(mut self, title_lines: i32) -> Self {
+        self.title_lines = Some(title_lines);
         self
     }
 
@@ -509,6 +537,18 @@ pub trait ExpanderRowExt: 'static {
     #[doc(alias = "get_subtitle")]
     fn subtitle(&self) -> glib::GString;
 
+    #[cfg(any(feature = "v1_3", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v1_3")))]
+    #[doc(alias = "adw_expander_row_get_subtitle_lines")]
+    #[doc(alias = "get_subtitle_lines")]
+    fn is_subtitle_lines(&self) -> bool;
+
+    #[cfg(any(feature = "v1_3", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v1_3")))]
+    #[doc(alias = "adw_expander_row_get_title_lines")]
+    #[doc(alias = "get_title_lines")]
+    fn is_title_lines(&self) -> bool;
+
     #[doc(alias = "adw_expander_row_remove")]
     fn remove(&self, child: &impl IsA<gtk::Widget>);
 
@@ -527,6 +567,16 @@ pub trait ExpanderRowExt: 'static {
     #[doc(alias = "adw_expander_row_set_subtitle")]
     fn set_subtitle(&self, subtitle: &str);
 
+    #[cfg(any(feature = "v1_3", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v1_3")))]
+    #[doc(alias = "adw_expander_row_set_subtitle_lines")]
+    fn set_subtitle_lines(&self, subtitle_lines: i32);
+
+    #[cfg(any(feature = "v1_3", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v1_3")))]
+    #[doc(alias = "adw_expander_row_set_title_lines")]
+    fn set_title_lines(&self, title_lines: i32);
+
     #[doc(alias = "enable-expansion")]
     fn connect_enable_expansion_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
 
@@ -541,6 +591,16 @@ pub trait ExpanderRowExt: 'static {
 
     #[doc(alias = "subtitle")]
     fn connect_subtitle_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
+
+    #[cfg(any(feature = "v1_3", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v1_3")))]
+    #[doc(alias = "subtitle-lines")]
+    fn connect_subtitle_lines_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
+
+    #[cfg(any(feature = "v1_3", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v1_3")))]
+    #[doc(alias = "title-lines")]
+    fn connect_title_lines_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
 }
 
 impl<O: IsA<ExpanderRow>> ExpanderRowExt for O {
@@ -611,6 +671,26 @@ impl<O: IsA<ExpanderRow>> ExpanderRowExt for O {
         }
     }
 
+    #[cfg(any(feature = "v1_3", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v1_3")))]
+    fn is_subtitle_lines(&self) -> bool {
+        unsafe {
+            from_glib(ffi::adw_expander_row_get_subtitle_lines(
+                self.as_ref().to_glib_none().0,
+            ))
+        }
+    }
+
+    #[cfg(any(feature = "v1_3", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v1_3")))]
+    fn is_title_lines(&self) -> bool {
+        unsafe {
+            from_glib(ffi::adw_expander_row_get_title_lines(
+                self.as_ref().to_glib_none().0,
+            ))
+        }
+    }
+
     fn remove(&self, child: &impl IsA<gtk::Widget>) {
         unsafe {
             ffi::adw_expander_row_remove(
@@ -662,6 +742,25 @@ impl<O: IsA<ExpanderRow>> ExpanderRowExt for O {
                 self.as_ref().to_glib_none().0,
                 subtitle.to_glib_none().0,
             );
+        }
+    }
+
+    #[cfg(any(feature = "v1_3", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v1_3")))]
+    fn set_subtitle_lines(&self, subtitle_lines: i32) {
+        unsafe {
+            ffi::adw_expander_row_set_subtitle_lines(
+                self.as_ref().to_glib_none().0,
+                subtitle_lines,
+            );
+        }
+    }
+
+    #[cfg(any(feature = "v1_3", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v1_3")))]
+    fn set_title_lines(&self, title_lines: i32) {
+        unsafe {
+            ffi::adw_expander_row_set_title_lines(self.as_ref().to_glib_none().0, title_lines);
         }
     }
 
@@ -784,6 +883,60 @@ impl<O: IsA<ExpanderRow>> ExpanderRowExt for O {
                 b"notify::subtitle\0".as_ptr() as *const _,
                 Some(transmute::<_, unsafe extern "C" fn()>(
                     notify_subtitle_trampoline::<Self, F> as *const (),
+                )),
+                Box_::into_raw(f),
+            )
+        }
+    }
+
+    #[cfg(any(feature = "v1_3", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v1_3")))]
+    fn connect_subtitle_lines_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
+        unsafe extern "C" fn notify_subtitle_lines_trampoline<
+            P: IsA<ExpanderRow>,
+            F: Fn(&P) + 'static,
+        >(
+            this: *mut ffi::AdwExpanderRow,
+            _param_spec: glib::ffi::gpointer,
+            f: glib::ffi::gpointer,
+        ) {
+            let f: &F = &*(f as *const F);
+            f(ExpanderRow::from_glib_borrow(this).unsafe_cast_ref())
+        }
+        unsafe {
+            let f: Box_<F> = Box_::new(f);
+            connect_raw(
+                self.as_ptr() as *mut _,
+                b"notify::subtitle-lines\0".as_ptr() as *const _,
+                Some(transmute::<_, unsafe extern "C" fn()>(
+                    notify_subtitle_lines_trampoline::<Self, F> as *const (),
+                )),
+                Box_::into_raw(f),
+            )
+        }
+    }
+
+    #[cfg(any(feature = "v1_3", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v1_3")))]
+    fn connect_title_lines_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
+        unsafe extern "C" fn notify_title_lines_trampoline<
+            P: IsA<ExpanderRow>,
+            F: Fn(&P) + 'static,
+        >(
+            this: *mut ffi::AdwExpanderRow,
+            _param_spec: glib::ffi::gpointer,
+            f: glib::ffi::gpointer,
+        ) {
+            let f: &F = &*(f as *const F);
+            f(ExpanderRow::from_glib_borrow(this).unsafe_cast_ref())
+        }
+        unsafe {
+            let f: Box_<F> = Box_::new(f);
+            connect_raw(
+                self.as_ptr() as *mut _,
+                b"notify::title-lines\0".as_ptr() as *const _,
+                Some(transmute::<_, unsafe extern "C" fn()>(
+                    notify_title_lines_trampoline::<Self, F> as *const (),
                 )),
                 Box_::into_raw(f),
             )

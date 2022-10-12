@@ -623,6 +623,20 @@ const RUST_LAYOUTS: &[(&str, Layout)] = &[
         },
     ),
     (
+        "AdwTabButtonClass",
+        Layout {
+            size: size_of::<AdwTabButtonClass>(),
+            alignment: align_of::<AdwTabButtonClass>(),
+        },
+    ),
+    (
+        "AdwTabOverviewClass",
+        Layout {
+            size: size_of::<AdwTabOverviewClass>(),
+            alignment: align_of::<AdwTabOverviewClass>(),
+        },
+    ),
+    (
         "AdwTabPageClass",
         Layout {
             size: size_of::<AdwTabPageClass>(),

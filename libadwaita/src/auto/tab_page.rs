@@ -62,6 +62,22 @@ impl TabPage {
         }
     }
 
+    #[cfg(any(feature = "v1_3", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v1_3")))]
+    #[doc(alias = "adw_tab_page_get_keyword")]
+    #[doc(alias = "get_keyword")]
+    pub fn keyword(&self) -> Option<glib::GString> {
+        unsafe { from_glib_none(ffi::adw_tab_page_get_keyword(self.to_glib_none().0)) }
+    }
+
+    #[cfg(any(feature = "v1_3", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v1_3")))]
+    #[doc(alias = "adw_tab_page_get_live_thumbnail")]
+    #[doc(alias = "get_live_thumbnail")]
+    pub fn is_live_thumbnail(&self) -> bool {
+        unsafe { from_glib(ffi::adw_tab_page_get_live_thumbnail(self.to_glib_none().0)) }
+    }
+
     #[doc(alias = "adw_tab_page_get_loading")]
     #[doc(alias = "get_loading")]
     pub fn is_loading(&self) -> bool {
@@ -93,6 +109,22 @@ impl TabPage {
         unsafe { from_glib(ffi::adw_tab_page_get_selected(self.to_glib_none().0)) }
     }
 
+    #[cfg(any(feature = "v1_3", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v1_3")))]
+    #[doc(alias = "adw_tab_page_get_thumbnail_xalign")]
+    #[doc(alias = "get_thumbnail_xalign")]
+    pub fn thumbnail_xalign(&self) -> f32 {
+        unsafe { ffi::adw_tab_page_get_thumbnail_xalign(self.to_glib_none().0) }
+    }
+
+    #[cfg(any(feature = "v1_3", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v1_3")))]
+    #[doc(alias = "adw_tab_page_get_thumbnail_yalign")]
+    #[doc(alias = "get_thumbnail_yalign")]
+    pub fn thumbnail_yalign(&self) -> f32 {
+        unsafe { ffi::adw_tab_page_get_thumbnail_yalign(self.to_glib_none().0) }
+    }
+
     #[doc(alias = "adw_tab_page_get_title")]
     #[doc(alias = "get_title")]
     pub fn title(&self) -> glib::GString {
@@ -103,6 +135,15 @@ impl TabPage {
     #[doc(alias = "get_tooltip")]
     pub fn tooltip(&self) -> Option<glib::GString> {
         unsafe { from_glib_none(ffi::adw_tab_page_get_tooltip(self.to_glib_none().0)) }
+    }
+
+    #[cfg(any(feature = "v1_3", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v1_3")))]
+    #[doc(alias = "adw_tab_page_invalidate_thumbnail")]
+    pub fn invalidate_thumbnail(&self) {
+        unsafe {
+            ffi::adw_tab_page_invalidate_thumbnail(self.to_glib_none().0);
+        }
     }
 
     #[doc(alias = "adw_tab_page_set_icon")]
@@ -147,6 +188,24 @@ impl TabPage {
         }
     }
 
+    #[cfg(any(feature = "v1_3", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v1_3")))]
+    #[doc(alias = "adw_tab_page_set_keyword")]
+    pub fn set_keyword(&self, keyword: &str) {
+        unsafe {
+            ffi::adw_tab_page_set_keyword(self.to_glib_none().0, keyword.to_glib_none().0);
+        }
+    }
+
+    #[cfg(any(feature = "v1_3", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v1_3")))]
+    #[doc(alias = "adw_tab_page_set_live_thumbnail")]
+    pub fn set_live_thumbnail(&self, live_thumbnail: bool) {
+        unsafe {
+            ffi::adw_tab_page_set_live_thumbnail(self.to_glib_none().0, live_thumbnail.into_glib());
+        }
+    }
+
     #[doc(alias = "adw_tab_page_set_loading")]
     pub fn set_loading(&self, loading: bool) {
         unsafe {
@@ -161,6 +220,24 @@ impl TabPage {
                 self.to_glib_none().0,
                 needs_attention.into_glib(),
             );
+        }
+    }
+
+    #[cfg(any(feature = "v1_3", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v1_3")))]
+    #[doc(alias = "adw_tab_page_set_thumbnail_xalign")]
+    pub fn set_thumbnail_xalign(&self, xalign: f32) {
+        unsafe {
+            ffi::adw_tab_page_set_thumbnail_xalign(self.to_glib_none().0, xalign);
+        }
+    }
+
+    #[cfg(any(feature = "v1_3", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v1_3")))]
+    #[doc(alias = "adw_tab_page_set_thumbnail_yalign")]
+    pub fn set_thumbnail_yalign(&self, yalign: f32) {
+        unsafe {
+            ffi::adw_tab_page_set_thumbnail_yalign(self.to_glib_none().0, yalign);
         }
     }
 
@@ -278,6 +355,56 @@ impl TabPage {
         }
     }
 
+    #[cfg(any(feature = "v1_3", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v1_3")))]
+    #[doc(alias = "keyword")]
+    pub fn connect_keyword_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
+        unsafe extern "C" fn notify_keyword_trampoline<F: Fn(&TabPage) + 'static>(
+            this: *mut ffi::AdwTabPage,
+            _param_spec: glib::ffi::gpointer,
+            f: glib::ffi::gpointer,
+        ) {
+            let f: &F = &*(f as *const F);
+            f(&from_glib_borrow(this))
+        }
+        unsafe {
+            let f: Box_<F> = Box_::new(f);
+            connect_raw(
+                self.as_ptr() as *mut _,
+                b"notify::keyword\0".as_ptr() as *const _,
+                Some(transmute::<_, unsafe extern "C" fn()>(
+                    notify_keyword_trampoline::<F> as *const (),
+                )),
+                Box_::into_raw(f),
+            )
+        }
+    }
+
+    #[cfg(any(feature = "v1_3", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v1_3")))]
+    #[doc(alias = "live-thumbnail")]
+    pub fn connect_live_thumbnail_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
+        unsafe extern "C" fn notify_live_thumbnail_trampoline<F: Fn(&TabPage) + 'static>(
+            this: *mut ffi::AdwTabPage,
+            _param_spec: glib::ffi::gpointer,
+            f: glib::ffi::gpointer,
+        ) {
+            let f: &F = &*(f as *const F);
+            f(&from_glib_borrow(this))
+        }
+        unsafe {
+            let f: Box_<F> = Box_::new(f);
+            connect_raw(
+                self.as_ptr() as *mut _,
+                b"notify::live-thumbnail\0".as_ptr() as *const _,
+                Some(transmute::<_, unsafe extern "C" fn()>(
+                    notify_live_thumbnail_trampoline::<F> as *const (),
+                )),
+                Box_::into_raw(f),
+            )
+        }
+    }
+
     #[doc(alias = "loading")]
     pub fn connect_loading_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_loading_trampoline<F: Fn(&TabPage) + 'static>(
@@ -364,6 +491,56 @@ impl TabPage {
                 b"notify::selected\0".as_ptr() as *const _,
                 Some(transmute::<_, unsafe extern "C" fn()>(
                     notify_selected_trampoline::<F> as *const (),
+                )),
+                Box_::into_raw(f),
+            )
+        }
+    }
+
+    #[cfg(any(feature = "v1_3", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v1_3")))]
+    #[doc(alias = "thumbnail-xalign")]
+    pub fn connect_thumbnail_xalign_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
+        unsafe extern "C" fn notify_thumbnail_xalign_trampoline<F: Fn(&TabPage) + 'static>(
+            this: *mut ffi::AdwTabPage,
+            _param_spec: glib::ffi::gpointer,
+            f: glib::ffi::gpointer,
+        ) {
+            let f: &F = &*(f as *const F);
+            f(&from_glib_borrow(this))
+        }
+        unsafe {
+            let f: Box_<F> = Box_::new(f);
+            connect_raw(
+                self.as_ptr() as *mut _,
+                b"notify::thumbnail-xalign\0".as_ptr() as *const _,
+                Some(transmute::<_, unsafe extern "C" fn()>(
+                    notify_thumbnail_xalign_trampoline::<F> as *const (),
+                )),
+                Box_::into_raw(f),
+            )
+        }
+    }
+
+    #[cfg(any(feature = "v1_3", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v1_3")))]
+    #[doc(alias = "thumbnail-yalign")]
+    pub fn connect_thumbnail_yalign_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
+        unsafe extern "C" fn notify_thumbnail_yalign_trampoline<F: Fn(&TabPage) + 'static>(
+            this: *mut ffi::AdwTabPage,
+            _param_spec: glib::ffi::gpointer,
+            f: glib::ffi::gpointer,
+        ) {
+            let f: &F = &*(f as *const F);
+            f(&from_glib_borrow(this))
+        }
+        unsafe {
+            let f: Box_<F> = Box_::new(f);
+            connect_raw(
+                self.as_ptr() as *mut _,
+                b"notify::thumbnail-yalign\0".as_ptr() as *const _,
+                Some(transmute::<_, unsafe extern "C" fn()>(
+                    notify_thumbnail_yalign_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
             )
