@@ -4,17 +4,12 @@
 // DO NOT EDIT
 
 use crate::Window;
-use glib::object::Cast;
-use glib::object::IsA;
-use glib::object::ObjectType as ObjectType_;
-use glib::signal::connect_raw;
-use glib::signal::SignalHandlerId;
-use glib::translate::*;
-use glib::StaticType;
-use glib::ToValue;
-use std::boxed::Box as Box_;
-use std::fmt;
-use std::mem::transmute;
+use glib::{
+    prelude::*,
+    signal::{connect_raw, SignalHandlerId},
+    translate::*,
+};
+use std::{boxed::Box as Box_, fmt, mem::transmute};
 
 glib::wrapper! {
     #[doc(alias = "AdwAboutWindow")]
@@ -37,7 +32,7 @@ impl AboutWindow {
     ///
     /// This method returns an instance of [`AboutWindowBuilder`](crate::builders::AboutWindowBuilder) which can be used to create [`AboutWindow`] objects.
     pub fn builder() -> AboutWindowBuilder {
-        AboutWindowBuilder::default()
+        AboutWindowBuilder::new()
     }
 
     #[doc(alias = "adw_about_window_add_acknowledgement_section")]
@@ -989,795 +984,539 @@ impl Default for AboutWindow {
     }
 }
 
-#[derive(Clone, Default)]
 // rustdoc-stripper-ignore-next
 /// A [builder-pattern] type to construct [`AboutWindow`] objects.
 ///
 /// [builder-pattern]: https://doc.rust-lang.org/1.0.0/style/ownership/builders.html
 #[must_use = "The builder must be built to be used"]
 pub struct AboutWindowBuilder {
-    #[cfg(any(feature = "v1_2", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v1_2")))]
-    application_icon: Option<String>,
-    #[cfg(any(feature = "v1_2", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v1_2")))]
-    application_name: Option<String>,
-    #[cfg(any(feature = "v1_2", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v1_2")))]
-    artists: Option<Vec<String>>,
-    #[cfg(any(feature = "v1_2", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v1_2")))]
-    comments: Option<String>,
-    #[cfg(any(feature = "v1_2", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v1_2")))]
-    copyright: Option<String>,
-    #[cfg(any(feature = "v1_2", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v1_2")))]
-    debug_info: Option<String>,
-    #[cfg(any(feature = "v1_2", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v1_2")))]
-    debug_info_filename: Option<String>,
-    #[cfg(any(feature = "v1_2", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v1_2")))]
-    designers: Option<Vec<String>>,
-    #[cfg(any(feature = "v1_2", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v1_2")))]
-    developer_name: Option<String>,
-    #[cfg(any(feature = "v1_2", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v1_2")))]
-    developers: Option<Vec<String>>,
-    #[cfg(any(feature = "v1_2", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v1_2")))]
-    documenters: Option<Vec<String>>,
-    #[cfg(any(feature = "v1_2", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v1_2")))]
-    issue_url: Option<String>,
-    #[cfg(any(feature = "v1_2", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v1_2")))]
-    license: Option<String>,
-    #[cfg(any(feature = "v1_2", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v1_2")))]
-    license_type: Option<gtk::License>,
-    #[cfg(any(feature = "v1_2", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v1_2")))]
-    release_notes: Option<String>,
-    #[cfg(any(feature = "v1_2", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v1_2")))]
-    release_notes_version: Option<String>,
-    #[cfg(any(feature = "v1_2", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v1_2")))]
-    support_url: Option<String>,
-    #[cfg(any(feature = "v1_2", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v1_2")))]
-    translator_credits: Option<String>,
-    #[cfg(any(feature = "v1_2", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v1_2")))]
-    version: Option<String>,
-    #[cfg(any(feature = "v1_2", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v1_2")))]
-    website: Option<String>,
-    content: Option<gtk::Widget>,
-    application: Option<gtk::Application>,
-    decorated: Option<bool>,
-    default_height: Option<i32>,
-    default_widget: Option<gtk::Widget>,
-    default_width: Option<i32>,
-    deletable: Option<bool>,
-    destroy_with_parent: Option<bool>,
-    display: Option<gdk::Display>,
-    focus_visible: Option<bool>,
-    focus_widget: Option<gtk::Widget>,
-    fullscreened: Option<bool>,
-    #[cfg(any(feature = "gtk_v4_2", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "gtk_v4_2")))]
-    handle_menubar_accel: Option<bool>,
-    hide_on_close: Option<bool>,
-    icon_name: Option<String>,
-    maximized: Option<bool>,
-    mnemonics_visible: Option<bool>,
-    modal: Option<bool>,
-    resizable: Option<bool>,
-    startup_id: Option<String>,
-    title: Option<String>,
-    #[cfg(any(feature = "gtk_v4_6", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "gtk_v4_6")))]
-    titlebar: Option<gtk::Widget>,
-    transient_for: Option<gtk::Window>,
-    can_focus: Option<bool>,
-    can_target: Option<bool>,
-    css_classes: Option<Vec<String>>,
-    css_name: Option<String>,
-    cursor: Option<gdk::Cursor>,
-    focus_on_click: Option<bool>,
-    focusable: Option<bool>,
-    halign: Option<gtk::Align>,
-    has_tooltip: Option<bool>,
-    height_request: Option<i32>,
-    hexpand: Option<bool>,
-    hexpand_set: Option<bool>,
-    layout_manager: Option<gtk::LayoutManager>,
-    margin_bottom: Option<i32>,
-    margin_end: Option<i32>,
-    margin_start: Option<i32>,
-    margin_top: Option<i32>,
-    name: Option<String>,
-    opacity: Option<f64>,
-    overflow: Option<gtk::Overflow>,
-    receives_default: Option<bool>,
-    sensitive: Option<bool>,
-    tooltip_markup: Option<String>,
-    tooltip_text: Option<String>,
-    valign: Option<gtk::Align>,
-    vexpand: Option<bool>,
-    vexpand_set: Option<bool>,
-    visible: Option<bool>,
-    width_request: Option<i32>,
-    accessible_role: Option<gtk::AccessibleRole>,
+    builder: glib::object::ObjectBuilder<'static, AboutWindow>,
 }
 
 impl AboutWindowBuilder {
-    // rustdoc-stripper-ignore-next
-    /// Create a new [`AboutWindowBuilder`].
-    pub fn new() -> Self {
-        Self::default()
+    fn new() -> Self {
+        Self {
+            builder: glib::object::Object::builder(),
+        }
+    }
+
+    #[cfg(any(feature = "v1_2", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v1_2")))]
+    pub fn application_icon(self, application_icon: impl Into<glib::GString>) -> Self {
+        Self {
+            builder: self
+                .builder
+                .property("application-icon", application_icon.into()),
+        }
+    }
+
+    #[cfg(any(feature = "v1_2", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v1_2")))]
+    pub fn application_name(self, application_name: impl Into<glib::GString>) -> Self {
+        Self {
+            builder: self
+                .builder
+                .property("application-name", application_name.into()),
+        }
+    }
+
+    #[cfg(any(feature = "v1_2", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v1_2")))]
+    pub fn artists(self, artists: impl Into<glib::StrV>) -> Self {
+        Self {
+            builder: self.builder.property("artists", artists.into()),
+        }
+    }
+
+    #[cfg(any(feature = "v1_2", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v1_2")))]
+    pub fn comments(self, comments: impl Into<glib::GString>) -> Self {
+        Self {
+            builder: self.builder.property("comments", comments.into()),
+        }
+    }
+
+    #[cfg(any(feature = "v1_2", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v1_2")))]
+    pub fn copyright(self, copyright: impl Into<glib::GString>) -> Self {
+        Self {
+            builder: self.builder.property("copyright", copyright.into()),
+        }
+    }
+
+    #[cfg(any(feature = "v1_2", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v1_2")))]
+    pub fn debug_info(self, debug_info: impl Into<glib::GString>) -> Self {
+        Self {
+            builder: self.builder.property("debug-info", debug_info.into()),
+        }
+    }
+
+    #[cfg(any(feature = "v1_2", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v1_2")))]
+    pub fn debug_info_filename(self, debug_info_filename: impl Into<glib::GString>) -> Self {
+        Self {
+            builder: self
+                .builder
+                .property("debug-info-filename", debug_info_filename.into()),
+        }
+    }
+
+    #[cfg(any(feature = "v1_2", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v1_2")))]
+    pub fn designers(self, designers: impl Into<glib::StrV>) -> Self {
+        Self {
+            builder: self.builder.property("designers", designers.into()),
+        }
+    }
+
+    #[cfg(any(feature = "v1_2", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v1_2")))]
+    pub fn developer_name(self, developer_name: impl Into<glib::GString>) -> Self {
+        Self {
+            builder: self
+                .builder
+                .property("developer-name", developer_name.into()),
+        }
+    }
+
+    #[cfg(any(feature = "v1_2", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v1_2")))]
+    pub fn developers(self, developers: impl Into<glib::StrV>) -> Self {
+        Self {
+            builder: self.builder.property("developers", developers.into()),
+        }
+    }
+
+    #[cfg(any(feature = "v1_2", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v1_2")))]
+    pub fn documenters(self, documenters: impl Into<glib::StrV>) -> Self {
+        Self {
+            builder: self.builder.property("documenters", documenters.into()),
+        }
+    }
+
+    #[cfg(any(feature = "v1_2", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v1_2")))]
+    pub fn issue_url(self, issue_url: impl Into<glib::GString>) -> Self {
+        Self {
+            builder: self.builder.property("issue-url", issue_url.into()),
+        }
+    }
+
+    #[cfg(any(feature = "v1_2", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v1_2")))]
+    pub fn license(self, license: impl Into<glib::GString>) -> Self {
+        Self {
+            builder: self.builder.property("license", license.into()),
+        }
+    }
+
+    #[cfg(any(feature = "v1_2", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v1_2")))]
+    pub fn license_type(self, license_type: gtk::License) -> Self {
+        Self {
+            builder: self.builder.property("license-type", license_type),
+        }
+    }
+
+    #[cfg(any(feature = "v1_2", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v1_2")))]
+    pub fn release_notes(self, release_notes: impl Into<glib::GString>) -> Self {
+        Self {
+            builder: self.builder.property("release-notes", release_notes.into()),
+        }
+    }
+
+    #[cfg(any(feature = "v1_2", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v1_2")))]
+    pub fn release_notes_version(self, release_notes_version: impl Into<glib::GString>) -> Self {
+        Self {
+            builder: self
+                .builder
+                .property("release-notes-version", release_notes_version.into()),
+        }
+    }
+
+    #[cfg(any(feature = "v1_2", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v1_2")))]
+    pub fn support_url(self, support_url: impl Into<glib::GString>) -> Self {
+        Self {
+            builder: self.builder.property("support-url", support_url.into()),
+        }
+    }
+
+    #[cfg(any(feature = "v1_2", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v1_2")))]
+    pub fn translator_credits(self, translator_credits: impl Into<glib::GString>) -> Self {
+        Self {
+            builder: self
+                .builder
+                .property("translator-credits", translator_credits.into()),
+        }
+    }
+
+    #[cfg(any(feature = "v1_2", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v1_2")))]
+    pub fn version(self, version: impl Into<glib::GString>) -> Self {
+        Self {
+            builder: self.builder.property("version", version.into()),
+        }
+    }
+
+    #[cfg(any(feature = "v1_2", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v1_2")))]
+    pub fn website(self, website: impl Into<glib::GString>) -> Self {
+        Self {
+            builder: self.builder.property("website", website.into()),
+        }
+    }
+
+    pub fn content(self, content: &impl IsA<gtk::Widget>) -> Self {
+        Self {
+            builder: self.builder.property("content", content.clone().upcast()),
+        }
+    }
+
+    pub fn application(self, application: &impl IsA<gtk::Application>) -> Self {
+        Self {
+            builder: self
+                .builder
+                .property("application", application.clone().upcast()),
+        }
+    }
+
+    pub fn decorated(self, decorated: bool) -> Self {
+        Self {
+            builder: self.builder.property("decorated", decorated),
+        }
+    }
+
+    pub fn default_height(self, default_height: i32) -> Self {
+        Self {
+            builder: self.builder.property("default-height", default_height),
+        }
+    }
+
+    pub fn default_widget(self, default_widget: &impl IsA<gtk::Widget>) -> Self {
+        Self {
+            builder: self
+                .builder
+                .property("default-widget", default_widget.clone().upcast()),
+        }
+    }
+
+    pub fn default_width(self, default_width: i32) -> Self {
+        Self {
+            builder: self.builder.property("default-width", default_width),
+        }
+    }
+
+    pub fn deletable(self, deletable: bool) -> Self {
+        Self {
+            builder: self.builder.property("deletable", deletable),
+        }
+    }
+
+    pub fn destroy_with_parent(self, destroy_with_parent: bool) -> Self {
+        Self {
+            builder: self
+                .builder
+                .property("destroy-with-parent", destroy_with_parent),
+        }
+    }
+
+    pub fn display(self, display: &gdk::Display) -> Self {
+        Self {
+            builder: self.builder.property("display", display.clone()),
+        }
+    }
+
+    pub fn focus_visible(self, focus_visible: bool) -> Self {
+        Self {
+            builder: self.builder.property("focus-visible", focus_visible),
+        }
+    }
+
+    pub fn focus_widget(self, focus_widget: &impl IsA<gtk::Widget>) -> Self {
+        Self {
+            builder: self
+                .builder
+                .property("focus-widget", focus_widget.clone().upcast()),
+        }
+    }
+
+    pub fn fullscreened(self, fullscreened: bool) -> Self {
+        Self {
+            builder: self.builder.property("fullscreened", fullscreened),
+        }
+    }
+
+    #[cfg(any(feature = "gtk_v4_2", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "gtk_v4_2")))]
+    pub fn handle_menubar_accel(self, handle_menubar_accel: bool) -> Self {
+        Self {
+            builder: self
+                .builder
+                .property("handle-menubar-accel", handle_menubar_accel),
+        }
+    }
+
+    pub fn hide_on_close(self, hide_on_close: bool) -> Self {
+        Self {
+            builder: self.builder.property("hide-on-close", hide_on_close),
+        }
+    }
+
+    pub fn icon_name(self, icon_name: impl Into<glib::GString>) -> Self {
+        Self {
+            builder: self.builder.property("icon-name", icon_name.into()),
+        }
+    }
+
+    pub fn maximized(self, maximized: bool) -> Self {
+        Self {
+            builder: self.builder.property("maximized", maximized),
+        }
+    }
+
+    pub fn mnemonics_visible(self, mnemonics_visible: bool) -> Self {
+        Self {
+            builder: self
+                .builder
+                .property("mnemonics-visible", mnemonics_visible),
+        }
+    }
+
+    pub fn modal(self, modal: bool) -> Self {
+        Self {
+            builder: self.builder.property("modal", modal),
+        }
+    }
+
+    pub fn resizable(self, resizable: bool) -> Self {
+        Self {
+            builder: self.builder.property("resizable", resizable),
+        }
+    }
+
+    pub fn startup_id(self, startup_id: impl Into<glib::GString>) -> Self {
+        Self {
+            builder: self.builder.property("startup-id", startup_id.into()),
+        }
+    }
+
+    pub fn title(self, title: impl Into<glib::GString>) -> Self {
+        Self {
+            builder: self.builder.property("title", title.into()),
+        }
+    }
+
+    #[cfg(any(feature = "gtk_v4_6", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "gtk_v4_6")))]
+    pub fn titlebar(self, titlebar: &impl IsA<gtk::Widget>) -> Self {
+        Self {
+            builder: self.builder.property("titlebar", titlebar.clone().upcast()),
+        }
+    }
+
+    pub fn transient_for(self, transient_for: &impl IsA<gtk::Window>) -> Self {
+        Self {
+            builder: self
+                .builder
+                .property("transient-for", transient_for.clone().upcast()),
+        }
+    }
+
+    pub fn can_focus(self, can_focus: bool) -> Self {
+        Self {
+            builder: self.builder.property("can-focus", can_focus),
+        }
+    }
+
+    pub fn can_target(self, can_target: bool) -> Self {
+        Self {
+            builder: self.builder.property("can-target", can_target),
+        }
+    }
+
+    pub fn css_classes(self, css_classes: impl Into<glib::StrV>) -> Self {
+        Self {
+            builder: self.builder.property("css-classes", css_classes.into()),
+        }
+    }
+
+    pub fn css_name(self, css_name: impl Into<glib::GString>) -> Self {
+        Self {
+            builder: self.builder.property("css-name", css_name.into()),
+        }
+    }
+
+    pub fn cursor(self, cursor: &gdk::Cursor) -> Self {
+        Self {
+            builder: self.builder.property("cursor", cursor.clone()),
+        }
+    }
+
+    pub fn focus_on_click(self, focus_on_click: bool) -> Self {
+        Self {
+            builder: self.builder.property("focus-on-click", focus_on_click),
+        }
+    }
+
+    pub fn focusable(self, focusable: bool) -> Self {
+        Self {
+            builder: self.builder.property("focusable", focusable),
+        }
+    }
+
+    pub fn halign(self, halign: gtk::Align) -> Self {
+        Self {
+            builder: self.builder.property("halign", halign),
+        }
+    }
+
+    pub fn has_tooltip(self, has_tooltip: bool) -> Self {
+        Self {
+            builder: self.builder.property("has-tooltip", has_tooltip),
+        }
+    }
+
+    pub fn height_request(self, height_request: i32) -> Self {
+        Self {
+            builder: self.builder.property("height-request", height_request),
+        }
+    }
+
+    pub fn hexpand(self, hexpand: bool) -> Self {
+        Self {
+            builder: self.builder.property("hexpand", hexpand),
+        }
+    }
+
+    pub fn hexpand_set(self, hexpand_set: bool) -> Self {
+        Self {
+            builder: self.builder.property("hexpand-set", hexpand_set),
+        }
+    }
+
+    pub fn layout_manager(self, layout_manager: &impl IsA<gtk::LayoutManager>) -> Self {
+        Self {
+            builder: self
+                .builder
+                .property("layout-manager", layout_manager.clone().upcast()),
+        }
+    }
+
+    pub fn margin_bottom(self, margin_bottom: i32) -> Self {
+        Self {
+            builder: self.builder.property("margin-bottom", margin_bottom),
+        }
+    }
+
+    pub fn margin_end(self, margin_end: i32) -> Self {
+        Self {
+            builder: self.builder.property("margin-end", margin_end),
+        }
+    }
+
+    pub fn margin_start(self, margin_start: i32) -> Self {
+        Self {
+            builder: self.builder.property("margin-start", margin_start),
+        }
+    }
+
+    pub fn margin_top(self, margin_top: i32) -> Self {
+        Self {
+            builder: self.builder.property("margin-top", margin_top),
+        }
+    }
+
+    pub fn name(self, name: impl Into<glib::GString>) -> Self {
+        Self {
+            builder: self.builder.property("name", name.into()),
+        }
+    }
+
+    pub fn opacity(self, opacity: f64) -> Self {
+        Self {
+            builder: self.builder.property("opacity", opacity),
+        }
+    }
+
+    pub fn overflow(self, overflow: gtk::Overflow) -> Self {
+        Self {
+            builder: self.builder.property("overflow", overflow),
+        }
+    }
+
+    pub fn receives_default(self, receives_default: bool) -> Self {
+        Self {
+            builder: self.builder.property("receives-default", receives_default),
+        }
+    }
+
+    pub fn sensitive(self, sensitive: bool) -> Self {
+        Self {
+            builder: self.builder.property("sensitive", sensitive),
+        }
+    }
+
+    pub fn tooltip_markup(self, tooltip_markup: impl Into<glib::GString>) -> Self {
+        Self {
+            builder: self
+                .builder
+                .property("tooltip-markup", tooltip_markup.into()),
+        }
+    }
+
+    pub fn tooltip_text(self, tooltip_text: impl Into<glib::GString>) -> Self {
+        Self {
+            builder: self.builder.property("tooltip-text", tooltip_text.into()),
+        }
+    }
+
+    pub fn valign(self, valign: gtk::Align) -> Self {
+        Self {
+            builder: self.builder.property("valign", valign),
+        }
+    }
+
+    pub fn vexpand(self, vexpand: bool) -> Self {
+        Self {
+            builder: self.builder.property("vexpand", vexpand),
+        }
+    }
+
+    pub fn vexpand_set(self, vexpand_set: bool) -> Self {
+        Self {
+            builder: self.builder.property("vexpand-set", vexpand_set),
+        }
+    }
+
+    pub fn visible(self, visible: bool) -> Self {
+        Self {
+            builder: self.builder.property("visible", visible),
+        }
+    }
+
+    pub fn width_request(self, width_request: i32) -> Self {
+        Self {
+            builder: self.builder.property("width-request", width_request),
+        }
+    }
+
+    pub fn accessible_role(self, accessible_role: gtk::AccessibleRole) -> Self {
+        Self {
+            builder: self.builder.property("accessible-role", accessible_role),
+        }
     }
 
     // rustdoc-stripper-ignore-next
     /// Build the [`AboutWindow`].
     #[must_use = "Building the object from the builder is usually expensive and is not expected to have side effects"]
     pub fn build(self) -> AboutWindow {
-        let mut properties: Vec<(&str, &dyn ToValue)> = vec![];
-        #[cfg(any(feature = "v1_2", feature = "dox"))]
-        if let Some(ref application_icon) = self.application_icon {
-            properties.push(("application-icon", application_icon));
-        }
-        #[cfg(any(feature = "v1_2", feature = "dox"))]
-        if let Some(ref application_name) = self.application_name {
-            properties.push(("application-name", application_name));
-        }
-        #[cfg(any(feature = "v1_2", feature = "dox"))]
-        if let Some(ref artists) = self.artists {
-            properties.push(("artists", artists));
-        }
-        #[cfg(any(feature = "v1_2", feature = "dox"))]
-        if let Some(ref comments) = self.comments {
-            properties.push(("comments", comments));
-        }
-        #[cfg(any(feature = "v1_2", feature = "dox"))]
-        if let Some(ref copyright) = self.copyright {
-            properties.push(("copyright", copyright));
-        }
-        #[cfg(any(feature = "v1_2", feature = "dox"))]
-        if let Some(ref debug_info) = self.debug_info {
-            properties.push(("debug-info", debug_info));
-        }
-        #[cfg(any(feature = "v1_2", feature = "dox"))]
-        if let Some(ref debug_info_filename) = self.debug_info_filename {
-            properties.push(("debug-info-filename", debug_info_filename));
-        }
-        #[cfg(any(feature = "v1_2", feature = "dox"))]
-        if let Some(ref designers) = self.designers {
-            properties.push(("designers", designers));
-        }
-        #[cfg(any(feature = "v1_2", feature = "dox"))]
-        if let Some(ref developer_name) = self.developer_name {
-            properties.push(("developer-name", developer_name));
-        }
-        #[cfg(any(feature = "v1_2", feature = "dox"))]
-        if let Some(ref developers) = self.developers {
-            properties.push(("developers", developers));
-        }
-        #[cfg(any(feature = "v1_2", feature = "dox"))]
-        if let Some(ref documenters) = self.documenters {
-            properties.push(("documenters", documenters));
-        }
-        #[cfg(any(feature = "v1_2", feature = "dox"))]
-        if let Some(ref issue_url) = self.issue_url {
-            properties.push(("issue-url", issue_url));
-        }
-        #[cfg(any(feature = "v1_2", feature = "dox"))]
-        if let Some(ref license) = self.license {
-            properties.push(("license", license));
-        }
-        #[cfg(any(feature = "v1_2", feature = "dox"))]
-        if let Some(ref license_type) = self.license_type {
-            properties.push(("license-type", license_type));
-        }
-        #[cfg(any(feature = "v1_2", feature = "dox"))]
-        if let Some(ref release_notes) = self.release_notes {
-            properties.push(("release-notes", release_notes));
-        }
-        #[cfg(any(feature = "v1_2", feature = "dox"))]
-        if let Some(ref release_notes_version) = self.release_notes_version {
-            properties.push(("release-notes-version", release_notes_version));
-        }
-        #[cfg(any(feature = "v1_2", feature = "dox"))]
-        if let Some(ref support_url) = self.support_url {
-            properties.push(("support-url", support_url));
-        }
-        #[cfg(any(feature = "v1_2", feature = "dox"))]
-        if let Some(ref translator_credits) = self.translator_credits {
-            properties.push(("translator-credits", translator_credits));
-        }
-        #[cfg(any(feature = "v1_2", feature = "dox"))]
-        if let Some(ref version) = self.version {
-            properties.push(("version", version));
-        }
-        #[cfg(any(feature = "v1_2", feature = "dox"))]
-        if let Some(ref website) = self.website {
-            properties.push(("website", website));
-        }
-        if let Some(ref content) = self.content {
-            properties.push(("content", content));
-        }
-        if let Some(ref application) = self.application {
-            properties.push(("application", application));
-        }
-        if let Some(ref decorated) = self.decorated {
-            properties.push(("decorated", decorated));
-        }
-        if let Some(ref default_height) = self.default_height {
-            properties.push(("default-height", default_height));
-        }
-        if let Some(ref default_widget) = self.default_widget {
-            properties.push(("default-widget", default_widget));
-        }
-        if let Some(ref default_width) = self.default_width {
-            properties.push(("default-width", default_width));
-        }
-        if let Some(ref deletable) = self.deletable {
-            properties.push(("deletable", deletable));
-        }
-        if let Some(ref destroy_with_parent) = self.destroy_with_parent {
-            properties.push(("destroy-with-parent", destroy_with_parent));
-        }
-        if let Some(ref display) = self.display {
-            properties.push(("display", display));
-        }
-        if let Some(ref focus_visible) = self.focus_visible {
-            properties.push(("focus-visible", focus_visible));
-        }
-        if let Some(ref focus_widget) = self.focus_widget {
-            properties.push(("focus-widget", focus_widget));
-        }
-        if let Some(ref fullscreened) = self.fullscreened {
-            properties.push(("fullscreened", fullscreened));
-        }
-        #[cfg(any(feature = "gtk_v4_2", feature = "dox"))]
-        if let Some(ref handle_menubar_accel) = self.handle_menubar_accel {
-            properties.push(("handle-menubar-accel", handle_menubar_accel));
-        }
-        if let Some(ref hide_on_close) = self.hide_on_close {
-            properties.push(("hide-on-close", hide_on_close));
-        }
-        if let Some(ref icon_name) = self.icon_name {
-            properties.push(("icon-name", icon_name));
-        }
-        if let Some(ref maximized) = self.maximized {
-            properties.push(("maximized", maximized));
-        }
-        if let Some(ref mnemonics_visible) = self.mnemonics_visible {
-            properties.push(("mnemonics-visible", mnemonics_visible));
-        }
-        if let Some(ref modal) = self.modal {
-            properties.push(("modal", modal));
-        }
-        if let Some(ref resizable) = self.resizable {
-            properties.push(("resizable", resizable));
-        }
-        if let Some(ref startup_id) = self.startup_id {
-            properties.push(("startup-id", startup_id));
-        }
-        if let Some(ref title) = self.title {
-            properties.push(("title", title));
-        }
-        #[cfg(any(feature = "gtk_v4_6", feature = "dox"))]
-        if let Some(ref titlebar) = self.titlebar {
-            properties.push(("titlebar", titlebar));
-        }
-        if let Some(ref transient_for) = self.transient_for {
-            properties.push(("transient-for", transient_for));
-        }
-        if let Some(ref can_focus) = self.can_focus {
-            properties.push(("can-focus", can_focus));
-        }
-        if let Some(ref can_target) = self.can_target {
-            properties.push(("can-target", can_target));
-        }
-        if let Some(ref css_classes) = self.css_classes {
-            properties.push(("css-classes", css_classes));
-        }
-        if let Some(ref css_name) = self.css_name {
-            properties.push(("css-name", css_name));
-        }
-        if let Some(ref cursor) = self.cursor {
-            properties.push(("cursor", cursor));
-        }
-        if let Some(ref focus_on_click) = self.focus_on_click {
-            properties.push(("focus-on-click", focus_on_click));
-        }
-        if let Some(ref focusable) = self.focusable {
-            properties.push(("focusable", focusable));
-        }
-        if let Some(ref halign) = self.halign {
-            properties.push(("halign", halign));
-        }
-        if let Some(ref has_tooltip) = self.has_tooltip {
-            properties.push(("has-tooltip", has_tooltip));
-        }
-        if let Some(ref height_request) = self.height_request {
-            properties.push(("height-request", height_request));
-        }
-        if let Some(ref hexpand) = self.hexpand {
-            properties.push(("hexpand", hexpand));
-        }
-        if let Some(ref hexpand_set) = self.hexpand_set {
-            properties.push(("hexpand-set", hexpand_set));
-        }
-        if let Some(ref layout_manager) = self.layout_manager {
-            properties.push(("layout-manager", layout_manager));
-        }
-        if let Some(ref margin_bottom) = self.margin_bottom {
-            properties.push(("margin-bottom", margin_bottom));
-        }
-        if let Some(ref margin_end) = self.margin_end {
-            properties.push(("margin-end", margin_end));
-        }
-        if let Some(ref margin_start) = self.margin_start {
-            properties.push(("margin-start", margin_start));
-        }
-        if let Some(ref margin_top) = self.margin_top {
-            properties.push(("margin-top", margin_top));
-        }
-        if let Some(ref name) = self.name {
-            properties.push(("name", name));
-        }
-        if let Some(ref opacity) = self.opacity {
-            properties.push(("opacity", opacity));
-        }
-        if let Some(ref overflow) = self.overflow {
-            properties.push(("overflow", overflow));
-        }
-        if let Some(ref receives_default) = self.receives_default {
-            properties.push(("receives-default", receives_default));
-        }
-        if let Some(ref sensitive) = self.sensitive {
-            properties.push(("sensitive", sensitive));
-        }
-        if let Some(ref tooltip_markup) = self.tooltip_markup {
-            properties.push(("tooltip-markup", tooltip_markup));
-        }
-        if let Some(ref tooltip_text) = self.tooltip_text {
-            properties.push(("tooltip-text", tooltip_text));
-        }
-        if let Some(ref valign) = self.valign {
-            properties.push(("valign", valign));
-        }
-        if let Some(ref vexpand) = self.vexpand {
-            properties.push(("vexpand", vexpand));
-        }
-        if let Some(ref vexpand_set) = self.vexpand_set {
-            properties.push(("vexpand-set", vexpand_set));
-        }
-        if let Some(ref visible) = self.visible {
-            properties.push(("visible", visible));
-        }
-        if let Some(ref width_request) = self.width_request {
-            properties.push(("width-request", width_request));
-        }
-        if let Some(ref accessible_role) = self.accessible_role {
-            properties.push(("accessible-role", accessible_role));
-        }
-        glib::Object::new::<AboutWindow>(&properties)
-    }
-
-    #[cfg(any(feature = "v1_2", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v1_2")))]
-    pub fn application_icon(mut self, application_icon: &str) -> Self {
-        self.application_icon = Some(application_icon.to_string());
-        self
-    }
-
-    #[cfg(any(feature = "v1_2", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v1_2")))]
-    pub fn application_name(mut self, application_name: &str) -> Self {
-        self.application_name = Some(application_name.to_string());
-        self
-    }
-
-    #[cfg(any(feature = "v1_2", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v1_2")))]
-    pub fn artists(mut self, artists: Vec<String>) -> Self {
-        self.artists = Some(artists);
-        self
-    }
-
-    #[cfg(any(feature = "v1_2", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v1_2")))]
-    pub fn comments(mut self, comments: &str) -> Self {
-        self.comments = Some(comments.to_string());
-        self
-    }
-
-    #[cfg(any(feature = "v1_2", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v1_2")))]
-    pub fn copyright(mut self, copyright: &str) -> Self {
-        self.copyright = Some(copyright.to_string());
-        self
-    }
-
-    #[cfg(any(feature = "v1_2", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v1_2")))]
-    pub fn debug_info(mut self, debug_info: &str) -> Self {
-        self.debug_info = Some(debug_info.to_string());
-        self
-    }
-
-    #[cfg(any(feature = "v1_2", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v1_2")))]
-    pub fn debug_info_filename(mut self, debug_info_filename: &str) -> Self {
-        self.debug_info_filename = Some(debug_info_filename.to_string());
-        self
-    }
-
-    #[cfg(any(feature = "v1_2", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v1_2")))]
-    pub fn designers(mut self, designers: Vec<String>) -> Self {
-        self.designers = Some(designers);
-        self
-    }
-
-    #[cfg(any(feature = "v1_2", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v1_2")))]
-    pub fn developer_name(mut self, developer_name: &str) -> Self {
-        self.developer_name = Some(developer_name.to_string());
-        self
-    }
-
-    #[cfg(any(feature = "v1_2", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v1_2")))]
-    pub fn developers(mut self, developers: Vec<String>) -> Self {
-        self.developers = Some(developers);
-        self
-    }
-
-    #[cfg(any(feature = "v1_2", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v1_2")))]
-    pub fn documenters(mut self, documenters: Vec<String>) -> Self {
-        self.documenters = Some(documenters);
-        self
-    }
-
-    #[cfg(any(feature = "v1_2", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v1_2")))]
-    pub fn issue_url(mut self, issue_url: &str) -> Self {
-        self.issue_url = Some(issue_url.to_string());
-        self
-    }
-
-    #[cfg(any(feature = "v1_2", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v1_2")))]
-    pub fn license(mut self, license: &str) -> Self {
-        self.license = Some(license.to_string());
-        self
-    }
-
-    #[cfg(any(feature = "v1_2", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v1_2")))]
-    pub fn license_type(mut self, license_type: gtk::License) -> Self {
-        self.license_type = Some(license_type);
-        self
-    }
-
-    #[cfg(any(feature = "v1_2", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v1_2")))]
-    pub fn release_notes(mut self, release_notes: &str) -> Self {
-        self.release_notes = Some(release_notes.to_string());
-        self
-    }
-
-    #[cfg(any(feature = "v1_2", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v1_2")))]
-    pub fn release_notes_version(mut self, release_notes_version: &str) -> Self {
-        self.release_notes_version = Some(release_notes_version.to_string());
-        self
-    }
-
-    #[cfg(any(feature = "v1_2", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v1_2")))]
-    pub fn support_url(mut self, support_url: &str) -> Self {
-        self.support_url = Some(support_url.to_string());
-        self
-    }
-
-    #[cfg(any(feature = "v1_2", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v1_2")))]
-    pub fn translator_credits(mut self, translator_credits: &str) -> Self {
-        self.translator_credits = Some(translator_credits.to_string());
-        self
-    }
-
-    #[cfg(any(feature = "v1_2", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v1_2")))]
-    pub fn version(mut self, version: &str) -> Self {
-        self.version = Some(version.to_string());
-        self
-    }
-
-    #[cfg(any(feature = "v1_2", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v1_2")))]
-    pub fn website(mut self, website: &str) -> Self {
-        self.website = Some(website.to_string());
-        self
-    }
-
-    pub fn content(mut self, content: &impl IsA<gtk::Widget>) -> Self {
-        self.content = Some(content.clone().upcast());
-        self
-    }
-
-    pub fn application(mut self, application: &impl IsA<gtk::Application>) -> Self {
-        self.application = Some(application.clone().upcast());
-        self
-    }
-
-    pub fn decorated(mut self, decorated: bool) -> Self {
-        self.decorated = Some(decorated);
-        self
-    }
-
-    pub fn default_height(mut self, default_height: i32) -> Self {
-        self.default_height = Some(default_height);
-        self
-    }
-
-    pub fn default_widget(mut self, default_widget: &impl IsA<gtk::Widget>) -> Self {
-        self.default_widget = Some(default_widget.clone().upcast());
-        self
-    }
-
-    pub fn default_width(mut self, default_width: i32) -> Self {
-        self.default_width = Some(default_width);
-        self
-    }
-
-    pub fn deletable(mut self, deletable: bool) -> Self {
-        self.deletable = Some(deletable);
-        self
-    }
-
-    pub fn destroy_with_parent(mut self, destroy_with_parent: bool) -> Self {
-        self.destroy_with_parent = Some(destroy_with_parent);
-        self
-    }
-
-    pub fn display(mut self, display: &gdk::Display) -> Self {
-        self.display = Some(display.clone());
-        self
-    }
-
-    pub fn focus_visible(mut self, focus_visible: bool) -> Self {
-        self.focus_visible = Some(focus_visible);
-        self
-    }
-
-    pub fn focus_widget(mut self, focus_widget: &impl IsA<gtk::Widget>) -> Self {
-        self.focus_widget = Some(focus_widget.clone().upcast());
-        self
-    }
-
-    pub fn fullscreened(mut self, fullscreened: bool) -> Self {
-        self.fullscreened = Some(fullscreened);
-        self
-    }
-
-    #[cfg(any(feature = "gtk_v4_2", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "gtk_v4_2")))]
-    pub fn handle_menubar_accel(mut self, handle_menubar_accel: bool) -> Self {
-        self.handle_menubar_accel = Some(handle_menubar_accel);
-        self
-    }
-
-    pub fn hide_on_close(mut self, hide_on_close: bool) -> Self {
-        self.hide_on_close = Some(hide_on_close);
-        self
-    }
-
-    pub fn icon_name(mut self, icon_name: &str) -> Self {
-        self.icon_name = Some(icon_name.to_string());
-        self
-    }
-
-    pub fn maximized(mut self, maximized: bool) -> Self {
-        self.maximized = Some(maximized);
-        self
-    }
-
-    pub fn mnemonics_visible(mut self, mnemonics_visible: bool) -> Self {
-        self.mnemonics_visible = Some(mnemonics_visible);
-        self
-    }
-
-    pub fn modal(mut self, modal: bool) -> Self {
-        self.modal = Some(modal);
-        self
-    }
-
-    pub fn resizable(mut self, resizable: bool) -> Self {
-        self.resizable = Some(resizable);
-        self
-    }
-
-    pub fn startup_id(mut self, startup_id: &str) -> Self {
-        self.startup_id = Some(startup_id.to_string());
-        self
-    }
-
-    pub fn title(mut self, title: &str) -> Self {
-        self.title = Some(title.to_string());
-        self
-    }
-
-    #[cfg(any(feature = "gtk_v4_6", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "gtk_v4_6")))]
-    pub fn titlebar(mut self, titlebar: &impl IsA<gtk::Widget>) -> Self {
-        self.titlebar = Some(titlebar.clone().upcast());
-        self
-    }
-
-    pub fn transient_for(mut self, transient_for: &impl IsA<gtk::Window>) -> Self {
-        self.transient_for = Some(transient_for.clone().upcast());
-        self
-    }
-
-    pub fn can_focus(mut self, can_focus: bool) -> Self {
-        self.can_focus = Some(can_focus);
-        self
-    }
-
-    pub fn can_target(mut self, can_target: bool) -> Self {
-        self.can_target = Some(can_target);
-        self
-    }
-
-    pub fn css_classes(mut self, css_classes: Vec<String>) -> Self {
-        self.css_classes = Some(css_classes);
-        self
-    }
-
-    pub fn css_name(mut self, css_name: &str) -> Self {
-        self.css_name = Some(css_name.to_string());
-        self
-    }
-
-    pub fn cursor(mut self, cursor: &gdk::Cursor) -> Self {
-        self.cursor = Some(cursor.clone());
-        self
-    }
-
-    pub fn focus_on_click(mut self, focus_on_click: bool) -> Self {
-        self.focus_on_click = Some(focus_on_click);
-        self
-    }
-
-    pub fn focusable(mut self, focusable: bool) -> Self {
-        self.focusable = Some(focusable);
-        self
-    }
-
-    pub fn halign(mut self, halign: gtk::Align) -> Self {
-        self.halign = Some(halign);
-        self
-    }
-
-    pub fn has_tooltip(mut self, has_tooltip: bool) -> Self {
-        self.has_tooltip = Some(has_tooltip);
-        self
-    }
-
-    pub fn height_request(mut self, height_request: i32) -> Self {
-        self.height_request = Some(height_request);
-        self
-    }
-
-    pub fn hexpand(mut self, hexpand: bool) -> Self {
-        self.hexpand = Some(hexpand);
-        self
-    }
-
-    pub fn hexpand_set(mut self, hexpand_set: bool) -> Self {
-        self.hexpand_set = Some(hexpand_set);
-        self
-    }
-
-    pub fn layout_manager(mut self, layout_manager: &impl IsA<gtk::LayoutManager>) -> Self {
-        self.layout_manager = Some(layout_manager.clone().upcast());
-        self
-    }
-
-    pub fn margin_bottom(mut self, margin_bottom: i32) -> Self {
-        self.margin_bottom = Some(margin_bottom);
-        self
-    }
-
-    pub fn margin_end(mut self, margin_end: i32) -> Self {
-        self.margin_end = Some(margin_end);
-        self
-    }
-
-    pub fn margin_start(mut self, margin_start: i32) -> Self {
-        self.margin_start = Some(margin_start);
-        self
-    }
-
-    pub fn margin_top(mut self, margin_top: i32) -> Self {
-        self.margin_top = Some(margin_top);
-        self
-    }
-
-    pub fn name(mut self, name: &str) -> Self {
-        self.name = Some(name.to_string());
-        self
-    }
-
-    pub fn opacity(mut self, opacity: f64) -> Self {
-        self.opacity = Some(opacity);
-        self
-    }
-
-    pub fn overflow(mut self, overflow: gtk::Overflow) -> Self {
-        self.overflow = Some(overflow);
-        self
-    }
-
-    pub fn receives_default(mut self, receives_default: bool) -> Self {
-        self.receives_default = Some(receives_default);
-        self
-    }
-
-    pub fn sensitive(mut self, sensitive: bool) -> Self {
-        self.sensitive = Some(sensitive);
-        self
-    }
-
-    pub fn tooltip_markup(mut self, tooltip_markup: &str) -> Self {
-        self.tooltip_markup = Some(tooltip_markup.to_string());
-        self
-    }
-
-    pub fn tooltip_text(mut self, tooltip_text: &str) -> Self {
-        self.tooltip_text = Some(tooltip_text.to_string());
-        self
-    }
-
-    pub fn valign(mut self, valign: gtk::Align) -> Self {
-        self.valign = Some(valign);
-        self
-    }
-
-    pub fn vexpand(mut self, vexpand: bool) -> Self {
-        self.vexpand = Some(vexpand);
-        self
-    }
-
-    pub fn vexpand_set(mut self, vexpand_set: bool) -> Self {
-        self.vexpand_set = Some(vexpand_set);
-        self
-    }
-
-    pub fn visible(mut self, visible: bool) -> Self {
-        self.visible = Some(visible);
-        self
-    }
-
-    pub fn width_request(mut self, width_request: i32) -> Self {
-        self.width_request = Some(width_request);
-        self
-    }
-
-    pub fn accessible_role(mut self, accessible_role: gtk::AccessibleRole) -> Self {
-        self.accessible_role = Some(accessible_role);
-        self
+        self.builder.build()
     }
 }
 

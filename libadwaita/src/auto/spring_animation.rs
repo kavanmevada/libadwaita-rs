@@ -3,20 +3,13 @@
 // from gir-files (https://github.com/gtk-rs/gir-files.git)
 // DO NOT EDIT
 
-use crate::Animation;
-use crate::AnimationTarget;
-use crate::SpringParams;
-use glib::object::Cast;
-use glib::object::IsA;
-use glib::object::ObjectType as ObjectType_;
-use glib::signal::connect_raw;
-use glib::signal::SignalHandlerId;
-use glib::translate::*;
-use glib::StaticType;
-use glib::ToValue;
-use std::boxed::Box as Box_;
-use std::fmt;
-use std::mem::transmute;
+use crate::{Animation, AnimationTarget, SpringParams};
+use glib::{
+    prelude::*,
+    signal::{connect_raw, SignalHandlerId},
+    translate::*,
+};
+use std::{boxed::Box as Box_, fmt, mem::transmute};
 
 glib::wrapper! {
     #[doc(alias = "AdwSpringAnimation")]
@@ -33,8 +26,8 @@ impl SpringAnimation {
         widget: &impl IsA<gtk::Widget>,
         from: f64,
         to: f64,
-        spring_params: &SpringParams,
-        target: &impl IsA<AnimationTarget>,
+        spring_params: SpringParams,
+        target: impl IsA<AnimationTarget>,
     ) -> SpringAnimation {
         skip_assert_initialized!();
         unsafe {
@@ -42,8 +35,8 @@ impl SpringAnimation {
                 widget.as_ref().to_glib_none().0,
                 from,
                 to,
-                spring_params.to_glib_full(),
-                target.as_ref().to_glib_full(),
+                spring_params.into_glib_ptr(),
+                target.upcast().into_glib_ptr(),
             ))
             .unsafe_cast()
         }
@@ -54,7 +47,21 @@ impl SpringAnimation {
     ///
     /// This method returns an instance of [`SpringAnimationBuilder`](crate::builders::SpringAnimationBuilder) which can be used to create [`SpringAnimation`] objects.
     pub fn builder() -> SpringAnimationBuilder {
-        SpringAnimationBuilder::default()
+        SpringAnimationBuilder::new()
+    }
+
+    #[cfg(any(feature = "v1_3", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v1_3")))]
+    #[doc(alias = "adw_spring_animation_calculate_value")]
+    pub fn calculate_value(&self, time: u32) -> f64 {
+        unsafe { ffi::adw_spring_animation_calculate_value(self.to_glib_none().0, time) }
+    }
+
+    #[cfg(any(feature = "v1_3", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v1_3")))]
+    #[doc(alias = "adw_spring_animation_calculate_velocity")]
+    pub fn calculate_velocity(&self, time: u32) -> f64 {
+        unsafe { ffi::adw_spring_animation_calculate_velocity(self.to_glib_none().0, time) }
     }
 
     #[doc(alias = "adw_spring_animation_get_clamp")]
@@ -348,104 +355,92 @@ impl SpringAnimation {
 
 impl Default for SpringAnimation {
     fn default() -> Self {
-        glib::object::Object::new::<Self>(&[])
+        glib::object::Object::new::<Self>()
     }
 }
 
-#[derive(Clone, Default)]
 // rustdoc-stripper-ignore-next
 /// A [builder-pattern] type to construct [`SpringAnimation`] objects.
 ///
 /// [builder-pattern]: https://doc.rust-lang.org/1.0.0/style/ownership/builders.html
 #[must_use = "The builder must be built to be used"]
 pub struct SpringAnimationBuilder {
-    clamp: Option<bool>,
-    epsilon: Option<f64>,
-    initial_velocity: Option<f64>,
-    spring_params: Option<SpringParams>,
-    value_from: Option<f64>,
-    value_to: Option<f64>,
-    target: Option<AnimationTarget>,
-    widget: Option<gtk::Widget>,
+    builder: glib::object::ObjectBuilder<'static, SpringAnimation>,
 }
 
 impl SpringAnimationBuilder {
-    // rustdoc-stripper-ignore-next
-    /// Create a new [`SpringAnimationBuilder`].
-    pub fn new() -> Self {
-        Self::default()
+    fn new() -> Self {
+        Self {
+            builder: glib::object::Object::builder(),
+        }
+    }
+
+    pub fn clamp(self, clamp: bool) -> Self {
+        Self {
+            builder: self.builder.property("clamp", clamp),
+        }
+    }
+
+    pub fn epsilon(self, epsilon: f64) -> Self {
+        Self {
+            builder: self.builder.property("epsilon", epsilon),
+        }
+    }
+
+    pub fn initial_velocity(self, initial_velocity: f64) -> Self {
+        Self {
+            builder: self.builder.property("initial-velocity", initial_velocity),
+        }
+    }
+
+    pub fn spring_params(self, spring_params: &SpringParams) -> Self {
+        Self {
+            builder: self
+                .builder
+                .property("spring-params", spring_params.clone()),
+        }
+    }
+
+    pub fn value_from(self, value_from: f64) -> Self {
+        Self {
+            builder: self.builder.property("value-from", value_from),
+        }
+    }
+
+    pub fn value_to(self, value_to: f64) -> Self {
+        Self {
+            builder: self.builder.property("value-to", value_to),
+        }
+    }
+
+    #[cfg(any(feature = "v1_3", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v1_3")))]
+    pub fn follow_enable_animations_setting(self, follow_enable_animations_setting: bool) -> Self {
+        Self {
+            builder: self.builder.property(
+                "follow-enable-animations-setting",
+                follow_enable_animations_setting,
+            ),
+        }
+    }
+
+    pub fn target(self, target: &impl IsA<AnimationTarget>) -> Self {
+        Self {
+            builder: self.builder.property("target", target.clone().upcast()),
+        }
+    }
+
+    pub fn widget(self, widget: &impl IsA<gtk::Widget>) -> Self {
+        Self {
+            builder: self.builder.property("widget", widget.clone().upcast()),
+        }
     }
 
     // rustdoc-stripper-ignore-next
     /// Build the [`SpringAnimation`].
     #[must_use = "Building the object from the builder is usually expensive and is not expected to have side effects"]
     pub fn build(self) -> SpringAnimation {
-        let mut properties: Vec<(&str, &dyn ToValue)> = vec![];
-        if let Some(ref clamp) = self.clamp {
-            properties.push(("clamp", clamp));
-        }
-        if let Some(ref epsilon) = self.epsilon {
-            properties.push(("epsilon", epsilon));
-        }
-        if let Some(ref initial_velocity) = self.initial_velocity {
-            properties.push(("initial-velocity", initial_velocity));
-        }
-        if let Some(ref spring_params) = self.spring_params {
-            properties.push(("spring-params", spring_params));
-        }
-        if let Some(ref value_from) = self.value_from {
-            properties.push(("value-from", value_from));
-        }
-        if let Some(ref value_to) = self.value_to {
-            properties.push(("value-to", value_to));
-        }
-        if let Some(ref target) = self.target {
-            properties.push(("target", target));
-        }
-        if let Some(ref widget) = self.widget {
-            properties.push(("widget", widget));
-        }
-        glib::Object::new::<SpringAnimation>(&properties)
-    }
-
-    pub fn clamp(mut self, clamp: bool) -> Self {
-        self.clamp = Some(clamp);
-        self
-    }
-
-    pub fn epsilon(mut self, epsilon: f64) -> Self {
-        self.epsilon = Some(epsilon);
-        self
-    }
-
-    pub fn initial_velocity(mut self, initial_velocity: f64) -> Self {
-        self.initial_velocity = Some(initial_velocity);
-        self
-    }
-
-    pub fn spring_params(mut self, spring_params: &SpringParams) -> Self {
-        self.spring_params = Some(spring_params.clone());
-        self
-    }
-
-    pub fn value_from(mut self, value_from: f64) -> Self {
-        self.value_from = Some(value_from);
-        self
-    }
-
-    pub fn value_to(mut self, value_to: f64) -> Self {
-        self.value_to = Some(value_to);
-        self
-    }
-
-    pub fn target(mut self, target: &impl IsA<AnimationTarget>) -> Self {
-        self.target = Some(target.clone().upcast());
-        self
-    }
-
-    pub fn widget(mut self, widget: &impl IsA<gtk::Widget>) -> Self {
-        self.widget = Some(widget.clone().upcast());
-        self
+        self.builder.build()
     }
 }
 

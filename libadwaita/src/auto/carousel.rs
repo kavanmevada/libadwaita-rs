@@ -3,19 +3,13 @@
 // from gir-files (https://github.com/gtk-rs/gir-files.git)
 // DO NOT EDIT
 
-use crate::SpringParams;
-use crate::Swipeable;
-use glib::object::Cast;
-use glib::object::IsA;
-use glib::object::ObjectType as ObjectType_;
-use glib::signal::connect_raw;
-use glib::signal::SignalHandlerId;
-use glib::translate::*;
-use glib::StaticType;
-use glib::ToValue;
-use std::boxed::Box as Box_;
-use std::fmt;
-use std::mem::transmute;
+use crate::{SpringParams, Swipeable};
+use glib::{
+    prelude::*,
+    signal::{connect_raw, SignalHandlerId},
+    translate::*,
+};
+use std::{boxed::Box as Box_, fmt, mem::transmute};
 
 glib::wrapper! {
     #[doc(alias = "AdwCarousel")]
@@ -38,7 +32,7 @@ impl Carousel {
     ///
     /// This method returns an instance of [`CarouselBuilder`](crate::builders::CarouselBuilder) which can be used to create [`Carousel`] objects.
     pub fn builder() -> CarouselBuilder {
-        CarouselBuilder::default()
+        CarouselBuilder::new()
     }
 
     #[doc(alias = "adw_carousel_append")]
@@ -462,370 +456,265 @@ impl Default for Carousel {
     }
 }
 
-#[derive(Clone, Default)]
 // rustdoc-stripper-ignore-next
 /// A [builder-pattern] type to construct [`Carousel`] objects.
 ///
 /// [builder-pattern]: https://doc.rust-lang.org/1.0.0/style/ownership/builders.html
 #[must_use = "The builder must be built to be used"]
 pub struct CarouselBuilder {
-    allow_long_swipes: Option<bool>,
-    allow_mouse_drag: Option<bool>,
-    allow_scroll_wheel: Option<bool>,
-    interactive: Option<bool>,
-    reveal_duration: Option<u32>,
-    scroll_params: Option<SpringParams>,
-    spacing: Option<u32>,
-    can_focus: Option<bool>,
-    can_target: Option<bool>,
-    css_classes: Option<Vec<String>>,
-    css_name: Option<String>,
-    cursor: Option<gdk::Cursor>,
-    focus_on_click: Option<bool>,
-    focusable: Option<bool>,
-    halign: Option<gtk::Align>,
-    has_tooltip: Option<bool>,
-    height_request: Option<i32>,
-    hexpand: Option<bool>,
-    hexpand_set: Option<bool>,
-    layout_manager: Option<gtk::LayoutManager>,
-    margin_bottom: Option<i32>,
-    margin_end: Option<i32>,
-    margin_start: Option<i32>,
-    margin_top: Option<i32>,
-    name: Option<String>,
-    opacity: Option<f64>,
-    overflow: Option<gtk::Overflow>,
-    receives_default: Option<bool>,
-    sensitive: Option<bool>,
-    tooltip_markup: Option<String>,
-    tooltip_text: Option<String>,
-    valign: Option<gtk::Align>,
-    vexpand: Option<bool>,
-    vexpand_set: Option<bool>,
-    visible: Option<bool>,
-    width_request: Option<i32>,
-    accessible_role: Option<gtk::AccessibleRole>,
-    orientation: Option<gtk::Orientation>,
+    builder: glib::object::ObjectBuilder<'static, Carousel>,
 }
 
 impl CarouselBuilder {
-    // rustdoc-stripper-ignore-next
-    /// Create a new [`CarouselBuilder`].
-    pub fn new() -> Self {
-        Self::default()
+    fn new() -> Self {
+        Self {
+            builder: glib::object::Object::builder(),
+        }
+    }
+
+    pub fn allow_long_swipes(self, allow_long_swipes: bool) -> Self {
+        Self {
+            builder: self
+                .builder
+                .property("allow-long-swipes", allow_long_swipes),
+        }
+    }
+
+    pub fn allow_mouse_drag(self, allow_mouse_drag: bool) -> Self {
+        Self {
+            builder: self.builder.property("allow-mouse-drag", allow_mouse_drag),
+        }
+    }
+
+    pub fn allow_scroll_wheel(self, allow_scroll_wheel: bool) -> Self {
+        Self {
+            builder: self
+                .builder
+                .property("allow-scroll-wheel", allow_scroll_wheel),
+        }
+    }
+
+    pub fn interactive(self, interactive: bool) -> Self {
+        Self {
+            builder: self.builder.property("interactive", interactive),
+        }
+    }
+
+    pub fn reveal_duration(self, reveal_duration: u32) -> Self {
+        Self {
+            builder: self.builder.property("reveal-duration", reveal_duration),
+        }
+    }
+
+    pub fn scroll_params(self, scroll_params: &SpringParams) -> Self {
+        Self {
+            builder: self
+                .builder
+                .property("scroll-params", scroll_params.clone()),
+        }
+    }
+
+    pub fn spacing(self, spacing: u32) -> Self {
+        Self {
+            builder: self.builder.property("spacing", spacing),
+        }
+    }
+
+    pub fn can_focus(self, can_focus: bool) -> Self {
+        Self {
+            builder: self.builder.property("can-focus", can_focus),
+        }
+    }
+
+    pub fn can_target(self, can_target: bool) -> Self {
+        Self {
+            builder: self.builder.property("can-target", can_target),
+        }
+    }
+
+    pub fn css_classes(self, css_classes: impl Into<glib::StrV>) -> Self {
+        Self {
+            builder: self.builder.property("css-classes", css_classes.into()),
+        }
+    }
+
+    pub fn css_name(self, css_name: impl Into<glib::GString>) -> Self {
+        Self {
+            builder: self.builder.property("css-name", css_name.into()),
+        }
+    }
+
+    pub fn cursor(self, cursor: &gdk::Cursor) -> Self {
+        Self {
+            builder: self.builder.property("cursor", cursor.clone()),
+        }
+    }
+
+    pub fn focus_on_click(self, focus_on_click: bool) -> Self {
+        Self {
+            builder: self.builder.property("focus-on-click", focus_on_click),
+        }
+    }
+
+    pub fn focusable(self, focusable: bool) -> Self {
+        Self {
+            builder: self.builder.property("focusable", focusable),
+        }
+    }
+
+    pub fn halign(self, halign: gtk::Align) -> Self {
+        Self {
+            builder: self.builder.property("halign", halign),
+        }
+    }
+
+    pub fn has_tooltip(self, has_tooltip: bool) -> Self {
+        Self {
+            builder: self.builder.property("has-tooltip", has_tooltip),
+        }
+    }
+
+    pub fn height_request(self, height_request: i32) -> Self {
+        Self {
+            builder: self.builder.property("height-request", height_request),
+        }
+    }
+
+    pub fn hexpand(self, hexpand: bool) -> Self {
+        Self {
+            builder: self.builder.property("hexpand", hexpand),
+        }
+    }
+
+    pub fn hexpand_set(self, hexpand_set: bool) -> Self {
+        Self {
+            builder: self.builder.property("hexpand-set", hexpand_set),
+        }
+    }
+
+    pub fn layout_manager(self, layout_manager: &impl IsA<gtk::LayoutManager>) -> Self {
+        Self {
+            builder: self
+                .builder
+                .property("layout-manager", layout_manager.clone().upcast()),
+        }
+    }
+
+    pub fn margin_bottom(self, margin_bottom: i32) -> Self {
+        Self {
+            builder: self.builder.property("margin-bottom", margin_bottom),
+        }
+    }
+
+    pub fn margin_end(self, margin_end: i32) -> Self {
+        Self {
+            builder: self.builder.property("margin-end", margin_end),
+        }
+    }
+
+    pub fn margin_start(self, margin_start: i32) -> Self {
+        Self {
+            builder: self.builder.property("margin-start", margin_start),
+        }
+    }
+
+    pub fn margin_top(self, margin_top: i32) -> Self {
+        Self {
+            builder: self.builder.property("margin-top", margin_top),
+        }
+    }
+
+    pub fn name(self, name: impl Into<glib::GString>) -> Self {
+        Self {
+            builder: self.builder.property("name", name.into()),
+        }
+    }
+
+    pub fn opacity(self, opacity: f64) -> Self {
+        Self {
+            builder: self.builder.property("opacity", opacity),
+        }
+    }
+
+    pub fn overflow(self, overflow: gtk::Overflow) -> Self {
+        Self {
+            builder: self.builder.property("overflow", overflow),
+        }
+    }
+
+    pub fn receives_default(self, receives_default: bool) -> Self {
+        Self {
+            builder: self.builder.property("receives-default", receives_default),
+        }
+    }
+
+    pub fn sensitive(self, sensitive: bool) -> Self {
+        Self {
+            builder: self.builder.property("sensitive", sensitive),
+        }
+    }
+
+    pub fn tooltip_markup(self, tooltip_markup: impl Into<glib::GString>) -> Self {
+        Self {
+            builder: self
+                .builder
+                .property("tooltip-markup", tooltip_markup.into()),
+        }
+    }
+
+    pub fn tooltip_text(self, tooltip_text: impl Into<glib::GString>) -> Self {
+        Self {
+            builder: self.builder.property("tooltip-text", tooltip_text.into()),
+        }
+    }
+
+    pub fn valign(self, valign: gtk::Align) -> Self {
+        Self {
+            builder: self.builder.property("valign", valign),
+        }
+    }
+
+    pub fn vexpand(self, vexpand: bool) -> Self {
+        Self {
+            builder: self.builder.property("vexpand", vexpand),
+        }
+    }
+
+    pub fn vexpand_set(self, vexpand_set: bool) -> Self {
+        Self {
+            builder: self.builder.property("vexpand-set", vexpand_set),
+        }
+    }
+
+    pub fn visible(self, visible: bool) -> Self {
+        Self {
+            builder: self.builder.property("visible", visible),
+        }
+    }
+
+    pub fn width_request(self, width_request: i32) -> Self {
+        Self {
+            builder: self.builder.property("width-request", width_request),
+        }
+    }
+
+    pub fn accessible_role(self, accessible_role: gtk::AccessibleRole) -> Self {
+        Self {
+            builder: self.builder.property("accessible-role", accessible_role),
+        }
+    }
+
+    pub fn orientation(self, orientation: gtk::Orientation) -> Self {
+        Self {
+            builder: self.builder.property("orientation", orientation),
+        }
     }
 
     // rustdoc-stripper-ignore-next
     /// Build the [`Carousel`].
     #[must_use = "Building the object from the builder is usually expensive and is not expected to have side effects"]
     pub fn build(self) -> Carousel {
-        let mut properties: Vec<(&str, &dyn ToValue)> = vec![];
-        if let Some(ref allow_long_swipes) = self.allow_long_swipes {
-            properties.push(("allow-long-swipes", allow_long_swipes));
-        }
-        if let Some(ref allow_mouse_drag) = self.allow_mouse_drag {
-            properties.push(("allow-mouse-drag", allow_mouse_drag));
-        }
-        if let Some(ref allow_scroll_wheel) = self.allow_scroll_wheel {
-            properties.push(("allow-scroll-wheel", allow_scroll_wheel));
-        }
-        if let Some(ref interactive) = self.interactive {
-            properties.push(("interactive", interactive));
-        }
-        if let Some(ref reveal_duration) = self.reveal_duration {
-            properties.push(("reveal-duration", reveal_duration));
-        }
-        if let Some(ref scroll_params) = self.scroll_params {
-            properties.push(("scroll-params", scroll_params));
-        }
-        if let Some(ref spacing) = self.spacing {
-            properties.push(("spacing", spacing));
-        }
-        if let Some(ref can_focus) = self.can_focus {
-            properties.push(("can-focus", can_focus));
-        }
-        if let Some(ref can_target) = self.can_target {
-            properties.push(("can-target", can_target));
-        }
-        if let Some(ref css_classes) = self.css_classes {
-            properties.push(("css-classes", css_classes));
-        }
-        if let Some(ref css_name) = self.css_name {
-            properties.push(("css-name", css_name));
-        }
-        if let Some(ref cursor) = self.cursor {
-            properties.push(("cursor", cursor));
-        }
-        if let Some(ref focus_on_click) = self.focus_on_click {
-            properties.push(("focus-on-click", focus_on_click));
-        }
-        if let Some(ref focusable) = self.focusable {
-            properties.push(("focusable", focusable));
-        }
-        if let Some(ref halign) = self.halign {
-            properties.push(("halign", halign));
-        }
-        if let Some(ref has_tooltip) = self.has_tooltip {
-            properties.push(("has-tooltip", has_tooltip));
-        }
-        if let Some(ref height_request) = self.height_request {
-            properties.push(("height-request", height_request));
-        }
-        if let Some(ref hexpand) = self.hexpand {
-            properties.push(("hexpand", hexpand));
-        }
-        if let Some(ref hexpand_set) = self.hexpand_set {
-            properties.push(("hexpand-set", hexpand_set));
-        }
-        if let Some(ref layout_manager) = self.layout_manager {
-            properties.push(("layout-manager", layout_manager));
-        }
-        if let Some(ref margin_bottom) = self.margin_bottom {
-            properties.push(("margin-bottom", margin_bottom));
-        }
-        if let Some(ref margin_end) = self.margin_end {
-            properties.push(("margin-end", margin_end));
-        }
-        if let Some(ref margin_start) = self.margin_start {
-            properties.push(("margin-start", margin_start));
-        }
-        if let Some(ref margin_top) = self.margin_top {
-            properties.push(("margin-top", margin_top));
-        }
-        if let Some(ref name) = self.name {
-            properties.push(("name", name));
-        }
-        if let Some(ref opacity) = self.opacity {
-            properties.push(("opacity", opacity));
-        }
-        if let Some(ref overflow) = self.overflow {
-            properties.push(("overflow", overflow));
-        }
-        if let Some(ref receives_default) = self.receives_default {
-            properties.push(("receives-default", receives_default));
-        }
-        if let Some(ref sensitive) = self.sensitive {
-            properties.push(("sensitive", sensitive));
-        }
-        if let Some(ref tooltip_markup) = self.tooltip_markup {
-            properties.push(("tooltip-markup", tooltip_markup));
-        }
-        if let Some(ref tooltip_text) = self.tooltip_text {
-            properties.push(("tooltip-text", tooltip_text));
-        }
-        if let Some(ref valign) = self.valign {
-            properties.push(("valign", valign));
-        }
-        if let Some(ref vexpand) = self.vexpand {
-            properties.push(("vexpand", vexpand));
-        }
-        if let Some(ref vexpand_set) = self.vexpand_set {
-            properties.push(("vexpand-set", vexpand_set));
-        }
-        if let Some(ref visible) = self.visible {
-            properties.push(("visible", visible));
-        }
-        if let Some(ref width_request) = self.width_request {
-            properties.push(("width-request", width_request));
-        }
-        if let Some(ref accessible_role) = self.accessible_role {
-            properties.push(("accessible-role", accessible_role));
-        }
-        if let Some(ref orientation) = self.orientation {
-            properties.push(("orientation", orientation));
-        }
-        glib::Object::new::<Carousel>(&properties)
-    }
-
-    pub fn allow_long_swipes(mut self, allow_long_swipes: bool) -> Self {
-        self.allow_long_swipes = Some(allow_long_swipes);
-        self
-    }
-
-    pub fn allow_mouse_drag(mut self, allow_mouse_drag: bool) -> Self {
-        self.allow_mouse_drag = Some(allow_mouse_drag);
-        self
-    }
-
-    pub fn allow_scroll_wheel(mut self, allow_scroll_wheel: bool) -> Self {
-        self.allow_scroll_wheel = Some(allow_scroll_wheel);
-        self
-    }
-
-    pub fn interactive(mut self, interactive: bool) -> Self {
-        self.interactive = Some(interactive);
-        self
-    }
-
-    pub fn reveal_duration(mut self, reveal_duration: u32) -> Self {
-        self.reveal_duration = Some(reveal_duration);
-        self
-    }
-
-    pub fn scroll_params(mut self, scroll_params: &SpringParams) -> Self {
-        self.scroll_params = Some(scroll_params.clone());
-        self
-    }
-
-    pub fn spacing(mut self, spacing: u32) -> Self {
-        self.spacing = Some(spacing);
-        self
-    }
-
-    pub fn can_focus(mut self, can_focus: bool) -> Self {
-        self.can_focus = Some(can_focus);
-        self
-    }
-
-    pub fn can_target(mut self, can_target: bool) -> Self {
-        self.can_target = Some(can_target);
-        self
-    }
-
-    pub fn css_classes(mut self, css_classes: Vec<String>) -> Self {
-        self.css_classes = Some(css_classes);
-        self
-    }
-
-    pub fn css_name(mut self, css_name: &str) -> Self {
-        self.css_name = Some(css_name.to_string());
-        self
-    }
-
-    pub fn cursor(mut self, cursor: &gdk::Cursor) -> Self {
-        self.cursor = Some(cursor.clone());
-        self
-    }
-
-    pub fn focus_on_click(mut self, focus_on_click: bool) -> Self {
-        self.focus_on_click = Some(focus_on_click);
-        self
-    }
-
-    pub fn focusable(mut self, focusable: bool) -> Self {
-        self.focusable = Some(focusable);
-        self
-    }
-
-    pub fn halign(mut self, halign: gtk::Align) -> Self {
-        self.halign = Some(halign);
-        self
-    }
-
-    pub fn has_tooltip(mut self, has_tooltip: bool) -> Self {
-        self.has_tooltip = Some(has_tooltip);
-        self
-    }
-
-    pub fn height_request(mut self, height_request: i32) -> Self {
-        self.height_request = Some(height_request);
-        self
-    }
-
-    pub fn hexpand(mut self, hexpand: bool) -> Self {
-        self.hexpand = Some(hexpand);
-        self
-    }
-
-    pub fn hexpand_set(mut self, hexpand_set: bool) -> Self {
-        self.hexpand_set = Some(hexpand_set);
-        self
-    }
-
-    pub fn layout_manager(mut self, layout_manager: &impl IsA<gtk::LayoutManager>) -> Self {
-        self.layout_manager = Some(layout_manager.clone().upcast());
-        self
-    }
-
-    pub fn margin_bottom(mut self, margin_bottom: i32) -> Self {
-        self.margin_bottom = Some(margin_bottom);
-        self
-    }
-
-    pub fn margin_end(mut self, margin_end: i32) -> Self {
-        self.margin_end = Some(margin_end);
-        self
-    }
-
-    pub fn margin_start(mut self, margin_start: i32) -> Self {
-        self.margin_start = Some(margin_start);
-        self
-    }
-
-    pub fn margin_top(mut self, margin_top: i32) -> Self {
-        self.margin_top = Some(margin_top);
-        self
-    }
-
-    pub fn name(mut self, name: &str) -> Self {
-        self.name = Some(name.to_string());
-        self
-    }
-
-    pub fn opacity(mut self, opacity: f64) -> Self {
-        self.opacity = Some(opacity);
-        self
-    }
-
-    pub fn overflow(mut self, overflow: gtk::Overflow) -> Self {
-        self.overflow = Some(overflow);
-        self
-    }
-
-    pub fn receives_default(mut self, receives_default: bool) -> Self {
-        self.receives_default = Some(receives_default);
-        self
-    }
-
-    pub fn sensitive(mut self, sensitive: bool) -> Self {
-        self.sensitive = Some(sensitive);
-        self
-    }
-
-    pub fn tooltip_markup(mut self, tooltip_markup: &str) -> Self {
-        self.tooltip_markup = Some(tooltip_markup.to_string());
-        self
-    }
-
-    pub fn tooltip_text(mut self, tooltip_text: &str) -> Self {
-        self.tooltip_text = Some(tooltip_text.to_string());
-        self
-    }
-
-    pub fn valign(mut self, valign: gtk::Align) -> Self {
-        self.valign = Some(valign);
-        self
-    }
-
-    pub fn vexpand(mut self, vexpand: bool) -> Self {
-        self.vexpand = Some(vexpand);
-        self
-    }
-
-    pub fn vexpand_set(mut self, vexpand_set: bool) -> Self {
-        self.vexpand_set = Some(vexpand_set);
-        self
-    }
-
-    pub fn visible(mut self, visible: bool) -> Self {
-        self.visible = Some(visible);
-        self
-    }
-
-    pub fn width_request(mut self, width_request: i32) -> Self {
-        self.width_request = Some(width_request);
-        self
-    }
-
-    pub fn accessible_role(mut self, accessible_role: gtk::AccessibleRole) -> Self {
-        self.accessible_role = Some(accessible_role);
-        self
-    }
-
-    pub fn orientation(mut self, orientation: gtk::Orientation) -> Self {
-        self.orientation = Some(orientation);
-        self
+        self.builder.build()
     }
 }
 

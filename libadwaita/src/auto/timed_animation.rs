@@ -3,20 +3,13 @@
 // from gir-files (https://github.com/gtk-rs/gir-files.git)
 // DO NOT EDIT
 
-use crate::Animation;
-use crate::AnimationTarget;
-use crate::Easing;
-use glib::object::Cast;
-use glib::object::IsA;
-use glib::object::ObjectType as ObjectType_;
-use glib::signal::connect_raw;
-use glib::signal::SignalHandlerId;
-use glib::translate::*;
-use glib::StaticType;
-use glib::ToValue;
-use std::boxed::Box as Box_;
-use std::fmt;
-use std::mem::transmute;
+use crate::{Animation, AnimationTarget, Easing};
+use glib::{
+    prelude::*,
+    signal::{connect_raw, SignalHandlerId},
+    translate::*,
+};
+use std::{boxed::Box as Box_, fmt, mem::transmute};
 
 glib::wrapper! {
     #[doc(alias = "AdwTimedAnimation")]
@@ -34,7 +27,7 @@ impl TimedAnimation {
         from: f64,
         to: f64,
         duration: u32,
-        target: &impl IsA<AnimationTarget>,
+        target: impl IsA<AnimationTarget>,
     ) -> TimedAnimation {
         skip_assert_initialized!();
         unsafe {
@@ -43,7 +36,7 @@ impl TimedAnimation {
                 from,
                 to,
                 duration,
-                target.as_ref().to_glib_full(),
+                target.upcast().into_glib_ptr(),
             ))
             .unsafe_cast()
         }
@@ -54,7 +47,7 @@ impl TimedAnimation {
     ///
     /// This method returns an instance of [`TimedAnimationBuilder`](crate::builders::TimedAnimationBuilder) which can be used to create [`TimedAnimation`] objects.
     pub fn builder() -> TimedAnimationBuilder {
-        TimedAnimationBuilder::default()
+        TimedAnimationBuilder::new()
     }
 
     #[doc(alias = "adw_timed_animation_get_alternate")]
@@ -316,113 +309,96 @@ impl TimedAnimation {
 
 impl Default for TimedAnimation {
     fn default() -> Self {
-        glib::object::Object::new::<Self>(&[])
+        glib::object::Object::new::<Self>()
     }
 }
 
-#[derive(Clone, Default)]
 // rustdoc-stripper-ignore-next
 /// A [builder-pattern] type to construct [`TimedAnimation`] objects.
 ///
 /// [builder-pattern]: https://doc.rust-lang.org/1.0.0/style/ownership/builders.html
 #[must_use = "The builder must be built to be used"]
 pub struct TimedAnimationBuilder {
-    alternate: Option<bool>,
-    duration: Option<u32>,
-    easing: Option<Easing>,
-    repeat_count: Option<u32>,
-    reverse: Option<bool>,
-    value_from: Option<f64>,
-    value_to: Option<f64>,
-    target: Option<AnimationTarget>,
-    widget: Option<gtk::Widget>,
+    builder: glib::object::ObjectBuilder<'static, TimedAnimation>,
 }
 
 impl TimedAnimationBuilder {
-    // rustdoc-stripper-ignore-next
-    /// Create a new [`TimedAnimationBuilder`].
-    pub fn new() -> Self {
-        Self::default()
+    fn new() -> Self {
+        Self {
+            builder: glib::object::Object::builder(),
+        }
+    }
+
+    pub fn alternate(self, alternate: bool) -> Self {
+        Self {
+            builder: self.builder.property("alternate", alternate),
+        }
+    }
+
+    pub fn duration(self, duration: u32) -> Self {
+        Self {
+            builder: self.builder.property("duration", duration),
+        }
+    }
+
+    pub fn easing(self, easing: Easing) -> Self {
+        Self {
+            builder: self.builder.property("easing", easing),
+        }
+    }
+
+    pub fn repeat_count(self, repeat_count: u32) -> Self {
+        Self {
+            builder: self.builder.property("repeat-count", repeat_count),
+        }
+    }
+
+    pub fn reverse(self, reverse: bool) -> Self {
+        Self {
+            builder: self.builder.property("reverse", reverse),
+        }
+    }
+
+    pub fn value_from(self, value_from: f64) -> Self {
+        Self {
+            builder: self.builder.property("value-from", value_from),
+        }
+    }
+
+    pub fn value_to(self, value_to: f64) -> Self {
+        Self {
+            builder: self.builder.property("value-to", value_to),
+        }
+    }
+
+    #[cfg(any(feature = "v1_3", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v1_3")))]
+    pub fn follow_enable_animations_setting(self, follow_enable_animations_setting: bool) -> Self {
+        Self {
+            builder: self.builder.property(
+                "follow-enable-animations-setting",
+                follow_enable_animations_setting,
+            ),
+        }
+    }
+
+    pub fn target(self, target: &impl IsA<AnimationTarget>) -> Self {
+        Self {
+            builder: self.builder.property("target", target.clone().upcast()),
+        }
+    }
+
+    pub fn widget(self, widget: &impl IsA<gtk::Widget>) -> Self {
+        Self {
+            builder: self.builder.property("widget", widget.clone().upcast()),
+        }
     }
 
     // rustdoc-stripper-ignore-next
     /// Build the [`TimedAnimation`].
     #[must_use = "Building the object from the builder is usually expensive and is not expected to have side effects"]
     pub fn build(self) -> TimedAnimation {
-        let mut properties: Vec<(&str, &dyn ToValue)> = vec![];
-        if let Some(ref alternate) = self.alternate {
-            properties.push(("alternate", alternate));
-        }
-        if let Some(ref duration) = self.duration {
-            properties.push(("duration", duration));
-        }
-        if let Some(ref easing) = self.easing {
-            properties.push(("easing", easing));
-        }
-        if let Some(ref repeat_count) = self.repeat_count {
-            properties.push(("repeat-count", repeat_count));
-        }
-        if let Some(ref reverse) = self.reverse {
-            properties.push(("reverse", reverse));
-        }
-        if let Some(ref value_from) = self.value_from {
-            properties.push(("value-from", value_from));
-        }
-        if let Some(ref value_to) = self.value_to {
-            properties.push(("value-to", value_to));
-        }
-        if let Some(ref target) = self.target {
-            properties.push(("target", target));
-        }
-        if let Some(ref widget) = self.widget {
-            properties.push(("widget", widget));
-        }
-        glib::Object::new::<TimedAnimation>(&properties)
-    }
-
-    pub fn alternate(mut self, alternate: bool) -> Self {
-        self.alternate = Some(alternate);
-        self
-    }
-
-    pub fn duration(mut self, duration: u32) -> Self {
-        self.duration = Some(duration);
-        self
-    }
-
-    pub fn easing(mut self, easing: Easing) -> Self {
-        self.easing = Some(easing);
-        self
-    }
-
-    pub fn repeat_count(mut self, repeat_count: u32) -> Self {
-        self.repeat_count = Some(repeat_count);
-        self
-    }
-
-    pub fn reverse(mut self, reverse: bool) -> Self {
-        self.reverse = Some(reverse);
-        self
-    }
-
-    pub fn value_from(mut self, value_from: f64) -> Self {
-        self.value_from = Some(value_from);
-        self
-    }
-
-    pub fn value_to(mut self, value_to: f64) -> Self {
-        self.value_to = Some(value_to);
-        self
-    }
-
-    pub fn target(mut self, target: &impl IsA<AnimationTarget>) -> Self {
-        self.target = Some(target.clone().upcast());
-        self
-    }
-
-    pub fn widget(mut self, widget: &impl IsA<gtk::Widget>) -> Self {
-        self.widget = Some(widget.clone().upcast());
-        self
+        self.builder.build()
     }
 }
 

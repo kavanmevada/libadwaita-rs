@@ -4,10 +4,8 @@
 // DO NOT EDIT
 
 use crate::NavigationDirection;
-use glib::object::IsA;
-use glib::translate::*;
-use std::fmt;
-use std::mem;
+use glib::{prelude::*, translate::*};
+use std::{fmt, mem};
 
 glib::wrapper! {
     #[doc(alias = "AdwSwipeable")]
@@ -69,7 +67,7 @@ impl<O: IsA<Swipeable>> SwipeableExt for O {
                     self.as_ref().to_glib_none().0,
                     n_snap_points.as_mut_ptr(),
                 ),
-                n_snap_points.assume_init() as usize,
+                n_snap_points.assume_init() as _,
             );
             ret
         }

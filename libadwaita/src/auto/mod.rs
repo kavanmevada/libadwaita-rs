@@ -28,6 +28,13 @@ pub use self::application_window::ApplicationWindow;
 mod avatar;
 pub use self::avatar::Avatar;
 
+#[cfg(any(feature = "v1_3", feature = "dox"))]
+#[cfg_attr(feature = "dox", doc(cfg(feature = "v1_3")))]
+mod banner;
+#[cfg(any(feature = "v1_3", feature = "dox"))]
+#[cfg_attr(feature = "dox", doc(cfg(feature = "v1_3")))]
+pub use self::banner::Banner;
+
 mod bin;
 pub use self::bin::Bin;
 
@@ -254,6 +261,9 @@ pub mod builders {
     pub use super::application::ApplicationBuilder;
     pub use super::application_window::ApplicationWindowBuilder;
     pub use super::avatar::AvatarBuilder;
+    #[cfg(any(feature = "v1_3", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v1_3")))]
+    pub use super::banner::BannerBuilder;
     pub use super::bin::BinBuilder;
     pub use super::button_content::ButtonContentBuilder;
     pub use super::carousel::CarouselBuilder;

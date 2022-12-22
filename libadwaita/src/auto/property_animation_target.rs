@@ -4,9 +4,7 @@
 // DO NOT EDIT
 
 use crate::AnimationTarget;
-use glib::object::Cast;
-use glib::object::IsA;
-use glib::translate::*;
+use glib::{prelude::*, translate::*};
 use std::fmt;
 
 glib::wrapper! {

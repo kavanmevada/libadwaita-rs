@@ -11,119 +11,89 @@ use glib::{
 use std::{boxed::Box as Box_, fmt, mem::transmute};
 
 glib::wrapper! {
-    #[doc(alias = "AdwAvatar")]
-    pub struct Avatar(Object<ffi::AdwAvatar, ffi::AdwAvatarClass>) @extends gtk::Widget, @implements gtk::Accessible, gtk::Buildable, gtk::ConstraintTarget;
+    #[doc(alias = "AdwBanner")]
+    pub struct Banner(Object<ffi::AdwBanner, ffi::AdwBannerClass>) @extends gtk::Widget, @implements gtk::Accessible, gtk::Buildable, gtk::ConstraintTarget, gtk::Actionable;
 
     match fn {
-        type_ => || ffi::adw_avatar_get_type(),
+        type_ => || ffi::adw_banner_get_type(),
     }
 }
 
-impl Avatar {
-    #[doc(alias = "adw_avatar_new")]
-    pub fn new(size: i32, text: Option<&str>, show_initials: bool) -> Avatar {
+impl Banner {
+    #[doc(alias = "adw_banner_new")]
+    pub fn new(title: &str) -> Banner {
         assert_initialized_main_thread!();
         unsafe {
-            gtk::Widget::from_glib_none(ffi::adw_avatar_new(
-                size,
-                text.to_glib_none().0,
-                show_initials.into_glib(),
-            ))
-            .unsafe_cast()
+            gtk::Widget::from_glib_none(ffi::adw_banner_new(title.to_glib_none().0)).unsafe_cast()
         }
     }
 
     // rustdoc-stripper-ignore-next
-    /// Creates a new builder-pattern struct instance to construct [`Avatar`] objects.
+    /// Creates a new builder-pattern struct instance to construct [`Banner`] objects.
     ///
-    /// This method returns an instance of [`AvatarBuilder`](crate::builders::AvatarBuilder) which can be used to create [`Avatar`] objects.
-    pub fn builder() -> AvatarBuilder {
-        AvatarBuilder::new()
+    /// This method returns an instance of [`BannerBuilder`](crate::builders::BannerBuilder) which can be used to create [`Banner`] objects.
+    pub fn builder() -> BannerBuilder {
+        BannerBuilder::new()
     }
 
-    #[doc(alias = "adw_avatar_draw_to_texture")]
-    pub fn draw_to_texture(&self, scale_factor: i32) -> gdk::Texture {
+    #[doc(alias = "adw_banner_get_button_label")]
+    #[doc(alias = "get_button_label")]
+    pub fn button_label(&self) -> Option<glib::GString> {
+        unsafe { from_glib_none(ffi::adw_banner_get_button_label(self.to_glib_none().0)) }
+    }
+
+    #[doc(alias = "adw_banner_get_revealed")]
+    #[doc(alias = "get_revealed")]
+    pub fn is_revealed(&self) -> bool {
+        unsafe { from_glib(ffi::adw_banner_get_revealed(self.to_glib_none().0)) }
+    }
+
+    #[doc(alias = "adw_banner_get_title")]
+    #[doc(alias = "get_title")]
+    pub fn title(&self) -> glib::GString {
+        unsafe { from_glib_none(ffi::adw_banner_get_title(self.to_glib_none().0)) }
+    }
+
+    #[doc(alias = "adw_banner_get_use_markup")]
+    #[doc(alias = "get_use_markup")]
+    pub fn uses_markup(&self) -> bool {
+        unsafe { from_glib(ffi::adw_banner_get_use_markup(self.to_glib_none().0)) }
+    }
+
+    #[doc(alias = "adw_banner_set_button_label")]
+    pub fn set_button_label(&self, label: Option<&str>) {
         unsafe {
-            from_glib_full(ffi::adw_avatar_draw_to_texture(
-                self.to_glib_none().0,
-                scale_factor,
-            ))
+            ffi::adw_banner_set_button_label(self.to_glib_none().0, label.to_glib_none().0);
         }
     }
 
-    #[doc(alias = "adw_avatar_get_custom_image")]
-    #[doc(alias = "get_custom_image")]
-    pub fn custom_image(&self) -> Option<gdk::Paintable> {
-        unsafe { from_glib_none(ffi::adw_avatar_get_custom_image(self.to_glib_none().0)) }
-    }
-
-    #[doc(alias = "adw_avatar_get_icon_name")]
-    #[doc(alias = "get_icon_name")]
-    pub fn icon_name(&self) -> Option<glib::GString> {
-        unsafe { from_glib_none(ffi::adw_avatar_get_icon_name(self.to_glib_none().0)) }
-    }
-
-    #[doc(alias = "adw_avatar_get_show_initials")]
-    #[doc(alias = "get_show_initials")]
-    pub fn shows_initials(&self) -> bool {
-        unsafe { from_glib(ffi::adw_avatar_get_show_initials(self.to_glib_none().0)) }
-    }
-
-    #[doc(alias = "adw_avatar_get_size")]
-    #[doc(alias = "get_size")]
-    pub fn size(&self) -> i32 {
-        unsafe { ffi::adw_avatar_get_size(self.to_glib_none().0) }
-    }
-
-    #[doc(alias = "adw_avatar_get_text")]
-    #[doc(alias = "get_text")]
-    pub fn text(&self) -> Option<glib::GString> {
-        unsafe { from_glib_none(ffi::adw_avatar_get_text(self.to_glib_none().0)) }
-    }
-
-    #[doc(alias = "adw_avatar_set_custom_image")]
-    pub fn set_custom_image(&self, custom_image: Option<&impl IsA<gdk::Paintable>>) {
+    #[doc(alias = "adw_banner_set_revealed")]
+    pub fn set_revealed(&self, revealed: bool) {
         unsafe {
-            ffi::adw_avatar_set_custom_image(
-                self.to_glib_none().0,
-                custom_image.map(|p| p.as_ref()).to_glib_none().0,
-            );
+            ffi::adw_banner_set_revealed(self.to_glib_none().0, revealed.into_glib());
         }
     }
 
-    #[doc(alias = "adw_avatar_set_icon_name")]
-    pub fn set_icon_name(&self, icon_name: Option<&str>) {
+    #[doc(alias = "adw_banner_set_title")]
+    pub fn set_title(&self, title: &str) {
         unsafe {
-            ffi::adw_avatar_set_icon_name(self.to_glib_none().0, icon_name.to_glib_none().0);
+            ffi::adw_banner_set_title(self.to_glib_none().0, title.to_glib_none().0);
         }
     }
 
-    #[doc(alias = "adw_avatar_set_show_initials")]
-    pub fn set_show_initials(&self, show_initials: bool) {
+    #[doc(alias = "adw_banner_set_use_markup")]
+    pub fn set_use_markup(&self, use_markup: bool) {
         unsafe {
-            ffi::adw_avatar_set_show_initials(self.to_glib_none().0, show_initials.into_glib());
+            ffi::adw_banner_set_use_markup(self.to_glib_none().0, use_markup.into_glib());
         }
     }
 
-    #[doc(alias = "adw_avatar_set_size")]
-    pub fn set_size(&self, size: i32) {
-        unsafe {
-            ffi::adw_avatar_set_size(self.to_glib_none().0, size);
-        }
-    }
-
-    #[doc(alias = "adw_avatar_set_text")]
-    pub fn set_text(&self, text: Option<&str>) {
-        unsafe {
-            ffi::adw_avatar_set_text(self.to_glib_none().0, text.to_glib_none().0);
-        }
-    }
-
-    #[doc(alias = "custom-image")]
-    pub fn connect_custom_image_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
-        unsafe extern "C" fn notify_custom_image_trampoline<F: Fn(&Avatar) + 'static>(
-            this: *mut ffi::AdwAvatar,
-            _param_spec: glib::ffi::gpointer,
+    #[cfg(any(feature = "v1_3", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v1_3")))]
+    #[doc(alias = "button-clicked")]
+    pub fn connect_button_clicked<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
+        unsafe extern "C" fn button_clicked_trampoline<F: Fn(&Banner) + 'static>(
+            this: *mut ffi::AdwBanner,
             f: glib::ffi::gpointer,
         ) {
             let f: &F = &*(f as *const F);
@@ -133,19 +103,21 @@ impl Avatar {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
-                b"notify::custom-image\0".as_ptr() as *const _,
+                b"button-clicked\0".as_ptr() as *const _,
                 Some(transmute::<_, unsafe extern "C" fn()>(
-                    notify_custom_image_trampoline::<F> as *const (),
+                    button_clicked_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
             )
         }
     }
 
-    #[doc(alias = "icon-name")]
-    pub fn connect_icon_name_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
-        unsafe extern "C" fn notify_icon_name_trampoline<F: Fn(&Avatar) + 'static>(
-            this: *mut ffi::AdwAvatar,
+    #[cfg(any(feature = "v1_3", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v1_3")))]
+    #[doc(alias = "button-label")]
+    pub fn connect_button_label_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
+        unsafe extern "C" fn notify_button_label_trampoline<F: Fn(&Banner) + 'static>(
+            this: *mut ffi::AdwBanner,
             _param_spec: glib::ffi::gpointer,
             f: glib::ffi::gpointer,
         ) {
@@ -156,19 +128,21 @@ impl Avatar {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
-                b"notify::icon-name\0".as_ptr() as *const _,
+                b"notify::button-label\0".as_ptr() as *const _,
                 Some(transmute::<_, unsafe extern "C" fn()>(
-                    notify_icon_name_trampoline::<F> as *const (),
+                    notify_button_label_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
             )
         }
     }
 
-    #[doc(alias = "show-initials")]
-    pub fn connect_show_initials_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
-        unsafe extern "C" fn notify_show_initials_trampoline<F: Fn(&Avatar) + 'static>(
-            this: *mut ffi::AdwAvatar,
+    #[cfg(any(feature = "v1_3", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v1_3")))]
+    #[doc(alias = "revealed")]
+    pub fn connect_revealed_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
+        unsafe extern "C" fn notify_revealed_trampoline<F: Fn(&Banner) + 'static>(
+            this: *mut ffi::AdwBanner,
             _param_spec: glib::ffi::gpointer,
             f: glib::ffi::gpointer,
         ) {
@@ -179,19 +153,21 @@ impl Avatar {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
-                b"notify::show-initials\0".as_ptr() as *const _,
+                b"notify::revealed\0".as_ptr() as *const _,
                 Some(transmute::<_, unsafe extern "C" fn()>(
-                    notify_show_initials_trampoline::<F> as *const (),
+                    notify_revealed_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
             )
         }
     }
 
-    #[doc(alias = "size")]
-    pub fn connect_size_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
-        unsafe extern "C" fn notify_size_trampoline<F: Fn(&Avatar) + 'static>(
-            this: *mut ffi::AdwAvatar,
+    #[cfg(any(feature = "v1_3", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v1_3")))]
+    #[doc(alias = "title")]
+    pub fn connect_title_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
+        unsafe extern "C" fn notify_title_trampoline<F: Fn(&Banner) + 'static>(
+            this: *mut ffi::AdwBanner,
             _param_spec: glib::ffi::gpointer,
             f: glib::ffi::gpointer,
         ) {
@@ -202,19 +178,21 @@ impl Avatar {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
-                b"notify::size\0".as_ptr() as *const _,
+                b"notify::title\0".as_ptr() as *const _,
                 Some(transmute::<_, unsafe extern "C" fn()>(
-                    notify_size_trampoline::<F> as *const (),
+                    notify_title_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
             )
         }
     }
 
-    #[doc(alias = "text")]
-    pub fn connect_text_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
-        unsafe extern "C" fn notify_text_trampoline<F: Fn(&Avatar) + 'static>(
-            this: *mut ffi::AdwAvatar,
+    #[cfg(any(feature = "v1_3", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v1_3")))]
+    #[doc(alias = "use-markup")]
+    pub fn connect_use_markup_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
+        unsafe extern "C" fn notify_use_markup_trampoline<F: Fn(&Banner) + 'static>(
+            this: *mut ffi::AdwBanner,
             _param_spec: glib::ffi::gpointer,
             f: glib::ffi::gpointer,
         ) {
@@ -225,9 +203,9 @@ impl Avatar {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
-                b"notify::text\0".as_ptr() as *const _,
+                b"notify::use-markup\0".as_ptr() as *const _,
                 Some(transmute::<_, unsafe extern "C" fn()>(
-                    notify_text_trampoline::<F> as *const (),
+                    notify_use_markup_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
             )
@@ -235,57 +213,59 @@ impl Avatar {
     }
 }
 
-impl Default for Avatar {
+#[cfg(any(feature = "v1_3", feature = "dox"))]
+#[cfg_attr(feature = "dox", doc(cfg(feature = "v1_3")))]
+impl Default for Banner {
     fn default() -> Self {
         glib::object::Object::new::<Self>()
     }
 }
 
 // rustdoc-stripper-ignore-next
-/// A [builder-pattern] type to construct [`Avatar`] objects.
+/// A [builder-pattern] type to construct [`Banner`] objects.
 ///
 /// [builder-pattern]: https://doc.rust-lang.org/1.0.0/style/ownership/builders.html
 #[must_use = "The builder must be built to be used"]
-pub struct AvatarBuilder {
-    builder: glib::object::ObjectBuilder<'static, Avatar>,
+pub struct BannerBuilder {
+    builder: glib::object::ObjectBuilder<'static, Banner>,
 }
 
-impl AvatarBuilder {
+impl BannerBuilder {
     fn new() -> Self {
         Self {
             builder: glib::object::Object::builder(),
         }
     }
 
-    pub fn custom_image(self, custom_image: &impl IsA<gdk::Paintable>) -> Self {
+    #[cfg(any(feature = "v1_3", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v1_3")))]
+    pub fn button_label(self, button_label: impl Into<glib::GString>) -> Self {
         Self {
-            builder: self
-                .builder
-                .property("custom-image", custom_image.clone().upcast()),
+            builder: self.builder.property("button-label", button_label.into()),
         }
     }
 
-    pub fn icon_name(self, icon_name: impl Into<glib::GString>) -> Self {
+    #[cfg(any(feature = "v1_3", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v1_3")))]
+    pub fn revealed(self, revealed: bool) -> Self {
         Self {
-            builder: self.builder.property("icon-name", icon_name.into()),
+            builder: self.builder.property("revealed", revealed),
         }
     }
 
-    pub fn show_initials(self, show_initials: bool) -> Self {
+    #[cfg(any(feature = "v1_3", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v1_3")))]
+    pub fn title(self, title: impl Into<glib::GString>) -> Self {
         Self {
-            builder: self.builder.property("show-initials", show_initials),
+            builder: self.builder.property("title", title.into()),
         }
     }
 
-    pub fn size(self, size: i32) -> Self {
+    #[cfg(any(feature = "v1_3", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v1_3")))]
+    pub fn use_markup(self, use_markup: bool) -> Self {
         Self {
-            builder: self.builder.property("size", size),
-        }
-    }
-
-    pub fn text(self, text: impl Into<glib::GString>) -> Self {
-        Self {
-            builder: self.builder.property("text", text.into()),
+            builder: self.builder.property("use-markup", use_markup),
         }
     }
 
@@ -473,16 +453,30 @@ impl AvatarBuilder {
         }
     }
 
+    pub fn action_name(self, action_name: impl Into<glib::GString>) -> Self {
+        Self {
+            builder: self.builder.property("action-name", action_name.into()),
+        }
+    }
+
+    pub fn action_target(self, action_target: &glib::Variant) -> Self {
+        Self {
+            builder: self
+                .builder
+                .property("action-target", action_target.clone()),
+        }
+    }
+
     // rustdoc-stripper-ignore-next
-    /// Build the [`Avatar`].
+    /// Build the [`Banner`].
     #[must_use = "Building the object from the builder is usually expensive and is not expected to have side effects"]
-    pub fn build(self) -> Avatar {
+    pub fn build(self) -> Banner {
         self.builder.build()
     }
 }
 
-impl fmt::Display for Avatar {
+impl fmt::Display for Banner {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        f.write_str("Avatar")
+        f.write_str("Banner")
     }
 }

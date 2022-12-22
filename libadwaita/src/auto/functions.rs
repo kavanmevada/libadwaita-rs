@@ -3,8 +3,7 @@
 // from gir-files (https://github.com/gtk-rs/gir-files.git)
 // DO NOT EDIT
 
-use glib::object::IsA;
-use glib::translate::*;
+use glib::{prelude::*, translate::*};
 
 #[doc(alias = "adw_get_enable_animations")]
 #[doc(alias = "get_enable_animations")]
