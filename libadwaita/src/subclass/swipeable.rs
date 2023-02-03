@@ -52,12 +52,7 @@ impl<T: SwipeableImpl> SwipeableImplExt for T {
                 .get_cancel_progress
                 .expect("no parent \"get_cancel_progress\" implementation");
 
-            func(
-                self.instance()
-                    .unsafe_cast_ref::<Swipeable>()
-                    .to_glib_none()
-                    .0,
-            )
+            func(self.obj().unsafe_cast_ref::<Swipeable>().to_glib_none().0)
         }
     }
 
@@ -71,12 +66,7 @@ impl<T: SwipeableImpl> SwipeableImplExt for T {
                 .get_distance
                 .expect("no parent \"get_distance\" implementation");
 
-            func(
-                self.instance()
-                    .unsafe_cast_ref::<Swipeable>()
-                    .to_glib_none()
-                    .0,
-            )
+            func(self.obj().unsafe_cast_ref::<Swipeable>().to_glib_none().0)
         }
     }
 
@@ -90,12 +80,7 @@ impl<T: SwipeableImpl> SwipeableImplExt for T {
                 .get_progress
                 .expect("no parent \"get_progress\" implementation");
 
-            func(
-                self.instance()
-                    .unsafe_cast_ref::<Swipeable>()
-                    .to_glib_none()
-                    .0,
-            )
+            func(self.obj().unsafe_cast_ref::<Swipeable>().to_glib_none().0)
         }
     }
 
@@ -112,10 +97,7 @@ impl<T: SwipeableImpl> SwipeableImplExt for T {
             let mut n_points = std::mem::MaybeUninit::uninit();
 
             let points = func(
-                self.instance()
-                    .unsafe_cast_ref::<Swipeable>()
-                    .to_glib_none()
-                    .0,
+                self.obj().unsafe_cast_ref::<Swipeable>().to_glib_none().0,
                 n_points.as_mut_ptr(),
             );
 
@@ -139,10 +121,7 @@ impl<T: SwipeableImpl> SwipeableImplExt for T {
 
             let mut rect = gdk::Rectangle::uninitialized();
             func(
-                self.instance()
-                    .unsafe_cast_ref::<Swipeable>()
-                    .to_glib_none()
-                    .0,
+                self.obj().unsafe_cast_ref::<Swipeable>().to_glib_none().0,
                 navigation_direction.into_glib(),
                 is_drag.into_glib(),
                 rect.to_glib_none_mut().0,
