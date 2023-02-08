@@ -26,7 +26,7 @@ impl CallbackAnimationTarget {
             user_data: glib::ffi::gpointer,
         ) {
             let callback: &P = &*(user_data as *mut _);
-            (*callback)(value);
+            (*callback)(value)
         }
         let callback = Some(callback_func::<P> as _);
         unsafe extern "C" fn destroy_func<P: Fn(f64) + 'static>(data: glib::ffi::gpointer) {

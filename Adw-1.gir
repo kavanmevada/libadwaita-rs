@@ -8014,7 +8014,8 @@ class.</doc>
       </method>
       <method name="get_activates_default"
               c:identifier="adw_entry_row_get_activates_default"
-              glib:get-property="activates-default">
+              glib:get-property="activates-default"
+              version="1.2">
         <attribute name="org.gtk.Method.get_property"
                    value="activates-default"/>
         <doc xml:space="preserve"
@@ -8163,21 +8164,21 @@ class.</doc>
               version="1.3">
         <doc xml:space="preserve"
              filename="src/adw-entry-row.c"
-             line="1138">Causes @self to have keyboard focus without selecting the text.
+             line="1140">Causes @self to have keyboard focus without selecting the text.
 
 See [method@Gtk.Text.grab_focus_without_selecting] for more information.</doc>
         <source-position filename="src/adw-entry-row.h" line="84"/>
         <return-value transfer-ownership="none">
           <doc xml:space="preserve"
                filename="src/adw-entry-row.c"
-               line="1146">whether the focus is now inside @self</doc>
+               line="1148">whether the focus is now inside @self</doc>
           <type name="gboolean" c:type="gboolean"/>
         </return-value>
         <parameters>
           <instance-parameter name="self" transfer-ownership="none">
             <doc xml:space="preserve"
                  filename="src/adw-entry-row.c"
-                 line="1140">an entry row</doc>
+                 line="1142">an entry row</doc>
             <type name="EntryRow" c:type="AdwEntryRow*"/>
           </instance-parameter>
         </parameters>
@@ -8213,7 +8214,7 @@ See [method@Gtk.Text.grab_focus_without_selecting] for more information.</doc>
                    value="activates-default"/>
         <doc xml:space="preserve"
              filename="src/adw-entry-row.c"
-             line="1068">Sets whether activating the embedded entry can activate the default widget.</doc>
+             line="1070">Sets whether activating the embedded entry can activate the default widget.</doc>
         <source-position filename="src/adw-entry-row.h" line="80"/>
         <return-value transfer-ownership="none">
           <type name="none" c:type="void"/>
@@ -8222,13 +8223,13 @@ See [method@Gtk.Text.grab_focus_without_selecting] for more information.</doc>
           <instance-parameter name="self" transfer-ownership="none">
             <doc xml:space="preserve"
                  filename="src/adw-entry-row.c"
-                 line="1070">an entry row</doc>
+                 line="1072">an entry row</doc>
             <type name="EntryRow" c:type="AdwEntryRow*"/>
           </instance-parameter>
           <parameter name="activates" transfer-ownership="none">
             <doc xml:space="preserve"
                  filename="src/adw-entry-row.c"
-                 line="1071">whether to activate the default widget</doc>
+                 line="1073">whether to activate the default widget</doc>
             <type name="gboolean" c:type="gboolean"/>
           </parameter>
         </parameters>
@@ -20970,12 +20971,12 @@ bar, typically opening an [class@TabOverview] on click, e.g. via the
       <constructor name="new" c:identifier="adw_tab_button_new" version="1.3">
         <doc xml:space="preserve"
              filename="src/adw-tab-button.c"
-             line="429">Creates a new `AdwTabButton`.</doc>
+             line="420">Creates a new `AdwTabButton`.</doc>
         <source-position filename="src/adw-tab-button.h" line="28"/>
         <return-value transfer-ownership="none">
           <doc xml:space="preserve"
                filename="src/adw-tab-button.c"
-               line="434">the newly created `AdwTabButton`</doc>
+               line="425">the newly created `AdwTabButton`</doc>
           <type name="Gtk.Widget" c:type="GtkWidget*"/>
         </return-value>
       </constructor>
@@ -20986,19 +20987,19 @@ bar, typically opening an [class@TabOverview] on click, e.g. via the
         <attribute name="org.gtk.Method.get_property" value="view"/>
         <doc xml:space="preserve"
              filename="src/adw-tab-button.c"
-             line="444">Gets the tab view @self displays.</doc>
+             line="435">Gets the tab view @self displays.</doc>
         <source-position filename="src/adw-tab-button.h" line="31"/>
         <return-value transfer-ownership="none" nullable="1">
           <doc xml:space="preserve"
                filename="src/adw-tab-button.c"
-               line="450">the tab view</doc>
+               line="441">the tab view</doc>
           <type name="TabView" c:type="AdwTabView*"/>
         </return-value>
         <parameters>
           <instance-parameter name="self" transfer-ownership="none">
             <doc xml:space="preserve"
                  filename="src/adw-tab-button.c"
-                 line="446">a tab button</doc>
+                 line="437">a tab button</doc>
             <type name="TabButton" c:type="AdwTabButton*"/>
           </instance-parameter>
         </parameters>
@@ -21010,7 +21011,7 @@ bar, typically opening an [class@TabOverview] on click, e.g. via the
         <attribute name="org.gtk.Method.set_property" value="view"/>
         <doc xml:space="preserve"
              filename="src/adw-tab-button.c"
-             line="462">Sets the tab view to display.</doc>
+             line="453">Sets the tab view to display.</doc>
         <source-position filename="src/adw-tab-button.h" line="33"/>
         <return-value transfer-ownership="none">
           <type name="none" c:type="void"/>
@@ -21019,7 +21020,7 @@ bar, typically opening an [class@TabOverview] on click, e.g. via the
           <instance-parameter name="self" transfer-ownership="none">
             <doc xml:space="preserve"
                  filename="src/adw-tab-button.c"
-                 line="464">a tab button</doc>
+                 line="455">a tab button</doc>
             <type name="TabButton" c:type="AdwTabButton*"/>
           </instance-parameter>
           <parameter name="view"
@@ -21028,7 +21029,7 @@ bar, typically opening an [class@TabOverview] on click, e.g. via the
                      allow-none="1">
             <doc xml:space="preserve"
                  filename="src/adw-tab-button.c"
-                 line="465">a tab view</doc>
+                 line="456">a tab view</doc>
             <type name="TabView" c:type="AdwTabView*"/>
           </parameter>
         </parameters>
@@ -21045,13 +21046,13 @@ bar, typically opening an [class@TabOverview] on click, e.g. via the
                    value="adw_tab_button_set_view"/>
         <doc xml:space="preserve"
              filename="src/adw-tab-button.c"
-             line="291">The view the tab button displays.</doc>
+             line="282">The view the tab button displays.</doc>
         <type name="TabView"/>
       </property>
       <glib:signal name="activate" when="first" action="1" version="1.3">
         <doc xml:space="preserve"
              filename="src/adw-tab-button.c"
-             line="325">Emitted to animate press then release.
+             line="316">Emitted to animate press then release.
 
 This is an action signal. Applications should never connect to this signal,
 but use the [signal@TabButton::clicked] signal.</doc>
@@ -21062,7 +21063,7 @@ but use the [signal@TabButton::clicked] signal.</doc>
       <glib:signal name="clicked" when="first" action="1" version="1.3">
         <doc xml:space="preserve"
              filename="src/adw-tab-button.c"
-             line="308">Emitted when the button has been activated (pressed and released).</doc>
+             line="299">Emitted when the button has been activated (pressed and released).</doc>
         <return-value transfer-ownership="none">
           <type name="none" c:type="void"/>
         </return-value>
