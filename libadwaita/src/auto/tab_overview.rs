@@ -3,19 +3,13 @@
 // from gir-files (https://github.com/gtk-rs/gir-files.git)
 // DO NOT EDIT
 
-use crate::TabPage;
-use crate::TabView;
-use glib::object::Cast;
-use glib::object::IsA;
-use glib::object::ObjectType as ObjectType_;
-use glib::signal::connect_raw;
-use glib::signal::SignalHandlerId;
-use glib::translate::*;
-use glib::StaticType;
-use glib::ToValue;
-use std::boxed::Box as Box_;
-use std::fmt;
-use std::mem::transmute;
+use crate::{TabPage, TabView};
+use glib::{
+    prelude::*,
+    signal::{connect_raw, SignalHandlerId},
+    translate::*,
+};
+use std::{boxed::Box as Box_, fmt, mem::transmute};
 
 glib::wrapper! {
     #[doc(alias = "AdwTabOverview")]
@@ -38,7 +32,7 @@ impl TabOverview {
     ///
     /// This method returns an instance of [`TabOverviewBuilder`](crate::builders::TabOverviewBuilder) which can be used to create [`TabOverview`] objects.
     pub fn builder() -> TabOverviewBuilder {
-        TabOverviewBuilder::default()
+        TabOverviewBuilder::new()
     }
 
     #[doc(alias = "adw_tab_overview_get_child")]
@@ -62,6 +56,16 @@ impl TabOverview {
     pub fn enables_search(&self) -> bool {
         unsafe {
             from_glib(ffi::adw_tab_overview_get_enable_search(
+                self.to_glib_none().0,
+            ))
+        }
+    }
+
+    #[doc(alias = "adw_tab_overview_get_extra_drag_preload")]
+    #[doc(alias = "get_extra_drag_preload")]
+    pub fn is_extra_drag_preload(&self) -> bool {
+        unsafe {
+            from_glib(ffi::adw_tab_overview_get_extra_drag_preload(
                 self.to_glib_none().0,
             ))
         }
@@ -151,6 +155,16 @@ impl TabOverview {
             ffi::adw_tab_overview_set_enable_search(
                 self.to_glib_none().0,
                 enable_search.into_glib(),
+            );
+        }
+    }
+
+    #[doc(alias = "adw_tab_overview_set_extra_drag_preload")]
+    pub fn set_extra_drag_preload(&self, preload: bool) {
+        unsafe {
+            ffi::adw_tab_overview_set_extra_drag_preload(
+                self.to_glib_none().0,
+                preload.into_glib(),
             );
         }
     }
@@ -275,6 +289,44 @@ impl TabOverview {
 
     #[cfg(any(feature = "v1_3", feature = "dox"))]
     #[cfg_attr(feature = "dox", doc(cfg(feature = "v1_3")))]
+    #[doc(alias = "extra-drag-value")]
+    pub fn connect_extra_drag_value<
+        F: Fn(&Self, &TabPage, &glib::Value) -> gdk::DragAction + 'static,
+    >(
+        &self,
+        f: F,
+    ) -> SignalHandlerId {
+        unsafe extern "C" fn extra_drag_value_trampoline<
+            F: Fn(&TabOverview, &TabPage, &glib::Value) -> gdk::DragAction + 'static,
+        >(
+            this: *mut ffi::AdwTabOverview,
+            page: *mut ffi::AdwTabPage,
+            value: *mut glib::gobject_ffi::GValue,
+            f: glib::ffi::gpointer,
+        ) -> gdk::ffi::GdkDragAction {
+            let f: &F = &*(f as *const F);
+            f(
+                &from_glib_borrow(this),
+                &from_glib_borrow(page),
+                &from_glib_borrow(value),
+            )
+            .into_glib()
+        }
+        unsafe {
+            let f: Box_<F> = Box_::new(f);
+            connect_raw(
+                self.as_ptr() as *mut _,
+                b"extra-drag-value\0".as_ptr() as *const _,
+                Some(transmute::<_, unsafe extern "C" fn()>(
+                    extra_drag_value_trampoline::<F> as *const (),
+                )),
+                Box_::into_raw(f),
+            )
+        }
+    }
+
+    #[cfg(any(feature = "v1_3", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v1_3")))]
     #[doc(alias = "child")]
     pub fn connect_child_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_child_trampoline<F: Fn(&TabOverview) + 'static>(
@@ -342,6 +394,34 @@ impl TabOverview {
                 b"notify::enable-search\0".as_ptr() as *const _,
                 Some(transmute::<_, unsafe extern "C" fn()>(
                     notify_enable_search_trampoline::<F> as *const (),
+                )),
+                Box_::into_raw(f),
+            )
+        }
+    }
+
+    #[cfg(any(feature = "v1_3", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v1_3")))]
+    #[doc(alias = "extra-drag-preload")]
+    pub fn connect_extra_drag_preload_notify<F: Fn(&Self) + 'static>(
+        &self,
+        f: F,
+    ) -> SignalHandlerId {
+        unsafe extern "C" fn notify_extra_drag_preload_trampoline<F: Fn(&TabOverview) + 'static>(
+            this: *mut ffi::AdwTabOverview,
+            _param_spec: glib::ffi::gpointer,
+            f: glib::ffi::gpointer,
+        ) {
+            let f: &F = &*(f as *const F);
+            f(&from_glib_borrow(this))
+        }
+        unsafe {
+            let f: Box_<F> = Box_::new(f);
+            connect_raw(
+                self.as_ptr() as *mut _,
+                b"notify::extra-drag-preload\0".as_ptr() as *const _,
+                Some(transmute::<_, unsafe extern "C" fn()>(
+                    notify_extra_drag_preload_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
             )
@@ -542,424 +622,299 @@ impl Default for TabOverview {
     }
 }
 
-#[derive(Clone, Default)]
 // rustdoc-stripper-ignore-next
 /// A [builder-pattern] type to construct [`TabOverview`] objects.
 ///
 /// [builder-pattern]: https://doc.rust-lang.org/1.0.0/style/ownership/builders.html
 #[must_use = "The builder must be built to be used"]
 pub struct TabOverviewBuilder {
-    #[cfg(any(feature = "v1_3", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v1_3")))]
-    child: Option<gtk::Widget>,
-    #[cfg(any(feature = "v1_3", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v1_3")))]
-    enable_new_tab: Option<bool>,
-    #[cfg(any(feature = "v1_3", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v1_3")))]
-    enable_search: Option<bool>,
-    #[cfg(any(feature = "v1_3", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v1_3")))]
-    inverted: Option<bool>,
-    #[cfg(any(feature = "v1_3", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v1_3")))]
-    open: Option<bool>,
-    #[cfg(any(feature = "v1_3", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v1_3")))]
-    secondary_menu: Option<gio::MenuModel>,
-    #[cfg(any(feature = "v1_3", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v1_3")))]
-    show_end_title_buttons: Option<bool>,
-    #[cfg(any(feature = "v1_3", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v1_3")))]
-    show_start_title_buttons: Option<bool>,
-    #[cfg(any(feature = "v1_3", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v1_3")))]
-    view: Option<TabView>,
-    can_focus: Option<bool>,
-    can_target: Option<bool>,
-    css_classes: Option<Vec<String>>,
-    css_name: Option<String>,
-    cursor: Option<gdk::Cursor>,
-    focus_on_click: Option<bool>,
-    focusable: Option<bool>,
-    halign: Option<gtk::Align>,
-    has_tooltip: Option<bool>,
-    height_request: Option<i32>,
-    hexpand: Option<bool>,
-    hexpand_set: Option<bool>,
-    layout_manager: Option<gtk::LayoutManager>,
-    margin_bottom: Option<i32>,
-    margin_end: Option<i32>,
-    margin_start: Option<i32>,
-    margin_top: Option<i32>,
-    name: Option<String>,
-    opacity: Option<f64>,
-    overflow: Option<gtk::Overflow>,
-    receives_default: Option<bool>,
-    sensitive: Option<bool>,
-    tooltip_markup: Option<String>,
-    tooltip_text: Option<String>,
-    valign: Option<gtk::Align>,
-    vexpand: Option<bool>,
-    vexpand_set: Option<bool>,
-    visible: Option<bool>,
-    width_request: Option<i32>,
-    accessible_role: Option<gtk::AccessibleRole>,
+    builder: glib::object::ObjectBuilder<'static, TabOverview>,
 }
 
 impl TabOverviewBuilder {
-    // rustdoc-stripper-ignore-next
-    /// Create a new [`TabOverviewBuilder`].
-    pub fn new() -> Self {
-        Self::default()
+    fn new() -> Self {
+        Self {
+            builder: glib::object::Object::builder(),
+        }
+    }
+
+    #[cfg(any(feature = "v1_3", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v1_3")))]
+    pub fn child(self, child: &impl IsA<gtk::Widget>) -> Self {
+        Self {
+            builder: self.builder.property("child", child.clone().upcast()),
+        }
+    }
+
+    #[cfg(any(feature = "v1_3", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v1_3")))]
+    pub fn enable_new_tab(self, enable_new_tab: bool) -> Self {
+        Self {
+            builder: self.builder.property("enable-new-tab", enable_new_tab),
+        }
+    }
+
+    #[cfg(any(feature = "v1_3", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v1_3")))]
+    pub fn enable_search(self, enable_search: bool) -> Self {
+        Self {
+            builder: self.builder.property("enable-search", enable_search),
+        }
+    }
+
+    #[cfg(any(feature = "v1_3", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v1_3")))]
+    pub fn extra_drag_preload(self, extra_drag_preload: bool) -> Self {
+        Self {
+            builder: self
+                .builder
+                .property("extra-drag-preload", extra_drag_preload),
+        }
+    }
+
+    #[cfg(any(feature = "v1_3", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v1_3")))]
+    pub fn inverted(self, inverted: bool) -> Self {
+        Self {
+            builder: self.builder.property("inverted", inverted),
+        }
+    }
+
+    #[cfg(any(feature = "v1_3", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v1_3")))]
+    pub fn open(self, open: bool) -> Self {
+        Self {
+            builder: self.builder.property("open", open),
+        }
+    }
+
+    #[cfg(any(feature = "v1_3", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v1_3")))]
+    pub fn secondary_menu(self, secondary_menu: &impl IsA<gio::MenuModel>) -> Self {
+        Self {
+            builder: self
+                .builder
+                .property("secondary-menu", secondary_menu.clone().upcast()),
+        }
+    }
+
+    #[cfg(any(feature = "v1_3", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v1_3")))]
+    pub fn show_end_title_buttons(self, show_end_title_buttons: bool) -> Self {
+        Self {
+            builder: self
+                .builder
+                .property("show-end-title-buttons", show_end_title_buttons),
+        }
+    }
+
+    #[cfg(any(feature = "v1_3", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v1_3")))]
+    pub fn show_start_title_buttons(self, show_start_title_buttons: bool) -> Self {
+        Self {
+            builder: self
+                .builder
+                .property("show-start-title-buttons", show_start_title_buttons),
+        }
+    }
+
+    #[cfg(any(feature = "v1_3", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v1_3")))]
+    pub fn view(self, view: &TabView) -> Self {
+        Self {
+            builder: self.builder.property("view", view.clone()),
+        }
+    }
+
+    pub fn can_focus(self, can_focus: bool) -> Self {
+        Self {
+            builder: self.builder.property("can-focus", can_focus),
+        }
+    }
+
+    pub fn can_target(self, can_target: bool) -> Self {
+        Self {
+            builder: self.builder.property("can-target", can_target),
+        }
+    }
+
+    pub fn css_classes(self, css_classes: impl Into<glib::StrV>) -> Self {
+        Self {
+            builder: self.builder.property("css-classes", css_classes.into()),
+        }
+    }
+
+    pub fn css_name(self, css_name: impl Into<glib::GString>) -> Self {
+        Self {
+            builder: self.builder.property("css-name", css_name.into()),
+        }
+    }
+
+    pub fn cursor(self, cursor: &gdk::Cursor) -> Self {
+        Self {
+            builder: self.builder.property("cursor", cursor.clone()),
+        }
+    }
+
+    pub fn focus_on_click(self, focus_on_click: bool) -> Self {
+        Self {
+            builder: self.builder.property("focus-on-click", focus_on_click),
+        }
+    }
+
+    pub fn focusable(self, focusable: bool) -> Self {
+        Self {
+            builder: self.builder.property("focusable", focusable),
+        }
+    }
+
+    pub fn halign(self, halign: gtk::Align) -> Self {
+        Self {
+            builder: self.builder.property("halign", halign),
+        }
+    }
+
+    pub fn has_tooltip(self, has_tooltip: bool) -> Self {
+        Self {
+            builder: self.builder.property("has-tooltip", has_tooltip),
+        }
+    }
+
+    pub fn height_request(self, height_request: i32) -> Self {
+        Self {
+            builder: self.builder.property("height-request", height_request),
+        }
+    }
+
+    pub fn hexpand(self, hexpand: bool) -> Self {
+        Self {
+            builder: self.builder.property("hexpand", hexpand),
+        }
+    }
+
+    pub fn hexpand_set(self, hexpand_set: bool) -> Self {
+        Self {
+            builder: self.builder.property("hexpand-set", hexpand_set),
+        }
+    }
+
+    pub fn layout_manager(self, layout_manager: &impl IsA<gtk::LayoutManager>) -> Self {
+        Self {
+            builder: self
+                .builder
+                .property("layout-manager", layout_manager.clone().upcast()),
+        }
+    }
+
+    pub fn margin_bottom(self, margin_bottom: i32) -> Self {
+        Self {
+            builder: self.builder.property("margin-bottom", margin_bottom),
+        }
+    }
+
+    pub fn margin_end(self, margin_end: i32) -> Self {
+        Self {
+            builder: self.builder.property("margin-end", margin_end),
+        }
+    }
+
+    pub fn margin_start(self, margin_start: i32) -> Self {
+        Self {
+            builder: self.builder.property("margin-start", margin_start),
+        }
+    }
+
+    pub fn margin_top(self, margin_top: i32) -> Self {
+        Self {
+            builder: self.builder.property("margin-top", margin_top),
+        }
+    }
+
+    pub fn name(self, name: impl Into<glib::GString>) -> Self {
+        Self {
+            builder: self.builder.property("name", name.into()),
+        }
+    }
+
+    pub fn opacity(self, opacity: f64) -> Self {
+        Self {
+            builder: self.builder.property("opacity", opacity),
+        }
+    }
+
+    pub fn overflow(self, overflow: gtk::Overflow) -> Self {
+        Self {
+            builder: self.builder.property("overflow", overflow),
+        }
+    }
+
+    pub fn receives_default(self, receives_default: bool) -> Self {
+        Self {
+            builder: self.builder.property("receives-default", receives_default),
+        }
+    }
+
+    pub fn sensitive(self, sensitive: bool) -> Self {
+        Self {
+            builder: self.builder.property("sensitive", sensitive),
+        }
+    }
+
+    pub fn tooltip_markup(self, tooltip_markup: impl Into<glib::GString>) -> Self {
+        Self {
+            builder: self
+                .builder
+                .property("tooltip-markup", tooltip_markup.into()),
+        }
+    }
+
+    pub fn tooltip_text(self, tooltip_text: impl Into<glib::GString>) -> Self {
+        Self {
+            builder: self.builder.property("tooltip-text", tooltip_text.into()),
+        }
+    }
+
+    pub fn valign(self, valign: gtk::Align) -> Self {
+        Self {
+            builder: self.builder.property("valign", valign),
+        }
+    }
+
+    pub fn vexpand(self, vexpand: bool) -> Self {
+        Self {
+            builder: self.builder.property("vexpand", vexpand),
+        }
+    }
+
+    pub fn vexpand_set(self, vexpand_set: bool) -> Self {
+        Self {
+            builder: self.builder.property("vexpand-set", vexpand_set),
+        }
+    }
+
+    pub fn visible(self, visible: bool) -> Self {
+        Self {
+            builder: self.builder.property("visible", visible),
+        }
+    }
+
+    pub fn width_request(self, width_request: i32) -> Self {
+        Self {
+            builder: self.builder.property("width-request", width_request),
+        }
+    }
+
+    pub fn accessible_role(self, accessible_role: gtk::AccessibleRole) -> Self {
+        Self {
+            builder: self.builder.property("accessible-role", accessible_role),
+        }
     }
 
     // rustdoc-stripper-ignore-next
     /// Build the [`TabOverview`].
     #[must_use = "Building the object from the builder is usually expensive and is not expected to have side effects"]
     pub fn build(self) -> TabOverview {
-        let mut properties: Vec<(&str, &dyn ToValue)> = vec![];
-        #[cfg(any(feature = "v1_3", feature = "dox"))]
-        if let Some(ref child) = self.child {
-            properties.push(("child", child));
-        }
-        #[cfg(any(feature = "v1_3", feature = "dox"))]
-        if let Some(ref enable_new_tab) = self.enable_new_tab {
-            properties.push(("enable-new-tab", enable_new_tab));
-        }
-        #[cfg(any(feature = "v1_3", feature = "dox"))]
-        if let Some(ref enable_search) = self.enable_search {
-            properties.push(("enable-search", enable_search));
-        }
-        #[cfg(any(feature = "v1_3", feature = "dox"))]
-        if let Some(ref inverted) = self.inverted {
-            properties.push(("inverted", inverted));
-        }
-        #[cfg(any(feature = "v1_3", feature = "dox"))]
-        if let Some(ref open) = self.open {
-            properties.push(("open", open));
-        }
-        #[cfg(any(feature = "v1_3", feature = "dox"))]
-        if let Some(ref secondary_menu) = self.secondary_menu {
-            properties.push(("secondary-menu", secondary_menu));
-        }
-        #[cfg(any(feature = "v1_3", feature = "dox"))]
-        if let Some(ref show_end_title_buttons) = self.show_end_title_buttons {
-            properties.push(("show-end-title-buttons", show_end_title_buttons));
-        }
-        #[cfg(any(feature = "v1_3", feature = "dox"))]
-        if let Some(ref show_start_title_buttons) = self.show_start_title_buttons {
-            properties.push(("show-start-title-buttons", show_start_title_buttons));
-        }
-        #[cfg(any(feature = "v1_3", feature = "dox"))]
-        if let Some(ref view) = self.view {
-            properties.push(("view", view));
-        }
-        if let Some(ref can_focus) = self.can_focus {
-            properties.push(("can-focus", can_focus));
-        }
-        if let Some(ref can_target) = self.can_target {
-            properties.push(("can-target", can_target));
-        }
-        if let Some(ref css_classes) = self.css_classes {
-            properties.push(("css-classes", css_classes));
-        }
-        if let Some(ref css_name) = self.css_name {
-            properties.push(("css-name", css_name));
-        }
-        if let Some(ref cursor) = self.cursor {
-            properties.push(("cursor", cursor));
-        }
-        if let Some(ref focus_on_click) = self.focus_on_click {
-            properties.push(("focus-on-click", focus_on_click));
-        }
-        if let Some(ref focusable) = self.focusable {
-            properties.push(("focusable", focusable));
-        }
-        if let Some(ref halign) = self.halign {
-            properties.push(("halign", halign));
-        }
-        if let Some(ref has_tooltip) = self.has_tooltip {
-            properties.push(("has-tooltip", has_tooltip));
-        }
-        if let Some(ref height_request) = self.height_request {
-            properties.push(("height-request", height_request));
-        }
-        if let Some(ref hexpand) = self.hexpand {
-            properties.push(("hexpand", hexpand));
-        }
-        if let Some(ref hexpand_set) = self.hexpand_set {
-            properties.push(("hexpand-set", hexpand_set));
-        }
-        if let Some(ref layout_manager) = self.layout_manager {
-            properties.push(("layout-manager", layout_manager));
-        }
-        if let Some(ref margin_bottom) = self.margin_bottom {
-            properties.push(("margin-bottom", margin_bottom));
-        }
-        if let Some(ref margin_end) = self.margin_end {
-            properties.push(("margin-end", margin_end));
-        }
-        if let Some(ref margin_start) = self.margin_start {
-            properties.push(("margin-start", margin_start));
-        }
-        if let Some(ref margin_top) = self.margin_top {
-            properties.push(("margin-top", margin_top));
-        }
-        if let Some(ref name) = self.name {
-            properties.push(("name", name));
-        }
-        if let Some(ref opacity) = self.opacity {
-            properties.push(("opacity", opacity));
-        }
-        if let Some(ref overflow) = self.overflow {
-            properties.push(("overflow", overflow));
-        }
-        if let Some(ref receives_default) = self.receives_default {
-            properties.push(("receives-default", receives_default));
-        }
-        if let Some(ref sensitive) = self.sensitive {
-            properties.push(("sensitive", sensitive));
-        }
-        if let Some(ref tooltip_markup) = self.tooltip_markup {
-            properties.push(("tooltip-markup", tooltip_markup));
-        }
-        if let Some(ref tooltip_text) = self.tooltip_text {
-            properties.push(("tooltip-text", tooltip_text));
-        }
-        if let Some(ref valign) = self.valign {
-            properties.push(("valign", valign));
-        }
-        if let Some(ref vexpand) = self.vexpand {
-            properties.push(("vexpand", vexpand));
-        }
-        if let Some(ref vexpand_set) = self.vexpand_set {
-            properties.push(("vexpand-set", vexpand_set));
-        }
-        if let Some(ref visible) = self.visible {
-            properties.push(("visible", visible));
-        }
-        if let Some(ref width_request) = self.width_request {
-            properties.push(("width-request", width_request));
-        }
-        if let Some(ref accessible_role) = self.accessible_role {
-            properties.push(("accessible-role", accessible_role));
-        }
-        glib::Object::new::<TabOverview>(&properties)
-    }
-
-    #[cfg(any(feature = "v1_3", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v1_3")))]
-    pub fn child(mut self, child: &impl IsA<gtk::Widget>) -> Self {
-        self.child = Some(child.clone().upcast());
-        self
-    }
-
-    #[cfg(any(feature = "v1_3", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v1_3")))]
-    pub fn enable_new_tab(mut self, enable_new_tab: bool) -> Self {
-        self.enable_new_tab = Some(enable_new_tab);
-        self
-    }
-
-    #[cfg(any(feature = "v1_3", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v1_3")))]
-    pub fn enable_search(mut self, enable_search: bool) -> Self {
-        self.enable_search = Some(enable_search);
-        self
-    }
-
-    #[cfg(any(feature = "v1_3", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v1_3")))]
-    pub fn inverted(mut self, inverted: bool) -> Self {
-        self.inverted = Some(inverted);
-        self
-    }
-
-    #[cfg(any(feature = "v1_3", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v1_3")))]
-    pub fn open(mut self, open: bool) -> Self {
-        self.open = Some(open);
-        self
-    }
-
-    #[cfg(any(feature = "v1_3", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v1_3")))]
-    pub fn secondary_menu(mut self, secondary_menu: &impl IsA<gio::MenuModel>) -> Self {
-        self.secondary_menu = Some(secondary_menu.clone().upcast());
-        self
-    }
-
-    #[cfg(any(feature = "v1_3", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v1_3")))]
-    pub fn show_end_title_buttons(mut self, show_end_title_buttons: bool) -> Self {
-        self.show_end_title_buttons = Some(show_end_title_buttons);
-        self
-    }
-
-    #[cfg(any(feature = "v1_3", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v1_3")))]
-    pub fn show_start_title_buttons(mut self, show_start_title_buttons: bool) -> Self {
-        self.show_start_title_buttons = Some(show_start_title_buttons);
-        self
-    }
-
-    #[cfg(any(feature = "v1_3", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v1_3")))]
-    pub fn view(mut self, view: &TabView) -> Self {
-        self.view = Some(view.clone());
-        self
-    }
-
-    pub fn can_focus(mut self, can_focus: bool) -> Self {
-        self.can_focus = Some(can_focus);
-        self
-    }
-
-    pub fn can_target(mut self, can_target: bool) -> Self {
-        self.can_target = Some(can_target);
-        self
-    }
-
-    pub fn css_classes(mut self, css_classes: Vec<String>) -> Self {
-        self.css_classes = Some(css_classes);
-        self
-    }
-
-    pub fn css_name(mut self, css_name: &str) -> Self {
-        self.css_name = Some(css_name.to_string());
-        self
-    }
-
-    pub fn cursor(mut self, cursor: &gdk::Cursor) -> Self {
-        self.cursor = Some(cursor.clone());
-        self
-    }
-
-    pub fn focus_on_click(mut self, focus_on_click: bool) -> Self {
-        self.focus_on_click = Some(focus_on_click);
-        self
-    }
-
-    pub fn focusable(mut self, focusable: bool) -> Self {
-        self.focusable = Some(focusable);
-        self
-    }
-
-    pub fn halign(mut self, halign: gtk::Align) -> Self {
-        self.halign = Some(halign);
-        self
-    }
-
-    pub fn has_tooltip(mut self, has_tooltip: bool) -> Self {
-        self.has_tooltip = Some(has_tooltip);
-        self
-    }
-
-    pub fn height_request(mut self, height_request: i32) -> Self {
-        self.height_request = Some(height_request);
-        self
-    }
-
-    pub fn hexpand(mut self, hexpand: bool) -> Self {
-        self.hexpand = Some(hexpand);
-        self
-    }
-
-    pub fn hexpand_set(mut self, hexpand_set: bool) -> Self {
-        self.hexpand_set = Some(hexpand_set);
-        self
-    }
-
-    pub fn layout_manager(mut self, layout_manager: &impl IsA<gtk::LayoutManager>) -> Self {
-        self.layout_manager = Some(layout_manager.clone().upcast());
-        self
-    }
-
-    pub fn margin_bottom(mut self, margin_bottom: i32) -> Self {
-        self.margin_bottom = Some(margin_bottom);
-        self
-    }
-
-    pub fn margin_end(mut self, margin_end: i32) -> Self {
-        self.margin_end = Some(margin_end);
-        self
-    }
-
-    pub fn margin_start(mut self, margin_start: i32) -> Self {
-        self.margin_start = Some(margin_start);
-        self
-    }
-
-    pub fn margin_top(mut self, margin_top: i32) -> Self {
-        self.margin_top = Some(margin_top);
-        self
-    }
-
-    pub fn name(mut self, name: &str) -> Self {
-        self.name = Some(name.to_string());
-        self
-    }
-
-    pub fn opacity(mut self, opacity: f64) -> Self {
-        self.opacity = Some(opacity);
-        self
-    }
-
-    pub fn overflow(mut self, overflow: gtk::Overflow) -> Self {
-        self.overflow = Some(overflow);
-        self
-    }
-
-    pub fn receives_default(mut self, receives_default: bool) -> Self {
-        self.receives_default = Some(receives_default);
-        self
-    }
-
-    pub fn sensitive(mut self, sensitive: bool) -> Self {
-        self.sensitive = Some(sensitive);
-        self
-    }
-
-    pub fn tooltip_markup(mut self, tooltip_markup: &str) -> Self {
-        self.tooltip_markup = Some(tooltip_markup.to_string());
-        self
-    }
-
-    pub fn tooltip_text(mut self, tooltip_text: &str) -> Self {
-        self.tooltip_text = Some(tooltip_text.to_string());
-        self
-    }
-
-    pub fn valign(mut self, valign: gtk::Align) -> Self {
-        self.valign = Some(valign);
-        self
-    }
-
-    pub fn vexpand(mut self, vexpand: bool) -> Self {
-        self.vexpand = Some(vexpand);
-        self
-    }
-
-    pub fn vexpand_set(mut self, vexpand_set: bool) -> Self {
-        self.vexpand_set = Some(vexpand_set);
-        self
-    }
-
-    pub fn visible(mut self, visible: bool) -> Self {
-        self.visible = Some(visible);
-        self
-    }
-
-    pub fn width_request(mut self, width_request: i32) -> Self {
-        self.width_request = Some(width_request);
-        self
-    }
-
-    pub fn accessible_role(mut self, accessible_role: gtk::AccessibleRole) -> Self {
-        self.accessible_role = Some(accessible_role);
-        self
+        self.builder.build()
     }
 }
 

@@ -4,10 +4,8 @@
 // DO NOT EDIT
 
 use crate::AnimationTarget;
-use glib::object::Cast;
-use glib::translate::*;
-use std::boxed::Box as Box_;
-use std::fmt;
+use glib::{prelude::*, translate::*};
+use std::{boxed::Box as Box_, fmt};
 
 glib::wrapper! {
     #[doc(alias = "AdwCallbackAnimationTarget")]
@@ -28,7 +26,7 @@ impl CallbackAnimationTarget {
             user_data: glib::ffi::gpointer,
         ) {
             let callback: &P = &*(user_data as *mut _);
-            (*callback)(value);
+            (*callback)(value)
         }
         let callback = Some(callback_func::<P> as _);
         unsafe extern "C" fn destroy_func<P: Fn(f64) + 'static>(data: glib::ffi::gpointer) {

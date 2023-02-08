@@ -4,19 +4,12 @@
 // DO NOT EDIT
 
 use crate::ToastPriority;
-use glib::object::Cast;
-#[cfg(any(feature = "v1_2", feature = "dox"))]
-#[cfg_attr(feature = "dox", doc(cfg(feature = "v1_2")))]
-use glib::object::IsA;
-use glib::object::ObjectType as ObjectType_;
-use glib::signal::connect_raw;
-use glib::signal::SignalHandlerId;
-use glib::translate::*;
-use glib::StaticType;
-use glib::ToValue;
-use std::boxed::Box as Box_;
-use std::fmt;
-use std::mem::transmute;
+use glib::{
+    prelude::*,
+    signal::{connect_raw, SignalHandlerId},
+    translate::*,
+};
+use std::{boxed::Box as Box_, fmt, mem::transmute};
 
 glib::wrapper! {
     #[doc(alias = "AdwToast")]
@@ -39,7 +32,7 @@ impl Toast {
     ///
     /// This method returns an instance of [`ToastBuilder`](crate::builders::ToastBuilder) which can be used to create [`Toast`] objects.
     pub fn builder() -> ToastBuilder {
-        ToastBuilder::default()
+        ToastBuilder::new()
     }
 
     #[doc(alias = "adw_toast_dismiss")]
@@ -376,100 +369,79 @@ impl Toast {
 
 impl Default for Toast {
     fn default() -> Self {
-        glib::object::Object::new::<Self>(&[])
+        glib::object::Object::new::<Self>()
     }
 }
 
-#[derive(Clone, Default)]
 // rustdoc-stripper-ignore-next
 /// A [builder-pattern] type to construct [`Toast`] objects.
 ///
 /// [builder-pattern]: https://doc.rust-lang.org/1.0.0/style/ownership/builders.html
 #[must_use = "The builder must be built to be used"]
 pub struct ToastBuilder {
-    action_name: Option<String>,
-    action_target: Option<glib::Variant>,
-    button_label: Option<String>,
-    #[cfg(any(feature = "v1_2", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v1_2")))]
-    custom_title: Option<gtk::Widget>,
-    priority: Option<ToastPriority>,
-    timeout: Option<u32>,
-    title: Option<String>,
+    builder: glib::object::ObjectBuilder<'static, Toast>,
 }
 
 impl ToastBuilder {
-    // rustdoc-stripper-ignore-next
-    /// Create a new [`ToastBuilder`].
-    pub fn new() -> Self {
-        Self::default()
+    fn new() -> Self {
+        Self {
+            builder: glib::object::Object::builder(),
+        }
+    }
+
+    pub fn action_name(self, action_name: impl Into<glib::GString>) -> Self {
+        Self {
+            builder: self.builder.property("action-name", action_name.into()),
+        }
+    }
+
+    pub fn action_target(self, action_target: &glib::Variant) -> Self {
+        Self {
+            builder: self
+                .builder
+                .property("action-target", action_target.clone()),
+        }
+    }
+
+    pub fn button_label(self, button_label: impl Into<glib::GString>) -> Self {
+        Self {
+            builder: self.builder.property("button-label", button_label.into()),
+        }
+    }
+
+    #[cfg(any(feature = "v1_2", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v1_2")))]
+    pub fn custom_title(self, custom_title: &impl IsA<gtk::Widget>) -> Self {
+        Self {
+            builder: self
+                .builder
+                .property("custom-title", custom_title.clone().upcast()),
+        }
+    }
+
+    pub fn priority(self, priority: ToastPriority) -> Self {
+        Self {
+            builder: self.builder.property("priority", priority),
+        }
+    }
+
+    pub fn timeout(self, timeout: u32) -> Self {
+        Self {
+            builder: self.builder.property("timeout", timeout),
+        }
+    }
+
+    pub fn title(self, title: impl Into<glib::GString>) -> Self {
+        Self {
+            builder: self.builder.property("title", title.into()),
+        }
     }
 
     // rustdoc-stripper-ignore-next
     /// Build the [`Toast`].
     #[must_use = "Building the object from the builder is usually expensive and is not expected to have side effects"]
     pub fn build(self) -> Toast {
-        let mut properties: Vec<(&str, &dyn ToValue)> = vec![];
-        if let Some(ref action_name) = self.action_name {
-            properties.push(("action-name", action_name));
-        }
-        if let Some(ref action_target) = self.action_target {
-            properties.push(("action-target", action_target));
-        }
-        if let Some(ref button_label) = self.button_label {
-            properties.push(("button-label", button_label));
-        }
-        #[cfg(any(feature = "v1_2", feature = "dox"))]
-        if let Some(ref custom_title) = self.custom_title {
-            properties.push(("custom-title", custom_title));
-        }
-        if let Some(ref priority) = self.priority {
-            properties.push(("priority", priority));
-        }
-        if let Some(ref timeout) = self.timeout {
-            properties.push(("timeout", timeout));
-        }
-        if let Some(ref title) = self.title {
-            properties.push(("title", title));
-        }
-        glib::Object::new::<Toast>(&properties)
-    }
-
-    pub fn action_name(mut self, action_name: &str) -> Self {
-        self.action_name = Some(action_name.to_string());
-        self
-    }
-
-    pub fn action_target(mut self, action_target: &glib::Variant) -> Self {
-        self.action_target = Some(action_target.clone());
-        self
-    }
-
-    pub fn button_label(mut self, button_label: &str) -> Self {
-        self.button_label = Some(button_label.to_string());
-        self
-    }
-
-    #[cfg(any(feature = "v1_2", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v1_2")))]
-    pub fn custom_title(mut self, custom_title: &impl IsA<gtk::Widget>) -> Self {
-        self.custom_title = Some(custom_title.clone().upcast());
-        self
-    }
-
-    pub fn priority(mut self, priority: ToastPriority) -> Self {
-        self.priority = Some(priority);
-        self
-    }
-
-    pub fn timeout(mut self, timeout: u32) -> Self {
-        self.timeout = Some(timeout);
-        self
-    }
-
-    pub fn title(mut self, title: &str) -> Self {
-        self.title = Some(title.to_string());
-        self
+        self.builder.build()
     }
 }
 

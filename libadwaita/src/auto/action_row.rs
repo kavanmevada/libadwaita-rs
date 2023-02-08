@@ -2,18 +2,15 @@
 // from
 // from gir-files (https://github.com/gtk-rs/gir-files.git)
 // DO NOT EDIT
+#![allow(deprecated)]
 
 use crate::PreferencesRow;
-use glib::object::Cast;
-use glib::object::IsA;
-use glib::signal::connect_raw;
-use glib::signal::SignalHandlerId;
-use glib::translate::*;
-use glib::StaticType;
-use glib::ToValue;
-use std::boxed::Box as Box_;
-use std::fmt;
-use std::mem::transmute;
+use glib::{
+    prelude::*,
+    signal::{connect_raw, SignalHandlerId},
+    translate::*,
+};
+use std::{boxed::Box as Box_, fmt, mem::transmute};
 
 glib::wrapper! {
     #[doc(alias = "AdwActionRow")]
@@ -38,7 +35,7 @@ impl ActionRow {
     ///
     /// This method returns an instance of [`ActionRowBuilder`](crate::builders::ActionRowBuilder) which can be used to create [`ActionRow`] objects.
     pub fn builder() -> ActionRowBuilder {
-        ActionRowBuilder::default()
+        ActionRowBuilder::new()
     }
 }
 
@@ -48,434 +45,314 @@ impl Default for ActionRow {
     }
 }
 
-#[derive(Clone, Default)]
 // rustdoc-stripper-ignore-next
 /// A [builder-pattern] type to construct [`ActionRow`] objects.
 ///
 /// [builder-pattern]: https://doc.rust-lang.org/1.0.0/style/ownership/builders.html
 #[must_use = "The builder must be built to be used"]
 pub struct ActionRowBuilder {
-    activatable_widget: Option<gtk::Widget>,
-    icon_name: Option<String>,
-    subtitle: Option<String>,
-    subtitle_lines: Option<i32>,
-    title_lines: Option<i32>,
-    title: Option<String>,
-    #[cfg(any(feature = "v1_1", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v1_1")))]
-    title_selectable: Option<bool>,
-    #[cfg(any(feature = "v1_2", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v1_2")))]
-    use_markup: Option<bool>,
-    use_underline: Option<bool>,
-    activatable: Option<bool>,
-    child: Option<gtk::Widget>,
-    selectable: Option<bool>,
-    can_focus: Option<bool>,
-    can_target: Option<bool>,
-    css_classes: Option<Vec<String>>,
-    css_name: Option<String>,
-    cursor: Option<gdk::Cursor>,
-    focus_on_click: Option<bool>,
-    focusable: Option<bool>,
-    halign: Option<gtk::Align>,
-    has_tooltip: Option<bool>,
-    height_request: Option<i32>,
-    hexpand: Option<bool>,
-    hexpand_set: Option<bool>,
-    layout_manager: Option<gtk::LayoutManager>,
-    margin_bottom: Option<i32>,
-    margin_end: Option<i32>,
-    margin_start: Option<i32>,
-    margin_top: Option<i32>,
-    name: Option<String>,
-    opacity: Option<f64>,
-    overflow: Option<gtk::Overflow>,
-    receives_default: Option<bool>,
-    sensitive: Option<bool>,
-    tooltip_markup: Option<String>,
-    tooltip_text: Option<String>,
-    valign: Option<gtk::Align>,
-    vexpand: Option<bool>,
-    vexpand_set: Option<bool>,
-    visible: Option<bool>,
-    width_request: Option<i32>,
-    accessible_role: Option<gtk::AccessibleRole>,
-    action_name: Option<String>,
-    action_target: Option<glib::Variant>,
+    builder: glib::object::ObjectBuilder<'static, ActionRow>,
 }
 
 impl ActionRowBuilder {
-    // rustdoc-stripper-ignore-next
-    /// Create a new [`ActionRowBuilder`].
-    pub fn new() -> Self {
-        Self::default()
+    fn new() -> Self {
+        Self {
+            builder: glib::object::Object::builder(),
+        }
+    }
+
+    pub fn activatable_widget(self, activatable_widget: &impl IsA<gtk::Widget>) -> Self {
+        Self {
+            builder: self
+                .builder
+                .property("activatable-widget", activatable_widget.clone().upcast()),
+        }
+    }
+
+    #[cfg_attr(feature = "v1_3", deprecated = "Since 1.3")]
+    pub fn icon_name(self, icon_name: impl Into<glib::GString>) -> Self {
+        Self {
+            builder: self.builder.property("icon-name", icon_name.into()),
+        }
+    }
+
+    pub fn subtitle(self, subtitle: impl Into<glib::GString>) -> Self {
+        Self {
+            builder: self.builder.property("subtitle", subtitle.into()),
+        }
+    }
+
+    pub fn subtitle_lines(self, subtitle_lines: i32) -> Self {
+        Self {
+            builder: self.builder.property("subtitle-lines", subtitle_lines),
+        }
+    }
+
+    #[cfg(any(feature = "v1_3", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v1_3")))]
+    pub fn subtitle_selectable(self, subtitle_selectable: bool) -> Self {
+        Self {
+            builder: self
+                .builder
+                .property("subtitle-selectable", subtitle_selectable),
+        }
+    }
+
+    pub fn title_lines(self, title_lines: i32) -> Self {
+        Self {
+            builder: self.builder.property("title-lines", title_lines),
+        }
+    }
+
+    pub fn title(self, title: impl Into<glib::GString>) -> Self {
+        Self {
+            builder: self.builder.property("title", title.into()),
+        }
+    }
+
+    #[cfg(any(feature = "v1_1", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v1_1")))]
+    pub fn title_selectable(self, title_selectable: bool) -> Self {
+        Self {
+            builder: self.builder.property("title-selectable", title_selectable),
+        }
+    }
+
+    #[cfg(any(feature = "v1_2", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v1_2")))]
+    pub fn use_markup(self, use_markup: bool) -> Self {
+        Self {
+            builder: self.builder.property("use-markup", use_markup),
+        }
+    }
+
+    pub fn use_underline(self, use_underline: bool) -> Self {
+        Self {
+            builder: self.builder.property("use-underline", use_underline),
+        }
+    }
+
+    pub fn activatable(self, activatable: bool) -> Self {
+        Self {
+            builder: self.builder.property("activatable", activatable),
+        }
+    }
+
+    pub fn child(self, child: &impl IsA<gtk::Widget>) -> Self {
+        Self {
+            builder: self.builder.property("child", child.clone().upcast()),
+        }
+    }
+
+    pub fn selectable(self, selectable: bool) -> Self {
+        Self {
+            builder: self.builder.property("selectable", selectable),
+        }
+    }
+
+    pub fn can_focus(self, can_focus: bool) -> Self {
+        Self {
+            builder: self.builder.property("can-focus", can_focus),
+        }
+    }
+
+    pub fn can_target(self, can_target: bool) -> Self {
+        Self {
+            builder: self.builder.property("can-target", can_target),
+        }
+    }
+
+    pub fn css_classes(self, css_classes: impl Into<glib::StrV>) -> Self {
+        Self {
+            builder: self.builder.property("css-classes", css_classes.into()),
+        }
+    }
+
+    pub fn css_name(self, css_name: impl Into<glib::GString>) -> Self {
+        Self {
+            builder: self.builder.property("css-name", css_name.into()),
+        }
+    }
+
+    pub fn cursor(self, cursor: &gdk::Cursor) -> Self {
+        Self {
+            builder: self.builder.property("cursor", cursor.clone()),
+        }
+    }
+
+    pub fn focus_on_click(self, focus_on_click: bool) -> Self {
+        Self {
+            builder: self.builder.property("focus-on-click", focus_on_click),
+        }
+    }
+
+    pub fn focusable(self, focusable: bool) -> Self {
+        Self {
+            builder: self.builder.property("focusable", focusable),
+        }
+    }
+
+    pub fn halign(self, halign: gtk::Align) -> Self {
+        Self {
+            builder: self.builder.property("halign", halign),
+        }
+    }
+
+    pub fn has_tooltip(self, has_tooltip: bool) -> Self {
+        Self {
+            builder: self.builder.property("has-tooltip", has_tooltip),
+        }
+    }
+
+    pub fn height_request(self, height_request: i32) -> Self {
+        Self {
+            builder: self.builder.property("height-request", height_request),
+        }
+    }
+
+    pub fn hexpand(self, hexpand: bool) -> Self {
+        Self {
+            builder: self.builder.property("hexpand", hexpand),
+        }
+    }
+
+    pub fn hexpand_set(self, hexpand_set: bool) -> Self {
+        Self {
+            builder: self.builder.property("hexpand-set", hexpand_set),
+        }
+    }
+
+    pub fn layout_manager(self, layout_manager: &impl IsA<gtk::LayoutManager>) -> Self {
+        Self {
+            builder: self
+                .builder
+                .property("layout-manager", layout_manager.clone().upcast()),
+        }
+    }
+
+    pub fn margin_bottom(self, margin_bottom: i32) -> Self {
+        Self {
+            builder: self.builder.property("margin-bottom", margin_bottom),
+        }
+    }
+
+    pub fn margin_end(self, margin_end: i32) -> Self {
+        Self {
+            builder: self.builder.property("margin-end", margin_end),
+        }
+    }
+
+    pub fn margin_start(self, margin_start: i32) -> Self {
+        Self {
+            builder: self.builder.property("margin-start", margin_start),
+        }
+    }
+
+    pub fn margin_top(self, margin_top: i32) -> Self {
+        Self {
+            builder: self.builder.property("margin-top", margin_top),
+        }
+    }
+
+    pub fn name(self, name: impl Into<glib::GString>) -> Self {
+        Self {
+            builder: self.builder.property("name", name.into()),
+        }
+    }
+
+    pub fn opacity(self, opacity: f64) -> Self {
+        Self {
+            builder: self.builder.property("opacity", opacity),
+        }
+    }
+
+    pub fn overflow(self, overflow: gtk::Overflow) -> Self {
+        Self {
+            builder: self.builder.property("overflow", overflow),
+        }
+    }
+
+    pub fn receives_default(self, receives_default: bool) -> Self {
+        Self {
+            builder: self.builder.property("receives-default", receives_default),
+        }
+    }
+
+    pub fn sensitive(self, sensitive: bool) -> Self {
+        Self {
+            builder: self.builder.property("sensitive", sensitive),
+        }
+    }
+
+    pub fn tooltip_markup(self, tooltip_markup: impl Into<glib::GString>) -> Self {
+        Self {
+            builder: self
+                .builder
+                .property("tooltip-markup", tooltip_markup.into()),
+        }
+    }
+
+    pub fn tooltip_text(self, tooltip_text: impl Into<glib::GString>) -> Self {
+        Self {
+            builder: self.builder.property("tooltip-text", tooltip_text.into()),
+        }
+    }
+
+    pub fn valign(self, valign: gtk::Align) -> Self {
+        Self {
+            builder: self.builder.property("valign", valign),
+        }
+    }
+
+    pub fn vexpand(self, vexpand: bool) -> Self {
+        Self {
+            builder: self.builder.property("vexpand", vexpand),
+        }
+    }
+
+    pub fn vexpand_set(self, vexpand_set: bool) -> Self {
+        Self {
+            builder: self.builder.property("vexpand-set", vexpand_set),
+        }
+    }
+
+    pub fn visible(self, visible: bool) -> Self {
+        Self {
+            builder: self.builder.property("visible", visible),
+        }
+    }
+
+    pub fn width_request(self, width_request: i32) -> Self {
+        Self {
+            builder: self.builder.property("width-request", width_request),
+        }
+    }
+
+    pub fn accessible_role(self, accessible_role: gtk::AccessibleRole) -> Self {
+        Self {
+            builder: self.builder.property("accessible-role", accessible_role),
+        }
+    }
+
+    pub fn action_name(self, action_name: impl Into<glib::GString>) -> Self {
+        Self {
+            builder: self.builder.property("action-name", action_name.into()),
+        }
+    }
+
+    pub fn action_target(self, action_target: &glib::Variant) -> Self {
+        Self {
+            builder: self
+                .builder
+                .property("action-target", action_target.clone()),
+        }
     }
 
     // rustdoc-stripper-ignore-next
     /// Build the [`ActionRow`].
     #[must_use = "Building the object from the builder is usually expensive and is not expected to have side effects"]
     pub fn build(self) -> ActionRow {
-        let mut properties: Vec<(&str, &dyn ToValue)> = vec![];
-        if let Some(ref activatable_widget) = self.activatable_widget {
-            properties.push(("activatable-widget", activatable_widget));
-        }
-        if let Some(ref icon_name) = self.icon_name {
-            properties.push(("icon-name", icon_name));
-        }
-        if let Some(ref subtitle) = self.subtitle {
-            properties.push(("subtitle", subtitle));
-        }
-        if let Some(ref subtitle_lines) = self.subtitle_lines {
-            properties.push(("subtitle-lines", subtitle_lines));
-        }
-        if let Some(ref title_lines) = self.title_lines {
-            properties.push(("title-lines", title_lines));
-        }
-        if let Some(ref title) = self.title {
-            properties.push(("title", title));
-        }
-        #[cfg(any(feature = "v1_1", feature = "dox"))]
-        if let Some(ref title_selectable) = self.title_selectable {
-            properties.push(("title-selectable", title_selectable));
-        }
-        #[cfg(any(feature = "v1_2", feature = "dox"))]
-        if let Some(ref use_markup) = self.use_markup {
-            properties.push(("use-markup", use_markup));
-        }
-        if let Some(ref use_underline) = self.use_underline {
-            properties.push(("use-underline", use_underline));
-        }
-        if let Some(ref activatable) = self.activatable {
-            properties.push(("activatable", activatable));
-        }
-        if let Some(ref child) = self.child {
-            properties.push(("child", child));
-        }
-        if let Some(ref selectable) = self.selectable {
-            properties.push(("selectable", selectable));
-        }
-        if let Some(ref can_focus) = self.can_focus {
-            properties.push(("can-focus", can_focus));
-        }
-        if let Some(ref can_target) = self.can_target {
-            properties.push(("can-target", can_target));
-        }
-        if let Some(ref css_classes) = self.css_classes {
-            properties.push(("css-classes", css_classes));
-        }
-        if let Some(ref css_name) = self.css_name {
-            properties.push(("css-name", css_name));
-        }
-        if let Some(ref cursor) = self.cursor {
-            properties.push(("cursor", cursor));
-        }
-        if let Some(ref focus_on_click) = self.focus_on_click {
-            properties.push(("focus-on-click", focus_on_click));
-        }
-        if let Some(ref focusable) = self.focusable {
-            properties.push(("focusable", focusable));
-        }
-        if let Some(ref halign) = self.halign {
-            properties.push(("halign", halign));
-        }
-        if let Some(ref has_tooltip) = self.has_tooltip {
-            properties.push(("has-tooltip", has_tooltip));
-        }
-        if let Some(ref height_request) = self.height_request {
-            properties.push(("height-request", height_request));
-        }
-        if let Some(ref hexpand) = self.hexpand {
-            properties.push(("hexpand", hexpand));
-        }
-        if let Some(ref hexpand_set) = self.hexpand_set {
-            properties.push(("hexpand-set", hexpand_set));
-        }
-        if let Some(ref layout_manager) = self.layout_manager {
-            properties.push(("layout-manager", layout_manager));
-        }
-        if let Some(ref margin_bottom) = self.margin_bottom {
-            properties.push(("margin-bottom", margin_bottom));
-        }
-        if let Some(ref margin_end) = self.margin_end {
-            properties.push(("margin-end", margin_end));
-        }
-        if let Some(ref margin_start) = self.margin_start {
-            properties.push(("margin-start", margin_start));
-        }
-        if let Some(ref margin_top) = self.margin_top {
-            properties.push(("margin-top", margin_top));
-        }
-        if let Some(ref name) = self.name {
-            properties.push(("name", name));
-        }
-        if let Some(ref opacity) = self.opacity {
-            properties.push(("opacity", opacity));
-        }
-        if let Some(ref overflow) = self.overflow {
-            properties.push(("overflow", overflow));
-        }
-        if let Some(ref receives_default) = self.receives_default {
-            properties.push(("receives-default", receives_default));
-        }
-        if let Some(ref sensitive) = self.sensitive {
-            properties.push(("sensitive", sensitive));
-        }
-        if let Some(ref tooltip_markup) = self.tooltip_markup {
-            properties.push(("tooltip-markup", tooltip_markup));
-        }
-        if let Some(ref tooltip_text) = self.tooltip_text {
-            properties.push(("tooltip-text", tooltip_text));
-        }
-        if let Some(ref valign) = self.valign {
-            properties.push(("valign", valign));
-        }
-        if let Some(ref vexpand) = self.vexpand {
-            properties.push(("vexpand", vexpand));
-        }
-        if let Some(ref vexpand_set) = self.vexpand_set {
-            properties.push(("vexpand-set", vexpand_set));
-        }
-        if let Some(ref visible) = self.visible {
-            properties.push(("visible", visible));
-        }
-        if let Some(ref width_request) = self.width_request {
-            properties.push(("width-request", width_request));
-        }
-        if let Some(ref accessible_role) = self.accessible_role {
-            properties.push(("accessible-role", accessible_role));
-        }
-        if let Some(ref action_name) = self.action_name {
-            properties.push(("action-name", action_name));
-        }
-        if let Some(ref action_target) = self.action_target {
-            properties.push(("action-target", action_target));
-        }
-        glib::Object::new::<ActionRow>(&properties)
-    }
-
-    pub fn activatable_widget(mut self, activatable_widget: &impl IsA<gtk::Widget>) -> Self {
-        self.activatable_widget = Some(activatable_widget.clone().upcast());
-        self
-    }
-
-    pub fn icon_name(mut self, icon_name: &str) -> Self {
-        self.icon_name = Some(icon_name.to_string());
-        self
-    }
-
-    pub fn subtitle(mut self, subtitle: &str) -> Self {
-        self.subtitle = Some(subtitle.to_string());
-        self
-    }
-
-    pub fn subtitle_lines(mut self, subtitle_lines: i32) -> Self {
-        self.subtitle_lines = Some(subtitle_lines);
-        self
-    }
-
-    pub fn title_lines(mut self, title_lines: i32) -> Self {
-        self.title_lines = Some(title_lines);
-        self
-    }
-
-    pub fn title(mut self, title: &str) -> Self {
-        self.title = Some(title.to_string());
-        self
-    }
-
-    #[cfg(any(feature = "v1_1", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v1_1")))]
-    pub fn title_selectable(mut self, title_selectable: bool) -> Self {
-        self.title_selectable = Some(title_selectable);
-        self
-    }
-
-    #[cfg(any(feature = "v1_2", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v1_2")))]
-    pub fn use_markup(mut self, use_markup: bool) -> Self {
-        self.use_markup = Some(use_markup);
-        self
-    }
-
-    pub fn use_underline(mut self, use_underline: bool) -> Self {
-        self.use_underline = Some(use_underline);
-        self
-    }
-
-    pub fn activatable(mut self, activatable: bool) -> Self {
-        self.activatable = Some(activatable);
-        self
-    }
-
-    pub fn child(mut self, child: &impl IsA<gtk::Widget>) -> Self {
-        self.child = Some(child.clone().upcast());
-        self
-    }
-
-    pub fn selectable(mut self, selectable: bool) -> Self {
-        self.selectable = Some(selectable);
-        self
-    }
-
-    pub fn can_focus(mut self, can_focus: bool) -> Self {
-        self.can_focus = Some(can_focus);
-        self
-    }
-
-    pub fn can_target(mut self, can_target: bool) -> Self {
-        self.can_target = Some(can_target);
-        self
-    }
-
-    pub fn css_classes(mut self, css_classes: Vec<String>) -> Self {
-        self.css_classes = Some(css_classes);
-        self
-    }
-
-    pub fn css_name(mut self, css_name: &str) -> Self {
-        self.css_name = Some(css_name.to_string());
-        self
-    }
-
-    pub fn cursor(mut self, cursor: &gdk::Cursor) -> Self {
-        self.cursor = Some(cursor.clone());
-        self
-    }
-
-    pub fn focus_on_click(mut self, focus_on_click: bool) -> Self {
-        self.focus_on_click = Some(focus_on_click);
-        self
-    }
-
-    pub fn focusable(mut self, focusable: bool) -> Self {
-        self.focusable = Some(focusable);
-        self
-    }
-
-    pub fn halign(mut self, halign: gtk::Align) -> Self {
-        self.halign = Some(halign);
-        self
-    }
-
-    pub fn has_tooltip(mut self, has_tooltip: bool) -> Self {
-        self.has_tooltip = Some(has_tooltip);
-        self
-    }
-
-    pub fn height_request(mut self, height_request: i32) -> Self {
-        self.height_request = Some(height_request);
-        self
-    }
-
-    pub fn hexpand(mut self, hexpand: bool) -> Self {
-        self.hexpand = Some(hexpand);
-        self
-    }
-
-    pub fn hexpand_set(mut self, hexpand_set: bool) -> Self {
-        self.hexpand_set = Some(hexpand_set);
-        self
-    }
-
-    pub fn layout_manager(mut self, layout_manager: &impl IsA<gtk::LayoutManager>) -> Self {
-        self.layout_manager = Some(layout_manager.clone().upcast());
-        self
-    }
-
-    pub fn margin_bottom(mut self, margin_bottom: i32) -> Self {
-        self.margin_bottom = Some(margin_bottom);
-        self
-    }
-
-    pub fn margin_end(mut self, margin_end: i32) -> Self {
-        self.margin_end = Some(margin_end);
-        self
-    }
-
-    pub fn margin_start(mut self, margin_start: i32) -> Self {
-        self.margin_start = Some(margin_start);
-        self
-    }
-
-    pub fn margin_top(mut self, margin_top: i32) -> Self {
-        self.margin_top = Some(margin_top);
-        self
-    }
-
-    pub fn name(mut self, name: &str) -> Self {
-        self.name = Some(name.to_string());
-        self
-    }
-
-    pub fn opacity(mut self, opacity: f64) -> Self {
-        self.opacity = Some(opacity);
-        self
-    }
-
-    pub fn overflow(mut self, overflow: gtk::Overflow) -> Self {
-        self.overflow = Some(overflow);
-        self
-    }
-
-    pub fn receives_default(mut self, receives_default: bool) -> Self {
-        self.receives_default = Some(receives_default);
-        self
-    }
-
-    pub fn sensitive(mut self, sensitive: bool) -> Self {
-        self.sensitive = Some(sensitive);
-        self
-    }
-
-    pub fn tooltip_markup(mut self, tooltip_markup: &str) -> Self {
-        self.tooltip_markup = Some(tooltip_markup.to_string());
-        self
-    }
-
-    pub fn tooltip_text(mut self, tooltip_text: &str) -> Self {
-        self.tooltip_text = Some(tooltip_text.to_string());
-        self
-    }
-
-    pub fn valign(mut self, valign: gtk::Align) -> Self {
-        self.valign = Some(valign);
-        self
-    }
-
-    pub fn vexpand(mut self, vexpand: bool) -> Self {
-        self.vexpand = Some(vexpand);
-        self
-    }
-
-    pub fn vexpand_set(mut self, vexpand_set: bool) -> Self {
-        self.vexpand_set = Some(vexpand_set);
-        self
-    }
-
-    pub fn visible(mut self, visible: bool) -> Self {
-        self.visible = Some(visible);
-        self
-    }
-
-    pub fn width_request(mut self, width_request: i32) -> Self {
-        self.width_request = Some(width_request);
-        self
-    }
-
-    pub fn accessible_role(mut self, accessible_role: gtk::AccessibleRole) -> Self {
-        self.accessible_role = Some(accessible_role);
-        self
-    }
-
-    pub fn action_name(mut self, action_name: &str) -> Self {
-        self.action_name = Some(action_name.to_string());
-        self
-    }
-
-    pub fn action_target(mut self, action_target: &glib::Variant) -> Self {
-        self.action_target = Some(action_target.clone());
-        self
+        self.builder.build()
     }
 }
 
@@ -493,6 +370,8 @@ pub trait ActionRowExt: 'static {
     #[doc(alias = "get_activatable_widget")]
     fn activatable_widget(&self) -> Option<gtk::Widget>;
 
+    #[cfg_attr(feature = "v1_3", deprecated = "Since 1.3")]
+    #[allow(deprecated)]
     #[doc(alias = "adw_action_row_get_icon_name")]
     #[doc(alias = "get_icon_name")]
     fn icon_name(&self) -> Option<glib::GString>;
@@ -505,6 +384,12 @@ pub trait ActionRowExt: 'static {
     #[doc(alias = "get_subtitle_lines")]
     fn subtitle_lines(&self) -> i32;
 
+    #[cfg(any(feature = "v1_3", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v1_3")))]
+    #[doc(alias = "adw_action_row_get_subtitle_selectable")]
+    #[doc(alias = "get_subtitle_selectable")]
+    fn is_subtitle_selectable(&self) -> bool;
+
     #[doc(alias = "adw_action_row_get_title_lines")]
     #[doc(alias = "get_title_lines")]
     fn title_lines(&self) -> i32;
@@ -515,6 +400,8 @@ pub trait ActionRowExt: 'static {
     #[doc(alias = "adw_action_row_set_activatable_widget")]
     fn set_activatable_widget(&self, widget: Option<&impl IsA<gtk::Widget>>);
 
+    #[cfg_attr(feature = "v1_3", deprecated = "Since 1.3")]
+    #[allow(deprecated)]
     #[doc(alias = "adw_action_row_set_icon_name")]
     fn set_icon_name(&self, icon_name: Option<&str>);
 
@@ -523,6 +410,11 @@ pub trait ActionRowExt: 'static {
 
     #[doc(alias = "adw_action_row_set_subtitle_lines")]
     fn set_subtitle_lines(&self, subtitle_lines: i32);
+
+    #[cfg(any(feature = "v1_3", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v1_3")))]
+    #[doc(alias = "adw_action_row_set_subtitle_selectable")]
+    fn set_subtitle_selectable(&self, subtitle_selectable: bool);
 
     #[doc(alias = "adw_action_row_set_title_lines")]
     fn set_title_lines(&self, title_lines: i32);
@@ -533,6 +425,7 @@ pub trait ActionRowExt: 'static {
     #[doc(alias = "activatable-widget")]
     fn connect_activatable_widget_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
 
+    #[cfg_attr(feature = "v1_3", deprecated = "Since 1.3")]
     #[doc(alias = "icon-name")]
     fn connect_icon_name_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
 
@@ -541,6 +434,11 @@ pub trait ActionRowExt: 'static {
 
     #[doc(alias = "subtitle-lines")]
     fn connect_subtitle_lines_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
+
+    #[cfg(any(feature = "v1_3", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v1_3")))]
+    #[doc(alias = "subtitle-selectable")]
+    fn connect_subtitle_selectable_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
 
     #[doc(alias = "title-lines")]
     fn connect_title_lines_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
@@ -579,6 +477,7 @@ impl<O: IsA<ActionRow>> ActionRowExt for O {
         }
     }
 
+    #[allow(deprecated)]
     fn icon_name(&self) -> Option<glib::GString> {
         unsafe {
             from_glib_none(ffi::adw_action_row_get_icon_name(
@@ -597,6 +496,16 @@ impl<O: IsA<ActionRow>> ActionRowExt for O {
 
     fn subtitle_lines(&self) -> i32 {
         unsafe { ffi::adw_action_row_get_subtitle_lines(self.as_ref().to_glib_none().0) }
+    }
+
+    #[cfg(any(feature = "v1_3", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v1_3")))]
+    fn is_subtitle_selectable(&self) -> bool {
+        unsafe {
+            from_glib(ffi::adw_action_row_get_subtitle_selectable(
+                self.as_ref().to_glib_none().0,
+            ))
+        }
     }
 
     fn title_lines(&self) -> i32 {
@@ -621,6 +530,7 @@ impl<O: IsA<ActionRow>> ActionRowExt for O {
         }
     }
 
+    #[allow(deprecated)]
     fn set_icon_name(&self, icon_name: Option<&str>) {
         unsafe {
             ffi::adw_action_row_set_icon_name(
@@ -642,6 +552,17 @@ impl<O: IsA<ActionRow>> ActionRowExt for O {
     fn set_subtitle_lines(&self, subtitle_lines: i32) {
         unsafe {
             ffi::adw_action_row_set_subtitle_lines(self.as_ref().to_glib_none().0, subtitle_lines);
+        }
+    }
+
+    #[cfg(any(feature = "v1_3", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v1_3")))]
+    fn set_subtitle_selectable(&self, subtitle_selectable: bool) {
+        unsafe {
+            ffi::adw_action_row_set_subtitle_selectable(
+                self.as_ref().to_glib_none().0,
+                subtitle_selectable.into_glib(),
+            );
         }
     }
 
@@ -760,6 +681,33 @@ impl<O: IsA<ActionRow>> ActionRowExt for O {
                 b"notify::subtitle-lines\0".as_ptr() as *const _,
                 Some(transmute::<_, unsafe extern "C" fn()>(
                     notify_subtitle_lines_trampoline::<Self, F> as *const (),
+                )),
+                Box_::into_raw(f),
+            )
+        }
+    }
+
+    #[cfg(any(feature = "v1_3", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v1_3")))]
+    fn connect_subtitle_selectable_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
+        unsafe extern "C" fn notify_subtitle_selectable_trampoline<
+            P: IsA<ActionRow>,
+            F: Fn(&P) + 'static,
+        >(
+            this: *mut ffi::AdwActionRow,
+            _param_spec: glib::ffi::gpointer,
+            f: glib::ffi::gpointer,
+        ) {
+            let f: &F = &*(f as *const F);
+            f(ActionRow::from_glib_borrow(this).unsafe_cast_ref())
+        }
+        unsafe {
+            let f: Box_<F> = Box_::new(f);
+            connect_raw(
+                self.as_ptr() as *mut _,
+                b"notify::subtitle-selectable\0".as_ptr() as *const _,
+                Some(transmute::<_, unsafe extern "C" fn()>(
+                    notify_subtitle_selectable_trampoline::<Self, F> as *const (),
                 )),
                 Box_::into_raw(f),
             )

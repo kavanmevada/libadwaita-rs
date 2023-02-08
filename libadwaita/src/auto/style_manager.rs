@@ -4,13 +4,12 @@
 // DO NOT EDIT
 
 use crate::ColorScheme;
-use glib::object::ObjectType as ObjectType_;
-use glib::signal::connect_raw;
-use glib::signal::SignalHandlerId;
-use glib::translate::*;
-use std::boxed::Box as Box_;
-use std::fmt;
-use std::mem::transmute;
+use glib::{
+    prelude::*,
+    signal::{connect_raw, SignalHandlerId},
+    translate::*,
+};
+use std::{boxed::Box as Box_, fmt, mem::transmute};
 
 glib::wrapper! {
     #[doc(alias = "AdwStyleManager")]
@@ -76,6 +75,7 @@ impl StyleManager {
 
     #[doc(alias = "adw_style_manager_get_default")]
     #[doc(alias = "get_default")]
+    #[allow(clippy::should_implement_trait)]
     pub fn default() -> StyleManager {
         assert_initialized_main_thread!();
         unsafe { from_glib_none(ffi::adw_style_manager_get_default()) }

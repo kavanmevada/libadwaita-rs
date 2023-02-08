@@ -3,16 +3,13 @@
 // from gir-files (https://github.com/gtk-rs/gir-files.git)
 // DO NOT EDIT
 
-use crate::AnimationState;
-use crate::AnimationTarget;
-use glib::object::Cast;
-use glib::object::IsA;
-use glib::signal::connect_raw;
-use glib::signal::SignalHandlerId;
-use glib::translate::*;
-use std::boxed::Box as Box_;
-use std::fmt;
-use std::mem::transmute;
+use crate::{AnimationState, AnimationTarget};
+use glib::{
+    prelude::*,
+    signal::{connect_raw, SignalHandlerId},
+    translate::*,
+};
+use std::{boxed::Box as Box_, fmt, mem::transmute};
 
 glib::wrapper! {
     #[doc(alias = "AdwAnimation")]
@@ -28,6 +25,12 @@ impl Animation {
 }
 
 pub trait AnimationExt: 'static {
+    #[cfg(any(feature = "v1_3", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v1_3")))]
+    #[doc(alias = "adw_animation_get_follow_enable_animations_setting")]
+    #[doc(alias = "get_follow_enable_animations_setting")]
+    fn follows_enable_animations_setting(&self) -> bool;
+
     #[doc(alias = "adw_animation_get_state")]
     #[doc(alias = "get_state")]
     fn state(&self) -> AnimationState;
@@ -56,6 +59,11 @@ pub trait AnimationExt: 'static {
     #[doc(alias = "adw_animation_resume")]
     fn resume(&self);
 
+    #[cfg(any(feature = "v1_3", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v1_3")))]
+    #[doc(alias = "adw_animation_set_follow_enable_animations_setting")]
+    fn set_follow_enable_animations_setting(&self, setting: bool);
+
     #[doc(alias = "adw_animation_set_target")]
     fn set_target(&self, target: &impl IsA<AnimationTarget>);
 
@@ -64,6 +72,14 @@ pub trait AnimationExt: 'static {
 
     #[doc(alias = "done")]
     fn connect_done<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
+
+    #[cfg(any(feature = "v1_3", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v1_3")))]
+    #[doc(alias = "follow-enable-animations-setting")]
+    fn connect_follow_enable_animations_setting_notify<F: Fn(&Self) + 'static>(
+        &self,
+        f: F,
+    ) -> SignalHandlerId;
 
     #[doc(alias = "state")]
     fn connect_state_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
@@ -76,6 +92,16 @@ pub trait AnimationExt: 'static {
 }
 
 impl<O: IsA<Animation>> AnimationExt for O {
+    #[cfg(any(feature = "v1_3", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v1_3")))]
+    fn follows_enable_animations_setting(&self) -> bool {
+        unsafe {
+            from_glib(ffi::adw_animation_get_follow_enable_animations_setting(
+                self.as_ref().to_glib_none().0,
+            ))
+        }
+    }
+
     fn state(&self) -> AnimationState {
         unsafe { from_glib(ffi::adw_animation_get_state(self.as_ref().to_glib_none().0)) }
     }
@@ -124,6 +150,17 @@ impl<O: IsA<Animation>> AnimationExt for O {
         }
     }
 
+    #[cfg(any(feature = "v1_3", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v1_3")))]
+    fn set_follow_enable_animations_setting(&self, setting: bool) {
+        unsafe {
+            ffi::adw_animation_set_follow_enable_animations_setting(
+                self.as_ref().to_glib_none().0,
+                setting.into_glib(),
+            );
+        }
+    }
+
     fn set_target(&self, target: &impl IsA<AnimationTarget>) {
         unsafe {
             ffi::adw_animation_set_target(
@@ -154,6 +191,36 @@ impl<O: IsA<Animation>> AnimationExt for O {
                 b"done\0".as_ptr() as *const _,
                 Some(transmute::<_, unsafe extern "C" fn()>(
                     done_trampoline::<Self, F> as *const (),
+                )),
+                Box_::into_raw(f),
+            )
+        }
+    }
+
+    #[cfg(any(feature = "v1_3", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v1_3")))]
+    fn connect_follow_enable_animations_setting_notify<F: Fn(&Self) + 'static>(
+        &self,
+        f: F,
+    ) -> SignalHandlerId {
+        unsafe extern "C" fn notify_follow_enable_animations_setting_trampoline<
+            P: IsA<Animation>,
+            F: Fn(&P) + 'static,
+        >(
+            this: *mut ffi::AdwAnimation,
+            _param_spec: glib::ffi::gpointer,
+            f: glib::ffi::gpointer,
+        ) {
+            let f: &F = &*(f as *const F);
+            f(Animation::from_glib_borrow(this).unsafe_cast_ref())
+        }
+        unsafe {
+            let f: Box_<F> = Box_::new(f);
+            connect_raw(
+                self.as_ptr() as *mut _,
+                b"notify::follow-enable-animations-setting\0".as_ptr() as *const _,
+                Some(transmute::<_, unsafe extern "C" fn()>(
+                    notify_follow_enable_animations_setting_trampoline::<Self, F> as *const (),
                 )),
                 Box_::into_raw(f),
             )

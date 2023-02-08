@@ -3,16 +3,12 @@
 // from gir-files (https://github.com/gtk-rs/gir-files.git)
 // DO NOT EDIT
 
-use glib::object::Cast;
-use glib::object::ObjectType as ObjectType_;
-use glib::signal::connect_raw;
-use glib::signal::SignalHandlerId;
-use glib::translate::*;
-use glib::StaticType;
-use glib::ToValue;
-use std::boxed::Box as Box_;
-use std::fmt;
-use std::mem::transmute;
+use glib::{
+    prelude::*,
+    signal::{connect_raw, SignalHandlerId},
+    translate::*,
+};
+use std::{boxed::Box as Box_, fmt, mem::transmute};
 
 glib::wrapper! {
     #[doc(alias = "AdwClampLayout")]
@@ -35,7 +31,7 @@ impl ClampLayout {
     ///
     /// This method returns an instance of [`ClampLayoutBuilder`](crate::builders::ClampLayoutBuilder) which can be used to create [`ClampLayout`] objects.
     pub fn builder() -> ClampLayoutBuilder {
-        ClampLayoutBuilder::default()
+        ClampLayoutBuilder::new()
     }
 
     #[doc(alias = "adw_clamp_layout_get_maximum_size")]
@@ -125,55 +121,47 @@ impl Default for ClampLayout {
     }
 }
 
-#[derive(Clone, Default)]
 // rustdoc-stripper-ignore-next
 /// A [builder-pattern] type to construct [`ClampLayout`] objects.
 ///
 /// [builder-pattern]: https://doc.rust-lang.org/1.0.0/style/ownership/builders.html
 #[must_use = "The builder must be built to be used"]
 pub struct ClampLayoutBuilder {
-    maximum_size: Option<i32>,
-    tightening_threshold: Option<i32>,
-    orientation: Option<gtk::Orientation>,
+    builder: glib::object::ObjectBuilder<'static, ClampLayout>,
 }
 
 impl ClampLayoutBuilder {
-    // rustdoc-stripper-ignore-next
-    /// Create a new [`ClampLayoutBuilder`].
-    pub fn new() -> Self {
-        Self::default()
+    fn new() -> Self {
+        Self {
+            builder: glib::object::Object::builder(),
+        }
+    }
+
+    pub fn maximum_size(self, maximum_size: i32) -> Self {
+        Self {
+            builder: self.builder.property("maximum-size", maximum_size),
+        }
+    }
+
+    pub fn tightening_threshold(self, tightening_threshold: i32) -> Self {
+        Self {
+            builder: self
+                .builder
+                .property("tightening-threshold", tightening_threshold),
+        }
+    }
+
+    pub fn orientation(self, orientation: gtk::Orientation) -> Self {
+        Self {
+            builder: self.builder.property("orientation", orientation),
+        }
     }
 
     // rustdoc-stripper-ignore-next
     /// Build the [`ClampLayout`].
     #[must_use = "Building the object from the builder is usually expensive and is not expected to have side effects"]
     pub fn build(self) -> ClampLayout {
-        let mut properties: Vec<(&str, &dyn ToValue)> = vec![];
-        if let Some(ref maximum_size) = self.maximum_size {
-            properties.push(("maximum-size", maximum_size));
-        }
-        if let Some(ref tightening_threshold) = self.tightening_threshold {
-            properties.push(("tightening-threshold", tightening_threshold));
-        }
-        if let Some(ref orientation) = self.orientation {
-            properties.push(("orientation", orientation));
-        }
-        glib::Object::new::<ClampLayout>(&properties)
-    }
-
-    pub fn maximum_size(mut self, maximum_size: i32) -> Self {
-        self.maximum_size = Some(maximum_size);
-        self
-    }
-
-    pub fn tightening_threshold(mut self, tightening_threshold: i32) -> Self {
-        self.tightening_threshold = Some(tightening_threshold);
-        self
-    }
-
-    pub fn orientation(mut self, orientation: gtk::Orientation) -> Self {
-        self.orientation = Some(orientation);
-        self
+        self.builder.build()
     }
 }
 

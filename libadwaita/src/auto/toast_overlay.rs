@@ -4,15 +4,12 @@
 // DO NOT EDIT
 
 use crate::Toast;
-use glib::object::Cast;
-use glib::object::IsA;
-use glib::object::ObjectType as ObjectType_;
-use glib::signal::connect_raw;
-use glib::signal::SignalHandlerId;
-use glib::translate::*;
-use std::boxed::Box as Box_;
-use std::fmt;
-use std::mem::transmute;
+use glib::{
+    prelude::*,
+    signal::{connect_raw, SignalHandlerId},
+    translate::*,
+};
+use std::{boxed::Box as Box_, fmt, mem::transmute};
 
 glib::wrapper! {
     #[doc(alias = "AdwToastOverlay")]
@@ -31,9 +28,9 @@ impl ToastOverlay {
     }
 
     #[doc(alias = "adw_toast_overlay_add_toast")]
-    pub fn add_toast(&self, toast: &Toast) {
+    pub fn add_toast(&self, toast: Toast) {
         unsafe {
-            ffi::adw_toast_overlay_add_toast(self.to_glib_none().0, toast.to_glib_full());
+            ffi::adw_toast_overlay_add_toast(self.to_glib_none().0, toast.into_glib_ptr());
         }
     }
 

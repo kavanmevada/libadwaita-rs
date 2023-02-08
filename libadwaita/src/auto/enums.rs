@@ -3,11 +3,7 @@
 // from gir-files (https://github.com/gtk-rs/gir-files.git)
 // DO NOT EDIT
 
-use glib::translate::*;
-use glib::value::FromValue;
-use glib::value::ToValue;
-use glib::StaticType;
-use glib::Type;
+use glib::{translate::*, value::FromValue, value::ToValue, StaticType, Type};
 use std::fmt;
 
 #[derive(Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Clone, Copy)]
@@ -46,6 +42,7 @@ impl fmt::Display for AnimationState {
 impl IntoGlib for AnimationState {
     type GlibType = ffi::AdwAnimationState;
 
+    #[inline]
     fn into_glib(self) -> ffi::AdwAnimationState {
         match self {
             Self::Idle => ffi::ADW_ANIMATION_IDLE,
@@ -59,8 +56,10 @@ impl IntoGlib for AnimationState {
 
 #[doc(hidden)]
 impl FromGlib<ffi::AdwAnimationState> for AnimationState {
+    #[inline]
     unsafe fn from_glib(value: ffi::AdwAnimationState) -> Self {
         skip_assert_initialized!();
+
         match value {
             ffi::ADW_ANIMATION_IDLE => Self::Idle,
             ffi::ADW_ANIMATION_PAUSED => Self::Paused,
@@ -72,8 +71,19 @@ impl FromGlib<ffi::AdwAnimationState> for AnimationState {
 }
 
 impl StaticType for AnimationState {
+    #[inline]
     fn static_type() -> Type {
         unsafe { from_glib(ffi::adw_animation_state_get_type()) }
+    }
+}
+
+impl glib::HasParamSpec for AnimationState {
+    type ParamSpec = glib::ParamSpecEnum;
+    type SetValue = Self;
+    type BuilderFn = fn(&str, Self) -> glib::ParamSpecEnumBuilder<Self>;
+
+    fn param_spec_builder() -> Self::BuilderFn {
+        |name, default_value| Self::ParamSpec::builder_with_default(name, default_value)
     }
 }
 
@@ -84,6 +94,7 @@ impl glib::value::ValueType for AnimationState {
 unsafe impl<'a> FromValue<'a> for AnimationState {
     type Checker = glib::value::GenericValueTypeChecker<Self>;
 
+    #[inline]
     unsafe fn from_value(value: &'a glib::Value) -> Self {
         skip_assert_initialized!();
         from_glib(glib::gobject_ffi::g_value_get_enum(value.to_glib_none().0))
@@ -91,6 +102,7 @@ unsafe impl<'a> FromValue<'a> for AnimationState {
 }
 
 impl ToValue for AnimationState {
+    #[inline]
     fn to_value(&self) -> glib::Value {
         let mut value = glib::Value::for_value_type::<Self>();
         unsafe {
@@ -99,8 +111,17 @@ impl ToValue for AnimationState {
         value
     }
 
+    #[inline]
     fn value_type(&self) -> glib::Type {
         Self::static_type()
+    }
+}
+
+impl From<AnimationState> for glib::Value {
+    #[inline]
+    fn from(v: AnimationState) -> Self {
+        skip_assert_initialized!();
+        ToValue::to_value(&v)
     }
 }
 
@@ -134,6 +155,7 @@ impl fmt::Display for CenteringPolicy {
 impl IntoGlib for CenteringPolicy {
     type GlibType = ffi::AdwCenteringPolicy;
 
+    #[inline]
     fn into_glib(self) -> ffi::AdwCenteringPolicy {
         match self {
             Self::Loose => ffi::ADW_CENTERING_POLICY_LOOSE,
@@ -145,8 +167,10 @@ impl IntoGlib for CenteringPolicy {
 
 #[doc(hidden)]
 impl FromGlib<ffi::AdwCenteringPolicy> for CenteringPolicy {
+    #[inline]
     unsafe fn from_glib(value: ffi::AdwCenteringPolicy) -> Self {
         skip_assert_initialized!();
+
         match value {
             ffi::ADW_CENTERING_POLICY_LOOSE => Self::Loose,
             ffi::ADW_CENTERING_POLICY_STRICT => Self::Strict,
@@ -156,8 +180,19 @@ impl FromGlib<ffi::AdwCenteringPolicy> for CenteringPolicy {
 }
 
 impl StaticType for CenteringPolicy {
+    #[inline]
     fn static_type() -> Type {
         unsafe { from_glib(ffi::adw_centering_policy_get_type()) }
+    }
+}
+
+impl glib::HasParamSpec for CenteringPolicy {
+    type ParamSpec = glib::ParamSpecEnum;
+    type SetValue = Self;
+    type BuilderFn = fn(&str, Self) -> glib::ParamSpecEnumBuilder<Self>;
+
+    fn param_spec_builder() -> Self::BuilderFn {
+        |name, default_value| Self::ParamSpec::builder_with_default(name, default_value)
     }
 }
 
@@ -168,6 +203,7 @@ impl glib::value::ValueType for CenteringPolicy {
 unsafe impl<'a> FromValue<'a> for CenteringPolicy {
     type Checker = glib::value::GenericValueTypeChecker<Self>;
 
+    #[inline]
     unsafe fn from_value(value: &'a glib::Value) -> Self {
         skip_assert_initialized!();
         from_glib(glib::gobject_ffi::g_value_get_enum(value.to_glib_none().0))
@@ -175,6 +211,7 @@ unsafe impl<'a> FromValue<'a> for CenteringPolicy {
 }
 
 impl ToValue for CenteringPolicy {
+    #[inline]
     fn to_value(&self) -> glib::Value {
         let mut value = glib::Value::for_value_type::<Self>();
         unsafe {
@@ -183,8 +220,17 @@ impl ToValue for CenteringPolicy {
         value
     }
 
+    #[inline]
     fn value_type(&self) -> glib::Type {
         Self::static_type()
+    }
+}
+
+impl From<CenteringPolicy> for glib::Value {
+    #[inline]
+    fn from(v: CenteringPolicy) -> Self {
+        skip_assert_initialized!();
+        ToValue::to_value(&v)
     }
 }
 
@@ -227,6 +273,7 @@ impl fmt::Display for ColorScheme {
 impl IntoGlib for ColorScheme {
     type GlibType = ffi::AdwColorScheme;
 
+    #[inline]
     fn into_glib(self) -> ffi::AdwColorScheme {
         match self {
             Self::Default => ffi::ADW_COLOR_SCHEME_DEFAULT,
@@ -241,8 +288,10 @@ impl IntoGlib for ColorScheme {
 
 #[doc(hidden)]
 impl FromGlib<ffi::AdwColorScheme> for ColorScheme {
+    #[inline]
     unsafe fn from_glib(value: ffi::AdwColorScheme) -> Self {
         skip_assert_initialized!();
+
         match value {
             ffi::ADW_COLOR_SCHEME_DEFAULT => Self::Default,
             ffi::ADW_COLOR_SCHEME_FORCE_LIGHT => Self::ForceLight,
@@ -255,8 +304,19 @@ impl FromGlib<ffi::AdwColorScheme> for ColorScheme {
 }
 
 impl StaticType for ColorScheme {
+    #[inline]
     fn static_type() -> Type {
         unsafe { from_glib(ffi::adw_color_scheme_get_type()) }
+    }
+}
+
+impl glib::HasParamSpec for ColorScheme {
+    type ParamSpec = glib::ParamSpecEnum;
+    type SetValue = Self;
+    type BuilderFn = fn(&str, Self) -> glib::ParamSpecEnumBuilder<Self>;
+
+    fn param_spec_builder() -> Self::BuilderFn {
+        |name, default_value| Self::ParamSpec::builder_with_default(name, default_value)
     }
 }
 
@@ -267,6 +327,7 @@ impl glib::value::ValueType for ColorScheme {
 unsafe impl<'a> FromValue<'a> for ColorScheme {
     type Checker = glib::value::GenericValueTypeChecker<Self>;
 
+    #[inline]
     unsafe fn from_value(value: &'a glib::Value) -> Self {
         skip_assert_initialized!();
         from_glib(glib::gobject_ffi::g_value_get_enum(value.to_glib_none().0))
@@ -274,6 +335,7 @@ unsafe impl<'a> FromValue<'a> for ColorScheme {
 }
 
 impl ToValue for ColorScheme {
+    #[inline]
     fn to_value(&self) -> glib::Value {
         let mut value = glib::Value::for_value_type::<Self>();
         unsafe {
@@ -282,8 +344,17 @@ impl ToValue for ColorScheme {
         value
     }
 
+    #[inline]
     fn value_type(&self) -> glib::Type {
         Self::static_type()
+    }
+}
+
+impl From<ColorScheme> for glib::Value {
+    #[inline]
+    fn from(v: ColorScheme) -> Self {
+        skip_assert_initialized!();
+        ToValue::to_value(&v)
     }
 }
 
@@ -454,6 +525,7 @@ impl IntoGlib for Easing {
 impl FromGlib<ffi::AdwEasing> for Easing {
     unsafe fn from_glib(value: ffi::AdwEasing) -> Self {
         skip_assert_initialized!();
+
         match value {
             ffi::ADW_LINEAR => Self::Linear,
             ffi::ADW_EASE_IN_QUAD => Self::EaseInQuad,
@@ -492,8 +564,19 @@ impl FromGlib<ffi::AdwEasing> for Easing {
 }
 
 impl StaticType for Easing {
+    #[inline]
     fn static_type() -> Type {
         unsafe { from_glib(ffi::adw_easing_get_type()) }
+    }
+}
+
+impl glib::HasParamSpec for Easing {
+    type ParamSpec = glib::ParamSpecEnum;
+    type SetValue = Self;
+    type BuilderFn = fn(&str, Self) -> glib::ParamSpecEnumBuilder<Self>;
+
+    fn param_spec_builder() -> Self::BuilderFn {
+        |name, default_value| Self::ParamSpec::builder_with_default(name, default_value)
     }
 }
 
@@ -504,6 +587,7 @@ impl glib::value::ValueType for Easing {
 unsafe impl<'a> FromValue<'a> for Easing {
     type Checker = glib::value::GenericValueTypeChecker<Self>;
 
+    #[inline]
     unsafe fn from_value(value: &'a glib::Value) -> Self {
         skip_assert_initialized!();
         from_glib(glib::gobject_ffi::g_value_get_enum(value.to_glib_none().0))
@@ -511,6 +595,7 @@ unsafe impl<'a> FromValue<'a> for Easing {
 }
 
 impl ToValue for Easing {
+    #[inline]
     fn to_value(&self) -> glib::Value {
         let mut value = glib::Value::for_value_type::<Self>();
         unsafe {
@@ -519,8 +604,17 @@ impl ToValue for Easing {
         value
     }
 
+    #[inline]
     fn value_type(&self) -> glib::Type {
         Self::static_type()
+    }
+}
+
+impl From<Easing> for glib::Value {
+    #[inline]
+    fn from(v: Easing) -> Self {
+        skip_assert_initialized!();
+        ToValue::to_value(&v)
     }
 }
 
@@ -557,6 +651,7 @@ impl fmt::Display for FlapFoldPolicy {
 impl IntoGlib for FlapFoldPolicy {
     type GlibType = ffi::AdwFlapFoldPolicy;
 
+    #[inline]
     fn into_glib(self) -> ffi::AdwFlapFoldPolicy {
         match self {
             Self::Never => ffi::ADW_FLAP_FOLD_POLICY_NEVER,
@@ -569,8 +664,10 @@ impl IntoGlib for FlapFoldPolicy {
 
 #[doc(hidden)]
 impl FromGlib<ffi::AdwFlapFoldPolicy> for FlapFoldPolicy {
+    #[inline]
     unsafe fn from_glib(value: ffi::AdwFlapFoldPolicy) -> Self {
         skip_assert_initialized!();
+
         match value {
             ffi::ADW_FLAP_FOLD_POLICY_NEVER => Self::Never,
             ffi::ADW_FLAP_FOLD_POLICY_ALWAYS => Self::Always,
@@ -581,8 +678,19 @@ impl FromGlib<ffi::AdwFlapFoldPolicy> for FlapFoldPolicy {
 }
 
 impl StaticType for FlapFoldPolicy {
+    #[inline]
     fn static_type() -> Type {
         unsafe { from_glib(ffi::adw_flap_fold_policy_get_type()) }
+    }
+}
+
+impl glib::HasParamSpec for FlapFoldPolicy {
+    type ParamSpec = glib::ParamSpecEnum;
+    type SetValue = Self;
+    type BuilderFn = fn(&str, Self) -> glib::ParamSpecEnumBuilder<Self>;
+
+    fn param_spec_builder() -> Self::BuilderFn {
+        |name, default_value| Self::ParamSpec::builder_with_default(name, default_value)
     }
 }
 
@@ -593,6 +701,7 @@ impl glib::value::ValueType for FlapFoldPolicy {
 unsafe impl<'a> FromValue<'a> for FlapFoldPolicy {
     type Checker = glib::value::GenericValueTypeChecker<Self>;
 
+    #[inline]
     unsafe fn from_value(value: &'a glib::Value) -> Self {
         skip_assert_initialized!();
         from_glib(glib::gobject_ffi::g_value_get_enum(value.to_glib_none().0))
@@ -600,6 +709,7 @@ unsafe impl<'a> FromValue<'a> for FlapFoldPolicy {
 }
 
 impl ToValue for FlapFoldPolicy {
+    #[inline]
     fn to_value(&self) -> glib::Value {
         let mut value = glib::Value::for_value_type::<Self>();
         unsafe {
@@ -608,8 +718,17 @@ impl ToValue for FlapFoldPolicy {
         value
     }
 
+    #[inline]
     fn value_type(&self) -> glib::Type {
         Self::static_type()
+    }
+}
+
+impl From<FlapFoldPolicy> for glib::Value {
+    #[inline]
+    fn from(v: FlapFoldPolicy) -> Self {
+        skip_assert_initialized!();
+        ToValue::to_value(&v)
     }
 }
 
@@ -646,6 +765,7 @@ impl fmt::Display for FlapTransitionType {
 impl IntoGlib for FlapTransitionType {
     type GlibType = ffi::AdwFlapTransitionType;
 
+    #[inline]
     fn into_glib(self) -> ffi::AdwFlapTransitionType {
         match self {
             Self::Over => ffi::ADW_FLAP_TRANSITION_TYPE_OVER,
@@ -658,8 +778,10 @@ impl IntoGlib for FlapTransitionType {
 
 #[doc(hidden)]
 impl FromGlib<ffi::AdwFlapTransitionType> for FlapTransitionType {
+    #[inline]
     unsafe fn from_glib(value: ffi::AdwFlapTransitionType) -> Self {
         skip_assert_initialized!();
+
         match value {
             ffi::ADW_FLAP_TRANSITION_TYPE_OVER => Self::Over,
             ffi::ADW_FLAP_TRANSITION_TYPE_UNDER => Self::Under,
@@ -670,8 +792,19 @@ impl FromGlib<ffi::AdwFlapTransitionType> for FlapTransitionType {
 }
 
 impl StaticType for FlapTransitionType {
+    #[inline]
     fn static_type() -> Type {
         unsafe { from_glib(ffi::adw_flap_transition_type_get_type()) }
+    }
+}
+
+impl glib::HasParamSpec for FlapTransitionType {
+    type ParamSpec = glib::ParamSpecEnum;
+    type SetValue = Self;
+    type BuilderFn = fn(&str, Self) -> glib::ParamSpecEnumBuilder<Self>;
+
+    fn param_spec_builder() -> Self::BuilderFn {
+        |name, default_value| Self::ParamSpec::builder_with_default(name, default_value)
     }
 }
 
@@ -682,6 +815,7 @@ impl glib::value::ValueType for FlapTransitionType {
 unsafe impl<'a> FromValue<'a> for FlapTransitionType {
     type Checker = glib::value::GenericValueTypeChecker<Self>;
 
+    #[inline]
     unsafe fn from_value(value: &'a glib::Value) -> Self {
         skip_assert_initialized!();
         from_glib(glib::gobject_ffi::g_value_get_enum(value.to_glib_none().0))
@@ -689,6 +823,7 @@ unsafe impl<'a> FromValue<'a> for FlapTransitionType {
 }
 
 impl ToValue for FlapTransitionType {
+    #[inline]
     fn to_value(&self) -> glib::Value {
         let mut value = glib::Value::for_value_type::<Self>();
         unsafe {
@@ -697,8 +832,17 @@ impl ToValue for FlapTransitionType {
         value
     }
 
+    #[inline]
     fn value_type(&self) -> glib::Type {
         Self::static_type()
+    }
+}
+
+impl From<FlapTransitionType> for glib::Value {
+    #[inline]
+    fn from(v: FlapTransitionType) -> Self {
+        skip_assert_initialized!();
+        ToValue::to_value(&v)
     }
 }
 
@@ -732,6 +876,7 @@ impl fmt::Display for FoldThresholdPolicy {
 impl IntoGlib for FoldThresholdPolicy {
     type GlibType = ffi::AdwFoldThresholdPolicy;
 
+    #[inline]
     fn into_glib(self) -> ffi::AdwFoldThresholdPolicy {
         match self {
             Self::Minimum => ffi::ADW_FOLD_THRESHOLD_POLICY_MINIMUM,
@@ -743,8 +888,10 @@ impl IntoGlib for FoldThresholdPolicy {
 
 #[doc(hidden)]
 impl FromGlib<ffi::AdwFoldThresholdPolicy> for FoldThresholdPolicy {
+    #[inline]
     unsafe fn from_glib(value: ffi::AdwFoldThresholdPolicy) -> Self {
         skip_assert_initialized!();
+
         match value {
             ffi::ADW_FOLD_THRESHOLD_POLICY_MINIMUM => Self::Minimum,
             ffi::ADW_FOLD_THRESHOLD_POLICY_NATURAL => Self::Natural,
@@ -754,8 +901,19 @@ impl FromGlib<ffi::AdwFoldThresholdPolicy> for FoldThresholdPolicy {
 }
 
 impl StaticType for FoldThresholdPolicy {
+    #[inline]
     fn static_type() -> Type {
         unsafe { from_glib(ffi::adw_fold_threshold_policy_get_type()) }
+    }
+}
+
+impl glib::HasParamSpec for FoldThresholdPolicy {
+    type ParamSpec = glib::ParamSpecEnum;
+    type SetValue = Self;
+    type BuilderFn = fn(&str, Self) -> glib::ParamSpecEnumBuilder<Self>;
+
+    fn param_spec_builder() -> Self::BuilderFn {
+        |name, default_value| Self::ParamSpec::builder_with_default(name, default_value)
     }
 }
 
@@ -766,6 +924,7 @@ impl glib::value::ValueType for FoldThresholdPolicy {
 unsafe impl<'a> FromValue<'a> for FoldThresholdPolicy {
     type Checker = glib::value::GenericValueTypeChecker<Self>;
 
+    #[inline]
     unsafe fn from_value(value: &'a glib::Value) -> Self {
         skip_assert_initialized!();
         from_glib(glib::gobject_ffi::g_value_get_enum(value.to_glib_none().0))
@@ -773,6 +932,7 @@ unsafe impl<'a> FromValue<'a> for FoldThresholdPolicy {
 }
 
 impl ToValue for FoldThresholdPolicy {
+    #[inline]
     fn to_value(&self) -> glib::Value {
         let mut value = glib::Value::for_value_type::<Self>();
         unsafe {
@@ -781,8 +941,17 @@ impl ToValue for FoldThresholdPolicy {
         value
     }
 
+    #[inline]
     fn value_type(&self) -> glib::Type {
         Self::static_type()
+    }
+}
+
+impl From<FoldThresholdPolicy> for glib::Value {
+    #[inline]
+    fn from(v: FoldThresholdPolicy) -> Self {
+        skip_assert_initialized!();
+        ToValue::to_value(&v)
     }
 }
 
@@ -819,6 +988,7 @@ impl fmt::Display for LeafletTransitionType {
 impl IntoGlib for LeafletTransitionType {
     type GlibType = ffi::AdwLeafletTransitionType;
 
+    #[inline]
     fn into_glib(self) -> ffi::AdwLeafletTransitionType {
         match self {
             Self::Over => ffi::ADW_LEAFLET_TRANSITION_TYPE_OVER,
@@ -831,8 +1001,10 @@ impl IntoGlib for LeafletTransitionType {
 
 #[doc(hidden)]
 impl FromGlib<ffi::AdwLeafletTransitionType> for LeafletTransitionType {
+    #[inline]
     unsafe fn from_glib(value: ffi::AdwLeafletTransitionType) -> Self {
         skip_assert_initialized!();
+
         match value {
             ffi::ADW_LEAFLET_TRANSITION_TYPE_OVER => Self::Over,
             ffi::ADW_LEAFLET_TRANSITION_TYPE_UNDER => Self::Under,
@@ -843,8 +1015,19 @@ impl FromGlib<ffi::AdwLeafletTransitionType> for LeafletTransitionType {
 }
 
 impl StaticType for LeafletTransitionType {
+    #[inline]
     fn static_type() -> Type {
         unsafe { from_glib(ffi::adw_leaflet_transition_type_get_type()) }
+    }
+}
+
+impl glib::HasParamSpec for LeafletTransitionType {
+    type ParamSpec = glib::ParamSpecEnum;
+    type SetValue = Self;
+    type BuilderFn = fn(&str, Self) -> glib::ParamSpecEnumBuilder<Self>;
+
+    fn param_spec_builder() -> Self::BuilderFn {
+        |name, default_value| Self::ParamSpec::builder_with_default(name, default_value)
     }
 }
 
@@ -855,6 +1038,7 @@ impl glib::value::ValueType for LeafletTransitionType {
 unsafe impl<'a> FromValue<'a> for LeafletTransitionType {
     type Checker = glib::value::GenericValueTypeChecker<Self>;
 
+    #[inline]
     unsafe fn from_value(value: &'a glib::Value) -> Self {
         skip_assert_initialized!();
         from_glib(glib::gobject_ffi::g_value_get_enum(value.to_glib_none().0))
@@ -862,6 +1046,7 @@ unsafe impl<'a> FromValue<'a> for LeafletTransitionType {
 }
 
 impl ToValue for LeafletTransitionType {
+    #[inline]
     fn to_value(&self) -> glib::Value {
         let mut value = glib::Value::for_value_type::<Self>();
         unsafe {
@@ -870,8 +1055,17 @@ impl ToValue for LeafletTransitionType {
         value
     }
 
+    #[inline]
     fn value_type(&self) -> glib::Type {
         Self::static_type()
+    }
+}
+
+impl From<LeafletTransitionType> for glib::Value {
+    #[inline]
+    fn from(v: LeafletTransitionType) -> Self {
+        skip_assert_initialized!();
+        ToValue::to_value(&v)
     }
 }
 
@@ -905,6 +1099,7 @@ impl fmt::Display for NavigationDirection {
 impl IntoGlib for NavigationDirection {
     type GlibType = ffi::AdwNavigationDirection;
 
+    #[inline]
     fn into_glib(self) -> ffi::AdwNavigationDirection {
         match self {
             Self::Back => ffi::ADW_NAVIGATION_DIRECTION_BACK,
@@ -916,8 +1111,10 @@ impl IntoGlib for NavigationDirection {
 
 #[doc(hidden)]
 impl FromGlib<ffi::AdwNavigationDirection> for NavigationDirection {
+    #[inline]
     unsafe fn from_glib(value: ffi::AdwNavigationDirection) -> Self {
         skip_assert_initialized!();
+
         match value {
             ffi::ADW_NAVIGATION_DIRECTION_BACK => Self::Back,
             ffi::ADW_NAVIGATION_DIRECTION_FORWARD => Self::Forward,
@@ -927,8 +1124,19 @@ impl FromGlib<ffi::AdwNavigationDirection> for NavigationDirection {
 }
 
 impl StaticType for NavigationDirection {
+    #[inline]
     fn static_type() -> Type {
         unsafe { from_glib(ffi::adw_navigation_direction_get_type()) }
+    }
+}
+
+impl glib::HasParamSpec for NavigationDirection {
+    type ParamSpec = glib::ParamSpecEnum;
+    type SetValue = Self;
+    type BuilderFn = fn(&str, Self) -> glib::ParamSpecEnumBuilder<Self>;
+
+    fn param_spec_builder() -> Self::BuilderFn {
+        |name, default_value| Self::ParamSpec::builder_with_default(name, default_value)
     }
 }
 
@@ -939,6 +1147,7 @@ impl glib::value::ValueType for NavigationDirection {
 unsafe impl<'a> FromValue<'a> for NavigationDirection {
     type Checker = glib::value::GenericValueTypeChecker<Self>;
 
+    #[inline]
     unsafe fn from_value(value: &'a glib::Value) -> Self {
         skip_assert_initialized!();
         from_glib(glib::gobject_ffi::g_value_get_enum(value.to_glib_none().0))
@@ -946,6 +1155,7 @@ unsafe impl<'a> FromValue<'a> for NavigationDirection {
 }
 
 impl ToValue for NavigationDirection {
+    #[inline]
     fn to_value(&self) -> glib::Value {
         let mut value = glib::Value::for_value_type::<Self>();
         unsafe {
@@ -954,8 +1164,17 @@ impl ToValue for NavigationDirection {
         value
     }
 
+    #[inline]
     fn value_type(&self) -> glib::Type {
         Self::static_type()
+    }
+}
+
+impl From<NavigationDirection> for glib::Value {
+    #[inline]
+    fn from(v: NavigationDirection) -> Self {
+        skip_assert_initialized!();
+        ToValue::to_value(&v)
     }
 }
 
@@ -998,6 +1217,7 @@ impl fmt::Display for ResponseAppearance {
 impl IntoGlib for ResponseAppearance {
     type GlibType = ffi::AdwResponseAppearance;
 
+    #[inline]
     fn into_glib(self) -> ffi::AdwResponseAppearance {
         match self {
             Self::Default => ffi::ADW_RESPONSE_DEFAULT,
@@ -1012,8 +1232,10 @@ impl IntoGlib for ResponseAppearance {
 #[cfg_attr(feature = "dox", doc(cfg(feature = "v1_2")))]
 #[doc(hidden)]
 impl FromGlib<ffi::AdwResponseAppearance> for ResponseAppearance {
+    #[inline]
     unsafe fn from_glib(value: ffi::AdwResponseAppearance) -> Self {
         skip_assert_initialized!();
+
         match value {
             ffi::ADW_RESPONSE_DEFAULT => Self::Default,
             ffi::ADW_RESPONSE_SUGGESTED => Self::Suggested,
@@ -1026,8 +1248,21 @@ impl FromGlib<ffi::AdwResponseAppearance> for ResponseAppearance {
 #[cfg(any(feature = "v1_2", feature = "dox"))]
 #[cfg_attr(feature = "dox", doc(cfg(feature = "v1_2")))]
 impl StaticType for ResponseAppearance {
+    #[inline]
     fn static_type() -> Type {
         unsafe { from_glib(ffi::adw_response_appearance_get_type()) }
+    }
+}
+
+#[cfg(any(feature = "v1_2", feature = "dox"))]
+#[cfg_attr(feature = "dox", doc(cfg(feature = "v1_2")))]
+impl glib::HasParamSpec for ResponseAppearance {
+    type ParamSpec = glib::ParamSpecEnum;
+    type SetValue = Self;
+    type BuilderFn = fn(&str, Self) -> glib::ParamSpecEnumBuilder<Self>;
+
+    fn param_spec_builder() -> Self::BuilderFn {
+        |name, default_value| Self::ParamSpec::builder_with_default(name, default_value)
     }
 }
 
@@ -1042,6 +1277,7 @@ impl glib::value::ValueType for ResponseAppearance {
 unsafe impl<'a> FromValue<'a> for ResponseAppearance {
     type Checker = glib::value::GenericValueTypeChecker<Self>;
 
+    #[inline]
     unsafe fn from_value(value: &'a glib::Value) -> Self {
         skip_assert_initialized!();
         from_glib(glib::gobject_ffi::g_value_get_enum(value.to_glib_none().0))
@@ -1051,6 +1287,7 @@ unsafe impl<'a> FromValue<'a> for ResponseAppearance {
 #[cfg(any(feature = "v1_2", feature = "dox"))]
 #[cfg_attr(feature = "dox", doc(cfg(feature = "v1_2")))]
 impl ToValue for ResponseAppearance {
+    #[inline]
     fn to_value(&self) -> glib::Value {
         let mut value = glib::Value::for_value_type::<Self>();
         unsafe {
@@ -1059,8 +1296,19 @@ impl ToValue for ResponseAppearance {
         value
     }
 
+    #[inline]
     fn value_type(&self) -> glib::Type {
         Self::static_type()
+    }
+}
+
+#[cfg(any(feature = "v1_2", feature = "dox"))]
+#[cfg_attr(feature = "dox", doc(cfg(feature = "v1_2")))]
+impl From<ResponseAppearance> for glib::Value {
+    #[inline]
+    fn from(v: ResponseAppearance) -> Self {
+        skip_assert_initialized!();
+        ToValue::to_value(&v)
     }
 }
 
@@ -1094,6 +1342,7 @@ impl fmt::Display for SqueezerTransitionType {
 impl IntoGlib for SqueezerTransitionType {
     type GlibType = ffi::AdwSqueezerTransitionType;
 
+    #[inline]
     fn into_glib(self) -> ffi::AdwSqueezerTransitionType {
         match self {
             Self::None => ffi::ADW_SQUEEZER_TRANSITION_TYPE_NONE,
@@ -1105,8 +1354,10 @@ impl IntoGlib for SqueezerTransitionType {
 
 #[doc(hidden)]
 impl FromGlib<ffi::AdwSqueezerTransitionType> for SqueezerTransitionType {
+    #[inline]
     unsafe fn from_glib(value: ffi::AdwSqueezerTransitionType) -> Self {
         skip_assert_initialized!();
+
         match value {
             ffi::ADW_SQUEEZER_TRANSITION_TYPE_NONE => Self::None,
             ffi::ADW_SQUEEZER_TRANSITION_TYPE_CROSSFADE => Self::Crossfade,
@@ -1116,8 +1367,19 @@ impl FromGlib<ffi::AdwSqueezerTransitionType> for SqueezerTransitionType {
 }
 
 impl StaticType for SqueezerTransitionType {
+    #[inline]
     fn static_type() -> Type {
         unsafe { from_glib(ffi::adw_squeezer_transition_type_get_type()) }
+    }
+}
+
+impl glib::HasParamSpec for SqueezerTransitionType {
+    type ParamSpec = glib::ParamSpecEnum;
+    type SetValue = Self;
+    type BuilderFn = fn(&str, Self) -> glib::ParamSpecEnumBuilder<Self>;
+
+    fn param_spec_builder() -> Self::BuilderFn {
+        |name, default_value| Self::ParamSpec::builder_with_default(name, default_value)
     }
 }
 
@@ -1128,6 +1390,7 @@ impl glib::value::ValueType for SqueezerTransitionType {
 unsafe impl<'a> FromValue<'a> for SqueezerTransitionType {
     type Checker = glib::value::GenericValueTypeChecker<Self>;
 
+    #[inline]
     unsafe fn from_value(value: &'a glib::Value) -> Self {
         skip_assert_initialized!();
         from_glib(glib::gobject_ffi::g_value_get_enum(value.to_glib_none().0))
@@ -1135,6 +1398,7 @@ unsafe impl<'a> FromValue<'a> for SqueezerTransitionType {
 }
 
 impl ToValue for SqueezerTransitionType {
+    #[inline]
     fn to_value(&self) -> glib::Value {
         let mut value = glib::Value::for_value_type::<Self>();
         unsafe {
@@ -1143,8 +1407,17 @@ impl ToValue for SqueezerTransitionType {
         value
     }
 
+    #[inline]
     fn value_type(&self) -> glib::Type {
         Self::static_type()
+    }
+}
+
+impl From<SqueezerTransitionType> for glib::Value {
+    #[inline]
+    fn from(v: SqueezerTransitionType) -> Self {
+        skip_assert_initialized!();
+        ToValue::to_value(&v)
     }
 }
 
@@ -1178,6 +1451,7 @@ impl fmt::Display for ToastPriority {
 impl IntoGlib for ToastPriority {
     type GlibType = ffi::AdwToastPriority;
 
+    #[inline]
     fn into_glib(self) -> ffi::AdwToastPriority {
         match self {
             Self::Normal => ffi::ADW_TOAST_PRIORITY_NORMAL,
@@ -1189,8 +1463,10 @@ impl IntoGlib for ToastPriority {
 
 #[doc(hidden)]
 impl FromGlib<ffi::AdwToastPriority> for ToastPriority {
+    #[inline]
     unsafe fn from_glib(value: ffi::AdwToastPriority) -> Self {
         skip_assert_initialized!();
+
         match value {
             ffi::ADW_TOAST_PRIORITY_NORMAL => Self::Normal,
             ffi::ADW_TOAST_PRIORITY_HIGH => Self::High,
@@ -1200,8 +1476,19 @@ impl FromGlib<ffi::AdwToastPriority> for ToastPriority {
 }
 
 impl StaticType for ToastPriority {
+    #[inline]
     fn static_type() -> Type {
         unsafe { from_glib(ffi::adw_toast_priority_get_type()) }
+    }
+}
+
+impl glib::HasParamSpec for ToastPriority {
+    type ParamSpec = glib::ParamSpecEnum;
+    type SetValue = Self;
+    type BuilderFn = fn(&str, Self) -> glib::ParamSpecEnumBuilder<Self>;
+
+    fn param_spec_builder() -> Self::BuilderFn {
+        |name, default_value| Self::ParamSpec::builder_with_default(name, default_value)
     }
 }
 
@@ -1212,6 +1499,7 @@ impl glib::value::ValueType for ToastPriority {
 unsafe impl<'a> FromValue<'a> for ToastPriority {
     type Checker = glib::value::GenericValueTypeChecker<Self>;
 
+    #[inline]
     unsafe fn from_value(value: &'a glib::Value) -> Self {
         skip_assert_initialized!();
         from_glib(glib::gobject_ffi::g_value_get_enum(value.to_glib_none().0))
@@ -1219,6 +1507,7 @@ unsafe impl<'a> FromValue<'a> for ToastPriority {
 }
 
 impl ToValue for ToastPriority {
+    #[inline]
     fn to_value(&self) -> glib::Value {
         let mut value = glib::Value::for_value_type::<Self>();
         unsafe {
@@ -1227,8 +1516,17 @@ impl ToValue for ToastPriority {
         value
     }
 
+    #[inline]
     fn value_type(&self) -> glib::Type {
         Self::static_type()
+    }
+}
+
+impl From<ToastPriority> for glib::Value {
+    #[inline]
+    fn from(v: ToastPriority) -> Self {
+        skip_assert_initialized!();
+        ToValue::to_value(&v)
     }
 }
 
@@ -1262,6 +1560,7 @@ impl fmt::Display for ViewSwitcherPolicy {
 impl IntoGlib for ViewSwitcherPolicy {
     type GlibType = ffi::AdwViewSwitcherPolicy;
 
+    #[inline]
     fn into_glib(self) -> ffi::AdwViewSwitcherPolicy {
         match self {
             Self::Narrow => ffi::ADW_VIEW_SWITCHER_POLICY_NARROW,
@@ -1273,8 +1572,10 @@ impl IntoGlib for ViewSwitcherPolicy {
 
 #[doc(hidden)]
 impl FromGlib<ffi::AdwViewSwitcherPolicy> for ViewSwitcherPolicy {
+    #[inline]
     unsafe fn from_glib(value: ffi::AdwViewSwitcherPolicy) -> Self {
         skip_assert_initialized!();
+
         match value {
             ffi::ADW_VIEW_SWITCHER_POLICY_NARROW => Self::Narrow,
             ffi::ADW_VIEW_SWITCHER_POLICY_WIDE => Self::Wide,
@@ -1284,8 +1585,19 @@ impl FromGlib<ffi::AdwViewSwitcherPolicy> for ViewSwitcherPolicy {
 }
 
 impl StaticType for ViewSwitcherPolicy {
+    #[inline]
     fn static_type() -> Type {
         unsafe { from_glib(ffi::adw_view_switcher_policy_get_type()) }
+    }
+}
+
+impl glib::HasParamSpec for ViewSwitcherPolicy {
+    type ParamSpec = glib::ParamSpecEnum;
+    type SetValue = Self;
+    type BuilderFn = fn(&str, Self) -> glib::ParamSpecEnumBuilder<Self>;
+
+    fn param_spec_builder() -> Self::BuilderFn {
+        |name, default_value| Self::ParamSpec::builder_with_default(name, default_value)
     }
 }
 
@@ -1296,6 +1608,7 @@ impl glib::value::ValueType for ViewSwitcherPolicy {
 unsafe impl<'a> FromValue<'a> for ViewSwitcherPolicy {
     type Checker = glib::value::GenericValueTypeChecker<Self>;
 
+    #[inline]
     unsafe fn from_value(value: &'a glib::Value) -> Self {
         skip_assert_initialized!();
         from_glib(glib::gobject_ffi::g_value_get_enum(value.to_glib_none().0))
@@ -1303,6 +1616,7 @@ unsafe impl<'a> FromValue<'a> for ViewSwitcherPolicy {
 }
 
 impl ToValue for ViewSwitcherPolicy {
+    #[inline]
     fn to_value(&self) -> glib::Value {
         let mut value = glib::Value::for_value_type::<Self>();
         unsafe {
@@ -1311,7 +1625,16 @@ impl ToValue for ViewSwitcherPolicy {
         value
     }
 
+    #[inline]
     fn value_type(&self) -> glib::Type {
         Self::static_type()
+    }
+}
+
+impl From<ViewSwitcherPolicy> for glib::Value {
+    #[inline]
+    fn from(v: ViewSwitcherPolicy) -> Self {
+        skip_assert_initialized!();
+        ToValue::to_value(&v)
     }
 }

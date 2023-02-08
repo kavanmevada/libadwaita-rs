@@ -20,7 +20,7 @@ impl<T: MessageDialogImpl> MessageDialogImplExt for T {
             let parent_class = data.as_ref().parent_class() as *mut ffi::AdwMessageDialogClass;
             if let Some(f) = (*parent_class).response {
                 f(
-                    self.instance()
+                    self.obj()
                         .unsafe_cast_ref::<MessageDialog>()
                         .to_glib_none()
                         .0,
