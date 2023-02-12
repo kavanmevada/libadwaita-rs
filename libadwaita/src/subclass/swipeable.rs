@@ -16,7 +16,7 @@ pub trait SwipeableImpl: WidgetImpl {
         self.parent_progress()
     }
 
-    fn snap_points(&self) -> &[f64] {
+    fn snap_points(&self) -> Vec<f64> {
         self.parent_snap_points()
     }
 
@@ -33,7 +33,7 @@ pub trait SwipeableImplExt: ObjectSubclass {
     fn parent_cancel_progress(&self) -> f64;
     fn parent_distance(&self) -> f64;
     fn parent_progress(&self) -> f64;
-    fn parent_snap_points(&self) -> &[f64];
+    fn parent_snap_points(&self) -> Vec<f64>;
     fn parent_swipe_area(
         &self,
         navigation_direction: NavigationDirection,
@@ -84,7 +84,7 @@ impl<T: SwipeableImpl> SwipeableImplExt for T {
         }
     }
 
-    fn parent_snap_points(&self) -> &[f64] {
+    fn parent_snap_points(&self) -> Vec<f64> {
         unsafe {
             let type_data = Self::type_data();
             let parent_iface = type_data.as_ref().parent_interface::<Swipeable>()
@@ -101,7 +101,8 @@ impl<T: SwipeableImpl> SwipeableImplExt for T {
                 n_points.as_mut_ptr(),
             );
 
-            std::slice::from_raw_parts(points, n_points.assume_init() as usize)
+            let size = n_points.assume_init() as usize;
+            Vec::from_raw_parts(points, size, size)
         }
     }
 
@@ -181,7 +182,7 @@ unsafe extern "C" fn swipeable_get_snap_points<T: SwipeableImpl>(
     let points = imp.snap_points();
 
     n_pointsptr.write(points.len() as libc::c_int);
-    ToGlibContainerFromSlice::to_glib_full_from_slice(points)
+    ToGlibContainerFromSlice::to_glib_full_from_slice(points.as_slice())
 }
 
 unsafe extern "C" fn swipeable_get_swipe_area<T: SwipeableImpl>(
