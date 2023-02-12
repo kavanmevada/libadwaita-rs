@@ -10,9 +10,6 @@ use glib::{
     translate::*,
 };
 use std::{boxed::Box as Box_, fmt, mem::transmute};
-#[cfg(any(feature = "v1_3", feature = "dox"))]
-#[cfg_attr(feature = "dox", doc(cfg(feature = "v1_3")))]
-use std::{pin::Pin, ptr};
 
 glib::wrapper! {
     #[doc(alias = "AdwMessageDialog")]
@@ -486,19 +483,6 @@ pub trait MessageDialogExt: 'static {
     #[doc(alias = "adw_message_dialog_add_response")]
     fn add_response(&self, id: &str, label: &str);
 
-    #[cfg(any(feature = "v1_3", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v1_3")))]
-    #[doc(alias = "adw_message_dialog_choose")]
-    fn choose<P: FnOnce(glib::GString) + 'static>(
-        self,
-        cancellable: Option<&impl IsA<gio::Cancellable>>,
-        callback: P,
-    );
-
-    #[cfg(any(feature = "v1_3", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v1_3")))]
-    fn choose_future(self) -> Pin<Box_<dyn std::future::Future<Output = glib::GString> + 'static>>;
-
     #[doc(alias = "adw_message_dialog_get_body")]
     #[doc(alias = "get_body")]
     fn body(&self) -> glib::GString;
@@ -625,57 +609,6 @@ impl<O: IsA<MessageDialog>> MessageDialogExt for O {
                 label.to_glib_none().0,
             );
         }
-    }
-
-    #[cfg(any(feature = "v1_3", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v1_3")))]
-    fn choose<P: FnOnce(glib::GString) + 'static>(
-        self,
-        cancellable: Option<&impl IsA<gio::Cancellable>>,
-        callback: P,
-    ) {
-        let main_context = glib::MainContext::ref_thread_default();
-        let is_main_context_owner = main_context.is_owner();
-        let has_acquired_main_context = (!is_main_context_owner)
-            .then(|| main_context.acquire().ok())
-            .flatten();
-        assert!(
-            is_main_context_owner || has_acquired_main_context.is_some(),
-            "Async operations only allowed if the thread is owning the MainContext"
-        );
-
-        let user_data: Box_<glib::thread_guard::ThreadGuard<P>> =
-            Box_::new(glib::thread_guard::ThreadGuard::new(callback));
-        unsafe extern "C" fn choose_trampoline<P: FnOnce(glib::GString) + 'static>(
-            _source_object: *mut glib::gobject_ffi::GObject,
-            res: *mut gio::ffi::GAsyncResult,
-            user_data: glib::ffi::gpointer,
-        ) {
-            let result = ffi::adw_message_dialog_choose_finish(_source_object as *mut _, res);
-            let callback: Box_<glib::thread_guard::ThreadGuard<P>> =
-                Box_::from_raw(user_data as *mut _);
-            let callback: P = callback.into_inner();
-            callback(result);
-        }
-        let callback = choose_trampoline::<P>;
-        unsafe {
-            ffi::adw_message_dialog_choose(
-                self.upcast().into_glib_ptr(),
-                cancellable.map(|p| p.as_ref()).to_glib_none().0,
-                Some(callback),
-                Box_::into_raw(user_data) as *mut _,
-            );
-        }
-    }
-
-    #[cfg(any(feature = "v1_3", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v1_3")))]
-    fn choose_future(self) -> Pin<Box_<dyn std::future::Future<Output = glib::GString> + 'static>> {
-        Box_::pin(gio::GioFuture::new(self, move |obj, cancellable, send| {
-            obj.choose(Some(cancellable), move |res| {
-                send.resolve(res);
-            });
-        }))
     }
 
     fn body(&self) -> glib::GString {
