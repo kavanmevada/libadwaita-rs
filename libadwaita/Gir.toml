@@ -221,6 +221,9 @@ manual_traits = ["MessageDialogExtManual"]
     [[object.function]]
     name = "get_response_label"
     manual = true # assert has_response
+    [[object.function]]
+    name = "choose"
+    manual = true
 
 [[object]]
 name = "Adw.PropertyAnimationTarget"
