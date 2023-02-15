@@ -8,6 +8,244 @@ use std::fmt;
 
 #[derive(Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Clone, Copy)]
 #[non_exhaustive]
+#[doc(alias = "AdwAdaptiveConditionType")]
+pub enum AdaptiveConditionType {
+    #[doc(alias = "ADW_CONDITION_MIN_WIDTH")]
+    MinWidth,
+    #[doc(alias = "ADW_CONDITION_MAX_WIDTH")]
+    MaxWidth,
+    #[doc(alias = "ADW_CONDITION_MIN_HEIGHT")]
+    MinHeight,
+    #[doc(alias = "ADW_CONDITION_MAX_HEIGHT")]
+    MaxHeight,
+    #[doc(alias = "ADW_CONDITION_MIN_ASPECT_RATIO")]
+    MinAspectRatio,
+    #[doc(alias = "ADW_CONDITION_MAX_ASPECT_RATIO")]
+    MaxAspectRatio,
+    #[doc(hidden)]
+    __Unknown(i32),
+}
+
+impl fmt::Display for AdaptiveConditionType {
+    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
+        write!(
+            f,
+            "AdaptiveConditionType::{}",
+            match *self {
+                Self::MinWidth => "MinWidth",
+                Self::MaxWidth => "MaxWidth",
+                Self::MinHeight => "MinHeight",
+                Self::MaxHeight => "MaxHeight",
+                Self::MinAspectRatio => "MinAspectRatio",
+                Self::MaxAspectRatio => "MaxAspectRatio",
+                _ => "Unknown",
+            }
+        )
+    }
+}
+
+#[doc(hidden)]
+impl IntoGlib for AdaptiveConditionType {
+    type GlibType = ffi::AdwAdaptiveConditionType;
+
+    #[inline]
+    fn into_glib(self) -> ffi::AdwAdaptiveConditionType {
+        match self {
+            Self::MinWidth => ffi::ADW_CONDITION_MIN_WIDTH,
+            Self::MaxWidth => ffi::ADW_CONDITION_MAX_WIDTH,
+            Self::MinHeight => ffi::ADW_CONDITION_MIN_HEIGHT,
+            Self::MaxHeight => ffi::ADW_CONDITION_MAX_HEIGHT,
+            Self::MinAspectRatio => ffi::ADW_CONDITION_MIN_ASPECT_RATIO,
+            Self::MaxAspectRatio => ffi::ADW_CONDITION_MAX_ASPECT_RATIO,
+            Self::__Unknown(value) => value,
+        }
+    }
+}
+
+#[doc(hidden)]
+impl FromGlib<ffi::AdwAdaptiveConditionType> for AdaptiveConditionType {
+    #[inline]
+    unsafe fn from_glib(value: ffi::AdwAdaptiveConditionType) -> Self {
+        skip_assert_initialized!();
+
+        match value {
+            ffi::ADW_CONDITION_MIN_WIDTH => Self::MinWidth,
+            ffi::ADW_CONDITION_MAX_WIDTH => Self::MaxWidth,
+            ffi::ADW_CONDITION_MIN_HEIGHT => Self::MinHeight,
+            ffi::ADW_CONDITION_MAX_HEIGHT => Self::MaxHeight,
+            ffi::ADW_CONDITION_MIN_ASPECT_RATIO => Self::MinAspectRatio,
+            ffi::ADW_CONDITION_MAX_ASPECT_RATIO => Self::MaxAspectRatio,
+            value => Self::__Unknown(value),
+        }
+    }
+}
+
+impl StaticType for AdaptiveConditionType {
+    #[inline]
+    fn static_type() -> Type {
+        unsafe { from_glib(ffi::adw_adaptive_condition_type_get_type()) }
+    }
+}
+
+impl glib::HasParamSpec for AdaptiveConditionType {
+    type ParamSpec = glib::ParamSpecEnum;
+    type SetValue = Self;
+    type BuilderFn = fn(&str, Self) -> glib::ParamSpecEnumBuilder<Self>;
+
+    fn param_spec_builder() -> Self::BuilderFn {
+        |name, default_value| Self::ParamSpec::builder_with_default(name, default_value)
+    }
+}
+
+impl glib::value::ValueType for AdaptiveConditionType {
+    type Type = Self;
+}
+
+unsafe impl<'a> FromValue<'a> for AdaptiveConditionType {
+    type Checker = glib::value::GenericValueTypeChecker<Self>;
+
+    #[inline]
+    unsafe fn from_value(value: &'a glib::Value) -> Self {
+        skip_assert_initialized!();
+        from_glib(glib::gobject_ffi::g_value_get_enum(value.to_glib_none().0))
+    }
+}
+
+impl ToValue for AdaptiveConditionType {
+    #[inline]
+    fn to_value(&self) -> glib::Value {
+        let mut value = glib::Value::for_value_type::<Self>();
+        unsafe {
+            glib::gobject_ffi::g_value_set_enum(value.to_glib_none_mut().0, self.into_glib());
+        }
+        value
+    }
+
+    #[inline]
+    fn value_type(&self) -> glib::Type {
+        Self::static_type()
+    }
+}
+
+impl From<AdaptiveConditionType> for glib::Value {
+    #[inline]
+    fn from(v: AdaptiveConditionType) -> Self {
+        skip_assert_initialized!();
+        ToValue::to_value(&v)
+    }
+}
+
+#[derive(Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Clone, Copy)]
+#[non_exhaustive]
+#[doc(alias = "AdwAdaptiveMultiConditionType")]
+pub enum AdaptiveMultiConditionType {
+    #[doc(alias = "ADW_MULTI_CONDITION_ALL")]
+    All,
+    #[doc(alias = "ADW_MULTI_CONDITION_ANY")]
+    Any,
+    #[doc(hidden)]
+    __Unknown(i32),
+}
+
+impl fmt::Display for AdaptiveMultiConditionType {
+    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
+        write!(
+            f,
+            "AdaptiveMultiConditionType::{}",
+            match *self {
+                Self::All => "All",
+                Self::Any => "Any",
+                _ => "Unknown",
+            }
+        )
+    }
+}
+
+#[doc(hidden)]
+impl IntoGlib for AdaptiveMultiConditionType {
+    type GlibType = ffi::AdwAdaptiveMultiConditionType;
+
+    #[inline]
+    fn into_glib(self) -> ffi::AdwAdaptiveMultiConditionType {
+        match self {
+            Self::All => ffi::ADW_MULTI_CONDITION_ALL,
+            Self::Any => ffi::ADW_MULTI_CONDITION_ANY,
+            Self::__Unknown(value) => value,
+        }
+    }
+}
+
+#[doc(hidden)]
+impl FromGlib<ffi::AdwAdaptiveMultiConditionType> for AdaptiveMultiConditionType {
+    #[inline]
+    unsafe fn from_glib(value: ffi::AdwAdaptiveMultiConditionType) -> Self {
+        skip_assert_initialized!();
+
+        match value {
+            ffi::ADW_MULTI_CONDITION_ALL => Self::All,
+            ffi::ADW_MULTI_CONDITION_ANY => Self::Any,
+            value => Self::__Unknown(value),
+        }
+    }
+}
+
+impl StaticType for AdaptiveMultiConditionType {
+    #[inline]
+    fn static_type() -> Type {
+        unsafe { from_glib(ffi::adw_adaptive_multi_condition_type_get_type()) }
+    }
+}
+
+impl glib::HasParamSpec for AdaptiveMultiConditionType {
+    type ParamSpec = glib::ParamSpecEnum;
+    type SetValue = Self;
+    type BuilderFn = fn(&str, Self) -> glib::ParamSpecEnumBuilder<Self>;
+
+    fn param_spec_builder() -> Self::BuilderFn {
+        |name, default_value| Self::ParamSpec::builder_with_default(name, default_value)
+    }
+}
+
+impl glib::value::ValueType for AdaptiveMultiConditionType {
+    type Type = Self;
+}
+
+unsafe impl<'a> FromValue<'a> for AdaptiveMultiConditionType {
+    type Checker = glib::value::GenericValueTypeChecker<Self>;
+
+    #[inline]
+    unsafe fn from_value(value: &'a glib::Value) -> Self {
+        skip_assert_initialized!();
+        from_glib(glib::gobject_ffi::g_value_get_enum(value.to_glib_none().0))
+    }
+}
+
+impl ToValue for AdaptiveMultiConditionType {
+    #[inline]
+    fn to_value(&self) -> glib::Value {
+        let mut value = glib::Value::for_value_type::<Self>();
+        unsafe {
+            glib::gobject_ffi::g_value_set_enum(value.to_glib_none_mut().0, self.into_glib());
+        }
+        value
+    }
+
+    #[inline]
+    fn value_type(&self) -> glib::Type {
+        Self::static_type()
+    }
+}
+
+impl From<AdaptiveMultiConditionType> for glib::Value {
+    #[inline]
+    fn from(v: AdaptiveMultiConditionType) -> Self {
+        skip_assert_initialized!();
+        ToValue::to_value(&v)
+    }
+}
+
+#[derive(Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Clone, Copy)]
+#[non_exhaustive]
 #[doc(alias = "AdwAnimationState")]
 pub enum AnimationState {
     #[doc(alias = "ADW_ANIMATION_IDLE")]

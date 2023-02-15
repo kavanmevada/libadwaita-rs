@@ -3,6 +3,9 @@
 // from gir-files (https://github.com/gtk-rs/gir-files.git)
 // DO NOT EDIT
 
+#[cfg(any(feature = "v1_3", feature = "dox"))]
+#[cfg_attr(feature = "dox", doc(cfg(feature = "v1_3")))]
+use crate::AdaptiveState;
 use glib::{
     prelude::*,
     signal::{connect_raw, SignalHandlerId},
@@ -408,20 +411,57 @@ impl WindowBuilder {
 }
 
 pub trait AdwWindowExt: 'static {
+    #[cfg(any(feature = "v1_3", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v1_3")))]
+    #[doc(alias = "adw_window_add_adaptive_state")]
+    fn add_adaptive_state(&self, state: AdaptiveState);
+
     #[doc(alias = "adw_window_get_content")]
     #[doc(alias = "get_content")]
     fn content(&self) -> Option<gtk::Widget>;
+
+    #[cfg(any(feature = "v1_3", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v1_3")))]
+    #[doc(alias = "adw_window_get_current_state")]
+    #[doc(alias = "get_current_state")]
+    fn current_state(&self) -> Option<AdaptiveState>;
 
     #[doc(alias = "adw_window_set_content")]
     fn set_content(&self, content: Option<&impl IsA<gtk::Widget>>);
 
     #[doc(alias = "content")]
     fn connect_content_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
+
+    #[cfg(any(feature = "v1_3", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v1_3")))]
+    #[doc(alias = "current-state")]
+    fn connect_current_state_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
 }
 
 impl<O: IsA<Window>> AdwWindowExt for O {
+    #[cfg(any(feature = "v1_3", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v1_3")))]
+    fn add_adaptive_state(&self, state: AdaptiveState) {
+        unsafe {
+            ffi::adw_window_add_adaptive_state(
+                self.as_ref().to_glib_none().0,
+                state.into_glib_ptr(),
+            );
+        }
+    }
+
     fn content(&self) -> Option<gtk::Widget> {
         unsafe { from_glib_none(ffi::adw_window_get_content(self.as_ref().to_glib_none().0)) }
+    }
+
+    #[cfg(any(feature = "v1_3", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v1_3")))]
+    fn current_state(&self) -> Option<AdaptiveState> {
+        unsafe {
+            from_glib_none(ffi::adw_window_get_current_state(
+                self.as_ref().to_glib_none().0,
+            ))
+        }
     }
 
     fn set_content(&self, content: Option<&impl IsA<gtk::Widget>>) {
@@ -449,6 +489,33 @@ impl<O: IsA<Window>> AdwWindowExt for O {
                 b"notify::content\0".as_ptr() as *const _,
                 Some(transmute::<_, unsafe extern "C" fn()>(
                     notify_content_trampoline::<Self, F> as *const (),
+                )),
+                Box_::into_raw(f),
+            )
+        }
+    }
+
+    #[cfg(any(feature = "v1_3", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v1_3")))]
+    fn connect_current_state_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
+        unsafe extern "C" fn notify_current_state_trampoline<
+            P: IsA<Window>,
+            F: Fn(&P) + 'static,
+        >(
+            this: *mut ffi::AdwWindow,
+            _param_spec: glib::ffi::gpointer,
+            f: glib::ffi::gpointer,
+        ) {
+            let f: &F = &*(f as *const F);
+            f(Window::from_glib_borrow(this).unsafe_cast_ref())
+        }
+        unsafe {
+            let f: Box_<F> = Box_::new(f);
+            connect_raw(
+                self.as_ptr() as *mut _,
+                b"notify::current-state\0".as_ptr() as *const _,
+                Some(transmute::<_, unsafe extern "C" fn()>(
+                    notify_current_state_trampoline::<Self, F> as *const (),
                 )),
                 Box_::into_raw(f),
             )

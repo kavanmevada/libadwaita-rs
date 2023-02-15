@@ -113,6 +113,9 @@ macro_rules! skip_assert_initialized {
 #[allow(clippy::type_complexity)]
 mod auto;
 
+#[cfg(any(feature = "v1_3", feature = "dox"))]
+#[cfg_attr(feature = "dox", doc(cfg(feature = "v1_3")))]
+mod adaptive_condition;
 mod application;
 mod carousel;
 mod functions;

@@ -27,11 +27,16 @@ external_libraries = [
 generate = [
     "Adw.AboutWindow",
     "Adw.ActionRow",
+    "Adw.AdaptiveConditionType",
+    "Adw.AdaptiveMultiConditionType",
+    "Adw.AdaptiveState",
     "Adw.AnimationState",
     "Adw.Avatar",
     "Adw.Banner",
     "Adw.Bin",
     "Adw.ButtonContent",
+    "Adw.BrowsingView",
+    "Adw.BrowsingViewChild",
     "Adw.CarouselIndicatorDots",
     "Adw.CarouselIndicatorLines",
     "Adw.CenteringPolicy",
@@ -40,6 +45,7 @@ generate = [
     "Adw.ClampScrollable",
     "Adw.ColorScheme",
     "Adw.ComboRow",
+    "Adw.DualPaneView",
     "Adw.Easing",
     "Adw.EntryRow",
     "Adw.ExpanderRow",
@@ -153,6 +159,9 @@ status = "generate"
     name = "VERSION_S"
     ignore = true
     [[object.function]]
+    pattern = "adaptive_multi_condition_.+"
+    ignore = true # Unable to be generated correctly. Needs manual binding.
+    [[object.function]]
     name = "get_enable_animations"
     rename = "is_animations_enabled"
     [[object.function]]
@@ -161,6 +170,13 @@ status = "generate"
     [[object.function]]
     name = "show_about_window"
     ignore = true # C only function, replaced by AboutWindow::builder
+
+[[object]]
+name = "Adw.AdaptiveCondition"
+status = "generate"
+    [[object.function]]
+    name = "to_string"
+    ignore = true # TODO: bind properly
 
 [[object]]
 name = "Adw.Animation"

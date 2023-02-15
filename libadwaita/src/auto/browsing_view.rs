@@ -3,7 +3,7 @@
 // from gir-files (https://github.com/gtk-rs/gir-files.git)
 // DO NOT EDIT
 
-use crate::CenteringPolicy;
+use crate::BrowsingViewChild;
 use glib::{
     prelude::*,
     signal::{connect_raw, SignalHandlerId},
@@ -12,213 +12,196 @@ use glib::{
 use std::{boxed::Box as Box_, fmt, mem::transmute};
 
 glib::wrapper! {
-    #[doc(alias = "AdwHeaderBar")]
-    pub struct HeaderBar(Object<ffi::AdwHeaderBar, ffi::AdwHeaderBarClass>) @extends gtk::Widget, @implements gtk::Accessible, gtk::Buildable, gtk::ConstraintTarget;
+    #[doc(alias = "AdwBrowsingView")]
+    pub struct BrowsingView(Object<ffi::AdwBrowsingView, ffi::AdwBrowsingViewClass>) @extends gtk::Widget, @implements gtk::Accessible, gtk::Buildable, gtk::ConstraintTarget;
 
     match fn {
-        type_ => || ffi::adw_header_bar_get_type(),
+        type_ => || ffi::adw_browsing_view_get_type(),
     }
 }
 
-impl HeaderBar {
-    #[doc(alias = "adw_header_bar_new")]
-    pub fn new() -> HeaderBar {
+impl BrowsingView {
+    #[doc(alias = "adw_browsing_view_new")]
+    pub fn new() -> BrowsingView {
         assert_initialized_main_thread!();
-        unsafe { gtk::Widget::from_glib_none(ffi::adw_header_bar_new()).unsafe_cast() }
+        unsafe { gtk::Widget::from_glib_none(ffi::adw_browsing_view_new()).unsafe_cast() }
     }
 
     // rustdoc-stripper-ignore-next
-    /// Creates a new builder-pattern struct instance to construct [`HeaderBar`] objects.
+    /// Creates a new builder-pattern struct instance to construct [`BrowsingView`] objects.
     ///
-    /// This method returns an instance of [`HeaderBarBuilder`](crate::builders::HeaderBarBuilder) which can be used to create [`HeaderBar`] objects.
-    pub fn builder() -> HeaderBarBuilder {
-        HeaderBarBuilder::new()
+    /// This method returns an instance of [`BrowsingViewBuilder`](crate::builders::BrowsingViewBuilder) which can be used to create [`BrowsingView`] objects.
+    pub fn builder() -> BrowsingViewBuilder {
+        BrowsingViewBuilder::new()
     }
 
-    #[doc(alias = "adw_header_bar_get_centering_policy")]
-    #[doc(alias = "get_centering_policy")]
-    pub fn centering_policy(&self) -> CenteringPolicy {
+    #[doc(alias = "adw_browsing_view_add")]
+    pub fn add(&self, child: &impl IsA<BrowsingViewChild>) {
         unsafe {
-            from_glib(ffi::adw_header_bar_get_centering_policy(
+            ffi::adw_browsing_view_add(self.to_glib_none().0, child.as_ref().to_glib_none().0);
+        }
+    }
+
+    #[doc(alias = "adw_browsing_view_add_with_title")]
+    pub fn add_with_title(&self, child: &impl IsA<gtk::Widget>, title: &str) {
+        unsafe {
+            ffi::adw_browsing_view_add_with_title(
+                self.to_glib_none().0,
+                child.as_ref().to_glib_none().0,
+                title.to_glib_none().0,
+            );
+        }
+    }
+
+    #[doc(alias = "adw_browsing_view_connect")]
+    pub fn connect(&self, next_view: &BrowsingView) {
+        unsafe {
+            ffi::adw_browsing_view_connect(self.to_glib_none().0, next_view.to_glib_none().0);
+        }
+    }
+
+    #[doc(alias = "adw_browsing_view_disconnect")]
+    pub fn disconnect(&self, other_view: &BrowsingView) {
+        unsafe {
+            ffi::adw_browsing_view_disconnect(self.to_glib_none().0, other_view.to_glib_none().0);
+        }
+    }
+
+    #[doc(alias = "adw_browsing_view_find_child")]
+    pub fn find_child(&self, name: &str) -> Option<BrowsingViewChild> {
+        unsafe {
+            from_glib_none(ffi::adw_browsing_view_find_child(
+                self.to_glib_none().0,
+                name.to_glib_none().0,
+            ))
+        }
+    }
+
+    #[doc(alias = "adw_browsing_view_get_next_view")]
+    #[doc(alias = "get_next_view")]
+    #[must_use]
+    pub fn next_view(&self) -> Option<BrowsingView> {
+        unsafe { from_glib_none(ffi::adw_browsing_view_get_next_view(self.to_glib_none().0)) }
+    }
+
+    #[doc(alias = "adw_browsing_view_get_previous_child")]
+    #[doc(alias = "get_previous_child")]
+    pub fn previous_child(&self, child: &impl IsA<BrowsingViewChild>) -> Option<BrowsingViewChild> {
+        unsafe {
+            from_glib_none(ffi::adw_browsing_view_get_previous_child(
+                self.to_glib_none().0,
+                child.as_ref().to_glib_none().0,
+            ))
+        }
+    }
+
+    #[doc(alias = "adw_browsing_view_get_previous_view")]
+    #[doc(alias = "get_previous_view")]
+    #[must_use]
+    pub fn previous_view(&self) -> Option<BrowsingView> {
+        unsafe {
+            from_glib_none(ffi::adw_browsing_view_get_previous_view(
                 self.to_glib_none().0,
             ))
         }
     }
 
-    #[doc(alias = "adw_header_bar_get_decoration_layout")]
-    #[doc(alias = "get_decoration_layout")]
-    pub fn decoration_layout(&self) -> Option<glib::GString> {
+    #[doc(alias = "adw_browsing_view_get_visible_child")]
+    #[doc(alias = "get_visible_child")]
+    pub fn visible_child(&self) -> Option<BrowsingViewChild> {
         unsafe {
-            from_glib_none(ffi::adw_header_bar_get_decoration_layout(
+            from_glib_none(ffi::adw_browsing_view_get_visible_child(
                 self.to_glib_none().0,
             ))
         }
     }
 
-    #[cfg(any(feature = "v1_3", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v1_3")))]
-    #[doc(alias = "adw_header_bar_get_show_back_button")]
-    #[doc(alias = "get_show_back_button")]
-    pub fn shows_back_button(&self) -> bool {
+    #[doc(alias = "adw_browsing_view_pop")]
+    pub fn pop(&self, animate: bool) -> bool {
         unsafe {
-            from_glib(ffi::adw_header_bar_get_show_back_button(
+            from_glib(ffi::adw_browsing_view_pop(
                 self.to_glib_none().0,
+                animate.into_glib(),
             ))
         }
     }
 
-    #[doc(alias = "adw_header_bar_get_show_end_title_buttons")]
-    #[doc(alias = "get_show_end_title_buttons")]
-    pub fn shows_end_title_buttons(&self) -> bool {
+    #[doc(alias = "adw_browsing_view_pop_to_child")]
+    pub fn pop_to_child(&self, child: &impl IsA<gtk::Widget>, animate: bool) -> bool {
         unsafe {
-            from_glib(ffi::adw_header_bar_get_show_end_title_buttons(
+            from_glib(ffi::adw_browsing_view_pop_to_child(
                 self.to_glib_none().0,
+                child.as_ref().to_glib_none().0,
+                animate.into_glib(),
             ))
         }
     }
 
-    #[doc(alias = "adw_header_bar_get_show_start_title_buttons")]
-    #[doc(alias = "get_show_start_title_buttons")]
-    pub fn shows_start_title_buttons(&self) -> bool {
+    #[doc(alias = "adw_browsing_view_pop_to_name")]
+    pub fn pop_to_name(&self, name: &str, animate: bool) -> bool {
         unsafe {
-            from_glib(ffi::adw_header_bar_get_show_start_title_buttons(
+            from_glib(ffi::adw_browsing_view_pop_to_name(
                 self.to_glib_none().0,
+                name.to_glib_none().0,
+                animate.into_glib(),
             ))
         }
     }
 
-    #[doc(alias = "adw_header_bar_get_title_widget")]
-    #[doc(alias = "get_title_widget")]
-    pub fn title_widget(&self) -> Option<gtk::Widget> {
-        unsafe { from_glib_none(ffi::adw_header_bar_get_title_widget(self.to_glib_none().0)) }
-    }
-
-    #[doc(alias = "adw_header_bar_pack_end")]
-    pub fn pack_end(&self, child: &impl IsA<gtk::Widget>) {
+    #[doc(alias = "adw_browsing_view_push")]
+    pub fn push(&self, child: &impl IsA<gtk::Widget>, animate: bool) {
         unsafe {
-            ffi::adw_header_bar_pack_end(self.to_glib_none().0, child.as_ref().to_glib_none().0);
+            ffi::adw_browsing_view_push(
+                self.to_glib_none().0,
+                child.as_ref().to_glib_none().0,
+                animate.into_glib(),
+            );
         }
     }
 
-    #[doc(alias = "adw_header_bar_pack_start")]
-    pub fn pack_start(&self, child: &impl IsA<gtk::Widget>) {
+    #[doc(alias = "adw_browsing_view_push_by_name")]
+    pub fn push_by_name(&self, name: &str, animate: bool) {
         unsafe {
-            ffi::adw_header_bar_pack_start(self.to_glib_none().0, child.as_ref().to_glib_none().0);
+            ffi::adw_browsing_view_push_by_name(
+                self.to_glib_none().0,
+                name.to_glib_none().0,
+                animate.into_glib(),
+            );
         }
     }
 
-    #[doc(alias = "adw_header_bar_remove")]
+    #[doc(alias = "adw_browsing_view_remove")]
     pub fn remove(&self, child: &impl IsA<gtk::Widget>) {
         unsafe {
-            ffi::adw_header_bar_remove(self.to_glib_none().0, child.as_ref().to_glib_none().0);
-        }
-    }
-
-    #[doc(alias = "adw_header_bar_set_centering_policy")]
-    pub fn set_centering_policy(&self, centering_policy: CenteringPolicy) {
-        unsafe {
-            ffi::adw_header_bar_set_centering_policy(
-                self.to_glib_none().0,
-                centering_policy.into_glib(),
-            );
-        }
-    }
-
-    #[doc(alias = "adw_header_bar_set_decoration_layout")]
-    pub fn set_decoration_layout(&self, layout: Option<&str>) {
-        unsafe {
-            ffi::adw_header_bar_set_decoration_layout(
-                self.to_glib_none().0,
-                layout.to_glib_none().0,
-            );
+            ffi::adw_browsing_view_remove(self.to_glib_none().0, child.as_ref().to_glib_none().0);
         }
     }
 
     #[cfg(any(feature = "v1_3", feature = "dox"))]
     #[cfg_attr(feature = "dox", doc(cfg(feature = "v1_3")))]
-    #[doc(alias = "adw_header_bar_set_show_back_button")]
-    pub fn set_show_back_button(&self, show_back_button: bool) {
-        unsafe {
-            ffi::adw_header_bar_set_show_back_button(
-                self.to_glib_none().0,
-                show_back_button.into_glib(),
-            );
-        }
-    }
-
-    #[doc(alias = "adw_header_bar_set_show_end_title_buttons")]
-    pub fn set_show_end_title_buttons(&self, setting: bool) {
-        unsafe {
-            ffi::adw_header_bar_set_show_end_title_buttons(
-                self.to_glib_none().0,
-                setting.into_glib(),
-            );
-        }
-    }
-
-    #[doc(alias = "adw_header_bar_set_show_start_title_buttons")]
-    pub fn set_show_start_title_buttons(&self, setting: bool) {
-        unsafe {
-            ffi::adw_header_bar_set_show_start_title_buttons(
-                self.to_glib_none().0,
-                setting.into_glib(),
-            );
-        }
-    }
-
-    #[doc(alias = "adw_header_bar_set_title_widget")]
-    pub fn set_title_widget(&self, title_widget: Option<&impl IsA<gtk::Widget>>) {
-        unsafe {
-            ffi::adw_header_bar_set_title_widget(
-                self.to_glib_none().0,
-                title_widget.map(|p| p.as_ref()).to_glib_none().0,
-            );
-        }
-    }
-
-    #[doc(alias = "centering-policy")]
-    pub fn connect_centering_policy_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
-        unsafe extern "C" fn notify_centering_policy_trampoline<F: Fn(&HeaderBar) + 'static>(
-            this: *mut ffi::AdwHeaderBar,
-            _param_spec: glib::ffi::gpointer,
-            f: glib::ffi::gpointer,
-        ) {
-            let f: &F = &*(f as *const F);
-            f(&from_glib_borrow(this))
-        }
-        unsafe {
-            let f: Box_<F> = Box_::new(f);
-            connect_raw(
-                self.as_ptr() as *mut _,
-                b"notify::centering-policy\0".as_ptr() as *const _,
-                Some(transmute::<_, unsafe extern "C" fn()>(
-                    notify_centering_policy_trampoline::<F> as *const (),
-                )),
-                Box_::into_raw(f),
-            )
-        }
-    }
-
-    #[doc(alias = "decoration-layout")]
-    pub fn connect_decoration_layout_notify<F: Fn(&Self) + 'static>(
+    #[doc(alias = "get-next-child")]
+    pub fn connect_get_next_child<F: Fn(&Self) -> BrowsingViewChild + 'static>(
         &self,
         f: F,
     ) -> SignalHandlerId {
-        unsafe extern "C" fn notify_decoration_layout_trampoline<F: Fn(&HeaderBar) + 'static>(
-            this: *mut ffi::AdwHeaderBar,
-            _param_spec: glib::ffi::gpointer,
+        unsafe extern "C" fn get_next_child_trampoline<
+            F: Fn(&BrowsingView) -> BrowsingViewChild + 'static,
+        >(
+            this: *mut ffi::AdwBrowsingView,
             f: glib::ffi::gpointer,
-        ) {
+        ) -> *mut ffi::AdwBrowsingViewChild {
             let f: &F = &*(f as *const F);
-            f(&from_glib_borrow(this))
+            f(&from_glib_borrow(this)) /*Not checked*/
+                .to_glib_none()
+                .0
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
-                b"notify::decoration-layout\0".as_ptr() as *const _,
+                b"get-next-child\0".as_ptr() as *const _,
                 Some(transmute::<_, unsafe extern "C" fn()>(
-                    notify_decoration_layout_trampoline::<F> as *const (),
+                    get_next_child_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
             )
@@ -227,67 +210,40 @@ impl HeaderBar {
 
     #[cfg(any(feature = "v1_3", feature = "dox"))]
     #[cfg_attr(feature = "dox", doc(cfg(feature = "v1_3")))]
-    #[doc(alias = "show-back-button")]
-    pub fn connect_show_back_button_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
-        unsafe extern "C" fn notify_show_back_button_trampoline<F: Fn(&HeaderBar) + 'static>(
-            this: *mut ffi::AdwHeaderBar,
-            _param_spec: glib::ffi::gpointer,
-            f: glib::ffi::gpointer,
-        ) {
-            let f: &F = &*(f as *const F);
-            f(&from_glib_borrow(this))
-        }
-        unsafe {
-            let f: Box_<F> = Box_::new(f);
-            connect_raw(
-                self.as_ptr() as *mut _,
-                b"notify::show-back-button\0".as_ptr() as *const _,
-                Some(transmute::<_, unsafe extern "C" fn()>(
-                    notify_show_back_button_trampoline::<F> as *const (),
-                )),
-                Box_::into_raw(f),
-            )
-        }
-    }
-
-    #[doc(alias = "show-end-title-buttons")]
-    pub fn connect_show_end_title_buttons_notify<F: Fn(&Self) + 'static>(
+    #[doc(alias = "popped")]
+    pub fn connect_popped<F: Fn(&Self, &BrowsingViewChild) + 'static>(
         &self,
         f: F,
     ) -> SignalHandlerId {
-        unsafe extern "C" fn notify_show_end_title_buttons_trampoline<
-            F: Fn(&HeaderBar) + 'static,
+        unsafe extern "C" fn popped_trampoline<
+            F: Fn(&BrowsingView, &BrowsingViewChild) + 'static,
         >(
-            this: *mut ffi::AdwHeaderBar,
-            _param_spec: glib::ffi::gpointer,
+            this: *mut ffi::AdwBrowsingView,
+            child: *mut ffi::AdwBrowsingViewChild,
             f: glib::ffi::gpointer,
         ) {
             let f: &F = &*(f as *const F);
-            f(&from_glib_borrow(this))
+            f(&from_glib_borrow(this), &from_glib_borrow(child))
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
-                b"notify::show-end-title-buttons\0".as_ptr() as *const _,
+                b"popped\0".as_ptr() as *const _,
                 Some(transmute::<_, unsafe extern "C" fn()>(
-                    notify_show_end_title_buttons_trampoline::<F> as *const (),
+                    popped_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
             )
         }
     }
 
-    #[doc(alias = "show-start-title-buttons")]
-    pub fn connect_show_start_title_buttons_notify<F: Fn(&Self) + 'static>(
-        &self,
-        f: F,
-    ) -> SignalHandlerId {
-        unsafe extern "C" fn notify_show_start_title_buttons_trampoline<
-            F: Fn(&HeaderBar) + 'static,
-        >(
-            this: *mut ffi::AdwHeaderBar,
-            _param_spec: glib::ffi::gpointer,
+    #[cfg(any(feature = "v1_3", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v1_3")))]
+    #[doc(alias = "pushed")]
+    pub fn connect_pushed<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
+        unsafe extern "C" fn pushed_trampoline<F: Fn(&BrowsingView) + 'static>(
+            this: *mut ffi::AdwBrowsingView,
             f: glib::ffi::gpointer,
         ) {
             let f: &F = &*(f as *const F);
@@ -297,19 +253,21 @@ impl HeaderBar {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
-                b"notify::show-start-title-buttons\0".as_ptr() as *const _,
+                b"pushed\0".as_ptr() as *const _,
                 Some(transmute::<_, unsafe extern "C" fn()>(
-                    notify_show_start_title_buttons_trampoline::<F> as *const (),
+                    pushed_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
             )
         }
     }
 
-    #[doc(alias = "title-widget")]
-    pub fn connect_title_widget_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
-        unsafe extern "C" fn notify_title_widget_trampoline<F: Fn(&HeaderBar) + 'static>(
-            this: *mut ffi::AdwHeaderBar,
+    #[cfg(any(feature = "v1_3", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v1_3")))]
+    #[doc(alias = "next-view")]
+    pub fn connect_next_view_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
+        unsafe extern "C" fn notify_next_view_trampoline<F: Fn(&BrowsingView) + 'static>(
+            this: *mut ffi::AdwBrowsingView,
             _param_spec: glib::ffi::gpointer,
             f: glib::ffi::gpointer,
         ) {
@@ -320,9 +278,59 @@ impl HeaderBar {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
-                b"notify::title-widget\0".as_ptr() as *const _,
+                b"notify::next-view\0".as_ptr() as *const _,
                 Some(transmute::<_, unsafe extern "C" fn()>(
-                    notify_title_widget_trampoline::<F> as *const (),
+                    notify_next_view_trampoline::<F> as *const (),
+                )),
+                Box_::into_raw(f),
+            )
+        }
+    }
+
+    #[cfg(any(feature = "v1_3", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v1_3")))]
+    #[doc(alias = "previous-view")]
+    pub fn connect_previous_view_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
+        unsafe extern "C" fn notify_previous_view_trampoline<F: Fn(&BrowsingView) + 'static>(
+            this: *mut ffi::AdwBrowsingView,
+            _param_spec: glib::ffi::gpointer,
+            f: glib::ffi::gpointer,
+        ) {
+            let f: &F = &*(f as *const F);
+            f(&from_glib_borrow(this))
+        }
+        unsafe {
+            let f: Box_<F> = Box_::new(f);
+            connect_raw(
+                self.as_ptr() as *mut _,
+                b"notify::previous-view\0".as_ptr() as *const _,
+                Some(transmute::<_, unsafe extern "C" fn()>(
+                    notify_previous_view_trampoline::<F> as *const (),
+                )),
+                Box_::into_raw(f),
+            )
+        }
+    }
+
+    #[cfg(any(feature = "v1_3", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v1_3")))]
+    #[doc(alias = "visible-child")]
+    pub fn connect_visible_child_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
+        unsafe extern "C" fn notify_visible_child_trampoline<F: Fn(&BrowsingView) + 'static>(
+            this: *mut ffi::AdwBrowsingView,
+            _param_spec: glib::ffi::gpointer,
+            f: glib::ffi::gpointer,
+        ) {
+            let f: &F = &*(f as *const F);
+            f(&from_glib_borrow(this))
+        }
+        unsafe {
+            let f: Box_<F> = Box_::new(f);
+            connect_raw(
+                self.as_ptr() as *mut _,
+                b"notify::visible-child\0".as_ptr() as *const _,
+                Some(transmute::<_, unsafe extern "C" fn()>(
+                    notify_visible_child_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
             )
@@ -330,71 +338,27 @@ impl HeaderBar {
     }
 }
 
-impl Default for HeaderBar {
+#[cfg(any(feature = "v1_3", feature = "dox"))]
+#[cfg_attr(feature = "dox", doc(cfg(feature = "v1_3")))]
+impl Default for BrowsingView {
     fn default() -> Self {
         Self::new()
     }
 }
 
 // rustdoc-stripper-ignore-next
-/// A [builder-pattern] type to construct [`HeaderBar`] objects.
+/// A [builder-pattern] type to construct [`BrowsingView`] objects.
 ///
 /// [builder-pattern]: https://doc.rust-lang.org/1.0.0/style/ownership/builders.html
 #[must_use = "The builder must be built to be used"]
-pub struct HeaderBarBuilder {
-    builder: glib::object::ObjectBuilder<'static, HeaderBar>,
+pub struct BrowsingViewBuilder {
+    builder: glib::object::ObjectBuilder<'static, BrowsingView>,
 }
 
-impl HeaderBarBuilder {
+impl BrowsingViewBuilder {
     fn new() -> Self {
         Self {
             builder: glib::object::Object::builder(),
-        }
-    }
-
-    pub fn centering_policy(self, centering_policy: CenteringPolicy) -> Self {
-        Self {
-            builder: self.builder.property("centering-policy", centering_policy),
-        }
-    }
-
-    pub fn decoration_layout(self, decoration_layout: impl Into<glib::GString>) -> Self {
-        Self {
-            builder: self
-                .builder
-                .property("decoration-layout", decoration_layout.into()),
-        }
-    }
-
-    #[cfg(any(feature = "v1_3", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v1_3")))]
-    pub fn show_back_button(self, show_back_button: bool) -> Self {
-        Self {
-            builder: self.builder.property("show-back-button", show_back_button),
-        }
-    }
-
-    pub fn show_end_title_buttons(self, show_end_title_buttons: bool) -> Self {
-        Self {
-            builder: self
-                .builder
-                .property("show-end-title-buttons", show_end_title_buttons),
-        }
-    }
-
-    pub fn show_start_title_buttons(self, show_start_title_buttons: bool) -> Self {
-        Self {
-            builder: self
-                .builder
-                .property("show-start-title-buttons", show_start_title_buttons),
-        }
-    }
-
-    pub fn title_widget(self, title_widget: &impl IsA<gtk::Widget>) -> Self {
-        Self {
-            builder: self
-                .builder
-                .property("title-widget", title_widget.clone().upcast()),
         }
     }
 
@@ -583,15 +547,15 @@ impl HeaderBarBuilder {
     }
 
     // rustdoc-stripper-ignore-next
-    /// Build the [`HeaderBar`].
+    /// Build the [`BrowsingView`].
     #[must_use = "Building the object from the builder is usually expensive and is not expected to have side effects"]
-    pub fn build(self) -> HeaderBar {
+    pub fn build(self) -> BrowsingView {
         self.builder.build()
     }
 }
 
-impl fmt::Display for HeaderBar {
+impl fmt::Display for BrowsingView {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        f.write_str("HeaderBar")
+        f.write_str("BrowsingView")
     }
 }

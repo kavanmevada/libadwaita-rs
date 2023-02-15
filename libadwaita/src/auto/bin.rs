@@ -65,6 +65,14 @@ impl BinBuilder {
         }
     }
 
+    #[cfg(any(feature = "v1_3", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v1_3")))]
+    pub fn pass_through(self, pass_through: bool) -> Self {
+        Self {
+            builder: self.builder.property("pass-through", pass_through),
+        }
+    }
+
     pub fn can_focus(self, can_focus: bool) -> Self {
         Self {
             builder: self.builder.property("can-focus", can_focus),
@@ -262,16 +270,42 @@ pub trait BinExt: 'static {
     #[doc(alias = "get_child")]
     fn child(&self) -> Option<gtk::Widget>;
 
+    #[cfg(any(feature = "v1_3", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v1_3")))]
+    #[doc(alias = "adw_bin_get_pass_through")]
+    #[doc(alias = "get_pass_through")]
+    fn is_pass_through(&self) -> bool;
+
     #[doc(alias = "adw_bin_set_child")]
     fn set_child(&self, child: Option<&impl IsA<gtk::Widget>>);
 
+    #[cfg(any(feature = "v1_3", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v1_3")))]
+    #[doc(alias = "adw_bin_set_pass_through")]
+    fn set_pass_through(&self, pass_through: bool);
+
     #[doc(alias = "child")]
     fn connect_child_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
+
+    #[cfg(any(feature = "v1_3", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v1_3")))]
+    #[doc(alias = "pass-through")]
+    fn connect_pass_through_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
 }
 
 impl<O: IsA<Bin>> BinExt for O {
     fn child(&self) -> Option<gtk::Widget> {
         unsafe { from_glib_none(ffi::adw_bin_get_child(self.as_ref().to_glib_none().0)) }
+    }
+
+    #[cfg(any(feature = "v1_3", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v1_3")))]
+    fn is_pass_through(&self) -> bool {
+        unsafe {
+            from_glib(ffi::adw_bin_get_pass_through(
+                self.as_ref().to_glib_none().0,
+            ))
+        }
     }
 
     fn set_child(&self, child: Option<&impl IsA<gtk::Widget>>) {
@@ -280,6 +314,14 @@ impl<O: IsA<Bin>> BinExt for O {
                 self.as_ref().to_glib_none().0,
                 child.map(|p| p.as_ref()).to_glib_none().0,
             );
+        }
+    }
+
+    #[cfg(any(feature = "v1_3", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v1_3")))]
+    fn set_pass_through(&self, pass_through: bool) {
+        unsafe {
+            ffi::adw_bin_set_pass_through(self.as_ref().to_glib_none().0, pass_through.into_glib());
         }
     }
 
@@ -299,6 +341,30 @@ impl<O: IsA<Bin>> BinExt for O {
                 b"notify::child\0".as_ptr() as *const _,
                 Some(transmute::<_, unsafe extern "C" fn()>(
                     notify_child_trampoline::<Self, F> as *const (),
+                )),
+                Box_::into_raw(f),
+            )
+        }
+    }
+
+    #[cfg(any(feature = "v1_3", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v1_3")))]
+    fn connect_pass_through_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
+        unsafe extern "C" fn notify_pass_through_trampoline<P: IsA<Bin>, F: Fn(&P) + 'static>(
+            this: *mut ffi::AdwBin,
+            _param_spec: glib::ffi::gpointer,
+            f: glib::ffi::gpointer,
+        ) {
+            let f: &F = &*(f as *const F);
+            f(Bin::from_glib_borrow(this).unsafe_cast_ref())
+        }
+        unsafe {
+            let f: Box_<F> = Box_::new(f);
+            connect_raw(
+                self.as_ptr() as *mut _,
+                b"notify::pass-through\0".as_ptr() as *const _,
+                Some(transmute::<_, unsafe extern "C" fn()>(
+                    notify_pass_through_trampoline::<Self, F> as *const (),
                 )),
                 Box_::into_raw(f),
             )

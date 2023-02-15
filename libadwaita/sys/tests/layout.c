@@ -11,6 +11,9 @@ int main() {
     printf("%s;%zu;%zu\n", "AdwAboutWindowClass", sizeof(AdwAboutWindowClass), alignof(AdwAboutWindowClass));
     printf("%s;%zu;%zu\n", "AdwActionRow", sizeof(AdwActionRow), alignof(AdwActionRow));
     printf("%s;%zu;%zu\n", "AdwActionRowClass", sizeof(AdwActionRowClass), alignof(AdwActionRowClass));
+    printf("%s;%zu;%zu\n", "AdwAdaptiveConditionType", sizeof(AdwAdaptiveConditionType), alignof(AdwAdaptiveConditionType));
+    printf("%s;%zu;%zu\n", "AdwAdaptiveMultiConditionType", sizeof(AdwAdaptiveMultiConditionType), alignof(AdwAdaptiveMultiConditionType));
+    printf("%s;%zu;%zu\n", "AdwAdaptiveStateClass", sizeof(AdwAdaptiveStateClass), alignof(AdwAdaptiveStateClass));
     printf("%s;%zu;%zu\n", "AdwAnimation", sizeof(AdwAnimation), alignof(AdwAnimation));
     printf("%s;%zu;%zu\n", "AdwAnimationState", sizeof(AdwAnimationState), alignof(AdwAnimationState));
     printf("%s;%zu;%zu\n", "AdwApplication", sizeof(AdwApplication), alignof(AdwApplication));
@@ -21,6 +24,9 @@ int main() {
     printf("%s;%zu;%zu\n", "AdwBannerClass", sizeof(AdwBannerClass), alignof(AdwBannerClass));
     printf("%s;%zu;%zu\n", "AdwBin", sizeof(AdwBin), alignof(AdwBin));
     printf("%s;%zu;%zu\n", "AdwBinClass", sizeof(AdwBinClass), alignof(AdwBinClass));
+    printf("%s;%zu;%zu\n", "AdwBrowsingViewChild", sizeof(AdwBrowsingViewChild), alignof(AdwBrowsingViewChild));
+    printf("%s;%zu;%zu\n", "AdwBrowsingViewChildClass", sizeof(AdwBrowsingViewChildClass), alignof(AdwBrowsingViewChildClass));
+    printf("%s;%zu;%zu\n", "AdwBrowsingViewClass", sizeof(AdwBrowsingViewClass), alignof(AdwBrowsingViewClass));
     printf("%s;%zu;%zu\n", "AdwButtonContentClass", sizeof(AdwButtonContentClass), alignof(AdwButtonContentClass));
     printf("%s;%zu;%zu\n", "AdwCarouselClass", sizeof(AdwCarouselClass), alignof(AdwCarouselClass));
     printf("%s;%zu;%zu\n", "AdwCarouselIndicatorDotsClass", sizeof(AdwCarouselIndicatorDotsClass), alignof(AdwCarouselIndicatorDotsClass));
@@ -32,6 +38,7 @@ int main() {
     printf("%s;%zu;%zu\n", "AdwColorScheme", sizeof(AdwColorScheme), alignof(AdwColorScheme));
     printf("%s;%zu;%zu\n", "AdwComboRow", sizeof(AdwComboRow), alignof(AdwComboRow));
     printf("%s;%zu;%zu\n", "AdwComboRowClass", sizeof(AdwComboRowClass), alignof(AdwComboRowClass));
+    printf("%s;%zu;%zu\n", "AdwDualPaneViewClass", sizeof(AdwDualPaneViewClass), alignof(AdwDualPaneViewClass));
     printf("%s;%zu;%zu\n", "AdwEasing", sizeof(AdwEasing), alignof(AdwEasing));
     printf("%s;%zu;%zu\n", "AdwEntryRow", sizeof(AdwEntryRow), alignof(AdwEntryRow));
     printf("%s;%zu;%zu\n", "AdwEntryRowClass", sizeof(AdwEntryRowClass), alignof(AdwEntryRowClass));

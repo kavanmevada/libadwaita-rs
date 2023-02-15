@@ -220,6 +220,27 @@ const RUST_LAYOUTS: &[(&str, Layout)] = &[
         },
     ),
     (
+        "AdwAdaptiveConditionType",
+        Layout {
+            size: size_of::<AdwAdaptiveConditionType>(),
+            alignment: align_of::<AdwAdaptiveConditionType>(),
+        },
+    ),
+    (
+        "AdwAdaptiveMultiConditionType",
+        Layout {
+            size: size_of::<AdwAdaptiveMultiConditionType>(),
+            alignment: align_of::<AdwAdaptiveMultiConditionType>(),
+        },
+    ),
+    (
+        "AdwAdaptiveStateClass",
+        Layout {
+            size: size_of::<AdwAdaptiveStateClass>(),
+            alignment: align_of::<AdwAdaptiveStateClass>(),
+        },
+    ),
+    (
         "AdwAnimation",
         Layout {
             size: size_of::<AdwAnimation>(),
@@ -287,6 +308,27 @@ const RUST_LAYOUTS: &[(&str, Layout)] = &[
         Layout {
             size: size_of::<AdwBinClass>(),
             alignment: align_of::<AdwBinClass>(),
+        },
+    ),
+    (
+        "AdwBrowsingViewChild",
+        Layout {
+            size: size_of::<AdwBrowsingViewChild>(),
+            alignment: align_of::<AdwBrowsingViewChild>(),
+        },
+    ),
+    (
+        "AdwBrowsingViewChildClass",
+        Layout {
+            size: size_of::<AdwBrowsingViewChildClass>(),
+            alignment: align_of::<AdwBrowsingViewChildClass>(),
+        },
+    ),
+    (
+        "AdwBrowsingViewClass",
+        Layout {
+            size: size_of::<AdwBrowsingViewClass>(),
+            alignment: align_of::<AdwBrowsingViewClass>(),
         },
     ),
     (
@@ -364,6 +406,13 @@ const RUST_LAYOUTS: &[(&str, Layout)] = &[
         Layout {
             size: size_of::<AdwComboRowClass>(),
             alignment: align_of::<AdwComboRowClass>(),
+        },
+    ),
+    (
+        "AdwDualPaneViewClass",
+        Layout {
+            size: size_of::<AdwDualPaneViewClass>(),
+            alignment: align_of::<AdwDualPaneViewClass>(),
         },
     ),
     (
@@ -758,6 +807,12 @@ const RUST_CONSTANTS: &[(&str, &str)] = &[
     ("(gint) ADW_COLOR_SCHEME_FORCE_LIGHT", "1"),
     ("(gint) ADW_COLOR_SCHEME_PREFER_DARK", "3"),
     ("(gint) ADW_COLOR_SCHEME_PREFER_LIGHT", "2"),
+    ("(gint) ADW_CONDITION_MAX_ASPECT_RATIO", "5"),
+    ("(gint) ADW_CONDITION_MAX_HEIGHT", "3"),
+    ("(gint) ADW_CONDITION_MAX_WIDTH", "1"),
+    ("(gint) ADW_CONDITION_MIN_ASPECT_RATIO", "4"),
+    ("(gint) ADW_CONDITION_MIN_HEIGHT", "2"),
+    ("(gint) ADW_CONDITION_MIN_WIDTH", "0"),
     ("ADW_DURATION_INFINITE", "4294967295"),
     ("(gint) ADW_EASE_IN_BACK", "25"),
     ("(gint) ADW_EASE_IN_BOUNCE", "28"),
@@ -801,6 +856,8 @@ const RUST_CONSTANTS: &[(&str, &str)] = &[
     ("(gint) ADW_LEAFLET_TRANSITION_TYPE_SLIDE", "2"),
     ("(gint) ADW_LEAFLET_TRANSITION_TYPE_UNDER", "1"),
     ("(gint) ADW_LINEAR", "0"),
+    ("(gint) ADW_MULTI_CONDITION_ALL", "0"),
+    ("(gint) ADW_MULTI_CONDITION_ANY", "1"),
     ("(gint) ADW_NAVIGATION_DIRECTION_BACK", "0"),
     ("(gint) ADW_NAVIGATION_DIRECTION_FORWARD", "1"),
     ("(gint) ADW_RESPONSE_DEFAULT", "0"),

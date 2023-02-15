@@ -3,7 +3,9 @@
 // from gir-files (https://github.com/gtk-rs/gir-files.git)
 // DO NOT EDIT
 
-use crate::CenteringPolicy;
+#[cfg(any(feature = "v1_3", feature = "dox"))]
+#[cfg_attr(feature = "dox", doc(cfg(feature = "v1_3")))]
+use crate::BrowsingViewChild;
 use glib::{
     prelude::*,
     signal::{connect_raw, SignalHandlerId},
@@ -12,44 +14,72 @@ use glib::{
 use std::{boxed::Box as Box_, fmt, mem::transmute};
 
 glib::wrapper! {
-    #[doc(alias = "AdwHeaderBar")]
-    pub struct HeaderBar(Object<ffi::AdwHeaderBar, ffi::AdwHeaderBarClass>) @extends gtk::Widget, @implements gtk::Accessible, gtk::Buildable, gtk::ConstraintTarget;
+    #[doc(alias = "AdwDualPaneView")]
+    pub struct DualPaneView(Object<ffi::AdwDualPaneView, ffi::AdwDualPaneViewClass>) @extends gtk::Widget, @implements gtk::Accessible, gtk::Buildable, gtk::ConstraintTarget;
 
     match fn {
-        type_ => || ffi::adw_header_bar_get_type(),
+        type_ => || ffi::adw_dual_pane_view_get_type(),
     }
 }
 
-impl HeaderBar {
-    #[doc(alias = "adw_header_bar_new")]
-    pub fn new() -> HeaderBar {
+impl DualPaneView {
+    #[cfg(any(feature = "v1_3", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v1_3")))]
+    #[doc(alias = "adw_dual_pane_view_new")]
+    pub fn new() -> DualPaneView {
         assert_initialized_main_thread!();
-        unsafe { gtk::Widget::from_glib_none(ffi::adw_header_bar_new()).unsafe_cast() }
+        unsafe { gtk::Widget::from_glib_none(ffi::adw_dual_pane_view_new()).unsafe_cast() }
     }
 
     // rustdoc-stripper-ignore-next
-    /// Creates a new builder-pattern struct instance to construct [`HeaderBar`] objects.
+    /// Creates a new builder-pattern struct instance to construct [`DualPaneView`] objects.
     ///
-    /// This method returns an instance of [`HeaderBarBuilder`](crate::builders::HeaderBarBuilder) which can be used to create [`HeaderBar`] objects.
-    pub fn builder() -> HeaderBarBuilder {
-        HeaderBarBuilder::new()
+    /// This method returns an instance of [`DualPaneViewBuilder`](crate::builders::DualPaneViewBuilder) which can be used to create [`DualPaneView`] objects.
+    pub fn builder() -> DualPaneViewBuilder {
+        DualPaneViewBuilder::new()
     }
 
-    #[doc(alias = "adw_header_bar_get_centering_policy")]
-    #[doc(alias = "get_centering_policy")]
-    pub fn centering_policy(&self) -> CenteringPolicy {
+    #[cfg(any(feature = "v1_3", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v1_3")))]
+    #[doc(alias = "adw_dual_pane_view_find_child")]
+    pub fn find_child(&self, name: &str) -> Option<BrowsingViewChild> {
         unsafe {
-            from_glib(ffi::adw_header_bar_get_centering_policy(
+            from_glib_none(ffi::adw_dual_pane_view_find_child(
+                self.to_glib_none().0,
+                name.to_glib_none().0,
+            ))
+        }
+    }
+
+    #[cfg(any(feature = "v1_3", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v1_3")))]
+    #[doc(alias = "adw_dual_pane_view_get_content")]
+    #[doc(alias = "get_content")]
+    pub fn content(&self) -> Option<gtk::Widget> {
+        unsafe { from_glib_none(ffi::adw_dual_pane_view_get_content(self.to_glib_none().0)) }
+    }
+
+    #[doc(alias = "adw_dual_pane_view_get_content_visible")]
+    #[doc(alias = "get_content_visible")]
+    pub fn is_content_visible(&self) -> bool {
+        unsafe {
+            from_glib(ffi::adw_dual_pane_view_get_content_visible(
                 self.to_glib_none().0,
             ))
         }
     }
 
-    #[doc(alias = "adw_header_bar_get_decoration_layout")]
-    #[doc(alias = "get_decoration_layout")]
-    pub fn decoration_layout(&self) -> Option<glib::GString> {
+    #[doc(alias = "adw_dual_pane_view_get_folded")]
+    #[doc(alias = "get_folded")]
+    pub fn is_folded(&self) -> bool {
+        unsafe { from_glib(ffi::adw_dual_pane_view_get_folded(self.to_glib_none().0)) }
+    }
+
+    #[doc(alias = "adw_dual_pane_view_get_pop_content_on_fold")]
+    #[doc(alias = "get_pop_content_on_fold")]
+    pub fn is_pop_content_on_fold(&self) -> bool {
         unsafe {
-            from_glib_none(ffi::adw_header_bar_get_decoration_layout(
+            from_glib(ffi::adw_dual_pane_view_get_pop_content_on_fold(
                 self.to_glib_none().0,
             ))
         }
@@ -57,129 +87,105 @@ impl HeaderBar {
 
     #[cfg(any(feature = "v1_3", feature = "dox"))]
     #[cfg_attr(feature = "dox", doc(cfg(feature = "v1_3")))]
-    #[doc(alias = "adw_header_bar_get_show_back_button")]
-    #[doc(alias = "get_show_back_button")]
-    pub fn shows_back_button(&self) -> bool {
+    #[doc(alias = "adw_dual_pane_view_get_sidebar")]
+    #[doc(alias = "get_sidebar")]
+    pub fn sidebar(&self) -> Option<gtk::Widget> {
+        unsafe { from_glib_none(ffi::adw_dual_pane_view_get_sidebar(self.to_glib_none().0)) }
+    }
+
+    #[doc(alias = "adw_dual_pane_view_pop")]
+    pub fn pop(&self, animate: bool) -> bool {
         unsafe {
-            from_glib(ffi::adw_header_bar_get_show_back_button(
+            from_glib(ffi::adw_dual_pane_view_pop(
                 self.to_glib_none().0,
+                animate.into_glib(),
             ))
         }
     }
 
-    #[doc(alias = "adw_header_bar_get_show_end_title_buttons")]
-    #[doc(alias = "get_show_end_title_buttons")]
-    pub fn shows_end_title_buttons(&self) -> bool {
+    #[doc(alias = "adw_dual_pane_view_push")]
+    pub fn push(&self, child: &impl IsA<gtk::Widget>, animate: bool) {
         unsafe {
-            from_glib(ffi::adw_header_bar_get_show_end_title_buttons(
+            ffi::adw_dual_pane_view_push(
                 self.to_glib_none().0,
-            ))
-        }
-    }
-
-    #[doc(alias = "adw_header_bar_get_show_start_title_buttons")]
-    #[doc(alias = "get_show_start_title_buttons")]
-    pub fn shows_start_title_buttons(&self) -> bool {
-        unsafe {
-            from_glib(ffi::adw_header_bar_get_show_start_title_buttons(
-                self.to_glib_none().0,
-            ))
-        }
-    }
-
-    #[doc(alias = "adw_header_bar_get_title_widget")]
-    #[doc(alias = "get_title_widget")]
-    pub fn title_widget(&self) -> Option<gtk::Widget> {
-        unsafe { from_glib_none(ffi::adw_header_bar_get_title_widget(self.to_glib_none().0)) }
-    }
-
-    #[doc(alias = "adw_header_bar_pack_end")]
-    pub fn pack_end(&self, child: &impl IsA<gtk::Widget>) {
-        unsafe {
-            ffi::adw_header_bar_pack_end(self.to_glib_none().0, child.as_ref().to_glib_none().0);
-        }
-    }
-
-    #[doc(alias = "adw_header_bar_pack_start")]
-    pub fn pack_start(&self, child: &impl IsA<gtk::Widget>) {
-        unsafe {
-            ffi::adw_header_bar_pack_start(self.to_glib_none().0, child.as_ref().to_glib_none().0);
-        }
-    }
-
-    #[doc(alias = "adw_header_bar_remove")]
-    pub fn remove(&self, child: &impl IsA<gtk::Widget>) {
-        unsafe {
-            ffi::adw_header_bar_remove(self.to_glib_none().0, child.as_ref().to_glib_none().0);
-        }
-    }
-
-    #[doc(alias = "adw_header_bar_set_centering_policy")]
-    pub fn set_centering_policy(&self, centering_policy: CenteringPolicy) {
-        unsafe {
-            ffi::adw_header_bar_set_centering_policy(
-                self.to_glib_none().0,
-                centering_policy.into_glib(),
+                child.as_ref().to_glib_none().0,
+                animate.into_glib(),
             );
         }
     }
 
-    #[doc(alias = "adw_header_bar_set_decoration_layout")]
-    pub fn set_decoration_layout(&self, layout: Option<&str>) {
+    #[doc(alias = "adw_dual_pane_view_push_by_name")]
+    pub fn push_by_name(&self, name: &str, animate: bool) {
         unsafe {
-            ffi::adw_header_bar_set_decoration_layout(
+            ffi::adw_dual_pane_view_push_by_name(
                 self.to_glib_none().0,
-                layout.to_glib_none().0,
+                name.to_glib_none().0,
+                animate.into_glib(),
             );
         }
     }
 
     #[cfg(any(feature = "v1_3", feature = "dox"))]
     #[cfg_attr(feature = "dox", doc(cfg(feature = "v1_3")))]
-    #[doc(alias = "adw_header_bar_set_show_back_button")]
-    pub fn set_show_back_button(&self, show_back_button: bool) {
+    #[doc(alias = "adw_dual_pane_view_set_content")]
+    pub fn set_content(&self, content: Option<&impl IsA<gtk::Widget>>) {
         unsafe {
-            ffi::adw_header_bar_set_show_back_button(
+            ffi::adw_dual_pane_view_set_content(
                 self.to_glib_none().0,
-                show_back_button.into_glib(),
+                content.map(|p| p.as_ref()).to_glib_none().0,
             );
         }
     }
 
-    #[doc(alias = "adw_header_bar_set_show_end_title_buttons")]
-    pub fn set_show_end_title_buttons(&self, setting: bool) {
+    #[doc(alias = "adw_dual_pane_view_set_folded")]
+    pub fn set_folded(&self, folded: bool) {
         unsafe {
-            ffi::adw_header_bar_set_show_end_title_buttons(
+            ffi::adw_dual_pane_view_set_folded(self.to_glib_none().0, folded.into_glib());
+        }
+    }
+
+    #[doc(alias = "adw_dual_pane_view_set_pop_content_on_fold")]
+    pub fn set_pop_content_on_fold(&self, pop_content_on_fold: bool) {
+        unsafe {
+            ffi::adw_dual_pane_view_set_pop_content_on_fold(
                 self.to_glib_none().0,
-                setting.into_glib(),
+                pop_content_on_fold.into_glib(),
             );
         }
     }
 
-    #[doc(alias = "adw_header_bar_set_show_start_title_buttons")]
-    pub fn set_show_start_title_buttons(&self, setting: bool) {
+    #[cfg(any(feature = "v1_3", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v1_3")))]
+    #[doc(alias = "adw_dual_pane_view_set_sidebar")]
+    pub fn set_sidebar(&self, sidebar: Option<&impl IsA<gtk::Widget>>) {
         unsafe {
-            ffi::adw_header_bar_set_show_start_title_buttons(
+            ffi::adw_dual_pane_view_set_sidebar(
                 self.to_glib_none().0,
-                setting.into_glib(),
+                sidebar.map(|p| p.as_ref()).to_glib_none().0,
             );
         }
     }
 
-    #[doc(alias = "adw_header_bar_set_title_widget")]
-    pub fn set_title_widget(&self, title_widget: Option<&impl IsA<gtk::Widget>>) {
-        unsafe {
-            ffi::adw_header_bar_set_title_widget(
-                self.to_glib_none().0,
-                title_widget.map(|p| p.as_ref()).to_glib_none().0,
-            );
-        }
+    pub fn get_property_content(&self) -> Option<gtk::Widget> {
+        glib::ObjectExt::property(self, "content")
     }
 
-    #[doc(alias = "centering-policy")]
-    pub fn connect_centering_policy_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
-        unsafe extern "C" fn notify_centering_policy_trampoline<F: Fn(&HeaderBar) + 'static>(
-            this: *mut ffi::AdwHeaderBar,
+    pub fn set_property_content<P: IsA<gtk::Widget>>(&self, content: Option<&P>) {
+        glib::ObjectExt::set_property(self, "content", &content)
+    }
+
+    pub fn get_property_sidebar(&self) -> Option<gtk::Widget> {
+        glib::ObjectExt::property(self, "sidebar")
+    }
+
+    pub fn set_property_sidebar<P: IsA<gtk::Widget>>(&self, sidebar: Option<&P>) {
+        glib::ObjectExt::set_property(self, "sidebar", &sidebar)
+    }
+
+    #[doc(alias = "content")]
+    pub fn connect_content_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
+        unsafe extern "C" fn notify_content_trampoline<F: Fn(&DualPaneView) + 'static>(
+            this: *mut ffi::AdwDualPaneView,
             _param_spec: glib::ffi::gpointer,
             f: glib::ffi::gpointer,
         ) {
@@ -190,75 +196,70 @@ impl HeaderBar {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
-                b"notify::centering-policy\0".as_ptr() as *const _,
+                b"notify::content\0".as_ptr() as *const _,
                 Some(transmute::<_, unsafe extern "C" fn()>(
-                    notify_centering_policy_trampoline::<F> as *const (),
+                    notify_content_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
             )
         }
     }
 
-    #[doc(alias = "decoration-layout")]
-    pub fn connect_decoration_layout_notify<F: Fn(&Self) + 'static>(
+    #[doc(alias = "content-visible")]
+    pub fn connect_content_visible_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
+        unsafe extern "C" fn notify_content_visible_trampoline<F: Fn(&DualPaneView) + 'static>(
+            this: *mut ffi::AdwDualPaneView,
+            _param_spec: glib::ffi::gpointer,
+            f: glib::ffi::gpointer,
+        ) {
+            let f: &F = &*(f as *const F);
+            f(&from_glib_borrow(this))
+        }
+        unsafe {
+            let f: Box_<F> = Box_::new(f);
+            connect_raw(
+                self.as_ptr() as *mut _,
+                b"notify::content-visible\0".as_ptr() as *const _,
+                Some(transmute::<_, unsafe extern "C" fn()>(
+                    notify_content_visible_trampoline::<F> as *const (),
+                )),
+                Box_::into_raw(f),
+            )
+        }
+    }
+
+    #[doc(alias = "folded")]
+    pub fn connect_folded_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
+        unsafe extern "C" fn notify_folded_trampoline<F: Fn(&DualPaneView) + 'static>(
+            this: *mut ffi::AdwDualPaneView,
+            _param_spec: glib::ffi::gpointer,
+            f: glib::ffi::gpointer,
+        ) {
+            let f: &F = &*(f as *const F);
+            f(&from_glib_borrow(this))
+        }
+        unsafe {
+            let f: Box_<F> = Box_::new(f);
+            connect_raw(
+                self.as_ptr() as *mut _,
+                b"notify::folded\0".as_ptr() as *const _,
+                Some(transmute::<_, unsafe extern "C" fn()>(
+                    notify_folded_trampoline::<F> as *const (),
+                )),
+                Box_::into_raw(f),
+            )
+        }
+    }
+
+    #[doc(alias = "pop-content-on-fold")]
+    pub fn connect_pop_content_on_fold_notify<F: Fn(&Self) + 'static>(
         &self,
         f: F,
     ) -> SignalHandlerId {
-        unsafe extern "C" fn notify_decoration_layout_trampoline<F: Fn(&HeaderBar) + 'static>(
-            this: *mut ffi::AdwHeaderBar,
-            _param_spec: glib::ffi::gpointer,
-            f: glib::ffi::gpointer,
-        ) {
-            let f: &F = &*(f as *const F);
-            f(&from_glib_borrow(this))
-        }
-        unsafe {
-            let f: Box_<F> = Box_::new(f);
-            connect_raw(
-                self.as_ptr() as *mut _,
-                b"notify::decoration-layout\0".as_ptr() as *const _,
-                Some(transmute::<_, unsafe extern "C" fn()>(
-                    notify_decoration_layout_trampoline::<F> as *const (),
-                )),
-                Box_::into_raw(f),
-            )
-        }
-    }
-
-    #[cfg(any(feature = "v1_3", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v1_3")))]
-    #[doc(alias = "show-back-button")]
-    pub fn connect_show_back_button_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
-        unsafe extern "C" fn notify_show_back_button_trampoline<F: Fn(&HeaderBar) + 'static>(
-            this: *mut ffi::AdwHeaderBar,
-            _param_spec: glib::ffi::gpointer,
-            f: glib::ffi::gpointer,
-        ) {
-            let f: &F = &*(f as *const F);
-            f(&from_glib_borrow(this))
-        }
-        unsafe {
-            let f: Box_<F> = Box_::new(f);
-            connect_raw(
-                self.as_ptr() as *mut _,
-                b"notify::show-back-button\0".as_ptr() as *const _,
-                Some(transmute::<_, unsafe extern "C" fn()>(
-                    notify_show_back_button_trampoline::<F> as *const (),
-                )),
-                Box_::into_raw(f),
-            )
-        }
-    }
-
-    #[doc(alias = "show-end-title-buttons")]
-    pub fn connect_show_end_title_buttons_notify<F: Fn(&Self) + 'static>(
-        &self,
-        f: F,
-    ) -> SignalHandlerId {
-        unsafe extern "C" fn notify_show_end_title_buttons_trampoline<
-            F: Fn(&HeaderBar) + 'static,
+        unsafe extern "C" fn notify_pop_content_on_fold_trampoline<
+            F: Fn(&DualPaneView) + 'static,
         >(
-            this: *mut ffi::AdwHeaderBar,
+            this: *mut ffi::AdwDualPaneView,
             _param_spec: glib::ffi::gpointer,
             f: glib::ffi::gpointer,
         ) {
@@ -269,24 +270,19 @@ impl HeaderBar {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
-                b"notify::show-end-title-buttons\0".as_ptr() as *const _,
+                b"notify::pop-content-on-fold\0".as_ptr() as *const _,
                 Some(transmute::<_, unsafe extern "C" fn()>(
-                    notify_show_end_title_buttons_trampoline::<F> as *const (),
+                    notify_pop_content_on_fold_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
             )
         }
     }
 
-    #[doc(alias = "show-start-title-buttons")]
-    pub fn connect_show_start_title_buttons_notify<F: Fn(&Self) + 'static>(
-        &self,
-        f: F,
-    ) -> SignalHandlerId {
-        unsafe extern "C" fn notify_show_start_title_buttons_trampoline<
-            F: Fn(&HeaderBar) + 'static,
-        >(
-            this: *mut ffi::AdwHeaderBar,
+    #[doc(alias = "sidebar")]
+    pub fn connect_sidebar_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
+        unsafe extern "C" fn notify_sidebar_trampoline<F: Fn(&DualPaneView) + 'static>(
+            this: *mut ffi::AdwDualPaneView,
             _param_spec: glib::ffi::gpointer,
             f: glib::ffi::gpointer,
         ) {
@@ -297,32 +293,9 @@ impl HeaderBar {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
-                b"notify::show-start-title-buttons\0".as_ptr() as *const _,
+                b"notify::sidebar\0".as_ptr() as *const _,
                 Some(transmute::<_, unsafe extern "C" fn()>(
-                    notify_show_start_title_buttons_trampoline::<F> as *const (),
-                )),
-                Box_::into_raw(f),
-            )
-        }
-    }
-
-    #[doc(alias = "title-widget")]
-    pub fn connect_title_widget_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
-        unsafe extern "C" fn notify_title_widget_trampoline<F: Fn(&HeaderBar) + 'static>(
-            this: *mut ffi::AdwHeaderBar,
-            _param_spec: glib::ffi::gpointer,
-            f: glib::ffi::gpointer,
-        ) {
-            let f: &F = &*(f as *const F);
-            f(&from_glib_borrow(this))
-        }
-        unsafe {
-            let f: Box_<F> = Box_::new(f);
-            connect_raw(
-                self.as_ptr() as *mut _,
-                b"notify::title-widget\0".as_ptr() as *const _,
-                Some(transmute::<_, unsafe extern "C" fn()>(
-                    notify_title_widget_trampoline::<F> as *const (),
+                    notify_sidebar_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
             )
@@ -330,71 +303,53 @@ impl HeaderBar {
     }
 }
 
-impl Default for HeaderBar {
+#[cfg(any(feature = "v1_3", feature = "dox"))]
+#[cfg_attr(feature = "dox", doc(cfg(feature = "v1_3")))]
+impl Default for DualPaneView {
     fn default() -> Self {
         Self::new()
     }
 }
 
 // rustdoc-stripper-ignore-next
-/// A [builder-pattern] type to construct [`HeaderBar`] objects.
+/// A [builder-pattern] type to construct [`DualPaneView`] objects.
 ///
 /// [builder-pattern]: https://doc.rust-lang.org/1.0.0/style/ownership/builders.html
 #[must_use = "The builder must be built to be used"]
-pub struct HeaderBarBuilder {
-    builder: glib::object::ObjectBuilder<'static, HeaderBar>,
+pub struct DualPaneViewBuilder {
+    builder: glib::object::ObjectBuilder<'static, DualPaneView>,
 }
 
-impl HeaderBarBuilder {
+impl DualPaneViewBuilder {
     fn new() -> Self {
         Self {
             builder: glib::object::Object::builder(),
         }
     }
 
-    pub fn centering_policy(self, centering_policy: CenteringPolicy) -> Self {
+    pub fn content(self, content: &impl IsA<gtk::Widget>) -> Self {
         Self {
-            builder: self.builder.property("centering-policy", centering_policy),
+            builder: self.builder.property("content", content.clone().upcast()),
         }
     }
 
-    pub fn decoration_layout(self, decoration_layout: impl Into<glib::GString>) -> Self {
+    pub fn folded(self, folded: bool) -> Self {
+        Self {
+            builder: self.builder.property("folded", folded),
+        }
+    }
+
+    pub fn pop_content_on_fold(self, pop_content_on_fold: bool) -> Self {
         Self {
             builder: self
                 .builder
-                .property("decoration-layout", decoration_layout.into()),
+                .property("pop-content-on-fold", pop_content_on_fold),
         }
     }
 
-    #[cfg(any(feature = "v1_3", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v1_3")))]
-    pub fn show_back_button(self, show_back_button: bool) -> Self {
+    pub fn sidebar(self, sidebar: &impl IsA<gtk::Widget>) -> Self {
         Self {
-            builder: self.builder.property("show-back-button", show_back_button),
-        }
-    }
-
-    pub fn show_end_title_buttons(self, show_end_title_buttons: bool) -> Self {
-        Self {
-            builder: self
-                .builder
-                .property("show-end-title-buttons", show_end_title_buttons),
-        }
-    }
-
-    pub fn show_start_title_buttons(self, show_start_title_buttons: bool) -> Self {
-        Self {
-            builder: self
-                .builder
-                .property("show-start-title-buttons", show_start_title_buttons),
-        }
-    }
-
-    pub fn title_widget(self, title_widget: &impl IsA<gtk::Widget>) -> Self {
-        Self {
-            builder: self
-                .builder
-                .property("title-widget", title_widget.clone().upcast()),
+            builder: self.builder.property("sidebar", sidebar.clone().upcast()),
         }
     }
 
@@ -583,15 +538,15 @@ impl HeaderBarBuilder {
     }
 
     // rustdoc-stripper-ignore-next
-    /// Build the [`HeaderBar`].
+    /// Build the [`DualPaneView`].
     #[must_use = "Building the object from the builder is usually expensive and is not expected to have side effects"]
-    pub fn build(self) -> HeaderBar {
+    pub fn build(self) -> DualPaneView {
         self.builder.build()
     }
 }
 
-impl fmt::Display for HeaderBar {
+impl fmt::Display for DualPaneView {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        f.write_str("HeaderBar")
+        f.write_str("DualPaneView")
     }
 }

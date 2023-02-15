@@ -22,6 +22,18 @@ use libc::{
 use glib::{gboolean, gconstpointer, gpointer, GType};
 
 // Enums
+pub type AdwAdaptiveConditionType = c_int;
+pub const ADW_CONDITION_MIN_WIDTH: AdwAdaptiveConditionType = 0;
+pub const ADW_CONDITION_MAX_WIDTH: AdwAdaptiveConditionType = 1;
+pub const ADW_CONDITION_MIN_HEIGHT: AdwAdaptiveConditionType = 2;
+pub const ADW_CONDITION_MAX_HEIGHT: AdwAdaptiveConditionType = 3;
+pub const ADW_CONDITION_MIN_ASPECT_RATIO: AdwAdaptiveConditionType = 4;
+pub const ADW_CONDITION_MAX_ASPECT_RATIO: AdwAdaptiveConditionType = 5;
+
+pub type AdwAdaptiveMultiConditionType = c_int;
+pub const ADW_MULTI_CONDITION_ALL: AdwAdaptiveMultiConditionType = 0;
+pub const ADW_MULTI_CONDITION_ANY: AdwAdaptiveMultiConditionType = 1;
+
 pub type AdwAnimationState = c_int;
 pub const ADW_ANIMATION_IDLE: AdwAnimationState = 0;
 pub const ADW_ANIMATION_PAUSED: AdwAnimationState = 1;
@@ -168,6 +180,33 @@ impl ::std::fmt::Debug for AdwActionRowClass {
 }
 
 #[repr(C)]
+pub struct AdwAdaptiveCondition {
+    _data: [u8; 0],
+    _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
+}
+
+impl ::std::fmt::Debug for AdwAdaptiveCondition {
+    fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+        f.debug_struct(&format!("AdwAdaptiveCondition @ {self:p}"))
+            .finish()
+    }
+}
+
+#[derive(Copy, Clone)]
+#[repr(C)]
+pub struct AdwAdaptiveStateClass {
+    pub parent_class: gobject::GObjectClass,
+}
+
+impl ::std::fmt::Debug for AdwAdaptiveStateClass {
+    fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+        f.debug_struct(&format!("AdwAdaptiveStateClass @ {self:p}"))
+            .field("parent_class", &self.parent_class)
+            .finish()
+    }
+}
+
+#[repr(C)]
 pub struct _AdwAnimationClass {
     _data: [u8; 0],
     _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
@@ -250,6 +289,43 @@ pub struct AdwBinClass {
 impl ::std::fmt::Debug for AdwBinClass {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
         f.debug_struct(&format!("AdwBinClass @ {self:p}"))
+            .field("parent_class", &self.parent_class)
+            .finish()
+    }
+}
+
+#[derive(Copy, Clone)]
+#[repr(C)]
+pub struct AdwBrowsingViewChildClass {
+    pub parent_class: gtk::GtkWidgetClass,
+    pub showing: Option<unsafe extern "C" fn(*mut AdwBrowsingViewChild)>,
+    pub shown: Option<unsafe extern "C" fn(*mut AdwBrowsingViewChild)>,
+    pub hiding: Option<unsafe extern "C" fn(*mut AdwBrowsingViewChild)>,
+    pub hidden: Option<unsafe extern "C" fn(*mut AdwBrowsingViewChild)>,
+    pub padding: [gpointer; 8],
+}
+
+impl ::std::fmt::Debug for AdwBrowsingViewChildClass {
+    fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+        f.debug_struct(&format!("AdwBrowsingViewChildClass @ {self:p}"))
+            .field("parent_class", &self.parent_class)
+            .field("showing", &self.showing)
+            .field("shown", &self.shown)
+            .field("hiding", &self.hiding)
+            .field("hidden", &self.hidden)
+            .finish()
+    }
+}
+
+#[derive(Copy, Clone)]
+#[repr(C)]
+pub struct AdwBrowsingViewClass {
+    pub parent_class: gtk::GtkWidgetClass,
+}
+
+impl ::std::fmt::Debug for AdwBrowsingViewClass {
+    fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+        f.debug_struct(&format!("AdwBrowsingViewClass @ {self:p}"))
             .field("parent_class", &self.parent_class)
             .finish()
     }
@@ -371,6 +447,20 @@ pub struct AdwComboRowClass {
 impl ::std::fmt::Debug for AdwComboRowClass {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
         f.debug_struct(&format!("AdwComboRowClass @ {self:p}"))
+            .field("parent_class", &self.parent_class)
+            .finish()
+    }
+}
+
+#[derive(Copy, Clone)]
+#[repr(C)]
+pub struct AdwDualPaneViewClass {
+    pub parent_class: gtk::GtkWidgetClass,
+}
+
+impl ::std::fmt::Debug for AdwDualPaneViewClass {
+    fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+        f.debug_struct(&format!("AdwDualPaneViewClass @ {self:p}"))
             .field("parent_class", &self.parent_class)
             .finish()
     }
@@ -959,6 +1049,19 @@ impl ::std::fmt::Debug for AdwActionRow {
     }
 }
 
+#[repr(C)]
+pub struct AdwAdaptiveState {
+    _data: [u8; 0],
+    _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
+}
+
+impl ::std::fmt::Debug for AdwAdaptiveState {
+    fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+        f.debug_struct(&format!("AdwAdaptiveState @ {self:p}"))
+            .finish()
+    }
+}
+
 #[derive(Copy, Clone)]
 #[repr(C)]
 pub struct AdwAnimation {
@@ -1047,6 +1150,33 @@ pub struct AdwBin {
 impl ::std::fmt::Debug for AdwBin {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
         f.debug_struct(&format!("AdwBin @ {self:p}"))
+            .field("parent_instance", &self.parent_instance)
+            .finish()
+    }
+}
+
+#[repr(C)]
+pub struct AdwBrowsingView {
+    _data: [u8; 0],
+    _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
+}
+
+impl ::std::fmt::Debug for AdwBrowsingView {
+    fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+        f.debug_struct(&format!("AdwBrowsingView @ {self:p}"))
+            .finish()
+    }
+}
+
+#[derive(Copy, Clone)]
+#[repr(C)]
+pub struct AdwBrowsingViewChild {
+    pub parent_instance: gtk::GtkWidget,
+}
+
+impl ::std::fmt::Debug for AdwBrowsingViewChild {
+    fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+        f.debug_struct(&format!("AdwBrowsingViewChild @ {self:p}"))
             .field("parent_instance", &self.parent_instance)
             .finish()
     }
@@ -1164,6 +1294,19 @@ impl ::std::fmt::Debug for AdwComboRow {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
         f.debug_struct(&format!("AdwComboRow @ {self:p}"))
             .field("parent_instance", &self.parent_instance)
+            .finish()
+    }
+}
+
+#[repr(C)]
+pub struct AdwDualPaneView {
+    _data: [u8; 0],
+    _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
+}
+
+impl ::std::fmt::Debug for AdwDualPaneView {
+    fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+        f.debug_struct(&format!("AdwDualPaneView @ {self:p}"))
             .finish()
     }
 }
@@ -1664,6 +1807,16 @@ impl ::std::fmt::Debug for AdwSwipeable {
 extern "C" {
 
     //=========================================================================
+    // AdwAdaptiveConditionType
+    //=========================================================================
+    pub fn adw_adaptive_condition_type_get_type() -> GType;
+
+    //=========================================================================
+    // AdwAdaptiveMultiConditionType
+    //=========================================================================
+    pub fn adw_adaptive_multi_condition_type_get_type() -> GType;
+
+    //=========================================================================
     // AdwAnimationState
     //=========================================================================
     pub fn adw_animation_state_get_type() -> GType;
@@ -1737,6 +1890,20 @@ extern "C" {
     #[cfg(any(feature = "v1_2", feature = "dox"))]
     #[cfg_attr(feature = "dox", doc(cfg(feature = "v1_2")))]
     pub fn adw_tab_view_shortcuts_get_type() -> GType;
+
+    //=========================================================================
+    // AdwAdaptiveCondition
+    //=========================================================================
+    pub fn adw_adaptive_condition_get_type() -> GType;
+    pub fn adw_adaptive_condition_new(
+        type_: AdwAdaptiveConditionType,
+        value: c_double,
+    ) -> *mut AdwAdaptiveCondition;
+    pub fn adw_adaptive_condition_copy(
+        self_: *mut AdwAdaptiveCondition,
+    ) -> *mut AdwAdaptiveCondition;
+    pub fn adw_adaptive_condition_free(self_: *mut AdwAdaptiveCondition);
+    pub fn adw_adaptive_condition_to_string(self_: *mut AdwAdaptiveCondition) -> *mut c_char;
 
     //=========================================================================
     // AdwSpringParams
@@ -1985,6 +2152,31 @@ extern "C" {
     pub fn adw_action_row_set_title_lines(self_: *mut AdwActionRow, title_lines: c_int);
 
     //=========================================================================
+    // AdwAdaptiveState
+    //=========================================================================
+    pub fn adw_adaptive_state_get_type() -> GType;
+    pub fn adw_adaptive_state_new() -> *mut AdwAdaptiveState;
+    pub fn adw_adaptive_state_add_setter(
+        self_: *mut AdwAdaptiveState,
+        object: *mut gobject::GObject,
+        property: *const c_char,
+        value: *const gobject::GValue,
+    );
+    pub fn adw_adaptive_state_add_setters(
+        self_: *mut AdwAdaptiveState,
+        first_object: *mut gobject::GObject,
+        first_property: *const c_char,
+        ...
+    );
+    pub fn adw_adaptive_state_get_condition(
+        self_: *mut AdwAdaptiveState,
+    ) -> *mut AdwAdaptiveCondition;
+    pub fn adw_adaptive_state_set_condition(
+        self_: *mut AdwAdaptiveState,
+        condition: *mut AdwAdaptiveCondition,
+    );
+
+    //=========================================================================
     // AdwAnimation
     //=========================================================================
     pub fn adw_animation_get_type() -> GType;
@@ -2029,9 +2221,20 @@ extern "C" {
     //=========================================================================
     pub fn adw_application_window_get_type() -> GType;
     pub fn adw_application_window_new(app: *mut gtk::GtkApplication) -> *mut gtk::GtkWidget;
+    #[cfg(any(feature = "v1_3", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v1_3")))]
+    pub fn adw_application_window_add_adaptive_state(
+        self_: *mut AdwApplicationWindow,
+        state: *mut AdwAdaptiveState,
+    );
     pub fn adw_application_window_get_content(
         self_: *mut AdwApplicationWindow,
     ) -> *mut gtk::GtkWidget;
+    #[cfg(any(feature = "v1_3", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v1_3")))]
+    pub fn adw_application_window_get_current_state(
+        self_: *mut AdwApplicationWindow,
+    ) -> *mut AdwAdaptiveState;
     pub fn adw_application_window_set_content(
         self_: *mut AdwApplicationWindow,
         content: *mut gtk::GtkWidget,
@@ -2101,7 +2304,144 @@ extern "C" {
     pub fn adw_bin_get_type() -> GType;
     pub fn adw_bin_new() -> *mut gtk::GtkWidget;
     pub fn adw_bin_get_child(self_: *mut AdwBin) -> *mut gtk::GtkWidget;
+    #[cfg(any(feature = "v1_3", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v1_3")))]
+    pub fn adw_bin_get_pass_through(self_: *mut AdwBin) -> gboolean;
     pub fn adw_bin_set_child(self_: *mut AdwBin, child: *mut gtk::GtkWidget);
+    #[cfg(any(feature = "v1_3", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v1_3")))]
+    pub fn adw_bin_set_pass_through(self_: *mut AdwBin, pass_through: gboolean);
+
+    //=========================================================================
+    // AdwBrowsingView
+    //=========================================================================
+    #[cfg(any(feature = "v1_3", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v1_3")))]
+    pub fn adw_browsing_view_get_type() -> GType;
+    #[cfg(any(feature = "v1_3", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v1_3")))]
+    pub fn adw_browsing_view_new() -> *mut gtk::GtkWidget;
+    #[cfg(any(feature = "v1_3", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v1_3")))]
+    pub fn adw_browsing_view_add(self_: *mut AdwBrowsingView, child: *mut AdwBrowsingViewChild);
+    #[cfg(any(feature = "v1_3", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v1_3")))]
+    pub fn adw_browsing_view_add_with_title(
+        self_: *mut AdwBrowsingView,
+        child: *mut gtk::GtkWidget,
+        title: *const c_char,
+    );
+    #[cfg(any(feature = "v1_3", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v1_3")))]
+    pub fn adw_browsing_view_connect(self_: *mut AdwBrowsingView, next_view: *mut AdwBrowsingView);
+    #[cfg(any(feature = "v1_3", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v1_3")))]
+    pub fn adw_browsing_view_disconnect(
+        self_: *mut AdwBrowsingView,
+        other_view: *mut AdwBrowsingView,
+    );
+    #[cfg(any(feature = "v1_3", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v1_3")))]
+    pub fn adw_browsing_view_find_child(
+        self_: *mut AdwBrowsingView,
+        name: *const c_char,
+    ) -> *mut AdwBrowsingViewChild;
+    #[cfg(any(feature = "v1_3", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v1_3")))]
+    pub fn adw_browsing_view_get_next_view(self_: *mut AdwBrowsingView) -> *mut AdwBrowsingView;
+    #[cfg(any(feature = "v1_3", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v1_3")))]
+    pub fn adw_browsing_view_get_previous_child(
+        self_: *mut AdwBrowsingView,
+        child: *mut AdwBrowsingViewChild,
+    ) -> *mut AdwBrowsingViewChild;
+    #[cfg(any(feature = "v1_3", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v1_3")))]
+    pub fn adw_browsing_view_get_previous_view(self_: *mut AdwBrowsingView)
+        -> *mut AdwBrowsingView;
+    #[cfg(any(feature = "v1_3", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v1_3")))]
+    pub fn adw_browsing_view_get_visible_child(
+        self_: *mut AdwBrowsingView,
+    ) -> *mut AdwBrowsingViewChild;
+    #[cfg(any(feature = "v1_3", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v1_3")))]
+    pub fn adw_browsing_view_pop(self_: *mut AdwBrowsingView, animate: gboolean) -> gboolean;
+    #[cfg(any(feature = "v1_3", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v1_3")))]
+    pub fn adw_browsing_view_pop_to_child(
+        self_: *mut AdwBrowsingView,
+        child: *mut gtk::GtkWidget,
+        animate: gboolean,
+    ) -> gboolean;
+    #[cfg(any(feature = "v1_3", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v1_3")))]
+    pub fn adw_browsing_view_pop_to_name(
+        self_: *mut AdwBrowsingView,
+        name: *const c_char,
+        animate: gboolean,
+    ) -> gboolean;
+    #[cfg(any(feature = "v1_3", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v1_3")))]
+    pub fn adw_browsing_view_push(
+        self_: *mut AdwBrowsingView,
+        child: *mut gtk::GtkWidget,
+        animate: gboolean,
+    );
+    #[cfg(any(feature = "v1_3", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v1_3")))]
+    pub fn adw_browsing_view_push_by_name(
+        self_: *mut AdwBrowsingView,
+        name: *const c_char,
+        animate: gboolean,
+    );
+    #[cfg(any(feature = "v1_3", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v1_3")))]
+    pub fn adw_browsing_view_remove(self_: *mut AdwBrowsingView, child: *mut gtk::GtkWidget);
+
+    //=========================================================================
+    // AdwBrowsingViewChild
+    //=========================================================================
+    #[cfg(any(feature = "v1_3", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v1_3")))]
+    pub fn adw_browsing_view_child_get_type() -> GType;
+    #[cfg(any(feature = "v1_3", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v1_3")))]
+    pub fn adw_browsing_view_child_new(
+        child: *mut gtk::GtkWidget,
+        title: *const c_char,
+    ) -> *mut gtk::GtkWidget;
+    #[cfg(any(feature = "v1_3", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v1_3")))]
+    pub fn adw_browsing_view_child_get_child(
+        self_: *mut AdwBrowsingViewChild,
+    ) -> *mut gtk::GtkWidget;
+    #[cfg(any(feature = "v1_3", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v1_3")))]
+    pub fn adw_browsing_view_child_get_child_name(
+        self_: *mut AdwBrowsingViewChild,
+    ) -> *const c_char;
+    #[cfg(any(feature = "v1_3", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v1_3")))]
+    pub fn adw_browsing_view_child_get_title(self_: *mut AdwBrowsingViewChild) -> *const c_char;
+    #[cfg(any(feature = "v1_3", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v1_3")))]
+    pub fn adw_browsing_view_child_set_child(
+        self_: *mut AdwBrowsingViewChild,
+        child: *mut gtk::GtkWidget,
+    );
+    #[cfg(any(feature = "v1_3", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v1_3")))]
+    pub fn adw_browsing_view_child_set_child_name(
+        self_: *mut AdwBrowsingViewChild,
+        name: *const c_char,
+    );
+    #[cfg(any(feature = "v1_3", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v1_3")))]
+    pub fn adw_browsing_view_child_set_title(
+        self_: *mut AdwBrowsingViewChild,
+        title: *const c_char,
+    );
 
     //=========================================================================
     // AdwButtonContent
@@ -2273,6 +2613,57 @@ extern "C" {
     pub fn adw_combo_row_set_use_subtitle(self_: *mut AdwComboRow, use_subtitle: gboolean);
 
     //=========================================================================
+    // AdwDualPaneView
+    //=========================================================================
+    pub fn adw_dual_pane_view_get_type() -> GType;
+    #[cfg(any(feature = "v1_3", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v1_3")))]
+    pub fn adw_dual_pane_view_new() -> *mut gtk::GtkWidget;
+    #[cfg(any(feature = "v1_3", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v1_3")))]
+    pub fn adw_dual_pane_view_find_child(
+        self_: *mut AdwDualPaneView,
+        name: *const c_char,
+    ) -> *mut AdwBrowsingViewChild;
+    #[cfg(any(feature = "v1_3", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v1_3")))]
+    pub fn adw_dual_pane_view_get_content(self_: *mut AdwDualPaneView) -> *mut gtk::GtkWidget;
+    pub fn adw_dual_pane_view_get_content_visible(self_: *mut AdwDualPaneView) -> gboolean;
+    pub fn adw_dual_pane_view_get_folded(self_: *mut AdwDualPaneView) -> gboolean;
+    pub fn adw_dual_pane_view_get_pop_content_on_fold(self_: *mut AdwDualPaneView) -> gboolean;
+    #[cfg(any(feature = "v1_3", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v1_3")))]
+    pub fn adw_dual_pane_view_get_sidebar(self_: *mut AdwDualPaneView) -> *mut gtk::GtkWidget;
+    pub fn adw_dual_pane_view_pop(self_: *mut AdwDualPaneView, animate: gboolean) -> gboolean;
+    pub fn adw_dual_pane_view_push(
+        self_: *mut AdwDualPaneView,
+        child: *mut gtk::GtkWidget,
+        animate: gboolean,
+    );
+    pub fn adw_dual_pane_view_push_by_name(
+        self_: *mut AdwDualPaneView,
+        name: *const c_char,
+        animate: gboolean,
+    );
+    #[cfg(any(feature = "v1_3", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v1_3")))]
+    pub fn adw_dual_pane_view_set_content(
+        self_: *mut AdwDualPaneView,
+        content: *mut gtk::GtkWidget,
+    );
+    pub fn adw_dual_pane_view_set_folded(self_: *mut AdwDualPaneView, folded: gboolean);
+    pub fn adw_dual_pane_view_set_pop_content_on_fold(
+        self_: *mut AdwDualPaneView,
+        pop_content_on_fold: gboolean,
+    );
+    #[cfg(any(feature = "v1_3", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v1_3")))]
+    pub fn adw_dual_pane_view_set_sidebar(
+        self_: *mut AdwDualPaneView,
+        sidebar: *mut gtk::GtkWidget,
+    );
+
+    //=========================================================================
     // AdwEntryRow
     //=========================================================================
     #[cfg(any(feature = "v1_2", feature = "dox"))]
@@ -2439,6 +2830,9 @@ extern "C" {
     pub fn adw_header_bar_new() -> *mut gtk::GtkWidget;
     pub fn adw_header_bar_get_centering_policy(self_: *mut AdwHeaderBar) -> AdwCenteringPolicy;
     pub fn adw_header_bar_get_decoration_layout(self_: *mut AdwHeaderBar) -> *const c_char;
+    #[cfg(any(feature = "v1_3", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v1_3")))]
+    pub fn adw_header_bar_get_show_back_button(self_: *mut AdwHeaderBar) -> gboolean;
     pub fn adw_header_bar_get_show_end_title_buttons(self_: *mut AdwHeaderBar) -> gboolean;
     pub fn adw_header_bar_get_show_start_title_buttons(self_: *mut AdwHeaderBar) -> gboolean;
     pub fn adw_header_bar_get_title_widget(self_: *mut AdwHeaderBar) -> *mut gtk::GtkWidget;
@@ -2450,6 +2844,12 @@ extern "C" {
         centering_policy: AdwCenteringPolicy,
     );
     pub fn adw_header_bar_set_decoration_layout(self_: *mut AdwHeaderBar, layout: *const c_char);
+    #[cfg(any(feature = "v1_3", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v1_3")))]
+    pub fn adw_header_bar_set_show_back_button(
+        self_: *mut AdwHeaderBar,
+        show_back_button: gboolean,
+    );
     pub fn adw_header_bar_set_show_end_title_buttons(self_: *mut AdwHeaderBar, setting: gboolean);
     pub fn adw_header_bar_set_show_start_title_buttons(self_: *mut AdwHeaderBar, setting: gboolean);
     pub fn adw_header_bar_set_title_widget(
@@ -3586,7 +3986,13 @@ extern "C" {
     //=========================================================================
     pub fn adw_window_get_type() -> GType;
     pub fn adw_window_new() -> *mut gtk::GtkWidget;
+    #[cfg(any(feature = "v1_3", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v1_3")))]
+    pub fn adw_window_add_adaptive_state(self_: *mut AdwWindow, state: *mut AdwAdaptiveState);
     pub fn adw_window_get_content(self_: *mut AdwWindow) -> *mut gtk::GtkWidget;
+    #[cfg(any(feature = "v1_3", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v1_3")))]
+    pub fn adw_window_get_current_state(self_: *mut AdwWindow) -> *mut AdwAdaptiveState;
     pub fn adw_window_set_content(self_: *mut AdwWindow, content: *mut gtk::GtkWidget);
 
     //=========================================================================
@@ -3623,6 +4029,16 @@ extern "C" {
     //=========================================================================
     // Other functions
     //=========================================================================
+    pub fn adw_adaptive_multi_condition_new(
+        type_: AdwAdaptiveMultiConditionType,
+        first_condition: *mut AdwAdaptiveCondition,
+        ...
+    ) -> *mut AdwAdaptiveCondition;
+    pub fn adw_adaptive_multi_condition_newv(
+        type_: AdwAdaptiveMultiConditionType,
+        conditions: *mut *mut AdwAdaptiveCondition,
+        n_conditions: c_int,
+    ) -> *mut AdwAdaptiveCondition;
     pub fn adw_get_enable_animations(widget: *mut gtk::GtkWidget) -> gboolean;
     pub fn adw_get_major_version() -> c_uint;
     pub fn adw_get_micro_version() -> c_uint;

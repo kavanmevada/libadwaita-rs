@@ -13,6 +13,9 @@ pub use self::about_window::AboutWindow;
 mod action_row;
 pub use self::action_row::ActionRow;
 
+mod adaptive_state;
+pub use self::adaptive_state::AdaptiveState;
+
 mod animation;
 pub use self::animation::Animation;
 
@@ -37,6 +40,20 @@ pub use self::banner::Banner;
 
 mod bin;
 pub use self::bin::Bin;
+
+#[cfg(any(feature = "v1_3", feature = "dox"))]
+#[cfg_attr(feature = "dox", doc(cfg(feature = "v1_3")))]
+mod browsing_view;
+#[cfg(any(feature = "v1_3", feature = "dox"))]
+#[cfg_attr(feature = "dox", doc(cfg(feature = "v1_3")))]
+pub use self::browsing_view::BrowsingView;
+
+#[cfg(any(feature = "v1_3", feature = "dox"))]
+#[cfg_attr(feature = "dox", doc(cfg(feature = "v1_3")))]
+mod browsing_view_child;
+#[cfg(any(feature = "v1_3", feature = "dox"))]
+#[cfg_attr(feature = "dox", doc(cfg(feature = "v1_3")))]
+pub use self::browsing_view_child::BrowsingViewChild;
 
 mod button_content;
 pub use self::button_content::ButtonContent;
@@ -64,6 +81,9 @@ pub use self::clamp_scrollable::ClampScrollable;
 
 mod combo_row;
 pub use self::combo_row::ComboRow;
+
+mod dual_pane_view;
+pub use self::dual_pane_view::DualPaneView;
 
 #[cfg(any(feature = "v1_2", feature = "dox"))]
 #[cfg_attr(feature = "dox", doc(cfg(feature = "v1_2")))]
@@ -203,10 +223,15 @@ pub use self::window::Window;
 mod window_title;
 pub use self::window_title::WindowTitle;
 
+mod adaptive_condition;
+pub use self::adaptive_condition::AdaptiveCondition;
+
 mod spring_params;
 pub use self::spring_params::SpringParams;
 
 mod enums;
+pub use self::enums::AdaptiveConditionType;
+pub use self::enums::AdaptiveMultiConditionType;
 pub use self::enums::AnimationState;
 pub use self::enums::CenteringPolicy;
 pub use self::enums::ColorScheme;
@@ -237,6 +262,9 @@ pub mod traits {
     pub use super::application::AdwApplicationExt;
     pub use super::application_window::AdwApplicationWindowExt;
     pub use super::bin::BinExt;
+    #[cfg(any(feature = "v1_3", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v1_3")))]
+    pub use super::browsing_view_child::BrowsingViewChildExt;
     pub use super::combo_row::ComboRowExt;
     #[cfg(any(feature = "v1_2", feature = "dox"))]
     #[cfg_attr(feature = "dox", doc(cfg(feature = "v1_2")))]
@@ -258,6 +286,7 @@ pub mod builders {
     #[cfg_attr(feature = "dox", doc(cfg(feature = "v1_2")))]
     pub use super::about_window::AboutWindowBuilder;
     pub use super::action_row::ActionRowBuilder;
+    pub use super::adaptive_state::AdaptiveStateBuilder;
     pub use super::application::ApplicationBuilder;
     pub use super::application_window::ApplicationWindowBuilder;
     pub use super::avatar::AvatarBuilder;
@@ -265,6 +294,12 @@ pub mod builders {
     #[cfg_attr(feature = "dox", doc(cfg(feature = "v1_3")))]
     pub use super::banner::BannerBuilder;
     pub use super::bin::BinBuilder;
+    #[cfg(any(feature = "v1_3", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v1_3")))]
+    pub use super::browsing_view::BrowsingViewBuilder;
+    #[cfg(any(feature = "v1_3", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v1_3")))]
+    pub use super::browsing_view_child::BrowsingViewChildBuilder;
     pub use super::button_content::ButtonContentBuilder;
     pub use super::carousel::CarouselBuilder;
     pub use super::carousel_indicator_dots::CarouselIndicatorDotsBuilder;
@@ -273,6 +308,7 @@ pub mod builders {
     pub use super::clamp_layout::ClampLayoutBuilder;
     pub use super::clamp_scrollable::ClampScrollableBuilder;
     pub use super::combo_row::ComboRowBuilder;
+    pub use super::dual_pane_view::DualPaneViewBuilder;
     #[cfg(any(feature = "v1_2", feature = "dox"))]
     #[cfg_attr(feature = "dox", doc(cfg(feature = "v1_2")))]
     pub use super::entry_row::EntryRowBuilder;
