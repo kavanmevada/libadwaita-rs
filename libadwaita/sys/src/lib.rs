@@ -924,6 +924,20 @@ impl ::std::fmt::Debug for AdwToastOverlayClass {
 
 #[derive(Copy, Clone)]
 #[repr(C)]
+pub struct AdwToolbarViewClass {
+    pub parent_class: gtk::GtkWidgetClass,
+}
+
+impl ::std::fmt::Debug for AdwToolbarViewClass {
+    fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+        f.debug_struct(&format!("AdwToolbarViewClass @ {self:p}"))
+            .field("parent_class", &self.parent_class)
+            .finish()
+    }
+}
+
+#[derive(Copy, Clone)]
+#[repr(C)]
 pub struct AdwViewStackClass {
     pub parent_class: gtk::GtkWidgetClass,
 }
@@ -1695,6 +1709,19 @@ pub struct AdwToastOverlay {
 impl ::std::fmt::Debug for AdwToastOverlay {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
         f.debug_struct(&format!("AdwToastOverlay @ {self:p}"))
+            .finish()
+    }
+}
+
+#[repr(C)]
+pub struct AdwToolbarView {
+    _data: [u8; 0],
+    _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
+}
+
+impl ::std::fmt::Debug for AdwToolbarView {
+    fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+        f.debug_struct(&format!("AdwToolbarView @ {self:p}"))
             .finish()
     }
 }
@@ -3850,6 +3877,29 @@ extern "C" {
     pub fn adw_toast_overlay_add_toast(self_: *mut AdwToastOverlay, toast: *mut AdwToast);
     pub fn adw_toast_overlay_get_child(self_: *mut AdwToastOverlay) -> *mut gtk::GtkWidget;
     pub fn adw_toast_overlay_set_child(self_: *mut AdwToastOverlay, child: *mut gtk::GtkWidget);
+
+    //=========================================================================
+    // AdwToolbarView
+    //=========================================================================
+    pub fn adw_toolbar_view_get_type() -> GType;
+    #[cfg(any(feature = "v1_3", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v1_3")))]
+    pub fn adw_toolbar_view_new() -> *mut gtk::GtkWidget;
+    #[cfg(any(feature = "v1_3", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v1_3")))]
+    pub fn adw_toolbar_view_add_bottom_bar(self_: *mut AdwToolbarView, widget: *mut gtk::GtkWidget);
+    #[cfg(any(feature = "v1_3", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v1_3")))]
+    pub fn adw_toolbar_view_add_top_bar(self_: *mut AdwToolbarView, widget: *mut gtk::GtkWidget);
+    #[cfg(any(feature = "v1_3", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v1_3")))]
+    pub fn adw_toolbar_view_get_content(self_: *mut AdwToolbarView) -> *mut gtk::GtkWidget;
+    #[cfg(any(feature = "v1_3", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v1_3")))]
+    pub fn adw_toolbar_view_remove(self_: *mut AdwToolbarView, widget: *mut gtk::GtkWidget);
+    #[cfg(any(feature = "v1_3", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v1_3")))]
+    pub fn adw_toolbar_view_set_content(self_: *mut AdwToolbarView, content: *mut gtk::GtkWidget);
 
     //=========================================================================
     // AdwViewStack

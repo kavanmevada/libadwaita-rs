@@ -731,6 +731,13 @@ const RUST_LAYOUTS: &[(&str, Layout)] = &[
         },
     ),
     (
+        "AdwToolbarViewClass",
+        Layout {
+            size: size_of::<AdwToolbarViewClass>(),
+            alignment: align_of::<AdwToolbarViewClass>(),
+        },
+    ),
+    (
         "AdwViewStackClass",
         Layout {
             size: size_of::<AdwViewStackClass>(),

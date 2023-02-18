@@ -202,6 +202,9 @@ pub use self::toast::Toast;
 mod toast_overlay;
 pub use self::toast_overlay::ToastOverlay;
 
+mod toolbar_view;
+pub use self::toolbar_view::ToolbarView;
+
 mod view_stack;
 pub use self::view_stack::ViewStack;
 
@@ -341,6 +344,7 @@ pub mod builders {
     pub use super::tab_view::TabViewBuilder;
     pub use super::timed_animation::TimedAnimationBuilder;
     pub use super::toast::ToastBuilder;
+    pub use super::toolbar_view::ToolbarViewBuilder;
     pub use super::view_stack::ViewStackBuilder;
     pub use super::view_switcher::ViewSwitcherBuilder;
     pub use super::view_switcher_bar::ViewSwitcherBarBuilder;
