@@ -27,6 +27,21 @@ impl AboutWindow {
         unsafe { gtk::Widget::from_glib_none(ffi::adw_about_window_new()).unsafe_cast() }
     }
 
+    #[cfg(any(feature = "v1_4", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v1_4")))]
+    #[doc(alias = "adw_about_window_new_from_appdata")]
+    #[doc(alias = "new_from_appdata")]
+    pub fn from_appdata(resource_path: &str, release_notes_version: Option<&str>) -> AboutWindow {
+        assert_initialized_main_thread!();
+        unsafe {
+            gtk::Widget::from_glib_none(ffi::adw_about_window_new_from_appdata(
+                resource_path.to_glib_none().0,
+                release_notes_version.to_glib_none().0,
+            ))
+            .unsafe_cast()
+        }
+    }
+
     // rustdoc-stripper-ignore-next
     /// Creates a new builder-pattern struct instance to construct [`AboutWindow`] objects.
     ///

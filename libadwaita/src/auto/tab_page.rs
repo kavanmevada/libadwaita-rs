@@ -12,7 +12,7 @@ use std::{boxed::Box as Box_, fmt, mem::transmute};
 
 glib::wrapper! {
     #[doc(alias = "AdwTabPage")]
-    pub struct TabPage(Object<ffi::AdwTabPage, ffi::AdwTabPageClass>);
+    pub struct TabPage(Object<ffi::AdwTabPage, ffi::AdwTabPageClass>) @implements gtk::Accessible;
 
     match fn {
         type_ => || ffi::adw_tab_page_get_type(),

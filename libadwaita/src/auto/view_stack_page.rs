@@ -12,7 +12,7 @@ use std::{boxed::Box as Box_, fmt, mem::transmute};
 
 glib::wrapper! {
     #[doc(alias = "AdwViewStackPage")]
-    pub struct ViewStackPage(Object<ffi::AdwViewStackPage, ffi::AdwViewStackPageClass>);
+    pub struct ViewStackPage(Object<ffi::AdwViewStackPage, ffi::AdwViewStackPageClass>) @implements gtk::Accessible;
 
     match fn {
         type_ => || ffi::adw_view_stack_page_get_type(),

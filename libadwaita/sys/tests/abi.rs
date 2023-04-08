@@ -619,6 +619,13 @@ const RUST_LAYOUTS: &[(&str, Layout)] = &[
         },
     ),
     (
+        "AdwSwitchRowClass",
+        Layout {
+            size: size_of::<AdwSwitchRowClass>(),
+            alignment: align_of::<AdwSwitchRowClass>(),
+        },
+    ),
+    (
         "AdwTabBarClass",
         Layout {
             size: size_of::<AdwTabBarClass>(),
@@ -679,6 +686,20 @@ const RUST_LAYOUTS: &[(&str, Layout)] = &[
         Layout {
             size: size_of::<AdwToastPriority>(),
             alignment: align_of::<AdwToastPriority>(),
+        },
+    ),
+    (
+        "AdwToolbarStyle",
+        Layout {
+            size: size_of::<AdwToolbarStyle>(),
+            alignment: align_of::<AdwToolbarStyle>(),
+        },
+    ),
+    (
+        "AdwToolbarViewClass",
+        Layout {
+            size: size_of::<AdwToolbarViewClass>(),
+            alignment: align_of::<AdwToolbarViewClass>(),
         },
     ),
     (
@@ -827,6 +848,8 @@ const RUST_CONSTANTS: &[(&str, &str)] = &[
     ("(guint) ADW_TAB_VIEW_SHORTCUT_NONE", "0"),
     ("(gint) ADW_TOAST_PRIORITY_HIGH", "1"),
     ("(gint) ADW_TOAST_PRIORITY_NORMAL", "0"),
+    ("(gint) ADW_TOOLBAR_FLAT", "0"),
+    ("(gint) ADW_TOOLBAR_RAISED", "1"),
     ("(gint) ADW_VIEW_SWITCHER_POLICY_NARROW", "0"),
     ("(gint) ADW_VIEW_SWITCHER_POLICY_WIDE", "1"),
 ];

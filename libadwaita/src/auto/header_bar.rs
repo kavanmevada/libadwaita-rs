@@ -75,6 +75,14 @@ impl HeaderBar {
         }
     }
 
+    #[cfg(any(feature = "v1_4", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v1_4")))]
+    #[doc(alias = "adw_header_bar_get_show_title")]
+    #[doc(alias = "get_show_title")]
+    pub fn shows_title(&self) -> bool {
+        unsafe { from_glib(ffi::adw_header_bar_get_show_title(self.to_glib_none().0)) }
+    }
+
     #[doc(alias = "adw_header_bar_get_title_widget")]
     #[doc(alias = "get_title_widget")]
     pub fn title_widget(&self) -> Option<gtk::Widget> {
@@ -139,6 +147,15 @@ impl HeaderBar {
                 self.to_glib_none().0,
                 setting.into_glib(),
             );
+        }
+    }
+
+    #[cfg(any(feature = "v1_4", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v1_4")))]
+    #[doc(alias = "adw_header_bar_set_show_title")]
+    pub fn set_show_title(&self, show_title: bool) {
+        unsafe {
+            ffi::adw_header_bar_set_show_title(self.to_glib_none().0, show_title.into_glib());
         }
     }
 
@@ -257,6 +274,31 @@ impl HeaderBar {
         }
     }
 
+    #[cfg(any(feature = "v1_4", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v1_4")))]
+    #[doc(alias = "show-title")]
+    pub fn connect_show_title_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
+        unsafe extern "C" fn notify_show_title_trampoline<F: Fn(&HeaderBar) + 'static>(
+            this: *mut ffi::AdwHeaderBar,
+            _param_spec: glib::ffi::gpointer,
+            f: glib::ffi::gpointer,
+        ) {
+            let f: &F = &*(f as *const F);
+            f(&from_glib_borrow(this))
+        }
+        unsafe {
+            let f: Box_<F> = Box_::new(f);
+            connect_raw(
+                self.as_ptr() as *mut _,
+                b"notify::show-title\0".as_ptr() as *const _,
+                Some(transmute::<_, unsafe extern "C" fn()>(
+                    notify_show_title_trampoline::<F> as *const (),
+                )),
+                Box_::into_raw(f),
+            )
+        }
+    }
+
     #[doc(alias = "title-widget")]
     pub fn connect_title_widget_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_title_widget_trampoline<F: Fn(&HeaderBar) + 'static>(
@@ -330,6 +372,14 @@ impl HeaderBarBuilder {
             builder: self
                 .builder
                 .property("show-start-title-buttons", show_start_title_buttons),
+        }
+    }
+
+    #[cfg(any(feature = "v1_4", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v1_4")))]
+    pub fn show_title(self, show_title: bool) -> Self {
+        Self {
+            builder: self.builder.property("show-title", show_title),
         }
     }
 

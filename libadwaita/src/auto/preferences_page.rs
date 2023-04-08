@@ -60,6 +60,14 @@ impl PreferencesPageBuilder {
         }
     }
 
+    #[cfg(any(feature = "v1_4", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v1_4")))]
+    pub fn description(self, description: impl Into<glib::GString>) -> Self {
+        Self {
+            builder: self.builder.property("description", description.into()),
+        }
+    }
+
     pub fn icon_name(self, icon_name: impl Into<glib::GString>) -> Self {
         Self {
             builder: self.builder.property("icon-name", icon_name.into()),
@@ -274,6 +282,12 @@ pub trait PreferencesPageExt: 'static {
     #[doc(alias = "adw_preferences_page_add")]
     fn add(&self, group: &impl IsA<PreferencesGroup>);
 
+    #[cfg(any(feature = "v1_4", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v1_4")))]
+    #[doc(alias = "adw_preferences_page_get_description")]
+    #[doc(alias = "get_description")]
+    fn description(&self) -> glib::GString;
+
     #[doc(alias = "adw_preferences_page_get_icon_name")]
     #[doc(alias = "get_icon_name")]
     fn icon_name(&self) -> Option<glib::GString>;
@@ -298,6 +312,11 @@ pub trait PreferencesPageExt: 'static {
     #[doc(alias = "adw_preferences_page_scroll_to_top")]
     fn scroll_to_top(&self);
 
+    #[cfg(any(feature = "v1_4", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v1_4")))]
+    #[doc(alias = "adw_preferences_page_set_description")]
+    fn set_description(&self, description: &str);
+
     #[doc(alias = "adw_preferences_page_set_icon_name")]
     fn set_icon_name(&self, icon_name: Option<&str>);
 
@@ -309,6 +328,11 @@ pub trait PreferencesPageExt: 'static {
 
     #[doc(alias = "adw_preferences_page_set_use_underline")]
     fn set_use_underline(&self, use_underline: bool);
+
+    #[cfg(any(feature = "v1_4", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v1_4")))]
+    #[doc(alias = "description")]
+    fn connect_description_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
 
     #[doc(alias = "icon-name")]
     fn connect_icon_name_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
@@ -327,6 +351,16 @@ impl<O: IsA<PreferencesPage>> PreferencesPageExt for O {
                 self.as_ref().to_glib_none().0,
                 group.as_ref().to_glib_none().0,
             );
+        }
+    }
+
+    #[cfg(any(feature = "v1_4", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v1_4")))]
+    fn description(&self) -> glib::GString {
+        unsafe {
+            from_glib_none(ffi::adw_preferences_page_get_description(
+                self.as_ref().to_glib_none().0,
+            ))
         }
     }
 
@@ -379,6 +413,17 @@ impl<O: IsA<PreferencesPage>> PreferencesPageExt for O {
         }
     }
 
+    #[cfg(any(feature = "v1_4", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v1_4")))]
+    fn set_description(&self, description: &str) {
+        unsafe {
+            ffi::adw_preferences_page_set_description(
+                self.as_ref().to_glib_none().0,
+                description.to_glib_none().0,
+            );
+        }
+    }
+
     fn set_icon_name(&self, icon_name: Option<&str>) {
         unsafe {
             ffi::adw_preferences_page_set_icon_name(
@@ -412,6 +457,33 @@ impl<O: IsA<PreferencesPage>> PreferencesPageExt for O {
                 self.as_ref().to_glib_none().0,
                 use_underline.into_glib(),
             );
+        }
+    }
+
+    #[cfg(any(feature = "v1_4", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v1_4")))]
+    fn connect_description_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
+        unsafe extern "C" fn notify_description_trampoline<
+            P: IsA<PreferencesPage>,
+            F: Fn(&P) + 'static,
+        >(
+            this: *mut ffi::AdwPreferencesPage,
+            _param_spec: glib::ffi::gpointer,
+            f: glib::ffi::gpointer,
+        ) {
+            let f: &F = &*(f as *const F);
+            f(PreferencesPage::from_glib_borrow(this).unsafe_cast_ref())
+        }
+        unsafe {
+            let f: Box_<F> = Box_::new(f);
+            connect_raw(
+                self.as_ptr() as *mut _,
+                b"notify::description\0".as_ptr() as *const _,
+                Some(transmute::<_, unsafe extern "C" fn()>(
+                    notify_description_trampoline::<Self, F> as *const (),
+                )),
+                Box_::into_raw(f),
+            )
         }
     }
 

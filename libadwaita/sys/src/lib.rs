@@ -108,6 +108,10 @@ pub type AdwToastPriority = c_int;
 pub const ADW_TOAST_PRIORITY_NORMAL: AdwToastPriority = 0;
 pub const ADW_TOAST_PRIORITY_HIGH: AdwToastPriority = 1;
 
+pub type AdwToolbarStyle = c_int;
+pub const ADW_TOOLBAR_FLAT: AdwToolbarStyle = 0;
+pub const ADW_TOOLBAR_RAISED: AdwToolbarStyle = 1;
+
 pub type AdwViewSwitcherPolicy = c_int;
 pub const ADW_VIEW_SWITCHER_POLICY_NARROW: AdwViewSwitcherPolicy = 0;
 pub const ADW_VIEW_SWITCHER_POLICY_WIDE: AdwViewSwitcherPolicy = 1;
@@ -728,6 +732,20 @@ impl ::std::fmt::Debug for AdwSwipeableInterface {
 
 #[derive(Copy, Clone)]
 #[repr(C)]
+pub struct AdwSwitchRowClass {
+    pub parent_class: AdwActionRowClass,
+}
+
+impl ::std::fmt::Debug for AdwSwitchRowClass {
+    fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+        f.debug_struct(&format!("AdwSwitchRowClass @ {self:p}"))
+            .field("parent_class", &self.parent_class)
+            .finish()
+    }
+}
+
+#[derive(Copy, Clone)]
+#[repr(C)]
 pub struct AdwTabBarClass {
     pub parent_class: gtk::GtkWidgetClass,
 }
@@ -827,6 +845,20 @@ pub struct AdwToastOverlayClass {
 impl ::std::fmt::Debug for AdwToastOverlayClass {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
         f.debug_struct(&format!("AdwToastOverlayClass @ {self:p}"))
+            .field("parent_class", &self.parent_class)
+            .finish()
+    }
+}
+
+#[derive(Copy, Clone)]
+#[repr(C)]
+pub struct AdwToolbarViewClass {
+    pub parent_class: gtk::GtkWidgetClass,
+}
+
+impl ::std::fmt::Debug for AdwToolbarViewClass {
+    fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+        f.debug_struct(&format!("AdwToolbarViewClass @ {self:p}"))
             .field("parent_class", &self.parent_class)
             .finish()
     }
@@ -1458,6 +1490,18 @@ impl ::std::fmt::Debug for AdwSwipeTracker {
 }
 
 #[repr(C)]
+pub struct AdwSwitchRow {
+    _data: [u8; 0],
+    _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
+}
+
+impl ::std::fmt::Debug for AdwSwitchRow {
+    fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+        f.debug_struct(&format!("AdwSwitchRow @ {self:p}")).finish()
+    }
+}
+
+#[repr(C)]
 pub struct AdwTabBar {
     _data: [u8; 0],
     _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
@@ -1552,6 +1596,19 @@ pub struct AdwToastOverlay {
 impl ::std::fmt::Debug for AdwToastOverlay {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
         f.debug_struct(&format!("AdwToastOverlay @ {self:p}"))
+            .finish()
+    }
+}
+
+#[repr(C)]
+pub struct AdwToolbarView {
+    _data: [u8; 0],
+    _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
+}
+
+impl ::std::fmt::Debug for AdwToolbarView {
+    fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+        f.debug_struct(&format!("AdwToolbarView @ {self:p}"))
             .finish()
     }
 }
@@ -1727,6 +1784,13 @@ extern "C" {
     pub fn adw_toast_priority_get_type() -> GType;
 
     //=========================================================================
+    // AdwToolbarStyle
+    //=========================================================================
+    #[cfg(any(feature = "v1_4", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v1_4")))]
+    pub fn adw_toolbar_style_get_type() -> GType;
+
+    //=========================================================================
     // AdwViewSwitcherPolicy
     //=========================================================================
     pub fn adw_view_switcher_policy_get_type() -> GType;
@@ -1768,6 +1832,12 @@ extern "C" {
     #[cfg(any(feature = "v1_2", feature = "dox"))]
     #[cfg_attr(feature = "dox", doc(cfg(feature = "v1_2")))]
     pub fn adw_about_window_new() -> *mut gtk::GtkWidget;
+    #[cfg(any(feature = "v1_4", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v1_4")))]
+    pub fn adw_about_window_new_from_appdata(
+        resource_path: *const c_char,
+        release_notes_version: *const c_char,
+    ) -> *mut gtk::GtkWidget;
     #[cfg(any(feature = "v1_2", feature = "dox"))]
     #[cfg_attr(feature = "dox", doc(cfg(feature = "v1_2")))]
     pub fn adw_about_window_add_acknowledgement_section(
@@ -2363,6 +2433,9 @@ extern "C" {
     pub fn adw_expander_row_add_action(self_: *mut AdwExpanderRow, widget: *mut gtk::GtkWidget);
     pub fn adw_expander_row_add_prefix(self_: *mut AdwExpanderRow, widget: *mut gtk::GtkWidget);
     pub fn adw_expander_row_add_row(self_: *mut AdwExpanderRow, child: *mut gtk::GtkWidget);
+    #[cfg(any(feature = "v1_4", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v1_4")))]
+    pub fn adw_expander_row_add_suffix(self_: *mut AdwExpanderRow, widget: *mut gtk::GtkWidget);
     pub fn adw_expander_row_get_enable_expansion(self_: *mut AdwExpanderRow) -> gboolean;
     pub fn adw_expander_row_get_expanded(self_: *mut AdwExpanderRow) -> gboolean;
     pub fn adw_expander_row_get_icon_name(self_: *mut AdwExpanderRow) -> *const c_char;
@@ -2441,6 +2514,9 @@ extern "C" {
     pub fn adw_header_bar_get_decoration_layout(self_: *mut AdwHeaderBar) -> *const c_char;
     pub fn adw_header_bar_get_show_end_title_buttons(self_: *mut AdwHeaderBar) -> gboolean;
     pub fn adw_header_bar_get_show_start_title_buttons(self_: *mut AdwHeaderBar) -> gboolean;
+    #[cfg(any(feature = "v1_4", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v1_4")))]
+    pub fn adw_header_bar_get_show_title(self_: *mut AdwHeaderBar) -> gboolean;
     pub fn adw_header_bar_get_title_widget(self_: *mut AdwHeaderBar) -> *mut gtk::GtkWidget;
     pub fn adw_header_bar_pack_end(self_: *mut AdwHeaderBar, child: *mut gtk::GtkWidget);
     pub fn adw_header_bar_pack_start(self_: *mut AdwHeaderBar, child: *mut gtk::GtkWidget);
@@ -2452,6 +2528,9 @@ extern "C" {
     pub fn adw_header_bar_set_decoration_layout(self_: *mut AdwHeaderBar, layout: *const c_char);
     pub fn adw_header_bar_set_show_end_title_buttons(self_: *mut AdwHeaderBar, setting: gboolean);
     pub fn adw_header_bar_set_show_start_title_buttons(self_: *mut AdwHeaderBar, setting: gboolean);
+    #[cfg(any(feature = "v1_4", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v1_4")))]
+    pub fn adw_header_bar_set_show_title(self_: *mut AdwHeaderBar, show_title: gboolean);
     pub fn adw_header_bar_set_title_widget(
         self_: *mut AdwHeaderBar,
         title_widget: *mut gtk::GtkWidget,
@@ -2765,6 +2844,9 @@ extern "C" {
         self_: *mut AdwPreferencesPage,
         group: *mut AdwPreferencesGroup,
     );
+    #[cfg(any(feature = "v1_4", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v1_4")))]
+    pub fn adw_preferences_page_get_description(self_: *mut AdwPreferencesPage) -> *const c_char;
     pub fn adw_preferences_page_get_icon_name(self_: *mut AdwPreferencesPage) -> *const c_char;
     pub fn adw_preferences_page_get_name(self_: *mut AdwPreferencesPage) -> *const c_char;
     pub fn adw_preferences_page_get_title(self_: *mut AdwPreferencesPage) -> *const c_char;
@@ -2776,6 +2858,12 @@ extern "C" {
     #[cfg(any(feature = "v1_3", feature = "dox"))]
     #[cfg_attr(feature = "dox", doc(cfg(feature = "v1_3")))]
     pub fn adw_preferences_page_scroll_to_top(self_: *mut AdwPreferencesPage);
+    #[cfg(any(feature = "v1_4", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v1_4")))]
+    pub fn adw_preferences_page_set_description(
+        self_: *mut AdwPreferencesPage,
+        description: *const c_char,
+    );
     pub fn adw_preferences_page_set_icon_name(
         self_: *mut AdwPreferencesPage,
         icon_name: *const c_char,
@@ -3079,6 +3167,20 @@ extern "C" {
     pub fn adw_swipe_tracker_set_enabled(self_: *mut AdwSwipeTracker, enabled: gboolean);
     pub fn adw_swipe_tracker_set_reversed(self_: *mut AdwSwipeTracker, reversed: gboolean);
     pub fn adw_swipe_tracker_shift_position(self_: *mut AdwSwipeTracker, delta: c_double);
+
+    //=========================================================================
+    // AdwSwitchRow
+    //=========================================================================
+    pub fn adw_switch_row_get_type() -> GType;
+    #[cfg(any(feature = "v1_4", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v1_4")))]
+    pub fn adw_switch_row_new() -> *mut gtk::GtkWidget;
+    #[cfg(any(feature = "v1_4", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v1_4")))]
+    pub fn adw_switch_row_get_active(self_: *mut AdwSwitchRow) -> gboolean;
+    #[cfg(any(feature = "v1_4", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v1_4")))]
+    pub fn adw_switch_row_set_active(self_: *mut AdwSwitchRow, is_active: gboolean);
 
     //=========================================================================
     // AdwTabBar
@@ -3452,6 +3554,84 @@ extern "C" {
     pub fn adw_toast_overlay_set_child(self_: *mut AdwToastOverlay, child: *mut gtk::GtkWidget);
 
     //=========================================================================
+    // AdwToolbarView
+    //=========================================================================
+    #[cfg(any(feature = "v1_4", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v1_4")))]
+    pub fn adw_toolbar_view_get_type() -> GType;
+    #[cfg(any(feature = "v1_4", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v1_4")))]
+    pub fn adw_toolbar_view_new() -> *mut gtk::GtkWidget;
+    #[cfg(any(feature = "v1_4", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v1_4")))]
+    pub fn adw_toolbar_view_add_bottom_bar(self_: *mut AdwToolbarView, widget: *mut gtk::GtkWidget);
+    #[cfg(any(feature = "v1_4", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v1_4")))]
+    pub fn adw_toolbar_view_add_top_bar(self_: *mut AdwToolbarView, widget: *mut gtk::GtkWidget);
+    #[cfg(any(feature = "v1_4", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v1_4")))]
+    pub fn adw_toolbar_view_get_bottom_bar_height(self_: *mut AdwToolbarView) -> c_int;
+    #[cfg(any(feature = "v1_4", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v1_4")))]
+    pub fn adw_toolbar_view_get_bottom_bar_style(self_: *mut AdwToolbarView) -> AdwToolbarStyle;
+    #[cfg(any(feature = "v1_4", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v1_4")))]
+    pub fn adw_toolbar_view_get_content(self_: *mut AdwToolbarView) -> *mut gtk::GtkWidget;
+    #[cfg(any(feature = "v1_4", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v1_4")))]
+    pub fn adw_toolbar_view_get_extend_content_to_bottom_edge(
+        self_: *mut AdwToolbarView,
+    ) -> gboolean;
+    #[cfg(any(feature = "v1_4", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v1_4")))]
+    pub fn adw_toolbar_view_get_extend_content_to_top_edge(self_: *mut AdwToolbarView) -> gboolean;
+    #[cfg(any(feature = "v1_4", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v1_4")))]
+    pub fn adw_toolbar_view_get_reveal_bottom_bars(self_: *mut AdwToolbarView) -> gboolean;
+    #[cfg(any(feature = "v1_4", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v1_4")))]
+    pub fn adw_toolbar_view_get_reveal_top_bars(self_: *mut AdwToolbarView) -> gboolean;
+    #[cfg(any(feature = "v1_4", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v1_4")))]
+    pub fn adw_toolbar_view_get_top_bar_height(self_: *mut AdwToolbarView) -> c_int;
+    #[cfg(any(feature = "v1_4", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v1_4")))]
+    pub fn adw_toolbar_view_get_top_bar_style(self_: *mut AdwToolbarView) -> AdwToolbarStyle;
+    #[cfg(any(feature = "v1_4", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v1_4")))]
+    pub fn adw_toolbar_view_remove(self_: *mut AdwToolbarView, widget: *mut gtk::GtkWidget);
+    #[cfg(any(feature = "v1_4", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v1_4")))]
+    pub fn adw_toolbar_view_set_bottom_bar_style(
+        self_: *mut AdwToolbarView,
+        style: AdwToolbarStyle,
+    );
+    #[cfg(any(feature = "v1_4", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v1_4")))]
+    pub fn adw_toolbar_view_set_content(self_: *mut AdwToolbarView, content: *mut gtk::GtkWidget);
+    #[cfg(any(feature = "v1_4", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v1_4")))]
+    pub fn adw_toolbar_view_set_extend_content_to_bottom_edge(
+        self_: *mut AdwToolbarView,
+        extend: gboolean,
+    );
+    #[cfg(any(feature = "v1_4", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v1_4")))]
+    pub fn adw_toolbar_view_set_extend_content_to_top_edge(
+        self_: *mut AdwToolbarView,
+        extend: gboolean,
+    );
+    #[cfg(any(feature = "v1_4", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v1_4")))]
+    pub fn adw_toolbar_view_set_reveal_bottom_bars(self_: *mut AdwToolbarView, reveal: gboolean);
+    #[cfg(any(feature = "v1_4", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v1_4")))]
+    pub fn adw_toolbar_view_set_reveal_top_bars(self_: *mut AdwToolbarView, reveal: gboolean);
+    #[cfg(any(feature = "v1_4", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v1_4")))]
+    pub fn adw_toolbar_view_set_top_bar_style(self_: *mut AdwToolbarView, style: AdwToolbarStyle);
+
+    //=========================================================================
     // AdwViewStack
     //=========================================================================
     pub fn adw_view_stack_get_type() -> GType;
@@ -3630,8 +3810,19 @@ extern "C" {
     pub fn adw_init();
     pub fn adw_is_initialized() -> gboolean;
     pub fn adw_lerp(a: c_double, b: c_double, t: c_double) -> c_double;
+    #[cfg(any(feature = "v1_2", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v1_2")))]
     pub fn adw_show_about_window(
         parent: *mut gtk::GtkWindow,
+        first_property_name: *const c_char,
+        ...
+    );
+    #[cfg(any(feature = "v1_4", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v1_4")))]
+    pub fn adw_show_about_window_from_appdata(
+        parent: *mut gtk::GtkWindow,
+        resource_path: *const c_char,
+        release_notes_version: *const c_char,
         first_property_name: *const c_char,
         ...
     );

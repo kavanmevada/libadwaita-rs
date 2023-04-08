@@ -48,3 +48,10 @@ pub fn lerp(a: f64, b: f64, t: f64) -> f64 {
     assert_initialized_main_thread!();
     unsafe { ffi::adw_lerp(a, b, t) }
 }
+
+//#[cfg(any(feature = "v1_4", feature = "dox"))]
+//#[cfg_attr(feature = "dox", doc(cfg(feature = "v1_4")))]
+//#[doc(alias = "adw_show_about_window_from_appdata")]
+//pub fn show_about_window_from_appdata(parent: Option<&impl IsA<gtk::Window>>, resource_path: &str, release_notes_version: Option<&str>, first_property_name: &str, : /*Unknown conversion*//*Unimplemented*/Basic: VarArgs) {
+//    unsafe { TODO: call ffi:adw_show_about_window_from_appdata() }
+//}

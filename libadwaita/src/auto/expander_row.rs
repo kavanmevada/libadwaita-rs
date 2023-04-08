@@ -363,6 +363,8 @@ impl ExpanderRowBuilder {
 }
 
 pub trait ExpanderRowExt: 'static {
+    #[cfg_attr(feature = "v1_4", deprecated = "Since 1.4")]
+    #[allow(deprecated)]
     #[doc(alias = "adw_expander_row_add_action")]
     fn add_action(&self, widget: &impl IsA<gtk::Widget>);
 
@@ -371,6 +373,11 @@ pub trait ExpanderRowExt: 'static {
 
     #[doc(alias = "adw_expander_row_add_row")]
     fn add_row(&self, child: &impl IsA<gtk::Widget>);
+
+    #[cfg(any(feature = "v1_4", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v1_4")))]
+    #[doc(alias = "adw_expander_row_add_suffix")]
+    fn add_suffix(&self, widget: &impl IsA<gtk::Widget>);
 
     #[doc(alias = "adw_expander_row_get_enable_expansion")]
     #[doc(alias = "get_enable_expansion")]
@@ -464,6 +471,7 @@ pub trait ExpanderRowExt: 'static {
 }
 
 impl<O: IsA<ExpanderRow>> ExpanderRowExt for O {
+    #[allow(deprecated)]
     fn add_action(&self, widget: &impl IsA<gtk::Widget>) {
         unsafe {
             ffi::adw_expander_row_add_action(
@@ -487,6 +495,17 @@ impl<O: IsA<ExpanderRow>> ExpanderRowExt for O {
             ffi::adw_expander_row_add_row(
                 self.as_ref().to_glib_none().0,
                 child.as_ref().to_glib_none().0,
+            );
+        }
+    }
+
+    #[cfg(any(feature = "v1_4", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v1_4")))]
+    fn add_suffix(&self, widget: &impl IsA<gtk::Widget>) {
+        unsafe {
+            ffi::adw_expander_row_add_suffix(
+                self.as_ref().to_glib_none().0,
+                widget.as_ref().to_glib_none().0,
             );
         }
     }
