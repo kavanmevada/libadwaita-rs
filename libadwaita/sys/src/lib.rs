@@ -3171,6 +3171,8 @@ extern "C" {
     //=========================================================================
     // AdwSwitchRow
     //=========================================================================
+    #[cfg(any(feature = "v1_4", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v1_4")))]
     pub fn adw_switch_row_get_type() -> GType;
     #[cfg(any(feature = "v1_4", feature = "dox"))]
     #[cfg_attr(feature = "dox", doc(cfg(feature = "v1_4")))]

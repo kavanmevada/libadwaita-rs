@@ -1530,6 +1530,135 @@ impl From<ToastPriority> for glib::Value {
     }
 }
 
+#[cfg(any(feature = "v1_4", feature = "dox"))]
+#[cfg_attr(feature = "dox", doc(cfg(feature = "v1_4")))]
+#[derive(Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Clone, Copy)]
+#[non_exhaustive]
+#[doc(alias = "AdwToolbarStyle")]
+pub enum ToolbarStyle {
+    #[doc(alias = "ADW_TOOLBAR_FLAT")]
+    Flat,
+    #[doc(alias = "ADW_TOOLBAR_RAISED")]
+    Raised,
+    #[doc(hidden)]
+    __Unknown(i32),
+}
+
+#[cfg(any(feature = "v1_4", feature = "dox"))]
+#[cfg_attr(feature = "dox", doc(cfg(feature = "v1_4")))]
+impl fmt::Display for ToolbarStyle {
+    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
+        write!(
+            f,
+            "ToolbarStyle::{}",
+            match *self {
+                Self::Flat => "Flat",
+                Self::Raised => "Raised",
+                _ => "Unknown",
+            }
+        )
+    }
+}
+
+#[cfg(any(feature = "v1_4", feature = "dox"))]
+#[cfg_attr(feature = "dox", doc(cfg(feature = "v1_4")))]
+#[doc(hidden)]
+impl IntoGlib for ToolbarStyle {
+    type GlibType = ffi::AdwToolbarStyle;
+
+    #[inline]
+    fn into_glib(self) -> ffi::AdwToolbarStyle {
+        match self {
+            Self::Flat => ffi::ADW_TOOLBAR_FLAT,
+            Self::Raised => ffi::ADW_TOOLBAR_RAISED,
+            Self::__Unknown(value) => value,
+        }
+    }
+}
+
+#[cfg(any(feature = "v1_4", feature = "dox"))]
+#[cfg_attr(feature = "dox", doc(cfg(feature = "v1_4")))]
+#[doc(hidden)]
+impl FromGlib<ffi::AdwToolbarStyle> for ToolbarStyle {
+    #[inline]
+    unsafe fn from_glib(value: ffi::AdwToolbarStyle) -> Self {
+        skip_assert_initialized!();
+
+        match value {
+            ffi::ADW_TOOLBAR_FLAT => Self::Flat,
+            ffi::ADW_TOOLBAR_RAISED => Self::Raised,
+            value => Self::__Unknown(value),
+        }
+    }
+}
+
+#[cfg(any(feature = "v1_4", feature = "dox"))]
+#[cfg_attr(feature = "dox", doc(cfg(feature = "v1_4")))]
+impl StaticType for ToolbarStyle {
+    #[inline]
+    fn static_type() -> Type {
+        unsafe { from_glib(ffi::adw_toolbar_style_get_type()) }
+    }
+}
+
+#[cfg(any(feature = "v1_4", feature = "dox"))]
+#[cfg_attr(feature = "dox", doc(cfg(feature = "v1_4")))]
+impl glib::HasParamSpec for ToolbarStyle {
+    type ParamSpec = glib::ParamSpecEnum;
+    type SetValue = Self;
+    type BuilderFn = fn(&str, Self) -> glib::ParamSpecEnumBuilder<Self>;
+
+    fn param_spec_builder() -> Self::BuilderFn {
+        |name, default_value| Self::ParamSpec::builder_with_default(name, default_value)
+    }
+}
+
+#[cfg(any(feature = "v1_4", feature = "dox"))]
+#[cfg_attr(feature = "dox", doc(cfg(feature = "v1_4")))]
+impl glib::value::ValueType for ToolbarStyle {
+    type Type = Self;
+}
+
+#[cfg(any(feature = "v1_4", feature = "dox"))]
+#[cfg_attr(feature = "dox", doc(cfg(feature = "v1_4")))]
+unsafe impl<'a> FromValue<'a> for ToolbarStyle {
+    type Checker = glib::value::GenericValueTypeChecker<Self>;
+
+    #[inline]
+    unsafe fn from_value(value: &'a glib::Value) -> Self {
+        skip_assert_initialized!();
+        from_glib(glib::gobject_ffi::g_value_get_enum(value.to_glib_none().0))
+    }
+}
+
+#[cfg(any(feature = "v1_4", feature = "dox"))]
+#[cfg_attr(feature = "dox", doc(cfg(feature = "v1_4")))]
+impl ToValue for ToolbarStyle {
+    #[inline]
+    fn to_value(&self) -> glib::Value {
+        let mut value = glib::Value::for_value_type::<Self>();
+        unsafe {
+            glib::gobject_ffi::g_value_set_enum(value.to_glib_none_mut().0, self.into_glib());
+        }
+        value
+    }
+
+    #[inline]
+    fn value_type(&self) -> glib::Type {
+        Self::static_type()
+    }
+}
+
+#[cfg(any(feature = "v1_4", feature = "dox"))]
+#[cfg_attr(feature = "dox", doc(cfg(feature = "v1_4")))]
+impl From<ToolbarStyle> for glib::Value {
+    #[inline]
+    fn from(v: ToolbarStyle) -> Self {
+        skip_assert_initialized!();
+        ToValue::to_value(&v)
+    }
+}
+
 #[derive(Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Clone, Copy)]
 #[non_exhaustive]
 #[doc(alias = "AdwViewSwitcherPolicy")]

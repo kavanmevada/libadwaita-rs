@@ -71,6 +71,8 @@ generate = [
     "Adw.TabViewShortcuts",
     "Adw.TimedAnimation",
     "Adw.ToastPriority",
+    "Adw.ToolbarStyle",
+    "Adw.ToolbarView",
     "Adw.ViewStack",
     "Adw.ViewSwitcher",
     "Adw.ViewSwitcherBar",
@@ -242,6 +244,11 @@ generate_builder = false
 name = "Adw.SqueezerPage"
 status = "generate"
 generate_builder = false
+
+[[object]]
+name = "Adw.SwitchRow"
+status = "generate"
+version = "1.4" # Drop once https://gitlab.gnome.org/GNOME/libadwaita/-/merge_requests/839 is merged
 
 [[object]]
 name = "Adw.TabBar"

@@ -150,6 +150,13 @@ pub use self::swipe_tracker::SwipeTracker;
 mod swipeable;
 pub use self::swipeable::Swipeable;
 
+#[cfg(any(feature = "v1_4", feature = "dox"))]
+#[cfg_attr(feature = "dox", doc(cfg(feature = "v1_4")))]
+mod switch_row;
+#[cfg(any(feature = "v1_4", feature = "dox"))]
+#[cfg_attr(feature = "dox", doc(cfg(feature = "v1_4")))]
+pub use self::switch_row::SwitchRow;
+
 mod tab_bar;
 pub use self::tab_bar::TabBar;
 
@@ -181,6 +188,13 @@ pub use self::toast::Toast;
 
 mod toast_overlay;
 pub use self::toast_overlay::ToastOverlay;
+
+#[cfg(any(feature = "v1_4", feature = "dox"))]
+#[cfg_attr(feature = "dox", doc(cfg(feature = "v1_4")))]
+mod toolbar_view;
+#[cfg(any(feature = "v1_4", feature = "dox"))]
+#[cfg_attr(feature = "dox", doc(cfg(feature = "v1_4")))]
+pub use self::toolbar_view::ToolbarView;
 
 mod view_stack;
 pub use self::view_stack::ViewStack;
@@ -221,6 +235,9 @@ pub use self::enums::NavigationDirection;
 pub use self::enums::ResponseAppearance;
 pub use self::enums::SqueezerTransitionType;
 pub use self::enums::ToastPriority;
+#[cfg(any(feature = "v1_4", feature = "dox"))]
+#[cfg_attr(feature = "dox", doc(cfg(feature = "v1_4")))]
+pub use self::enums::ToolbarStyle;
 pub use self::enums::ViewSwitcherPolicy;
 
 mod flags;
@@ -295,6 +312,9 @@ pub mod builders {
     pub use super::squeezer::SqueezerBuilder;
     pub use super::status_page::StatusPageBuilder;
     pub use super::swipe_tracker::SwipeTrackerBuilder;
+    #[cfg(any(feature = "v1_4", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v1_4")))]
+    pub use super::switch_row::SwitchRowBuilder;
     pub use super::tab_bar::TabBarBuilder;
     #[cfg(any(feature = "v1_3", feature = "dox"))]
     #[cfg_attr(feature = "dox", doc(cfg(feature = "v1_3")))]
@@ -305,6 +325,9 @@ pub mod builders {
     pub use super::tab_view::TabViewBuilder;
     pub use super::timed_animation::TimedAnimationBuilder;
     pub use super::toast::ToastBuilder;
+    #[cfg(any(feature = "v1_4", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v1_4")))]
+    pub use super::toolbar_view::ToolbarViewBuilder;
     pub use super::view_stack::ViewStackBuilder;
     pub use super::view_switcher::ViewSwitcherBuilder;
     pub use super::view_switcher_bar::ViewSwitcherBarBuilder;
