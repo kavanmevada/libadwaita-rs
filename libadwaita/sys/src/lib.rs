@@ -594,6 +594,20 @@ pub type AdwPropertyAnimationTargetClass = *mut _AdwPropertyAnimationTargetClass
 
 #[derive(Copy, Clone)]
 #[repr(C)]
+pub struct AdwSpinRowClass {
+    pub parent_class: AdwActionRowClass,
+}
+
+impl ::std::fmt::Debug for AdwSpinRowClass {
+    fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+        f.debug_struct(&format!("AdwSpinRowClass @ {self:p}"))
+            .field("parent_class", &self.parent_class)
+            .finish()
+    }
+}
+
+#[derive(Copy, Clone)]
+#[repr(C)]
 pub struct AdwSplitButtonClass {
     pub parent_class: gtk::GtkWidgetClass,
 }
@@ -1396,6 +1410,18 @@ impl ::std::fmt::Debug for AdwPropertyAnimationTarget {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
         f.debug_struct(&format!("AdwPropertyAnimationTarget @ {self:p}"))
             .finish()
+    }
+}
+
+#[repr(C)]
+pub struct AdwSpinRow {
+    _data: [u8; 0],
+    _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
+}
+
+impl ::std::fmt::Debug for AdwSpinRow {
+    fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+        f.debug_struct(&format!("AdwSpinRow @ {self:p}")).finish()
     }
 }
 
@@ -2977,6 +3003,90 @@ extern "C" {
     pub fn adw_property_animation_target_get_pspec(
         self_: *mut AdwPropertyAnimationTarget,
     ) -> *mut gobject::GParamSpec;
+
+    //=========================================================================
+    // AdwSpinRow
+    //=========================================================================
+    #[cfg(any(feature = "v1_4", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v1_4")))]
+    pub fn adw_spin_row_get_type() -> GType;
+    #[cfg(any(feature = "v1_4", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v1_4")))]
+    pub fn adw_spin_row_new(
+        adjustment: *mut gtk::GtkAdjustment,
+        climb_rate: c_double,
+        digits: c_uint,
+    ) -> *mut gtk::GtkWidget;
+    #[cfg(any(feature = "v1_4", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v1_4")))]
+    pub fn adw_spin_row_new_with_range(
+        min: c_double,
+        max: c_double,
+        step: c_double,
+    ) -> *mut gtk::GtkWidget;
+    #[cfg(any(feature = "v1_4", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v1_4")))]
+    pub fn adw_spin_row_configure(
+        self_: *mut AdwSpinRow,
+        adjustment: *mut gtk::GtkAdjustment,
+        climb_rate: c_double,
+        digits: c_uint,
+    );
+    #[cfg(any(feature = "v1_4", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v1_4")))]
+    pub fn adw_spin_row_get_adjustment(self_: *mut AdwSpinRow) -> *mut gtk::GtkAdjustment;
+    #[cfg(any(feature = "v1_4", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v1_4")))]
+    pub fn adw_spin_row_get_climb_rate(self_: *mut AdwSpinRow) -> c_double;
+    #[cfg(any(feature = "v1_4", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v1_4")))]
+    pub fn adw_spin_row_get_digits(self_: *mut AdwSpinRow) -> c_uint;
+    #[cfg(any(feature = "v1_4", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v1_4")))]
+    pub fn adw_spin_row_get_numeric(self_: *mut AdwSpinRow) -> gboolean;
+    #[cfg(any(feature = "v1_4", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v1_4")))]
+    pub fn adw_spin_row_get_snap_to_ticks(self_: *mut AdwSpinRow) -> gboolean;
+    #[cfg(any(feature = "v1_4", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v1_4")))]
+    pub fn adw_spin_row_get_update_policy(self_: *mut AdwSpinRow)
+        -> gtk::GtkSpinButtonUpdatePolicy;
+    #[cfg(any(feature = "v1_4", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v1_4")))]
+    pub fn adw_spin_row_get_value(self_: *mut AdwSpinRow) -> c_double;
+    #[cfg(any(feature = "v1_4", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v1_4")))]
+    pub fn adw_spin_row_get_wrap(self_: *mut AdwSpinRow) -> gboolean;
+    #[cfg(any(feature = "v1_4", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v1_4")))]
+    pub fn adw_spin_row_set_adjustment(self_: *mut AdwSpinRow, adjustment: *mut gtk::GtkAdjustment);
+    #[cfg(any(feature = "v1_4", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v1_4")))]
+    pub fn adw_spin_row_set_climb_rate(self_: *mut AdwSpinRow, climb_rate: c_double);
+    #[cfg(any(feature = "v1_4", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v1_4")))]
+    pub fn adw_spin_row_set_digits(self_: *mut AdwSpinRow, digits: c_uint);
+    #[cfg(any(feature = "v1_4", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v1_4")))]
+    pub fn adw_spin_row_set_numeric(self_: *mut AdwSpinRow, numeric: gboolean);
+    #[cfg(any(feature = "v1_4", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v1_4")))]
+    pub fn adw_spin_row_set_snap_to_ticks(self_: *mut AdwSpinRow, snap_to_ticks: gboolean);
+    #[cfg(any(feature = "v1_4", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v1_4")))]
+    pub fn adw_spin_row_set_update_policy(
+        self_: *mut AdwSpinRow,
+        policy: gtk::GtkSpinButtonUpdatePolicy,
+    );
+    #[cfg(any(feature = "v1_4", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v1_4")))]
+    pub fn adw_spin_row_set_value(self_: *mut AdwSpinRow, value: c_double);
+    #[cfg(any(feature = "v1_4", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v1_4")))]
+    pub fn adw_spin_row_set_wrap(self_: *mut AdwSpinRow, wrap: gboolean);
+    #[cfg(any(feature = "v1_4", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v1_4")))]
+    pub fn adw_spin_row_update(self_: *mut AdwSpinRow);
 
     //=========================================================================
     // AdwSplitButton

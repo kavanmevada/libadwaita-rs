@@ -133,6 +133,7 @@ manual = [
     "Gtk.ScrolledWindow",
     "Gtk.SelectionModel",
     "Gtk.ShortcutManager",
+    "Gtk.SpinButtonUpdatePolicy",
     "Gtk.Stack",
     "Gtk.Widget",
     "Pango.AttrList",
@@ -231,6 +232,13 @@ manual_traits = ["MessageDialogExtManual"]
 name = "Adw.PropertyAnimationTarget"
 status = "generate"
 generate_builder = false
+
+[[object]]
+name = "Adw.SpinRow"
+status = "generate"
+    [[object.signal]]
+    name = "input"
+    manual = true
 
 [[object]]
 name = "Adw.StyleManager"

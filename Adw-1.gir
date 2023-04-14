@@ -2321,19 +2321,19 @@ respectively the title label and subtitle label.</doc>
       <constructor name="new" c:identifier="adw_action_row_new">
         <doc xml:space="preserve"
              filename="src/adw-action-row.c"
-             line="389">Creates a new `AdwActionRow`.</doc>
+             line="431">Creates a new `AdwActionRow`.</doc>
         <source-position filename="src/adw-action-row.h" line="40"/>
         <return-value transfer-ownership="none">
           <doc xml:space="preserve"
                filename="src/adw-action-row.c"
-               line="394">the newly created `AdwActionRow`</doc>
+               line="436">the newly created `AdwActionRow`</doc>
           <type name="Gtk.Widget" c:type="GtkWidget*"/>
         </return-value>
       </constructor>
       <virtual-method name="activate" invoker="activate">
         <doc xml:space="preserve"
              filename="src/adw-action-row.c"
-             line="829">Activates @self.</doc>
+             line="871">Activates @self.</doc>
         <source-position filename="src/adw-action-row.h" line="33"/>
         <return-value transfer-ownership="none">
           <type name="none" c:type="void"/>
@@ -2342,7 +2342,7 @@ respectively the title label and subtitle label.</doc>
           <instance-parameter name="self" transfer-ownership="none">
             <doc xml:space="preserve"
                  filename="src/adw-action-row.c"
-                 line="831">an action row</doc>
+                 line="873">an action row</doc>
             <type name="ActionRow" c:type="AdwActionRow*"/>
           </instance-parameter>
         </parameters>
@@ -2350,7 +2350,7 @@ respectively the title label and subtitle label.</doc>
       <method name="activate" c:identifier="adw_action_row_activate">
         <doc xml:space="preserve"
              filename="src/adw-action-row.c"
-             line="829">Activates @self.</doc>
+             line="871">Activates @self.</doc>
         <source-position filename="src/adw-action-row.h" line="90"/>
         <return-value transfer-ownership="none">
           <type name="none" c:type="void"/>
@@ -2359,7 +2359,7 @@ respectively the title label and subtitle label.</doc>
           <instance-parameter name="self" transfer-ownership="none">
             <doc xml:space="preserve"
                  filename="src/adw-action-row.c"
-                 line="831">an action row</doc>
+                 line="873">an action row</doc>
             <type name="ActionRow" c:type="AdwActionRow*"/>
           </instance-parameter>
         </parameters>
@@ -2367,7 +2367,7 @@ respectively the title label and subtitle label.</doc>
       <method name="add_prefix" c:identifier="adw_action_row_add_prefix">
         <doc xml:space="preserve"
              filename="src/adw-action-row.c"
-             line="402">Adds a prefix widget to @self.</doc>
+             line="444">Adds a prefix widget to @self.</doc>
         <source-position filename="src/adw-action-row.h" line="43"/>
         <return-value transfer-ownership="none">
           <type name="none" c:type="void"/>
@@ -2376,13 +2376,13 @@ respectively the title label and subtitle label.</doc>
           <instance-parameter name="self" transfer-ownership="none">
             <doc xml:space="preserve"
                  filename="src/adw-action-row.c"
-                 line="404">an action row</doc>
+                 line="446">an action row</doc>
             <type name="ActionRow" c:type="AdwActionRow*"/>
           </instance-parameter>
           <parameter name="widget" transfer-ownership="none">
             <doc xml:space="preserve"
                  filename="src/adw-action-row.c"
-                 line="405">a widget</doc>
+                 line="447">a widget</doc>
             <type name="Gtk.Widget" c:type="GtkWidget*"/>
           </parameter>
         </parameters>
@@ -2390,7 +2390,7 @@ respectively the title label and subtitle label.</doc>
       <method name="add_suffix" c:identifier="adw_action_row_add_suffix">
         <doc xml:space="preserve"
              filename="src/adw-action-row.c"
-             line="425">Adds a suffix widget to @self.</doc>
+             line="467">Adds a suffix widget to @self.</doc>
         <source-position filename="src/adw-action-row.h" line="46"/>
         <return-value transfer-ownership="none">
           <type name="none" c:type="void"/>
@@ -2399,13 +2399,13 @@ respectively the title label and subtitle label.</doc>
           <instance-parameter name="self" transfer-ownership="none">
             <doc xml:space="preserve"
                  filename="src/adw-action-row.c"
-                 line="427">an action row</doc>
+                 line="469">an action row</doc>
             <type name="ActionRow" c:type="AdwActionRow*"/>
           </instance-parameter>
           <parameter name="widget" transfer-ownership="none">
             <doc xml:space="preserve"
                  filename="src/adw-action-row.c"
-                 line="428">a widget</doc>
+                 line="470">a widget</doc>
             <type name="Gtk.Widget" c:type="GtkWidget*"/>
           </parameter>
         </parameters>
@@ -2417,19 +2417,19 @@ respectively the title label and subtitle label.</doc>
                    value="activatable-widget"/>
         <doc xml:space="preserve"
              filename="src/adw-action-row.c"
-             line="577">Gets the widget activated when @self is activated.</doc>
+             line="619">Gets the widget activated when @self is activated.</doc>
         <source-position filename="src/adw-action-row.h" line="65"/>
         <return-value transfer-ownership="none" nullable="1">
           <doc xml:space="preserve"
                filename="src/adw-action-row.c"
-               line="583">the activatable widget for @self</doc>
+               line="625">the activatable widget for @self</doc>
           <type name="Gtk.Widget" c:type="GtkWidget*"/>
         </return-value>
         <parameters>
           <instance-parameter name="self" transfer-ownership="none">
             <doc xml:space="preserve"
                  filename="src/adw-action-row.c"
-                 line="579">an action row</doc>
+                 line="621">an action row</doc>
             <type name="ActionRow" c:type="AdwActionRow*"/>
           </instance-parameter>
         </parameters>
@@ -2442,20 +2442,20 @@ respectively the title label and subtitle label.</doc>
         <attribute name="org.gtk.Method.get_property" value="icon-name"/>
         <doc xml:space="preserve"
              filename="src/adw-action-row.c"
-             line="526">Gets the icon name for @self.</doc>
+             line="568">Gets the icon name for @self.</doc>
         <doc-deprecated xml:space="preserve">Use [method@ActionRow.add_prefix] to add an icon.</doc-deprecated>
         <source-position filename="src/adw-action-row.h" line="59"/>
         <return-value transfer-ownership="none" nullable="1">
           <doc xml:space="preserve"
                filename="src/adw-action-row.c"
-               line="532">the icon name for @self</doc>
+               line="574">the icon name for @self</doc>
           <type name="utf8" c:type="const char*"/>
         </return-value>
         <parameters>
           <instance-parameter name="self" transfer-ownership="none">
             <doc xml:space="preserve"
                  filename="src/adw-action-row.c"
-                 line="528">an action row</doc>
+                 line="570">an action row</doc>
             <type name="ActionRow" c:type="AdwActionRow*"/>
           </instance-parameter>
         </parameters>
@@ -2466,19 +2466,19 @@ respectively the title label and subtitle label.</doc>
         <attribute name="org.gtk.Method.get_property" value="subtitle"/>
         <doc xml:space="preserve"
              filename="src/adw-action-row.c"
-             line="478">Gets the subtitle for @self.</doc>
+             line="520">Gets the subtitle for @self.</doc>
         <source-position filename="src/adw-action-row.h" line="53"/>
         <return-value transfer-ownership="none" nullable="1">
           <doc xml:space="preserve"
                filename="src/adw-action-row.c"
-               line="484">the subtitle for @self</doc>
+               line="526">the subtitle for @self</doc>
           <type name="utf8" c:type="const char*"/>
         </return-value>
         <parameters>
           <instance-parameter name="self" transfer-ownership="none">
             <doc xml:space="preserve"
                  filename="src/adw-action-row.c"
-                 line="480">an action row</doc>
+                 line="522">an action row</doc>
             <type name="ActionRow" c:type="AdwActionRow*"/>
           </instance-parameter>
         </parameters>
@@ -2489,13 +2489,13 @@ respectively the title label and subtitle label.</doc>
         <attribute name="org.gtk.Method.get_property" value="subtitle-lines"/>
         <doc xml:space="preserve"
              filename="src/adw-action-row.c"
-             line="726">Gets the number of lines at the end of which the subtitle label will be
+             line="768">Gets the number of lines at the end of which the subtitle label will be
 ellipsized.</doc>
         <source-position filename="src/adw-action-row.h" line="77"/>
         <return-value transfer-ownership="none">
           <doc xml:space="preserve"
                filename="src/adw-action-row.c"
-               line="733">the number of lines at the end of which the subtitle label will be
+               line="775">the number of lines at the end of which the subtitle label will be
   ellipsized</doc>
           <type name="gint" c:type="int"/>
         </return-value>
@@ -2503,7 +2503,7 @@ ellipsized.</doc>
           <instance-parameter name="self" transfer-ownership="none">
             <doc xml:space="preserve"
                  filename="src/adw-action-row.c"
-                 line="728">an action row</doc>
+                 line="770">an action row</doc>
             <type name="ActionRow" c:type="AdwActionRow*"/>
           </instance-parameter>
         </parameters>
@@ -2516,19 +2516,19 @@ ellipsized.</doc>
                    value="subtitle-selectable"/>
         <doc xml:space="preserve"
              filename="src/adw-action-row.c"
-             line="780">Gets whether the user can copy the subtitle from the label</doc>
+             line="822">Gets whether the user can copy the subtitle from the label</doc>
         <source-position filename="src/adw-action-row.h" line="83"/>
         <return-value transfer-ownership="none">
           <doc xml:space="preserve"
                filename="src/adw-action-row.c"
-               line="786">whether the user can copy the subtitle from the label</doc>
+               line="828">whether the user can copy the subtitle from the label</doc>
           <type name="gboolean" c:type="gboolean"/>
         </return-value>
         <parameters>
           <instance-parameter name="self" transfer-ownership="none">
             <doc xml:space="preserve"
                  filename="src/adw-action-row.c"
-                 line="782">a `AdwActionRow`</doc>
+                 line="824">a `AdwActionRow`</doc>
             <type name="ActionRow" c:type="AdwActionRow*"/>
           </instance-parameter>
         </parameters>
@@ -2539,13 +2539,13 @@ ellipsized.</doc>
         <attribute name="org.gtk.Method.get_property" value="title-lines"/>
         <doc xml:space="preserve"
              filename="src/adw-action-row.c"
-             line="672">Gets the number of lines at the end of which the title label will be
+             line="714">Gets the number of lines at the end of which the title label will be
 ellipsized.</doc>
         <source-position filename="src/adw-action-row.h" line="71"/>
         <return-value transfer-ownership="none">
           <doc xml:space="preserve"
                filename="src/adw-action-row.c"
-               line="679">the number of lines at the end of which the title label will be
+               line="721">the number of lines at the end of which the title label will be
   ellipsized</doc>
           <type name="gint" c:type="int"/>
         </return-value>
@@ -2553,7 +2553,7 @@ ellipsized.</doc>
           <instance-parameter name="self" transfer-ownership="none">
             <doc xml:space="preserve"
                  filename="src/adw-action-row.c"
-                 line="674">an action row</doc>
+                 line="716">an action row</doc>
             <type name="ActionRow" c:type="AdwActionRow*"/>
           </instance-parameter>
         </parameters>
@@ -2561,7 +2561,7 @@ ellipsized.</doc>
       <method name="remove" c:identifier="adw_action_row_remove">
         <doc xml:space="preserve"
              filename="src/adw-action-row.c"
-             line="448">Removes a child from @self.</doc>
+             line="490">Removes a child from @self.</doc>
         <source-position filename="src/adw-action-row.h" line="49"/>
         <return-value transfer-ownership="none">
           <type name="none" c:type="void"/>
@@ -2570,13 +2570,13 @@ ellipsized.</doc>
           <instance-parameter name="self" transfer-ownership="none">
             <doc xml:space="preserve"
                  filename="src/adw-action-row.c"
-                 line="450">an action row</doc>
+                 line="492">an action row</doc>
             <type name="ActionRow" c:type="AdwActionRow*"/>
           </instance-parameter>
           <parameter name="widget" transfer-ownership="none">
             <doc xml:space="preserve"
                  filename="src/adw-action-row.c"
-                 line="451">the child to be removed</doc>
+                 line="493">the child to be removed</doc>
             <type name="Gtk.Widget" c:type="GtkWidget*"/>
           </parameter>
         </parameters>
@@ -2588,10 +2588,10 @@ ellipsized.</doc>
                    value="activatable-widget"/>
         <doc xml:space="preserve"
              filename="src/adw-action-row.c"
-             line="610">Sets the widget to activate when @self is activated.
+             line="652">Sets the widget to activate when @self is activated.
 
 The row can be activated either by clicking on it, calling
-[method@ActionRow.activate], or via mnemonics in the title or the subtitle.
+[method@ActionRow.activate], or via mnemonics in the title.
 See the [property@PreferencesRow:use-underline] property to enable mnemonics.
 
 The target widget will be activated by emitting the
@@ -2604,7 +2604,7 @@ The target widget will be activated by emitting the
           <instance-parameter name="self" transfer-ownership="none">
             <doc xml:space="preserve"
                  filename="src/adw-action-row.c"
-                 line="612">an action row</doc>
+                 line="654">an action row</doc>
             <type name="ActionRow" c:type="AdwActionRow*"/>
           </instance-parameter>
           <parameter name="widget"
@@ -2613,7 +2613,7 @@ The target widget will be activated by emitting the
                      allow-none="1">
             <doc xml:space="preserve"
                  filename="src/adw-action-row.c"
-                 line="613">the target widget</doc>
+                 line="655">the target widget</doc>
             <type name="Gtk.Widget" c:type="GtkWidget*"/>
           </parameter>
         </parameters>
@@ -2626,7 +2626,7 @@ The target widget will be activated by emitting the
         <attribute name="org.gtk.Method.set_property" value="icon-name"/>
         <doc xml:space="preserve"
              filename="src/adw-action-row.c"
-             line="548">Sets the icon name for @self.</doc>
+             line="590">Sets the icon name for @self.</doc>
         <doc-deprecated xml:space="preserve">Use [method@ActionRow.add_prefix] to add an icon.</doc-deprecated>
         <source-position filename="src/adw-action-row.h" line="61"/>
         <return-value transfer-ownership="none">
@@ -2636,7 +2636,7 @@ The target widget will be activated by emitting the
           <instance-parameter name="self" transfer-ownership="none">
             <doc xml:space="preserve"
                  filename="src/adw-action-row.c"
-                 line="550">an action row</doc>
+                 line="592">an action row</doc>
             <type name="ActionRow" c:type="AdwActionRow*"/>
           </instance-parameter>
           <parameter name="icon_name"
@@ -2645,7 +2645,7 @@ The target widget will be activated by emitting the
                      allow-none="1">
             <doc xml:space="preserve"
                  filename="src/adw-action-row.c"
-                 line="551">the icon name</doc>
+                 line="593">the icon name</doc>
             <type name="utf8" c:type="const char*"/>
           </parameter>
         </parameters>
@@ -2656,7 +2656,7 @@ The target widget will be activated by emitting the
         <attribute name="org.gtk.Method.set_property" value="subtitle"/>
         <doc xml:space="preserve"
              filename="src/adw-action-row.c"
-             line="498">Sets the subtitle for @self.
+             line="540">Sets the subtitle for @self.
 
 The subtitle is interpreted as Pango markup unless
 [property@PreferencesRow:use-markup] is set to `FALSE`.</doc>
@@ -2668,13 +2668,13 @@ The subtitle is interpreted as Pango markup unless
           <instance-parameter name="self" transfer-ownership="none">
             <doc xml:space="preserve"
                  filename="src/adw-action-row.c"
-                 line="500">an action row</doc>
+                 line="542">an action row</doc>
             <type name="ActionRow" c:type="AdwActionRow*"/>
           </instance-parameter>
           <parameter name="subtitle" transfer-ownership="none">
             <doc xml:space="preserve"
                  filename="src/adw-action-row.c"
-                 line="501">the subtitle</doc>
+                 line="543">the subtitle</doc>
             <type name="utf8" c:type="const char*"/>
           </parameter>
         </parameters>
@@ -2685,7 +2685,7 @@ The subtitle is interpreted as Pango markup unless
         <attribute name="org.gtk.Method.set_property" value="subtitle-lines"/>
         <doc xml:space="preserve"
              filename="src/adw-action-row.c"
-             line="748">Sets the number of lines at the end of which the subtitle label will be
+             line="790">Sets the number of lines at the end of which the subtitle label will be
 ellipsized.
 
 If the value is 0, the number of lines won't be limited.</doc>
@@ -2697,13 +2697,13 @@ If the value is 0, the number of lines won't be limited.</doc>
           <instance-parameter name="self" transfer-ownership="none">
             <doc xml:space="preserve"
                  filename="src/adw-action-row.c"
-                 line="750">an action row</doc>
+                 line="792">an action row</doc>
             <type name="ActionRow" c:type="AdwActionRow*"/>
           </instance-parameter>
           <parameter name="subtitle_lines" transfer-ownership="none">
             <doc xml:space="preserve"
                  filename="src/adw-action-row.c"
-                 line="751">the number of lines at the end of which the subtitle label will be ellipsized</doc>
+                 line="793">the number of lines at the end of which the subtitle label will be ellipsized</doc>
             <type name="gint" c:type="int"/>
           </parameter>
         </parameters>
@@ -2716,7 +2716,7 @@ If the value is 0, the number of lines won't be limited.</doc>
                    value="subtitle-selectable"/>
         <doc xml:space="preserve"
              filename="src/adw-action-row.c"
-             line="800">Sets whether the user can copy the subtitle from the label
+             line="842">Sets whether the user can copy the subtitle from the label
 
 See also [property@Gtk.Label:selectable].</doc>
         <source-position filename="src/adw-action-row.h" line="86"/>
@@ -2727,13 +2727,13 @@ See also [property@Gtk.Label:selectable].</doc>
           <instance-parameter name="self" transfer-ownership="none">
             <doc xml:space="preserve"
                  filename="src/adw-action-row.c"
-                 line="802">a `AdwActionRow`</doc>
+                 line="844">a `AdwActionRow`</doc>
             <type name="ActionRow" c:type="AdwActionRow*"/>
           </instance-parameter>
           <parameter name="subtitle_selectable" transfer-ownership="none">
             <doc xml:space="preserve"
                  filename="src/adw-action-row.c"
-                 line="803">`TRUE` if the user can copy the subtitle from the label</doc>
+                 line="845">`TRUE` if the user can copy the subtitle from the label</doc>
             <type name="gboolean" c:type="gboolean"/>
           </parameter>
         </parameters>
@@ -2744,7 +2744,7 @@ See also [property@Gtk.Label:selectable].</doc>
         <attribute name="org.gtk.Method.set_property" value="title-lines"/>
         <doc xml:space="preserve"
              filename="src/adw-action-row.c"
-             line="694">Sets the number of lines at the end of which the title label will be
+             line="736">Sets the number of lines at the end of which the title label will be
 ellipsized.
 
 If the value is 0, the number of lines won't be limited.</doc>
@@ -2756,13 +2756,13 @@ If the value is 0, the number of lines won't be limited.</doc>
           <instance-parameter name="self" transfer-ownership="none">
             <doc xml:space="preserve"
                  filename="src/adw-action-row.c"
-                 line="696">an action row</doc>
+                 line="738">an action row</doc>
             <type name="ActionRow" c:type="AdwActionRow*"/>
           </instance-parameter>
           <parameter name="title_lines" transfer-ownership="none">
             <doc xml:space="preserve"
                  filename="src/adw-action-row.c"
-                 line="697">the number of lines at the end of which the title label will be ellipsized</doc>
+                 line="739">the number of lines at the end of which the title label will be ellipsized</doc>
             <type name="gint" c:type="int"/>
           </parameter>
         </parameters>
@@ -2778,10 +2778,10 @@ If the value is 0, the number of lines won't be limited.</doc>
                    value="adw_action_row_set_activatable_widget"/>
         <doc xml:space="preserve"
              filename="src/adw-action-row.c"
-             line="262">The widget to activate when the row is activated.
+             line="303">The widget to activate when the row is activated.
 
 The row can be activated either by clicking on it, calling
-[method@ActionRow.activate], or via mnemonics in the title or the subtitle.
+[method@ActionRow.activate], or via mnemonics in the title.
 See the [property@PreferencesRow:use-underline] property to enable
 mnemonics.
 
@@ -2802,7 +2802,7 @@ The target widget will be activated by emitting the
                    value="adw_action_row_set_icon_name"/>
         <doc xml:space="preserve"
              filename="src/adw-action-row.c"
-             line="250">The icon name for this row.</doc>
+             line="291">The icon name for this row.</doc>
         <doc-deprecated xml:space="preserve">Use [method@ActionRow.add_prefix] to add an icon.</doc-deprecated>
         <type name="utf8" c:type="gchar*"/>
       </property>
@@ -2817,7 +2817,7 @@ The target widget will be activated by emitting the
                    value="adw_action_row_set_subtitle"/>
         <doc xml:space="preserve"
              filename="src/adw-action-row.c"
-             line="237">The subtitle for this row.
+             line="278">The subtitle for this row.
 
 The subtitle is interpreted as Pango markup unless
 [property@PreferencesRow:use-markup] is set to `FALSE`.</doc>
@@ -2835,7 +2835,7 @@ The subtitle is interpreted as Pango markup unless
                    value="adw_action_row_set_subtitle_lines"/>
         <doc xml:space="preserve"
              filename="src/adw-action-row.c"
-             line="293">The number of lines at the end of which the subtitle label will be
+             line="334">The number of lines at the end of which the subtitle label will be
 ellipsized.
 
 If the value is 0, the number of lines won't be limited.</doc>
@@ -2854,7 +2854,7 @@ If the value is 0, the number of lines won't be limited.</doc>
                    value="adw_action_row_set_subtitle_selectable"/>
         <doc xml:space="preserve"
              filename="src/adw-action-row.c"
-             line="307">Whether the user can copy the subtitle from the label.
+             line="348">Whether the user can copy the subtitle from the label.
 
 See also [property@Gtk.Label:selectable].</doc>
         <type name="gboolean" c:type="gboolean"/>
@@ -2871,7 +2871,7 @@ See also [property@Gtk.Label:selectable].</doc>
                    value="adw_action_row_set_title_lines"/>
         <doc xml:space="preserve"
              filename="src/adw-action-row.c"
-             line="280">The number of lines at the end of which the title label will be ellipsized.
+             line="321">The number of lines at the end of which the title label will be ellipsized.
 
 If the value is 0, the number of lines won't be limited.</doc>
         <type name="gint" c:type="gint"/>
@@ -2882,7 +2882,7 @@ If the value is 0, the number of lines won't be limited.</doc>
       <glib:signal name="activated" when="last">
         <doc xml:space="preserve"
              filename="src/adw-action-row.c"
-             line="323">This signal is emitted after the row has been activated.</doc>
+             line="364">This signal is emitted after the row has been activated.</doc>
         <return-value transfer-ownership="none">
           <type name="none" c:type="void"/>
         </return-value>
@@ -2908,7 +2908,7 @@ If the value is 0, the number of lines won't be limited.</doc>
             <parameter name="self" transfer-ownership="none">
               <doc xml:space="preserve"
                    filename="src/adw-action-row.c"
-                   line="831">an action row</doc>
+                   line="873">an action row</doc>
               <type name="ActionRow" c:type="AdwActionRow*"/>
             </parameter>
           </parameters>
@@ -13244,7 +13244,7 @@ adw_message_dialog_add_responses (dialog,
               version="1.3">
         <doc xml:space="preserve"
              filename="src/adw-message-dialog.c"
-             line="2341">This function shows @self to the user.
+             line="2343">This function shows @self to the user.
 
 The @callback will be called when the alert is dismissed. It should call
 [method@MessageDialog.choose_finish] to obtain the result.</doc>
@@ -13256,7 +13256,7 @@ The @callback will be called when the alert is dismissed. It should call
           <instance-parameter name="self" transfer-ownership="full">
             <doc xml:space="preserve"
                  filename="src/adw-message-dialog.c"
-                 line="2343">a message dialog</doc>
+                 line="2345">a message dialog</doc>
             <type name="MessageDialog" c:type="AdwMessageDialog*"/>
           </instance-parameter>
           <parameter name="cancellable"
@@ -13265,7 +13265,7 @@ The @callback will be called when the alert is dismissed. It should call
                      allow-none="1">
             <doc xml:space="preserve"
                  filename="src/adw-message-dialog.c"
-                 line="2344">a `GCancellable` to cancel the operation</doc>
+                 line="2346">a `GCancellable` to cancel the operation</doc>
             <type name="Gio.Cancellable" c:type="GCancellable*"/>
           </parameter>
           <parameter name="callback"
@@ -13276,7 +13276,7 @@ The @callback will be called when the alert is dismissed. It should call
                      closure="2">
             <doc xml:space="preserve"
                  filename="src/adw-message-dialog.c"
-                 line="2345">a callback to call when the operation is complete</doc>
+                 line="2347">a callback to call when the operation is complete</doc>
             <type name="Gio.AsyncReadyCallback" c:type="GAsyncReadyCallback"/>
           </parameter>
           <parameter name="user_data"
@@ -13286,7 +13286,7 @@ The @callback will be called when the alert is dismissed. It should call
                      closure="1">
             <doc xml:space="preserve"
                  filename="src/adw-message-dialog.c"
-                 line="2346">data to pass to @callback</doc>
+                 line="2348">data to pass to @callback</doc>
             <type name="gpointer" c:type="gpointer"/>
           </parameter>
         </parameters>
@@ -13296,12 +13296,12 @@ The @callback will be called when the alert is dismissed. It should call
               version="1.3">
         <doc xml:space="preserve"
              filename="src/adw-message-dialog.c"
-             line="2376">Finishes the [method@MessageDialog.choose] call and returns the response ID.</doc>
+             line="2378">Finishes the [method@MessageDialog.choose] call and returns the response ID.</doc>
         <source-position filename="src/adw-message-dialog.h" line="160"/>
         <return-value transfer-ownership="none">
           <doc xml:space="preserve"
                filename="src/adw-message-dialog.c"
-               line="2383">the ID of the response that was selected, or
+               line="2385">the ID of the response that was selected, or
   [property@MessageDialog:close-response] if the call was cancelled.</doc>
           <type name="utf8" c:type="const char*"/>
         </return-value>
@@ -13309,13 +13309,13 @@ The @callback will be called when the alert is dismissed. It should call
           <instance-parameter name="self" transfer-ownership="none">
             <doc xml:space="preserve"
                  filename="src/adw-message-dialog.c"
-                 line="2378">a message dialog</doc>
+                 line="2380">a message dialog</doc>
             <type name="MessageDialog" c:type="AdwMessageDialog*"/>
           </instance-parameter>
           <parameter name="result" transfer-ownership="none">
             <doc xml:space="preserve"
                  filename="src/adw-message-dialog.c"
-                 line="2379">a `GAsyncResult`</doc>
+                 line="2381">a `GAsyncResult`</doc>
             <type name="Gio.AsyncResult" c:type="GAsyncResult*"/>
           </parameter>
         </parameters>
@@ -16163,6 +16163,793 @@ See [method@MessageDialog.set_response_appearance].</doc>
     the user.</doc>
       </member>
     </enumeration>
+    <class name="SpinRow"
+           c:symbol-prefix="spin_row"
+           c:type="AdwSpinRow"
+           version="1.4"
+           parent="ActionRow"
+           final="1"
+           glib:type-name="AdwSpinRow"
+           glib:get-type="adw_spin_row_get_type"
+           glib:type-struct="SpinRowClass">
+      <doc xml:space="preserve"
+           filename="src/adw-spin-row.c"
+           line="19">An [class@ActionRow] with an embedded spin button.
+
+&lt;picture&gt;
+  &lt;source srcset="spin-row-dark.png" media="(prefers-color-scheme: dark)"&gt;
+  &lt;img src="spin-row.png" alt="spin-row"&gt;
+&lt;/picture&gt;
+
+Example of an `AdwSpinRow` UI definition:
+
+```xml
+&lt;object class="AdwSpinRow"&gt;
+  &lt;property name="title" translatable="yes"&gt;Spin Row&lt;/property&gt;
+  &lt;property name="adjustment"&gt;
+    &lt;object class="GtkAdjustment"&gt;
+      &lt;property name="lower"&gt;0&lt;/property&gt;
+      &lt;property name="upper"&gt;100&lt;/property&gt;
+      &lt;property name="value"&gt;50&lt;/property&gt;
+      &lt;property name="page-increment"&gt;10&lt;/property&gt;
+      &lt;property name="step-increment"&gt;1&lt;/property&gt;
+    &lt;/object&gt;
+  &lt;/property&gt;
+&lt;/object&gt;
+```
+
+See [class@Gtk.SpinButton] for details.
+
+## CSS nodes
+
+`AdwSpinRow` has the same structure as [class@ActionRow], as well as the
+`.spin` style class on the main node.</doc>
+      <source-position filename="src/adw-spin-row.h" line="24"/>
+      <implements name="Gtk.Accessible"/>
+      <implements name="Gtk.Actionable"/>
+      <implements name="Gtk.Buildable"/>
+      <implements name="Gtk.ConstraintTarget"/>
+      <implements name="Gtk.Editable"/>
+      <constructor name="new" c:identifier="adw_spin_row_new" version="1.4">
+        <doc xml:space="preserve"
+             filename="src/adw-spin-row.c"
+             line="494">Creates a new `AdwSpinRow`.</doc>
+        <source-position filename="src/adw-spin-row.h" line="27"/>
+        <return-value transfer-ownership="none">
+          <doc xml:space="preserve"
+               filename="src/adw-spin-row.c"
+               line="502">the newly created `AdwSpinRow`</doc>
+          <type name="Gtk.Widget" c:type="GtkWidget*"/>
+        </return-value>
+        <parameters>
+          <parameter name="adjustment"
+                     transfer-ownership="none"
+                     nullable="1"
+                     allow-none="1">
+            <doc xml:space="preserve"
+                 filename="src/adw-spin-row.c"
+                 line="496">the adjustment that this spin row should use</doc>
+            <type name="Gtk.Adjustment" c:type="GtkAdjustment*"/>
+          </parameter>
+          <parameter name="climb_rate" transfer-ownership="none">
+            <doc xml:space="preserve"
+                 filename="src/adw-spin-row.c"
+                 line="497">the rate the value changes when holding a button or key</doc>
+            <type name="gdouble" c:type="double"/>
+          </parameter>
+          <parameter name="digits" transfer-ownership="none">
+            <doc xml:space="preserve"
+                 filename="src/adw-spin-row.c"
+                 line="498">the number of decimal places to display</doc>
+            <type name="guint" c:type="guint"/>
+          </parameter>
+        </parameters>
+      </constructor>
+      <constructor name="new_with_range"
+                   c:identifier="adw_spin_row_new_with_range"
+                   version="1.4">
+        <doc xml:space="preserve"
+             filename="src/adw-spin-row.c"
+             line="521">Creates a new `AdwSpinRow` with the given properties.
+
+This is a convenience constructor that allows creation of a numeric
+`AdwSpinRow` without manually creating an adjustment. The value is initially
+set to the minimum value and a page increment of 10 * @step is the default.
+The precision of the spin row is equivalent to the precisions of @step.
+
+Note that the way in which the precision is derived works best if @step is a
+power of ten. If the resulting precision is not suitable for your needs,
+use [method@SpinRow.set_digits] to correct it.</doc>
+        <source-position filename="src/adw-spin-row.h" line="31"/>
+        <return-value transfer-ownership="none">
+          <doc xml:space="preserve"
+               filename="src/adw-spin-row.c"
+               line="538">the new `AdwSpinRow`</doc>
+          <type name="Gtk.Widget" c:type="GtkWidget*"/>
+        </return-value>
+        <parameters>
+          <parameter name="min" transfer-ownership="none">
+            <doc xml:space="preserve"
+                 filename="src/adw-spin-row.c"
+                 line="523">minimum allowable value</doc>
+            <type name="gdouble" c:type="double"/>
+          </parameter>
+          <parameter name="max" transfer-ownership="none">
+            <doc xml:space="preserve"
+                 filename="src/adw-spin-row.c"
+                 line="524">maximum allowable value</doc>
+            <type name="gdouble" c:type="double"/>
+          </parameter>
+          <parameter name="step" transfer-ownership="none">
+            <doc xml:space="preserve"
+                 filename="src/adw-spin-row.c"
+                 line="525">increment added or subtracted by spinning the widget</doc>
+            <type name="gdouble" c:type="double"/>
+          </parameter>
+        </parameters>
+      </constructor>
+      <method name="configure"
+              c:identifier="adw_spin_row_configure"
+              version="1.4">
+        <doc xml:space="preserve"
+             filename="src/adw-spin-row.c"
+             line="572">Changes the properties of an existing spin row.
+
+The adjustment, climb rate, and number of decimal places are updated
+accordingly.</doc>
+        <source-position filename="src/adw-spin-row.h" line="35"/>
+        <return-value transfer-ownership="none">
+          <type name="none" c:type="void"/>
+        </return-value>
+        <parameters>
+          <instance-parameter name="self" transfer-ownership="none">
+            <doc xml:space="preserve"
+                 filename="src/adw-spin-row.c"
+                 line="574">a spin row</doc>
+            <type name="SpinRow" c:type="AdwSpinRow*"/>
+          </instance-parameter>
+          <parameter name="adjustment"
+                     transfer-ownership="none"
+                     nullable="1"
+                     allow-none="1">
+            <doc xml:space="preserve"
+                 filename="src/adw-spin-row.c"
+                 line="575">the adjustment that this spin row should use</doc>
+            <type name="Gtk.Adjustment" c:type="GtkAdjustment*"/>
+          </parameter>
+          <parameter name="climb_rate" transfer-ownership="none">
+            <doc xml:space="preserve"
+                 filename="src/adw-spin-row.c"
+                 line="576">the new climb rate</doc>
+            <type name="gdouble" c:type="double"/>
+          </parameter>
+          <parameter name="digits" transfer-ownership="none">
+            <doc xml:space="preserve"
+                 filename="src/adw-spin-row.c"
+                 line="577">the number of decimal places to display</doc>
+            <type name="guint" c:type="guint"/>
+          </parameter>
+        </parameters>
+      </method>
+      <method name="get_adjustment"
+              c:identifier="adw_spin_row_get_adjustment"
+              glib:get-property="adjustment"
+              version="1.4">
+        <attribute name="org.gtk.Method.get_property" value="adjustment"/>
+        <doc xml:space="preserve"
+             filename="src/adw-spin-row.c"
+             line="605">Gets the adjustment that holds the value for the spin row.</doc>
+        <source-position filename="src/adw-spin-row.h" line="41"/>
+        <return-value transfer-ownership="none">
+          <doc xml:space="preserve"
+               filename="src/adw-spin-row.c"
+               line="611">the adjustment that holds the spin row's value</doc>
+          <type name="Gtk.Adjustment" c:type="GtkAdjustment*"/>
+        </return-value>
+        <parameters>
+          <instance-parameter name="self" transfer-ownership="none">
+            <doc xml:space="preserve"
+                 filename="src/adw-spin-row.c"
+                 line="607">a spin row</doc>
+            <type name="SpinRow" c:type="AdwSpinRow*"/>
+          </instance-parameter>
+        </parameters>
+      </method>
+      <method name="get_climb_rate"
+              c:identifier="adw_spin_row_get_climb_rate"
+              glib:get-property="climb-rate"
+              version="1.4">
+        <attribute name="org.gtk.Method.get_property" value="climb-rate"/>
+        <doc xml:space="preserve"
+             filename="src/adw-spin-row.c"
+             line="649">Gets the acceleration rate when you hold down a button or key.</doc>
+        <source-position filename="src/adw-spin-row.h" line="47"/>
+        <return-value transfer-ownership="none">
+          <doc xml:space="preserve"
+               filename="src/adw-spin-row.c"
+               line="655">the acceleration rate when you hold down a button or key</doc>
+          <type name="gdouble" c:type="double"/>
+        </return-value>
+        <parameters>
+          <instance-parameter name="self" transfer-ownership="none">
+            <doc xml:space="preserve"
+                 filename="src/adw-spin-row.c"
+                 line="651">a spin row</doc>
+            <type name="SpinRow" c:type="AdwSpinRow*"/>
+          </instance-parameter>
+        </parameters>
+      </method>
+      <method name="get_digits"
+              c:identifier="adw_spin_row_get_digits"
+              glib:get-property="digits"
+              version="1.4">
+        <attribute name="org.gtk.Method.get_property" value="digits"/>
+        <doc xml:space="preserve"
+             filename="src/adw-spin-row.c"
+             line="691">Gets the number of decimal places to display.</doc>
+        <source-position filename="src/adw-spin-row.h" line="53"/>
+        <return-value transfer-ownership="none">
+          <doc xml:space="preserve"
+               filename="src/adw-spin-row.c"
+               line="697">the number of decimal places to display</doc>
+          <type name="guint" c:type="guint"/>
+        </return-value>
+        <parameters>
+          <instance-parameter name="self" transfer-ownership="none">
+            <doc xml:space="preserve"
+                 filename="src/adw-spin-row.c"
+                 line="693">a spin row</doc>
+            <type name="SpinRow" c:type="AdwSpinRow*"/>
+          </instance-parameter>
+        </parameters>
+      </method>
+      <method name="get_numeric"
+              c:identifier="adw_spin_row_get_numeric"
+              glib:get-property="numeric"
+              version="1.4">
+        <attribute name="org.gtk.Method.get_property" value="numeric"/>
+        <doc xml:space="preserve"
+             filename="src/adw-spin-row.c"
+             line="732">Gets whether non-numeric characters should be ignored.</doc>
+        <source-position filename="src/adw-spin-row.h" line="59"/>
+        <return-value transfer-ownership="none">
+          <doc xml:space="preserve"
+               filename="src/adw-spin-row.c"
+               line="738">whether non-numeric characters should be ignored.</doc>
+          <type name="gboolean" c:type="gboolean"/>
+        </return-value>
+        <parameters>
+          <instance-parameter name="self" transfer-ownership="none">
+            <doc xml:space="preserve"
+                 filename="src/adw-spin-row.c"
+                 line="734">a spin row</doc>
+            <type name="SpinRow" c:type="AdwSpinRow*"/>
+          </instance-parameter>
+        </parameters>
+      </method>
+      <method name="get_snap_to_ticks"
+              c:identifier="adw_spin_row_get_snap_to_ticks"
+              glib:get-property="snap-to-ticks"
+              version="1.4">
+        <attribute name="org.gtk.Method.get_property" value="snap-to-ticks"/>
+        <doc xml:space="preserve"
+             filename="src/adw-spin-row.c"
+             line="775">Gets whether invalid values are snapped to nearest step increment.</doc>
+        <source-position filename="src/adw-spin-row.h" line="65"/>
+        <return-value transfer-ownership="none">
+          <doc xml:space="preserve"
+               filename="src/adw-spin-row.c"
+               line="781">whether invalid values are snapped to the nearest step increment</doc>
+          <type name="gboolean" c:type="gboolean"/>
+        </return-value>
+        <parameters>
+          <instance-parameter name="self" transfer-ownership="none">
+            <doc xml:space="preserve"
+                 filename="src/adw-spin-row.c"
+                 line="777">a spin row</doc>
+            <type name="SpinRow" c:type="AdwSpinRow*"/>
+          </instance-parameter>
+        </parameters>
+      </method>
+      <method name="get_update_policy"
+              c:identifier="adw_spin_row_get_update_policy"
+              glib:get-property="update-policy"
+              version="1.4">
+        <attribute name="org.gtk.Method.get_property" value="update-policy"/>
+        <doc xml:space="preserve"
+             filename="src/adw-spin-row.c"
+             line="818">Gets the policy for updating the spin row.</doc>
+        <source-position filename="src/adw-spin-row.h" line="71"/>
+        <return-value transfer-ownership="none">
+          <doc xml:space="preserve"
+               filename="src/adw-spin-row.c"
+               line="824">the policy for updating the spin row</doc>
+          <type name="Gtk.SpinButtonUpdatePolicy"
+                c:type="GtkSpinButtonUpdatePolicy"/>
+        </return-value>
+        <parameters>
+          <instance-parameter name="self" transfer-ownership="none">
+            <doc xml:space="preserve"
+                 filename="src/adw-spin-row.c"
+                 line="820">a spin row</doc>
+            <type name="SpinRow" c:type="AdwSpinRow*"/>
+          </instance-parameter>
+        </parameters>
+      </method>
+      <method name="get_value"
+              c:identifier="adw_spin_row_get_value"
+              glib:get-property="value"
+              version="1.4">
+        <attribute name="org.gtk.Method.get_property" value="value"/>
+        <doc xml:space="preserve"
+             filename="src/adw-spin-row.c"
+             line="861">Gets the current value.</doc>
+        <source-position filename="src/adw-spin-row.h" line="77"/>
+        <return-value transfer-ownership="none">
+          <doc xml:space="preserve"
+               filename="src/adw-spin-row.c"
+               line="867">the current value</doc>
+          <type name="gdouble" c:type="double"/>
+        </return-value>
+        <parameters>
+          <instance-parameter name="self" transfer-ownership="none">
+            <doc xml:space="preserve"
+                 filename="src/adw-spin-row.c"
+                 line="863">a spin row</doc>
+            <type name="SpinRow" c:type="AdwSpinRow*"/>
+          </instance-parameter>
+        </parameters>
+      </method>
+      <method name="get_wrap"
+              c:identifier="adw_spin_row_get_wrap"
+              glib:get-property="wrap"
+              version="1.4">
+        <attribute name="org.gtk.Method.get_property" value="wrap"/>
+        <doc xml:space="preserve"
+             filename="src/adw-spin-row.c"
+             line="900">Gets whether the spin row should wrap upon reaching its limits.</doc>
+        <source-position filename="src/adw-spin-row.h" line="83"/>
+        <return-value transfer-ownership="none">
+          <doc xml:space="preserve"
+               filename="src/adw-spin-row.c"
+               line="906">whether the spin row should wrap upon reaching its limits</doc>
+          <type name="gboolean" c:type="gboolean"/>
+        </return-value>
+        <parameters>
+          <instance-parameter name="self" transfer-ownership="none">
+            <doc xml:space="preserve"
+                 filename="src/adw-spin-row.c"
+                 line="902">a spin row</doc>
+            <type name="SpinRow" c:type="AdwSpinRow*"/>
+          </instance-parameter>
+        </parameters>
+      </method>
+      <method name="set_adjustment"
+              c:identifier="adw_spin_row_set_adjustment"
+              glib:set-property="adjustment"
+              version="1.4">
+        <attribute name="org.gtk.Method.set_property" value="adjustment"/>
+        <doc xml:space="preserve"
+             filename="src/adw-spin-row.c"
+             line="625">Sets the adjustment that holds the value for the spin row.</doc>
+        <source-position filename="src/adw-spin-row.h" line="43"/>
+        <return-value transfer-ownership="none">
+          <type name="none" c:type="void"/>
+        </return-value>
+        <parameters>
+          <instance-parameter name="self" transfer-ownership="none">
+            <doc xml:space="preserve"
+                 filename="src/adw-spin-row.c"
+                 line="627">a spin row</doc>
+            <type name="SpinRow" c:type="AdwSpinRow*"/>
+          </instance-parameter>
+          <parameter name="adjustment"
+                     transfer-ownership="none"
+                     nullable="1"
+                     allow-none="1">
+            <doc xml:space="preserve"
+                 filename="src/adw-spin-row.c"
+                 line="628">an adjustment</doc>
+            <type name="Gtk.Adjustment" c:type="GtkAdjustment*"/>
+          </parameter>
+        </parameters>
+      </method>
+      <method name="set_climb_rate"
+              c:identifier="adw_spin_row_set_climb_rate"
+              glib:set-property="climb-rate"
+              version="1.4">
+        <attribute name="org.gtk.Method.set_property" value="climb-rate"/>
+        <doc xml:space="preserve"
+             filename="src/adw-spin-row.c"
+             line="667">Sets the acceleration rate when you hold down a button or key.</doc>
+        <source-position filename="src/adw-spin-row.h" line="49"/>
+        <return-value transfer-ownership="none">
+          <type name="none" c:type="void"/>
+        </return-value>
+        <parameters>
+          <instance-parameter name="self" transfer-ownership="none">
+            <doc xml:space="preserve"
+                 filename="src/adw-spin-row.c"
+                 line="669">a spin row</doc>
+            <type name="SpinRow" c:type="AdwSpinRow*"/>
+          </instance-parameter>
+          <parameter name="climb_rate" transfer-ownership="none">
+            <doc xml:space="preserve"
+                 filename="src/adw-spin-row.c"
+                 line="670">the acceleration rate when you hold down a button or key</doc>
+            <type name="gdouble" c:type="double"/>
+          </parameter>
+        </parameters>
+      </method>
+      <method name="set_digits"
+              c:identifier="adw_spin_row_set_digits"
+              glib:set-property="digits"
+              version="1.4">
+        <attribute name="org.gtk.Method.set_property" value="digits"/>
+        <doc xml:space="preserve"
+             filename="src/adw-spin-row.c"
+             line="709">Sets the number of decimal places to display.</doc>
+        <source-position filename="src/adw-spin-row.h" line="55"/>
+        <return-value transfer-ownership="none">
+          <type name="none" c:type="void"/>
+        </return-value>
+        <parameters>
+          <instance-parameter name="self" transfer-ownership="none">
+            <doc xml:space="preserve"
+                 filename="src/adw-spin-row.c"
+                 line="711">a spin row</doc>
+            <type name="SpinRow" c:type="AdwSpinRow*"/>
+          </instance-parameter>
+          <parameter name="digits" transfer-ownership="none">
+            <doc xml:space="preserve"
+                 filename="src/adw-spin-row.c"
+                 line="712">the number of decimal places to display</doc>
+            <type name="guint" c:type="guint"/>
+          </parameter>
+        </parameters>
+      </method>
+      <method name="set_numeric"
+              c:identifier="adw_spin_row_set_numeric"
+              glib:set-property="numeric"
+              version="1.4">
+        <attribute name="org.gtk.Method.set_property" value="numeric"/>
+        <doc xml:space="preserve"
+             filename="src/adw-spin-row.c"
+             line="750">Sets whether non-numeric characters should be ignored.</doc>
+        <source-position filename="src/adw-spin-row.h" line="61"/>
+        <return-value transfer-ownership="none">
+          <type name="none" c:type="void"/>
+        </return-value>
+        <parameters>
+          <instance-parameter name="self" transfer-ownership="none">
+            <doc xml:space="preserve"
+                 filename="src/adw-spin-row.c"
+                 line="752">a spin row</doc>
+            <type name="SpinRow" c:type="AdwSpinRow*"/>
+          </instance-parameter>
+          <parameter name="numeric" transfer-ownership="none">
+            <doc xml:space="preserve"
+                 filename="src/adw-spin-row.c"
+                 line="753">whether non-numeric characters should be ignored</doc>
+            <type name="gboolean" c:type="gboolean"/>
+          </parameter>
+        </parameters>
+      </method>
+      <method name="set_snap_to_ticks"
+              c:identifier="adw_spin_row_set_snap_to_ticks"
+              glib:set-property="snap-to-ticks"
+              version="1.4">
+        <attribute name="org.gtk.Method.set_property" value="snap-to-ticks"/>
+        <doc xml:space="preserve"
+             filename="src/adw-spin-row.c"
+             line="793">Sets whether invalid values are snapped to the nearest step increment.</doc>
+        <source-position filename="src/adw-spin-row.h" line="67"/>
+        <return-value transfer-ownership="none">
+          <type name="none" c:type="void"/>
+        </return-value>
+        <parameters>
+          <instance-parameter name="self" transfer-ownership="none">
+            <doc xml:space="preserve"
+                 filename="src/adw-spin-row.c"
+                 line="795">a spin row</doc>
+            <type name="SpinRow" c:type="AdwSpinRow*"/>
+          </instance-parameter>
+          <parameter name="snap_to_ticks" transfer-ownership="none">
+            <doc xml:space="preserve"
+                 filename="src/adw-spin-row.c"
+                 line="796">whether invalid values are snapped to the nearest step increment</doc>
+            <type name="gboolean" c:type="gboolean"/>
+          </parameter>
+        </parameters>
+      </method>
+      <method name="set_update_policy"
+              c:identifier="adw_spin_row_set_update_policy"
+              glib:set-property="update-policy"
+              version="1.4">
+        <attribute name="org.gtk.Method.set_property" value="update-policy"/>
+        <doc xml:space="preserve"
+             filename="src/adw-spin-row.c"
+             line="836">Sets the policy for updating the spin row.
+
+The options are always, or only when the value is invalid.</doc>
+        <source-position filename="src/adw-spin-row.h" line="73"/>
+        <return-value transfer-ownership="none">
+          <type name="none" c:type="void"/>
+        </return-value>
+        <parameters>
+          <instance-parameter name="self" transfer-ownership="none">
+            <doc xml:space="preserve"
+                 filename="src/adw-spin-row.c"
+                 line="838">a spin row</doc>
+            <type name="SpinRow" c:type="AdwSpinRow*"/>
+          </instance-parameter>
+          <parameter name="policy" transfer-ownership="none">
+            <doc xml:space="preserve"
+                 filename="src/adw-spin-row.c"
+                 line="839">the policy for updating the spin row</doc>
+            <type name="Gtk.SpinButtonUpdatePolicy"
+                  c:type="GtkSpinButtonUpdatePolicy"/>
+          </parameter>
+        </parameters>
+      </method>
+      <method name="set_value"
+              c:identifier="adw_spin_row_set_value"
+              glib:set-property="value"
+              version="1.4">
+        <attribute name="org.gtk.Method.set_property" value="value"/>
+        <doc xml:space="preserve"
+             filename="src/adw-spin-row.c"
+             line="879">Sets the current value.</doc>
+        <source-position filename="src/adw-spin-row.h" line="79"/>
+        <return-value transfer-ownership="none">
+          <type name="none" c:type="void"/>
+        </return-value>
+        <parameters>
+          <instance-parameter name="self" transfer-ownership="none">
+            <doc xml:space="preserve"
+                 filename="src/adw-spin-row.c"
+                 line="881">a spin row</doc>
+            <type name="SpinRow" c:type="AdwSpinRow*"/>
+          </instance-parameter>
+          <parameter name="value" transfer-ownership="none">
+            <doc xml:space="preserve"
+                 filename="src/adw-spin-row.c"
+                 line="882">a new value</doc>
+            <type name="gdouble" c:type="double"/>
+          </parameter>
+        </parameters>
+      </method>
+      <method name="set_wrap"
+              c:identifier="adw_spin_row_set_wrap"
+              glib:set-property="wrap"
+              version="1.4">
+        <attribute name="org.gtk.Method.set_property" value="wrap"/>
+        <doc xml:space="preserve"
+             filename="src/adw-spin-row.c"
+             line="918">Sets whether the spin row should wrap upon reaching its limits.</doc>
+        <source-position filename="src/adw-spin-row.h" line="85"/>
+        <return-value transfer-ownership="none">
+          <type name="none" c:type="void"/>
+        </return-value>
+        <parameters>
+          <instance-parameter name="self" transfer-ownership="none">
+            <doc xml:space="preserve"
+                 filename="src/adw-spin-row.c"
+                 line="920">a spin row</doc>
+            <type name="SpinRow" c:type="AdwSpinRow*"/>
+          </instance-parameter>
+          <parameter name="wrap" transfer-ownership="none">
+            <doc xml:space="preserve"
+                 filename="src/adw-spin-row.c"
+                 line="921">whether the spin row should wrap upon reaching its limits</doc>
+            <type name="gboolean" c:type="gboolean"/>
+          </parameter>
+        </parameters>
+      </method>
+      <method name="update" c:identifier="adw_spin_row_update" version="1.4">
+        <doc xml:space="preserve"
+             filename="src/adw-spin-row.c"
+             line="943">Manually force an update of the spin row.</doc>
+        <source-position filename="src/adw-spin-row.h" line="89"/>
+        <return-value transfer-ownership="none">
+          <type name="none" c:type="void"/>
+        </return-value>
+        <parameters>
+          <instance-parameter name="self" transfer-ownership="none">
+            <doc xml:space="preserve"
+                 filename="src/adw-spin-row.c"
+                 line="945">a spin row</doc>
+            <type name="SpinRow" c:type="AdwSpinRow*"/>
+          </instance-parameter>
+        </parameters>
+      </method>
+      <property name="adjustment"
+                version="1.4"
+                writable="1"
+                transfer-ownership="none"
+                setter="set_adjustment"
+                getter="get_adjustment">
+        <attribute name="org.gtk.Property.get"
+                   value="adw_spin_row_get_adjustment"/>
+        <attribute name="org.gtk.Property.set"
+                   value="adw_spin_row_set_adjustment"/>
+        <doc xml:space="preserve"
+             filename="src/adw-spin-row.c"
+             line="264">The adjustment that holds the value of the spin row.</doc>
+        <type name="Gtk.Adjustment"/>
+      </property>
+      <property name="climb-rate"
+                version="1.4"
+                writable="1"
+                transfer-ownership="none"
+                setter="set_climb_rate"
+                getter="get_climb_rate"
+                default-value="0.000000">
+        <attribute name="org.gtk.Property.get"
+                   value="adw_spin_row_get_climb_rate"/>
+        <attribute name="org.gtk.Property.set"
+                   value="adw_spin_row_set_climb_rate"/>
+        <doc xml:space="preserve"
+             filename="src/adw-spin-row.c"
+             line="276">The acceleration rate when you hold down a button or key.</doc>
+        <type name="gdouble" c:type="gdouble"/>
+      </property>
+      <property name="digits"
+                version="1.4"
+                writable="1"
+                transfer-ownership="none"
+                setter="set_digits"
+                getter="get_digits"
+                default-value="0">
+        <attribute name="org.gtk.Property.get"
+                   value="adw_spin_row_get_digits"/>
+        <attribute name="org.gtk.Property.set"
+                   value="adw_spin_row_set_digits"/>
+        <doc xml:space="preserve"
+             filename="src/adw-spin-row.c"
+             line="288">The number of decimal places to display.</doc>
+        <type name="guint" c:type="guint"/>
+      </property>
+      <property name="numeric"
+                version="1.4"
+                writable="1"
+                transfer-ownership="none"
+                setter="set_numeric"
+                getter="get_numeric"
+                default-value="FALSE">
+        <attribute name="org.gtk.Property.get"
+                   value="adw_spin_row_get_numeric"/>
+        <attribute name="org.gtk.Property.set"
+                   value="adw_spin_row_set_numeric"/>
+        <doc xml:space="preserve"
+             filename="src/adw-spin-row.c"
+             line="300">Whether non-numeric characters should be ignored.</doc>
+        <type name="gboolean" c:type="gboolean"/>
+      </property>
+      <property name="snap-to-ticks"
+                version="1.4"
+                writable="1"
+                transfer-ownership="none"
+                setter="set_snap_to_ticks"
+                getter="get_snap_to_ticks"
+                default-value="FALSE">
+        <attribute name="org.gtk.Property.get"
+                   value="adw_spin_row_get_snap_to_ticks"/>
+        <attribute name="org.gtk.Property.set"
+                   value="adw_spin_row_set_snap_to_ticks"/>
+        <doc xml:space="preserve"
+             filename="src/adw-spin-row.c"
+             line="312">Whether invalid values are snapped to the nearest step increment.</doc>
+        <type name="gboolean" c:type="gboolean"/>
+      </property>
+      <property name="update-policy"
+                version="1.4"
+                writable="1"
+                transfer-ownership="none"
+                setter="set_update_policy"
+                getter="get_update_policy"
+                default-value="GTK_UPDATE_ALWAYS">
+        <attribute name="org.gtk.Property.get"
+                   value="adw_spin_row_get_update_policy"/>
+        <attribute name="org.gtk.Property.set"
+                   value="adw_spin_row_set_update_policy"/>
+        <doc xml:space="preserve"
+             filename="src/adw-spin-row.c"
+             line="324">The policy for updating the spin row.
+
+The options are always, or only when the value is invalid.</doc>
+        <type name="Gtk.SpinButtonUpdatePolicy"/>
+      </property>
+      <property name="value"
+                version="1.4"
+                writable="1"
+                transfer-ownership="none"
+                setter="set_value"
+                getter="get_value"
+                default-value="0.000000">
+        <attribute name="org.gtk.Property.get" value="adw_spin_row_get_value"/>
+        <attribute name="org.gtk.Property.set" value="adw_spin_row_set_value"/>
+        <doc xml:space="preserve"
+             filename="src/adw-spin-row.c"
+             line="339">The current value.</doc>
+        <type name="gdouble" c:type="gdouble"/>
+      </property>
+      <property name="wrap"
+                version="1.4"
+                writable="1"
+                transfer-ownership="none"
+                setter="set_wrap"
+                getter="get_wrap"
+                default-value="FALSE">
+        <attribute name="org.gtk.Property.get" value="adw_spin_row_get_wrap"/>
+        <attribute name="org.gtk.Property.set" value="adw_spin_row_set_wrap"/>
+        <doc xml:space="preserve"
+             filename="src/adw-spin-row.c"
+             line="351">Whether the spin row should wrap upon reaching its limits.</doc>
+        <type name="gboolean" c:type="gboolean"/>
+      </property>
+      <glib:signal name="input" when="last" version="1.4">
+        <doc xml:space="preserve"
+             filename="src/adw-spin-row.c"
+             line="367">Emitted to convert the user's input into a double value.
+
+The signal handler is expected to use [method@Gtk.Editable.get_text] to
+retrieve the text of the spinbutton and set new_value to the new value.
+
+The default conversion uses [func@GLib.strtod].
+
+See [signal@Gtk.SpinButton::input].</doc>
+        <return-value transfer-ownership="none">
+          <doc xml:space="preserve"
+               filename="src/adw-spin-row.c"
+               line="381">`TRUE` for a successful conversion, `FALSE` if the input was not
+  handled, and `GTK_INPUT_ERROR` if the conversion failed.</doc>
+          <type name="gint" c:type="gint"/>
+        </return-value>
+        <parameters>
+          <parameter name="new_value"
+                     direction="out"
+                     caller-allocates="0"
+                     transfer-ownership="full">
+            <doc xml:space="preserve"
+                 filename="src/adw-spin-row.c"
+                 line="370">return location for the new value</doc>
+            <type name="gdouble" c:type="gpointer"/>
+          </parameter>
+        </parameters>
+      </glib:signal>
+      <glib:signal name="output" when="last" version="1.4">
+        <doc xml:space="preserve"
+             filename="src/adw-spin-row.c"
+             line="399">Emitted to tweak the formatting of the value for display.
+
+See [signal@Gtk.SpinButton::output].</doc>
+        <return-value transfer-ownership="none">
+          <doc xml:space="preserve"
+               filename="src/adw-spin-row.c"
+               line="406">`TRUE` if the value has been displayed</doc>
+          <type name="gboolean" c:type="gboolean"/>
+        </return-value>
+      </glib:signal>
+      <glib:signal name="wrapped" when="last" version="1.4">
+        <doc xml:space="preserve"
+             filename="src/adw-spin-row.c"
+             line="423">Emitted right after the spinbutton wraps.
+
+See [signal@Gtk.SpinButton::wrapped].</doc>
+        <return-value transfer-ownership="none">
+          <type name="none" c:type="void"/>
+        </return-value>
+      </glib:signal>
+    </class>
+    <record name="SpinRowClass"
+            c:type="AdwSpinRowClass"
+            glib:is-gtype-struct-for="SpinRow">
+      <source-position filename="src/adw-spin-row.h" line="24"/>
+      <field name="parent_class">
+        <type name="ActionRowClass" c:type="AdwActionRowClass"/>
+      </field>
+    </record>
     <class name="SplitButton"
            c:symbol-prefix="split_button"
            c:type="AdwSplitButton"
@@ -20452,6 +21239,7 @@ If not implemented, the default implementation returns the allocation of
     <class name="SwitchRow"
            c:symbol-prefix="switch_row"
            c:type="AdwSwitchRow"
+           version="1.4"
            parent="ActionRow"
            final="1"
            glib:type-name="AdwSwitchRow"
@@ -20493,12 +21281,12 @@ monitor changes to the active state.</doc>
       <constructor name="new" c:identifier="adw_switch_row_new" version="1.4">
         <doc xml:space="preserve"
              filename="src/adw-switch-row.c"
-             line="149">Creates a new `AdwSwitchRow`.</doc>
+             line="151">Creates a new `AdwSwitchRow`.</doc>
         <source-position filename="src/adw-switch-row.h" line="25"/>
         <return-value transfer-ownership="none">
           <doc xml:space="preserve"
                filename="src/adw-switch-row.c"
-               line="154">the newly created `AdwSwitchRow`</doc>
+               line="156">the newly created `AdwSwitchRow`</doc>
           <type name="Gtk.Widget" c:type="GtkWidget*"/>
         </return-value>
       </constructor>
@@ -20509,19 +21297,19 @@ monitor changes to the active state.</doc>
         <attribute name="org.gtk.Method.get_property" value="active"/>
         <doc xml:space="preserve"
              filename="src/adw-switch-row.c"
-             line="164">Gets whether @self is in its "on" or "off" position.</doc>
+             line="166">Gets whether @self is in its "on" or "off" position.</doc>
         <source-position filename="src/adw-switch-row.h" line="28"/>
         <return-value transfer-ownership="none">
           <doc xml:space="preserve"
                filename="src/adw-switch-row.c"
-               line="170">whether @self is active or not</doc>
+               line="172">whether @self is active or not</doc>
           <type name="gboolean" c:type="gboolean"/>
         </return-value>
         <parameters>
           <instance-parameter name="self" transfer-ownership="none">
             <doc xml:space="preserve"
                  filename="src/adw-switch-row.c"
-                 line="166">a switch row</doc>
+                 line="168">a switch row</doc>
             <type name="SwitchRow" c:type="AdwSwitchRow*"/>
           </instance-parameter>
         </parameters>
@@ -20533,7 +21321,7 @@ monitor changes to the active state.</doc>
         <attribute name="org.gtk.Method.set_property" value="active"/>
         <doc xml:space="preserve"
              filename="src/adw-switch-row.c"
-             line="182">Sets whether @self is in its "on" or "off" position</doc>
+             line="184">Sets whether @self is in its "on" or "off" position</doc>
         <source-position filename="src/adw-switch-row.h" line="30"/>
         <return-value transfer-ownership="none">
           <type name="none" c:type="void"/>
@@ -20542,13 +21330,13 @@ monitor changes to the active state.</doc>
           <instance-parameter name="self" transfer-ownership="none">
             <doc xml:space="preserve"
                  filename="src/adw-switch-row.c"
-                 line="184">a switch row</doc>
+                 line="186">a switch row</doc>
             <type name="SwitchRow" c:type="AdwSwitchRow*"/>
           </instance-parameter>
           <parameter name="is_active" transfer-ownership="none">
             <doc xml:space="preserve"
                  filename="src/adw-switch-row.c"
-                 line="185">whether @self should be active</doc>
+                 line="187">whether @self should be active</doc>
             <type name="gboolean" c:type="gboolean"/>
           </parameter>
         </parameters>
@@ -20566,7 +21354,7 @@ monitor changes to the active state.</doc>
                    value="adw_switch_row_set_active"/>
         <doc xml:space="preserve"
              filename="src/adw-switch-row.c"
-             line="121">Whether the switch row is in the "on" or "off" position.</doc>
+             line="123">Whether the switch row is in the "on" or "off" position.</doc>
         <type name="gboolean" c:type="gboolean"/>
       </property>
     </class>
