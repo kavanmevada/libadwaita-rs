@@ -19,8 +19,3 @@ ignore = [
    "Adw.MICRO_VERSION", 
    "Adw.MINOR_VERSION"
 ]
-
-[[object]]
-name = "Adw.SwitchRow"
-status = "generate"
-version = "1.4" # Drop once https://gitlab.gnome.org/GNOME/libadwaita/-/merge_requests/839 is merged

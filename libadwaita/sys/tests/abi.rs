@@ -563,6 +563,13 @@ const RUST_LAYOUTS: &[(&str, Layout)] = &[
         },
     ),
     (
+        "AdwSpinRowClass",
+        Layout {
+            size: size_of::<AdwSpinRowClass>(),
+            alignment: align_of::<AdwSpinRowClass>(),
+        },
+    ),
+    (
         "AdwSplitButtonClass",
         Layout {
             size: size_of::<AdwSplitButtonClass>(),

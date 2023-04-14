@@ -126,6 +126,13 @@ mod property_animation_target;
 #[cfg_attr(feature = "dox", doc(cfg(feature = "v1_2")))]
 pub use self::property_animation_target::PropertyAnimationTarget;
 
+#[cfg(any(feature = "v1_4", feature = "dox"))]
+#[cfg_attr(feature = "dox", doc(cfg(feature = "v1_4")))]
+mod spin_row;
+#[cfg(any(feature = "v1_4", feature = "dox"))]
+#[cfg_attr(feature = "dox", doc(cfg(feature = "v1_4")))]
+pub use self::spin_row::SpinRow;
+
 mod split_button;
 pub use self::split_button::SplitButton;
 
@@ -307,6 +314,9 @@ pub mod builders {
     pub use super::preferences_page::PreferencesPageBuilder;
     pub use super::preferences_row::PreferencesRowBuilder;
     pub use super::preferences_window::PreferencesWindowBuilder;
+    #[cfg(any(feature = "v1_4", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v1_4")))]
+    pub use super::spin_row::SpinRowBuilder;
     pub use super::split_button::SplitButtonBuilder;
     pub use super::spring_animation::SpringAnimationBuilder;
     pub use super::squeezer::SqueezerBuilder;

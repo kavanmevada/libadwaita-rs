@@ -65,6 +65,7 @@ generate = [
     "Adw.SqueezerTransitionType",
     "Adw.StatusPage",
     "Adw.SwipeTracker",
+    "Adw.SwitchRow",
     "Adw.Swipeable",
     "Adw.TabButton",
     "Adw.TabOverview",
@@ -133,6 +134,7 @@ manual = [
     "Gtk.ScrolledWindow",
     "Gtk.SelectionModel",
     "Gtk.ShortcutManager",
+    "Gtk.SpinButtonUpdatePolicy",
     "Gtk.Stack",
     "Gtk.Widget",
     "Pango.AttrList",
@@ -233,6 +235,13 @@ status = "generate"
 generate_builder = false
 
 [[object]]
+name = "Adw.SpinRow"
+status = "generate"
+    [[object.signal]]
+    name = "input"
+    manual = true
+
+[[object]]
 name = "Adw.StyleManager"
 status = "generate"
 generate_builder = false
@@ -244,11 +253,6 @@ generate_builder = false
 name = "Adw.SqueezerPage"
 status = "generate"
 generate_builder = false
-
-[[object]]
-name = "Adw.SwitchRow"
-status = "generate"
-version = "1.4" # Drop once https://gitlab.gnome.org/GNOME/libadwaita/-/merge_requests/839 is merged
 
 [[object]]
 name = "Adw.TabBar"
