@@ -30,6 +30,25 @@ jobs:
         continue-on-error: true  # WARNING: only for this example, remove it!
         with:
           command: check
+          
+  regen_check:
+    name: regen checker
+    runs-on: ubuntu-latest
+    container:
+      image: ghcr.io/gtk-rs/gtk4-rs/gtk4:latest
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          submodules: "recursive"
+          set-safe-directory: true
+      - uses: actions-rs/toolchain@v1
+        with:
+          profile: minimal
+          toolchain: stable
+          override: true
+      - run: git submodule update --checkout
+      - run: python3 ./generator.py --yes ./
+      - run: git diff --exit-code
 
   test:
     name: Test Suite
